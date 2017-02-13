@@ -1,0 +1,163 @@
+.tab-item .icon {
+	height: 48px;
+	line-height: 48px;
+}
+
+ion-header-bar {
+	background: #fc0300!important;
+    border: none!important;
+}
+
+ion-header-bar .title {
+	color: #fff!important;
+}
+
+.tab-item-active,
+.tab-item.activated {
+	color: #fc0300!important;
+	border-bottom-color: #fc0300!important;
+}
+
+.button.button-positive {
+	border-color: #fc0300;
+    background-color: #fc0300;
+}
+
+.button.button-positive.activated,
+.button.button-positive:active {
+	border-color: #fc0300;
+    background-color: #fc0300;
+}
+
+.back-button {
+	color: #fff!important;
+}
+
+.color-cube {
+	display: inline-block;
+	border: 1px solid #aaa;
+	border-radius: 50%;
+}
+
+.color-cube > div {
+	border-radius: 50%;
+	width: 18px;
+	height: 18px;
+	margin: 2px;
+}
+
+.color-cube.orange > div {
+	background-color: orange;
+}
+
+[fab] {
+	position: fixed;
+	z-index: 10;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	background-color: #fc0300;
+}
+
+[fab] div {
+	color: #fff;
+    font-size: 28px;
+    margin: 12px 16px;
+	text-shadow: none;
+}
+
+.platform-ios [fab],
+.platform-windows [fab] {
+	bottom: 70px;
+    right: 25px;
+	box-shadow: none;
+}
+
+.platform-android [fab] {
+	bottom: 25px;
+    right: 25px;
+	box-shadow: 0 1px 6px #888;
+}
+
+.platform-android [fab]:active {
+	box-shadow: 0 1px 2px #888;
+}
+
+.list .item {
+	border-top: none!important;
+	border-left: none!important;
+	border-right: none!important;
+	margin-bottom: 1px;
+}
+
+.item-square .item {
+	border: 1px dashed #ccc!important;
+	margin: 3%;
+	width: 44%;
+	float: left;
+	border-radius: 5px;
+}
+
+.smile_icon {
+	background: transparent url(../icons/smile_icon.png) no-repeat center center;
+}
+.tired_icon {
+	background: transparent url(../icons/tired_icon.png) no-repeat center center;
+}
+
+.justify-list > div {
+	padding: 8px 10px;
+	border: 1px solid transparent;
+	font-size: 15px;
+	font-weight: bold;
+	color: #444;
+}
+.justify-list > div.selected {
+	color: #ba0200;
+	border-color: #ba0200;
+	border-radius: 5px;
+}
+
+.row.no_padding {
+	padding-top: 0!important;
+}
+
+.toggle.toggle-positive input:checked + .track {
+	border-color: #fc0300;
+}
+
+.platform-ios .toggle.toggle-positive input:checked + .track {
+	background-color: #fc0300;
+}
+
+.toggle-small .toggle-positive input:checked + .track {
+	background-color: #fe7f7e;
+}
+
+.toggle-small .toggle-positive input:checked + .track .handle {
+	background-color: #fc0300;
+}
+
+.ion-android-star.selected {
+	color: orange!important;
+}
+
+.item {
+	position: inherit!important;
+}
+
+.loading-map {
+	poSition: fixed;
+    top: 0;
+    left: 0;
+    height: 40%;
+    width: 100%;
+    background-color: #fff;
+    opacity: .7;
+    z-index: 100000;
+}
+
+.loading-map ion-spinner {
+	position: relative;
+    top: 40%;
+}

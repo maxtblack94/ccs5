@@ -1,0 +1,40 @@
+<ion-view view-title="{{locale.home.prenotationtitle}}">
+  <ion-content>
+    <div id='map' style='width: 100%; height: 40%;'></div>
+    <div ng-show='loadingMap' class='loading-map'>
+      <ion-spinner></ion-spinner>
+    </div>
+    <div style='padding: 20px; border-top: 1px solid #ddd;'>
+        <div ng-click='centerCarMap()' ng-show='g_address' style='margin-bottom: 20px;'>
+          <div style='color: #666;'>{{ locale.home.vehicle_position }}</div>
+          <h4 style='margin-top: 0; font-size: 15px;'>{{ g_address }}</h4>
+        </div>
+        <div class="item" style='overflow: auto; border-left: none; border-right: none; margin-top: 1px; padding: 10px 0;'>
+          <div style='float: left;'>
+            <h2>{{ locale.home.labelGet }}</h2>
+            <p>{{ selectedBooking.pickup_parking }}</p>
+          </div>
+          <p style='float: right; font-size: 18px; color: #111; margin-top: 12px;'>{{ selectedBooking.pickupFormatedDate }}</p>
+        </div>
+        <div class="item" style='overflow: auto; border-left: none; border-right: none; margin-top: 1px; padding: 10px 0;'>
+          <div style='float: left;'>
+            <h2>{{ locale.home.labelSet }}</h2>
+            <p>{{ selectedBooking.return_parking }}</p>
+          </div>
+          <p style='float: right; font-size: 18px; color: #111; margin-top: 12px;'>{{ selectedBooking.returnFormatedDate }}</p>
+        </div>
+        
+        <div class="item" style='overflow: auto; border: none; margin-top: 10px; padding: 10px 0;'>
+            <h2>
+              <button ng-click='delete(selectedBooking)' class="button button-positive">
+                {{ locale.booking.labelDelete }}
+              </button>
+              <button ng-click='navigate(selectedBooking)' class="button">
+                {{ locale.booking.labelNavigate }}
+              </button>
+            </h2>
+        </div>
+    </div>
+  </ion-content>
+</ion-view>
+

@@ -1,0 +1,81 @@
+<ion-view view-title="">
+    <style>
+      .clients-list > div {
+        padding: 15px;
+        font-size: 16px!important;
+        background-color: #fe7776;
+        background-color: #ba0200;
+        border-radius: 3px;
+        margin-bottom: 2px;
+        color: #fff;
+        text-align: center;
+      }
+      .clients-list > div:active {
+        background-color: #8e0302!important;
+      }
+      .but-login {
+        border-radius: 3px;
+        background-color: #ba0200!important;
+      }
+      .but-changeclient {
+        border-radius: 3px;
+        background-color: transparent; 
+        color: #fff; 
+        font-size: 16px!important;
+      }
+      .but-changeclient:active,
+      .but-login:active,
+      .but-login:focus {
+        background-color: #8e0302!important;
+        background-color: #8e0302!important;
+        border-color: transparent!important;
+      }
+      .input:focus {
+        box-shadow: none;
+      }
+      
+      .input.login {
+        -webkit-box-sizing: border-box;‌​
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 10px!important;
+        width: 100%;
+        height: 45px!important;
+      }
+  </style>
+  <ion-content class="padding" overflow-scroll='true' style='background-color: #fc0300;'>
+      <div ng-show='!loadingLogin && selectedClient' style='width: 300px; margin: auto; height: 280px; position: absolute; top: 50%; margin-top: -140px; left: 50%; margin-left: -150px;'>
+        <div style='text-align: center; margin-bottom: 10px;'>
+          <img class='logo' src='icons/CCSsharing-Logo-Red-l-2.1c.png' style='max-width: 80%;' />
+        </div>
+        <div>
+          <div style='text-align: center; margin-bottom: 10px; color: #fff; overflow: auto;'>
+            <div style='float: left; font-weight: bold;'>{{ selectedClient.text }}</div>
+            <div ng-click="switch()" style='floaT: right; font-size: 13px; margin-top: 5px;'>{{ locale.login.changeClient }}</div>
+          </div>
+          <div style='padding: 5px 0;'>
+            <input type="email" id="login-user" class='input login' style='border-radius: 3px; border: none; background-color: #fff; font-size: 13px;' placeholder='Username' required>
+          </div>
+          <div style='padding: 10px 0;'>
+            <input type="password" id="login-password" class='input login' style='border-radius: 3px; border: none; background-color: #fff; font-size: 13px;' placeholder='Password' required>
+          </div>
+          <div style='text-align: center; margin-top: 20px;'>
+            <button ng-click="login()" class="button button-block button-positive but-login">
+              {{ locale.login.labelLogin }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div ng-show='!loadingLogin && !selectedClient' style='width: 300px; margin: auto; height: 280px; position: absolute; top: 50%; margin-top: -140px; left: 50%; margin-left: -150px;'>
+        <div style='text-align: center; margin-bottom: 10px;'>
+          <img class='logo' src='icons/CCSsharing-Logo-Red-l-2.1c.png' style='width: 80%;' />
+        </div>
+        <div style='width: 240px; margin: auto;'>
+          <div style='text-align: center; margin-bottom: 10px; color: #fff;'>{{locale.login.selectClient}}</div>
+          <div class='clients-list' style='padding-bottom: 50px;'>
+            <div ng-repeat='client in clientList' ng-click='selectClient($index, client); ; $event.stopPropagation();'>{{client.text}}</div>
+          </div>
+        </div>
+      </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,52 @@
+<ion-view view-title="{{ locale.date.labelSelectRange }}">
+  <ion-content class="padding">
+    <ion-list> 
+      
+      <ion-item>
+        <div style='float: left;'> 
+          <p>{{ locale.date.startDate }}</p>
+          <h2 style='font-weight: bold;'>{{ dateFromPick.inputDate | date:'dd/MM/yyyy' }}</h2>
+        </div>
+        <h2 style='float: right;'>
+          <button ng-click='selectFromDate()' class="button button-positive">{{ locale.date.butChange }}</button>
+        </h2>
+      </ion-item>
+      <ion-item>
+        <div style='float: left;'> 
+          <p>{{ locale.date.startTime }}</p>
+          <h2 style='font-weight: bold;'>{{ timeFromPick.inputTime | date:'HH:mm' }}</h2>
+        </div>
+        <h2 style='float: right;'>
+          <button ng-click='selectFromTime()' class="button button-positive overflowShow">{{ locale.date.butChange }}</button>
+        </h2>
+      </ion-item>
+      
+      <ion-item>
+        <div style='float: left;'> 
+          <p>{{ locale.date.endDate }}</p>
+          <h2 style='font-weight: bold;'>{{ dateToPick.inputDate | date:'dd/MM/yyyy' }}</h2>
+        </div>
+        <h2 style='float: right;'>
+          <button ng-click='selectToDate()' class="button button-positive">{{ locale.date.butChange }}</button>
+        </h2>
+      </ion-item>
+      <ion-item style='border-bottom: none;'>
+        <div style='float: left;'> 
+          <p>{{ locale.date.endTime }}</p>
+          <h2 style='font-weight: bold;'>{{ timeToPick.inputTime | date:'HH:mm' }}</h2>
+        </div>
+        <h2 style='float: right;'>
+          <button ng-click='selectToTime()' class="button button-positive overflowShow">{{ locale.date.butChange }}</button>
+        </h2>
+      </ion-item>
+      
+      <button ng-show='dateValidated && !selectedParking' ng-click='gotoParking()' class="button button-block button-positive">
+        {{ locale.parking.labelSelectParking }}
+      </button>
+      <button ng-show='dateValidated && selectedParking' ng-click='gotoParking()' class="button button-block button-positive">
+        {{ locale.parking.button }}
+      </button>
+      
+    <ion-list>
+  </ion-content>
+</ion-view>

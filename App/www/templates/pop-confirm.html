@@ -1,0 +1,96 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">{{ locale.confirmation.labelConfirmation }}</h1>
+    <div class="buttons">
+      <i ng-click='closeModal()' class='ion-android-close' style='color: #fff; font-size: 28px; padding: 4px 10px;'></i>
+    </div>
+  </ion-header-bar>
+  <ion-content class='padding'>
+    <ion-list>
+    
+      <ion-item>
+        <div style='float: left;'> 
+          <p>{{ locale.booking.dateFrom }}</p>
+        </div>
+        <div style='float: right;'> 
+          <h2 style='font-weight: bold;'>
+            {{ dateFromPick.inputDate | date:'dd/MM/yyyy' }} {{ timeFromPick.inputTime | date:'HH:mm' }}
+          </h2>
+        </div>
+      </ion-item>
+      <ion-item>
+        <div style='float: left;'> 
+          <p>{{ locale.booking.dateTo }}</p>
+        </div>
+        <div style='float: right;'> 
+          <h2 style='font-weight: bold;'>
+            {{ dateToPick.inputDate | date:'dd/MM/yyyy' }} {{ timeToPick.inputTime | date:'HH:mm' }}
+          </h2>
+        </div>
+      </ion-item>
+      <ion-item>
+        <div style='float: left;'> 
+          <p>{{ locale.booking.parking }}</p>
+        </div>
+        <div style='float: right;'> 
+          <h2 style='font-weight: bold;'>{{ selectedParking.parking_name }}</h2>
+          <p>{{ selectedParking.address }}</p>
+        </div>
+      </ion-item>
+      <ion-item>
+        <div style='float: left;'> 
+          <p>{{ locale.booking.cc }}</p>
+        </div>
+        <div style='float: right;'>
+          <h2 ng-if='hasCC' style='font-weight: bold;'>{{ locale.vehicle.yes }}</h2>
+          <h2 ng-if='!hasCC' style='font-weight: bold;'>{{ locale.vehicle.no }}</h2>
+        </div>
+      </ion-item>
+      <ion-item>
+        <div style='float: left;'> 
+          <p>{{ locale.booking.telepass }}</p>
+        </div>
+        <div style='float: right;'>
+          <h2 ng-if='hasTelepass' style='font-weight: bold;'>{{ locale.vehicle.yes }}</h2>
+          <h2 ng-if='!hasTelepass' style='font-weight: bold;'>{{ locale.vehicle.no }}</h2>
+        </div>
+      </ion-item>
+      <ion-item>
+        <div> 
+          <h2 style='line-height: 27px;'>{{ selectedCar.brand_model }}</h2>
+          <h2 style='font-weight: bold; line-height: 27px;'>{{ selectedCar.plate }}</h2>
+          <p>{{ selectedCar.seats }} {{ locale.vehicle.labelSeats }}</p>
+        </div>
+      </ion-item>
+      <ion-item ng-show='selectedClient.justifiedUse'>
+		<div style='overflow: auto;'>
+			<div class="date-select-label" style='margin-bottom: 10px;'>{{ locale.booking.justification }}</div>
+			<div class='justify-list' style='font-size: 14pt;'>
+				<div ng-repeat='justify in justifyList' 
+					ng-click='selectJustify($index, justify)'
+					class="{{ justify.selected ? 'selected' : ''}}">{{ justify.text }}</div>
+			</div>
+		</div>
+      </ion-item>
+      <ion-item>
+        <div> 
+			<div class="date-select-label" style='margin-bottom: 10px;'>{{ locale.booking.place }}</div>
+			<div style='font-size: 14pt; margin-bottom: 10px;'>
+				<input class='place_val' type='text' style='padding: 10px; width: 100%; border: 1px solid #ccc; border-radius: 5px; -webkit-box-sizing: border-box;‌​ -moz-box-sizing: border-box; box-sizing: border-box;' />
+			</div>
+        </div>
+      </ion-item>
+      <ion-item ng-show='selectedClient.driveName' style='border-bottom: none; margin-bottom: 10px;'>
+        <div> 
+			<div class="date-select-label" style='margin-bottom: 10px;'>{{ locale.booking.driverName }}</div>
+			<div style='font-size: 14pt; margin-bottom: 10px;'>
+				<input class='driverName_val' type='text' style='padding: 10px; width: 100%; border: 1px solid #ccc; border-radius: 5px; -webkit-box-sizing: border-box;‌​ -moz-box-sizing: border-box; box-sizing: border-box;' />
+			</div>
+        </div>
+      </ion-item>
+	  
+      <button ng-click='confirm()' class="button button-block button-positive">{{ locale.confirmation.labelConfirmation }}</button>
+      
+     </ion-list>
+  </ion-content>
+</ion-modal-view>
