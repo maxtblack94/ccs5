@@ -9,11 +9,11 @@
       
       <p ng-if='BookingsList.length==0 && !loading' style='padding: 20px; text-align: center; color: #888; font-size: 14px;'>{{ locale.home.msgNoRsv }}</p>
         
-      <div ng-repeat='book in BookingsList' ng-click='openBooking(book)' class="list card">
+      <div ng-repeat='book in BookingsList' class="list card">
         <div class="item">
           <div style='overflow: auto;'>
             <p style='float: left; font-weight: bold;'>{{ locale.home.rsvinfo.labPRN }}</p>
-            <h2 style='float: right; color: #fc0300!important; font-weight: bold;'>{{ book.pnr }}</h2>
+            <h2 ng-click='openBooking(book)' style='float: right; color: #fc0300!important; font-weight: bold;'>{{ book.pnr }}</h2>
           </div>
         </div>
         <div class='padding' style='padding-top: 0;'>
@@ -31,6 +31,15 @@
             <div style='float: left; margin-right: 20px;'>
               <p>{{ locale.confirmation.labelColor }}</p>
               <div class='color-cube'><div style='background-color: {{ book.color }};'></div></div>
+            </div>
+            <div style='float: right;'>
+              <p>{{ locale.booking.labelCentralizzedButton }}</p>
+              <a ng-click="openCarManipolation(book.pnr, '0')" class="button button-small button-balanced" style="padding: 0px 15px; width: 80px;">
+                {{ locale.booking.buttonOpenCar }}
+              </a>
+              <a ng-click="openCarManipolation(book.pnr, '1')" class="button button-small button-positive" style="padding: 0px 15px; width: 80px;">
+                {{ locale.booking.buttonCloseCar }}
+              </a>
             </div>
             <div ng-show='book.seats' style='float: left;'>
               <p>{{ locale.confirmation.labelSeat }}</p>
@@ -77,8 +86,13 @@
 			<div class="item" style='overflow: auto; border: none; margin-top: 10px; padding: 10px 0;'>
 				<h2>
 				  <button ng-click='delete(book)' class="button button-positive">
-					{{ locale.booking.labelDelete }}
+					  {{ locale.booking.labelDelete }}
 				  </button>
+
+          <button ng-click='openBooking(book)' class="button button-default" style="float:right">
+					  {{ locale.booking.buttonDetail}}
+				  </button>
+          
 				</h2>
 			</div>
         </div>

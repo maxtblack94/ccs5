@@ -84,7 +84,11 @@ locale.booking = {
 	wrongInputs: 'Selezionare correttamente le date di prenotazione ed il parcheggio',
 	drivingRange: 'Raggio di percorrenza',
 	driverName: 'Nome driver',
-	labelNavigate: 'Raggiungi veicolo'
+	labelNavigate: 'Raggiungi veicolo',
+	buttonDetail: 'Dettaglio Prenotazione',
+	buttonOpenCar : 'Apri',
+	buttonCloseCar : 'Chiudi',
+	labelCentralizzedButton: "Chiusura Centrallizzata"
 };
 
 locale.confirmation = {

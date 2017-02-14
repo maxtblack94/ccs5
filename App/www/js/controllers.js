@@ -177,27 +177,42 @@ angular.module('starter.controllers', [])
 					}
 				}
 				
-//				$scope.$apply();
-/*
-				setTimeout(function() { 
-                    refreshLoading.end(); 
-                }, 1000);
-*/
-
-                console.log($scope.BookingsList);
-				//if($scope.BookingsList.length == 0)
-					//document.querySelector('.label-no-prenotations').style.display = 'block';
 			});
 		});
 	};
 	
-    if(!$scope.loading)
+    if(!$scope.loading){
 	   $rootScope.loadBookings();
-    
+    }
     $scope.newBooking = function() {
-        //$location.path('/tab/newbooking').replace();
         $location.path('/tab/parking').replace();
     };
+
+    $scope.openCarManipolation = function(reservation, opT){
+        $ionicLoading.show();
+        $http.get("res/621.xml").success(function(res) {
+	    	res = res.replace('{PNR_NUMBER}', reservation).replace('{OPERATION_TYPE}', opT);
+    		$http({
+    			url: 'http://'+CLIENT+'.corporatecarsharing.biz/api.svc/ScriptParameterSets',
+		        method: "POST",
+		        data: res,
+		        headers: {
+                    'TenForce-Auth' : 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4', 
+                    'Content-Type' : 'application/atom+xml'
+                }
+	    	}).success(function (data, status, headers, config) {
+	    		var responsePromisee = $http.get("http://"+CLIENT+".corporatecarsharing.biz/api.svc/ExecuteAdminScript?scriptId=621&scriptParameterSetId=" + data.d.Id, {headers: {'TenForce-Auth': 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4'}});
+	    		
+                responsePromisee.success(function(data, status, headers, config) {
+                    console.log(data)
+                    $ionicLoading.hide();
+	    		});
+	        }).error(function(err) {
+                //gestire ERRORe
+                $ionicLoading.hide();
+            });
+    	})
+    }
     
     $scope.openBooking = function(object) {
 		//return;
@@ -228,21 +243,6 @@ angular.module('starter.controllers', [])
         });
     };
     
-    /*
-    this.userName = window.localStorage.getItem('user_name');
-    this.locale = locale;
-    this.newParking = function(url) {
-    	window.localStorage.removeItem('dateSelection');
-    	selectedParking = null;
-    	com_date.endDateAmount = null;
-    	com_date.startDateAmount = null;
-    	com_date.startTimeAmount = null;
-    	com_date.endTimeAmount = null;
-    	dateCheck = true;
-        $location.path(url);
-    };
-    */
-    //uf.setTemplate();
 })
 
 .controller('NewbookingsCtrl', function($scope, $rootScope, $http, $location, $ionicLoading, $cordovaDatePicker, WebService) {
@@ -252,7 +252,6 @@ angular.module('starter.controllers', [])
         $rootScope.dateFromPick = {
             date: $rootScope.dateFromPick ? ($rootScope.dateFromPick.inputDate ? $rootScope.dateFromPick.inputDate : new Date()) : new Date(),
             mode: 'date',
-            //minDate: new Date() - 10000//,
             allowOldDates: false,
             allowFutureDates: true,
             doneButtonLabel: $scope.locale.date.butChange,
@@ -786,27 +785,6 @@ angular.module('starter.controllers', [])
 		});
     };
 })
-
-/*
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-})
-
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
-*/
 
 .controller('AccountCtrl', function($rootScope, $scope, $http, $location, $ionicLoading, WebService) {
     $scope.locale = locale;

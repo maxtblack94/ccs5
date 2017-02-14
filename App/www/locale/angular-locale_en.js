@@ -86,7 +86,11 @@ locale.booking = {
 	header: "Select ",
 	drivingRange: 'Driving range',
 	driverName: 'Driver name',
-	labelNavigate: 'Reach vehicle'
+	labelNavigate: 'Reach vehicle',
+	buttonDetail: 'Reservation Details',
+	buttonOpenCar : 'Open',
+	buttonCloseCar : 'Close',
+	labelCentralizzedButton: "Open/Close Vehicle"
 };
 
 locale.confirmation = {
