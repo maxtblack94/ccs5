@@ -122,14 +122,17 @@ angular.module('starter.controllers', [])
     var favo = window.localStorage.getItem('favoriteParking') ? eval('('+window.localStorage.getItem('favoriteParking')+')') : null;
     if(favo)
         $rootScope.selectedParking = favo;
+
+    $scope.refreshBookings = function(){
+        $rootScope.loadBookings();
+        $scope.$broadcast('scroll.refreshComplete');
+    }
   
 	$rootScope.loadBookings = function() {
         $scope.loading = true;
         $ionicLoading.show();
-		//uf.setTemplateWindow();
 		
 		$http.get("res/516.xml").success(function(res) {
-			//refreshLoading.start();
 			var driver = window.localStorage.getItem('Nr');
 			res = res.replace('{DRIVER_NUMBER}', driver);
             
