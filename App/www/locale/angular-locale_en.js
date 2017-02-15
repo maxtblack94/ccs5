@@ -87,7 +87,7 @@ locale.booking = {
 	drivingRange: 'Driving range',
 	driverName: 'Driver name',
 	labelNavigate: 'Reach vehicle',
-	buttonDetail: 'Reservation Details',
+	buttonDetail: 'Details',
 	buttonOpenCar : 'Open',
 	buttonCloseCar : 'Close',
 	labelCentralizzedButton: "Open/Close Vehicle"

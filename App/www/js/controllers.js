@@ -845,7 +845,7 @@ angular.module('starter.controllers', [])
             window.open('maps://?q=' + $scope.g_address, '_system');
         } 
         else {
-            let label = encodeURI(g_address);
+            var label = encodeURI(g_address);
             window.open('geo:0,0?q=' + $scope.g_address + '(' + g_address + ')', '_system');
         }
     };

@@ -85,7 +85,7 @@ locale.booking = {
 	drivingRange: 'Raggio di percorrenza',
 	driverName: 'Nome driver',
 	labelNavigate: 'Raggiungi veicolo',
-	buttonDetail: 'Dettaglio Prenotazione',
+	buttonDetail: 'Dettaglio',
 	buttonOpenCar : 'Apri',
 	buttonCloseCar : 'Chiudi',
 	labelCentralizzedButton: "Chiusura Centrallizzata"
