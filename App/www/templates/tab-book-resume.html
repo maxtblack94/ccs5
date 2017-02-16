@@ -1,66 +1,66 @@
-<ion-view view-title="{{ locale.resume.title }}">
+<ion-view view-title="{{ ::locale.resume.title }}">
   <ion-content class="padding">
     <ion-list>
       
       <ion-item ng-if='!dateValidated' style='border-bottom: none;'>
-        <p style='color: #fc0300; white-space: normal;'>{{ locale.resume.wrongDates }}</p>
+        <p style='color: #fc0300; white-space: normal;'>{{ ::locale.resume.wrongDates }}</p>
       </ion-item>
       <ion-item ng-if='!selectedParking' style='border-bottom: none;'>
-        <p style='color: #fc0300; white-space: normal;'>{{ locale.resume.wrongParking }}</p>
+        <p style='color: #fc0300; white-space: normal;'>{{ ::locale.resume.wrongParking }}</p>
       </ion-item>
       <ion-item ng-if='cannotReserve' style='border-bottom: none;'>
-        <p style='color: #fc0300; white-space: normal;'>{{ locale.vehicle.labelCannotReserve }}</p>
+        <p style='color: #fc0300; white-space: normal;'>{{ ::locale.vehicle.labelCannotReserve }}</p>
       </ion-item>
       
       <ion-item>
         <div style='float: left;'> 
-          <p>{{ locale.booking.dateFrom }}</p>
+          <p>{{ ::locale.booking.dateFrom }}</p>
           <h2 style='font-weight: bold;'>
             {{ dateFromPick.inputDate | date:'dd/MM/yyyy' }} {{ timeFromPick.inputTime | date:'HH:mm' }}
           </h2>
         </div>
         <h2 style='float: right;'>
-          <button ng-click='changeDate()' class="button button-positive">{{ locale.booking.buttonDate }}</button>
+          <button ng-click='changeDate()' class="button button-positive">{{ ::locale.booking.buttonDate }}</button>
         </h2>
       </ion-item>
       <ion-item>
         <div style='float: left;'> 
-          <p>{{ locale.booking.dateTo }}</p>
+          <p>{{ ::locale.booking.dateTo }}</p>
           <h2 style='font-weight: bold;'>
             {{ dateToPick.inputDate | date:'dd/MM/yyyy' }} {{ timeToPick.inputTime | date:'HH:mm' }}
           </h2>
         </div>
         <h2 style='float: right;'>
-          <button ng-click='changeDate()' class="button button-positive">{{ locale.booking.buttonDate }}</button>
+          <button ng-click='changeDate()' class="button button-positive">{{ ::locale.booking.buttonDate }}</button>
         </h2>
       </ion-item>
       <ion-item>
         <div style='float: left;'> 
-          <p>{{ locale.booking.parking }}</p>
+          <p>{{ ::locale.booking.parking }}</p>
           <h2 style='font-weight: bold;'>{{ selectedParking.parking_name }}</h2>
           <p>{{ selectedParking.address }}</p>
         </div>
         <h2 style='float: right;'>
-          <button ng-click='changeParking()' class="button button-positive">{{ locale.booking.buttonDate }}</button>
+          <button ng-click='changeParking()' class="button button-positive">{{ ::locale.booking.buttonDate }}</button>
         </h2>
       </ion-item>
       <ion-toggle ng-show="selectedClient.cc" ng-model="hasCC" ng-click='setHasCC()' toggle-class="toggle-positive">
-          <h2>{{ locale.booking.cc }}</h2>
+          <h2>{{ ::locale.booking.cc }}</h2>
       </ion-toggle>
       <ion-toggle ng-show="selectedClient.telepass" ng-model="hasTelepass" toggle-class="toggle-positive" ng-click='setHasTelepass()'>
-          <h2>{{ locale.booking.telepass }}</h2>
-          <p style='white-space: normal;'>{{ locale.booking.telepass_descr }}</p>
+          <h2>{{ ::locale.booking.telepass }}</h2>
+          <p style='white-space: normal;'>{{ ::locale.booking.telepass_descr }}</p>
       </ion-toggle>
 	  
       <ion-item ng-show='selectedClient.drivingRange' style='border-bottom: none; margin-bottom: 10px;'>
-          <h2 style='line-height: 30px;'>{{ locale.booking.drivingRange }}</h2>
+          <h2 style='line-height: 30px;'>{{ ::locale.booking.drivingRange }}</h2>
 		  <ion-list>
 			<ion-radio ng-repeat='range in listDriverRange' ng-model="selectedDriverRange.value" ng-value="range.code">{{ range.text }}</ion-radio>
 		  </ion-list>
       </ion-item>
 	  
       <button ng-show='dateValidated && selectedParking' ng-click='searchVehicle()' class="button button-block button-positive">
-        {{ locale.booking.buttonConfirm }}
+        {{ ::locale.booking.buttonConfirm }}
       </button>
     </ion-list>
   </ion-content>

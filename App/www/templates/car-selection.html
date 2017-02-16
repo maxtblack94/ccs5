@@ -1,27 +1,27 @@
-<ion-view view-title="{{ locale.vehicle.title }}">
+<ion-view view-title="{{ ::locale.vehicle.title }}">
   <ion-content style='background-color: #f5f5f5;'>
     <ion-list>
       
-      <p ng-if='vehicleList.length==0 && !loading' style='padding: 20px; text-align: center; color: #888; font-size: 14px;'>{{ locale.vehicle.messageEnpty }}</p>
+      <p ng-if='vehicleList.length==0 && !loading' style='padding: 20px; text-align: center; color: #888; font-size: 14px;'>{{ ::locale.vehicle.messageEnpty }}</p>
       
       <div ng-repeat='car in vehicleList' class="list card">
         <div class="item">
           <div style='float: left;'>
             <h2 style='line-height: 30px; font-size: 18px;'>{{ car.brand_model }}</h2>
-            <p>{{ locale.vehicle.labelPlate }}</p>
+            <p>{{ ::locale.vehicle.labelPlate }}</p>
             <h2>{{ car.plate }}</h2>
           </div>
           <div style='float: right;'>
-            <button ng-click='onSelect(car)' class="button button-positive">{{ locale.vehicle.labelSelect }}</button>
+            <button ng-click='onSelect(car)' class="button button-positive">{{ ::locale.vehicle.labelSelect }}</button>
           </div>
         </div>     
         <div class="item" style='overflow: auto;'>
           <div style='float: left; margin-right: 20px;'>
-            <p>{{ locale.confirmation.labelColor }}</p>
+            <p>{{ ::locale.confirmation.labelColor }}</p>
             <div class='color-cube'><div style='background-color: {{ car.color }};'></div></div>
           </div>
           <div style='float: left;'>
-            <p>{{ locale.confirmation.labelSeat }}</p>
+            <p>{{ ::locale.confirmation.labelSeat }}</p>
             <p style='font-weight: bold; font-size: 20px; line-height: 26px; text-align: center;'>{{ car.seats }}</p>
           </div>
           <div ng-if='hasPicture' style='float: right;'>
@@ -33,14 +33,14 @@
         </div>
         <div class="item" style='overflow: auto;'>
           <div style='display: inline-block; margin-right: 10px;'>
-              <div class="date-select-label" style='text-align: center;'>{{ locale.vehicle.labelExternal }}</div>
+              <div class="date-select-label" style='text-align: center;'>{{ ::locale.vehicle.labelExternal }}</div>
               <div style='width: 50px; height: 30px; float: left; text-align: center; padding-top: 4px;'>
                 <i ng-if="car.vehicle_status != 'Fault'" class='ion-happy-outline' style='font-size: 26px; color: #fc0300;'></i>
                 <i ng-if="car.vehicle_status == 'Fault'" class='ion-sad-outline' style='font-size: 26px; color: #fc0300;'></i>
               </div>
             </div>
             <div style='display: inline-block;'>
-              <div class="date-select-label" style='text-align: center;'>{{ locale.vehicle.labelInterior }}</div>
+              <div class="date-select-label" style='text-align: center;'>{{ ::locale.vehicle.labelInterior }}</div>
               <div style='width: 50px; height: 30px; float: left; text-align: center; padding-top: 4px;'>
                 <i ng-if="car.vehicle_cleanness_status != 'Dirty'" class='ion-happy-outline' style='font-size: 26px; color: #fc0300;'></i>
                 <i ng-if="car.vehicle_cleanness_status == 'Dirty'" class='ion-sad-outline' style='font-size: 26px; color: #fc0300;'></i>

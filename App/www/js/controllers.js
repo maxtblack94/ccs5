@@ -144,21 +144,10 @@ angular.module('starter.controllers', [])
 				
 				var blength = $scope.BookingsList.length;
 				for(var i = 0; i < blength; i++) {
-					//var dpick = new Date($scope.BookingsList[i].pickup_date.replace(/-/g, "/"));
-					//var tpick = new Date($scope.BookingsList[i].pickup_time.replace(/-/g, "/"));
-					var dpick = $scope.BookingsList[i].pickup_date;
-					var tpick = $scope.BookingsList[i].pickup_time.split(' ')[1];
-                    var a1 = tpick.split(':')[0] + ':' + tpick.split(':')[1];
-                    
-					$scope.BookingsList[i].pickupFormatedDate = dpick + ' ' + a1;
+                    $scope.BookingsList[i].return_time = $scope.BookingsList[i].return_time.slice(0, -3);
+                    $scope.BookingsList[i].pickup_time = $scope.BookingsList[i].pickup_time.slice(0, -3);
 
-					//var dret = new Date($scope.BookingsList[i].return_date.replace(/-/g, "/"));
-					//var tret = new Date($scope.BookingsList[i].return_time.replace(/-/g, "/"));
-					var dret = $scope.BookingsList[i].return_date;
-					var tret = $scope.BookingsList[i].return_time.split(' ')[1];
-                    var b1 = tpick.split(':')[0] + ':' + tpick.split(':')[1];
                     
-					$scope.BookingsList[i].returnFormatedDate = dret + ' ' + b1;
 
 					switch($scope.BookingsList[i].cmb_fuel_quantity) {
 						default: 

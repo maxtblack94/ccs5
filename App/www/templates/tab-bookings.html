@@ -32,7 +32,7 @@
           <div class="item" style='overflow: auto;'>
             <div style='float: left; margin-right: 20px;'>
               <p>{{ ::locale.confirmation.labelColor }}</p>
-              <div class='color-cube'><div style='background-color: {{ book.color }};'></div></div>
+              <div class='color-cube'><div style='background-color: {{ book.cmb_color }};'></div></div>
             </div>
             <div style='float: right;'>
               <p>{{ ::locale.booking.labelCentralizzedButton }}</p>
@@ -76,14 +76,14 @@
               <h2>{{ ::locale.home.labelGet }}</h2>
               <p>{{ ::book.pickup_parking }}</p>
             </div>
-            <p style='float: right; font-size: 18px; color: #111; margin-top: 12px;'>{{ ::book.pickup_time | date }}</p>
+            <p style='float: right; font-size: 18px; color: #111; margin-top: 12px;'>{{ ::book.pickup_time }}</p>
           </div>
           <div class="item" style='overflow: auto;'>
             <div style='float: left;'>
               <h2>{{ ::locale.home.labelSet }}</h2>
               <p>{{ ::book.return_parking }}</p>
             </div>
-            <p style='float: right; font-size: 18px; color: #111; margin-top: 12px;'>{{ ::book.return_time | date}}</p>
+            <p style='float: right; font-size: 18px; color: #111; margin-top: 12px;'>{{ ::book.return_time }}</p>
           </div>
 			<div class="item" style='overflow: auto; border: none; margin-top: 10px; padding: 10px 0;'>
 				<h2>
