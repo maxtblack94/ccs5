@@ -3,72 +3,55 @@ var locale = { };
 
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope, $rootScope, $http, $location, $timeout, $ionicLoading, WebService) {
-    $scope.locale = locale;
-    $scope.loadingLogin = true;  
-        
-    $ionicLoading.show();
-    $http.get("res/589.xml").success(function(res) {
-        //var driver = window.localStorage.getItem('Nr');
-        res = res.replace('{LANGUAGE}', 'Italiano');
-        
-        WebService.ajaxPostRequestDemo(res, 589, function(data) {
-            $ionicLoading.hide();
-            
-            //alert(JSON.stringify(data));
-            $scope.loadingLogin = false;   
-            $scope.clientList = data.clientListBooking;
-            //$scope.parkingList = parkingList;
-            //$scope.load();
-            $scope.$apply();            
+.controller('LoginCtrl', function($scope, $rootScope, $http, $state, $ionicLoading, WebService) {
+    
+    $scope.locale = locale; //togliere locale per implementare logica con filtro.
+
+    function init(){
+        $scope.request = {};
+        $ionicLoading.show();
+        $http.get("res/589.xml").success(function(res) {
+            //var driver = window.localStorage.getItem('Nr');
+            res = res.replace('{LANGUAGE}', 'Italiano');
+            WebService.ajaxPostRequestDemo(res, 589, function(data) {
+                $ionicLoading.hide();
+                $scope.clientList = data.clientListBooking;
+            });
         });
-    });
+    }
+
+    init();
     
     $scope.switch = function() {
-        $timeout(function() {
-            $rootScope.selectedClient = null;
-            CLIENT = null;
-            window.localStorage.setItem('selclient', null);
-            $scope.$apply();
-        }, 500);
+        $rootScope.selectedClient = null;
+        CLIENT = null;
+        window.localStorage.setItem('selclient', null);
     };
     
     $scope.selectClient = function(index, c) {
-        
-        $timeout(function() {
-            $rootScope.selectedClient = c;
-            CLIENT = $rootScope.selectedClient.value.toLowerCase();
-            window.localStorage.setItem('selclient', JSON.stringify(c));
-            $scope.$apply();
-        }, 500);
-        
-        $('#login-user').val('');
-        $('#login-password').val('');
+        $rootScope.selectedClient = c;
+        CLIENT = $rootScope.selectedClient.value.toLowerCase();
+        window.localStorage.setItem('selclient', JSON.stringify(c));
     };
     
     $scope.login = function() {
+        if($scope.request.user && $scope.request.password){
+            callLoginService($scope.request.user, $scope.request.password);
+        }else if(!$scope.request.user){
+            setTimeout(function() {
+                $('#user-input').focus();
+            });
+        }else if(!$scope.request.password){
+            setTimeout(function() {
+                $('#password-input').focus();
+            });
+        }
+    };
+
+    function callLoginService(user, pw){
         $ionicLoading.show();
-        //$location.path('/tab/bookings');
-        
-        var user = document.querySelector('#login-user').value;
-        var password = document.querySelector('#login-password').value;
-        
-        if(!user) {
-            setTimeout(function() {
-                $('#login-user').focus();
-            }, 10);
-            return;
-        }
-        
-        if(!password) {
-            setTimeout(function() {
-                $('#login-password').focus();
-            }, 10);
-            return;
-        }
-        
-        $scope.loadingLogin = true;        
-        WebService.ccsLogin(user, password, function() {  
+        $scope.loginError = false;
+        WebService.ccsLogin(user, pw, function() {  
             $http.get('res/567.xml').success(function(res) {  
                 $ionicLoading.hide();
         
@@ -78,23 +61,17 @@ angular.module('starter.controllers', [])
                 res = res.replace('{PUSH_ID}', pushId);
                 WebService.ajaxPostRequest(res, 567, null);
                         
-                $location.path('/tab/bookings').replace();
+                $state.go('tab.bookings');
                 
                 if($rootScope.loadBookings)
                     $rootScope.loadBookings();
-				                    
-                $timeout(function() {
-                    $scope.loadingLogin = false;
-                    $scope.$apply();
-                }, 500);
+
             });
-        },
-        function() {
+        }, function(error) {
             $ionicLoading.hide();
-            $scope.loadingLogin = false;
-            $scope.$apply();
+            $scope.loginError = true;
         });
-    };
+    }
     
     var c = eval('('+window.localStorage.getItem('selclient')+')');  
     if(c) {
@@ -105,17 +82,11 @@ angular.module('starter.controllers', [])
     var userId = window.localStorage.getItem('Nr');
     if (userId != null && userId != '') {
         $ionicLoading.hide();
-        $location.path('/tab/bookings').replace();
-        
-        $timeout(function() {
-            $scope.loadingLogin = false;
-            $scope.$apply();
-        }, 500);
-        return;
+        $state.go('tab.bookings');
     }
 })
 
-.controller('BookingsCtrl', function($scope, $rootScope, $http, $location, $ionicPopup, $ionicLoading, WebService) {
+.controller('BookingsCtrl', function($scope, $rootScope, $http, $state, $ionicPopup, $ionicLoading, WebService) {
     $scope.locale = locale;
     $scope.BookingsList = new Array();
     
@@ -177,7 +148,7 @@ angular.module('starter.controllers', [])
 	   $rootScope.loadBookings();
     }
     $scope.newBooking = function() {
-        $location.path('/tab/parking').replace();
+        $state.go('tab.parking');
     };
 
     $scope.openCarManipolation = function(reservation, opT){
@@ -207,9 +178,8 @@ angular.module('starter.controllers', [])
     }
     
     $scope.openBooking = function(object) {
-		//return;
         $rootScope.selectedBooking = object;
-        $location.path('/tab/map');
+        $state.go('tab.map');
         return;
     };
 	
@@ -237,7 +207,7 @@ angular.module('starter.controllers', [])
     
 })
 
-.controller('NewbookingsCtrl', function($scope, $rootScope, $http, $location, $ionicLoading, $cordovaDatePicker, WebService) {
+.controller('NewbookingsCtrl', function($scope, $rootScope, $http, $state, $ionicLoading, $cordovaDatePicker, WebService) {
     $scope.locale = locale;
     
     $scope.selectFromDate = function() {
@@ -488,20 +458,21 @@ angular.module('starter.controllers', [])
     
     $scope.gotoParking = function() {
         $scope.checkDatetime();
-            
-        if($rootScope.selectedParking) {
-            $location.path('/tab/resume').replace();
-            return;
-        }
-            
+        
         if(!$rootScope.dateValidated)
             return false;
+
+        if($rootScope.selectedParking) {
+            $state.go('tab.resume');
+        }else{
+            $state.go('tab.parking');
+        }
             
-        $location.path('/tab/parking').replace();
+        
     };
 })
 
-.controller('ParkingCtrl', function($scope, $rootScope, $http, $location, $ionicLoading, WebService) {
+.controller('ParkingCtrl', function($scope, $rootScope, $http, $state, $ionicLoading, WebService) {
     $scope.locale = locale;
   
     $rootScope.loadParking = function() {
@@ -554,14 +525,13 @@ angular.module('starter.controllers', [])
     
     $scope.selectParking = function(parking) {
         $rootScope.selectedParking = parking;
-        //$location.path('/tab/resume').replace();
-        $location.path('/tab/newbooking').replace();
+        $state.go('tab.newbooking');
     };
     
     $rootScope.loadParking();
 })
 
-.controller('ResumeCtrl', function($scope, $rootScope, $location, $ionicLoading, $timeout, WebService) {
+.controller('ResumeCtrl', function($scope, $rootScope, $state, $ionicLoading, $timeout, WebService) {
     $scope.locale = locale;
     $rootScope.cannotReserve = false;
 	
@@ -583,15 +553,15 @@ angular.module('starter.controllers', [])
     };
     
     $scope.changeDate = function() {
-        $location.path('/tab/newbooking').replace();
+        $state.go('tab.newbooking');
     };
     
     $scope.changeParking = function() {
-        $location.path('/tab/parking').replace();
+        $state.go('tab.parking');
     };
     
     $scope.searchVehicle = function() {
-        $location.path('/tab/selcar').replace();
+        $state.go('tab.selcar');
         
         $timeout(function() {
             $rootScope.loadVehicles();
@@ -599,7 +569,47 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('CarCtrl', function($scope, $http, $rootScope, $location, $timeout, $ionicModal, $ionicLoading, $ionicPopup, WebService) {
+.controller('AppCtrl', function($rootScope, $scope, $http, $ionicPlatform, $ionicLoading, $ionicTabsDelegate, NotificationService, $state) {
+		
+    $ionicPlatform.ready(function() {
+      NotificationService.onDeviceReady();
+      
+      
+    });
+      
+    $rootScope.hasTelepass = false;
+    $rootScope.hasCC = false;
+    
+    var p = eval('('+window.localStorage.getItem('hasPicture')+')');  
+    if(p){
+      $rootScope.hasPicture = true;
+    }
+        
+    $scope.gotoBookings = function() {
+        $state.go('tab.bookings');
+    }
+        
+    $scope.gotoNewbooking = function() {
+        $state.go('tab.newbooking');
+    }
+        
+    $scope.gotoParking = function() {
+        if($rootScope.loadParking){
+          $rootScope.loadParking();
+        }  
+        $state.go('tab.parking');
+    }
+        
+    $scope.gotoCar = function() {
+        $state.go('tab.resume');
+    }
+        
+    $scope.gotoSettings = function() {
+        $state.go('tab.account');
+    }
+})
+
+.controller('CarCtrl', function($scope, $http, $rootScope, $state, $timeout, $ionicModal, $ionicLoading, $ionicPopup, WebService) {
     $scope.locale = locale;
     
     WebService.ajaxPostRequestDirect(588, function(data) {
@@ -695,7 +705,7 @@ angular.module('starter.controllers', [])
                 $scope.closeModal();
                 pnrPopup.then(function(res) {
                     $rootScope.loadBookings();
-                    $location.path('/tab/bookings');
+                    $state.go('tab.bookings');
                 });
 
                 $scope.$apply();
@@ -736,7 +746,7 @@ angular.module('starter.controllers', [])
                                        
                 if(data.retcode == 1) {
                     $rootScope.cannotReserve = true; 
-                    $location.path('/tab/resume').replace();
+                    $state.go('tab.resume');
                 }
                                        
 				$scope.vehicleList = data.data.VehiclesList;
@@ -778,7 +788,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('AccountCtrl', function($rootScope, $scope, $http, $location, $ionicLoading, WebService) {
+.controller('AccountCtrl', function($rootScope, $scope, $http, $state, $ionicLoading, WebService) {
     $scope.locale = locale;
     
     $scope.setHasPicture = function() {
@@ -805,12 +815,12 @@ angular.module('starter.controllers', [])
     	    window.localStorage.removeItem('favoriteParking');
             
             $scope.$apply();
-            $location.path('/login');
+            $state.go('login');
     	});
     };
 })
 
-.controller('MapCtrl', function($rootScope, $scope, $http, $location, $ionicLoading, $cordovaGeolocation, $ionicPopup, WebService) {
+.controller('MapCtrl', function($rootScope, $scope, $http, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup, WebService) {
     $scope.locale = locale;
     $scope.loadingMap = true;
     var map;
@@ -822,7 +832,7 @@ angular.module('starter.controllers', [])
     console.log($rootScope.selectedBooking);
     
     if(!$rootScope.selectedBooking) {
-        $location.path('/bookings');
+        $state.go('tab.bookings');
         return;
     }
     

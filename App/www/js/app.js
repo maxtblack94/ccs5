@@ -1,6 +1,7 @@
 angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
 
 .run(function($ionicPlatform, $cordovaStatusbar, $cordovaDevice) {
+  moment.locale('it');
   $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
@@ -12,75 +13,36 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
       if($cordovaDevice.getPlatform()=='iOS')
         $cordovaStatusbar.styleHex('#fff');
     }
+
+    moment.locale('it');
+    if(navigator.globalization) {
+      var devlan = null;
+      navigator.globalization.getLocaleName(function (lan) {   
+          if(lan.value.indexOf('-') != 0) 
+              devlan = lan.value.split('-')[0];
+          else
+              devlan = lan.value;
+              
+          switch(devlan) {
+              default:
+                  $('.head').append('<script src="locale/angular-locale_en.js"></script>');
+                  break;
+              case 'it':
+                  $('.head').append('<script src="locale/angular-locale_it.js"></script>');
+                  break;
+              case 'en':
+                  $('.head').append('<script src="locale/angular-locale_en.js"></script>');
+                  break;
+          }
+      },
+      function () {
+          alert('Error getting language\n');
+      });  
+    };
   });
 })
 
-.controller('AppCtrl', function($rootScope, $scope, $http, $location, $ionicPlatform, $ionicLoading, $ionicTabsDelegate, NotificationService) {
-		moment.locale('it');
-    
-    $ionicPlatform.ready(function() {
-      NotificationService.onDeviceReady();
-      
-      var devlan = null;
-      if(navigator.globalization) {
-        navigator.globalization.getLocaleName(function (lan) {   
-            if(lan.value.indexOf('-') != 0) 
-                devlan = lan.value.split('-')[0];
-            else
-                devlan = lan.value;
-                
-            switch(devlan) {
-                default:
-                    $('.head').append('<script src="locale/angular-locale_en.js"></script>');
-                    break;
-                case 'it':
-                    $('.head').append('<script src="locale/angular-locale_it.js"></script>');
-                    break;
-                case 'en':
-                    $('.head').append('<script src="locale/angular-locale_en.js"></script>');
-                    break;
-            }
-        },
-        function () {
-            alert('Error getting language\n');
-        });  
-      }
-    });
-      
-    $rootScope.hasTelepass = false;
-    $rootScope.hasCC = false;
-    
-    var p = eval('('+window.localStorage.getItem('hasPicture')+')');  
-    if(p)
-        $rootScope.hasPicture = true;
-        
-        
-    $scope.gotoBookings = function() {
-        $location.path('/tab/bookings').replace();
-    }
-        
-    $scope.gotoNewbooking = function() {
-        $location.path('/tab/newbooking').replace();
-    }
-        
-    $scope.gotoParking = function() {
-        if($rootScope.loadParking)
-          $rootScope.loadParking();
-          
-        $location.path('/tab/parking').replace();
-    }
-        
-    $scope.gotoCar = function() {
-        $location.path('/tab/resume').replace();
-    }
-        
-    $scope.gotoSettings = function() {
-        $location.path('/tab/account').replace();
-    }
-})
-
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-  $ionicConfigProvider.scrolling.jsScrolling(false);
 
   $stateProvider
 
@@ -94,7 +56,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
     .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html'
+    templateUrl: 'templates/tabs.html',
+    controller: 'AppCtrl'
   })
 
   // Each tab has its own nav history stack:

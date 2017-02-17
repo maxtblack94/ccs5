@@ -44,7 +44,7 @@
       }
   </style>
   <ion-content class="padding" overflow-scroll='true' style='background-color: #fc0300;'>
-      <div ng-show='!loadingLogin && selectedClient' style='width: 300px; margin: auto; height: 280px; position: absolute; top: 50%; margin-top: -140px; left: 50%; margin-left: -150px;'>
+      <div ng-show='selectedClient' style='width: 300px; margin: auto; height: 280px; position: absolute; top: 50%; margin-top: -140px; left: 50%; margin-left: -150px;'>
         <div style='text-align: center; margin-bottom: 10px;'>
           <img class='logo' src='icons/CCSsharing-Logo-Red-l-2.1c.png' style='max-width: 80%;' />
         </div>
@@ -54,10 +54,15 @@
             <div ng-click="switch()" style='floaT: right; font-size: 13px; margin-top: 5px;'>{{ locale.login.changeClient }}</div>
           </div>
           <div style='padding: 5px 0;'>
-            <input type="email" id="login-user" class='input login' style='border-radius: 3px; border: none; background-color: #fff; font-size: 13px;' placeholder='Username' required>
+            <input type="text" autocapitalize="none" id="user-input" ng-model="request.user" class='input login' style='border-radius: 3px; border: none; background-color: #fff; font-size: 13px;' placeholder='Username'>
           </div>
           <div style='padding: 10px 0;'>
-            <input type="password" id="login-password" class='input login' style='border-radius: 3px; border: none; background-color: #fff; font-size: 13px;' placeholder='Password' required>
+            <input type="password" id="password-input" ng-model="request.password" class='input login' style='border-radius: 3px; border: none; background-color: #fff; font-size: 13px;' placeholder='Password'>
+          </div>
+          <div style='color:#fff' ng-if="loginError">
+            <p>
+              Username/Password errata!
+            </p>
           </div>
           <div style='text-align: center; margin-top: 20px;'>
             <button ng-click="login()" class="button button-block button-positive but-login">
@@ -66,7 +71,7 @@
           </div>
         </div>
       </div>
-      <div ng-show='!loadingLogin && !selectedClient' style='width: 300px; margin: auto; height: 280px; position: absolute; top: 50%; margin-top: -140px; left: 50%; margin-left: -150px;'>
+      <div ng-show='!selectedClient' style='width: 300px; margin: auto; height: 280px; position: absolute; top: 50%; margin-top: -140px; left: 50%; margin-left: -150px;'>
         <div style='text-align: center; margin-bottom: 10px;'>
           <img class='logo' src='icons/CCSsharing-Logo-Red-l-2.1c.png' style='width: 80%;' />
         </div>
