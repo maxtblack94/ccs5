@@ -62,9 +62,9 @@ angular.module('starter.controllers', [])
                 WebService.ajaxPostRequest(res, 567, null);
                         
                 $state.go('tab.bookings');
-                
-                if($rootScope.loadBookings)
+                if($rootScope.loadBookings){
                     $rootScope.loadBookings();
+                }
 
             });
         }, function(error) {
@@ -88,7 +88,6 @@ angular.module('starter.controllers', [])
 
 .controller('BookingsCtrl', function($scope, $rootScope, $http, $state, $ionicPopup, $ionicLoading, WebService) {
     $scope.locale = locale;
-    $scope.BookingsList = new Array();
     
     var favo = window.localStorage.getItem('favoriteParking') ? eval('('+window.localStorage.getItem('favoriteParking')+')') : null;
     if(favo)
@@ -102,6 +101,7 @@ angular.module('starter.controllers', [])
 	$rootScope.loadBookings = function() {
         $scope.loading = true;
         $ionicLoading.show();
+        $scope.BookingsList = null;
 		
 		$http.get("res/516.xml").success(function(res) {
 			var driver = window.localStorage.getItem('Nr');
@@ -144,9 +144,9 @@ angular.module('starter.controllers', [])
 		});
 	};
 	
-    if(!$scope.loading){
-	   $rootScope.loadBookings();
-    }
+
+	$rootScope.loadBookings();
+    
     $scope.newBooking = function() {
         $state.go('tab.parking');
     };
@@ -587,6 +587,9 @@ angular.module('starter.controllers', [])
         
     $scope.gotoBookings = function() {
         $state.go('tab.bookings');
+        if($rootScope.loadBookings){
+          $rootScope.loadBookings();
+        }  
     }
         
     $scope.gotoNewbooking = function() {
