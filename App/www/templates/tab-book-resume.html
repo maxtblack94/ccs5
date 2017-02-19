@@ -2,7 +2,7 @@
   <ion-content class="padding">
     <ion-list>
       
-      <ion-item ng-if='!dateValidated' style='border-bottom: none;'>
+      <ion-item ng-if='!dateFromPick.inputDate || !dateToPick.inputDate' style='border-bottom: none;'>
         <p style='color: #fc0300; white-space: normal;'>{{ ::locale.resume.wrongDates }}</p>
       </ion-item>
       <ion-item ng-if='!selectedParking' style='border-bottom: none;'>
@@ -59,7 +59,7 @@
 		  </ion-list>
       </ion-item>
 	  
-      <button ng-show='dateValidated && selectedParking' ng-click='searchVehicle()' class="button button-block button-positive">
+      <button ng-show='(dateFromPick.inputDate || dateToPick.inputDate) && selectedParking' ng-click='searchVehicle()' class="button button-block button-positive">
         {{ ::locale.booking.buttonConfirm }}
       </button>
     </ion-list>

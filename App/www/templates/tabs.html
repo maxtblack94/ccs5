@@ -4,23 +4,23 @@
 </ion-nav-bar>
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
-  <ion-tab icon-off="{{ platform == 'android' ? 'ion-android-calendar' : 'ion-ios-calendar-outline' }}" icon-on="{{ platform == 'android' ? 'ion-android-calendar' : 'ion-ios-calendar' }}" ng-click='gotoBookings()'>
+  <ion-tab icon-off="{{ platform == 'android' ? 'ion-android-calendar' : 'ion-ios-calendar-outline' }}" icon-on="{{ platform == 'android' ? 'ion-android-calendar' : 'ion-ios-calendar' }}" href="#/tab/bookings">
     <ion-nav-view name="tab-bookings"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab icon-off="{{ platform == 'android' ? 'ion-android-map' : 'ion-ios-navigate-outline' }}" icon-on="{{ platform == 'android' ? 'ion-android-map' : 'ion-ios-navigate' }}" ng-click='gotoParking()'>
+  <ion-tab icon-off="{{ platform == 'android' ? 'ion-android-map' : 'ion-ios-navigate-outline' }}" icon-on="{{ platform == 'android' ? 'ion-android-map' : 'ion-ios-navigate' }}" href="#/tab/parking">
     <ion-nav-view name="tab-parking"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab icon-off="{{ platform == 'android' ? 'ion-android-time' : 'ion-ios-time-outline' }}" icon-on="{{ platform == 'android' ? 'ion-android-time' : 'ion-ios-time' }}" ng-click='gotoNewbooking()'>
+  <ion-tab icon-off="{{ platform == 'android' ? 'ion-android-time' : 'ion-ios-time-outline' }}" icon-on="{{ platform == 'android' ? 'ion-android-time' : 'ion-ios-time' }}" href="#/tab/newbooking">
     <ion-nav-view name="tab-newbooking"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab icon-off="{{ platform == 'android' ? 'ion-android-car' : 'ion-android-car' }}" icon-on="{{ platform == 'android' ? 'ion-android-car' : 'ion-android-car' }}" ng-click='gotoCar()'>
+  <ion-tab icon-off="{{ platform == 'android' ? 'ion-android-car' : 'ion-android-car' }}" icon-on="{{ platform == 'android' ? 'ion-android-car' : 'ion-android-car' }}" href="#/tab/resume">
     <ion-nav-view name="tab-resume"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab icon-off="{{ platform == 'android' ? 'ion-gear-a' : 'ion-ios-gear-outline' }}" icon-on="{{ platform == 'android' ? 'ion-gear-a' : 'ion-ios-gear' }}" ng-click='gotoSettings()'>
+  <ion-tab icon-off="{{ platform == 'android' ? 'ion-gear-a' : 'ion-ios-gear-outline' }}" icon-on="{{ platform == 'android' ? 'ion-gear-a' : 'ion-ios-gear' }}" href="#/tab/account">
     <ion-nav-view name="tab-account"></ion-nav-view>
   </ion-tab>
 

@@ -1,9 +1,6 @@
-<ion-modal-view>
+<ion-view>
   <ion-header-bar>
-    <h1 class="title">{{ locale.confirmation.labelConfirmation }}</h1>
-    <div class="buttons">
-      <i ng-click='closeModal()' class='ion-android-close' style='color: #fff; font-size: 28px; padding: 4px 10px;'></i>
-    </div>
+     <h1 class="title">{{ locale.confirmation.labelConfirmation }}</h1>
   </ion-header-bar>
   <ion-content class='padding'>
     <ion-list>
@@ -88,9 +85,15 @@
 			</div>
         </div>
       </ion-item>
-	  
-      <button ng-click='confirm()' class="button button-block button-positive">{{ locale.confirmation.labelConfirmation }}</button>
+      
+      <div class="row">
+        <div class="col col-50"><button ng-click='backToCars()' class="button button-block button-default">Indietro</button></div>
+        <div class="col col-50"><button ng-click='confirm()' class="button button-block button-positive">{{ locale.confirmation.labelConfirmation }}</button></div>
+      </div>
+
+      
       
      </ion-list>
   </ion-content>
-</ion-modal-view>
+</ion-view>
+ 

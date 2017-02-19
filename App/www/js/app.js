@@ -1,7 +1,6 @@
-angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
+angular.module('starter', ['ionic', 'ngCordova'])
 
 .run(function($ionicPlatform, $cordovaStatusbar, $cordovaDevice) {
-  moment.locale('it');
   $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
@@ -13,57 +12,42 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
       if($cordovaDevice.getPlatform()=='iOS')
         $cordovaStatusbar.styleHex('#fff');
     }
-
-    moment.locale('it');
-    if(navigator.globalization) {
-      var devlan = null;
-      navigator.globalization.getLocaleName(function (lan) {   
-          if(lan.value.indexOf('-') != 0) 
-              devlan = lan.value.split('-')[0];
-          else
-              devlan = lan.value;
-              
-          switch(devlan) {
-              default:
-                  $('.head').append('<script src="locale/angular-locale_en.js"></script>');
-                  break;
-              case 'it':
-                  $('.head').append('<script src="locale/angular-locale_it.js"></script>');
-                  break;
-              case 'en':
-                  $('.head').append('<script src="locale/angular-locale_en.js"></script>');
-                  break;
-          }
-      },
-      function () {
-          alert('Error getting language\n');
-      });  
-    };
   });
 })
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-
+    $ionicConfigProvider.scrolling.jsScrolling(false);
   $stateProvider
 
   .state('login', {
     url: '/login',
+    cache: false,
     templateUrl: 'templates/login.html',
     controller: 'LoginCtrl'
+  })
+
+  .state('confirmPrenotation', {
+    url: '/confirm-prenotation',
+    params: {
+      car : null
+    },
+    cache: false,
+    templateUrl: 'templates/confirmPrenotation.html',
+    controller: 'ConfirmPrenotationCtrl'
   })
 
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html',
-    controller: 'AppCtrl'
+    templateUrl: 'templates/tabs.html'
   })
 
   // Each tab has its own nav history stack:
 
   .state('tab.bookings', {
     url: '/bookings',
+    cache: false,
     views: {
       'tab-bookings': {
         templateUrl: 'templates/tab-bookings.html',
@@ -74,6 +58,10 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
 
   .state('tab.map', {
       url: '/map',
+      params: {
+        pnrInfo : null
+      },
+      cache: false,
       views: {
         'tab-bookings': {
           templateUrl: 'templates/map.html',
@@ -84,6 +72,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
 
   .state('tab.newbooking', {
       url: '/newbooking',
+      cache: false,
       views: {
         'tab-newbooking': {
           templateUrl: 'templates/tab-newbooking.html',
@@ -94,6 +83,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
 
   .state('tab.parking', {
       url: '/parking',
+      cache: false,
       views: {
         'tab-parking': {
           templateUrl: 'templates/tab-parking.html',
@@ -104,6 +94,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
 
   .state('tab.resume', {
       url: '/resume',
+      cache: false,
       views: {
         'tab-resume': {
           templateUrl: 'templates/tab-book-resume.html',
@@ -114,6 +105,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
 
   .state('tab.selcar', {
       url: '/selcar',
+      cache: false,
       views: {
         'tab-resume': {
           templateUrl: 'templates/car-selection.html',
@@ -124,6 +116,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
 
   .state('tab.account', {
     url: '/account',
+    cache: false,
     views: {
       'tab-account': {
         templateUrl: 'templates/tab-account.html',

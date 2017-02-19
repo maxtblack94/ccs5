@@ -1,6 +1,8 @@
-locale.locale = 'it-IT';
+window.locale = {};
 
-locale.menu = {
+window.locale.locale = 'it-IT';
+
+window.locale.menu = {
 	home: 'Home',
 	date: 'Date',
 	parking: 'Parking',
@@ -9,7 +11,7 @@ locale.menu = {
 };
 
 
-locale.home = {
+window.locale.home = {
 	msgHello: 'Ciao, {0}',
 	msgNoRsv: 'Al momento non hai nessuna prenotazione in corso',
 	msgNextRsv: 'Hai una prenotazione il {0} alle ore {0} ',
@@ -28,27 +30,27 @@ locale.home = {
 	vehicle_position: 'Indirizzo posizione veicolo'
 };
 
-locale.home.rsvinfo = {
+window.locale.home.rsvinfo = {
 	labPRN: 'PNR ',
 	labPrk: 'Parcheggio ',
 	labTime: ''
 };
 
-locale.login = {
+window.locale.login = {
 	selectClient: 'Seleziona cliente',
 	changeClient: 'Cambia cliente',
 	labelClient: 'Cliente',
 	labelLogin: 'Accedi'
 };
 
-locale.parking = {
+window.locale.parking = {
 	button: 'Avanti',   
 	labelSearch: 'Cerca parcheggio..',
 	labelSelectParking: 'Scegli il parcheggio',
 	noparking: 'Nessun parcheggio trovato'
 };
 
-locale.vehicle = {
+window.locale.vehicle = {
 	title: 'Seleziona veicolo',
 	buttonBook: 'Prenota',
 	buttonConfirm:'',
@@ -66,7 +68,7 @@ locale.vehicle = {
     labelCannotReserve: 'La Tua prenotazione non può essere accettata, in quanto per il periodo richiesto esiste già una prenotazione a Tuo nome.'
 };
 
-locale.booking = {
+window.locale.booking = {
 	buttonDate: 'Seleziona',
 	buttonParking: 'Seleziona',
 	messageEmptyDate: 'Selezionare il periodo correttamente.',
@@ -86,12 +88,12 @@ locale.booking = {
 	driverName: 'Nome driver',
 	labelNavigate: 'Raggiungi veicolo',
 	buttonDetail: 'Dettaglio',
-	buttonOpenCar : 'Apri',
-	buttonCloseCar : 'Chiudi',
+	buttonOpenCar : 'Apri portiere',
+	buttonCloseCar : 'Chiudi portiere',
 	labelCentralizzedButton: "Chiusura Centrallizzata"
 };
 
-locale.confirmation = {
+window.locale.confirmation = {
 	labelConfirmation: 'Conferma prenotazione',
 	buttonConfirm: 'Conferma',
 	labelWait: 'attendere..',
@@ -103,7 +105,7 @@ locale.confirmation = {
 	labelSelectDriveName: "Inserire 'Nome driver'"
 };
 
-locale.date = {
+window.locale.date = {
 	startDate: 'Data ritiro',
 	startTime: 'Ora ritiro',
 	endDate: 'Data riconsegna',
@@ -122,13 +124,13 @@ locale.date = {
 	weekDaysList: ["Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"]
 };
 
-locale.account = {
+window.locale.account = {
 	title: 'Impostazioni',
 	check1: 'Lista ridotta',
 	check1_descr: 'Mostra la lista delle prenotazioni ridotta'
 };
 
-locale.resume = {
+window.locale.resume = {
 	title: 'Riepilogo',
 	wrongDates: 'Seleziona la data di ritiro e consegna per continuare',
 	wrongParking: 'Seleziona il parcheggio prima di continuare'

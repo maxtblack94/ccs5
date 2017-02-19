@@ -1,6 +1,8 @@
-locale.locale = 'en-EN';
+window.locale = {};
 
-locale.menu = {
+window.locale.locale = 'en-EN';
+
+window.locale.menu = {
 	home: 'Home',
 	date: 'Date',
 	parking: 'Parking',
@@ -9,7 +11,7 @@ locale.menu = {
 };
 
 
-locale.home = {
+window.locale.home = {
 	msgHello: "Hello, {0}",
 	msgNoRsv: 'You have no reservation in progress',
 	msgNextRsv: 'Hai una prenotazione il {0} alle ore {0} ',
@@ -28,13 +30,13 @@ locale.home = {
 	vehicle_position: 'Vehicle position address'
 };
 
-locale.home.rsvinfo = {
+window.locale.home.rsvinfo = {
 	labPRN: "PRN ",
 	labPrk: 'Parking ',
 	labTime: '',
 };
 
-locale.login = {
+window.locale.login = {
 	selectClient: 'Select client',
 	changeClient: 'Change client',
 	labelLogin: 'Login',
@@ -42,7 +44,7 @@ locale.login = {
 	labelChangeClient: 'Change client'
 };
 
-locale.parking = {
+window.locale.parking = {
 	button: 'Next',  
 	labelSearch: 'Search parking..',
 	labelSelectParking: 'Select parking',
@@ -50,7 +52,7 @@ locale.parking = {
 };
 
 
-locale.vehicle = {
+window.locale.vehicle = {
 	buttonBook:'Reserve',
 	buttonConfirm: '',
 	messageEnpty: 'No available vehicles',
@@ -67,7 +69,7 @@ locale.vehicle = {
     labelCannotReserve: 'Your booking request cannot be accepted, due to an existing one in the same period at your name.'
 };
 
-locale.booking = {
+window.locale.booking = {
 	buttonDate: 'Change',
 	buttonParking: 'Change',
 	messageEmptyDate: 'There is something wrong in date.',
@@ -93,7 +95,7 @@ locale.booking = {
 	labelCentralizzedButton: "Open/Close Vehicle"
 };
 
-locale.confirmation = {
+window.locale.confirmation = {
 	labelConfirmation: 'Confirm reservation',
 	buttonConfirm: 'Confirm',
 	labelWait: 'please wait..',
@@ -105,7 +107,7 @@ locale.confirmation = {
 	labelSelectDriveName: "Insert 'Driver name'"
 };
 
-locale.date = {
+window.locale.date = {
 	startDate: 'Pick-Up date',
 	startTime: 'Pick-Up time',
 	endDate: 'Return date',
@@ -125,13 +127,13 @@ locale.date = {
 	weekDaysList: ["Sun", "Mon", "Tue", "Wed", "thu", "Fri", "Sat"]
 };
 
-locale.account = {
+window.locale.account = {
 	title: 'Settings',
 	check1: 'Small list',
 	check1_descr: 'Show list with small pictures'
 };
 
-locale.resume = {
+window.locale.resume = {
 	title: 'Resume',
 	wrongDates: 'Select pick-up and return date to continue',
 	wrongParking: 'Select parking to continue'

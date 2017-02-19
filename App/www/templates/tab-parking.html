@@ -1,5 +1,7 @@
 <ion-view view-title="{{ locale.parking.labelSelectParking }}">
   <ion-content style='background-color: #f5f5f5;'>
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshParks()">
+  </ion-refresher>
       
     <p ng-if='parkingList.length==0 && !loading' style='padding: 20px; text-align: center; color: #888; font-size: 14px;'>{{ locale.parking.noparking }}</p>
       

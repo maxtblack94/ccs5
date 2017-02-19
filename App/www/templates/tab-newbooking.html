@@ -40,10 +40,10 @@
         </h2>
       </ion-item>
       
-      <button ng-show='dateValidated && !selectedParking' ng-click='gotoParking()' class="button button-block button-positive">
+      <button ng-show='timeToPick.inputTime && dateToPick.inputDate && timeFromPick.inputTime && dateFromPick.inputDate && !selectedParking' ng-click='gotoParking()' class="button button-block button-positive">
         {{ locale.parking.labelSelectParking }}
       </button>
-      <button ng-show='dateValidated && selectedParking' ng-click='gotoParking()' class="button button-block button-positive">
+      <button ng-show='timeToPick.inputTime && dateToPick.inputDate && timeFromPick.inputTime && dateFromPick.inputDate && selectedParking' ng-click='gotoParking()' class="button button-block button-positive">
         {{ locale.parking.button }}
       </button>
       

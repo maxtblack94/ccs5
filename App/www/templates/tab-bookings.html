@@ -12,11 +12,16 @@
       <p ng-if='BookingsList.length==0 && !loading' style='padding: 20px; text-align: center; color: #888; font-size: 14px;'>{{ ::locale.home.msgNoRsv }}</p>
         
       <div ng-repeat='book in BookingsList' class="list card">
-        <div class="item">
+        <div class="item" ng-click="openBooking(book)" ng-if="selectedClient.map">
           <div style='overflow: auto;'>
             <p style='float: left; font-weight: bold;'>{{ ::locale.home.rsvinfo.labPRN }}</p>
-            <h2 ng-click='openBooking(book)' ng-if="selectedClient.map" style='float: right; color: #fc0300!important; font-weight: bold;'><i class="ion-ios-location"></i> {{ ::book.pnr }}</h2>
-            <h2 ng-if="!selectedClient.map" style='float: right; color: #fc0300!important; font-weight: bold;'> {{ ::book.pnr }}</h2>
+            <h2 ng-click='openBooking(book)'  style='float: right; color: #fc0300!important; font-weight: bold;'><i class="ion-ios-location"></i> {{ ::book.pnr }}</h2>
+          </div>
+        </div>
+        <div class="item" ng-if="!selectedClient.map">
+          <div style='overflow: auto;'>
+            <p style='float: left; font-weight: bold;'>{{ ::locale.home.rsvinfo.labPRN }}</p>
+            <h2  style='float: right; color: #fc0300!important; font-weight: bold;'> {{ ::book.pnr }}</h2>
           </div>
         </div>
         <div class='padding' style='padding-top: 0;'>
@@ -30,19 +35,19 @@
           <div ng-if='!hasPicture' class="item item-image">
             <img ng-src="{{ book.image_max ? book.image_max : 'icons/vehicle-default-l.jpg' }}">
           </div>
+          <div class="item" style='overflow: auto;' ng-if="selectedClient.btnClose || selectedClient.btnOpen">
+            <p>{{ ::locale.booking.labelCentralizzedButton }}</p>
+            <a ng-click="openCarManipolation(book.pnr, '0')" ng-if="selectedClient.btnClose" class="button button-balanced" style="padding: 0px 15px; float: left">
+              {{ ::locale.booking.buttonOpenCar }}
+            </a>
+            <a ng-click="openCarManipolation(book.pnr, '1')" ng-if="selectedClient.btnOpen" class="button button-positive" style="padding: 0px 15px; float: right">
+              {{ ::locale.booking.buttonCloseCar }}
+            </a>
+          </div>
           <div class="item" style='overflow: auto;'>
             <div style='float: left; margin-right: 20px;'>
               <p>{{ ::locale.confirmation.labelColor }}</p>
               <div class='color-cube'><div style='background-color: {{ book.cmb_color }};'></div></div>
-            </div>
-            <div style='float: right;' ng-if="selectedClient.btnClose || selectedClient.btnOpen">
-              <p>{{ ::locale.booking.labelCentralizzedButton }}</p>
-              <a ng-click="openCarManipolation(book.pnr, '0')" ng-if="selectedClient.btnClose" class="button button-balanced" style="padding: 0px 15px; width: 80px;">
-                {{ ::locale.booking.buttonOpenCar }}
-              </a>
-              <a ng-click="openCarManipolation(book.pnr, '1')" ng-if="selectedClient.btnOpen" class="button button-positive" style="padding: 0px 15px; width: 80px;">
-                {{ ::locale.booking.buttonCloseCar }}
-              </a>
             </div>
             <div ng-show='book.seats' style='float: left;'>
               <p>{{ ::locale.confirmation.labelSeat }}</p>
