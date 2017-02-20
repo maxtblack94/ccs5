@@ -48,7 +48,7 @@ angular.module('starter').controller('BookingsCtrl', function($scope, $rootScope
         $http.get("res/621.xml").success(function(res) {
 	    	res = res.replace('{PNR_NUMBER}', reservation).replace('{OPERATION_TYPE}', opT);
     		$http({
-    			url: 'http://'+CLIENT+'.corporatecarsharing.biz/api.svc/ScriptParameterSets',
+    			url: 'http://'+InfoFactories.getServer()+'.corporatecarsharing.biz/api.svc/ScriptParameterSets',
 		        method: "POST",
 		        data: res,
 		        headers: {
@@ -56,7 +56,7 @@ angular.module('starter').controller('BookingsCtrl', function($scope, $rootScope
                     'Content-Type' : 'application/atom+xml'
                 }
 	    	}).success(function (data, status, headers, config) {
-	    		var responsePromisee = $http.get("http://"+CLIENT+".corporatecarsharing.biz/api.svc/ExecuteAdminScript?scriptId=621&scriptParameterSetId=" + data.d.Id, {headers: {'TenForce-Auth': 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4'}});
+	    		var responsePromisee = $http.get("http://"+InfoFactories.getServer()+".corporatecarsharing.biz/api.svc/ExecuteAdminScript?scriptId=621&scriptParameterSetId=" + data.d.Id, {headers: {'TenForce-Auth': 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4'}});
 	    		
                 responsePromisee.success(function(data, status, headers, config) {
                     console.log(data)
