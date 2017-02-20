@@ -7,7 +7,7 @@
           <div style='color: #666;'>{{ locale.home.vehicle_position }}</div>
           <h4 style='margin-top: 0; font-size: 15px;'>{{ g_address }}</h4>
         </div>
-        <div class="item" style='overflow: auto; border-left: none; border-right: none; margin-top: 1px; padding: 10px 0;'>
+        <div class="item" style='overflow: auto; border-left: none; border-right: none;border-bottom: none; margin-top: 1px; padding: 10px 0;'>
           <div style='float: left;'>
             <h2>{{ locale.home.labelGet }}</h2>
             <p>{{ selectedBooking.pickup_parking }}</p>
@@ -27,7 +27,7 @@
               <button ng-click='delete(selectedBooking)' class="button button-positive">
                 {{ locale.booking.labelDelete }}
               </button>
-              <button ng-click='navigate(selectedBooking)' class="button" style="float: right">
+              <button ng-if="false" ng-click='navigate(selectedBooking)' class="button" style="float: right">
                 {{ locale.booking.labelNavigate }}
               </button>
             </h2>
