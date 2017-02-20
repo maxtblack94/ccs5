@@ -39,24 +39,7 @@ angular.module('starter').controller('CarCtrl', function($scope, $http, $rootSco
 				$scope.vehicleList = data.data.VehiclesList;
 				
 				for(var i = 0; i < $scope.vehicleList.length; i++) {
-					switch($scope.vehicleList[i].fuel_quantity) {
-						default: 
-							break;
-						case '0/4': 
-							$scope.vehicleList[i].fuel_quantity = '0%';
-						case '1/4': 
-							$scope.vehicleList[i].fuel_quantity = '25%';
-							break;
-						case '2/4': 
-							$scope.vehicleList[i].fuel_quantity = '50%';
-							break;
-						case '3/4': 
-							$scope.vehicleList[i].fuel_quantity = '75%';
-							break;
-						case '4/4': 
-							$scope.vehicleList[i].fuel_quantity = '100%';
-							break;
-					}
+					$scope.vehicleList[i].fuel_quantity = InfoFactories.trascodeFuel($scope.vehicleList[i].fuel_quantity);
 				}
 					
 			});

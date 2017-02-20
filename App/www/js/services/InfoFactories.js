@@ -57,6 +57,22 @@ angular.module('starter').factory("InfoFactories", [function () {
     function getSelectedRangeDriver() {
         return selectedRangeDriver;
     };
+    function trascodeFuel(value) {
+        switch(value) {
+            default: 
+                break;
+            case '0/4': 
+                return '0%';
+            case '1/4': 
+                return '25%';
+            case '2/4': 
+                return '50%';
+            case '3/4': 
+                return '75%';
+            case '4/4': 
+                return '100%';
+        }
+    };
 
     return {
         setPark: function (varPark) {
@@ -109,6 +125,9 @@ angular.module('starter').factory("InfoFactories", [function () {
         },
         resetService: function () {
             return resetService();
+        },
+        trascodeFuel: function (fuel) {
+            return trascodeFuel(fuel);
         }
     };
 

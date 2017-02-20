@@ -24,39 +24,18 @@ angular.module('starter').controller('BookingsCtrl', function($scope, $rootScope
                 $scope.loading = false;
                 $ionicLoading.hide();
 				$scope.BookingsList = data.data.BookingsList;
-				//alert(JSON.stringify($scope.BookingsList[0]));
 				
 				var blength = $scope.BookingsList.length;
 				for(var i = 0; i < blength; i++) {
                     $scope.BookingsList[i].return_time = $scope.BookingsList[i].return_time.slice(10, -3);
                     $scope.BookingsList[i].pickup_time = $scope.BookingsList[i].pickup_time.slice(10, -3);
-
-                    
-
-					switch($scope.BookingsList[i].cmb_fuel_quantity) {
-						default: 
-							break;
-						case '0/4': 
-							$scope.BookingsList[i].cmb_fuel_quantity = '0%';
-						case '1/4': 
-							$scope.BookingsList[i].cmb_fuel_quantity = '25%';
-							break;
-						case '2/4': 
-							$scope.BookingsList[i].cmb_fuel_quantity = '50%';
-							break;
-						case '3/4': 
-							$scope.BookingsList[i].cmb_fuel_quantity = '75%';
-							break;
-						case '4/4': 
-							$scope.BookingsList[i].cmb_fuel_quantity = '100%';
-							break;
-					}
+                    $scope.BookingsList[i].cmb_fuel_quantity = InfoFactories.trascodeFuel($scope.BookingsList[i].cmb_fuel_quantity);
+					
 				}
 				
 			});
 		});
 	};
-	
 
 	loadbookings();
     
