@@ -201,7 +201,7 @@ scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
             <m:properties>
               <d:Id m:type="Edm.Int32">0</d:Id>
               <d:Name>driverName</d:Name>
-              <d:Value>{DRIVE_NAME}</d:Value>
+              <d:Value>null</d:Value>
             </m:properties>
           </content>
         </entry>

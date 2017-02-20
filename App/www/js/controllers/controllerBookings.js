@@ -28,8 +28,8 @@ angular.module('starter').controller('BookingsCtrl', function($scope, $rootScope
 				
 				var blength = $scope.BookingsList.length;
 				for(var i = 0; i < blength; i++) {
-                    $scope.BookingsList[i].return_time = $scope.BookingsList[i].return_time.slice(0, -3);
-                    $scope.BookingsList[i].pickup_time = $scope.BookingsList[i].pickup_time.slice(0, -3);
+                    $scope.BookingsList[i].return_time = $scope.BookingsList[i].return_time.slice(10, -3);
+                    $scope.BookingsList[i].pickup_time = $scope.BookingsList[i].pickup_time.slice(10, -3);
 
                     
 

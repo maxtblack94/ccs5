@@ -34,7 +34,6 @@ angular.module('starter').controller('ConfirmPrenotationCtrl', function($scope, 
     
     $scope.confirm = function() {
         var place = $('.place_val').val();
-        var drivename = $('.driverName_val').val();
         var justifyCode = $scope.selectedJustify ? $scope.selectedJustify.code : null;
         var cc = !selectedClient.cc ? false : $scope.hasCC;
 		var telepass = !selectedClient.telepass ? false : $scope.hasTelepass;
@@ -46,14 +45,7 @@ angular.module('starter').controller('ConfirmPrenotationCtrl', function($scope, 
             });
             return;
         }
-        
-        if(selectedClient.driveName && !drivename) {
-            $ionicPopup.alert({
-                title: $scope.locale.confirmation.labelIncomplete,
-                template: $scope.locale.confirmation.labelSelectDriveName
-            });
-			return;
-		}
+    
             
         $ionicLoading.show();
         $http.get('res/514.xml').success(function(res) {
@@ -68,8 +60,7 @@ angular.module('starter').controller('ConfirmPrenotationCtrl', function($scope, 
                         .replace('{PLACE}', place)
                         .replace('{JUSTIFICATION}', justifyCode)
                         .replace('{CC}', cc || false)
-                        .replace('{TELEPASS}', cc || false)
-                        .replace('{DRIVE_NAME}', drivename);
+                        .replace('{TELEPASS}', cc || false);
             
             WebService.ajaxPostRequest(res, 514, function(data) {
                 $ionicLoading.hide();
