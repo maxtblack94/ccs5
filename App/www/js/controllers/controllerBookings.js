@@ -22,9 +22,7 @@ angular.module('starter').controller('BookingsCtrl', function($scope, $rootScope
             
 			WebService.ajaxPostRequestTemp(res, 516, function(data) {
                 $scope.loading = false;
-                $ionicLoading.hide();
 				$scope.BookingsList = data.data.BookingsList;
-				
 				var blength = $scope.BookingsList.length;
 				for(var i = 0; i < blength; i++) {
                     $scope.BookingsList[i].return_time = $scope.BookingsList[i].return_time.slice(10, -3);
@@ -32,6 +30,7 @@ angular.module('starter').controller('BookingsCtrl', function($scope, $rootScope
                     $scope.BookingsList[i].cmb_fuel_quantity = InfoFactories.trascodeFuel($scope.BookingsList[i].cmb_fuel_quantity);
 					
 				}
+                $ionicLoading.hide();
 				
 			});
 		});

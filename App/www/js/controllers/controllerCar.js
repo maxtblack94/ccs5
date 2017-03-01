@@ -1,14 +1,19 @@
 angular.module('starter').controller('CarCtrl', function($scope, $http, $rootScope, $state, InfoFactories, $timeout, $ionicModal, $ionicLoading, $ionicPopup, WebService) {
     $scope.locale = window.locale;
+    $scope.dateTimeFrom = InfoFactories.getDateTimeFrom();
+    $scope.dateTimeTo = InfoFactories.getDateTimeTo();
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.selectedParking = InfoFactories.getPark();
     $scope.hasTelepass  = InfoFactories.getTelepass();
     $scope.hasCC = InfoFactories.getCC();
-    $scope.datesInfo = InfoFactories.getDatesInfo();
     
     $scope.onSelect = function(car) {
         $state.go('confirmPrenotation', {'car':car});
     };
+
+    $scope.goResume = function(){
+        $state.go('tab.resume');
+    }
     
      function loadVehicles () {
         $scope.vehicleList = null;
@@ -19,10 +24,10 @@ angular.module('starter').controller('CarCtrl', function($scope, $http, $rootSco
 		$http.get("res/571.xml").success(function(res) {                                       
 			res = res.replace('{NUMBER_PARKING}', InfoFactories.getPark().Nr)
 					 .replace('{NUMBER_DRIVER}', window.localStorage.getItem('Nr'))
-					 .replace('{DATE_FROM}', moment($rootScope.dateFromPick.inputDate).format('DD/MM/YYYY'))
-					 .replace('{DATE_TO}', moment($rootScope.dateToPick.inputDate).format('DD/MM/YYYY'))
-					 .replace('{TIME_FROM}', moment($rootScope.timeFromPick.inputTime).format('HH:mm'))
-					 .replace('{TIME_TO}', moment($rootScope.timeToPick.inputTime).format('HH:mm'))
+					 .replace('{DATE_FROM}', moment($scope.dateTimeFrom).format('DD/MM/YYYY'))
+					 .replace('{DATE_TO}', moment($scope.dateTimeTo).format('DD/MM/YYYY'))
+					 .replace('{TIME_FROM}', moment($scope.dateTimeFrom).format('HH:mm'))
+					 .replace('{TIME_TO}', moment($scope.dateTimeTo).format('HH:mm'))
 					 .replace('{CC}', cc)
 					 .replace('{TELEPASS}', telepass)
 					 .replace('{DRIVING_RANGE}', InfoFactories.getSelectedRangeDriver().value);
@@ -52,6 +57,9 @@ angular.module('starter').controller('CarCtrl', function($scope, $http, $rootSco
         $scope.$broadcast('scroll.refreshComplete');
     }
 
-	loadVehicles();
-    
+    if(!$scope.dateTimeFrom || !$scope.dateTimeTo){
+        $scope.missigData = true;
+    }else{
+        loadVehicles();
+    }
 })

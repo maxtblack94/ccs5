@@ -3,13 +3,13 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
     $scope.selectedParking = InfoFactories.getPark();
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.selectedDriverRange = InfoFactories.getSelectedRangeDriver();
-	
+    $scope.dateTimeFrom = InfoFactories.getDateTimeFrom();
+    $scope.dateTimeTo = InfoFactories.getDateTimeTo();
     $ionicLoading.show();
 	WebService.ajaxPostRequestDirect(610, function(data) {
         $ionicLoading.hide();
         $scope.listDriverRange = data.ListDriverRange;
     });
-  
     $scope.setHasCC = function() {
         $scope.hasCC = !$scope.hasCC;
         InfoFactories.setCC($scope.hasCC);
@@ -19,11 +19,6 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
         $scope.hasTelepass = !$scope.hasTelepass;
         InfoFactories.setTelepass($scope.hasTelepass);
     };
-    
-    $scope.changeDate = function() {
-        $state.go('tab.newbooking');
-    };
-    
     $scope.changeParking = function() {
         $state.go('tab.parking');
     };
@@ -38,8 +33,17 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
     function fixFromDateTime (){
         var hours = new Date($scope.timeFromPick.inputTime).getHours();
         var minutes = new Date($scope.timeFromPick.inputTime).getMinutes();
-        var finalDate = new Date($scope.dateFromPick.inputDate).setHours(hours,minutes,0,0);
-        $scope.dateTimeFrom = finalDate;
+        var dateFrom = new Date($scope.dateFromPick.inputDate).setHours(hours,minutes,0,0);
+        $scope.dateTimeFrom = dateFrom;
+        InfoFactories.setDateTimeFrom(dateFrom);
+    }
+
+    function fixToDateTime (){
+        var hours = new Date($scope.timeToPick.inputTime).getHours();
+        var minutes = new Date($scope.timeToPick.inputTime).getMinutes();
+        var dateTo = new Date($scope.dateToPick.inputDate).setHours(hours,minutes,0,0);
+        $scope.dateTimeTo = dateTo;
+        InfoFactories.setDateTimeTo(dateTo);
     }
 
     $scope.selectFromDate = function() {
@@ -58,22 +62,60 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
             $scope.dateFromPick.inputDate = date;
             $timeout(function() {
                 $scope.selectFromTime();
-            }, 500);
+            }, 300);
         });
     };
     
     $scope.selectFromTime = function() {
-        var sameday = false;
-        if($scope.dateFromPick.inputDate) {
-            if($scope.dateFromPick.inputDate.getDate() == new Date().getDate() 
-                && $scope.dateFromPick.inputDate.getMonth() == new Date().getMonth()
-                && $scope.dateFromPick.inputDate.getFullYear() == new Date().getFullYear())
-                sameday = true;
-        }
-        
+                
         $scope.timeFromPick = {
             date: $scope.timeFromPick ? ($scope.timeFromPick.inputTime ? $scope.timeFromPick.inputTime : new Date()) : new Date(),
             mode: 'time',
+            is24Hour: true,
+            minDate : new Date() - 10000,
+            allowOldDates: true,
+            allowFutureDates: true,
+            doneButtonLabel: $scope.locale.date.butChange,
+            cancelButtonLabel: $scope.locale.date.labelClose,
+            cancelButtonColor: '#000000',
+            locale: $scope.locale.locale
+        };
+        
+        $cordovaDatePicker.show($scope.timeFromPick).then(function(time) {
+            
+            $scope.timeFromPick.inputTime = time;
+            fixFromDateTime();
+        });
+    };
+
+    $scope.selectToDate = function() {
+            
+        $scope.dateToPick = {
+            date: new Date(),
+            mode: 'date',
+            //minDate: new Date() - 10000,
+            allowOldDates: false,
+            allowFutureDates: true,
+            doneButtonLabel: $scope.locale.date.butChange,
+            cancelButtonLabel: $scope.locale.date.labelClose,
+            cancelButtonColor: '#000000',
+            locale: $scope.locale.locale
+        };
+        
+        $cordovaDatePicker.show($scope.dateToPick).then(function(date) {
+            
+            $scope.dateToPick.inputDate = date;
+            $timeout(function() {
+                $scope.selectToTime();
+            }, 500)
+        });
+    };
+    
+    $scope.selectToTime = function() {
+        $scope.timeToPick = {
+            date: $scope.timeToPick ? ($scope.timeToPick.inputTime ? $scope.timeToPick.inputTime : new Date()) : new Date(),
+            mode: 'time',
+            minDate: new Date() - 10000,
             is24Hour: true,
             allowOldDates: true,
             allowFutureDates: true,
@@ -83,13 +125,9 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
             locale: $scope.locale.locale
         };
         
-        if(sameday){
-            $scope.timeFromPick.minDate = new Date() - 10000;
-        }
-        $cordovaDatePicker.show($scope.timeFromPick).then(function(time) {
-            
-            $scope.timeFromPick.inputTime = time;
-            fixFromDateTime();
+        $cordovaDatePicker.show($scope.timeToPick).then(function(time) {
+            $scope.timeToPick.inputTime = time;
+            fixToDateTime()
         });
     };
 })

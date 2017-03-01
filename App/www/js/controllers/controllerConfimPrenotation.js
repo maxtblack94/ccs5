@@ -2,6 +2,8 @@ angular.module('starter').controller('ConfirmPrenotationCtrl', function($scope, 
     function init(){
         $scope.locale = window.locale;
         selectedClient = InfoFactories.getClientSelected();
+        $scope.dateTimeFrom = InfoFactories.getDateTimeFrom();
+        $scope.dateTimeTo = InfoFactories.getDateTimeTo();
         $scope.selectedParking = InfoFactories.getPark();
         $scope.hasTelepass  = InfoFactories.getTelepass();
         $scope.hasCC = InfoFactories.getCC();
@@ -53,10 +55,10 @@ angular.module('starter').controller('ConfirmPrenotationCtrl', function($scope, 
             
             res = res.replace('{NUMBER_VEHICLE}', $scope.selectedCar.Nr)
                         .replace('{NUMBER_DRIVER}', driver)
-                        .replace('{DATE_FROM}', moment($rootScope.dateFromPick.inputDate).format('DD/MM/YYYY'))
-                        .replace('{DATE_TO}', moment($rootScope.dateToPick.inputDate).format('DD/MM/YYYY'))
-                        .replace('{TIME_FROM}', moment($rootScope.timeFromPick.inputTime).format('HH:mm'))
-                        .replace('{TIME_TO}', moment($rootScope.timeToPick.inputTime).format('HH:mm'))
+                        .replace('{DATE_FROM}', moment($scope.dateTimeFrom ).format('DD/MM/YYYY'))
+                        .replace('{DATE_TO}', moment($scope.dateTimeTo).format('DD/MM/YYYY'))
+                        .replace('{TIME_FROM}', moment($scope.dateTimeFrom).format('HH:mm'))
+                        .replace('{TIME_TO}', moment($scope.dateTimeTo).format('HH:mm'))
                         .replace('{PLACE}', place)
                         .replace('{JUSTIFICATION}', justifyCode)
                         .replace('{CC}', cc || false)

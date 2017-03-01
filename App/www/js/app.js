@@ -107,7 +107,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
       url: '/selcar',
       cache: false,
       views: {
-        'tab-resume': {
+        'tab-selcar': {
           templateUrl: 'templates/car-selection.html',
           controller: 'CarCtrl'
         }

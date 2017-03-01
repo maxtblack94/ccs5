@@ -1,5 +1,6 @@
 angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, InfoFactories, $http, $state, $ionicLoading, WebService) {
     $scope.locale = window.locale;
+    $scope.recorveryPassword = false;
     function init(){
         $scope.request = {};
         $ionicLoading.show();
@@ -31,8 +32,33 @@ angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, I
         $scope.selectedClient = null;
         window.localStorage.setItem('selclient', null);
     };
+
+    $scope.recorveryPasswordOn = function(){
+        $scope.recorveryPassword = !$scope.recorveryPassword;
+        $scope.request.email = undefined;
+        $scope.loginError = false;
+    }
+
+    $scope.callRecoverService = function(){
+        $ionicLoading.show();
+        $http.get("res/591.xml").success(function(res) {
+			res = res.replace('{EMAIL}', $scope.request.email);
+			WebService.ajaxPostRequestTemp(res, 591, function(data) {
+                var pnrPopup = $ionicPopup.alert({
+                    title: 'Richiesta completata',
+                    template: 'A breve riceverai una mail con le istruzioni per cambiare password!'
+                });
+                pnrPopup.then(function(res) {
+                    $scope.recorveryPasswordOn();
+                });
+                $ionicLoading.hide();
+				
+			});
+		});
+    }
     
     $scope.selectClient = function(index, c) {
+        $scope.recorveryPassword = false;
         InfoFactories.setClientSelected(c);
         $scope.selectedClient = c;
         InfoFactories.setServer(c.value.toLowerCase());

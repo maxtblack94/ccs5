@@ -1,8 +1,8 @@
-.tab-item .icon {
+/*.tab-item .icon {
 	height: 48px;
 	line-height: 48px;
 }
-
+*/
 ion-header-bar {
 	background: #fc0300!important;
     border: none!important;
@@ -160,4 +160,53 @@ ion-header-bar .title {
 .loading-map ion-spinner {
 	position: relative;
     top: 40%;
+}
+
+.clients-list > div {
+	padding: 15px;
+	font-size: 16px!important;
+	background-color: #fe7776;
+	background-color: #ba0200;
+	border-radius: 3px;
+	margin-bottom: 2px;
+	color: #fff;
+	text-align: center;
+	}
+	.clients-list > div:active {
+	background-color: #8e0302!important;
+	}
+	.but-login {
+	border-radius: 3px;
+	background-color: #ba0200!important;
+	}
+	.but-changeclient {
+	border-radius: 3px;
+	background-color: transparent; 
+	color: #fff; 
+	font-size: 16px!important;
+	}
+	.but-changeclient:active,
+	.but-login:active,
+	.but-login:focus {
+	background-color: #8e0302!important;
+	background-color: #8e0302!important;
+	border-color: transparent!important;
+	}
+	.input:focus {
+	box-shadow: none;
+	}
+
+	.input.login {
+	-webkit-box-sizing: border-box;‌​
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px!important;
+	width: 100%;
+	height: 45px!important;
+	}
+.pull-right{
+	float:right;
+}
+.pull-left{
+	float: left;
 }

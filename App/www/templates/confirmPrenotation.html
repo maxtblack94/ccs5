@@ -1,6 +1,6 @@
 <ion-view>
   <ion-header-bar>
-     <h1 class="title">{{ locale.confirmation.labelConfirmation }}</h1>
+     <h1 class="title">Conferma Prenotazione</h1>
   </ion-header-bar>
   <ion-content class='padding'>
     <ion-list>
@@ -11,7 +11,7 @@
         </div>
         <div style='float: right;'> 
           <h2 style='font-weight: bold;'>
-            {{ dateFromPick.inputDate | date:'dd/MM/yyyy' }} {{ timeFromPick.inputTime | date:'HH:mm' }}
+            {{ dateTimeFrom | date:'dd/MM/yyyy HH:mm' }}
           </h2>
         </div>
       </ion-item>
@@ -21,7 +21,7 @@
         </div>
         <div style='float: right;'> 
           <h2 style='font-weight: bold;'>
-            {{ dateToPick.inputDate | date:'dd/MM/yyyy' }} {{ timeToPick.inputTime | date:'HH:mm' }}
+            {{ dateTimeTo | date:'dd/MM/yyyy HH:mm'  }}
           </h2>
         </div>
       </ion-item>

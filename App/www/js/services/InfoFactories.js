@@ -1,25 +1,30 @@
 angular.module('starter').factory("InfoFactories", [function () {
-    var parking, server, selectedClient, selectedCar, datesInfo, 
+    var parking, server, selectedClient, selectedCar, dateTimeFrom, dateTimeTo,
     telepass = false, 
     CC = false, 
     selectedRangeDriver = { value: 'short' };
 
     function resetService (){
-        parking, server, selectedClient, selectedCar, datesInfo, telepass = false, CC = false, selectedRangeDriver = { value: 'short' };
+        parking, server, selectedClient, selectedCar, telepass = false, CC = false, selectedRangeDriver = { value: 'short' };
         return;
     };
-
+    function setDateTimeFrom(varDate) {
+        dateTimeFrom = varDate;
+    };
+    function getDateTimeFrom() {
+        return dateTimeFrom;
+    };
+    function setDateTimeTo(varDate) {
+        dateTimeTo = varDate;
+    };
+    function getDateTimeTo() {
+        return dateTimeTo;
+    };
     function setPark(varPark) {
         parking = varPark;
     };
     function getPark() {
         return parking;
-    };
-    function setDatesInfo(datesObj) {
-        datesInfo = datesObj;
-    };
-    function getDatesInfo() {
-        return datesInfo;
     };
     function setClientSelected(varSelectedClient) {
         selectedClient = varSelectedClient;
@@ -117,11 +122,17 @@ angular.module('starter').factory("InfoFactories", [function () {
         getServer: function () {
             return getServer();
         },
-        setDatesInfo: function (datesObj) {
-            return setDatesInfo(datesObj);
+        setDateTimeFrom: function (vatDate) {
+            return setDateTimeFrom(vatDate);
         },
-        getDatesInfo: function () {
-            return getDatesInfo();
+        getDateTimeFrom: function () {
+            return getDateTimeFrom();
+        },
+        setDateTimeTo: function (vatDate) {
+            return setDateTimeTo(vatDate);
+        },
+        getDateTimeTo: function () {
+            return getDateTimeTo();
         },
         resetService: function () {
             return resetService();

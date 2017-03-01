@@ -94,7 +94,7 @@ window.locale.booking = {
 };
 
 window.locale.confirmation = {
-	labelConfirmation: 'Conferma prenotazione',
+	labelConfirmation: 'Conferma',
 	buttonConfirm: 'Conferma',
 	labelWait: 'attendere..',
 	labelRequestComplete: 'Prenotazione Confermata',

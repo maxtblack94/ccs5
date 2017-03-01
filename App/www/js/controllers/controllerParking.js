@@ -8,8 +8,6 @@ angular.module('starter').controller('ParkingCtrl', function($scope, $rootScope,
 			res = res.replace('{DRIVER_NUMBER}', driver);
 			
 			WebService.ajaxPostRequest(res, 512, function(data) {
-                $ionicLoading.hide();
-                
                 if(data.data.ParkingsList){
 	               $scope.parkingList = data.data.ParkingsList;
                 }else{
@@ -24,6 +22,7 @@ angular.module('starter').controller('ParkingCtrl', function($scope, $rootScope,
                         }
                     }
                 }
+                $ionicLoading.hide();
 			});
 		});
     };
@@ -51,7 +50,7 @@ angular.module('starter').controller('ParkingCtrl', function($scope, $rootScope,
     
     $scope.selectParking = function(parking) {
         InfoFactories.setPark(parking);
-        $state.go('tab.newbooking');
+        $state.go('tab.resume');
     };
 
     $scope.refreshParks = function(){
