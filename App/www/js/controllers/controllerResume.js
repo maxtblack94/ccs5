@@ -20,6 +20,10 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
         InfoFactories.setTelepass($scope.hasTelepass);
     };
     
+    $scope.changeDate = function() {
+        $state.go('tab.newbooking');
+    };
+    
     $scope.changeParking = function() {
         $state.go('tab.parking');
     };
@@ -31,47 +35,61 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
         $state.go('tab.selcar');
     };
 
-    var dateFromConfig = {
-        date: $scope.dateFromPick ? $scope.dateFromPick : new Date(),
-        mode: 'date',
-        allowOldDates: false,
-        allowFutureDates: true,
-        doneButtonLabel: $scope.locale.date.butChange,
-        cancelButtonLabel: $scope.locale.date.labelClose,
-        cancelButtonColor: '#000000',
-        locale: $scope.locale.locale
-    };
-
-    var timeFromPick = {
-        date: $scope.timeFromPick ? $rootScope.timeFromPick.inputTime : new Date(),
-        mode: 'time',
-        is24Hour: true,
-        allowOldDates: true,
-        allowFutureDates: true,
-        doneButtonLabel: $scope.locale.date.butChange,
-        cancelButtonLabel: $scope.locale.date.labelClose,
-        cancelButtonColor: '#000000',
-        locale: $scope.locale.locale
-    };
-
-    function startTimePicker (){
-        $cordovaDatePicker.show(timeFromPick).then(function(time) {
-            $scope.timeFromPick = time;
-                });
+    function fixFromDateTime (){
+        var hours = new Date($scope.timeFromPick.inputTime).getHours();
+        var minutes = new Date($scope.timeFromPick.inputTime).getMinutes();
+        var finalDate = new Date($scope.dateFromPick.inputDate).setHours(hours,minutes,0,0);
+        $scope.dateTimeFrom = finalDate;
     }
 
-    $scope.selectFromDateTime = function(){
+    $scope.selectFromDate = function() {
+        $scope.dateFromPick = {
+            date: $scope.dateFromPick ? ($scope.dateFromPick.inputDate ? $scope.dateFromPick.inputDate : new Date()) : new Date(),
+            mode: 'date',
+            allowOldDates: false,
+            allowFutureDates: true,
+            doneButtonLabel: $scope.locale.date.butChange,
+            cancelButtonLabel: $scope.locale.date.labelClose,
+            cancelButtonColor: '#000000',
+            locale: $scope.locale.locale
+        };
         
-        $cordovaDatePicker.show(dateFromConfig).then(function(date) {
-            if(date){
-                $scope.dateFromPick = date;
-                $timeout(function() {
-                    startTimePicker();
-                }, 1000);
-            }else{
-
-            }
-            
+        $cordovaDatePicker.show($scope.dateFromPick).then(function(date) {            
+            $scope.dateFromPick.inputDate = date;
+            $timeout(function() {
+                $scope.selectFromTime();
+            }, 500);
         });
-    }
+    };
+    
+    $scope.selectFromTime = function() {
+        var sameday = false;
+        if($scope.dateFromPick.inputDate) {
+            if($scope.dateFromPick.inputDate.getDate() == new Date().getDate() 
+                && $scope.dateFromPick.inputDate.getMonth() == new Date().getMonth()
+                && $scope.dateFromPick.inputDate.getFullYear() == new Date().getFullYear())
+                sameday = true;
+        }
+        
+        $scope.timeFromPick = {
+            date: $scope.timeFromPick ? ($scope.timeFromPick.inputTime ? $scope.timeFromPick.inputTime : new Date()) : new Date(),
+            mode: 'time',
+            is24Hour: true,
+            allowOldDates: true,
+            allowFutureDates: true,
+            doneButtonLabel: $scope.locale.date.butChange,
+            cancelButtonLabel: $scope.locale.date.labelClose,
+            cancelButtonColor: '#000000',
+            locale: $scope.locale.locale
+        };
+        
+        if(sameday){
+            $scope.timeFromPick.minDate = new Date() - 10000;
+        }
+        $cordovaDatePicker.show($scope.timeFromPick).then(function(time) {
+            
+            $scope.timeFromPick.inputTime = time;
+            fixFromDateTime();
+        });
+    };
 })
