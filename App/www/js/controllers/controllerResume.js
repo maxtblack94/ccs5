@@ -30,25 +30,23 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
         $state.go('tab.selcar');
     };
 
-    function fixFromDateTime (){
-        var hours = new Date($scope.timeFromPick.inputTime).getHours();
-        var minutes = new Date($scope.timeFromPick.inputTime).getMinutes();
-        var dateFrom = new Date($scope.dateFromPick.inputDate).setHours(hours,minutes,0,0);
-        $scope.dateTimeFrom = dateFrom;
-        InfoFactories.setDateTimeFrom(dateFrom);
-    }
-
-    function fixToDateTime (){
-        var hours = new Date($scope.timeToPick.inputTime).getHours();
-        var minutes = new Date($scope.timeToPick.inputTime).getMinutes();
-        var dateTo = new Date($scope.dateToPick.inputDate).setHours(hours,minutes,0,0);
-        $scope.dateTimeTo = dateTo;
-        InfoFactories.setDateTimeTo(dateTo);
+    function fixDateTime (date, time, type){
+        var hours = new Date(time).getHours();
+        var minutes = new Date(time).getMinutes();
+        var newDate = new Date(date).setHours(hours,minutes,0,0);
+        newDate = InfoFactories.resetDateService(newDate);
+        if(type == 'to'){
+            $scope.dateTimeTo = newDate;
+            InfoFactories.setDateTimeTo(newDate);
+        }else if(type == 'from'){
+            $scope.dateTimeFrom = newDate;
+            InfoFactories.setDateTimeFrom(newDate);
+        }
     }
 
     $scope.selectFromDate = function() {
-        $scope.dateFromPick = {
-            date: $scope.dateFromPick ? ($scope.dateFromPick.inputDate ? $scope.dateFromPick.inputDate : new Date()) : new Date(),
+        var dateFromConfig = {
+            date: $scope.dateTimeFrom ? new Date($scope.dateTimeFrom) : new Date(),
             mode: 'date',
             allowOldDates: false,
             allowFutureDates: true,
@@ -58,18 +56,18 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
             locale: $scope.locale.locale
         };
         
-        $cordovaDatePicker.show($scope.dateFromPick).then(function(date) {            
-            $scope.dateFromPick.inputDate = date;
-            $timeout(function() {
-                $scope.selectFromTime();
-            }, 300);
+        $cordovaDatePicker.show(dateFromConfig).then(function(date) {
+            if(date){
+                $timeout(function() {
+                    selectFromTime(date);
+                }, 300);
+            }            
         });
     };
     
-    $scope.selectFromTime = function() {
-                
-        $scope.timeFromPick = {
-            date: $scope.timeFromPick ? ($scope.timeFromPick.inputTime ? $scope.timeFromPick.inputTime : new Date()) : new Date(),
+    function selectFromTime (date) {
+        var timeFromConfig = {
+            date: $scope.dateTimeFrom ? new Date($scope.dateTimeFrom) : new Date(),
             mode: 'time',
             is24Hour: true,
             minDate : new Date() - 10000,
@@ -81,19 +79,18 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
             locale: $scope.locale.locale
         };
         
-        $cordovaDatePicker.show($scope.timeFromPick).then(function(time) {
-            
-            $scope.timeFromPick.inputTime = time;
-            fixFromDateTime();
+        $cordovaDatePicker.show(timeFromConfig).then(function(time) {
+            if(time){
+                fixDateTime(date, time, 'from');
+            }
         });
     };
 
     $scope.selectToDate = function() {
             
-        $scope.dateToPick = {
-            date: new Date(),
+        var dateToConfig = {
+            date: $scope.dateTimeFrom ? new Date($scope.dateTimeFrom) : $scope.dateTimeTo ? new Date($scope.dateTimeTo) : new Date(),
             mode: 'date',
-            //minDate: new Date() - 10000,
             allowOldDates: false,
             allowFutureDates: true,
             doneButtonLabel: $scope.locale.date.butChange,
@@ -102,18 +99,18 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
             locale: $scope.locale.locale
         };
         
-        $cordovaDatePicker.show($scope.dateToPick).then(function(date) {
-            
-            $scope.dateToPick.inputDate = date;
-            $timeout(function() {
-                $scope.selectToTime();
-            }, 500)
+        $cordovaDatePicker.show(dateToConfig).then(function(date) {
+            if(date){
+                $timeout(function() {
+                    selectToTime(date);
+                }, 500)
+            }
         });
     };
     
-    $scope.selectToTime = function() {
-        $scope.timeToPick = {
-            date: $scope.timeToPick ? ($scope.timeToPick.inputTime ? $scope.timeToPick.inputTime : new Date()) : new Date(),
+    function selectToTime (date) {
+        var timeToConfig = {
+            date: $scope.dateTimeFrom ? new Date($scope.dateTimeFrom) : $scope.dateTimeTo ? new Date($scope.dateTimeTo) : new Date(),
             mode: 'time',
             minDate: new Date() - 10000,
             is24Hour: true,
@@ -125,9 +122,10 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
             locale: $scope.locale.locale
         };
         
-        $cordovaDatePicker.show($scope.timeToPick).then(function(time) {
-            $scope.timeToPick.inputTime = time;
-            fixToDateTime()
+        $cordovaDatePicker.show(timeToConfig).then(function(time) {
+            if(time){
+                fixDateTime(date, time, 'to');
+            }
         });
     };
 })

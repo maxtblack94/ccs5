@@ -8,6 +8,20 @@ angular.module('starter').factory("InfoFactories", [function () {
         parking, server, selectedClient, selectedCar, telepass = false, CC = false, selectedRangeDriver = { value: 'short' };
         return;
     };
+    function resetDateService (date){
+        var d = new Date(date);
+        var m = new Date(date);
+        if(d.getMinutes() >= 0 && d.getMinutes() <= 7){
+            m.setMinutes(0);
+        }else if(d.getMinutes() >= 7 && d.getMinutes() <= 22){
+            m.setMinutes(15);
+        }else if(d.getMinutes() >= 22 && d.getMinutes() <= 37){
+            m.setMinutes(30);
+        }else if(d.getMinutes() >= 37 && d.getMinutes() <= 59){
+            m.setMinutes(45);
+        }
+        return m;
+    }
     function setDateTimeFrom(varDate) {
         dateTimeFrom = varDate;
     };
@@ -139,7 +153,10 @@ angular.module('starter').factory("InfoFactories", [function () {
         },
         trascodeFuel: function (fuel) {
             return trascodeFuel(fuel);
-        }
+        },
+        resetDateService: function (date) {
+            return resetDateService(date);
+        },
     };
 
 
