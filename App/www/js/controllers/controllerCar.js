@@ -58,7 +58,9 @@ angular.module('starter').controller('CarCtrl', function($scope, $http, $rootSco
     }
 
     if(!$scope.dateTimeFrom || !$scope.dateTimeTo){
-        $scope.missigData = true;
+            $timeout(function() {
+                $state.go('tab.resume');
+            }, 200);
     }else{
         loadVehicles();
     }

@@ -59,7 +59,7 @@
 		  </ion-list>
       </ion-item>
 	  
-      <button ng-show='(dateFromPick.inputDate || dateToPick.inputDate) && selectedParking' ng-click='searchVehicle()' class="button button-block button-positive">
+      <button ng-show='dateTimeFrom && dateTimeTo && selectedParking' ng-click='searchVehicle()' class="button button-block button-positive">
         {{ ::locale.booking.buttonConfirm }}
       </button>
     </ion-list>
