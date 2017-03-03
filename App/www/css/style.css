@@ -118,9 +118,6 @@ ion-header-bar .title {
 	border-radius: 5px;
 }
 
-.row.no_padding {
-	padding-top: 0!important;
-}
 
 .toggle.toggle-positive input:checked + .track {
 	border-color: #fc0300;
@@ -140,26 +137,6 @@ ion-header-bar .title {
 
 .ion-android-star.selected {
 	color: orange!important;
-}
-
-.item {
-	position: inherit!important;
-}
-
-.loading-map {
-	poSition: fixed;
-    top: 0;
-    left: 0;
-    height: 40%;
-    width: 100%;
-    background-color: #fff;
-    opacity: .7;
-    z-index: 100000;
-}
-
-.loading-map ion-spinner {
-	position: relative;
-    top: 40%;
 }
 
 .clients-list > div {
@@ -209,4 +186,13 @@ ion-header-bar .title {
 }
 .pull-left{
 	float: left;
+}
+.color-error{
+	color:red !important;
+}
+.color-info{
+	color: blue !important;
+}
+.color-warning{
+	color: darkorange !important;
 }

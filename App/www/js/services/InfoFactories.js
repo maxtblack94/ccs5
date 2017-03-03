@@ -11,16 +11,19 @@ angular.module('starter').factory("InfoFactories", [function () {
     function resetDateService (date){
         var d = new Date(date);
         var m = new Date(date);
-        if(d.getMinutes() >= 0 && d.getMinutes() <= 7){
+        if(d.getMinutes() >= 0 && d.getMinutes() <= 3){
             m.setMinutes(0);
-        }else if(d.getMinutes() >= 7 && d.getMinutes() <= 22){
+        }else if(d.getMinutes() >= 3 && d.getMinutes() <= 18){
             m.setMinutes(15);
-        }else if(d.getMinutes() >= 22 && d.getMinutes() <= 37){
+        }else if(d.getMinutes() >= 18 && d.getMinutes() <= 35){
             m.setMinutes(30);
-        }else if(d.getMinutes() >= 37 && d.getMinutes() <= 59){
+        }else if(d.getMinutes() >= 35 && d.getMinutes() <= 52){
             m.setMinutes(45);
+        }else if(d.getMinutes() >= 52 && d.getMinutes() <= 59){
+            m.setMinutes(0);
+            m.setHours(m.getHours()+1);
         }
-        return m;
+        return m;      
     }
     function setDateTimeFrom(varDate) {
         dateTimeFrom = varDate;

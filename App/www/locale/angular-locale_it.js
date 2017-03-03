@@ -117,7 +117,7 @@ window.locale.date = {
 	butChange: 'Seleziona',
 	labelSelectRange: 'Scegli la data e l\'ora',
 	labelIncorrectDate: 'Selezionare il periodo correttamente',
-	labelSmallDate: "Date time cann't be less then current date time",
+	labelSmallDate: "Date time can't be less then current date time",
 	labelToday: "Oggi",
 	labelClose: "Chiudi",
 	monthList: ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Sett", "Ott", "Nov", "Dic"],

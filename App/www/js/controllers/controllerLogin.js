@@ -1,4 +1,4 @@
-angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, InfoFactories, $http, $state, $ionicLoading, WebService) {
+angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, InfoFactories, $http, $state, $ionicLoading, WebService, $ionicPopup) {
     $scope.locale = window.locale;
     $scope.recorveryPassword = false;
     function init(){
@@ -45,8 +45,8 @@ angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, I
 			res = res.replace('{EMAIL}', $scope.request.email);
 			WebService.ajaxPostRequestTemp(res, 591, function(data) {
                 var pnrPopup = $ionicPopup.alert({
-                    title: 'Richiesta completata',
-                    template: 'A breve riceverai una mail con le istruzioni per cambiare password!'
+                    title: 'Esito richiesta',
+                    template: data
                 });
                 pnrPopup.then(function(res) {
                     $scope.recorveryPasswordOn();

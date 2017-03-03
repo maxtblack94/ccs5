@@ -2,45 +2,45 @@
   <ion-content class="padding">
     <ion-list>
       
-      <ion-item ng-if='!dateTimeFrom || !dateTimeTo' style='border-bottom: none;'>
-        <p style='color: #fc0300; white-space: normal;'>{{ ::locale.resume.wrongDates }}</p>
+      <ion-item ng-if='!dateTimeFrom || !dateTimeTo'>
+        <p class="color-error">{{ ::locale.resume.wrongDates }}</p>
       </ion-item>
-      <ion-item ng-if='!selectedParking' style='border-bottom: none;'>
-        <p style='color: #fc0300; white-space: normal;'>{{ ::locale.resume.wrongParking }}</p>
+      <ion-item ng-if='!selectedParking'>
+        <p  class="color-error">{{ ::locale.resume.wrongParking }}</p>
       </ion-item>
-      <ion-item ng-if='cannotReserve' style='border-bottom: none;'>
-        <p style='color: #fc0300; white-space: normal;'>{{ ::locale.vehicle.labelCannotReserve }}</p>
+      <ion-item ng-if='cannotReserve'>
+        <p class="color-error">{{ ::locale.vehicle.labelCannotReserve }}</p>
       </ion-item>
       
       <ion-item>
-        <div style='float: left;'> 
-          <p>{{ ::locale.booking.dateFrom }}</p>
+        <div class="pull-left"> 
+          <p>{{ ::locale.booking.dateFrom }}<span class="color-error">*</span></p>
           <h2 style='font-weight: bold;'>
             {{ dateTimeFrom | date:'dd/MM/yyyy HH:mm' }}
           </h2>
         </div>
-        <h2 style='float: right;'>
+        <h2 class="pull-right">
           <button ng-click='selectFromDate()' class="button button-positive">{{ ::locale.booking.buttonDate }}</button>
         </h2>
       </ion-item>
       <ion-item>
-        <div style='float: left;'> 
-          <p>{{ ::locale.booking.dateTo }}</p>
+        <div class="pull-left"> 
+          <p>{{ ::locale.booking.dateTo }}<span class="color-error">*</span></p>
           <h2 style='font-weight: bold;'>
             {{ dateTimeTo | date:'dd/MM/yyyy HH:mm' }}
           </h2>
         </div>
-        <h2 style='float: right;'>
+        <h2 class="pull-right">
           <button ng-click='selectToDate()' class="button button-positive">{{ ::locale.booking.buttonDate }}</button>
         </h2>
       </ion-item>
       <ion-item>
-        <div style='float: left;'> 
-          <p>{{ ::locale.booking.parking }}</p>
+        <div class="pull-left"> 
+          <p>{{ ::locale.booking.parking }}<span class="color-error">*</span></p>
           <h2 style='font-weight: bold;'>{{ selectedParking.parking_name }}</h2>
           <p>{{ selectedParking.address }}</p>
         </div>
-        <h2 style='float: right;'>
+        <h2 class="pull-right">
           <button ng-click='changeParking()' class="button button-positive">{{ ::locale.booking.buttonDate }}</button>
         </h2>
       </ion-item>
@@ -49,7 +49,7 @@
       </ion-toggle>
       <ion-toggle ng-show="selectedClient.telepass" ng-model="hasTelepass" toggle-class="toggle-positive" ng-click='setHasTelepass()'>
           <h2>{{ ::locale.booking.telepass }}</h2>
-          <p style='white-space: normal;'>{{ ::locale.booking.telepass_descr }}</p>
+          <p>{{ ::locale.booking.telepass_descr }}</p>
       </ion-toggle>
 	  
       <ion-item ng-show='selectedClient.drivingRange' style='border-bottom: none; margin-bottom: 10px;'>
