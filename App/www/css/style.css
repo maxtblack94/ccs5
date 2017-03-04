@@ -205,8 +205,16 @@ ion-header-bar .title {
 	font-size: 14px;
 }
 
-.m-right{
+.m-right20{
 	margin-right: 20px;
+}
+
+.m-bottom0{
+	margin-bottom: 0;
+}
+
+.m-top20{
+	margin-top: 20px
 }
 
 .preferite-park{

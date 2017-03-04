@@ -1,7 +1,7 @@
 angular.module('starter').controller('ConfirmPrenotationCtrl', function($scope, $http, $rootScope, $state, InfoFactories, $timeout, $ionicModal, $ionicLoading, $ionicPopup, WebService) {
     function init(){
         $scope.locale = window.locale;
-        selectedClient = InfoFactories.getClientSelected();
+        $scope.selectedClient = InfoFactories.getClientSelected();
         $scope.dateTimeFrom = InfoFactories.getDateTimeFrom();
         $scope.dateTimeTo = InfoFactories.getDateTimeTo();
         $scope.selectedParking = InfoFactories.getPark();
@@ -9,21 +9,21 @@ angular.module('starter').controller('ConfirmPrenotationCtrl', function($scope, 
         $scope.hasCC = InfoFactories.getCC();
         $scope.selectedCar = $state.params.car;
 
-        WebService.ajaxPostRequestDirect(588, function(data) {
-            $scope.justifyList = data.ListJustification;
-            $scope.justifyList[0].selected = true;
-            if(selectedClient.justifiedUse){
+        if($scope.selectedClient.justifiedUse){
+            $ionicLoading.show();
+            WebService.ajaxPostRequestDirect(588, function(data) {
+                $scope.justifyList = data.ListJustification;
+                $scope.justifyList[0].selected = true;
                 $scope.selectedJustify = $scope.justifyList[0]; 
-            }
-        });
+                $ionicLoading.hide();
+            });
+        }
     }
 
     $scope.backToCars = function(){
         $state.go('tab.selcar');
     }
 
-
-    
     $scope.selectJustify = function(index, justify) {
         for(var i = 0; i < $scope.justifyList.length; i++)
             $scope.justifyList[i].selected = false;
@@ -37,8 +37,8 @@ angular.module('starter').controller('ConfirmPrenotationCtrl', function($scope, 
     $scope.confirm = function() {
         var place = $('.place_val').val();
         var justifyCode = $scope.selectedJustify ? $scope.selectedJustify.code : null;
-        var cc = !selectedClient.cc ? false : $scope.hasCC;
-		var telepass = !selectedClient.telepass ? false : $scope.hasTelepass;
+        var cc = !$scope.selectedClient.cc ? false : $scope.hasCC;
+		var telepass = !$scope.selectedClient.telepass ? false : $scope.hasTelepass;
             
         if(!place) {
             $ionicPopup.alert({

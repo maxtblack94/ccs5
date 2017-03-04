@@ -84,6 +84,9 @@ angular.module('starter', ['ionic', 'ngCordova'])
   .state('tab.resume', {
       url: '/resume',
       cache: false,
+      params: {
+        error: null
+      },
       views: {
         'tab-resume': {
           templateUrl: 'templates/tab-book-resume.html',

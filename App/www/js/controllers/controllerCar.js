@@ -19,7 +19,6 @@ angular.module('starter').controller('CarCtrl', function($scope, $http, $rootSco
         $scope.vehicleList = null;
         var cc = !$scope.selectedClient.cc ? false : InfoFactories.getCC();
         var telepass = !$scope.selectedClient.telepass ? false : InfoFactories.getTelepass()
-        $rootScope.cannotReserve = false;
         $ionicLoading.show();
 		$http.get("res/571.xml").success(function(res) {                                       
 			res = res.replace('{NUMBER_PARKING}', InfoFactories.getPark().Nr)
@@ -37,16 +36,13 @@ angular.module('starter').controller('CarCtrl', function($scope, $http, $rootSco
                 $ionicLoading.hide();
                                        
                 if(data.retcode == 1) {
-                    $rootScope.cannotReserve = true; 
-                    $state.go('tab.resume');
+                    $state.go('tab.resume', {error : 'cannotReserve'});
+                }else{
+                    $scope.vehicleList = data.data.VehiclesList;
+                    for(var i = 0; i < $scope.vehicleList.length; i++) {
+                        $scope.vehicleList[i].fuel_quantity = InfoFactories.trascodeFuel($scope.vehicleList[i].fuel_quantity);
+                    }
                 }
-                                       
-				$scope.vehicleList = data.data.VehiclesList;
-				
-				for(var i = 0; i < $scope.vehicleList.length; i++) {
-					$scope.vehicleList[i].fuel_quantity = InfoFactories.trascodeFuel($scope.vehicleList[i].fuel_quantity);
-				}
-					
 			});
 		});
     };

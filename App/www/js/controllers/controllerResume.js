@@ -5,10 +5,11 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
     $scope.selectedDriverRange = InfoFactories.getSelectedRangeDriver();
     $scope.dateTimeFrom = InfoFactories.getDateTimeFrom();
     $scope.dateTimeTo = InfoFactories.getDateTimeTo();
+    $scope.fromCarError = $state.params.error;
     $ionicLoading.show();
 	WebService.ajaxPostRequestDirect(610, function(data) {
-        $ionicLoading.hide();
         $scope.listDriverRange = data.ListDriverRange;
+        $ionicLoading.hide();
     });
     $scope.setHasCC = function() {
         $scope.hasCC = !$scope.hasCC;

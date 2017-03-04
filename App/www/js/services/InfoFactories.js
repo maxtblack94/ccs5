@@ -36,6 +36,13 @@ angular.module('starter').factory("InfoFactories", [function () {
         return dateTimeTo;
     };
     function setPark(varPark) {
+        
+        if(varPark.opening == "00:00" && varPark.closing == "23:59"){
+            varPark.h24 = true;
+        }else{
+            varPark.opening = new Date(moment(varPark.opening, 'DD/MM/YYYY HH:mm:ss'));
+            varPark.closing = new Date(moment(varPark.closing, 'DD/MM/YYYY HH:mm:ss'));
+        }
         parking = varPark;
     };
     function getPark() {
