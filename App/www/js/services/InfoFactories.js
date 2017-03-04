@@ -11,15 +11,13 @@ angular.module('starter').factory("InfoFactories", [function () {
     function resetDateService (date){
         var d = new Date(date);
         var m = new Date(date);
-        if(d.getMinutes() >= 0 && d.getMinutes() <= 3){
-            m.setMinutes(0);
-        }else if(d.getMinutes() >= 3 && d.getMinutes() <= 18){
+        if(d.getMinutes() >= 0 && d.getMinutes() <= 14){
             m.setMinutes(15);
-        }else if(d.getMinutes() >= 18 && d.getMinutes() <= 35){
+        }else if(d.getMinutes() >= 15 && d.getMinutes() <= 29){
             m.setMinutes(30);
-        }else if(d.getMinutes() >= 35 && d.getMinutes() <= 52){
+        }else if(d.getMinutes() >= 30 && d.getMinutes() <= 44){
             m.setMinutes(45);
-        }else if(d.getMinutes() >= 52 && d.getMinutes() <= 59){
+        }else if(d.getMinutes() >= 45 && d.getMinutes() <= 59){
             m.setMinutes(0);
             m.setHours(m.getHours()+1);
         }

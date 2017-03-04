@@ -70,17 +70,6 @@ angular.module('starter', ['ionic', 'ngCordova'])
       }
     })
 
-  .state('tab.newbooking', {
-      url: '/newbooking',
-      cache: false,
-      views: {
-        'tab-newbooking': {
-          templateUrl: 'templates/tab-newbooking.html',
-          controller: 'NewbookingsCtrl'
-        }
-      }
-    })
-
   .state('tab.parking', {
       url: '/parking',
       cache: false,

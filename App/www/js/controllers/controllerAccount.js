@@ -19,16 +19,8 @@ angular.module('starter').controller('AccountCtrl', function($rootScope, $scope,
     		WebService.ajaxPostRequest(res, 569, null);
         
             InfoFactories.resetService();
-            clearDates();
     	    window.localStorage.removeItem('favoriteParking');
             $state.go('login');
     	});
     };
-
-    function clearDates (){
-        ($rootScope.dateFromPick || {}).inputDate = '';
-		($rootScope.dateToPick || {}).inputDate = '';
-		($rootScope.timeFromPick || {}).inputTime = '';
-		($rootScope.timeToPick || {}).inputTime = '';
-    }
 })

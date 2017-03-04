@@ -4,25 +4,25 @@
   </ion-refresher>
     <ion-list>
       
-      <p ng-if='vehicleList.length==0' style='padding: 20px; text-align: center; color: #888; font-size: 14px;'>{{ ::locale.vehicle.messageEnpty }}</p>
+      <p ng-if='vehicleList.length==0' class="message-empty">{{ ::locale.vehicle.messageEnpty }}</p>
       
       <div ng-repeat='car in vehicleList' class="list card">
         <div class="item">
-          <div style='float: left;'>
+          <div class="pull-left">
             <h2 style='line-height: 30px; font-size: 18px;'>{{ car.brand_model }}</h2>
             <p>{{ ::locale.vehicle.labelPlate }}</p>
             <h2>{{ car.plate }}</h2>
           </div>
-          <div style='float: right;'>
+          <div class="pull-right">
             <button ng-click='onSelect(car)' class="button button-positive">{{ ::locale.vehicle.labelSelect }}</button>
           </div>
         </div>     
         <div class="item" style='overflow: auto;'>
-          <div style='float: left; margin-right: 20px;'>
+          <div class="pull-left m-right20">
             <p>{{ ::locale.confirmation.labelColor }}</p>
             <div class='color-cube'><div style='background-color: {{ car.color }};'></div></div>
           </div>
-          <div style='float: left;'>
+          <div class="pull-left">
             <p>{{ ::locale.confirmation.labelSeat }}</p>
             <p style='font-weight: bold; font-size: 20px; line-height: 26px; text-align: center;'>{{ car.seats }}</p>
           </div>

@@ -195,4 +195,23 @@ ion-header-bar .title {
 }
 .color-warning{
 	color: darkorange !important;
+	white-space: normal;
+}
+
+.message-empty {
+	padding: 20px; 
+	text-align: center; 
+	color: #888; 
+	font-size: 14px;
+}
+
+.m-right{
+	margin-right: 20px;
+}
+
+.preferite-park{
+	padding: 19px 25px; 
+	position: absolute; 
+	right: 0; 
+	top: 0;
 }

@@ -14,6 +14,16 @@
       
       <ion-item>
         <div class="pull-left"> 
+          <p>{{ ::locale.booking.parking }}<span class="color-error">*</span></p>
+          <h2 style='font-weight: bold;'>{{ selectedParking.parking_name }}</h2>
+          <p>{{ selectedParking.address }}</p>
+        </div>
+        <h2 class="pull-right">
+          <button ng-click='changeParking()' class="button button-positive">{{ ::locale.booking.buttonDate }}</button>
+        </h2>
+      </ion-item>
+      <ion-item>
+        <div class="pull-left"> 
           <p>{{ ::locale.booking.dateFrom }}<span class="color-error">*</span></p>
           <h2 style='font-weight: bold;'>
             {{ dateTimeFrom | date:'dd/MM/yyyy HH:mm' }}
@@ -32,16 +42,6 @@
         </div>
         <h2 class="pull-right">
           <button ng-click='selectToDate()' class="button button-positive">{{ ::locale.booking.buttonDate }}</button>
-        </h2>
-      </ion-item>
-      <ion-item>
-        <div class="pull-left"> 
-          <p>{{ ::locale.booking.parking }}<span class="color-error">*</span></p>
-          <h2 style='font-weight: bold;'>{{ selectedParking.parking_name }}</h2>
-          <p>{{ selectedParking.address }}</p>
-        </div>
-        <h2 class="pull-right">
-          <button ng-click='changeParking()' class="button button-positive">{{ ::locale.booking.buttonDate }}</button>
         </h2>
       </ion-item>
       <ion-toggle ng-show="selectedClient.cc" ng-model="hasCC" ng-click='setHasCC()' toggle-class="toggle-positive">
