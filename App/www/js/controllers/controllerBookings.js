@@ -12,16 +12,14 @@ angular.module('starter').controller('BookingsCtrl', function($scope, $rootScope
     }
   
 	 function loadbookings() {
-        $scope.loading = true;
         $ionicLoading.show();
-        $scope.BookingsList = null;
+        $scope.BookingsList = undefined;
 		
 		$http.get("res/516.xml").success(function(res) {
 			var driver = window.localStorage.getItem('Nr');
 			res = res.replace('{DRIVER_NUMBER}', driver);
             
 			WebService.ajaxPostRequestTemp(res, 516, function(data) {
-                $scope.loading = false;
 				$scope.BookingsList = data.data.BookingsList;
 				var blength = $scope.BookingsList.length;
 				for(var i = 0; i < blength; i++) {

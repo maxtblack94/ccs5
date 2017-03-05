@@ -5,7 +5,8 @@ angular.module('starter').factory("InfoFactories", [function () {
     selectedRangeDriver = { value: 'short' };
 
     function resetService (){
-        parking, server, selectedClient, selectedCar, telepass = false, CC = false, selectedRangeDriver = { value: 'short' };
+        parking = undefined, server = undefined, selectedClient = undefined, selectedCar = undefined, telepass = false, CC = false, selectedRangeDriver = { value: 'short' },
+        dateTimeFrom = undefined, dateTimeTo = undefined;
         return;
     };
     function resetDateService (date){

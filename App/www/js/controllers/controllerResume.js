@@ -5,12 +5,14 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
     $scope.selectedDriverRange = InfoFactories.getSelectedRangeDriver();
     $scope.dateTimeFrom = InfoFactories.getDateTimeFrom();
     $scope.dateTimeTo = InfoFactories.getDateTimeTo();
-    $scope.fromCarError = $state.params.error;
-    $ionicLoading.show();
-	WebService.ajaxPostRequestDirect(610, function(data) {
-        $scope.listDriverRange = data.ListDriverRange;
-        $ionicLoading.hide();
-    });
+    $scope.errorMessage = $state.params.error ? $scope.locale.vehicle.labelCannotReserve : null;
+    if($scope.selectedClient.drivingRange){
+        $ionicLoading.show();
+        WebService.ajaxPostRequestDirect(610, function(data) {
+            $scope.listDriverRange = data.ListDriverRange;
+            $ionicLoading.hide();
+        });
+    }
     $scope.setHasCC = function() {
         $scope.hasCC = !$scope.hasCC;
         InfoFactories.setCC($scope.hasCC);
@@ -25,11 +27,46 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
     };
     
     $scope.searchVehicle = function() {
-        if($scope.selectedClient.drivingRange){
-            InfoFactories.setSelectedRangeDriver($scope.selectedDriverRange);
+        if(datesCheck()){
+            if($scope.selectedClient.drivingRange){
+                InfoFactories.setSelectedRangeDriver($scope.selectedDriverRange);
+            }
+            $state.go('tab.selcar');
         }
-        $state.go('tab.selcar');
     };
+
+    function datesCheck (){
+        $scope.errorMessage = null;
+        if(!$scope.selectedParking){
+            $scope.errorMessage = $scope.locale.resume.wrongParking;
+            return false;
+        }
+        if(!$scope.dateTimeTo || !$scope.dateTimeFrom){
+            $scope.errorMessage = $scope.locale.resume.wrongDates;
+            return false;
+        }else{
+            var dateTimeTo = new Date($scope.dateTimeTo);
+            var dateTimeFrom = new Date($scope.dateTimeFrom)
+            if(new Date() - dateTimeFrom > 0){
+                $scope.errorMessage = "La data di ritiro è inferiore alla data attuale";
+                return false;
+            }else if((dateTimeTo - dateTimeFrom) < 0){
+                $scope.errorMessage = "La data di ritiro è maggiore della data di consegna";
+                return false;
+            }else if(!$scope.selectedParking.h24 && dateTimeFrom.getHours() <= $scope.selectedParking.opening.getHours() || dateTimeFrom.getHours() >= $scope.selectedParking.closing.getHours()){
+                $scope.errorMessage = "La data di ritiro non rientra negli orari di apertura del parcheggio";
+                return false;
+            }else if(!$scope.selectedParking.h24 && dateTimeTo.getHours() <= $scope.selectedParking.opening.getHours() || dateTimeTo.getHours() >= $scope.selectedParking.closing.getHours()){
+                $scope.errorMessage = "La data di consegna non rientra negli orari di apertura del parcheggio";
+                return false;
+            }else if($scope.selectedClient.drivingRange == true && $scope.selectedDriverRange.value == "short"){
+                $scope.errorMessage = "Non hai definito il raggio di percorrenza";
+                return false;
+            }
+            return true;
+        }
+        
+    }
 
     function fixDateTime (date, time, type){
         var hours = new Date(time).getHours();

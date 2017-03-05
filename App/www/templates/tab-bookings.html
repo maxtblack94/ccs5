@@ -9,7 +9,7 @@
   </ion-refresher>
     <ion-list>
       
-      <p ng-if='BookingsList.length==0 && !loading' class="message-empty">{{ ::locale.home.msgNoRsv }}</p>
+      <p ng-if='BookingsList && BookingsList.length==0' class="message-empty">{{ ::locale.home.msgNoRsv }}</p>
         
       <div ng-repeat='book in BookingsList' class="list card">
         <div class="item" ng-click="openBooking(book)" ng-if="selectedClient.map">
