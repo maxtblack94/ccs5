@@ -13,39 +13,32 @@
         
       <div ng-repeat='book in BookingsList' class="list card">
         <div class="item" ng-click="openBooking(book)" ng-if="selectedClient.map">
-          <div style='overflow: auto;'>
-            <p style='float: left; font-weight: bold;'>{{ ::locale.home.rsvinfo.labPRN }}</p>
-            <h2 ng-click='openBooking(book)'  style='float: right; color: #fc0300!important; font-weight: bold;'><i class="ion-ios-location"></i> {{ ::book.pnr }}</h2>
-          </div>
+            <p class="pull-left bold">{{ ::locale.home.rsvinfo.labPRN }}</p>
+            <h2 class="pull-right bold pnr" ng-click='openBooking(book)'><i class="ion-ios-location"></i> {{ ::book.pnr }}</h2>
         </div>
         <div class="item" ng-if="!selectedClient.map">
-          <div style='overflow: auto;'>
-            <p style='float: left; font-weight: bold;'>{{ ::locale.home.rsvinfo.labPRN }}</p>
-            <h2  style='float: right; color: #fc0300!important; font-weight: bold;'> {{ ::book.pnr }}</h2>
-          </div>
+            <p class="pull-left bold">{{ ::locale.home.rsvinfo.labPRN }}</p>
+            <h2 class="pull-right bold pnr"> {{ ::book.pnr }}</h2>
         </div>
-        <div class='padding' style='padding-top: 0;'>
-          <div class="item" style='overflow: auto;'>
-            <div>
-              <h2 style='line-height: 30px; font-size: 18px;'>{{ ::book.brand_model }}</h2>
+          <div class="item">
+              <h2 class="brand_model">{{ ::book.brand_model }}</h2>
               <p>{{ ::locale.home.labelPlate }}</p>
               <h2>{{ ::book.plate }}</h2>
-            </div>
           </div>      
           <div ng-if='!hasPicture' class="item item-image">
             <img ng-src="{{ book.image_max ? book.image_max : 'icons/vehicle-default-l.jpg' }}">
           </div>
-          <div class="item" style='overflow: auto;' ng-if="selectedClient.btnClose || selectedClient.btnOpen">
+          <div class="item" ng-if="bntOpenClose">
             <p>{{ ::locale.booking.labelCentralizzedButton }}</p>
-            <a ng-click="openCarManipolation(book.pnr, '0')" ng-if="selectedClient.btnClose" class="button button-balanced" style="padding: 0px 15px; float: left">
+            <a class="pull-left" ng-click="openCarManipolation(book.pnr, '0')" class="button button-balanced" style="padding: 0px 15px;">
               {{ ::locale.booking.buttonOpenCar }}
             </a>
-            <a ng-click="openCarManipolation(book.pnr, '1')" ng-if="selectedClient.btnOpen" class="button button-positive" style="padding: 0px 15px; float: right">
+            <a class="pull-left" ng-click="openCarManipolation(book.pnr, '1')" class="button button-positive" style="padding: 0px 15px;">
               {{ ::locale.booking.buttonCloseCar }}
             </a>
           </div>
-          <div class="item" style='overflow: auto;'>
-            <div style='float: left; margin-right: 20px;'>
+          <div class="item">
+            <div class="pull-left">
               <p>{{ ::locale.confirmation.labelColor }}</p>
               <div class='color-cube'><div style='background-color: {{ book.cmb_color }};'></div></div>
             </div>
@@ -77,21 +70,21 @@
                 <div style='font-weight: bold; font-size: 13pt; margin-left: 4px; float: left; color: #fc0300; line-height: 33px;'>{{ ::book.cmb_fuel_quantity }}</div>
             </div>
           </div>
-          <div class="item" style='overflow: auto;'>
-            <div style='float: left;'>
+          <div class="item">
+            <div class="pull-left">
               <h2>{{ ::locale.home.labelGet }}</h2>
               <p>{{ ::book.pickup_parking }}</p>
             </div>
-            <p style='float: right; font-size: 18px; color: #111; margin-top: 12px;'>{{ ::book.pickup_date }}{{ ::book.pickup_time }}</p>
+            <p class="pull-right value">{{ ::book.pickup_date }}{{ ::book.pickup_time }}</p>
           </div>
-          <div class="item" style='overflow: auto;'>
-            <div style='float: left;'>
+          <div class="item">
+            <div class="pull-left">
               <h2>{{ ::locale.home.labelSet }}</h2>
               <p>{{ ::book.return_parking }}</p>
             </div>
-            <p style='float: right; font-size: 18px; color: #111; margin-top: 12px;'>{{ ::book.return_date }}{{ ::book.return_time }}</p>
+            <p class="pull-right value">{{ ::book.return_date }}{{ ::book.return_time }}</p>
           </div>
-			<div class="item" style='overflow: auto; border: none; margin-top: 10px; padding: 10px 0;'>
+			<div class="item">
 				<h2>
 				  <button ng-click='delete(book)' class="button button-positive">
 					  {{ ::locale.booking.labelDelete }}
@@ -99,7 +92,6 @@
          
 				</h2>
 			</div>
-        </div>
       </div>
       
     </ion-list>
