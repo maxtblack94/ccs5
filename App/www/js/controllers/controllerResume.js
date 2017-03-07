@@ -108,7 +108,6 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
             date: $scope.dateTimeFrom ? new Date($scope.dateTimeFrom) : new Date(),
             mode: 'time',
             is24Hour: true,
-            minDate : new Date() - 10000,
             allowOldDates: true,
             allowFutureDates: true,
             doneButtonLabel: $scope.locale.date.butChange,
@@ -150,7 +149,6 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
         var timeToConfig = {
             date: $scope.dateTimeFrom ? new Date($scope.dateTimeFrom) : $scope.dateTimeTo ? new Date($scope.dateTimeTo) : new Date(),
             mode: 'time',
-            minDate: new Date() - 10000,
             is24Hour: true,
             allowOldDates: true,
             allowFutureDates: true,

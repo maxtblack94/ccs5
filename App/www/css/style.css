@@ -223,3 +223,8 @@ ion-header-bar .title {
 	right: 0; 
 	top: 0;
 }
+
+.icons-reservation{
+	color: #666;
+	font-size: 36px;
+}
