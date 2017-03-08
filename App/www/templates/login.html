@@ -1,16 +1,12 @@
-<ion-view view-title="">
+<ion-view>
   <ion-content class="padding" overflow-scroll='true' style='background-color: #fc0300;'>
-      <div ng-show='selectedClient' style='width: 300px; margin: auto; height: 280px; position: absolute; top: 50%; margin-top: -140px; left: 50%; margin-left: -150px;'>
+      <div style='width: 300px; margin: auto; height: 280px; position: absolute; top: 50%; margin-top: -140px; left: 50%; margin-left: -150px;'>
         <div style='text-align: center; margin-bottom: 10px;'>
           <img class='logo' src='icons/CCSsharing-Logo-Red-l-2.1c.png' style='max-width: 80%;' />
         </div>
-        <div style='text-align: center; margin-bottom: 10px; color: #fff; overflow: auto;'>
-          <div style='float: left; font-weight: bold;'>{{ selectedClient.text }}</div>
-          <div ng-click="switch()" style='floaT: right; font-size: 13px; margin-top: 5px;'>{{ locale.login.changeClient }}</div>
-        </div>
         <div ng-if="!recorveryPassword">
           <div style='padding: 5px 0;'>
-            <input type="text" autocapitalize="none" id="user-input" ng-model="request.user" class='input login' style='border-radius: 3px; border: none; background-color: #fff; font-size: 13px;' placeholder='Username'>
+            <input type="email" autocapitalize="none" id="user-input" ng-model="request.user" class='input login' style='border-radius: 3px; border: none; background-color: #fff; font-size: 13px;' placeholder='Username'>
           </div>
           <div style='padding: 10px 0;'>
             <input type="password" id="password-input" ng-model="request.password" class='input login' style='border-radius: 3px; border: none; background-color: #fff; font-size: 13px;' placeholder='Password'>
@@ -44,17 +40,6 @@
             <button ng-click="callRecoverService()" class="button button-block button-positive but-login">
               Recupera Password
             </button>
-          </div>
-        </div>
-      </div>
-      <div ng-show='!selectedClient' style='width: 300px; margin: auto; height: 280px; position: absolute; top: 50%; margin-top: -140px; left: 50%; margin-left: -150px;'>
-        <div style='text-align: center; margin-bottom: 10px;'>
-          <img class='logo' src='icons/CCSsharing-Logo-Red-l-2.1c.png' style='width: 80%;' />
-        </div>
-        <div style='width: 240px; margin: auto;'>
-          <div ng-if="clientList.length != 0 && clientList" style='text-align: center; margin-bottom: 10px; color: #fff;'>{{locale.login.selectClient}}</div>
-          <div class='clients-list' style='padding-bottom: 50px;'>
-            <div ng-repeat='client in clientList' ng-click='selectClient($index, client); ; $event.stopPropagation();'>{{client.text}}</div>
           </div>
         </div>
       </div>

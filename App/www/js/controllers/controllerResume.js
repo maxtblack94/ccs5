@@ -47,8 +47,8 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
         }else{
             var dateTimeTo = new Date($scope.dateTimeTo);
             var dateTimeFrom = new Date($scope.dateTimeFrom)
-            if(new Date() - dateTimeFrom > 0){
-                $scope.errorMessage = "La data di ritiro è inferiore alla data attuale";
+            if(new Date(Date.now() + 60000 * 9) - dateTimeFrom > 0){
+                $scope.errorMessage = "La data di ritiro deve essere di almeno 10 minuti prima della data attuale";
                 return false;
             }else if((dateTimeTo - dateTimeFrom) < 0){
                 $scope.errorMessage = "La data di ritiro è maggiore della data di consegna";
@@ -72,7 +72,7 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
         var hours = new Date(time).getHours();
         var minutes = new Date(time).getMinutes();
         var newDate = new Date(date).setHours(hours,minutes,0,0);
-        newDate = InfoFactories.resetDateService(newDate);
+        //newDate = InfoFactories.resetDateService(newDate);
         if(type == 'to'){
             $scope.dateTimeTo = newDate;
             InfoFactories.setDateTimeTo(newDate);

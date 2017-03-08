@@ -228,3 +228,38 @@ ion-header-bar .title {
 	color: #666;
 	font-size: 36px;
 }
+
+.item .value {
+	font-size: 18px; 
+	color: #111; 
+	margin-top: 12px;
+}
+.item .bold{
+	font-weight: bold;
+}
+.item .pnr{
+	color: #fc0300!important; 
+}
+.item .brand_model{
+	line-height: 30px; 
+	font-size: 18px;
+}
+
+.item .fuel_value{
+	font-size: 13pt; 
+	margin-left: 4px;
+	color: #fc0300; 
+	line-height: 33px;
+}
+.item .fuel{
+	width: 50px; 
+	height: 30px; 
+	background: transparent url(../icons/fuel_icon.png) no-repeat center center; 
+	background-size: auto 100%;
+}
+
+.fuel_container{
+	display: inline-block; 
+	margin-left: 20px; 
+	margin-top: 9px;
+}

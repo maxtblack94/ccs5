@@ -1,16 +1,8 @@
 angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, InfoFactories, $http, $state, $ionicLoading, WebService, $ionicPopup) {
-    $scope.locale = window.locale;
-    $scope.recorveryPassword = false;
     function init(){
+        $scope.locale = window.locale;
+        $scope.recorveryPassword = false;
         $scope.request = {};
-        $ionicLoading.show();
-        $http.get("res/589.xml").success(function(res) {
-            res = res.replace('{LANGUAGE}', 'Italiano');
-            WebService.ajaxPostRequestDemo(res, 589, function(data) {
-                $ionicLoading.hide();
-                $scope.clientList = data.clientListBooking;
-            });
-        });
 
         var c = eval('('+window.localStorage.getItem('selclient')+')');  
         if(c) {
@@ -25,13 +17,6 @@ angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, I
     }
 
     init();
-    
-    $scope.switch = function() {
-        InfoFactories.setClientSelected(null);
-        InfoFactories.setServer(null);
-        $scope.selectedClient = null;
-        window.localStorage.setItem('selclient', null);
-    };
 
     $scope.recorveryPasswordOn = function(){
         $scope.recorveryPassword = !$scope.recorveryPassword;
@@ -40,10 +25,20 @@ angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, I
     }
 
     $scope.callRecoverService = function(){
+        if(!$scope.request.email){
+            setTimeout(function() {
+                $('#email-input').focus();
+            });
+        }else{
+            getClientInfo('recover');
+        }
+    }
+
+    function recoverPassowrd(){
         $ionicLoading.show();
         $http.get("res/591.xml").success(function(res) {
-			res = res.replace('{EMAIL}', $scope.request.email);
-			WebService.ajaxPostRequestTemp(res, 591, function(data) {
+            res = res.replace('{EMAIL}', $scope.request.email);
+            WebService.ajaxPostRequestTemp(res, 591, function(data) {
                 var pnrPopup = $ionicPopup.alert({
                     title: 'Esito richiesta',
                     template: data
@@ -52,22 +47,34 @@ angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, I
                     $scope.recorveryPasswordOn();
                 });
                 $ionicLoading.hide();
-				
+                
+            });
+        });
+    }
+
+    getClientInfo = function(action){
+        $ionicLoading.show();
+        $http.get("res/614.xml").success(function(res) {
+			res = res.replace('{DOMAIN}', $scope.request.user.replace(/.*@/, ""));
+			WebService.ajaxPostRequestDemo(res, 614, function(data) {
+				InfoFactories.setClientSelected(c);
+                $scope.selectedClient = c;
+                InfoFactories.setServer(c.value.toLowerCase());
+                window.localStorage.setItem('selclient', JSON.stringify(c));
+                if(action === 'login'){
+                    callLoginService($scope.request.user, $scope.request.password);
+                }else if(action === 'recover'){
+                    recoverPassowrd();
+                }
+                
 			});
 		});
+        
     }
-    
-    $scope.selectClient = function(index, c) {
-        $scope.recorveryPassword = false;
-        InfoFactories.setClientSelected(c);
-        $scope.selectedClient = c;
-        InfoFactories.setServer(c.value.toLowerCase());
-        window.localStorage.setItem('selclient', JSON.stringify(c));
-    };
     
     $scope.login = function() {
         if($scope.request.user && $scope.request.password){
-            callLoginService($scope.request.user, $scope.request.password);
+            getClientInfo('login');
         }else if(!$scope.request.user){
             setTimeout(function() {
                 $('#user-input').focus();
