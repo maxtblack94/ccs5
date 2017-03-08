@@ -56,7 +56,7 @@ angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, I
         $ionicLoading.show();
         $http.get("res/614.xml").success(function(res) {
 			res = res.replace('{DOMAIN}', $scope.request.user.replace(/.*@/, ""));
-			WebService.ajaxPostRequestDemo(res, 614, function(data) {
+			WebService.ajaxPostRequestDemo(res, 614, function(c) {
 				InfoFactories.setClientSelected(c);
                 $scope.selectedClient = c;
                 InfoFactories.setServer(c.value.toLowerCase());

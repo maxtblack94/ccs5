@@ -15,8 +15,11 @@ angular.module('starter', ['ionic', 'ngCordova'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
     $ionicConfigProvider.scrolling.jsScrolling(false);
+    $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+    $httpProvider.defaults.headers.common['TenForce-Auth'] = 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4';
+    $httpProvider.defaults.headers.common['Content-Type'] = 'application/atom+xml';
   $stateProvider
 
   .state('login', {
