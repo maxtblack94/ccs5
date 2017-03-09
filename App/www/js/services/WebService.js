@@ -118,7 +118,7 @@ angular.module('starter').service('WebService', function($http, $q, InfoFactorie
 	    		var responsePromisee = $http.get("http://"+InfoFactories.getServer()+".corporatecarsharing.biz/api.svc/ExecuteAdminScript?scriptId="+scriptId+"&scriptParameterSetId=" + data.d.Id, {headers: {'TenForce-Auth': 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4'}});
 	    		
 	    		responsePromisee.success(function(data, status, headers, config) {
-					if(data.d.ExecuteAdminScript.ResultValue.charAt(0) === '{'){
+					if(data.d.ExecuteAdminScript.ResultValue && data.d.ExecuteAdminScript.ResultValue.charAt(0) === '{'){
 						var ResultValue = JSON.parse(data.d.ExecuteAdminScript.ResultValue.replace('}, ] }' ,'} ] }'));
 					}else{
 						var ResultValue = data.d.ExecuteAdminScript.ResultValue;

@@ -47,16 +47,16 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
         }else{
             var dateTimeTo = new Date($scope.dateTimeTo);
             var dateTimeFrom = new Date($scope.dateTimeFrom)
-            if(new Date(Date.now() + 60000 * 9) - dateTimeFrom > 0){
-                $scope.errorMessage = "La data di ritiro deve essere di almeno 10 minuti prima della data attuale";
+            if(new Date() - dateTimeFrom > 0){
+                $scope.errorMessage = "La data di ritiro deve essere superiore alla data attuale";
                 return false;
             }else if((dateTimeTo - dateTimeFrom) < 0){
                 $scope.errorMessage = "La data di ritiro è maggiore della data di consegna";
                 return false;
-            }else if(!$scope.selectedParking.h24 && dateTimeFrom.getHours() <= $scope.selectedParking.opening.getHours() || dateTimeFrom.getHours() >= $scope.selectedParking.closing.getHours()){
+            }else if(!$scope.selectedParking.h24 && dateTimeFrom.getHours() < $scope.selectedParking.opening.getHours() || dateTimeFrom.getHours() >$scope.selectedParking.closing.getHours()){
                 $scope.errorMessage = "La data di ritiro non rientra negli orari di apertura del parcheggio";
                 return false;
-            }else if(!$scope.selectedParking.h24 && dateTimeTo.getHours() <= $scope.selectedParking.opening.getHours() || dateTimeTo.getHours() >= $scope.selectedParking.closing.getHours()){
+            }else if(!$scope.selectedParking.h24 && dateTimeTo.getHours() < $scope.selectedParking.opening.getHours() || dateTimeTo.getHours() > $scope.selectedParking.closing.getHours()){
                 $scope.errorMessage = "La data di consegna non rientra negli orari di apertura del parcheggio";
                 return false;
             }else if($scope.selectedClient.drivingRange == true && $scope.selectedDriverRange.value == "short"){
@@ -72,11 +72,15 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
         var hours = new Date(time).getHours();
         var minutes = new Date(time).getMinutes();
         var newDate = new Date(date).setHours(hours,minutes,0,0);
-        //newDate = InfoFactories.resetDateService(newDate);
         if(type == 'to'){
-            $scope.dateTimeTo = newDate;
+            $scope.dateTimeTo = InfoFactories.resetDateForDefect(newDate);
             InfoFactories.setDateTimeTo(newDate);
         }else if(type == 'from'){
+            if(new Date(Date.now() + 60000 * 10) - newDate > 0){
+                newDate = InfoFactories.resetDateService(newDate);
+            }else{
+                InfoFactories.resetDateForDefect(newDate);
+            };
             $scope.dateTimeFrom = newDate;
             InfoFactories.setDateTimeFrom(newDate);
         }

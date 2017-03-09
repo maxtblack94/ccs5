@@ -1,4 +1,4 @@
-angular.module('starter').controller('ConfirmPrenotationCtrl', function($scope, $http, $rootScope, $state, InfoFactories, $timeout, $ionicModal, $ionicLoading, $ionicPopup, WebService) {
+angular.module('starter').controller('ConfirmPrenotationCtrl', function($scope, $http, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup, WebService) {
     function init(){
         $scope.locale = window.locale;
         $scope.selectedClient = InfoFactories.getClientSelected();
@@ -43,7 +43,7 @@ angular.module('starter').controller('ConfirmPrenotationCtrl', function($scope, 
         if(!place) {
             $ionicPopup.alert({
                 title: $scope.locale.confirmation.labelIncomplete,
-                template: $scope.locale.confirmation.labelSelectPlace
+                template: 'Inserire "'+$scope.selectedClient.lbldestination+'"'
             });
             return;
         }

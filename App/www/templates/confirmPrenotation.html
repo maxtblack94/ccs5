@@ -61,7 +61,7 @@
       </ion-item>
       <ion-item ng-show='selectedClient.justifiedUse'>
 		<div style='overflow: auto;'>
-			<div class="date-select-label" style='margin-bottom: 10px;'>{{ locale.booking.justification }}</div>
+			<div class="date-select-label" style='margin-bottom: 10px;'>{{ selectedClient.lbljustification }}</div>
 			<div class='justify-list' style='font-size: 14pt;'>
 				<div ng-repeat='justify in justifyList' 
 					ng-click='selectJustify($index, justify)'
@@ -71,7 +71,7 @@
       </ion-item>
       <ion-item>
         <div> 
-			<div class="date-select-label" style='margin-bottom: 10px;'>{{ locale.booking.place }}</div>
+			<div class="date-select-label" style='margin-bottom: 10px;'>{{ selectedClient.lbldestination }}</div>
 			<div style='font-size: 14pt; margin-bottom: 10px;'>
 				<input class='place_val' type='text' style='padding: 10px; width: 100%; border: 1px solid #ccc; border-radius: 5px; -webkit-box-sizing: border-box;‌​ -moz-box-sizing: border-box; box-sizing: border-box;' />
 			</div>

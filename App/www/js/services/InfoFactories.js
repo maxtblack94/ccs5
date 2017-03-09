@@ -24,6 +24,23 @@ angular.module('starter').factory("InfoFactories", [function () {
         }
         return m;      
     }
+    function resetDateForDefect (date){
+        var d = new Date(date);
+        var m = new Date(date);
+        if(d.getMinutes() >= 0 && d.getMinutes() <= 7){
+            m.setMinutes(0);
+        }else if(d.getMinutes() >= 8 && d.getMinutes() <= 19){
+            m.setMinutes(15);
+        }else if(d.getMinutes() >= 20 && d.getMinutes() <= 34){
+            m.setMinutes(30);
+        }else if(d.getMinutes() >= 35 && d.getMinutes() <= 48){
+            m.setMinutes(45);
+        }else if(d.getMinutes() >= 49 && d.getMinutes() <= 59){
+            m.setMinutes(0);
+            m.setHours(m.getHours()+1);
+        }
+        return m;
+    }
     function setDateTimeFrom(varDate) {
         dateTimeFrom = varDate;
     };
@@ -166,6 +183,9 @@ angular.module('starter').factory("InfoFactories", [function () {
         resetDateService: function (date) {
             return resetDateService(date);
         },
+        resetDateForDefect: function (date) {
+            return resetDateForDefect(date);
+        }
     };
 
 

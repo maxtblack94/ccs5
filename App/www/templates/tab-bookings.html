@@ -75,25 +75,25 @@
               <h2>{{ ::locale.home.labelGet }}</h2>
               <p>{{ ::book.pickup_parking }}</p>
             </div>
-            <p class="pull-right value">{{ ::book.pickup_date }}{{ ::book.pickup_time }}</p>
+            <p class="pull-right value">{{ ::book.dateTimeFrom | date:'dd/MM/yyyy HH:mm' }}</p>
           </div>
           <div class="item">
             <div class="pull-left">
               <h2>{{ ::locale.home.labelSet }}</h2>
               <p>{{ ::book.return_parking }}</p>
             </div>
-            <p class="pull-right value">{{ ::book.return_date }}{{ ::book.return_time }}</p>
+            <p class="pull-right value">{{ ::book.dateTimeTo | date:'dd/MM/yyyy HH:mm' }}</p>
           </div>
 			 			<div class="item">
  				<h2 class="row">
            <div class="col col50">
              <button ng-click='delete(book)' class="button button-block button-positive">
-               Elimina
+               <i class="icon ion-ios-trash"></i> Elimina
              </button> 
            </div>
-           <div class="col col50">
+           <div class="col col50" ng-if="book.showDelayBtn">
              <button ng-click='setDelay(book)' class="button button-block button-energized">
-               Segnala ritardo
+               <i class="icon ion-ios-calendar-outline"></i> {{ selectedClient.lbldelay }}
              </button> 
            </div>
  				</h2>
