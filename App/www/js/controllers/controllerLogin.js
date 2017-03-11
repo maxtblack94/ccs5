@@ -8,6 +8,7 @@ angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, I
         if(c) {
             InfoFactories.setClientSelected(c);
             InfoFactories.setServer(c.value.toLowerCase());
+            InfoFactories.applyClientStyle('css/stylesheet.css')
         }
         
         var userId = window.localStorage.getItem('Nr');
@@ -57,6 +58,7 @@ angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, I
         $http.get("res/614.xml").success(function(res) {
 			res = res.replace('{DOMAIN}', $scope.request.user.replace(/.*@/, ""));
 			WebService.ajaxPostRequestDemo(res, 614, function(c) {
+                InfoFactories.applyClientStyle('css/stylesheet.css')
 				InfoFactories.setClientSelected(c);
                 $scope.selectedClient = c;
                 InfoFactories.setServer(c.value.toLowerCase());

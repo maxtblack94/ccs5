@@ -1,38 +1,3 @@
-/*.tab-item .icon {
-	height: 48px;
-	line-height: 48px;
-}
-*/
-ion-header-bar {
-	background: #fc0300!important;
-    border: none!important;
-}
-
-ion-header-bar .title {
-	color: #fff!important;
-}
-
-.tab-item-active,
-.tab-item.activated {
-	color: #fc0300!important;
-	border-bottom-color: #fc0300!important;
-}
-
-.button.button-positive {
-	border-color: #fc0300;
-    background-color: #fc0300;
-}
-
-.button.button-positive.activated,
-.button.button-positive:active {
-	border-color: #fc0300;
-    background-color: #fc0300;
-}
-
-.back-button {
-	color: #fff!important;
-}
-
 .color-cube {
 	display: inline-block;
 	border: 1px solid #aaa;
@@ -83,13 +48,6 @@ ion-header-bar .title {
 	box-shadow: 0 1px 2px #888;
 }
 
-.list .item {
-	border-top: none!important;
-	border-left: none!important;
-	border-right: none!important;
-	margin-bottom: 1px;
-}
-
 .item-square .item {
 	border: 1px dashed #ccc!important;
 	margin: 3%;
@@ -118,69 +76,10 @@ ion-header-bar .title {
 	border-radius: 5px;
 }
 
-
-.toggle.toggle-positive input:checked + .track {
-	border-color: #fc0300;
-}
-
-.platform-ios .toggle.toggle-positive input:checked + .track {
-	background-color: #fc0300;
-}
-
-.toggle-small .toggle-positive input:checked + .track {
-	background-color: #fe7f7e;
-}
-
-.toggle-small .toggle-positive input:checked + .track .handle {
-	background-color: #fc0300;
-}
-
 .ion-android-star.selected {
 	color: orange!important;
 }
 
-.clients-list > div {
-	padding: 15px;
-	font-size: 16px!important;
-	background-color: #fe7776;
-	background-color: #ba0200;
-	border-radius: 3px;
-	margin-bottom: 2px;
-	color: #fff;
-	text-align: center;
-	}
-	.clients-list > div:active {
-	background-color: #8e0302!important;
-	}
-	.but-login {
-	border-radius: 3px;
-	background-color: #ba0200!important;
-	}
-	.but-changeclient {
-	border-radius: 3px;
-	background-color: transparent; 
-	color: #fff; 
-	font-size: 16px!important;
-	}
-	.but-changeclient:active,
-	.but-login:active,
-	.but-login:focus {
-	background-color: #8e0302!important;
-	background-color: #8e0302!important;
-	border-color: transparent!important;
-	}
-	.input:focus {
-	box-shadow: none;
-	}
-
-	.input.login {
-	-webkit-box-sizing: border-box;‌​
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	padding: 10px!important;
-	width: 100%;
-	height: 45px!important;
-	}
 .pull-right{
 	float:right;
 }

@@ -74,15 +74,15 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
         var newDate = new Date(date).setHours(hours,minutes,0,0);
         if(type == 'to'){
             $scope.dateTimeTo = InfoFactories.resetDateForDefect(newDate);
-            InfoFactories.setDateTimeTo(newDate);
+            InfoFactories.setDateTimeTo($scope.dateTimeTo);
         }else if(type == 'from'){
             if(new Date(Date.now() + 60000 * 10) - newDate > 0){
                 newDate = InfoFactories.resetDateService(newDate);
             }else{
-                InfoFactories.resetDateForDefect(newDate);
+                newDate = InfoFactories.resetDateForDefect(newDate);
             };
             $scope.dateTimeFrom = newDate;
-            InfoFactories.setDateTimeFrom(newDate);
+            InfoFactories.setDateTimeFrom($scope.dateTimeFrom);
         }
     }
 

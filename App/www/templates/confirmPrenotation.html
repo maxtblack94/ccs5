@@ -1,53 +1,53 @@
 <ion-view>
-  <ion-header-bar>
+  <ion-header-bar class="bar-positive">
      <h1 class="title">Conferma Prenotazione</h1>
   </ion-header-bar>
-  <ion-content class='padding'>
+  <ion-content>
     <ion-list>
     
       <ion-item>
-        <div style='float: left;'> 
+        <div class="pull-left"> 
           <p>{{ locale.booking.dateFrom }}</p>
         </div>
-        <div style='float: right;'> 
+        <div class="pull-right"> 
           <h2 style='font-weight: bold;'>
             {{ dateTimeFrom | date:'dd/MM/yyyy HH:mm' }}
           </h2>
         </div>
       </ion-item>
       <ion-item>
-        <div style='float: left;'> 
+        <div class="pull-left"> 
           <p>{{ locale.booking.dateTo }}</p>
         </div>
-        <div style='float: right;'> 
+        <div class="pull-right"> 
           <h2 style='font-weight: bold;'>
             {{ dateTimeTo | date:'dd/MM/yyyy HH:mm'  }}
           </h2>
         </div>
       </ion-item>
       <ion-item>
-        <div style='float: left;'> 
+        <div class="pull-left"> 
           <p>{{ locale.booking.parking }}</p>
         </div>
-        <div style='float: right;'> 
+        <div class="pull-right"> 
           <h2 style='font-weight: bold;'>{{ selectedParking.parking_name }}</h2>
           <p>{{ selectedParking.address }}</p>
         </div>
       </ion-item>
       <ion-item>
-        <div style='float: left;'> 
+        <div class="pull-left"> 
           <p>{{ locale.booking.cc }}</p>
         </div>
-        <div style='float: right;'>
+        <div class="pull-right">
           <h2 ng-if='hasCC' style='font-weight: bold;'>{{ locale.vehicle.yes }}</h2>
           <h2 ng-if='!hasCC' style='font-weight: bold;'>{{ locale.vehicle.no }}</h2>
         </div>
       </ion-item>
       <ion-item>
-        <div style='float: left;'> 
+        <div class="pull-left"> 
           <p>{{ locale.booking.telepass }}</p>
         </div>
-        <div style='float: right;'>
+        <div class="pull-right">
           <h2 ng-if='hasTelepass' style='font-weight: bold;'>{{ locale.vehicle.yes }}</h2>
           <h2 ng-if='!hasTelepass' style='font-weight: bold;'>{{ locale.vehicle.no }}</h2>
         </div>
