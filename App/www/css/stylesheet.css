@@ -112,6 +112,8 @@ a.positive {
     border-color: #ec0300;
 }
 
-.tab-item-active {
-    border-bottom-color: #fc0300!important;
+.tab-item-active,
+.tab-item.activated {
+	color: #fc0300!important;
+	border-bottom-color: #fc0300!important;
 }

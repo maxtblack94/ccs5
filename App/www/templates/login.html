@@ -1,5 +1,60 @@
-<ion-view>
-  <ion-content class="padding" overflow-scroll='true' style='background-color: #fc0300;'>
+<ion-view class="welcome-view" cache-view="false">
+  <ion-content scroll="false">
+    <!-- <div multi-bg="['http://i.giphy.com/13f7pejozPXuta.gif']" interval="3000" helper-class="no-facebook-welcome-bg"> -->
+    <div multi-bg="['img/giphy-bg-2.gif']" interval="3000">
+      <div class="top-content row">
+        <div class="app-copy col col-center">
+          <h1 class="app-logo"><img class='logo' src='icons/CCSsharing-Logo-Red-l-2.1c.png' style='max-width: 70%;' /></h1>
+          <p class="app-tagline">
+          </p>
+        </div>
+      </div>
+
+      <div class="bottom-content row">
+
+        <div class="col col-bottom">
+          <div ng-if="!recorveryPassword"  class="form-container">
+            <form style="width:80%;margin: 20px auto;">
+              <label class="item item-input" style="border-radius: 5px 5px 0px 0px;">
+              <span class="input-label">Email</span>
+              <input type="email" autocapitalize="none" id="user-input" ng-model="request.email" placeholder="compagnia@dominio.it">
+            </label>
+              <label class="item item-input" style="border-radius: 0px 0px 5px 5px;">
+              <span class="input-label">Password</span>
+              <input type="password" id="password-input" ng-model="request.password" placeholder="Password">
+            </label>
+            </form>
+            <a class="button button-block enter-account" ng-click="login()">
+            Accedi
+          </a>
+            <a class="forgot-password button button-clear button-block" ng-click="recorveryPasswordOn()">
+            Hai dimenticato la password?
+          </a>
+          </div>
+          <div ng-if="recorveryPassword" class="form-container">
+            <form style="width:80%;margin: 20px auto;">
+              <label class="item item-input" style="border-radius: 5px;">
+              <span class="input-label">Email</span>
+              <input type="email" autocapitalize="none" id="email-input" ng-model="request.email" placeholder="compagnia@dominio.com">
+            </label>
+            </form>
+            <a class="button button-block enter-account" ng-click="callRecoverService()">
+            Recupera Password
+          </a>
+            <a class="forgot-password button button-clear button-block" ng-click="recorveryPasswordOn()">
+            Accedi
+          </a>
+          </div>
+          <section ng-include="'templates/legal-notice.html'"></section>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+
+
+<!--<ion-view>
+  <ion-content style='background-color: #fc0300;'>
     <div style='width: 300px; margin: auto; height: 280px; position: absolute; top: 50%; margin-top: -140px; left: 50%; margin-left: -150px;'>
       <div style='text-align: center; margin-bottom: 10px;'>
         <img class='logo' src='icons/CCSsharing-Logo-Red-l-2.1c.png' style='max-width: 80%;' />
@@ -47,4 +102,4 @@
       </div>
     </div>
   </ion-content>
-</ion-view>
+</ion-view>-->

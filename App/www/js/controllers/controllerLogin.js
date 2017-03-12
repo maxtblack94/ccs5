@@ -21,7 +21,7 @@ angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, I
 
     $scope.recorveryPasswordOn = function(){
         $scope.recorveryPassword = !$scope.recorveryPassword;
-        $scope.request.email = undefined;
+        $scope.request = {};
         $scope.loginError = false;
     }
 
@@ -56,7 +56,7 @@ angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, I
     getClientInfo = function(action){
         $ionicLoading.show();
         $http.get("res/614.xml").success(function(res) {
-			res = res.replace('{DOMAIN}', $scope.request.user.replace(/.*@/, ""));
+			res = res.replace('{DOMAIN}', $scope.request.email.replace(/.*@/, ""));
 			WebService.ajaxPostRequestDemo(res, 614, function(c) {
                 InfoFactories.applyClientStyle('css/stylesheet.css')
 				InfoFactories.setClientSelected(c);
@@ -64,7 +64,7 @@ angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, I
                 InfoFactories.setServer(c.value.toLowerCase());
                 window.localStorage.setItem('selclient', JSON.stringify(c));
                 if(action === 'login'){
-                    callLoginService($scope.request.user, $scope.request.password);
+                    callLoginService($scope.request.email, $scope.request.password);
                 }else if(action === 'recover'){
                     recoverPassowrd();
                 }
@@ -75,9 +75,9 @@ angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, I
     }
     
     $scope.login = function() {
-        if($scope.request.user && $scope.request.password){
+        if($scope.request.email && $scope.request.password){
             getClientInfo('login');
-        }else if(!$scope.request.user){
+        }else if(!$scope.request.email){
             setTimeout(function() {
                 $('#user-input').focus();
             });
