@@ -37,7 +37,7 @@ angular.module('starter')
 				}
 			}
 		},
-		templateUrl: 'templates/multi-bg.html',
+		templateUrl: 'templates/directives/multi-bg.html',
 		restrict: 'A',
 		replace: true,
 		transclude: true
@@ -78,7 +78,7 @@ angular.module('starter')
 				});
 			};
 		},
-		templateUrl: 'templates/pre-img.html'
+		templateUrl: 'templates/directives/pre-img.html'
 	};
 })
 

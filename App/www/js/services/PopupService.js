@@ -1,21 +1,18 @@
-angular.module('starter').factory("InfoFactories", [function ($ionicPopup) {
-    function popupMessage(title, message, func) {
-        var pnrPopup = $ionicPopup.alert({
-                title: title,
-                template: message
-            });
-            pnrPopup.then(function(res) {
-                func ? func():null;
-            });
+angular.module('starter').factory("PopUpServices", function($ionicPopup) {
+    function errorPopup(message, type) {
+       $ionicPopup.alert({
+            title: type === '1' ? 'Attenzione' : type === '2' ? 'Successo' : 'Errore',
+            template: message || 'Abbiamo riscontrato un problema di connessione!'
+        });
     };
    
 
     return {
-        popupMessage: function (title, message, func) {
-            return popupMessage(title, message, func);
+        errorPopup: function (message, type) {
+            return errorPopup(message, type);
         }
     };
 
 
 
-}])
+})

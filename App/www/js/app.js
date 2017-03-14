@@ -17,6 +17,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
 
   .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
     $ionicConfigProvider.scrolling.jsScrolling(false);
+    $httpProvider.defaults.timeout = 30000;
     $stateProvider
 
       .state('login', {
@@ -32,7 +33,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
           car: null
         },
         cache: false,
-        templateUrl: 'templates/confirmPrenotation.html',
+        templateUrl: 'templates/tabs/confirmPrenotation.html',
         controller: 'ConfirmPrenotationCtrl'
       })
 
@@ -50,7 +51,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
         cache: false,
         views: {
           'tab-bookings': {
-            templateUrl: 'templates/tab-bookings.html',
+            templateUrl: 'templates/tabs/tab-bookings.html',
             controller: 'BookingsCtrl'
           }
         }
@@ -64,7 +65,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
         cache: false,
         views: {
           'tab-bookings': {
-            templateUrl: 'templates/map.html',
+            templateUrl: 'templates/tabs/map.html',
             controller: 'MapCtrl'
           }
         }
@@ -75,7 +76,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
         cache: false,
         views: {
           'tab-parking': {
-            templateUrl: 'templates/tab-parking.html',
+            templateUrl: 'templates/tabs/tab-parking.html',
             controller: 'ParkingCtrl'
           }
         }
@@ -89,7 +90,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
         },
         views: {
           'tab-resume': {
-            templateUrl: 'templates/tab-book-resume.html',
+            templateUrl: 'templates/tabs/tab-book-resume.html',
             controller: 'ResumeCtrl'
           }
         }
@@ -100,7 +101,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
         cache: false,
         views: {
           'tab-selcar': {
-            templateUrl: 'templates/car-selection.html',
+            templateUrl: 'templates/tabs/car-selection.html',
             controller: 'CarCtrl'
           }
         }
@@ -111,7 +112,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
         cache: false,
         views: {
           'tab-account': {
-            templateUrl: 'templates/tab-account.html',
+            templateUrl: 'templates/tabs/tab-account.html',
             controller: 'AccountCtrl'
           }
         }

@@ -1,4 +1,4 @@
-angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, InfoFactories, $http, $state, $ionicLoading, WebService, $ionicPopup) {
+angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, PopUpServices, InfoFactories, $http, $state, $ionicLoading, WebService, $ionicPopup) {
     function init(){
         $scope.locale = window.locale;
         $scope.recorveryPassword = false;
@@ -22,7 +22,6 @@ angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, I
     $scope.recorveryPasswordOn = function(){
         $scope.recorveryPassword = !$scope.recorveryPassword;
         $scope.request = {};
-        $scope.loginError = false;
     }
 
     $scope.callRecoverService = function(){
@@ -90,7 +89,6 @@ angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, I
 
     function callLoginService(user, pw){
         $ionicLoading.show();
-        $scope.loginError = false;
         WebService.ccsLogin(user, pw, function() {  
             $http.get('res/567.xml').success(function(res) {  
                 $ionicLoading.hide();
@@ -106,7 +104,7 @@ angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, I
             });
         }, function(error) {
             $ionicLoading.hide();
-            $scope.loginError = true;
+            PopUpServices.errorPopup('Email/Password sono errati, riprovare!')
         });
     }
 })

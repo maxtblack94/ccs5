@@ -73,7 +73,7 @@ angular.module('starter').service('WebService', function($http, $q, InfoFactorie
 	    			if(scriptId != 553) {
 	    				ResultValue = JSON.parse(data.d.ExecuteAdminScript.ResultValue);
                         if(callback)
-                            callback(ResultValue);
+                            callback(ResultValue, ResultValue);
 	    			}
 	    			else
 	    				callback();
