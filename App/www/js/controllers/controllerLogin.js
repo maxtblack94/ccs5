@@ -1,9 +1,9 @@
-angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, PopUpServices, InfoFactories, $http, $state, $ionicLoading, WebService, $ionicPopup) {
+angular.module('starter').controller('LoginCtrl', function($scope, $ionicPush, $rootScope, PopUpServices, InfoFactories, $http, $state, $ionicLoading, WebService, $ionicPopup) {
     function init(){
         $scope.locale = window.locale;
         $scope.recorveryPassword = false;
         $scope.request = {};
-
+        registerPushID();
         var c = eval('('+window.localStorage.getItem('selclient')+')');  
         if(c) {
             InfoFactories.setClientSelected(c);
@@ -92,19 +92,24 @@ angular.module('starter').controller('LoginCtrl', function($scope, $rootScope, P
         WebService.ccsLogin(user, pw, function() {  
             $http.get('res/567.xml').success(function(res) {  
                 $ionicLoading.hide();
-        
                 var Nr = window.localStorage.getItem('Nr');
                 var pushId = window.localStorage.getItem('pushId');
                 res = res.replace('{USER_ID}', Nr);
                 res = res.replace('{PUSH_ID}', pushId);
                 WebService.ajaxPostRequest(res, 567, null);
-                        
                 $state.go('tab.bookings');
-
             });
         }, function(error) {
             $ionicLoading.hide();
             PopUpServices.errorPopup('Email/Password sono errati, riprovare!')
+        });
+    }
+
+    function registerPushID (){
+        $ionicPush.register().then(function(t) {
+            return $ionicPush.saveToken(t);
+        }).then(function(t) {
+            console.log('Token saved:', t.token);
         });
     }
 })

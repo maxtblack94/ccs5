@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'ngCordova'])
+angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud'])
 
   .run(function ($ionicPlatform, $cordovaStatusbar, $cordovaDevice) {
     $ionicPlatform.ready(function () {
@@ -15,9 +15,26 @@ angular.module('starter', ['ionic', 'ngCordova'])
     });
   })
 
-  .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider, $ionicCloudProvider) {
     $ionicConfigProvider.scrolling.jsScrolling(false);
     $httpProvider.defaults.timeout = 30000;
+    $ionicCloudProvider.init({
+      "core": {
+        "app_id": "849a6f49"
+      },
+      "push": {
+        "sender_id": "1052330991735",
+        "pluginConfig": {
+          "ios": {
+            "badge": true,
+            "sound": true
+          },
+          "android": {
+            "iconColor": "#343434"
+          }
+        }
+      }
+    });
     $stateProvider
 
       .state('login', {
