@@ -4,23 +4,23 @@
 </ion-nav-bar>
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
-  <ion-tab title="Prenotazioni" icon-off="{{ platform == 'android' ? 'ion-android-calendar' : 'ion-ios-calendar-outline' }}" icon-on="{{ platform == 'android' ? 'ion-android-calendar' : 'ion-ios-calendar' }}" href="#/tab/bookings">
+  <ion-tab title="{{locale.tabs.reservations}}" icon-off="{{ platform == 'android' ? 'ion-android-calendar' : 'ion-ios-calendar-outline' }}" icon-on="{{ platform == 'android' ? 'ion-android-calendar' : 'ion-ios-calendar' }}" href="#/tab/bookings">
     <ion-nav-view name="tab-bookings"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Parcheggio" icon-off="{{ platform == 'android' ? 'ion-android-map' : 'ion-ios-navigate-outline' }}" icon-on="{{ platform == 'android' ? 'ion-android-map' : 'ion-ios-navigate' }}" href="#/tab/parking">
+  <ion-tab title="{{locale.tabs.park}}" icon-off="{{ platform == 'android' ? 'ion-android-map' : 'ion-ios-navigate-outline' }}" icon-on="{{ platform == 'android' ? 'ion-android-map' : 'ion-ios-navigate' }}" href="#/tab/parking">
     <ion-nav-view name="tab-parking"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Prenota" icon-off="{{ platform == 'android' ? 'ion-android-time' : 'ion-ios-time-outline' }}" icon-on="{{ platform == 'android' ? 'ion-android-time' : 'ion-ios-time' }}" href="#/tab/resume">
+  <ion-tab title="{{locale.tabs.booking}}" icon-off="{{ platform == 'android' ? 'ion-android-time' : 'ion-ios-time-outline' }}" icon-on="{{ platform == 'android' ? 'ion-android-time' : 'ion-ios-time' }}" href="#/tab/resume">
     <ion-nav-view name="tab-resume"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Veicoli" icon-off="{{ platform == 'android' ? 'ion-android-car' : 'ion-android-car' }}" icon-on="{{ platform == 'android' ? 'ion-android-car' : 'ion-android-car' }}" href="#/tab/selcar">
+  <ion-tab title="{{locale.tabs.vehicles}}" icon-off="{{ platform == 'android' ? 'ion-android-car' : 'ion-android-car' }}" icon-on="{{ platform == 'android' ? 'ion-android-car' : 'ion-android-car' }}" href="#/tab/selcar">
     <ion-nav-view name="tab-selcar"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Impostazioni" icon-off="{{ platform == 'android' ? 'ion-gear-a' : 'ion-ios-gear-outline' }}" icon-on="{{ platform == 'android' ? 'ion-gear-a' : 'ion-ios-gear' }}" href="#/tab/account">
+  <ion-tab title="{{locale.tabs.settings}}" icon-off="{{ platform == 'android' ? 'ion-gear-a' : 'ion-ios-gear-outline' }}" icon-on="{{ platform == 'android' ? 'ion-gear-a' : 'ion-ios-gear' }}" href="#/tab/account">
     <ion-nav-view name="tab-account"></ion-nav-view>
   </ion-tab>
 </ion-tabs>

@@ -17,7 +17,7 @@
             <form style="width:80%;margin: 20px auto;">
               <label class="item item-input" style="border-radius: 5px 5px 0px 0px;">
               <span class="input-label">Email</span>
-              <input type="email" autocapitalize="none" id="user-input" ng-model="request.email" placeholder="compagnia@dominio.it">
+              <input type="email" autocapitalize="none" id="user-input" ng-model="request.email" placeholder="{{locale.login.placeholderMail}}">
             </label>
               <label class="item item-input" style="border-radius: 0px 0px 5px 5px;">
               <span class="input-label">Password</span>
@@ -25,10 +25,10 @@
             </label>
             </form>
             <a class="button button-block enter-account" ng-click="login()">
-            Accedi
+            {{ locale.login.login }}
           </a>
             <a class="forgot-password button button-clear button-block" ng-click="recorveryPasswordOn()">
-            Hai dimenticato la password?
+            {{ locale.login.forgotPassword }}
           </a>
           </div>
           <div ng-if="recorveryPassword" class="form-container">
@@ -39,10 +39,10 @@
             </label>
             </form>
             <a class="button button-block enter-account" ng-click="callRecoverService()">
-            Recupera Password
+            {{ locale.login.retrievePassword }}
           </a>
             <a class="forgot-password button button-clear button-block" ng-click="recorveryPasswordOn()">
-            Accedi
+            {{ locale.login.haveAccount }}
           </a>
           </div>
           <section ng-include="'templates/commons/legal-notice.html'"></section>

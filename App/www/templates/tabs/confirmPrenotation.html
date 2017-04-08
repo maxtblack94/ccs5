@@ -1,6 +1,6 @@
 <ion-view>
   <ion-header-bar class="bar-positive">
-     <h1 class="title">Conferma Prenotazione</h1>
+     <h1 class="title">{{locale.confirmation.title}}</h1>
   </ion-header-bar>
   <ion-content>
     <ion-list>
@@ -79,8 +79,8 @@
       </ion-item>
       
       <div class="row">
-        <div class="col col-50"><button ng-click='backToCars()' class="button button-block button-default">Indietro</button></div>
-        <div class="col col-50"><button ng-click='confirm()' class="button button-block button-positive">{{ locale.confirmation.labelConfirmation }}</button></div>
+        <div class="col col-50"><button ng-click='backToCars()' class="button button-block button-default">{{ locale.confirmation.back }}</button></div>
+        <div class="col col-50"><button ng-click='confirm()' class="button button-block button-positive">{{ locale.confirmation.buttonConfirm }}</button></div>
       </div>
 
       

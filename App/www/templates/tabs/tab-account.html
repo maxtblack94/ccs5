@@ -2,7 +2,7 @@
   <ion-content>
     <ion-list>
       <ion-item>
-        {{ locale.login.labelClient }}
+        {{ locale.account.client }}
         <h2 style='float: right; font-weight: bold;'>{{ selectedClient.text }}</h2>
       </ion-item>
       <ion-toggle ng-model="hasPicture" ng-click='setHasPicture()' toggle-class="toggle-positive">
@@ -12,7 +12,7 @@
       <div class="row">
         <div class="col col-80 col-offset-10">
           <button ng-click='logout()' class="button button-block button-positive">
-            Logout
+            {{ locale.account.logout }}
           </button>
         </div>
       </div>

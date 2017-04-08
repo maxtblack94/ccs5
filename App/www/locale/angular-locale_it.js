@@ -22,7 +22,7 @@ window.locale.home = {
 	butBooking: 'Nuova prenotazione',
 	labelCountdown: 'Tempo residuo',
 	labelPlate: 'Targa',
-	cancelPrenotation: 'Annulla prenotazione',
+	cancelReservation: 'Annulla',
 	labelColor: 'Colore',
 	confirmDeleteBook: 'Annullare la prenotazione selezionata?',
 	title: 'Prenotazioni',
@@ -37,17 +37,22 @@ window.locale.home.rsvinfo = {
 };
 
 window.locale.login = {
-	selectClient: 'Seleziona cliente',
-	changeClient: 'Cambia cliente',
-	labelClient: 'Cliente',
-	labelLogin: 'Accedi'
+	login: 'Accedi',
+	forgotPassword: 'Password dimenticata?',
+	retrievePassword: 'Recupera Password',
+	haveAccount: 'Accedi',
+	placeholderMail: 'compagnia@dominio.it'
+
 };
+
+
 
 window.locale.parking = {
 	button: 'Avanti',   
 	labelSearch: 'Cerca parcheggio..',
 	labelSelectParking: 'Scegli il parcheggio',
-	noparking: 'Nessun parcheggio trovato'
+	noparking: 'Nessun parcheggio trovato',
+	placeholderSearch: 'Cerca'
 };
 
 window.locale.vehicle = {
@@ -62,6 +67,7 @@ window.locale.vehicle = {
 	labelExternal: 'Esterni',
 	labelInterior: 'Interni',
     labelColor: 'Colore',
+	title: 'Veicoli',
 	yes: 'SI',
 	no: 'NO',
 	labelSelect: "Seleziona",
@@ -95,7 +101,8 @@ window.locale.booking = {
 };
 
 window.locale.confirmation = {
-	labelConfirmation: 'Conferma',
+	title: 'Conferma Prenotazione',
+	back: 'Indietro',
 	buttonConfirm: 'Conferma',
 	labelWait: 'attendere..',
 	labelRequestComplete: 'Prenotazione Confermata',
@@ -105,6 +112,15 @@ window.locale.confirmation = {
 	labelSelectPlace: "Inserire il 'Luogo'",
 	labelSelectDriveName: "Inserire 'Nome driver'"
 };
+
+window.locale.tabs = {
+	reservations: 'Prenotazioni',
+	park: 'Parcheggi',
+	booking: 'Prenota',
+	vehicles: 'veicoli',
+	settings: 'Impostazioni'
+};
+
 
 window.locale.date = {
 	startDate: 'Data ritiro',
@@ -128,6 +144,8 @@ window.locale.date = {
 window.locale.account = {
 	title: 'Impostazioni',
 	check1: 'Lista ridotta',
+	client: 'Cliente',
+	logout: 'Esci',
 	check1_descr: 'Mostra la lista delle prenotazioni ridotta'
 };
 

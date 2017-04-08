@@ -10,6 +10,13 @@ window.locale.menu = {
 	vehicles: 'Vehicle'
 };
 
+window.locale.tabs = {
+	reservations: 'Reservations',
+	park: 'Park',
+	booking: 'Booking',
+	vehicles: 'Vehicles',
+	settings: 'Settings'
+};
 
 window.locale.home = {
 	msgHello: "Hello, {0}",
@@ -22,7 +29,7 @@ window.locale.home = {
 	butBooking: 'New booking',
 	labelCountdown: 'Countdown',
 	labelPlate: 'Plate',
-	cancelPrenotation: 'Revoke booking',
+	cancelReservation: 'Cancel',
 	labelColor: 'Color',
 	confirmDeleteBook: 'Revoke selected booking?',
 	title: 'Bookings',
@@ -37,24 +44,26 @@ window.locale.home.rsvinfo = {
 };
 
 window.locale.login = {
-	selectClient: 'Select client',
-	changeClient: 'Change client',
-	labelLogin: 'Login',
-	labelClient: 'Client',
-	labelChangeClient: 'Change client'
+	login: 'Login',
+	forgotPassword: 'Forgot password?',
+	retrievePassword: 'Retrieve Password',
+	haveAccount: 'I have account',
+	placeholderMail: 'company@domain.com'
 };
 
 window.locale.parking = {
 	button: 'Next',  
 	labelSearch: 'Search parking..',
 	labelSelectParking: 'Select parking',
-	noparking: 'No parkings found'
+	noparking: 'No parkings found',
+	placeholderSearch: 'Search'
 };
 
 
 window.locale.vehicle = {
 	buttonBook:'Reserve',
 	buttonConfirm: '',
+	title: 'Vehicles',
 	messageEnpty: 'No available vehicles',
 	label: 'Vehicle',
 	labelPlate: 'Plate',
@@ -96,7 +105,8 @@ window.locale.booking = {
 };
 
 window.locale.confirmation = {
-	labelConfirmation: 'Confirm reservation',
+	title: 'Confirm reservation',
+	back: 'Cancel',
 	buttonConfirm: 'Confirm',
 	labelWait: 'please wait..',
 	labelRequestComplete: 'Reservation confirmed',
@@ -130,6 +140,8 @@ window.locale.date = {
 window.locale.account = {
 	title: 'Settings',
 	check1: 'Small list',
+	client: 'Client',
+	logout: 'Logout',
 	check1_descr: 'Show list with small pictures'
 };
 
