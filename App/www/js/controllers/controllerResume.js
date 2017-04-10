@@ -1,5 +1,7 @@
 angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, WebService) {
     $scope.locale = window.locale;
+    InfoFactories.setTelepass(false);
+    InfoFactories.setCC(false);
     $scope.selectedParking = InfoFactories.getPark();
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.selectedDriverRange = InfoFactories.getSelectedRangeDriver();
