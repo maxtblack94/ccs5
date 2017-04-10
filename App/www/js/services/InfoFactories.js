@@ -37,9 +37,10 @@ angular.module('starter').factory("InfoFactories", [function () {
         }
         return m;      
     }
-    function resetDateForDefect (date){
+    function resetDateForDefect (date, dateFrom){
         var d = new Date(date);
         var m = new Date(date);
+        dateFrom = new Date(dateFrom);
         if(d.getMinutes() >= 0 && d.getMinutes() <= 7){
             m.setMinutes(0);
         }else if(d.getMinutes() >= 8 && d.getMinutes() <= 19){
@@ -51,6 +52,9 @@ angular.module('starter').factory("InfoFactories", [function () {
         }else if(d.getMinutes() >= 49 && d.getMinutes() <= 59){
             m.setMinutes(0);
             m.setHours(m.getHours()+1);
+        }
+        if(dateFrom && new Date(dateFrom).valueOf() === new Date(m).valueOf()){
+            m = m.setMinutes(m.getMinutes() + 15);
         }
         return m;
     }
@@ -196,8 +200,8 @@ angular.module('starter').factory("InfoFactories", [function () {
         resetDateService: function (date) {
             return resetDateService(date);
         },
-        resetDateForDefect: function (date) {
-            return resetDateForDefect(date);
+        resetDateForDefect: function (date, dateFrom) {
+            return resetDateForDefect(date, dateFrom);
         },
         applyClientStyle: function (url) {
             return applyClientStyle(url);

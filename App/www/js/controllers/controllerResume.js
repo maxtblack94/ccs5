@@ -73,7 +73,8 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
         var minutes = new Date(time).getMinutes();
         var newDate = new Date(date).setHours(hours,minutes,0,0);
         if(type == 'to'){
-            $scope.dateTimeTo = InfoFactories.resetDateForDefect(newDate);
+            var dateFrom = $scope.dateTimeFrom ? $scope.dateTimeFrom : undefined;
+            $scope.dateTimeTo = InfoFactories.resetDateForDefect(newDate, dateFrom);
             InfoFactories.setDateTimeTo($scope.dateTimeTo);
         }else if(type == 'from'){
             if(new Date(Date.now() + 60000 * 10) - newDate > 0){
