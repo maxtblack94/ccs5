@@ -1,0 +1,32 @@
+<div ng-if="!recorveryPassword" class="form-container">
+    <form style="width:80%;margin: 20px auto;">
+        <label class="item item-input" style="border-radius: 5px 5px 0px 0px;">
+            <span class="input-label">Username</span>
+            <input type="text" autocapitalize="none" id="user-input" ng-model="request.userid" placeholder="username">
+        </label>
+        <label class="item item-input" style="border-radius: 0px 0px 5px 5px;">
+            <span class="input-label">Password</span>
+            <input type="password" id="password-input" ng-model="request.password" placeholder="Password">
+        </label>
+    </form>
+    <a class="button button-block enter-account" ng-click="login()">
+        {{ locale.login.login }}
+    </a>
+    <a class="forgot-password button button-clear button-block" ng-click="recorveryPasswordOn()">
+        {{ locale.login.forgotPassword }}
+    </a>
+</div>
+<div ng-if="recorveryPassword" class="form-container">
+    <form style="width:80%;margin: 20px auto;">
+        <label class="item item-input" style="border-radius: 5px;">
+            <span class="input-label">Email</span>
+            <input type="email" autocapitalize="none" id="email-input" ng-model="request.email" placeholder="{{locale.login.placeholderMail}}">
+        </label>
+    </form>
+    <a class="button button-block enter-account" ng-click="callRecoverService()">
+        {{ locale.login.retrievePassword }}
+    </a>
+    <a class="forgot-password button button-clear button-block" ng-click="recorveryPasswordOn()">
+        {{ locale.login.haveAccount }}
+    </a>
+</div>

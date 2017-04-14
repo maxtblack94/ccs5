@@ -3,17 +3,45 @@ angular.module('starter').controller('LoginCtrl', function($scope, $ionicPush, $
         $scope.locale = window.locale;
         $scope.recorveryPassword = false;
         $scope.request = {};
-        registerPushID();
         var c = eval('('+window.localStorage.getItem('selclient')+')');  
         if(c) {
             InfoFactories.setClientSelected(c);
             InfoFactories.setServer(c.value.toLowerCase());
-            InfoFactories.applyClientStyle('css/stylesheet.css')
+            registerPushID();
+        }else{
+            $ionicLoading.show();
+            $http.get("res/589.xml").success(function(res) {
+                res = res.replace('{LANGUAGE}', 'Italiano');
+                WebService.ajaxPostRequestDemo(res, 589, function(data) {
+                    $ionicLoading.hide();
+                    $scope.clientList = data.clientListBooking;
+                });
+            });
+            $scope.configCompanyAccount = true;
         }
-        
+        InfoFactories.applyClientStyle('css/stylesheet.css')        
         var userId = window.localStorage.getItem('Nr');
-        if (userId != null && userId != '') {
+        if (userId) {
             $state.go('tab.bookings');
+        }
+    }
+
+    $scope.verifyCompanyCode = function(){
+        if(!$scope.request.verifyCode){
+            setTimeout(function() {
+                $('#verifyCode-input').focus();
+            });
+        }else{
+            for (var i = 0; i < $scope.clientList.length; i++) {
+                var element = $scope.clientList[i];
+                if($scope.request.verifyCode === $scope.clientList[i].clientCode){
+                    InfoFactories.setClientSelected($scope.clientList[i]);
+                    InfoFactories.setServer($scope.clientList[i].value.toLowerCase());
+                    window.localStorage.setItem('selclient', JSON.stringify($scope.clientList[i]));
+                    $scope.configCompanyAccount = false;
+                    break;
+                }
+            }
         }
     }
 
@@ -22,7 +50,7 @@ angular.module('starter').controller('LoginCtrl', function($scope, $ionicPush, $
     $scope.recorveryPasswordOn = function(){
         $scope.recorveryPassword = !$scope.recorveryPassword;
         $scope.request = {};
-    }
+    } 
 
     $scope.callRecoverService = function(){
         if(!$scope.request.email){
@@ -53,30 +81,17 @@ angular.module('starter').controller('LoginCtrl', function($scope, $ionicPush, $
     }
 
     getClientInfo = function(action){
-        $ionicLoading.show();
-        $http.get("res/614.xml").success(function(res) {
-			res = res.replace('{DOMAIN}', $scope.request.email.replace(/.*@/, ""));
-			WebService.ajaxPostRequestDemo(res, 614, function(c) {
-                InfoFactories.applyClientStyle('css/stylesheet.css')
-				InfoFactories.setClientSelected(c);
-                $scope.selectedClient = c;
-                InfoFactories.setServer(c.value.toLowerCase());
-                window.localStorage.setItem('selclient', JSON.stringify(c));
-                if(action === 'login'){
-                    callLoginService($scope.request.email, $scope.request.password);
-                }else if(action === 'recover'){
-                    recoverPassowrd();
-                }
-                
-			});
-		});
-        
+        if(action === 'login'){
+            callLoginService($scope.request.userid, $scope.request.password);
+        }else if(action === 'recover'){
+            recoverPassowrd();
+        }
     }
     
     $scope.login = function() {
-        if($scope.request.email && $scope.request.password){
+        if($scope.request.userid && $scope.request.password){
             getClientInfo('login');
-        }else if(!$scope.request.email){
+        }else if(!$scope.request.userid){
             setTimeout(function() {
                 $('#user-input').focus();
             });
@@ -90,23 +105,28 @@ angular.module('starter').controller('LoginCtrl', function($scope, $ionicPush, $
     function callLoginService(user, pw){
         $ionicLoading.show();
         WebService.ccsLogin(user, pw, function() {  
-            $http.get('res/567.xml').success(function(res) {  
-                $ionicLoading.hide();
-                var Nr = window.localStorage.getItem('Nr');
-                var pushId = window.localStorage.getItem('pushId');
-                res = res.replace('{USER_ID}', Nr);
-                res = res.replace('{PUSH_ID}', pushId);
-                WebService.ajaxPostRequest(res, 567, null);
-                $state.go('tab.bookings');
-            });
+            registerPushID();
+            $state.go('tab.bookings');
+            $ionicLoading.hide();            
         }, function(error) {
             $ionicLoading.hide();
             PopUpServices.errorPopup('Email/Password sono errati, riprovare!')
         });
     }
 
+    function storeToken (pushId){
+        $http.get('res/567.xml').success(function(res) {  
+            var Nr = window.localStorage.getItem('Nr');
+            res = res.replace('{USER_ID}', Nr);
+            res = res.replace('{PUSH_ID}', pushId);
+            WebService.ajaxPostRequest(res, 567, null);
+        });
+    }
+
+
     function registerPushID (){
         $ionicPush.register().then(function(t) {
+            storeToken(t.token);
             return $ionicPush.saveToken(t);
         }).then(function(t) {
             console.log('Token saved:', t.token);

@@ -18,9 +18,11 @@ angular.module('starter').controller('AccountCtrl', function($rootScope, $scope,
     		res = res.replace('{USER_ID}', nr);
     		WebService.ajaxPostRequest(res, 569, null);
             InfoFactories.resetService();
-            window.localStorage.removeItem('selclient');
-    	    window.localStorage.removeItem('favoriteParking');
             $state.go('login');
     	});
     };
+
+    $scope.deleteClienteContext = function(){
+        window.localStorage.removeItem('selclient');
+    }
 })

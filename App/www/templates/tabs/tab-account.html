@@ -3,7 +3,7 @@
     <ion-list>
       <ion-item>
         {{ locale.account.client }}
-        <h2 style='float: right; font-weight: bold;'>{{ selectedClient.text }}</h2>
+        <h2 ng-click="deleteClienteContext()" style='float: right; font-weight: bold;'>{{ selectedClient.text }}</h2>
       </ion-item>
       <ion-toggle ng-model="hasPicture" ng-click='setHasPicture()' toggle-class="toggle-positive">
           <h2>{{ locale.account.check1 }}</h2>
