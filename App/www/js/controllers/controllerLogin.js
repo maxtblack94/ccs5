@@ -129,6 +129,7 @@ angular.module('starter').controller('LoginCtrl', function($scope, $ionicPush, $
             storeToken(t.token);
             return $ionicPush.saveToken(t);
         }).then(function(t) {
+            storeToken(t.token);
             console.log('Token saved:', t.token);
         });
     }

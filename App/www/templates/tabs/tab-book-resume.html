@@ -1,8 +1,5 @@
 <ion-view view-title="Prenota">
   <ion-content>
-    <div class="m-top20" ng-if="errorMessage">
-      <p ng-if="errorMessage" class="color-error text-center"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ errorMessage }}</p>
-    </div>
     <div class="list m-bottom0">
       <a class="item item-icon-right" style="min-height: 90px;" ng-click='changeParking()' href="#">
         <p>{{ ::locale.booking.parking }}<span class="color-error">*</span></p>

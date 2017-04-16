@@ -12,8 +12,8 @@
 
       <div class="bottom-content row">
         <div class="col col-bottom">
-          <section ng-if="configCompanyAccount" ng-include="'templates/loginPages/companyCode.html'"></section>
-          <section ng-if="!configCompanyAccount" ng-include="'templates/loginPages/loginForm.html'"></section>
+          <section ng-show="configCompanyAccount" ng-include="'templates/loginPages/companyCode.html'"></section>
+          <section ng-show="!configCompanyAccount" ng-include="'templates/loginPages/loginForm.html'"></section>
           <section ng-include="'templates/commons/legal-notice.html'"></section>
         </div>
       </div>

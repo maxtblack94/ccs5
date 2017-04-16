@@ -1,4 +1,4 @@
-angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, WebService) {
+angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, WebService, PopUpServices) {
     $scope.locale = window.locale;
     InfoFactories.setTelepass(false);
     InfoFactories.setCC(false);
@@ -7,7 +7,10 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
     $scope.selectedDriverRange = InfoFactories.getSelectedRangeDriver();
     $scope.dateTimeFrom = InfoFactories.getDateTimeFrom();
     $scope.dateTimeTo = InfoFactories.getDateTimeTo();
-    $scope.errorMessage = $state.params.error ? $scope.locale.vehicle.labelCannotReserve : null;
+    if($state.params.error){
+        PopUpServices.errorPopup($scope.locale.vehicle.labelCannotReserve, "1");
+    }
+    
     if($scope.selectedClient.drivingRange){
         $ionicLoading.show();
         WebService.ajaxPostRequestDirect(610, function(data) {
@@ -38,31 +41,30 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
     };
 
     function datesCheck (){
-        $scope.errorMessage = null;
         if(!$scope.selectedParking){
-            $scope.errorMessage = $scope.locale.resume.wrongParking;
+            PopUpServices.errorPopup($scope.locale.resume.wrongParking, "1");
             return false;
         }
         if(!$scope.dateTimeTo || !$scope.dateTimeFrom){
-            $scope.errorMessage = $scope.locale.resume.wrongDates;
+            PopUpServices.errorPopup($scope.locale.resume.wrongDates, "1");
             return false;
         }else{
             var dateTimeTo = new Date($scope.dateTimeTo);
             var dateTimeFrom = new Date($scope.dateTimeFrom)
             if(new Date() - dateTimeFrom > 0){
-                $scope.errorMessage = "La data di ritiro deve essere superiore alla data attuale";
+                PopUpServices.errorPopup("La data di ritiro deve essere superiore alla data attuale", "1");
                 return false;
             }else if((dateTimeTo - dateTimeFrom) < 0){
-                $scope.errorMessage = "La data di ritiro è maggiore della data di consegna";
+                PopUpServices.errorPopup("La data di ritiro è maggiore della data di consegna", "1");
                 return false;
             }else if(!$scope.selectedParking.h24 && dateTimeFrom.getHours() < $scope.selectedParking.opening.getHours() || dateTimeFrom.getHours() >$scope.selectedParking.closing.getHours()){
-                $scope.errorMessage = "La data di ritiro non rientra negli orari di apertura del parcheggio";
+                PopUpServices.errorPopup("La data di ritiro non rientra negli orari di apertura del parcheggio", "1");
                 return false;
             }else if(!$scope.selectedParking.h24 && dateTimeTo.getHours() < $scope.selectedParking.opening.getHours() || dateTimeTo.getHours() > $scope.selectedParking.closing.getHours()){
-                $scope.errorMessage = "La data di consegna non rientra negli orari di apertura del parcheggio";
+                PopUpServices.errorPopup("La data di consegna non rientra negli orari di apertura del parcheggio", "1");
                 return false;
             }else if($scope.selectedClient.drivingRange == true && $scope.selectedDriverRange.value == "short"){
-                $scope.errorMessage = "Non hai definito il raggio di percorrenza";
+                PopUpServices.errorPopup("Non hai definito il raggio di percorrenza", "1");
                 return false;
             }
             return true;

@@ -87,13 +87,13 @@ angular.module('starter').factory("InfoFactories", [function () {
         selectedClient = varSelectedClient;
     };
     function getClientSelected() {
-        return selectedClient;
+        return selectedClient || eval('('+window.localStorage.getItem('selclient')+')');
     };
     function setServer(varServer) {
         server = varServer;
     };
     function getServer() {
-        return server;
+        return server || eval('('+window.localStorage.getItem('selclient')+')').value.toLowerCase();
     };
     function setSelectedCar(varCar) {
         selectedCar = varCar;

@@ -129,6 +129,7 @@ angular.module('starter').controller('BookingsCtrl', function ($timeout, $cordov
         setDelayPopup.then(function (delayInfo) {
             if (delayInfo) {
                 delayInfo.delay = moment.duration(delayInfo.newDate - delayInfo.oldDate).asMinutes();
+                $ionicLoading.show();
                 callEditDelay(delayInfo);
             }
 
@@ -140,7 +141,7 @@ angular.module('starter').controller('BookingsCtrl', function ($timeout, $cordov
             res = res.replace('{PNR}', delayInfo.pnr).replace('{DELAY}', delayInfo.delay);
             delete $scope.contextPnr;
             WebService.ajaxPostRequestTemp(res, 619, function (data) {
-                $ionicLoading.hide();
+                loadbookings();
             });
         });
     }
