@@ -7,12 +7,15 @@ angular.module('starter').factory("PopUpServices", function($ionicPopup) {
     };
 
     function messagePopup(message, title, callback) {
-       $ionicPopup.alert({
+       var popupInstance = $ionicPopup.alert({
             title: title,
             template: message
-        }).then(function(res) {
-            callback();
-        });;
+        });
+        if(callback){
+            popupInstance.then(function(res) {
+                callback();
+            });
+        };
     };
 
     return {

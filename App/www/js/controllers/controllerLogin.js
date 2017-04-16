@@ -42,6 +42,9 @@ angular.module('starter').controller('LoginCtrl', function($scope, $ionicPush, $
                     break;
                 }
             }
+            if($scope.configCompanyAccount === true){
+                PopUpServices.errorPopup('Il codice cliente inserito non esiste, riprovare!', '1');
+            }
         }
     }
 
