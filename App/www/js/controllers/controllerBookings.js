@@ -1,4 +1,4 @@
-angular.module('starter').controller('BookingsCtrl', function ($cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $http, $state, $ionicPopup, $ionicLoading, WebService) {
+angular.module('starter').controller('BookingsCtrl', function (PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $http, $state, $ionicPopup, $ionicLoading, WebService) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
 
@@ -46,32 +46,60 @@ angular.module('starter').controller('BookingsCtrl', function ($cordovaGeolocati
     };
 
     $scope.openCarManipolation = function (reservation, opT) {
-        if(opT === "0"){
-            checkDeviceNearCar(reservation, opT);
-        }else{
-            checkCarNearPark();
-        }
-    };
-
-    function checkDeviceNearCar (reservation, opT){
-        var posOptions = {timeout: 10000, enableHighAccuracy: false};
-        $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-            var lat  = position.coords.latitude
-            var long = position.coords.longitude
-        }, function(err) {
-            // error
-            console.log(err)
+        $http.get("res/627.xml").success(function (res) {
+            res = res.replace('{PNR}', reservation.pnr);
+            WebService.ajaxPostRequestTemp(res, 627, function (data) {
+                var response = data.split(',');
+                var carCoords = {
+                    "lat" : response[0],
+                    "long": response[1]
+                }
+                startCloseOpenCarProcess(reservation, opT, carCoords);
+            });
         });
     }
 
-    function checkProximity (coords1, coords2){
-        
+    function startCloseOpenCarProcess (reservation, opT, carCoords){
+        if(opT === "0"){
+             var posOptions = {timeout: 10000, enableHighAccuracy: false};
+            $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
+                var lat  = position.coords.latitude
+                var long = position.coords.longitude
+                var proximityResult = checkProximity(carCoords, {"lat":lat, "long":long}, opT);
+                if(proximityResult){
+                    openCloseCar(reservation, opT);
+                }else{
+                    PopUpServices.errorPopup("Devi essere in prossimità dell'automobile per poterla aprire", '1');
+                }
+            }, function(err) {
+                PopUpServices.errorPopup("Non è stato possibile recuperare le tue coordinate", '1');
+            });
+        }else{
+            var proximityResult = checkProximity(carCoords, {"lat":reservation.latP, "long":reservation.lngP}, opT);
+            if(proximityResult){
+                openCloseCar(reservation, opT);
+            }else{
+                PopUpServices.errorPopup("L'automobile deve essere posizionata nel pareggio prima di poterla chiudere", '1');
+            }
+        }
+    }
+    function checkProximity (carCoords, coordsCustom, type){
+            var radlat1 = Math.PI * carCoords.lat/180;
+            var radlat2 = Math.PI * coordsCustom.lat/180;
+            var theta = carCoords.long-coordsCustom.long;
+            var radtheta = Math.PI * theta/180;
+            var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+            dist = Math.acos(dist);
+            dist = dist * 180/Math.PI;
+            dist = dist * 60 * 1.1515;
+            dist = dist * 1.609344;
+            return dist < 0.20 ? true:false;
     }
 
     function openCloseCar (reservation, opT){
         $ionicLoading.show();
         $http.get("res/621.xml").success(function (res) {
-            res = res.replace('{PNR_NUMBER}', reservation).replace('{OPERATION_TYPE}', opT);
+            res = res.replace('{PNR_NUMBER}', reservation.pnr).replace('{OPERATION_TYPE}', opT);
             $http({
                 url: 'http://' + InfoFactories.getServer() + '.corporatecarsharing.biz/api.svc/ScriptParameterSets',
                 method: "POST",
@@ -88,7 +116,7 @@ angular.module('starter').controller('BookingsCtrl', function ($cordovaGeolocati
                     $ionicLoading.hide();
                 });
             }).error(function (err) {
-                //gestire ERRORe
+                PopUpServices.errorPopup("Non è stato possibile aprire la macchina, riprovare!");
                 $ionicLoading.hide();
             });
         })
