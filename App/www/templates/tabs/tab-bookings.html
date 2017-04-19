@@ -29,14 +29,22 @@
         <div ng-if='!hasPicture' class="item item-image">
           <img ng-src="{{ book.image_max ? book.image_max : 'icons/vehicle-default-l.jpg' }}">
         </div>
-        <div class="item" ng-if="bntOpenClose">
-          <p>{{ ::locale.booking.labelCentralizzedButton }}</p>
-          <a class="pull-left" ng-click="openCarManipolation(book.pnr, '0')" class="button button-balanced" style="padding: 0px 15px;">
-              {{ ::locale.booking.buttonOpenCar }}
-            </a>
-          <a class="pull-left" ng-click="openCarManipolation(book.pnr, '1')" class="button button-positive" style="padding: 0px 15px;">
-              {{ ::locale.booking.buttonCloseCar }}
-            </a>
+        <div class="item" ng-if="selectedClient.bntOpenClose">
+          <div class="row">
+            <p>{{ ::locale.booking.labelCentralizzedButton }}</p>
+          </div>
+          <div class="row">
+            <div class="col col50">
+              <button ng-click="openCarManipolation(book.pnr, '0')" class="button button-balanced button-block pull-left" style="padding: 0px 15px;">
+                  {{ ::locale.booking.buttonOpenCar }}
+              </button>
+            </div>
+            <div class="col col50">
+              <button ng-click="openCarManipolation(book.pnr, '1')" class="button button-positive button-block pull-left" style="padding: 0px 15px;">
+                  {{ ::locale.booking.buttonCloseCar }}
+              </button>
+            </div>
+          </div>
         </div>
         <div class="item">
           <div class="pull-left">

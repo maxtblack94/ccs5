@@ -15,8 +15,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud'])
     });
   })
 
-  .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider, $ionicCloudProvider) {
-    $ionicConfigProvider.scrolling.jsScrolling(false);
+  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicCloudProvider) {
     $httpProvider.defaults.timeout = 30000;
     $ionicCloudProvider.init({
       "core": {

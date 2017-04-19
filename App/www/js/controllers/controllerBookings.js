@@ -1,4 +1,4 @@
-angular.module('starter').controller('BookingsCtrl', function ($timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $http, $state, $ionicPopup, $ionicLoading, WebService) {
+angular.module('starter').controller('BookingsCtrl', function ($cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $http, $state, $ionicPopup, $ionicLoading, WebService) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
 
@@ -46,6 +46,29 @@ angular.module('starter').controller('BookingsCtrl', function ($timeout, $cordov
     };
 
     $scope.openCarManipolation = function (reservation, opT) {
+        if(opT === "0"){
+            checkDeviceNearCar(reservation, opT);
+        }else{
+            checkCarNearPark();
+        }
+    };
+
+    function checkDeviceNearCar (reservation, opT){
+        var posOptions = {timeout: 10000, enableHighAccuracy: false};
+        $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
+            var lat  = position.coords.latitude
+            var long = position.coords.longitude
+        }, function(err) {
+            // error
+            console.log(err)
+        });
+    }
+
+    function checkProximity (coords1, coords2){
+        
+    }
+
+    function openCloseCar (reservation, opT){
         $ionicLoading.show();
         $http.get("res/621.xml").success(function (res) {
             res = res.replace('{PNR_NUMBER}', reservation).replace('{OPERATION_TYPE}', opT);
@@ -70,6 +93,9 @@ angular.module('starter').controller('BookingsCtrl', function ($timeout, $cordov
             });
         })
     }
+
+
+
 
     $scope.openBooking = function (object) {
         $state.go('tab.map', { pnrInfo: object });
