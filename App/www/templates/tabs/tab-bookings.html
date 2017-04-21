@@ -29,7 +29,7 @@
         <div ng-if='!hasPicture' class="item item-image">
           <img ng-src="{{ book.image_max ? book.image_max : 'icons/vehicle-default-l.jpg' }}">
         </div>
-        <div class="item" ng-if="selectedClient.bntOpenClose">
+        <div class="item" ng-if="selectedClient.bntOpenClose && book.showOpenCloseButtons">
           <div class="row">
             <p>{{ ::locale.booking.labelCentralizzedButton }}</p>
           </div>
