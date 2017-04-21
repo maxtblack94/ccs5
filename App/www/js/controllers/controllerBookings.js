@@ -1,4 +1,4 @@
-angular.module('starter').controller('BookingsCtrl', function (PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $http, $state, $ionicPopup, $ionicLoading, WebService) {
+angular.module('starter').controller('BookingsCtrl', function (PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $http, $state, $ionicPopup, $ionicLoading, WebService, ScriptServices) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
 
@@ -11,15 +11,14 @@ angular.module('starter').controller('BookingsCtrl', function (PopUpServices, $c
         $scope.$broadcast('scroll.refreshComplete');
     }
 
-    function loadbookings() {
-        $ionicLoading.show();
-        $scope.BookingsList = undefined;
 
-        $http.get("res/516.xml").success(function (res) {
+    function loadbookings() {
+        $ionicLoading.show(); 
+        $scope.BookingsList = undefined;
+        ScriptServices.getXMLResource(516).then(function(res) {
             var driver = window.localStorage.getItem('Nr');
             res = res.replace('{DRIVER_NUMBER}', driver);
-
-            WebService.ajaxPostRequestTemp(res, 516, function (data) {
+            ScriptServices.callGenericService(res, 516).then(function(data) {
                 $scope.BookingsList = data.data.BookingsList;
                 var blength = $scope.BookingsList.length;
                 for (var i = 0; i < blength; i++) {
@@ -39,10 +38,13 @@ angular.module('starter').controller('BookingsCtrl', function (PopUpServices, $c
                     }
                 }
                 $ionicLoading.hide();
-
-            });
+            }, function(error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup(error+', riprovare!');
+            })
         });
-    };
+    
+    }
 
     loadbookings();
 

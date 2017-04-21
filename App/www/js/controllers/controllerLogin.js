@@ -1,4 +1,4 @@
-angular.module('starter').controller('LoginCtrl', function($scope, $ionicPush, $rootScope, PopUpServices, InfoFactories, $http, $state, $ionicLoading, WebService, $ionicPopup) {
+angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scope, $ionicPush, $rootScope, PopUpServices, InfoFactories, $http, $state, $ionicLoading, WebService, $ionicPopup) {
     function init(){
         $scope.locale = window.locale;
         $scope.recorveryPassword = false;
@@ -106,14 +106,23 @@ angular.module('starter').controller('LoginCtrl', function($scope, $ionicPush, $
     };
 
     function callLoginService(user, pw){
-        $ionicLoading.show();
-        WebService.ccsLogin(user, pw, function() {  
-            registerPushID();
-            $state.go('tab.bookings');
-            $ionicLoading.hide();            
-        }, function(error) {
-            $ionicLoading.hide();
-            PopUpServices.errorPopup('Email/Password sono errati, riprovare!')
+        $ionicLoading.show(); 
+        ScriptServices.getXMLResource(515).then(function(res) {
+            res = res.replace('{USER_NAME}', user).replace('{PASSWORD}', pw);
+            ScriptServices.callGenericService(res, 515).then(function(data) {
+                if(data.data.DriverList.length > 0){
+                    window.localStorage.setItem('Nr', data.data.DriverList[0].Nr);
+	    			window.localStorage.setItem('user_name', user);
+                    registerPushID();
+                    $state.go('tab.bookings');
+                }else{
+                    PopUpServices.errorPopup('Email/Password sono errati, riprovare!');
+                }
+                $ionicLoading.hide(); 
+            }, function(error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup(error+', riprovare!');
+            })
         });
     }
 

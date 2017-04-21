@@ -1,13 +1,13 @@
 angular.module('starter').service('WebService', function($http, $q, InfoFactories) {
     return ({
-        ccsLogin: ccsLogin,
+        /*ccsLogin: ccsLogin,*/
         ajaxPostRequest: ajaxPostRequest,
         ajaxPostRequestDemo: ajaxPostRequestDemo,
         ajaxPostRequestTemp: ajaxPostRequestTemp,
         ajaxPostRequestDirect: ajaxPostRequestDirect
     });
     
-    function ccsLogin(name, password, success, fail) {
+    /*function ccsLogin(name, password, success, fail) {
         $http.get("res/515.xml").success(function(res) {
 	    	res = res.replace('{USER_NAME}', name).replace('{PASSWORD}', password);
     		$http({
@@ -39,7 +39,7 @@ angular.module('starter').service('WebService', function($http, $q, InfoFactorie
                 fail();
             });
     	})
-    }
+    }*/
     
     function ajaxPostRequestDirect(scriptId, callback) {
         var responsePromisee = $http.get("http://"+InfoFactories.getServer()+".corporatecarsharing.biz/api.svc/ExecuteAdminScript?scriptId="+scriptId+"&scriptParameterSetId=0", {headers: {'TenForce-Auth': 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4'}});
