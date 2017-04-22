@@ -15,6 +15,15 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
                 WebService.ajaxPostRequestDemo(res, 589, function(data) {
                     $ionicLoading.hide();
                     $scope.clientList = data.clientListBooking;
+                    for (var i = 0; i < $scope.clientList.length; i++) {
+                        if('cl452s' === $scope.clientList[i].clientCode){
+                            InfoFactories.setClientSelected($scope.clientList[i]);
+                            InfoFactories.setServer($scope.clientList[i].value.toLowerCase());
+                            window.localStorage.setItem('selclient', JSON.stringify($scope.clientList[i]));
+                            $scope.configCompanyAccount = false;
+                            break;
+                        }
+                    }
                 });
             });
             $scope.configCompanyAccount = true;
@@ -26,27 +35,6 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
         }
     }
 
-    $scope.verifyCompanyCode = function(){
-        if(!$scope.request.verifyCode){
-            setTimeout(function() {
-                $('#verifyCode-input').focus();
-            });
-        }else{
-            for (var i = 0; i < $scope.clientList.length; i++) {
-                var element = $scope.clientList[i];
-                if($scope.request.verifyCode === $scope.clientList[i].clientCode){
-                    InfoFactories.setClientSelected($scope.clientList[i]);
-                    InfoFactories.setServer($scope.clientList[i].value.toLowerCase());
-                    window.localStorage.setItem('selclient', JSON.stringify($scope.clientList[i]));
-                    $scope.configCompanyAccount = false;
-                    break;
-                }
-            }
-            if($scope.configCompanyAccount === true){
-                PopUpServices.errorPopup('Il codice cliente inserito non esiste, riprovare!', '1');
-            }
-        }
-    }
 
     init();
 
