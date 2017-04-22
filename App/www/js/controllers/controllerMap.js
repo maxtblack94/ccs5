@@ -4,15 +4,13 @@ angular.module('starter').controller('MapCtrl', function ($scope, $http, $state,
 
     $scope.navigate = function () {
 
-        if (device.platform == 'ios') {
+        if (device.platform == 'iOS') {
             window.open('maps://?q=' + $scope.g_address, '_system');
         } else {
-            var label = encodeURI(g_address);
-            window.open('geo:0,0?q=' + $scope.g_address + '(' + g_address + ')', '_system');
+            var label = encodeURI($scope.g_address);
+            window.open('geo:0,0?q=' + $scope.g_address, '_system');
         }
     };
-
-
     $scope.delete = function (book) {
         var confirmPopup = $ionicPopup.confirm({
             title: 'Conferma eliminazione',
@@ -37,8 +35,8 @@ angular.module('starter').controller('MapCtrl', function ($scope, $http, $state,
 
     function convertCoordinates() {
         return {
-            lat: Number($scope.selectedBooking.lat),
-            lng: Number($scope.selectedBooking.lng)
+            lat: Number($scope.selectedBooking.latP),
+            lng: Number($scope.selectedBooking.lngP)
         };
     }
 

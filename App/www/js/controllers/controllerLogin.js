@@ -8,6 +8,7 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
             InfoFactories.setClientSelected(c);
             InfoFactories.setServer(c.value.toLowerCase());
             registerPushID();
+            InfoFactories.applyClientStyle(c.clientStyle);
         }else{
             $ionicLoading.show();
             $http.get("res/589.xml").success(function(res) {
@@ -19,7 +20,7 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
             });
             $scope.configCompanyAccount = true;
         }
-        InfoFactories.applyClientStyle('css/stylesheet.css')        
+             
         var userId = window.localStorage.getItem('Nr');
         if (userId) {
             $state.go('tab.bookings');
@@ -113,6 +114,7 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
                 if(data.data.DriverList.length > 0){
                     window.localStorage.setItem('Nr', data.data.DriverList[0].Nr);
 	    			window.localStorage.setItem('user_name', user);
+                    InfoFactories.applyClientStyle(data.data.DriverList[0].clientStyle);
                     registerPushID();
                     $state.go('tab.bookings');
                 }else{

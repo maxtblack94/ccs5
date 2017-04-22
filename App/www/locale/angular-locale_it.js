@@ -89,7 +89,7 @@ window.locale.booking = {
 	cc_descr: 'Selezionare se si ha bisogno della carta carburante',
 	telepass: 'Telepass',
 	telepass_descr: 'Selezionare se si ha bisogno del telepass',
-	labelDelete: 'Elimina prenotazione',
+	labelDelete: 'Elimina',
 	wrongInputs: 'Selezionare correttamente le date di prenotazione ed il parcheggio',
 	drivingRange: 'Raggio di percorrenza',
 	driverName: 'Nome driver',

@@ -23,13 +23,17 @@
         </div>
         
         <div class="item" style='overflow: auto; border: none; margin-top: 10px; padding: 10px 0;'>
-            <h2>
-              <button ng-click='delete(selectedBooking)' class="button button-positive">
-                {{ locale.booking.labelDelete }}
-              </button>
-              <button ng-if="false" ng-click='navigate(selectedBooking)' class="button" style="float: right">
-                {{ locale.booking.labelNavigate }}
-              </button>
+            <h2 class="row">
+              <div class="col col50">
+                <button ng-click='delete(selectedBooking)' class="button button-positive button-block">
+                  {{ locale.booking.labelDelete }}
+                </button>
+              </div>
+              <div class="col col50" ng-show="g_address">
+                <button ng-click='navigate(selectedBooking)' class="button button-block" style="float: right">
+                  {{ locale.booking.labelNavigate }}
+                </button>
+              </div>
             </h2>
         </div>
     </div>
