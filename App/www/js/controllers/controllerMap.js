@@ -1,4 +1,4 @@
-angular.module('starter').controller('MapCtrl', function ($scope, $http, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup, WebService) {
+angular.module('starter').controller('MapCtrl', function (PopUpServices, $scope, $http, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup, WebService) {
     $scope.locale = window.locale;
     $scope.selectedBooking = $state.params.pnrInfo;
 
@@ -35,8 +35,8 @@ angular.module('starter').controller('MapCtrl', function ($scope, $http, $state,
 
     function convertCoordinates() {
         return {
-            lat: Number($scope.selectedBooking.latP),
-            lng: Number($scope.selectedBooking.lngP)
+            lat: Number($scope.selectedBooking.lat),
+            lng: Number($scope.selectedBooking.lng)
         };
     }
 
@@ -71,10 +71,10 @@ angular.module('starter').controller('MapCtrl', function ($scope, $http, $state,
                 $scope.g_address = results[0].formatted_address;
                 $scope.$apply();
             } else {
-                alert("No results found");
+                PopUpServices.errorPopup("Le coordinate dell'auto non sono disponibili, riprovare più tardi!", '1');
             }
         } else {
-            alert("Geocoder failed due to: " + status);
+            PopUpServices.errorPopup("Le coordinate dell'auto non sono disponibili, riprovare più tardi!", '1');
         }
     });
 
