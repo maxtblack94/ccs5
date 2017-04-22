@@ -355,3 +355,6 @@ a.positive {
   .multi-bg-outer .multi-bg {
     display: none; }
 
+.button.button-stable {
+    background-color: #e4e4e4;
+}

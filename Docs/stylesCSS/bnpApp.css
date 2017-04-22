@@ -121,3 +121,11 @@ a.positive {
 [fab] {
 	background-color: #00965E;
 }
+
+.multi-bg-outer .bg-overlay {
+    background-color: #00965E;
+}
+
+.welcome-view .bottom-content .enter-account {
+    background: #018453;
+}

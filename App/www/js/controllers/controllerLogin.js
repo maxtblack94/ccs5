@@ -8,7 +8,8 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
             InfoFactories.setClientSelected(c);
             InfoFactories.setServer(c.value.toLowerCase());
             registerPushID();
-            InfoFactories.applyClientStyle(c.clientStyle);
+            c.clientStyle = c.clientStyle || 'css/stylesheet.css';
+            InfoFactories.applyClientStyle(c.clientStyle );
         }else{
             $ionicLoading.show();
             $http.get("res/589.xml").success(function(res) {
@@ -36,6 +37,7 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
             for (var i = 0; i < $scope.clientList.length; i++) {
                 var element = $scope.clientList[i];
                 if($scope.request.verifyCode === $scope.clientList[i].clientCode){
+                    InfoFactories.applyClientStyle($scope.clientList[i].clientStyle);
                     InfoFactories.setClientSelected($scope.clientList[i]);
                     InfoFactories.setServer($scope.clientList[i].value.toLowerCase());
                     window.localStorage.setItem('selclient', JSON.stringify($scope.clientList[i]));
@@ -114,7 +116,6 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
                 if(data.data.DriverList.length > 0){
                     window.localStorage.setItem('Nr', data.data.DriverList[0].Nr);
 	    			window.localStorage.setItem('user_name', user);
-                    InfoFactories.applyClientStyle(data.data.DriverList[0].clientStyle);
                     registerPushID();
                     $state.go('tab.bookings');
                 }else{

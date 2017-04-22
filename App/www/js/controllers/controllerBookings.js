@@ -24,18 +24,21 @@ angular.module('starter').controller('BookingsCtrl', function (PopUpServices, $c
                 for (var i = 0; i < blength; i++) {
                     $scope.BookingsList[i].return_time = $scope.BookingsList[i].return_time.slice(10, -3);
                     $scope.BookingsList[i].pickup_time = $scope.BookingsList[i].pickup_time.slice(10, -3);
-                    $scope.BookingsList[i].pickup_time_tollerance = $scope.BookingsList[i].pickup_time_tollerance.slice(10, -3);
-                    $scope.BookingsList[i].pickup_time_tollerance = $scope.BookingsList[i].pickup_date_tollerance + ' ' + $scope.BookingsList[i].pickup_time_tollerance;
                     $scope.BookingsList[i].dateTimeTo = $scope.BookingsList[i].return_date + ' ' + $scope.BookingsList[i].return_time;
                     $scope.BookingsList[i].dateTimeFrom = $scope.BookingsList[i].pickup_date + ' ' + $scope.BookingsList[i].pickup_time;
                     $scope.BookingsList[i].dateTimeTo = new Date(moment($scope.BookingsList[i].dateTimeTo, 'DD/MM/YYYY HH:mm:ss'));
                     $scope.BookingsList[i].dateTimeFrom = new Date(moment($scope.BookingsList[i].dateTimeFrom, 'DD/MM/YYYY HH:mm:ss'));
-                    $scope.BookingsList[i].pickup_time_tollerance = new Date(moment($scope.BookingsList[i].pickup_time_tollerance, 'DD/MM/YYYY HH:mm:ss'));
                     $scope.BookingsList[i].cmb_fuel_quantity = InfoFactories.trascodeFuel($scope.BookingsList[i].cmb_fuel_quantity);
                     $scope.BookingsList[i].showDelayBtn = $scope.BookingsList[i].dateTimeFrom <= new Date();
-                    if(new Date($scope.BookingsList[i].pickup_time_tollerance) <= new Date()){
-                        $scope.BookingsList[i].showOpenCloseButtons = true;
+                    if($scope.BookingsList[i].pickup_time_tollerance){
+                        $scope.BookingsList[i].pickup_time_tollerance = $scope.BookingsList[i].pickup_time_tollerance.slice(10, -3);
+                        $scope.BookingsList[i].pickup_time_tollerance = $scope.BookingsList[i].pickup_date_tollerance + ' ' + $scope.BookingsList[i].pickup_time_tollerance;
+                        $scope.BookingsList[i].pickup_time_tollerance = new Date(moment($scope.BookingsList[i].pickup_time_tollerance, 'DD/MM/YYYY HH:mm:ss'));
+                        if(new Date($scope.BookingsList[i].pickup_time_tollerance) <= new Date()){
+                            $scope.BookingsList[i].showOpenCloseButtons = true;
+                        }
                     }
+                    
                 }
                 $ionicLoading.hide();
             }, function(error) {
