@@ -8,8 +8,9 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
             InfoFactories.setClientSelected(c);
             InfoFactories.setServer(c.value.toLowerCase());
             registerPushID();
+            $scope.selectedClient = c;
             c.clientStyle = c.clientStyle || 'css/stylesheet.css';
-            InfoFactories.applyClientStyle(c.clientStyle );
+            InfoFactories.applyClientStyle(c.clientStyle);
         }else{
             $ionicLoading.show();
             $http.get("res/589.xml").success(function(res) {
@@ -40,6 +41,7 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
                     InfoFactories.applyClientStyle($scope.clientList[i].clientStyle);
                     InfoFactories.setClientSelected($scope.clientList[i]);
                     InfoFactories.setServer($scope.clientList[i].value.toLowerCase());
+                    $scope.selectedClient = $scope.clientList[i];
                     window.localStorage.setItem('selclient', JSON.stringify($scope.clientList[i]));
                     $scope.configCompanyAccount = false;
                     break;

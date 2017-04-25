@@ -95,8 +95,8 @@ window.locale.booking = {
 	driverName: 'Nome driver',
 	labelNavigate: 'Raggiungi veicolo',
 	buttonDetail: 'Dettaglio',
-	buttonOpenCar : 'Apri portiere',
-	buttonCloseCar : 'Chiudi portiere',
+	buttonOpenCar : 'Inizio corsa',
+	buttonCloseCar : 'Fine corsa',
 	labelCentralizzedButton: "Chiusura Centrallizzata"
 };
 

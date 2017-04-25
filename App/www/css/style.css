@@ -356,5 +356,22 @@ a.positive {
     display: none; }
 
 .button.button-stable {
-    background-color: #e4e4e4;
+    background-color: #BDBDBD;
+    color: #fff!important;
 }
+
+.button.button-stable.active,
+.button.button-stable.activated {
+    background-color: #9E9E9E;
+    color: #fff!important;
+}
+
+.button.button-energized {
+    background-color: #FFA000;
+}
+
+.button.button-energized.active,
+.button.button-energized.activated {
+    background-color: #FF8F00;
+}
+

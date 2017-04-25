@@ -27,9 +27,9 @@
           <img ng-src="{{ book.image_max ? book.image_max : 'icons/vehicle-default-l.jpg' }}">
         </div>
         <div class="item" ng-if="selectedClient.btnOpenClose && book.showOpenCloseButtons">
-          <div class="row">
+          <!--<div class="row">
             <p>{{ ::locale.booking.labelCentralizzedButton }}</p>
-          </div>
+          </div>-->
           <div class="row">
             <div class="col col50">
               <button ng-click="openCarManipolation(book, '0')" class="button button-balanced button-block pull-left" style="padding: 0px 15px;">
@@ -99,9 +99,9 @@
                <i class="icon ion-ios-trash"></i> {{ ::locale.home.cancelReservation }}
              </button>
             </div>
-            <div class="col col50" ng-if="book.showDelayBtn">
+            <div class="col col50">
               <button ng-click='setDelay(book)' class="button button-block button-energized">
-               <i class="icon ion-ios-calendar-outline"></i> {{ selectedClient.lbldelay }}
+               <i class="icon ion-ios-time-outline"></i> {{ selectedClient.lbldelay }}
              </button>
             </div>
           </h2>

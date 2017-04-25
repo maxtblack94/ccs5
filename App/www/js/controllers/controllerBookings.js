@@ -37,6 +37,9 @@ angular.module('starter').controller('BookingsCtrl', function (PopUpServices, $c
                         if(new Date($scope.BookingsList[i].pickup_time_tollerance) <= new Date()){
                             $scope.BookingsList[i].showOpenCloseButtons = true;
                         }
+                        if($scope.BookingsList[i].returnDateChanged){
+                            $scope.BookingsList[i].dateTimeFrom = scope.BookingsList[i].pickup_time_tollerance;
+                        }
                     }
                     
                 }
@@ -172,25 +175,25 @@ angular.module('starter').controller('BookingsCtrl', function (PopUpServices, $c
             title: 'Segnala ritardo',
             subTitle: "Modifica la data e l'ora di riconsegna",
             scope: $scope,
-            buttons: [
-                { text: 'Annulla' },
-                {
-                    text: '<b>Segnala</b>',
-                    type: 'button-positive',
-                    onTap: function (e) {
-                        if (!$scope.contextPnr.dateTimeTo) {
-                            //don't allow the user to close unless he enters wifi password
-                            e.preventDefault();
-                        } else {
-                            return {
-                                'pnr': pnr.pnr,
-                                'newDate' : $scope.contextPnr.dateTimeTo,
-                                'oldDate' : pnr.dateTimeTo
-                            }
+            buttons: [{ 
+                text: 'Annulla',
+                type: 'button-stable', 
+            },{
+                text: '<b>Segnala</b>',
+                type: 'button-positive',
+                onTap: function (e) {
+                    if (!$scope.contextPnr.dateTimeTo) {
+                        //don't allow the user to close unless he enters wifi password
+                        e.preventDefault();
+                    } else {
+                        return {
+                            'pnr': pnr.pnr,
+                            'newDate' : $scope.contextPnr.dateTimeTo,
+                            'oldDate' : pnr.dateTimeTo
                         }
                     }
                 }
-            ]
+            }]
         });
 
         setDelayPopup.then(function (delayInfo) {
