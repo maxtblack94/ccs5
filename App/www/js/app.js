@@ -19,10 +19,10 @@ angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud'])
     $httpProvider.defaults.timeout = 30000;
     $ionicCloudProvider.init({
       "core": {
-        "app_id": "849a6f49"
+        "app_id": "3c90749c"
       },
       "push": {
-        "sender_id": "1052330991735",
+        "sender_id": "327400843161",
         "pluginConfig": {
           "ios": {
             "badge": true,
