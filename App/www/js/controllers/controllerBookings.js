@@ -37,9 +37,12 @@ angular.module('starter').controller('BookingsCtrl', function (PopUpServices, $c
                         if(new Date($scope.BookingsList[i].pickup_time_tollerance) <= new Date()){
                             $scope.BookingsList[i].showOpenCloseButtons = true;
                         }
-                        if($scope.BookingsList[i].returnDateChanged){
-                            $scope.BookingsList[i].dateTimeFrom = scope.BookingsList[i].pickup_time_tollerance;
-                        }
+                    }
+                    if($scope.BookingsList[i].returnDateChanged && $scope.BookingsList[i].return_time_tollerance){
+                        $scope.BookingsList[i].return_time_tollerance = $scope.BookingsList[i].return_time_tollerance.slice(10, -3);
+                        $scope.BookingsList[i].return_time_tollerance = $scope.BookingsList[i].return_date_tollerance + ' ' + $scope.BookingsList[i].return_time_tollerance;
+                        $scope.BookingsList[i].return_time_tollerance = new Date(moment($scope.BookingsList[i].return_time_tollerance, 'DD/MM/YYYY HH:mm:ss'));
+                        $scope.BookingsList[i].dateTimeTo = $scope.BookingsList[i].return_time_tollerance;
                     }
                     
                 }
