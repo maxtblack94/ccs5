@@ -99,7 +99,7 @@
                <i class="icon ion-ios-trash"></i> {{ ::locale.home.cancelReservation }}
              </button>
             </div>
-            <div class="col col50">
+            <div class="col col50" ng-if="book.showDelayBtn">
               <button ng-click='setDelay(book)' class="button button-block button-energized">
                <i class="icon ion-ios-time-outline"></i> {{ selectedClient.lbldelay }}
              </button>
