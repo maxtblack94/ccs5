@@ -22,7 +22,13 @@ angular.module('starter').controller('AccountCtrl', function($rootScope, $scope,
     	});
     };
 
+    var counter = 0;
     $scope.deleteClienteContext = function(){
-        window.localStorage.removeItem('selclient');
+        if(counter===4){
+            window.localStorage.removeItem('selclient');
+            $scope.logout();
+        }else{
+            counter++
+        }
     }
 })
