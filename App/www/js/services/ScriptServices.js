@@ -18,12 +18,18 @@ angular.module('starter').factory("ScriptServices", function($q, $http, InfoFact
         $http(request).then(function successCallback(response) {
             var requestGET = headerGET(scriptID, response.data.d.Id);
             $http(requestGET).then(function successCallback(response) {
-	    			var resultValue = JSON.parse(response.data.d.ExecuteAdminScript.ResultValue);
-                    if(resultValue.retcode === '1'){
+                var resultValue = response.data.d.ExecuteAdminScript.ResultValue;
+                if(resultValue){
+                    resultValue = JSON.parse(response.data.d.ExecuteAdminScript.ResultValue);
+                    if(resultValue.retcode == '-1' || resultValue.retcode == '-2'){
                         reject('Error');
                     }else{
                         resolve(resultValue);
                     }
+                }else{
+                    reject('Error');
+                }
+                    
                 }, function errorCallback(response) {
                     reject('Error');
                 });
