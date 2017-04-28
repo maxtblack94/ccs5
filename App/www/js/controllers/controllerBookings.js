@@ -49,7 +49,7 @@ angular.module('starter').controller('BookingsCtrl', function (PopUpServices, $c
                 $ionicLoading.hide();
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup(error+', riprovare!');
+                PopUpServices.errorPopup("Non è stato possibile recuperare le prenotazioni.");
             })
         });
     
@@ -62,21 +62,24 @@ angular.module('starter').controller('BookingsCtrl', function (PopUpServices, $c
     };
 
     $scope.openCarManipolation = function (reservation, opT) {
-        $http.get("res/627.xml").success(function (res) {
+        $ionicLoading.show();
+        ScriptServices.getXMLResource(627).then(function(res) {
             res = res.replace('{PNR}', reservation.pnr);
-            WebService.ajaxPostRequestTemp(res, 627, function (data) {
+            ScriptServices.callGenericService(res, 627).then(function(data) {
                 var response = data.split(',');
                 var carCoords = {
                     "lat" : response[0],
                     "long": response[1]
                 }
                 startCloseOpenCarProcess(reservation, opT, carCoords);
-            });
+            }, function(error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup("Non siamo riusciti a recuperare le coordinate del veicolo! Riprovare.");
+            })
         });
     }
 
     function startCloseOpenCarProcess (reservation, opT, carCoords){
-        $ionicLoading.show();
         if(opT === "0"){
              var posOptions = {timeout: 10000, enableHighAccuracy: false};
             $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
