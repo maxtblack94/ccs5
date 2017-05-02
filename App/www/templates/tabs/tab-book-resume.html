@@ -36,6 +36,12 @@
           <ion-radio ng-repeat='range in listDriverRange' ng-model="selectedDriverRange.value" ng-value="range.code">{{ range.text }}</ion-radio>
         </ion-list>
       </ion-item>
+      <ion-item ng-if='selectedClient.vehicleType && vehicleTypeList' style='border-bottom: none; margin-bottom: 10px;'>
+        <p style='line-height: 30px;'>Tipologia veicolo<span class="color-error">*</span></p>
+        <ion-list>
+          <ion-radio ng-repeat='type in vehicleTypeList' ng-model="selectedVehicleType.value" ng-value="type.code">{{ type.text }}</ion-radio>
+        </ion-list>
+      </ion-item>
     </ion-list>
     <div class="row">
       <div class="col col-80 col-offset-10">

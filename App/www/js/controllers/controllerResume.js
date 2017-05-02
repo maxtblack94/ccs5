@@ -1,10 +1,11 @@
-angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, WebService, PopUpServices) {
+angular.module('starter').controller('ResumeCtrl', function(ScriptServices, $timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, WebService, PopUpServices) {
     $scope.locale = window.locale;
     InfoFactories.setTelepass(false);
     InfoFactories.setCC(false);
     $scope.selectedParking = InfoFactories.getPark();
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.selectedDriverRange = InfoFactories.getSelectedRangeDriver();
+    $scope.selectedVehicleType = InfoFactories.getSelectedVehicleType();
     $scope.dateTimeFrom = InfoFactories.getDateTimeFrom();
     $scope.dateTimeTo = InfoFactories.getDateTimeTo();
     if($state.params.error){
@@ -18,6 +19,21 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
             $ionicLoading.hide();
         });
     }
+
+    if($scope.selectedClient.vehicleType && $scope.selectedParking){
+        $ionicLoading.show();
+        ScriptServices.getXMLResource(592).then(function(res) {
+            res = res.replace('{IDPARK}', $scope.selectedParking.Nr);
+            ScriptServices.callGenericService(res, 592).then(function(data) {
+                $scope.vehicleTypeList = data.typeList;
+                $ionicLoading.hide();
+            }, function(error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup("Non è stato possibile recuperare le tipologie di veicoli presenti in questo parcheggio!", "1");
+            })
+        });
+    }
+
     $scope.setHasCC = function() {
         $scope.hasCC = !$scope.hasCC;
         InfoFactories.setCC($scope.hasCC);
@@ -35,6 +51,9 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
         if(datesCheck()){
             if($scope.selectedClient.drivingRange){
                 InfoFactories.setSelectedRangeDriver($scope.selectedDriverRange);
+            }
+            if($scope.selectedClient.vehicleType){
+                InfoFactories.setSelectedVehicleType($scope.selectedVehicleType);
             }
             $state.go('tab.selcar');
         }
@@ -57,14 +76,19 @@ angular.module('starter').controller('ResumeCtrl', function($timeout, $cordovaDa
             }else if((dateTimeTo - dateTimeFrom) < 0){
                 PopUpServices.errorPopup("La data di ritiro è maggiore della data di consegna", "1");
                 return false;
-            }else if(!$scope.selectedParking.h24 && dateTimeFrom.getHours() < $scope.selectedParking.opening.getHours() || dateTimeFrom.getHours() >$scope.selectedParking.closing.getHours()){
-                PopUpServices.errorPopup("La data di ritiro non rientra negli orari di apertura del parcheggio", "1");
-                return false;
-            }else if(!$scope.selectedParking.h24 && dateTimeTo.getHours() < $scope.selectedParking.opening.getHours() || dateTimeTo.getHours() > $scope.selectedParking.closing.getHours()){
-                PopUpServices.errorPopup("La data di consegna non rientra negli orari di apertura del parcheggio", "1");
-                return false;
+            }else if(!$scope.selectedParking.h24){
+                if((dateTimeFrom.getHours() < $scope.selectedParking.opening.getHours()) || (dateTimeFrom.getHours() >$scope.selectedParking.closing.getHours())){
+                    PopUpServices.errorPopup("La data di ritiro non rientra negli orari di apertura del parcheggio", "1");
+                    return false;
+                }else if((dateTimeTo.getHours() < $scope.selectedParking.opening.getHours()) || (dateTimeTo.getHours() > $scope.selectedParking.closing.getHours())){
+                    PopUpServices.errorPopup("La data di consegna non rientra negli orari di apertura del parcheggio", "1");
+                    return false;
+                }
             }else if($scope.selectedClient.drivingRange == true && $scope.selectedDriverRange.value == "short"){
                 PopUpServices.errorPopup("Non hai definito il raggio di percorrenza", "1");
+                return false;
+            }else if($scope.selectedClient.vehicleType == true && !$scope.selectedVehicleType.value && $scope.vehicleTypeList){
+                PopUpServices.errorPopup("Selezionare una tipologia di veicolo", "1");
                 return false;
             }
             return true;
