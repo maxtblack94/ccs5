@@ -29,7 +29,8 @@ angular.module('starter').controller('CarCtrl', function($scope, $http, $rootSco
 					 .replace('{TIME_TO}', moment($scope.dateTimeTo).format('HH:mm'))
 					 .replace('{CC}', cc)
 					 .replace('{TELEPASS}', telepass)
-					 .replace('{DRIVING_RANGE}', InfoFactories.getSelectedRangeDriver().value);
+					 .replace('{DRIVING_RANGE}', InfoFactories.getSelectedRangeDriver().value)
+                     .replace('{VEHICLETYPE}', InfoFactories.getSelectedVehicleType().value);
 
             WebService.ajaxPostRequest(res, 571, function(data) {
                 $scope.loading = false;

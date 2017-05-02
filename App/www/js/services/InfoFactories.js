@@ -2,11 +2,12 @@ angular.module('starter').factory("InfoFactories", [function () {
     var parking, server, selectedClient, selectedCar, dateTimeFrom, dateTimeTo,
     telepass = false, 
     CC = false, 
+    selectedVehicleType = { value: null },
     selectedRangeDriver = { value: 'short' };
 
     function resetService (){
         parking = undefined, server = undefined, selectedClient = undefined, selectedCar = undefined, telepass = false, CC = false, selectedRangeDriver = { value: 'short' },
-        dateTimeFrom = undefined, dateTimeTo = undefined;
+        dateTimeFrom = undefined, dateTimeTo = undefined, selectedVehicleType = { value: null };
         return;
     };
     function applyClientStyle (url){
@@ -101,6 +102,12 @@ angular.module('starter').factory("InfoFactories", [function () {
     function getSelectedCar() {
         return selectedCar;
     };
+    function setSelectedVehicleType(type){
+        selectedVehicleType = type;
+    }
+    function getSelectedVehicleType(){
+        return selectedVehicleType;
+    }
     function setCC(varCC) {
         CC = varCC;
     };
@@ -205,7 +212,13 @@ angular.module('starter').factory("InfoFactories", [function () {
         },
         applyClientStyle: function (url) {
             return applyClientStyle(url);
-        }
+        },
+        setSelectedVehicleType: function (type) {
+            return setSelectedVehicleType(type);
+        },
+        getSelectedVehicleType: function () {
+            return getSelectedVehicleType();
+        },
     };
 
 
