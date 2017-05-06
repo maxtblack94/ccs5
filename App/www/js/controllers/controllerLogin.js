@@ -1,42 +1,70 @@
 angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scope, $ionicPush, $rootScope, PopUpServices, InfoFactories, $http, $state, $ionicLoading, WebService, $ionicPopup) {
     function init(){
+        $ionicLoading.show();
         $scope.locale = window.locale;
         $scope.recorveryPassword = false;
         $scope.request = {};
-        var c = eval('('+window.localStorage.getItem('selclient')+')');  
-        if(c) {
-            InfoFactories.setClientSelected(c);
-            InfoFactories.setServer(c.value.toLowerCase());
+        getClientList('refresh');
+        verifyUserLogged();
+        
+    };
+
+    function verifyClientSelected(){
+        $scope.selectedClient = InfoFactories.getClientSelected();
+        return $scope.selectedClient?true:false
+    }
+
+    function getClientList(action){
+        ScriptServices.getXMLResource(589).then(function(res) {
+            res = res.replace('{LANGUAGE}', 'Italiano');
+            ScriptServices.callGenericService(res, 589, 'demo').then(function(data) {
+                $ionicLoading.hide();
+                $scope.clientList = data.clientListBooking;
+                if(action === 'refresh'){
+                    InfoFactories.applyClientStyle($scope.selectedClient.clientStyle);
+                    refreshClientConfigs("cl452s");
+                }
+            }, function(error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup('Non è stato possibile recuperare le informazioni aziendali');
+            })
+        });
+    }
+
+    function verifyUserLogged(){
+        var driverNumber = InfoFactories.getUserInfo().driverNumber;
+        if (driverNumber) {
             registerPushID();
-        }else{
-            $ionicLoading.show();
-            $http.get("res/589.xml").success(function(res) {
-                res = res.replace('{LANGUAGE}', 'Italiano');
-                WebService.ajaxPostRequestDemo(res, 589, function(data) {
-                    $ionicLoading.hide();
-                    $scope.clientList = data.clientListBooking;
-                    for (var i = 0; i < $scope.clientList.length; i++) {
-                        if('cl452s' === $scope.clientList[i].clientCode){
-                            InfoFactories.setClientSelected($scope.clientList[i]);
-                            InfoFactories.setServer($scope.clientList[i].value.toLowerCase());
-                            window.localStorage.setItem('selclient', JSON.stringify($scope.clientList[i]));
-                            $scope.configCompanyAccount = false;
-                            break;
-                        }
-                    }
-                });
-            });
-            $scope.configCompanyAccount = true;
-        }
-             
-        var userId = window.localStorage.getItem('Nr');
-        if (userId) {
             $state.go('tab.bookings');
         }
     }
 
+    function refreshClientConfigs(clientCode){
+        for (var i = 0; i < $scope.clientList.length; i++) {
+            var element = $scope.clientList[i];
+            if(clientCode === $scope.clientList[i].clientCode){
+                $scope.selectedClient = $scope.clientList[i];
+                InfoFactories.applyClientStyle($scope.clientList[i].clientStyle);
+                window.localStorage.setItem('selectedClient', JSON.stringify($scope.clientList[i]));
+                $scope.configCompanyAccount = false;
+                break;
+            }
+        }
+    }
 
-    init();
+    $scope.verifyCompanyCode = function(){
+        if(!$scope.request.verifyCode){
+            setTimeout(function() {
+                $('#verifyCode-input').focus();
+            });
+        }else{
+            refreshClientConfigs($scope.request.verifyCode);
+            if($scope.configCompanyAccount === true){
+                PopUpServices.errorPopup('Il codice cliente inserito non esiste, riprovare!', '1');
+            }
+        }
+    }
+
 
     $scope.recorveryPasswordOn = function(){
         $scope.recorveryPassword = !$scope.recorveryPassword;
@@ -99,13 +127,30 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
             res = res.replace('{USER_NAME}', user).replace('{PASSWORD}', pw);
             ScriptServices.callGenericService(res, 515).then(function(data) {
                 if(data.data.DriverList.length > 0){
-                    window.localStorage.setItem('Nr', data.data.DriverList[0].Nr);
-	    			window.localStorage.setItem('user_name', user);
-                    registerPushID();
-                    $state.go('tab.bookings');
+                    var userInfo = {
+                        driverNumber : data.data.DriverList[0].Nr,
+                        userName : user
+                    };
+                    getUserInfo(userInfo);
                 }else{
                     PopUpServices.errorPopup('Email/Password sono errati, riprovare!');
+                    $ionicLoading.hide(); 
                 }
+            }, function(error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup(error+', riprovare!');
+            })
+        });
+    }
+
+    function getUserInfo(userInfo){
+        ScriptServices.getXMLResource(554).then(function(res) {
+            res = res.replace('{NUMBER_DRIVER}', userInfo.driverNumber);
+            ScriptServices.callGenericService(res, 554).then(function(data) {
+                userInfo.registry =  data.data.GetUser[0];
+                window.localStorage.setItem('userInfo', JSON.stringify(userInfo));
+                registerPushID();
+                $state.go('tab.bookings');
                 $ionicLoading.hide(); 
             }, function(error) {
                 $ionicLoading.hide();
@@ -116,8 +161,8 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
 
     function storeToken (pushId){
         $http.get('res/567.xml').success(function(res) {  
-            var Nr = window.localStorage.getItem('Nr');
-            res = res.replace('{USER_ID}', Nr);
+            var driverNumber = InfoFactories.getUserInfo().driverNumber;
+            res = res.replace('{USER_ID}', driverNumber);
             res = res.replace('{PUSH_ID}', pushId);
             WebService.ajaxPostRequest(res, 567, null);
         });
@@ -133,4 +178,6 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
             console.log('Token saved:', t.token);
         });
     }
+
+    init();
 })
