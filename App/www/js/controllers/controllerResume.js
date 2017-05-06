@@ -91,6 +91,20 @@ angular.module('starter').controller('ResumeCtrl', function(ScriptServices, $tim
                 PopUpServices.errorPopup("Selezionare una tipologia di veicolo", "1");
                 return false;
             }
+            if(InfoFactories.getUserInfo() && InfoFactories.getUserInfo().registry && InfoFactories.getUserInfo().registry.time_of_booking){
+                var days = InfoFactories.getUserInfo().registry.time_of_booking;
+                var maxDate;
+                if(days === "0"){
+                    maxDate = new Date().setHours(23,59,59,0);
+                }else{
+                    maxDate = new Date()
+                    maxDate = moment(maxDate).add('days', days);
+                }
+                if(maxDate <= new Date($scope.dateTimeTo)){
+                    PopUpServices.errorPopup("La data di riconsegna deve essere entro il "+moment(maxDate).format('DD/MM/YYYY HH:mm'), "1");
+                    return false;
+                }
+            }
             return true;
         }
         

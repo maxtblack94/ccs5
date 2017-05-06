@@ -117,7 +117,7 @@ window.locale.tabs = {
 	reservations: 'Prenotazioni',
 	park: 'Parcheggi',
 	booking: 'Prenota',
-	vehicles: 'veicoli',
+	vehicles: 'Veicoli',
 	settings: 'Impostazioni'
 };
 
@@ -143,10 +143,10 @@ window.locale.date = {
 
 window.locale.account = {
 	title: 'Impostazioni',
-	check1: 'Lista ridotta',
+	check1: 'Riduci Immagini',
 	client: 'Cliente',
 	logout: 'Esci',
-	check1_descr: 'Mostra la lista delle prenotazioni ridotta'
+	check1_descr: 'Mostra le immagini dei veicoli ridotte'
 };
 
 window.locale.resume = {

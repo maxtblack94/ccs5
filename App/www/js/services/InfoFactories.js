@@ -1,16 +1,19 @@
 angular.module('starter').factory("InfoFactories", [function () {
-    var parking, server, selectedClient, selectedCar, dateTimeFrom, dateTimeTo,
+    var parking, selectedCar, dateTimeFrom, dateTimeTo,
     telepass = false, 
     CC = false, 
     selectedVehicleType = { value: null },
     selectedRangeDriver = { value: 'short' };
 
     function resetService (){
-        parking = undefined, server = undefined, selectedClient = undefined, selectedCar = undefined, telepass = false, CC = false, selectedRangeDriver = { value: 'short' },
+        parking = undefined, selectedCar = undefined, telepass = false, CC = false, selectedRangeDriver = { value: 'short' },
         dateTimeFrom = undefined, dateTimeTo = undefined, selectedVehicleType = { value: null };
         return;
     };
     function applyClientStyle (url){
+        if(!url){
+            url = 'css/stylesheet.css'
+        }
         var cssId = 'myCss';  // you could encode the css path itself to generate id..
         if (!document.getElementById(cssId)){
             var head  = document.getElementsByTagName('head')[0];
@@ -84,17 +87,14 @@ angular.module('starter').factory("InfoFactories", [function () {
     function getPark() {
         return parking;
     };
-    function setClientSelected(varSelectedClient) {
-        selectedClient = varSelectedClient;
-    };
     function getClientSelected() {
-        return selectedClient || eval('('+window.localStorage.getItem('selclient')+')');
+        return JSON.parse(window.localStorage.getItem('selectedClient'));
     };
-    function setServer(varServer) {
-        server = varServer;
+    function getUserInfo() {
+        return JSON.parse(window.localStorage.getItem('userInfo')) || {};
     };
     function getServer() {
-        return server || eval('('+window.localStorage.getItem('selclient')+')').value.toLowerCase();
+        return JSON.parse(window.localStorage.getItem('selectedClient')).value.toLowerCase();
     };
     function setSelectedCar(varCar) {
         selectedCar = varCar;
@@ -150,9 +150,6 @@ angular.module('starter').factory("InfoFactories", [function () {
         getPark: function () {
             return getPark();
         },
-        setClientSelected: function (varSelectedClient) {
-            return setClientSelected(varSelectedClient);
-        },
         getClientSelected: function () {
             return getClientSelected();
         },
@@ -179,9 +176,6 @@ angular.module('starter').factory("InfoFactories", [function () {
         },
         getSelectedRangeDriver: function () {
             return getSelectedRangeDriver();
-        },
-        setServer: function (varServer) {
-            return setServer(varServer);
         },
         getServer: function () {
             return getServer();
@@ -219,6 +213,9 @@ angular.module('starter').factory("InfoFactories", [function () {
         getSelectedVehicleType: function () {
             return getSelectedVehicleType();
         },
+        getUserInfo: function () {
+            return getUserInfo();
+        }
     };
 
 

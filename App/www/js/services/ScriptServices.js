@@ -12,11 +12,11 @@ angular.module('starter').factory("ScriptServices", function($q, $http, InfoFact
         });
     };
 
-    function callGenericService(res, scriptID) {
-        var request = headerPOST(res);
+    function callGenericService(res, scriptID, server) {
+        var request = headerPOST(res, server);
         return $q(function(resolve, reject) {
         $http(request).then(function successCallback(response) {
-            var requestGET = headerGET(scriptID, response.data.d.Id);
+            var requestGET = headerGET(scriptID, response.data.d.Id, server);
             $http(requestGET).then(function successCallback(response) {
                 var resultValue = response.data.d.ExecuteAdminScript.ResultValue;
                 if(resultValue){
@@ -39,17 +39,17 @@ angular.module('starter').factory("ScriptServices", function($q, $http, InfoFact
         });
     };
 
-    function headerGET (scriptID, callCode){
+    function headerGET (scriptID, callCode, server){
         return {
-            url: "http://"+InfoFactories.getServer()+".corporatecarsharing.biz/api.svc/ExecuteAdminScript?scriptId="+ scriptID +"&scriptParameterSetId=" + callCode,
+            url: "http://"+(server || InfoFactories.getServer())+".corporatecarsharing.biz/api.svc/ExecuteAdminScript?scriptId="+ scriptID +"&scriptParameterSetId=" + callCode,
             headers: {'TenForce-Auth': 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4'},
             method: "GET"
         }
     }
 
-    function headerPOST (res){
+    function headerPOST (res, server){
         return {
-            url: 'http://'+InfoFactories.getServer()+'.corporatecarsharing.biz/api.svc/ScriptParameterSets',
+            url: 'http://'+(server || InfoFactories.getServer())+'.corporatecarsharing.biz/api.svc/ScriptParameterSets',
             method: "POST",
             data: res,
             headers: {
@@ -63,8 +63,8 @@ angular.module('starter').factory("ScriptServices", function($q, $http, InfoFact
         getXMLResource: function (scriptID) {
             return getXMLResource(scriptID);
         },
-        callGenericService: function (res, scriptID) {
-            return callGenericService(res, scriptID);
+        callGenericService: function (res, scriptID, server) {
+            return callGenericService(res, scriptID, server);
         }
     };
 
