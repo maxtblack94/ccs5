@@ -16,7 +16,7 @@ angular.module('starter').controller('BookingsCtrl', function (PopUpServices, $c
         $ionicLoading.show(); 
         $scope.BookingsList = undefined;
         ScriptServices.getXMLResource(516).then(function(res) {
-            var driver = window.localStorage.getItem('Nr');
+            var driver = InfoFactories.getUserInfo().driverNumber;
             res = res.replace('{DRIVER_NUMBER}', driver);
             ScriptServices.callGenericService(res, 516).then(function(data) {
                 $scope.BookingsList = data.data.BookingsList;

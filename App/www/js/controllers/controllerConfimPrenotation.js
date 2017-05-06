@@ -1,4 +1,4 @@
-angular.module('starter').controller('ConfirmPrenotationCtrl', function($scope, $http, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup, WebService) {
+angular.module('starter').controller('ConfirmPrenotationCtrl', function(ScriptServices, $scope, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup, WebService) {
     function init(){
         $scope.locale = window.locale;
         $scope.selectedClient = InfoFactories.getClientSelected();
@@ -25,9 +25,9 @@ angular.module('starter').controller('ConfirmPrenotationCtrl', function($scope, 
     }
 
     $scope.selectJustify = function(index, justify) {
-        for(var i = 0; i < $scope.justifyList.length; i++)
+        for(var i = 0; i < $scope.justifyList.length; i++){
             $scope.justifyList[i].selected = false;
-        
+        }
         $scope.justifyList[index].selected = true;
         $scope.selectedJustify = justify;
     };
@@ -47,29 +47,25 @@ angular.module('starter').controller('ConfirmPrenotationCtrl', function($scope, 
             });
             return;
         }
-    
-            
         $ionicLoading.show();
-        $http.get('res/514.xml').success(function(res) {
-			var driver = window.localStorage.getItem('Nr');
-            
+        ScriptServices.getXMLResource(514).then(function(res) {
+            var driverNumber = InfoFactories.getUserInfo().driverNumber;
             res = res.replace('{NUMBER_VEHICLE}', $scope.selectedCar.Nr)
-                        .replace('{NUMBER_DRIVER}', driver)
-                        .replace('{DATE_FROM}', moment($scope.dateTimeFrom ).format('DD/MM/YYYY'))
-                        .replace('{DATE_TO}', moment($scope.dateTimeTo).format('DD/MM/YYYY'))
-                        .replace('{TIME_FROM}', moment($scope.dateTimeFrom).format('HH:mm'))
-                        .replace('{TIME_TO}', moment($scope.dateTimeTo).format('HH:mm'))
-                        .replace('{PLACE}', place)
-                        .replace('{JUSTIFICATION}', justifyCode)
-                        .replace('{CC}', cc || false)
-                        .replace('{TELEPASS}', cc || false);
-            
-            WebService.ajaxPostRequest(res, 514, function(data) {
+            .replace('{NUMBER_DRIVER}', driverNumber)
+            .replace('{DATE_FROM}', moment($scope.dateTimeFrom ).format('DD/MM/YYYY'))
+            .replace('{DATE_TO}', moment($scope.dateTimeTo).format('DD/MM/YYYY'))
+            .replace('{TIME_FROM}', moment($scope.dateTimeFrom).format('HH:mm'))
+            .replace('{TIME_TO}', moment($scope.dateTimeTo).format('HH:mm'))
+            .replace('{PLACE}', place)
+            .replace('{JUSTIFICATION}', justifyCode)
+            .replace('{CC}', cc || false)
+            .replace('{TELEPASS}', telepass || false);
+            ScriptServices.callGenericService(res, 514).then(function(data) {
                 $ionicLoading.hide();
-                
+                InfoFactories.setDateTimeFrom();
+                InfoFactories.setDateTimeTo();
                 $scope.PNRstring = data.data.PNRstring[0].PNR;
                 $scope.isConfirmed = true;
-                
                 var pnrPopup = $ionicPopup.alert({
                     title: $scope.locale.confirmation.labelRequestComplete,
                     template: $scope.locale.home.rsvinfo.labPRN + ': <b>' + $scope.PNRstring + '</b>'
@@ -77,7 +73,10 @@ angular.module('starter').controller('ConfirmPrenotationCtrl', function($scope, 
                 pnrPopup.then(function(res) {
                     $state.go('tab.bookings');
                 });
-            });
+            }, function(error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup(error);
+            })
         });
     };
 

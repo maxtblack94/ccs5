@@ -22,7 +22,7 @@ angular.module('starter').controller('CarCtrl', function($scope, $http, $rootSco
         $ionicLoading.show();
 		$http.get("res/571.xml").success(function(res) {                                       
 			res = res.replace('{NUMBER_PARKING}', InfoFactories.getPark().Nr)
-					 .replace('{NUMBER_DRIVER}', window.localStorage.getItem('Nr'))
+					 .replace('{NUMBER_DRIVER}', InfoFactories.getUserInfo().driverNumber)
 					 .replace('{DATE_FROM}', moment($scope.dateTimeFrom).format('DD/MM/YYYY'))
 					 .replace('{DATE_TO}', moment($scope.dateTimeTo).format('DD/MM/YYYY'))
 					 .replace('{TIME_FROM}', moment($scope.dateTimeFrom).format('HH:mm'))
@@ -36,7 +36,7 @@ angular.module('starter').controller('CarCtrl', function($scope, $http, $rootSco
                 $scope.loading = false;
                 $ionicLoading.hide();
                                        
-                if(data.retcode == 1) {
+                if(data.retcode == 1 || data.retcode == 2) {
                     $state.go('tab.resume', {error : 'cannotReserve'});
                 }else{
                     $scope.vehicleList = data.data.VehiclesList;

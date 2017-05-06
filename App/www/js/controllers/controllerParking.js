@@ -4,8 +4,8 @@ angular.module('starter').controller('ParkingCtrl', function($scope, $rootScope,
      function init() {
         $ionicLoading.show();
 		$http.get("res/512.xml").success(function(res) {
-			var driver = window.localStorage.getItem('Nr');
-			res = res.replace('{DRIVER_NUMBER}', driver);
+			var driverNumber = InfoFactories.getUserInfo().driverNumber;
+			res = res.replace('{DRIVER_NUMBER}', driverNumber);
 			
 			WebService.ajaxPostRequest(res, 512, function(data) {
                 if(data.data.ParkingsList){
