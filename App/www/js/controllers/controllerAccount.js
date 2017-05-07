@@ -7,8 +7,8 @@ angular.module('starter').controller('AccountCtrl', function($rootScope, $scope,
         window.localStorage.setItem('hasPicture', $rootScope.hasPicture);
     };
     
-    $scope.logout = function() {
-    	var driverNumber = InfoFactories.userInfo().driverNumber;
+    $scope.logout = function(action) {
+    	var driverNumber = InfoFactories.getUserInfo().driverNumber;
     	window.localStorage.removeItem('userInfo');
         $ionicLoading.show();
         $http.get("res/569.xml").success(function(res) {
@@ -16,14 +16,16 @@ angular.module('starter').controller('AccountCtrl', function($rootScope, $scope,
     		res = res.replace('{USER_ID}', driverNumber);
     		WebService.ajaxPostRequest(res, 569, null);
             InfoFactories.resetService();
+            if(action==='clearClient'){
+                window.localStorage.removeItem('selectedClient');
+            }
             $state.go('login');
     	});
     };
 
     $scope.deleteClienteContext = function(){
         if(counter===4){
-            window.localStorage.removeItem('selectedClient');
-            $scope.logout();
+            $scope.logout('clearClient');
         }else{
             counter++
         }
