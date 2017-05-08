@@ -25,7 +25,6 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
                 $ionicLoading.hide();
                 $scope.clientList = data.clientListBooking;
                 if(action === 'refresh'){
-                    InfoFactories.applyClientStyle($scope.selectedClient.clientStyle);
                     refreshClientConfigs($scope.selectedClient.clientCode);
                 }
             }, function(error) {
