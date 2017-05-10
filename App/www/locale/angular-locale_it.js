@@ -145,7 +145,7 @@ window.locale.account = {
 	title: 'Impostazioni',
 	check1: 'Riduci Immagini',
 	client: 'Cliente',
-	logout: 'Esci',
+	logout: 'Logout',
 	check1_descr: 'Mostra le immagini dei veicoli ridotte'
 };
 

@@ -198,7 +198,9 @@ a.positive {
 .ion-android-star.selected {
 	color: orange!important;
 }
-
+.password{
+    -webkit-text-security: disc;
+}
 .pull-right{
 	float:right;
 }
