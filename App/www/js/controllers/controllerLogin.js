@@ -127,8 +127,7 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
             ScriptServices.callGenericService(res, 515).then(function(data) {
                 if(data.data.DriverList.length > 0){
                     var userInfo = {
-                        driverNumber : data.data.DriverList[0].Nr,
-                        userName : user
+                        driverNumber : data.data.DriverList[0].Nr
                     };
                     getUserInfo(userInfo);
                 }else{

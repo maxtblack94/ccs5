@@ -1,0 +1,40 @@
+<ion-list>
+    <ion-item class="item-icon-left" menu-close>
+        <i class="icon ion-ios-person-outline"></i>
+        <h2>{{userInfo.registry.first_name}} {{userInfo.registry.last_name}}</h2>
+        <p>{{userInfo.registry.email}}</p>
+        <span>Username: {{userInfo.registry.username}}</span>
+    </ion-item>
+    <ion-item class="item-icon-right" ng-click="goBookings();" menu-close>
+        <h2>Password</h2>
+        <p class="password">xxxxxxxxxxxx</p>
+        <i class="icon ion-ios-color-wand-outline"></i>
+    </ion-item>
+    <ion-item class="item-divider">
+        <h2>Menu</h2>
+    </ion-item>
+    <ion-item class="item-icon-right" href="#/tab/bookings" menu-close>
+        <h2>Home</h2>
+        <i class="icon ion-ios-home-outline"></i>
+    </ion-item>
+    <ion-item class="item-icon-right" ng-click="goBookings();" menu-close>
+        <h2>Storico Prenotazioni</h2>
+        <i class="icon ion-ios-filing-outline"></i>
+    </ion-item>
+    <ion-item class="item-icon-right" href="#/tab/account" menu-close>
+        <h2>{{locale.tabs.settings}}</h2>
+        <i class="icon ion-ios-gear-outline"></i>
+    </ion-item>
+    <ion-item class="item-icon-right" ng-click="goBookings();" menu-close>
+        <h2>Contatti</h2>
+        <i class="icon ion-ios-telephone-outline"></i>
+    </ion-item>
+</ion-list>
+
+<div class="row">
+    <div class="col col-80 col-offset-10">
+        <button ng-click='logout()' class="button button-block button-positive">
+         {{ locale.account.logout }}
+        </button>
+    </div>
+</div>
