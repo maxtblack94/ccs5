@@ -9,14 +9,14 @@
           <h2>{{ locale.account.check1 }}</h2>
           <p style='white-space: normal;'>{{ locale.account.check1_descr }}</p>
       </ion-toggle>
-      <div class="row">
-        <div class="col col-80 col-offset-10">
-          <button ng-click='logout()' class="button button-block button-positive">
-            {{ locale.account.logout }}
-          </button>
-        </div>
-      </div>
-      
+       <ion-item class="item-icon-right" href="#/settings">
+        Dati personali
+        <i class="icon ion-ios-person-outline"></i>
+      </ion-item>
+      <ion-item class="item-icon-right" href="#/edit-password">
+        Modifica password
+        <i class="icon fa fa-pencil" aria-hidden="true"></i>
+      </ion-item>
         
     </ion-list>
   </ion-content>
