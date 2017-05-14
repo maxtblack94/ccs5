@@ -1,4 +1,4 @@
-angular.module('starter').controller('AccountCtrl', function($rootScope, $scope, $http, $state, $ionicLoading, InfoFactories, WebService) {
+angular.module('starter').controller('SettingsCtrl', function($rootScope, $scope, $http, $state, $ionicLoading, InfoFactories, WebService) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     

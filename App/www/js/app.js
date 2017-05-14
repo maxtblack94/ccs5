@@ -53,6 +53,26 @@ angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud'])
         controller: 'ConfirmPrenotationCtrl'
       })
 
+      .state('contacts', {
+        url: '/contacts',
+        cache: false,
+        templateUrl: 'templates/commons/contacts.html',
+        controller: 'ContactsCtrl'
+      })
+
+      .state('editPassword', {
+        url: '/edit-password',
+        cache: false,
+        templateUrl: 'templates/commons/edit-password.html',
+        controller: 'EditPasswordCtrl'
+      })
+      .state('clientDetails', {
+        url: '/client-details',
+        cache: false,
+        templateUrl: 'templates/commons/client-details.html',
+        controller: 'ClientDetailCtrl'
+      })
+
       // setup an abstract state for the tabs directive
       .state('tab', {
         url: '/tab',
@@ -124,15 +144,11 @@ angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud'])
         }
       })
 
-      .state('tab.account', {
-        url: '/account',
+      .state('settings', {
+        url: '/settings',
         cache: false,
-        views: {
-          'tab-account': {
-            templateUrl: 'templates/tabs/tab-account.html',
-            controller: 'AccountCtrl'
-          }
-        }
+        templateUrl: 'templates/commons/settings.html',
+        controller: 'SettingsCtrl'
       });
 
     $urlRouterProvider.otherwise('/login');
