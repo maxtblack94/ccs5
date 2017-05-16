@@ -1,9 +1,10 @@
-angular.module('starter').controller('MenuCtrl', function($rootScope, $scope, $http, $state, $ionicLoading, InfoFactories, WebService) {
+angular.module('starter').controller('MenuCtrl', function($ionicSideMenuDelegate, $rootScope, $scope, $http, $state, $ionicLoading, InfoFactories, WebService) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
 
     $scope.logout = function() {
+        $ionicSideMenuDelegate.toggleLeft(false);
     	var driverNumber = InfoFactories.getUserInfo().driverNumber;
     	window.localStorage.removeItem('userInfo');
         $ionicLoading.show();

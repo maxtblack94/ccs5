@@ -6,19 +6,19 @@
             </ion-item>
             <ion-item>
                 <h2>Nome</h2>
-                <p>{{userInfo.first_name}}</p>
+                <p>{{userInfo.registry.first_name}}</p>
             </ion-item>
             <ion-item>
                 <h2>Cognome</h2>
-                <p>{{userInfo.last_name}}</p>
+                <p>{{userInfo.registry.last_name}}</p>
             </ion-item>
             <ion-item>
                 <h2>Username</h2>
-                <p>{{userInfo.username}}</p>
+                <p>{{userInfo.registry.username}}</p>
             </ion-item>
             <ion-item>
                 <h2>BadgeID</h2>
-                <p>{{userInfo.badge_id}}</p>
+                <p>{{userInfo.registry.badge_id}}</p>
             </ion-item>
             <ion-item class="item-divider">
                 <h2>Contatti</h2>
@@ -26,19 +26,19 @@
             <div ng-if="!request">
                 <ion-item>
                     <h2>Email</h2>
-                    <p>{{userInfo.email}}</p>
+                    <p>{{userInfo.registry.email}}</p>
                 </ion-item>
-                <ion-item ng-if="userInfo.mobile_phone">
+                <ion-item ng-if="userInfo.registry.mobile_phone">
                     <h2>Cellulare</h2>
-                    <p>{{userInfo.mobile_phone}}</p>
+                    <p>{{userInfo.registry.mobile_phone}}</p>
                 </ion-item>
             </div>
             <div ng-if="request">
-                <ion-item class="item-input item-floating-label">
+                <ion-item class="item-input item-stacked-label">
                     <span class="input-label">Email<span class="color-error">*</span></span>
                     <input type="text" ng-model="request.email" placeholder="Email">
                 </ion-item>
-                <ion-item class="item-input item-floating-label">
+                <ion-item class="item-input item-stacked-label">
                     <span class="input-label">Cellulare<span class="color-error">*</span></span>
                     <input type="text" ng-model="request.cellulare" placeholder="Cellulare">
                 </ion-item>

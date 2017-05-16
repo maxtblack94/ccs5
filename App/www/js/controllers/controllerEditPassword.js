@@ -17,29 +17,35 @@ angular.module('starter').controller('EditPasswordCtrl', function($ionicHistory,
    }
 
    $scope.cancel = function(){
-       if($ionicHistory.goBack()){
+       if($ionicHistory.viewHistory().backView){
             $ionicHistory.goBack(); 
        }else{
-           $state.go("tab.booking");
+           $state.go("tab.bookings");
        }
        
    }
 
    function callEditService(password){
        $ionicLoading.show();
-        ScriptServices.getXMLResource(577).then(function(res) {
+        ScriptServices.getXMLResource(557).then(function(res) {
             var driverNumber = InfoFactories.getUserInfo().driverNumber;
             res = res.replace('{NEWPASSOWRD}', password)
             .replace('{DRIVERNUMBER}', driverNumber);
-            ScriptServices.callGenericService(res, 577).then(function(data) {
+            ScriptServices.callGenericService(res, 557).then(function(data) {
+                ($scope.userInfo.registry || {}).password = data.data;
+                window.localStorage.setItem('userInfo', JSON.stringify($scope.userInfo));
                 $ionicLoading.hide();
-                PopUpServices.messagePopup("Password modificata correttamente", "Successo", $state.go('tab.bookings'));
+                PopUpServices.messagePopup("Password modificata correttamente", "Successo", returnBooking);
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup(error);
+                PopUpServices.errorPopup("Non è stato possibile modificare la password");
             })
         });
    };
+
+   function returnBooking (){
+       $state.go('tab.bookings');
+   }
 
 
 })

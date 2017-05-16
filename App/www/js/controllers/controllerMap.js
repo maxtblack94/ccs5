@@ -50,7 +50,6 @@ angular.module('starter').controller('MapCtrl', function (PopUpServices, $scope,
         });
         markerOn();
     }
-    $scope.centerToMarker();
     
 
     function markerOn(){
@@ -70,6 +69,7 @@ angular.module('starter').controller('MapCtrl', function (PopUpServices, $scope,
             if (results[0]) {
                 $scope.g_address = results[0].formatted_address;
                 $scope.$apply();
+                $scope.centerToMarker();
             } else {
                 PopUpServices.errorPopup("Le coordinate dell'auto non sono disponibili, riprovare più tardi!", '1');
             }
