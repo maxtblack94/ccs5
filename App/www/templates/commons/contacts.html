@@ -2,24 +2,24 @@
     <ion-content>
         <ion-list>
             <ion-item class="item-divider">
-                <h2>CCS Service Support </h2>
+                <h2>{{clientContacts.name}}</h2>
             </ion-item>
             <ion-item>
-                Email HelpDeck 1° Livello
+                Email
                 <span class="item-note">
-                    ccs-support@ccsitalia.it
+                    {{clientContacts.email}}
                 </span>
             </ion-item>
-            <ion-item>
+            <ion-item ng-click="startCall(clientContacts.telephone)">
                 Telefono
                 <span class="item-note">
-                    +390693923232
+                    {{clientContacts.telephone}}
                 </span>
             </ion-item>
             <ion-item>
                 Orari
                 <span class="item-note">
-                    Lun-Ven 09:00 - 13:00/14:00 - 18:00 
+                    {{clientContacts.timeO}}
                 </span>
             </ion-item>
         </ion-list>

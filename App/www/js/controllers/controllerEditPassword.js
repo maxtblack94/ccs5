@@ -2,11 +2,13 @@ angular.module('starter').controller('EditPasswordCtrl', function($ionicHistory,
    $scope.locale = window.locale;
    $scope.userInfo = InfoFactories.getUserInfo();
    $scope.request = {};
+   setTimeout(function() {$('#oldPassword').focus(); });
 
 
    $scope.edit = function(){
        if(!$scope.request.oldPassword || !$scope.request.newPassword || !$scope.request.confirmedPassword){
             PopUpServices.errorPopup("Inserisci tutte le informazioni necessarie", "1");
+            setTimeout(function() {$('#newPassword').focus(); });
        }else if(($scope.userInfo && $scope.userInfo.registry) && $scope.userInfo.registry.password !== $scope.request.oldPassword){
             PopUpServices.errorPopup("La vecchia password non è corretta", "1");
        }else if($scope.request.newPassword !== $scope.request.confirmedPassword){
