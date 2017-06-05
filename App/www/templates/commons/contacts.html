@@ -4,23 +4,20 @@
             <ion-item class="item-divider">
                 <h2>{{clientContacts.name}}</h2>
             </ion-item>
-            <ion-item>
-                Email
-                <span class="item-note">
-                    {{clientContacts.email}}
-                </span>
+            <ion-item class="item-icon-right" ng-if="clientContacts.email" >
+                <h2>Email</h2>
+                <p>{{clientContacts.email}}</p>
+                <i class="icon ion-ios-email-outline"></i>
             </ion-item>
-            <ion-item ng-click="startCall(clientContacts.telephone)">
-                Telefono
-                <span class="item-note">
-                    {{clientContacts.telephone}}
-                </span>
+            <ion-item class="item-icon-right" ng-if="clientContacts.telephone" ng-click="startCall(clientContacts.telephone)">
+                <h2>Telefono</h2>
+                <p>{{clientContacts.telephone}}</p>
+                <i class="icon ion-ios-telephone-outline"></i>
             </ion-item>
-            <ion-item>
-                Orari
-                <span class="item-note">
-                    {{clientContacts.timeO}}
-                </span>
+            <ion-item class="item-icon-right" ng-if="clientContacts.timeO">
+                <h2>Orari</h2>
+                <p>{{clientContacts.timeO}}</p>
+                <i class="icon ion-ios-time-outline"></i>
             </ion-item>
         </ion-list>
     </ion-content>
