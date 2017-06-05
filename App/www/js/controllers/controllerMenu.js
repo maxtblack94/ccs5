@@ -3,10 +3,6 @@ angular.module('starter').controller('MenuCtrl', function($ionicSideMenuDelegate
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
 
-    $scope.$watch('userInfo', function(newValue, oldValue) {
-        $scope.userInfo = newValue;
-    });
-
     $scope.logout = function() {
         $ionicSideMenuDelegate.toggleLeft(false);
     	var driverNumber = InfoFactories.getUserInfo().driverNumber;
