@@ -9,7 +9,8 @@
 
   <link href="lib/ionic/css/ionic.css" rel="stylesheet">
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet"> 
+  <link href="css/stylesheet.css" rel="stylesheet">
   <script src="locale/angular-locale_it.js"></script>
 
   <script src="lib/bluebird.min.js"></script>
@@ -64,7 +65,7 @@
       <ion-header-bar class="bar-positive">
         <div class="title">Profilo Utente</div>
       </ion-header-bar>
-      <ion-content ng-controller="MenuCtrl" padding="false" class="side-menu-left has-header ">
+      <ion-content ng-if="currentState !== 'login'" ng-controller="MenuCtrl" padding="false" class="side-menu-left has-header ">
         <div ng-include="'templates/left-menu.html'"></div>
       </ion-content>
     </ion-side-menu>

@@ -16,7 +16,7 @@ angular.module('starter').controller('ClientDetailCtrl', function($state, $scope
 
     $scope.save = function(){
         if(!$scope.request.email){
-            PopUpServices.errorPopup("Tutti i campi obblocatori", "1");
+            PopUpServices.errorPopup("Inserire tutti i campi obblicatori", "1");
        }else{
            callSaveService();
        }
