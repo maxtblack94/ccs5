@@ -1,5 +1,5 @@
 <ion-list>
-    <ion-item class="item-icon-right" href="#/client-details" menu-close>
+    <ion-item ng-if="userInfo.registry.username" class="item-icon-right" href="#/client-details" menu-close>
         <span>Username: {{userInfo.registry.username}}</span>
         <h2>{{userInfo.registry.first_name}} {{userInfo.registry.last_name}}</h2>
         <p>{{userInfo.registry.email}}</p>
