@@ -1,6 +1,7 @@
 angular.module('starter').controller('BookingsCtrl', function (PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $http, $state, $ionicPopup, $ionicLoading, WebService, ScriptServices) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
+    $scope.userInfo = InfoFactories.getUserInfo();
 
     var favo = window.localStorage.getItem('favoriteParking') ? eval('(' + window.localStorage.getItem('favoriteParking') + ')') : null;
     if (favo) {
@@ -66,7 +67,7 @@ angular.module('starter').controller('BookingsCtrl', function (PopUpServices, $c
         ScriptServices.getXMLResource(627).then(function(res) {
             res = res.replace('{PNR}', reservation.pnr);
             ScriptServices.callGenericService(res, 627).then(function(data) {
-                var response = data.split(',');
+                var response = data.data.split(',');
                 var carCoords = {
                     "lat" : response[0],
                     "long": response[1]
@@ -107,6 +108,7 @@ angular.module('starter').controller('BookingsCtrl', function (PopUpServices, $c
         }
     }
     function checkProximity (carCoords, coordsCustom, type){
+            var configuredDistance = $scope.selectedClient.distanceRange || ($scope.userInfo.registry || {}).distanceRange || 0.20;
             var radlat1 = Math.PI * carCoords.lat/180;
             var radlat2 = Math.PI * coordsCustom.lat/180;
             var theta = carCoords.long-coordsCustom.long;
@@ -116,7 +118,8 @@ angular.module('starter').controller('BookingsCtrl', function (PopUpServices, $c
             dist = dist * 180/Math.PI;
             dist = dist * 60 * 1.1515;
             dist = dist * 1.609344;
-            return dist < 0.20 ? true:false;
+            configuredDistance = angular.isString(configuredDistance) ? parseInt(configuredDistance) : configuredDistance;
+            return dist < configuredDistance ? true:false;
     }
 
     function openCloseCar (reservation, opT){
