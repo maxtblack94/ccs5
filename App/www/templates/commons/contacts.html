@@ -4,7 +4,7 @@
             <ion-item class="item-divider">
                 <h2>{{clientContacts.name}}</h2>
             </ion-item>
-            <ion-item class="item-icon-right" ng-if="clientContacts.email" >
+            <ion-item class="item-icon-right" ng-if="clientContacts.email" ng-click="openEmail(clientContacts.email)">
                 <h2>Email</h2>
                 <p>{{clientContacts.email}}</p>
                 <i class="icon ion-ios-email-outline"></i>
