@@ -1,4 +1,4 @@
-angular.module('starter').controller('CarCtrl', function($scope, $http, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup, WebService) {
+angular.module('starter').controller('CarCtrl', function(ManipolationServices, PopUpServices, $scope, $http, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup, WebService) {
     $scope.locale = window.locale;
     $scope.dateTimeFrom = InfoFactories.getDateTimeFrom();
     $scope.dateTimeTo = InfoFactories.getDateTimeTo();
@@ -31,22 +31,27 @@ angular.module('starter').controller('CarCtrl', function($scope, $http, $rootSco
 					 .replace('{TELEPASS}', telepass)
 					 .replace('{DRIVING_RANGE}', InfoFactories.getSelectedRangeDriver().value)
                      .replace('{VEHICLETYPE}', InfoFactories.getSelectedVehicleType().value);
-
             WebService.ajaxPostRequest(res, 571, function(data) {
                 $scope.loading = false;
                 $ionicLoading.hide();
                                        
-                if(data.retcode == 1 || data.retcode == 2) {
-                    $state.go('tab.resume', {error : 'cannotReserve'});
+                if(data.retcode == 2) {
+                    PopUpServices.messagePopup($scope.locale.vehicle.labelCannotReserve, "Attenzione", callbackMissingRecords);
+                }else if(data.retcode == 1 || data.retcode == 3){
+                    PopUpServices.messagePopup("Nessun veicolo è al momento disponibile per il periodo da Te richiesto", "Attenzione", callbackMissingRecords);
                 }else{
                     $scope.vehicleList = data.data.VehiclesList;
                     for(var i = 0; i < $scope.vehicleList.length; i++) {
-                        $scope.vehicleList[i].fuel_quantity = InfoFactories.trascodeFuel($scope.vehicleList[i].fuel_quantity);
+                        $scope.vehicleList[i].fuel_quantity = ManipolationServices.trascodeFuel($scope.vehicleList[i].fuel_quantity);
                     }
                 }
 			});
 		});
     };
+
+    function callbackMissingRecords (){
+        $state.go('tab.resume');
+    }
 
 	$scope.refreshCars = function(){
 		$scope.vehicleList = null;
@@ -55,9 +60,9 @@ angular.module('starter').controller('CarCtrl', function($scope, $http, $rootSco
     }
 
     if(!$scope.dateTimeFrom || !$scope.dateTimeTo){
-            $timeout(function() {
-                $state.go('tab.resume');
-            }, 200);
+        $timeout(function() {
+            $state.go('tab.resume');
+        }, 200);
     }else{
         loadVehicles();
     }

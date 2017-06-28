@@ -1,4 +1,4 @@
-angular.module('starter').controller('ResumeCtrl', function(ScriptServices, $timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, WebService, PopUpServices) {
+angular.module('starter').controller('ResumeCtrl', function(ManipolationServices, ScriptServices, $timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, WebService, PopUpServices) {
     $scope.locale = window.locale;
     InfoFactories.setTelepass(false);
     InfoFactories.setCC(false);
@@ -8,9 +8,6 @@ angular.module('starter').controller('ResumeCtrl', function(ScriptServices, $tim
     $scope.selectedVehicleType = InfoFactories.getSelectedVehicleType();
     $scope.dateTimeFrom = InfoFactories.getDateTimeFrom();
     $scope.dateTimeTo = InfoFactories.getDateTimeTo();
-    if($state.params.error){
-        PopUpServices.errorPopup($scope.locale.vehicle.labelCannotReserve, "1");
-    }
     
     if($scope.selectedClient.drivingRange){
         $ionicLoading.show();
@@ -116,13 +113,13 @@ angular.module('starter').controller('ResumeCtrl', function(ScriptServices, $tim
         var newDate = new Date(date).setHours(hours,minutes,0,0);
         if(type == 'to'){
             var dateFrom = $scope.dateTimeFrom ? $scope.dateTimeFrom : undefined;
-            $scope.dateTimeTo = InfoFactories.resetDateForDefect(newDate, dateFrom);
+            $scope.dateTimeTo = ManipolationServices.resetDateForDefect(newDate, dateFrom);
             InfoFactories.setDateTimeTo($scope.dateTimeTo);
         }else if(type == 'from'){
             if(new Date(Date.now() + 60000 * 10) - newDate > 0){
-                newDate = InfoFactories.resetDateService(newDate);
+                newDate = ManipolationServices.resetDateService(newDate);
             }else{
-                newDate = InfoFactories.resetDateForDefect(newDate);
+                newDate = ManipolationServices.resetDateForDefect(newDate);
             };
             $scope.dateTimeFrom = newDate;
             InfoFactories.setDateTimeFrom($scope.dateTimeFrom);
