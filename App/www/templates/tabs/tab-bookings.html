@@ -26,19 +26,23 @@
         <div ng-if='!hasPicture' class="item item-image">
           <img ng-src="{{ book.image_max ? book.image_max : 'icons/vehicle-default-l.jpg' }}">
         </div>
-        <div class="item" ng-if="selectedClient.btnOpenClose && book.showOpenCloseButtons">
+        <!-- && (book.showEndButton || book.showStartButton)-->
+        <div class="item" ng-if="selectedClient.btnOpenClose && tolleranceCheck">
           <!--<div class="row">
             <p>{{ ::locale.booking.labelCentralizzedButton }}</p>
           </div>-->
           <div class="row">
             <div class="col col50">
-              <button ng-click="openCarManipolation(book, '0')" class="button button-balanced button-block pull-left" style="padding: 0px 15px;">
-                  {{ ::locale.booking.buttonOpenCar }}
+              <button ng-if="tolleranceCheck && book.status === 'Collected' && selectedClient.damage && selectedClient.cleanness" ng-click="alertActionSheet(book.pnr)" class="button button-energized button-block pull-left" style="padding: 0px 15px;">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Alert
               </button>
             </div>
             <div class="col col50">
-              <button ng-click="openCarManipolation(book, '1')" class="button button-positive button-block pull-left" style="padding: 0px 15px;">
+              <button ng-click="openCarManipolation(book, '1')" ng-if="tolleranceCheck && book.status === 'Collected'" class="button button-positive button-block pull-right" style="padding: 0px 15px;">
                   {{ ::locale.booking.buttonCloseCar }}
+              </button>
+              <button ng-click="openCarManipolation(book, '0')"  ng-if="tolleranceCheck && book.status !== 'Collected'" class="button button-balanced button-block pull-right" style="padding: 0px 15px;">
+                  {{ ::locale.booking.buttonOpenCar }}
               </button>
             </div>
           </div>
@@ -99,7 +103,7 @@
                <i class="icon ion-ios-trash"></i> {{ ::locale.home.cancelReservation }}
              </button>
             </div>
-            <div class="col col50" ng-if="selectedClient.delay">
+            <div class="col col50" ng-if="tolleranceCheck && book.status === 'Collected'">
               <button ng-click='setDelay(book)' class="button button-block button-energized">
                <i class="icon ion-ios-time-outline"></i> {{ selectedClient.lbldelay }}
              </button>

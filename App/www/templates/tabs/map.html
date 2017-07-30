@@ -12,14 +12,14 @@
             <h2>{{ locale.home.labelGet }}</h2>
             <p>{{ selectedBooking.pickup_parking }}</p>
           </div>
-          <p style='float: right; font-size: 18px; color: #111; margin-top: 12px;'>{{ selectedBooking.pickup_date }} {{ selectedBooking.pickup_time }}</p>
+          <p style='float: right; font-size: 18px; color: #111; margin-top: 12px;'>{{ selectedBooking.dateTimeFrom | date:'dd/MM/yyyy HH:mm'}}</p>
         </div>
         <div class="item" style='overflow: auto; border-left: none; border-right: none; margin-top: 1px; padding: 10px 0;'>
           <div style='float: left;'>
             <h2>{{ locale.home.labelSet }}</h2>
             <p>{{ selectedBooking.return_parking }}</p>
           </div>
-          <p style='float: right; font-size: 18px; color: #111; margin-top: 12px;'>{{ selectedBooking.return_date }} {{ selectedBooking.return_time }}</p>
+          <p style='float: right; font-size: 18px; color: #111; margin-top: 12px;'>{{ selectedBooking.dateTimeTo | date:'dd/MM/yyyy HH:mm'}}</p>
         </div>
         
         <div class="item" style='overflow: auto; border: none; margin-top: 10px; padding: 10px 0;'>

@@ -81,7 +81,8 @@ angular.module('starter').controller('ResumeCtrl', function(ManipolationServices
                     PopUpServices.errorPopup("La data di consegna non rientra negli orari di apertura del parcheggio", "1");
                     return false;
                 }
-            }else if($scope.selectedClient.drivingRange == true && $scope.selectedDriverRange.value == "short"){
+            }
+            if($scope.selectedClient.drivingRange == true && $scope.selectedDriverRange.value == "short"){
                 PopUpServices.errorPopup("Non hai definito il raggio di percorrenza", "1");
                 return false;
             }else if($scope.selectedClient.vehicleType == true && !$scope.selectedVehicleType.value && $scope.vehicleTypeList){

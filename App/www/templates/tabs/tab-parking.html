@@ -12,7 +12,7 @@
     <p ng-if='parkingList.length==0 && !loading' class="message-empty">{{ locale.parking.noparking }}</p>
       
     <ul class="list">
-        <li ng-repeat='parking in parkingList | filter:searchVal' ng-click='selectParking(parking)' class="item" style='overflow: auto;'>
+        <li ng-repeat="parking in parkingList | orderBy: 'parking_name'  | filter:searchVal" ng-click='selectParking(parking)' class="item" style='overflow: auto;'>
           <div>
             <h2>{{ parking.parking_name }}</h2>
             <p>{{ parking.address }}, {{ parking.city }}</p>
