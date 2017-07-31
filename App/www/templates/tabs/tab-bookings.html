@@ -26,23 +26,19 @@
         <div ng-if='!hasPicture' class="item item-image">
           <img ng-src="{{ book.image_max ? book.image_max : 'icons/vehicle-default-l.jpg' }}">
         </div>
-        <!-- && (book.showEndButton || book.showStartButton)-->
-        <div class="item" ng-if="selectedClient.btnOpenClose && tolleranceCheck">
-          <!--<div class="row">
-            <p>{{ ::locale.booking.labelCentralizzedButton }}</p>
-          </div>-->
+        <div class="item" ng-if="(selectedClient.btnOpenClose && tolleranceCheck) || (book.status === 'Collected' && selectedClient.damage && selectedClient.cleanness)">
           <div class="row">
             <div class="col col50">
-              <button ng-if="tolleranceCheck && book.status === 'Collected' && selectedClient.damage && selectedClient.cleanness" ng-click="alertActionSheet(book.pnr)" class="button button-energized button-block pull-left" style="padding: 0px 15px;">
-                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Alert
+              <button ng-click="openCarManipolation(book, '1')" ng-if="selectedClient.btnOpenClose && book.status === 'Collected'" class="button button-positive button-block pull-right" style="padding: 0px 15px;">
+                  {{ ::locale.booking.buttonCloseCar }}
+              </button>
+              <button ng-click="openCarManipolation(book, '0')"  ng-if="selectedClient.btnOpenClose && tolleranceCheck && book.status !== 'Collected'" class="button button-balanced button-block pull-right" style="padding: 0px 15px;">
+                  {{ ::locale.booking.buttonOpenCar }}
               </button>
             </div>
             <div class="col col50">
-              <button ng-click="openCarManipolation(book, '1')" ng-if="tolleranceCheck && book.status === 'Collected'" class="button button-positive button-block pull-right" style="padding: 0px 15px;">
-                  {{ ::locale.booking.buttonCloseCar }}
-              </button>
-              <button ng-click="openCarManipolation(book, '0')"  ng-if="tolleranceCheck && book.status !== 'Collected'" class="button button-balanced button-block pull-right" style="padding: 0px 15px;">
-                  {{ ::locale.booking.buttonOpenCar }}
+              <button ng-if="book.status === 'Collected' && selectedClient.damage && selectedClient.cleanness" ng-click="alertActionSheet(book.pnr)" class="button button-energized button-block pull-left" style="padding: 0px 15px;">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Alert
               </button>
             </div>
           </div>
