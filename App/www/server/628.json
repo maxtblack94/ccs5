@@ -1,0 +1,25 @@
+{
+    "retcode": 0,
+    "data": {
+        "status": [
+            {
+                "text": "Guasto",
+                "code": "GUASTO"
+            },
+            {
+                "text": "Ok",
+                "code": "OK"
+            }
+        ],
+        "statusC": [
+            {
+                "text": "Pulito",
+                "code": "Pulito"
+            },
+            {
+                "text": "Sporco",
+                "code": "Sporco"
+            }
+        ]
+    }
+}

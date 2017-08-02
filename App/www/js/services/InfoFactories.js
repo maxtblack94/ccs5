@@ -30,13 +30,13 @@ angular.module('starter').factory("InfoFactories", [function () {
         dateTimeFrom = varDate;
     };
     function getDateTimeFrom() {
-        return dateTimeFrom;
+        return window.serverRootLocal ? "16/03/2018 14:40:00" : dateTimeFrom;
     };
     function setDateTimeTo(varDate) {
         dateTimeTo = varDate;
     };
     function getDateTimeTo() {
-        return dateTimeTo;
+        return window.serverRootLocal ? "16/03/2018 17:40:00" : dateTimeTo;
     };
     function setPark(varPark) {
         

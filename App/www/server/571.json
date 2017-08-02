@@ -1,0 +1,64 @@
+{
+    "retcode": 0,
+    "data": {
+        "VehiclesList": [
+            {
+                "Nr": "2004",
+                "plate": "TEST086",
+                "brand_model": "Panda Van",
+                "displacement": "",
+                "color": "Blu",
+                "colorApp": "BLUE",
+                "vehicle_status": "Ok",
+                "vehicle_cleanness_status": "Ok",
+                "fuel_quantity": "2/4",
+                "daily_mileage": "0",
+                "km": "00",
+                "fuel": "Gasolio",
+                "seats": "",
+                "lat": "0",
+                "lng": "0",
+                "image_max": "",
+                "image_min": ""
+            },
+            {
+                "Nr": "5331",
+                "plate": "TEST102",
+                "brand_model": "Punto Van 1.3 MJT",
+                "displacement": "1500",
+                "color": "Blu",
+                "colorApp": "BLUE",
+                "vehicle_status": "Ok",
+                "vehicle_cleanness_status": "Ok",
+                "fuel_quantity": "2/4",
+                "daily_mileage": "0",
+                "km": "00",
+                "fuel": "Gasolio",
+                "seats": "",
+                "lat": "45.6504213333333",
+                "lng": "12.4188623333333",
+                "image_max": "http://corporatecarsharing.it/images/vehicles/peugeot/208-white-l.jpg",
+                "image_min": "http://corporatecarsharing.it/images/vehicles/peugeot/208-white-s.jpg"
+            },
+            {
+                "Nr": "5332",
+                "plate": "TEST057",
+                "brand_model": "Punto Van 1.3 MJT",
+                "displacement": "",
+                "color": "Blu",
+                "colorApp": "BLUE",
+                "vehicle_status": "Ok",
+                "vehicle_cleanness_status": "Ok",
+                "fuel_quantity": "2/4",
+                "daily_mileage": "0",
+                "km": "00",
+                "fuel": "Gasolio",
+                "seats": "",
+                "lat": "45.6501091666667",
+                "lng": "12.4190953333333",
+                "image_max": "",
+                "image_min": ""
+            }
+        ]
+    }
+}

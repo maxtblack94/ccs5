@@ -1,0 +1,16 @@
+{
+    "ListDriverRange": [
+        {
+            "text": "Corto (0-80 Km)",
+            "code": "short2"
+        },
+        {
+            "text": "Medio (81-300 Km)",
+            "code": "avarage2"
+        },
+        {
+            "text": "Lungo (oltre i 301 Km)",
+            "code": "long3"
+        }
+    ]
+}

@@ -13,33 +13,28 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
     };
 
     function directWithOutScriptID(scriptID, server) {
-        var request = headerGET(scriptID, 0, server);
-        return $q(function (resolve, reject) {
-            $http(request).then(function successCallback(response) {
-                var resultValue = response.data.d.ExecuteAdminScript.ResultValue;
-                if (resultValue) {
-                    resultValue = JSON.parse(response.data.d.ExecuteAdminScript.ResultValue);
-                    if (resultValue.retcode == '-1' || resultValue.retcode == '-2') {
-                        reject('Error');
+        if(window.serverRootLocal){
+            var requestGET = getLocalJson(scriptID);
+            return $q(function (resolve, reject) {
+                $http(requestGET).then(function successCallback(response) {
+                    var resultValue = response.data;
+                    if (resultValue.retcode || resultValue.retcode === 0) {
+                        if (resultValue.retcode == '-1' || resultValue.retcode == '-2') {
+                            reject('Error');
+                        } else {
+                            resolve(resultValue);
+                        }
                     } else {
                         resolve(resultValue);
                     }
-                } else {
+                }, function errorCallback(response) {
                     reject('Error');
-                }
-
-            }, function errorCallback(response) {
-                reject('Error');
+                });
             });
-        });
-    };
-
-    function callGenericService(res, scriptID, server) {
-        var request = headerPOST(res, server);
-        return $q(function (resolve, reject) {
-            $http(request).then(function successCallback(response) {
-                var requestGET = headerGET(scriptID, response.data.d.Id, server);
-                $http(requestGET).then(function successCallback(response) {
+        }else{
+            var request = headerGET(scriptID, 0, server);
+            return $q(function (resolve, reject) {
+                $http(request).then(function successCallback(response) {
                     var resultValue = response.data.d.ExecuteAdminScript.ResultValue;
                     if (resultValue) {
                         resultValue = JSON.parse(response.data.d.ExecuteAdminScript.ResultValue);
@@ -55,11 +50,64 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
                 }, function errorCallback(response) {
                     reject('Error');
                 });
-            }, function errorCallback(response) {
-                reject('Error');
             });
-        });
+        }
     };
+
+    function callGenericService(res, scriptID, server) {
+        if (window.serverRootLocal) {
+            var requestGET = getLocalJson(scriptID);
+            return $q(function (resolve, reject) {
+                $http(requestGET).then(function successCallback(response) {
+                    var resultValue = response.data;
+                    if (resultValue.retcode || resultValue.retcode === 0) {
+                        if (resultValue.retcode == '-1' || resultValue.retcode == '-2') {
+                            reject('Error');
+                        } else {
+                            resolve(resultValue);
+                        }
+                    } else {
+                        resolve(resultValue);
+                    }
+                }, function errorCallback(response) {
+                    reject('Error');
+                });
+            });
+        } else {
+            var request = headerPOST(res, server);
+            return $q(function (resolve, reject) {
+                $http(request).then(function successCallback(response) {
+                    var requestGET = headerGET(scriptID, response.data.d.Id, server);
+                    $http(requestGET).then(function successCallback(response) {
+                        var resultValue = response.data.d.ExecuteAdminScript.ResultValue;
+                        if (resultValue) {
+                            resultValue = JSON.parse(response.data.d.ExecuteAdminScript.ResultValue);
+                            if (resultValue.retcode == '-1' || resultValue.retcode == '-2') {
+                                reject('Error');
+                            } else {
+                                resolve(resultValue);
+                            }
+                        } else {
+                            reject('Error');
+                        }
+
+                    }, function errorCallback(response) {
+                        reject('Error');
+                    });
+                }, function errorCallback(response) {
+                    reject('Error');
+                });
+            });
+        }
+
+    };
+
+    function getLocalJson(scriptID) {
+        return {
+            url: "server/" + scriptID + ".json",
+            method: "GET"
+        }
+    }
 
     function headerGET(scriptID, callCode, server) {
         return {

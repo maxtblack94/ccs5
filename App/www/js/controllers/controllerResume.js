@@ -11,10 +11,13 @@ angular.module('starter').controller('ResumeCtrl', function(ManipolationServices
     
     if($scope.selectedClient.drivingRange){
         $ionicLoading.show();
-        WebService.ajaxPostRequestDirect(610, function(data) {
+        ScriptServices.directWithOutScriptID(610).then(function (data) {
             $scope.listDriverRange = data.ListDriverRange;
             $ionicLoading.hide();
-        });
+        }, function (error) {
+            PopUpServices.errorPopup("Non è stato possibile recuperare alcune informazioni!", "1");
+            $ionicLoading.hide();
+        })
     }
 
     if($scope.selectedClient.vehicleType && $scope.selectedParking){

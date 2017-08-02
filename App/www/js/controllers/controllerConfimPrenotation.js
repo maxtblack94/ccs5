@@ -1,4 +1,4 @@
-angular.module('starter').controller('ConfirmPrenotationCtrl', function(ScriptServices, $scope, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup, WebService) {
+angular.module('starter').controller('ConfirmPrenotationCtrl', function(PopUpServices, ScriptServices, $scope, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup, WebService) {
     function init(){
         $scope.locale = window.locale;
         $scope.selectedClient = InfoFactories.getClientSelected();
@@ -11,12 +11,15 @@ angular.module('starter').controller('ConfirmPrenotationCtrl', function(ScriptSe
 
         if($scope.selectedClient.justifiedUse){
             $ionicLoading.show();
-            WebService.ajaxPostRequestDirect(588, function(data) {
+            ScriptServices.directWithOutScriptID(588).then(function (data) {
                 $scope.justifyList = data.ListJustification;
                 $scope.justifyList[0].selected = true;
                 $scope.selectedJustify = $scope.justifyList[0]; 
                 $ionicLoading.hide();
-            });
+            }, function (error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup(error);
+            })
         }
     }
 

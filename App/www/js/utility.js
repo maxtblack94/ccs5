@@ -1,3 +1,5 @@
+window.serverRootLocal = true;
+
 function formatItemDate(dpick, tpick) {
 	var date = '';
 	var months = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'];
