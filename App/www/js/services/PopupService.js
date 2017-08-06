@@ -18,12 +18,30 @@ angular.module('starter').factory("PopUpServices", function($ionicPopup) {
         };
     };
 
+    function buttonsPopup(obj) {
+        var popupInstance = $ionicPopup.show({
+            template: obj.message,
+            title: obj.title,
+            subTitle: obj.subTitle,
+            buttons: obj.buttons
+        });
+
+        if(obj.callback){
+            popupInstance.then(function(res) {
+                obj.callback();
+            });
+        };
+    };
+
     return {
         errorPopup: function (message, type) {
             return errorPopup(message, type);
         },
         messagePopup: function (message, title, callback) {
             return messagePopup(message, title, callback);
+        },
+        buttonsPopup: function (obj) {
+            return buttonsPopup(obj);
         }
     };
 

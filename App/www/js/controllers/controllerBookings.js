@@ -237,31 +237,41 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicActionSheet
     }
 
     function openCloseCar(reservation, opT) {
-        $http.get("res/621.xml").success(function (res) {
+        $ionicLoading.show();
+        var rollbackData = {"reservation": reservation, "opT":opT}
+        ScriptServices.getXMLResource(621).then(function(res) {
             res = res.replace('{PNR_NUMBER}', reservation.pnr).replace('{OPERATION_TYPE}', opT);
-            $http({
-                url: 'http://' + InfoFactories.getServer() + '.corporatecarsharing.biz/api.svc/ScriptParameterSets',
-                method: "POST",
-                data: res,
-                headers: {
-                    'TenForce-Auth': 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4',
-                    'Content-Type': 'application/atom+xml'
-                }
-            }).success(function (data, status, headers, config) {
-                var responsePromisee = $http.get("http://" + InfoFactories.getServer() + ".corporatecarsharing.biz/api.svc/ExecuteAdminScript?scriptId=621&scriptParameterSetId=" + data.d.Id, { headers: { 'TenForce-Auth': 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4' } });
-                responsePromisee.success(function (data, status, headers, config) {
-                    console.log(data)
-                    $ionicLoading.hide();
-                    loadbookings();
-                });
-            }).error(function (err) {
+            ScriptServices.callGenericService(res, 621).then(function(data) {
+                $ionicLoading.hide();
+                humanCheckCarOpened(rollbackData);
+            }, function(error) {
                 PopUpServices.errorPopup("Non è stato possibile aprire la macchina, riprovare!");
                 $ionicLoading.hide();
-            });
-        })
+            })
+        });
     }
 
-
+    function humanCheckCarOpened (rollbackData){
+        var configObj = {
+            "buttons": [{ 
+                text: 'Chiudi',
+                type: 'button-stable',
+                onTap: function() {
+                    loadbookings();
+                }
+            },{
+                text: '<b>Riprova</b>',
+                type: 'button-positive',
+                onTap: function() {
+                    openCloseCar(rollbackData.reservation, rollbackData.opT);
+                }
+            }],
+            "message" : rollbackData.opT === "0" ? "Attendere qualche secondo! Se dopo qualche secondo il veicolo non si apre, riprovare." : "Attendere qualche secondo! Se dopo qualche secondo il veicolo non si chiude, riprovare.",
+            "title" : "Controllo",
+            "subTitle" : "Conferma stato del veicolo!"
+        }
+        PopUpServices.buttonsPopup(configObj);
+    }
 
 
     $scope.openBooking = function (object) {
