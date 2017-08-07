@@ -1,4 +1,8 @@
 {
   "name": "CCS_v1_1.2",
-  "app_id": "849a6f49"
+  "app_id": "849a6f49",
+  "type": "ionic1",
+  "watchPatterns": [
+    "scss/**/*"
+  ]
 }

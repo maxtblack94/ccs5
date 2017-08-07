@@ -94,6 +94,17 @@ angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud'])
           }
         }
       })
+      
+      .state('tab.sos', {
+        url: '/sos',
+        cache: false,
+        views: {
+          'tab-sos': {
+            templateUrl: 'templates/tabs/tab-sos.html',
+            controller: 'SosCtrl'
+          }
+        }
+      })
 
       .state('tab.map', {
         url: '/map',

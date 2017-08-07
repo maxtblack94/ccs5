@@ -40,6 +40,7 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicActionSheet
                         obj.pickup_time_tollerance = ManipolationServices.dateAndTimeAggregation(obj.pickup_date_tollerance, obj.pickup_time_tollerance);
                         if (new Date(obj.pickup_time_tollerance) <= new Date()) {
                             $scope.tolleranceCheck = true;
+                            $rootScope.sosPnr = obj.status === "Collected"? obj.pnr:undefined;
                         }
                     }
                     if (obj.returnDateChanged && obj.return_time_tollerance) {

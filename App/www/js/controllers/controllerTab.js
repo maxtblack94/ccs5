@@ -1,6 +1,7 @@
-angular.module('starter').controller('TabCtrl', function(PopUpServices, $state, $scope) {
+angular.module('starter').controller('TabCtrl', function(InfoFactories, PopUpServices, $state, $scope) {
     var eventParams;
     $scope.locale = window.locale;
+    $scope.selectedClient = InfoFactories.getClientSelected();
     function manipolateEvents(){
         switch (eventParams.name) {
         case 'gestioneRitardo':
