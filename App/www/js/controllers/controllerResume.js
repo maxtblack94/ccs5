@@ -77,10 +77,10 @@ angular.module('starter').controller('ResumeCtrl', function(ManipolationServices
                 PopUpServices.errorPopup("La data di ritiro è maggiore della data di consegna", "1");
                 return false;
             }else if(!$scope.selectedParking.h24){
-                if((dateTimeFrom.getHours() < $scope.selectedParking.opening.getHours()) || (dateTimeFrom.getHours() >$scope.selectedParking.closing.getHours())){
+                if(!((dateTimeFrom.getHours() >= $scope.selectedParking.opening.getHours()) && (dateTimeFrom.getHours() < $scope.selectedParking.closing.getHours()))){
                     PopUpServices.errorPopup("La data di ritiro non rientra negli orari di apertura del parcheggio", "1");
                     return false;
-                }else if((dateTimeTo.getHours() < $scope.selectedParking.opening.getHours()) || (dateTimeTo.getHours() > $scope.selectedParking.closing.getHours())){
+                }else if(!((dateTimeTo.getHours() >= $scope.selectedParking.opening.getHours()) && (dateTimeTo.getHours() < $scope.selectedParking.closing.getHours()))){
                     PopUpServices.errorPopup("La data di consegna non rientra negli orari di apertura del parcheggio", "1");
                     return false;
                 }

@@ -1,4 +1,4 @@
-angular.module('starter').controller('BookingsCtrl', function ($ionicActionSheet, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $http, $state, $ionicPopup, $ionicLoading, WebService, ScriptServices) {
+angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $ionicActionSheet, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $http, $state, $ionicPopup, $ionicLoading, WebService, ScriptServices) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
@@ -58,26 +58,52 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicActionSheet
 
     };
 
+    function returnActions (){
+        $scope.actions = {};
+        $scope.actions.buttons = [];
+        if($scope.selectedClient.cleanness){
+            $scope.actions.buttons.push({ 
+                text: ionic.Platform.isAndroid() ? '<i class="fa fa-recycle" aria-hidden="true"></i> Pulizia': 'Pulizia', 
+                type: "cleanness"
+            });
+        }
+        if($scope.selectedClient.delay){
+            $scope.actions.buttons.push({ 
+                text: ionic.Platform.isAndroid() ? '<i class="fa ion-android-time" aria-hidden="true"></i> ' + $scope.selectedClient.lbldelay || 'Ritardo': $scope.selectedClient.lbldelay || 'Ritardo', 
+                type: "delay" 
+            });
+        }
+        if($scope.selectedClient.damage){
+            $scope.actions.buttons.push({ 
+                text: ionic.Platform.isAndroid() ? '<i class="fa fa-wrench" aria-hidden="true"></i> Guasto' : 'Guasto', 
+                type: "damage" 
+            });
+        }
+    }
+
+    returnActions();
+
     $scope.alertActionSheet = function (reservationNumber) {
         var hideSheet = $ionicActionSheet.show({
-            buttons: [
-                { text: '<i class="fa fa-wrench" aria-hidden="true"></i> Segnala Guasto' },
-                { text: '<i class="fa fa-recycle" aria-hidden="true"></i> Segnala Pulizia' }
-            ],
-            titleText: 'Scegli la segnalazione da fare..',
-            cancelText: '<i class="fa fa-times-circle-o" aria-hidden="true"></i> Chiudi',
+            buttons: $scope.actions.buttons,
+            titleText: 'Segliere tipologia segnalazione..',
+            cancelText: ionic.Platform.isAndroid() ? '<i class="fa fa-times" aria-hidden="true"></i> Chiudi':'Chiudi',
             cancel: function () {
                 // add cancel code..
             },
-            buttonClicked: function (index) {
-                switch (index) {
-                    case 0:
+            buttonClicked: function (index, obj) {
+                switch (obj.type) {
+                    case "cleanness":
+                        hideSheet();
+                        alertCleanness(reservationNumber);
+                        break;
+                    case "damage":
                         hideSheet();
                         alertDamage(reservationNumber);
                         break;
-                    case 1:
+                    case "delay":
                         hideSheet();
-                        alertCleanness(reservationNumber);
+                        setDelay(reservationNumber);
                         break;
                     default:
                         break;
@@ -302,7 +328,7 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicActionSheet
     };
 
 
-    $scope.setDelay = function (pnr) {
+    function setDelay(pnr) {
         $scope.contextPnr = angular.copy(pnr);
         var setDelayPopup = $ionicPopup.show({
             templateUrl: 'templates/popup/postDelay.html',
