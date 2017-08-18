@@ -330,10 +330,11 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
 
     function setDelay(pnr) {
         $scope.contextPnr = angular.copy(pnr);
+        $scope.dataDelay = {};
         var setDelayPopup = $ionicPopup.show({
             templateUrl: 'templates/popup/postDelay.html',
             title: 'Segnala ritardo',
-            subTitle: "Modifica la data e l'ora di riconsegna",
+            subTitle: "Quanto ritardo farai?",
             scope: $scope,
             buttons: [{
                 text: 'Annulla',
@@ -342,14 +343,13 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
                 text: '<b>Segnala</b>',
                 type: 'button-positive',
                 onTap: function (e) {
-                    if (!$scope.contextPnr.dateTimeTo) {
+                    if (!$scope.dataDelay.value) {
                         //don't allow the user to close unless he enters wifi password
                         e.preventDefault();
                     } else {
                         return {
-                            'pnr': pnr.pnr,
-                            'newDate': $scope.contextPnr.dateTimeTo,
-                            'oldDate': pnr.dateTimeTo
+                            'pnr': pnr,
+                            'time': $scope.dataDelay.value
                         }
                     }
                 }
@@ -357,27 +357,22 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
         });
 
         setDelayPopup.then(function (delayInfo) {
-            if (delayInfo) {
-                delayInfo.delay = moment.duration(delayInfo.newDate - delayInfo.oldDate).asMinutes();
-                $ionicLoading.show();
-                callEditDelay(delayInfo);
-            }
-
-        });
-    }
-
-    function callEditDelay(delayInfo) {
-        $http.get("res/619.xml").success(function (res) {
-            res = res.replace('{PNR}', delayInfo.pnr).replace('{DELAY}', delayInfo.delay);
-            delete $scope.contextPnr;
-            WebService.ajaxPostRequestTemp(res, 619, function (data) {
-                loadbookings();
+            $ionicLoading.show();
+            ScriptServices.getXMLResource(619).then(function(res) {
+                res = res.replace('{PNR}', delayInfo.pnr).replace('{DELAY}', delayInfo.time);
+                delete $scope.contextPnr;
+                ScriptServices.callGenericService(res, 619).then(function(data) {
+                    $ionicLoading.hide();
+                    loadbookings();
+                }, function(error) {
+                    $ionicLoading.hide();
+                    PopUpServices.errorPopup('Non è stato possibile comunicare il ritrado, riprovare.');
+                })
             });
         });
     }
 
     $scope.selectToDate = function () {
-
         var dateToConfig = {
             date: $scope.contextPnr.dateTimeTo ? new Date($scope.contextPnr.dateTimeTo) : new Date(),
             mode: 'date',
