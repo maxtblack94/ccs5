@@ -89,15 +89,8 @@
              </button>
             </div>
             <div class="col col50" ng-if="book.status === 'Collected' && actions.buttons.length > 0">
-              <button ng-click="alertActionSheet(book.pnr)" class="button button-energized button-block pull-left" style="padding: 0px 15px;">
-                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Alert
-              </button>
+              <ccs-action-sheet book="book" action-buttons="actions.buttons" callback="loadbookings()"></ccs-action-sheet>
             </div>
-            <!--<div class="col col50" ng-if="tolleranceCheck && book.status === 'Collected'">
-              <button ng-click='setDelay(book)' class="button button-block button-energized">
-               <i class="icon ion-ios-time-outline"></i> {{ selectedClient.lbldelay }}
-             </button>
-            </div>-->
           </div>
         </div>
       </div>
