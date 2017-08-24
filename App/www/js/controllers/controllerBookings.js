@@ -51,22 +51,34 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
     function returnActions (){
         $scope.actions = {};
         $scope.actions.buttons = [];
-        if($scope.selectedClient.cleanness){
-            $scope.actions.buttons.push({ 
-                text: ionic.Platform.isAndroid() ? '<i class="fa fa-recycle" aria-hidden="true"></i> Pulizia': 'Pulizia', 
-                type: "cleanness"
-            });
-        }
         if($scope.selectedClient.delay){
             $scope.actions.buttons.push({ 
                 text: ionic.Platform.isAndroid() ? '<i class="fa ion-android-time" aria-hidden="true"></i> ' + $scope.selectedClient.lbldelay || 'Ritardo': $scope.selectedClient.lbldelay || 'Ritardo', 
                 type: "delay" 
             });
         }
+        if($scope.selectedClient.changeDriver){
+            $scope.actions.buttons.push({ 
+                text: ionic.Platform.isAndroid() ? '<i class="fa fa-id-card-o" aria-hidden="true"></i> Cambio guida' : 'Cambio guida', 
+                type: "changeDriver" 
+            });
+        }
         if($scope.selectedClient.damage){
             $scope.actions.buttons.push({ 
-                text: ionic.Platform.isAndroid() ? '<i class="fa fa-wrench" aria-hidden="true"></i> Guasto' : 'Guasto', 
-                type: "damage" 
+                text: ionic.Platform.isAndroid() ? '<i class="fa fa-wrench" aria-hidden="true"></i> Guasto (auto trainata in officina)' : 'Guasto (auto trainata in officina)', 
+                type: "damageBlocked" 
+            });
+        }
+        if($scope.selectedClient.damage){
+            $scope.actions.buttons.push({ 
+                text: ionic.Platform.isAndroid() ? '<i class="fa fa-wrench" aria-hidden="true"></i> Difetto (auto rientra al parcheggio)' : 'Difetto (auto rientra al parcheggio)', 
+                type: "damageNotBlocked" 
+            });
+        }
+        if($scope.selectedClient.cleanness){
+            $scope.actions.buttons.push({ 
+                text: ionic.Platform.isAndroid() ? '<i class="fa fa-recycle" aria-hidden="true"></i> Pulizia': 'Pulizia', 
+                type: "cleanness"
             });
         }
     }

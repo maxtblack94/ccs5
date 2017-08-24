@@ -26,7 +26,11 @@ angular.module('starter').controller('ActionSheetCtrl', function(InfoFactories, 
                         hideSheet();
                         alertCleanness($scope.book.pnr);
                         break;
-                    case "damage":
+                    case "changeDriver":
+                        hideSheet();
+                        changeDriver($scope.book.pnr);
+                        break; 
+                    case "damageNotBlocked":
                         hideSheet();
                         alertDamage($scope.book.pnr);
                         break;
@@ -40,6 +44,37 @@ angular.module('starter').controller('ActionSheetCtrl', function(InfoFactories, 
             }
         });
 
+    };
+
+    function changeDriver(reservationNumber) {
+        $scope.changeDriver = {};
+        var myPopup = $ionicPopup.show({
+            templateUrl: "js/directives/ccs-01-action-sheet/templates/picklistDamageTemplate.html",
+            title: 'Scegliere una tipologia di guasto...',
+            scope: $scope,
+            buttons: [
+                {
+                    text: 'Annulla',
+                    type: 'button-stable',
+                },
+                {
+                    text: '<b>Salva</b>',
+                    type: 'button-positive',
+                    onTap: function (e) {
+                        if (!$scope.changeDriver.value) {
+                            e.preventDefault();
+                        } else {
+                            var obj = {
+                                "type": "1",
+                                "value" : $scope.data.value,
+                                "pnr" : reservationNumber
+                            }
+                            sendAlert(obj);
+                        }
+                    }
+                }
+            ]
+        });
     };
 
     function alertDamage(reservationNumber) {
