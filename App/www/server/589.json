@@ -26,6 +26,8 @@
             "damage": false,
             "cleanness": false,
             "sos": false,
+            "changeDriver": false,
+            "defect": false,
             "contact": {
                 "name": "CCS BNP Paribas Service Support",
                 "email": "support@ccsitalia.it",
@@ -62,6 +64,8 @@
             "damage": false,
             "cleanness": false,
             "sos": false,
+            "changeDriver": false,
+            "defect": false,
             "contact": {
                 "name": "CCS Support",
                 "email": "support@ccsitalia.it",
@@ -98,6 +102,8 @@
             "damage": false,
             "cleanness": false,
             "sos": false,
+            "changeDriver": false,
+            "defect": false,
             "contact": {
                 "name": "CCS LEASYS Service Support",
                 "email": "support@ccsitalia.it",
@@ -134,6 +140,8 @@
             "damage": false,
             "cleanness": false,
             "sos": false,
+            "changeDriver": false,
+            "defect": false,
             "contact": {
                 "name": "CCS RAI Service Support",
                 "email": "ccsrai.it@dekra.com",
@@ -170,6 +178,8 @@
             "damage": true,
             "cleanness": true,
             "sos": true,
+            "changeDriver": true,
+            "defect": false,
             "contact": {
                 "name": "CCS TERNA Service Support",
                 "email": "ccsterna.it@dekra.com",
@@ -231,6 +241,8 @@
             "damage": true,
             "cleanness": true,
             "sos": true,
+            "changeDriver": true,
+            "defect": true,
             "contact": {
                 "name": "CCS UNICREDIT Service Support",
                 "email": "support@ccsitalia.it",
@@ -292,6 +304,8 @@
             "damage": false,
             "cleanness": false,
             "sos": false,
+            "changeDriver": false,
+            "defect": false,
             "contact": {
                 "name": "CCS UNIPOL Service Support",
                 "email": "support@ccsitalia.it",

@@ -1,97 +1,63 @@
 {
-    "retcode": 0,
-    "data": {
-        "status": [
-            {
-                "text": "Guasto",
-                "code": "GUASTO"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            },
-            {
-                "text": "Ok",
-                "code": "OK"
-            }
-        ],
-        "statusC": [
-            {
-                "text": "Pulito",
-                "code": "Pulito"
-            },
-            {
-                "text": "Sporco",
-                "code": "Sporco"
-            }
-        ]
-    }
+  "retcode": 0,
+  "data": {
+    "status": [
+      {
+        "text": "Difettoso",
+        "code": "DEFECTIVE"
+      },
+      {
+        "text": "Guasto",
+        "code": "FAULT"
+      },
+      {
+        "text": "Ottimo",
+        "code": "SUPER"
+      }
+    ],
+    "statusC": [
+      {
+        "text": "Esterno Pulito - Interno Sporco",
+        "code": "DIRTY_IN"
+      },
+      {
+        "text": "Pulito",
+        "code": "CLEAN"
+      },
+      {
+        "text": "Sporco",
+        "code": "DIRTY"
+      },
+      {
+        "text": "Esterno Sporco - Interno Pulito",
+        "code": "DIRTY_OUT"
+      }
+    ],
+    "damage_type": [
+      {
+        "text": "Carrozzeria",
+        "code": "DT001"
+      },
+      {
+        "text": "Meccanico",
+        "code": "DT005"
+      },
+      {
+        "text": "Elettrico",
+        "code": "DT003"
+      },
+      {
+        "text": "Pneumatici",
+        "code": "DT006"
+      },
+      {
+        "text": "Freni",
+        "code": "DT002"
+      },
+      {
+        "text": "Cristalli",
+        "code": "DT004"
+      }
+    ]
+  }
 }

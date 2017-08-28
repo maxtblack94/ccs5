@@ -11,6 +11,25 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
         $scope.loadbookings();
         $scope.$broadcast('scroll.refreshComplete');
     }
+
+    /*$scope.scheduleDelayedNotification = function (pnr) {
+        var now = new Date().getTime();
+        var _10SecondsFromNow = new Date(now + 10 * 1000);
+      
+        $cordovaLocalNotification.schedule({
+            id: 1,
+            title: "Segnala Ritardo Riconsegna",
+            text: "Ti informiamo che per la tua prenotazione con PNR: "+ pnr +" non è ancora stata effettuata la riconsegna del veicolo. Se ritieni di ritardare, per cortesia quantifica e comunica il ritardo, tramite la funzione Segnala Ritardo (sezione Alert).",
+            "data":{
+                "eventName" : "gestioneRitardo"
+            },
+            every: 3,
+            at: _10SecondsFromNow
+      }).then(function (result) {
+        console.log(result)
+      });
+    };
+    scheduleDelayedNotification();*/
     
     $scope.loadbookings = function() {
         $ionicLoading.show();
@@ -27,6 +46,7 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
                     obj.dateTimeFrom = ManipolationServices.dateAndTimeAggregation(obj.pickup_date, obj.pickup_time);
                     obj.cmb_fuel_quantity = ManipolationServices.trascodeFuel(obj.cmb_fuel_quantity);
                     if (obj.pickup_time_tollerance) {
+                        
                         obj.pickup_time_tollerance = ManipolationServices.dateAndTimeAggregation(obj.pickup_date_tollerance, obj.pickup_time_tollerance);
                         if (new Date(obj.pickup_time_tollerance) <= new Date()) {
                             $scope.tolleranceCheck = true;
@@ -66,13 +86,13 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
         if($scope.selectedClient.damage){
             $scope.actions.buttons.push({ 
                 text: ionic.Platform.isAndroid() ? '<i class="fa fa-wrench" aria-hidden="true"></i> Guasto (auto trainata in officina)' : 'Guasto (auto trainata in officina)', 
-                type: "damageBlocked" 
+                type: "damage" 
             });
         }
-        if($scope.selectedClient.damage){
+        if($scope.selectedClient.defect){
             $scope.actions.buttons.push({ 
                 text: ionic.Platform.isAndroid() ? '<i class="fa fa-wrench" aria-hidden="true"></i> Difetto (auto rientra al parcheggio)' : 'Difetto (auto rientra al parcheggio)', 
-                type: "damageNotBlocked" 
+                type: "defect" 
             });
         }
         if($scope.selectedClient.cleanness){

@@ -30,9 +30,13 @@ angular.module('starter').controller('ActionSheetCtrl', function(InfoFactories, 
                         hideSheet();
                         changeDriver($scope.book.pnr);
                         break; 
-                    case "damageNotBlocked":
+                    case "defect":
                         hideSheet();
-                        alertDamage($scope.book.pnr);
+                        alertDefect($scope.book.pnr);
+                        break;
+                    case "damage":
+                        hideSheet();
+                        alertDamage($scope.book);
                         break;
                     case "delay":
                         hideSheet();
@@ -46,7 +50,7 @@ angular.module('starter').controller('ActionSheetCtrl', function(InfoFactories, 
 
     };
 
-    function changeDriver(reservationNumber) {
+    /*function changeDriver(reservationNumber) {
         $scope.changeDriver = {};
         var myPopup = $ionicPopup.show({
             templateUrl: "js/directives/ccs-01-action-sheet/templates/picklistDamageTemplate.html",
@@ -75,13 +79,13 @@ angular.module('starter').controller('ActionSheetCtrl', function(InfoFactories, 
                 }
             ]
         });
-    };
+    };*/
 
-    function alertDamage(reservationNumber) {
+    function alertDefect(reservationNumber) {
         $scope.data = {};
         var myPopup = $ionicPopup.show({
             templateUrl: "js/directives/ccs-01-action-sheet/templates/picklistDamageTemplate.html",
-            title: 'Scegliere una tipologia di guasto...',
+            title: 'Scegliere una tipologia di difetto...',
             scope: $scope,
             buttons: [
                 {
@@ -111,10 +115,13 @@ angular.module('starter').controller('ActionSheetCtrl', function(InfoFactories, 
     function alertDamage(reservationNumber) {
         $scope.data = {};
         var myPopup = $ionicPopup.show({
-            templateUrl: "js/directives/ccs-01-action-sheet/templates/picklistDamageTemplate.html",
-            title: 'Scegliere una tipologia di guasto...',
+            templateUrl: "js/directives/ccs-01-action-sheet/templates/hardDamage.html",
+            title: 'Segnalazione Guasto',
             scope: $scope,
-            buttons: [
+            controller: function ($scope, $dialog, locals) {
+                alert("poppo")
+            }
+            /* buttons: [
                 {
                     text: 'Annulla',
                     type: 'button-stable',
@@ -135,7 +142,7 @@ angular.module('starter').controller('ActionSheetCtrl', function(InfoFactories, 
                         }
                     }
                 }
-            ]
+            ] */
         });
     }
 
@@ -175,8 +182,10 @@ angular.module('starter').controller('ActionSheetCtrl', function(InfoFactories, 
         $ionicLoading.show();
         ScriptServices.getXMLResource(629).then(function (res) {
             res = res.replace('{PNR}', info.pnr);
+            //Controllare la valorizzazione della request
             if(info.type === "1"){
-                res = res.replace('{STATUS}', info.value);
+                res = res.replace('{STATUS}', "Difetto");
+                res = res.replace('{STATUSD}', info.value);
                 res = res.replace('{STATUSC}', "");
             }else{
                 res = res.replace('{STATUSC}', info.value);
@@ -228,7 +237,7 @@ angular.module('starter').controller('ActionSheetCtrl', function(InfoFactories, 
                 delete $scope.contextPnr;
                 ScriptServices.callGenericService(res, 619).then(function(data) {
                     $ionicLoading.hide();
-                    $scope.callback();
+                    PopUpServices.messagePopup('Ritardo comunicato con successo','Successo', $scope.callback());
                 }, function(error) {
                     $ionicLoading.hide();
                     PopUpServices.errorPopup('Non è stato possibile comunicare il ritrado, riprovare.');
