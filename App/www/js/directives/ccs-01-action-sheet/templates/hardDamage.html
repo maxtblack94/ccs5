@@ -1,24 +1,69 @@
-<ion-modal-view>
+<ion-modal-view ng-controller="hardDamageCtrl">
   <ion-header-bar class="bar-positive">
     <h1 class="title">Segnalazione Guasto</h1>
   </ion-header-bar>
-  <ion-content>
-    <div class="card">
-      <div class="item item-text-wrap">
-        <strong class="energized"><i class="icon ion-android-alert"></i>Attenzione</strong>
-        <p>Effettuare la segnalazione guasto solo una volta che abbiamo constatato che il veicolo è realmente non funzionante, perchè una volta fatta la segnalazione il veicolo non sarà più utilizzabile e la prenotazione sarà chiusa.</p>
+  <ion-content padding="true">
+    <div ng-show="showCase === 'start'">
+      <div class="card">
+        <div class="item item-text-wrap">
+          <strong class="energized"><i class="icon ion-android-alert"></i>Attenzione</strong>
+          <p>Effettuare la segnalazione guasto solo una volta che abbiamo constatato che il veicolo è realmente non funzionante,
+            perchè una volta fatta la segnalazione il veicolo non sarà più utilizzabile e la prenotazione sarà chiusa.</p>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col col50">
-        <button ng-click='delete(book)' class="button button-block button-positive">
+      <div class="row">
+        <div class="col col50">
+          <button ng-click='close()' class="button button-block button-stable">
          Annulla
        </button>
-      </div>
-      <div class="col col50">
-        <button ng-click='delete(book)' class="button button-block button-stable">
+        </div>
+        <div class="col col50">
+          <button ng-click="changeShowCase('form')" class="button button-block button-positive">
           Continua
         </button>
+        </div>
+      </div>
+    </div>
+    <div ng-show="showCase === 'form'">
+      <div class="card">
+        <div class="item item-text-wrap">
+          <p class="text-center">
+            Seleziona la tipologia di guasto.
+          </p>
+        </div>
+        <div class="item item-text-wrap" ng-repeat="option in params.damageType">
+          <ion-radio ng-model="data.value" ng-value="option.code">{{option.text}}</ion-radio>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col50">
+          <button ng-click='close()' class="button button-block button-stable">
+         Annulla
+       </button>
+        </div>
+        <div class="col col50">
+          <button ng-click="changeShowCase('form2')" class="button button-block button-positive">
+          Continua
+        </button>
+        </div>
+      </div>
+    </div>
+    <div ng-show="showCase === 'form2'">
+      <ion-list>
+        <ion-checkbox ng-model="filter.red">Veicolo rimorchiato?</ion-checkbox>
+      </ion-list>
+      note - km - carburante
+      <div class="row">
+        <div class="col col50">
+          <button ng-click='close()' class="button button-block button-stable">
+         Annulla
+       </button>
+        </div>
+        <div class="col col50">
+          <button ng-click="changeShowCase(form2)" class="button button-block button-positive">
+          Continua
+        </button>
+        </div>
       </div>
     </div>
   </ion-content>

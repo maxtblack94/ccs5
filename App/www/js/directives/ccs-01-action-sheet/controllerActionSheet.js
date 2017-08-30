@@ -1,4 +1,4 @@
-angular.module('starter').controller('ActionSheetCtrl', function($ionicModal, InfoFactories, PopUpServices, $ionicLoading, ScriptServices, $ionicPopup, $ionicActionSheet, $scope) {
+angular.module('starter').controller('ActionSheetCtrl', function($ionicModal, DamageService, InfoFactories, PopUpServices, $ionicLoading, ScriptServices, $ionicPopup, $ionicActionSheet, $scope) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     
@@ -117,7 +117,13 @@ angular.module('starter').controller('ActionSheetCtrl', function($ionicModal, In
     }
 
     function alertDamage(book, modal) {
-          modal.show();
+        var modalObj = {
+            "book":book,
+            "modalInstance" : modal,
+            "damageType": $scope.alertList.damage_type
+        }
+        DamageService.setModalObj(modalObj)
+        modal.show(book, modal);
     }
 
     function alertCleanness(reservationNumber) {
