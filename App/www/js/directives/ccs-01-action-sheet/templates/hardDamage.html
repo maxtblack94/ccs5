@@ -1,5 +1,25 @@
-
-{{pisello}}
-<ion-list>
-  <ion-radio ng-repeat="option in alertList.damage_type" ng-model="data.value" ng-value="option.code">{{option.text}}</ion-radio>
-</ion-list>
+<ion-modal-view>
+  <ion-header-bar class="bar-positive">
+    <h1 class="title">Segnalazione Guasto</h1>
+  </ion-header-bar>
+  <ion-content>
+    <div class="card">
+      <div class="item item-text-wrap">
+        <strong class="energized"><i class="icon ion-android-alert"></i>Attenzione</strong>
+        <p>Effettuare la segnalazione guasto solo una volta che abbiamo constatato che il veicolo è realmente non funzionante, perchè una volta fatta la segnalazione il veicolo non sarà più utilizzabile e la prenotazione sarà chiusa.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col50">
+        <button ng-click='delete(book)' class="button button-block button-positive">
+         Annulla
+       </button>
+      </div>
+      <div class="col col50">
+        <button ng-click='delete(book)' class="button button-block button-stable">
+          Continua
+        </button>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

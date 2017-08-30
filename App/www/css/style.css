@@ -377,6 +377,10 @@ a.positive {
     background-color: #FF8F00;
 }
 
+.energized, a.energized {
+    color: #FF8F00; 
+}
+
 .platform-android .action-sheet-backdrop.active {
 background-color: rgba(0, 0, 0, 0.1); }
     .platform-android .action-sheet {
@@ -418,4 +422,12 @@ display: none;
 
 .platform-android .action-sheet-cancel {
     display: block !important;
+}
+
+.modal{
+    top: 0 ;
+    bottom: 0 ; 
+    left: 0 ;
+    right: 0 ;
+    width: 100% ;
 }

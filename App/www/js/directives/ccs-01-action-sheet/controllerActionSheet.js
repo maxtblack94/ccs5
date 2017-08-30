@@ -1,4 +1,4 @@
-angular.module('starter').controller('ActionSheetCtrl', function(InfoFactories, PopUpServices, $ionicLoading, ScriptServices, $ionicPopup, $ionicActionSheet, $scope) {
+angular.module('starter').controller('ActionSheetCtrl', function($ionicModal, InfoFactories, PopUpServices, $ionicLoading, ScriptServices, $ionicPopup, $ionicActionSheet, $scope) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     
@@ -36,7 +36,11 @@ angular.module('starter').controller('ActionSheetCtrl', function(InfoFactories, 
                         break;
                     case "damage":
                         hideSheet();
-                        alertDamage($scope.book);
+                        $ionicModal.fromTemplateUrl('js/directives/ccs-01-action-sheet/templates/hardDamage.html', {
+                            scope: $scope
+                        }).then(function(modal) {
+                            alertDamage($scope.book, modal);
+                        });
                         break;
                     case "delay":
                         hideSheet();
@@ -112,38 +116,8 @@ angular.module('starter').controller('ActionSheetCtrl', function(InfoFactories, 
         });
     }
 
-    function alertDamage(reservationNumber) {
-        $scope.data = {};
-        var myPopup = $ionicPopup.show({
-            templateUrl: "js/directives/ccs-01-action-sheet/templates/hardDamage.html",
-            title: 'Segnalazione Guasto',
-            scope: $scope,
-            controller: function ($scope, $dialog, locals) {
-                alert("poppo")
-            }
-            /* buttons: [
-                {
-                    text: 'Annulla',
-                    type: 'button-stable',
-                },
-                {
-                    text: '<b>Salva</b>',
-                    type: 'button-positive',
-                    onTap: function (e) {
-                        if (!$scope.data.value) {
-                            e.preventDefault();
-                        } else {
-                            var obj = {
-                                "type": "1",
-                                "value" : $scope.data.value,
-                                "pnr" : reservationNumber
-                            }
-                            sendAlert(obj);
-                        }
-                    }
-                }
-            ] */
-        });
+    function alertDamage(book, modal) {
+          modal.show();
     }
 
     function alertCleanness(reservationNumber) {
