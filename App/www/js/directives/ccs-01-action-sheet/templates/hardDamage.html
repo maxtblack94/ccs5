@@ -23,18 +23,18 @@
         </button>
         </div>
       </div>
+      
     </div>
     <div ng-show="showCase === 'form'">
-      <div class="card">
-        <div class="item item-text-wrap">
-          <p class="text-center">
-            Seleziona la tipologia di guasto.
-          </p>
-        </div>
-        <div class="item item-text-wrap" ng-repeat="option in params.damageType">
-          <ion-radio ng-model="data.value" ng-value="option.code">{{option.text}}</ion-radio>
-        </div>
+      <div class="bar bar-header item-input-inset">
+        <label class="item-input-wrapper">
+          <i class="icon ion-ios-search placeholder-icon"></i>
+          <input type="search" ng-model="searchVal" placeholder="Scegli tipologia guasto">
+        </label>
       </div>
+      <ion-list>
+        <ion-radio ng-repeat="option in params.damageType | orderBy: 'text' | filter:searchVal" ng-model="data.value" ng-value="option.code">{{option.text}}</ion-radio>
+      </ion-list>
       <div class="row">
         <div class="col col50">
           <button ng-click='close()' class="button button-block button-stable">
@@ -65,6 +65,9 @@
         </button>
         </div>
       </div>
+    </div>
+    <div class="bar bar-footer">
+      <button class="button button-clear pull-right">Right</button>
     </div>
   </ion-content>
 </ion-modal-view>
