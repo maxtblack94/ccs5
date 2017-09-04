@@ -7,8 +7,17 @@
       <div class="card">
         <div class="item item-text-wrap">
           <strong class="energized"><i class="icon ion-android-alert"></i>Attenzione</strong>
-          <p>Effettuare la segnalazione guasto solo una volta che abbiamo constatato che il veicolo è realmente non funzionante,
-            perchè una volta fatta la segnalazione il veicolo non sarà più utilizzabile e la prenotazione sarà chiusa.</p>
+          <p>Effettuare la Segnalazione Guasto, solo dopo aver constatato, che il veicolo non è in grado di rientrare al parcheggio e necessita di essere portato o trasferito, presso una officina per la riparazione.</p>
+          </br>
+          <p>La Segnalazione Guasto, pertanto comporta la chiusura della presente corsa, così da poterle consentire di prenotare un altro veicolo se desiderato. Per chiudere la presente corsa, è richiesto di comunicare peraltro:</p>
+          </br>
+          <ul class="my-list">
+            <li>Chilometri Totali indicati sul cruscotto</li>
+            <li>Note (utili per la diagnosi del problema)</li>
+            <li>Se il veicolo necessiti di essere rimorchiato o meno</li>
+          </ul>
+          </br>
+          <p>Si precisa che una volta segnalato il Guasto il veicolo non sarà più utilizzabile.</p>
         </div>
       </div>
       <div class="row">
@@ -33,7 +42,7 @@
         </label>
       </div>
       <ion-list>
-        <ion-radio ng-repeat="option in damageType | orderBy: 'text' | filter:searchVal" ng-model="requestParameters.statusD" ng-value="option.code">{{option.text}}</ion-radio>
+        <ion-radio ng-repeat="option in alertList.damage_type | orderBy: 'text' | filter:searchVal" ng-model="requestParameters.statusD" ng-value="option.code">{{option.text}}</ion-radio>
       </ion-list>
       <div class="row">
         <div class="col col50">
@@ -52,11 +61,11 @@
       <div class="bar bar-header item-input-inset">
         <label class="item-input-wrapper">
           <i class="icon ion-ios-search placeholder-icon"></i>
-          <input type="search" ng-model="searchVal" placeholder="Scegli la quantita di carburante">
+          <input type="search" ng-model="searchVal" placeholder="Selezionare il livello di carburante nel serbatoio">
         </label>
       </div>
       <ion-list>
-        <ion-radio ng-repeat="option in fuelList | orderBy: 'text' | filter:searchVal" ng-model="requestParameters.fuel" ng-value="option.code">{{option.text}}</ion-radio>
+        <ion-radio ng-repeat="option in alertList.fuel | filter:searchVal" ng-model="requestParameters.fuel" ng-value="option.code">{{option.text}}</ion-radio>
       </ion-list>
       <div class="row">
         <div class="col col50">
@@ -75,14 +84,14 @@
       <!--<textarea ng-model="myModel" tagged-autogrow></textarea>-->
       <ion-list>
         <label ng-if="operationType === 'FAULT'" class="item item-input item-stacked-label">
-          <span class="input-label">Kilometi correnti</span>
-          <input type="number" ng-model="requestParameters.km">
+          <span class="input-label">Chilometraggio totale sul cruscotto</span>
+          <input type="number" ng-model="requestParameters.km" placeholder="Digitare il chilometraggio">
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Note</span>
-          <input type="text" ng-model="requestParameters.note">
+          <input type="text" ng-model="requestParameters.note" placeholder="Eventuali indicazioni utili">
         </label>
-        <ion-checkbox ng-if="operationType === 'FAULT'" ng-model="requestParameters.tow">Veicolo rimorchiato?</ion-checkbox>
+        <ion-toggle ng-if="operationType === 'FAULT'" ng-model="requestParameters.tow" toggle-class="toggle-positive">Veicolo rimorchiato in officina?</ion-toggle>
       </ion-list>
       <div class="row">
         <div class="col col50">

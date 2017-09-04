@@ -431,3 +431,10 @@ display: none;
     right: 0 ;
     width: 100% ;
 }
+
+.my-list {
+    list-style-type: disc;
+    font-size: 13px;
+    margin-left: 25px;
+    color: #666;
+}

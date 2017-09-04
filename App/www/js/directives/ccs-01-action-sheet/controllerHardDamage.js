@@ -32,7 +32,7 @@ angular.module('starter').controller('hardDamageCtrl', function($scope, DamageSe
         $scope.locale = window.locale;
         $scope.requestParameters = {};
         $scope.operationType = DamageService.getOperationType().operationType;
-        $scope.damageType = DamageService.getOperationType().damageType;
+        $scope.alertList = DamageService.getOperationType().alertList;
         $scope.showCase = $scope.operationType === "FAULT" ? "start" : "formDamage";
     }
 
@@ -50,20 +50,6 @@ angular.module('starter').controller('hardDamageCtrl', function($scope, DamageSe
         var state = $scope.operationType === "FAULT" ? "fromFuel":"formNotes";
         $scope.changeShowCase(state);
     }
-
-    $scope.fuelList = [{
-        code: "0",
-        text: "25%"
-    },{
-        code: "50",
-        text: "50%"
-    },{
-        code: "75",
-        text: "75%"
-    },{
-        code: "100",
-        text: "100%"
-    }]
 
     $scope.submitData = function(){
         $ionicLoading.show();

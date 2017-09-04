@@ -1,6 +1,28 @@
 {
   "retcode": 0,
   "data": {
+    "fuel": [
+    {
+      "text": "1/4",
+      "code": "ALMOST_EMPTY"
+    },
+    {
+      "text": "0/4",
+      "code": "RESERVE"
+    },
+    {
+      "text": "2/4",
+      "code": "HALF"
+    },
+    {
+      "text": "3/4",
+      "code": "ALMOST_FULL"
+    },
+    {
+      "text": "4/4",
+      "code": "FULL"
+    }
+  ],
     "status": [
       {
         "text": "Difettoso",

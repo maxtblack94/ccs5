@@ -1,4 +1,4 @@
-angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, DamageService, InfoFactories, PopUpServices, $ionicLoading, ScriptServices, $ionicPopup, $ionicActionSheet, $scope) {
+angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, ManipolationServices, DamageService, InfoFactories, PopUpServices, $ionicLoading, ScriptServices, $ionicPopup, $ionicActionSheet, $scope) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
 
@@ -33,7 +33,7 @@ angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, D
                     case "defect":
                         hideSheet();
                         DamageService.setOperationType({
-                            "damageType": $scope.alertList.damage_type,
+                            "alertList": $scope.alertList,
                             "operationType" : "DEFECTIVE"
                         });
                         $ionicModal.fromTemplateUrl('js/directives/ccs-01-action-sheet/templates/hardDamage.html', {
@@ -45,7 +45,7 @@ angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, D
                     case "damage":
                         hideSheet();
                         DamageService.setOperationType({
-                            "damageType": $scope.alertList.damage_type,
+                            "alertList": $scope.alertList,
                             "operationType" : "FAULT"
                         });
                         $ionicModal.fromTemplateUrl('js/directives/ccs-01-action-sheet/templates/hardDamage.html', {
@@ -142,7 +142,8 @@ angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, D
         $scope.data = {};
         var myPopup = $ionicPopup.show({
             templateUrl: "js/directives/ccs-01-action-sheet/templates/picklistCleanTemplate.html",
-            title: "Scegliere lo stato dell'auto...",
+            title : "Segnalazione Pulizia",
+            subTitle : "Indicare lo stato di pulizia del veicolo",
             scope: $scope,
             buttons: [
                 {
