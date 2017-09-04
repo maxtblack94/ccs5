@@ -1,6 +1,6 @@
 <ion-modal-view ng-controller="hardDamageCtrl">
   <ion-header-bar class="bar-positive">
-    <h1 class="title">Segnalazione Guasto</h1>
+    <h1 class="title">Segnalazione {{operationType === "FAULT" ? "Guasto" : "Difetto"}}</h1>
   </ion-header-bar>
   <ion-content padding="true">
     <div ng-show="showCase === 'start'">
@@ -18,14 +18,14 @@
        </button>
         </div>
         <div class="col col50">
-          <button ng-click="changeShowCase('form')" class="button button-block button-positive">
+          <button ng-click="changeShowCase('formDamage')" class="button button-block button-positive">
           Continua
         </button>
         </div>
       </div>
       
     </div>
-    <div ng-show="showCase === 'form'">
+    <div ng-show="showCase === 'formDamage'">
       <div class="bar bar-header item-input-inset">
         <label class="item-input-wrapper">
           <i class="icon ion-ios-search placeholder-icon"></i>
@@ -33,7 +33,7 @@
         </label>
       </div>
       <ion-list>
-        <ion-radio ng-repeat="option in params.damageType | orderBy: 'text' | filter:searchVal" ng-model="data.value" ng-value="option.code">{{option.text}}</ion-radio>
+        <ion-radio ng-repeat="option in damageType | orderBy: 'text' | filter:searchVal" ng-model="requestParameters.statusD" ng-value="option.code">{{option.text}}</ion-radio>
       </ion-list>
       <div class="row">
         <div class="col col50">
@@ -42,17 +42,22 @@
        </button>
         </div>
         <div class="col col50">
-          <button ng-click="changeShowCase('form2')" class="button button-block button-positive">
+          <button ng-click="jumpStep()" class="button button-block button-positive">
           Continua
         </button>
         </div>
       </div>
     </div>
-    <div ng-show="showCase === 'form2'">
+    <div ng-show="showCase === 'fromFuel'">
+      <div class="bar bar-header item-input-inset">
+        <label class="item-input-wrapper">
+          <i class="icon ion-ios-search placeholder-icon"></i>
+          <input type="search" ng-model="searchVal" placeholder="Scegli la quantita di carburante">
+        </label>
+      </div>
       <ion-list>
-        <ion-checkbox ng-model="filter.red">Veicolo rimorchiato?</ion-checkbox>
+        <ion-radio ng-repeat="option in fuelList | orderBy: 'text' | filter:searchVal" ng-model="requestParameters.fuel" ng-value="option.code">{{option.text}}</ion-radio>
       </ion-list>
-      note - km - carburante
       <div class="row">
         <div class="col col50">
           <button ng-click='close()' class="button button-block button-stable">
@@ -60,14 +65,37 @@
        </button>
         </div>
         <div class="col col50">
-          <button ng-click="changeShowCase(form2)" class="button button-block button-positive">
+          <button ng-click="changeShowCase('formNotes')" class="button button-block button-positive">
           Continua
         </button>
         </div>
       </div>
     </div>
-    <div class="bar bar-footer">
-      <button class="button button-clear pull-right">Right</button>
+    <div ng-show="showCase === 'formNotes'">
+      <!--<textarea ng-model="myModel" tagged-autogrow></textarea>-->
+      <ion-list>
+        <label ng-if="operationType === 'FAULT'" class="item item-input item-stacked-label">
+          <span class="input-label">Kilometi correnti</span>
+          <input type="number" ng-model="requestParameters.km">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Note</span>
+          <input type="text" ng-model="requestParameters.note">
+        </label>
+        <ion-checkbox ng-if="operationType === 'FAULT'" ng-model="requestParameters.tow">Veicolo rimorchiato?</ion-checkbox>
+      </ion-list>
+      <div class="row">
+        <div class="col col50">
+          <button ng-click='close()' class="button button-block button-stable">
+         Annulla
+       </button>
+        </div>
+        <div class="col col50">
+          <button ng-click="submitData()" class="button button-block button-positive">
+          Conferma
+        </button>
+        </div>
+      </div>
     </div>
   </ion-content>
 </ion-modal-view>

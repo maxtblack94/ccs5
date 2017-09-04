@@ -1,4 +1,4 @@
-window.serverRootLocal = true;
+window.serverRootLocal = false;
 
 function formatItemDate(dpick, tpick) {
 	var date = '';

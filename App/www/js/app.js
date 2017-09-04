@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud'])
+angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud', 'tagged.directives.autogrow'])
 
   .run(function ($ionicPlatform, $cordovaStatusbar, $cordovaDevice) {
     $ionicPlatform.ready(function () {

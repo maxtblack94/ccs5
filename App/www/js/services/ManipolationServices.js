@@ -22,6 +22,9 @@ angular.module('starter').factory("ManipolationServices", function() {
                 return '100%';
         }
     };
+    function fixRequestParam(value) {
+        return value || "";
+    };
     function resetDateService (date){
         var d = new Date(date);
         var m = new Date(date);
@@ -62,6 +65,9 @@ angular.module('starter').factory("ManipolationServices", function() {
     return {
         dateAndTimeAggregation: function (date, time) {
             return dateAndTimeAggregation(date, time);
+        },
+        fixRequestParam: function (value) {
+            return fixRequestParam(value);
         },
         trascodeFuel: function (fuel) {
             return trascodeFuel(fuel);

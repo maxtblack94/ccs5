@@ -1,7 +1,7 @@
-angular.module('starter').controller('ActionSheetCtrl', function($ionicModal, DamageService, InfoFactories, PopUpServices, $ionicLoading, ScriptServices, $ionicPopup, $ionicActionSheet, $scope) {
+angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, DamageService, InfoFactories, PopUpServices, $ionicLoading, ScriptServices, $ionicPopup, $ionicActionSheet, $scope) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
-    
+
     ScriptServices.directWithOutScriptID(628).then(function (data) {
         //leader
         var response = data.data;
@@ -16,7 +16,7 @@ angular.module('starter').controller('ActionSheetCtrl', function($ionicModal, Da
         var hideSheet = $ionicActionSheet.show({
             buttons: $scope.actionButtons,
             titleText: 'Segliere tipologia segnalazione..',
-            cancelText: ionic.Platform.isAndroid() ? '<i class="fa fa-times" aria-hidden="true"></i> Chiudi':'Chiudi',
+            cancelText: ionic.Platform.isAndroid() ? '<i class="fa fa-times" aria-hidden="true"></i> Chiudi' : 'Chiudi',
             cancel: function () {
                 // add cancel code..
             },
@@ -29,16 +29,28 @@ angular.module('starter').controller('ActionSheetCtrl', function($ionicModal, Da
                     case "changeDriver":
                         hideSheet();
                         changeDriver($scope.book.pnr);
-                        break; 
+                        break;
                     case "defect":
                         hideSheet();
-                        alertDefect($scope.book.pnr);
+                        DamageService.setOperationType({
+                            "damageType": $scope.alertList.damage_type,
+                            "operationType" : "DEFECTIVE"
+                        });
+                        $ionicModal.fromTemplateUrl('js/directives/ccs-01-action-sheet/templates/hardDamage.html', {
+                            scope: $scope
+                        }).then(function (modal) {
+                            alertDamage($scope.book, modal);
+                        });
                         break;
                     case "damage":
                         hideSheet();
+                        DamageService.setOperationType({
+                            "damageType": $scope.alertList.damage_type,
+                            "operationType" : "FAULT"
+                        });
                         $ionicModal.fromTemplateUrl('js/directives/ccs-01-action-sheet/templates/hardDamage.html', {
                             scope: $scope
-                        }).then(function(modal) {
+                        }).then(function (modal) {
                             alertDamage($scope.book, modal);
                         });
                         break;
@@ -85,7 +97,7 @@ angular.module('starter').controller('ActionSheetCtrl', function($ionicModal, Da
         });
     };*/
 
-    function alertDefect(reservationNumber) {
+/*     function alertDefect(reservationNumber) {
         $scope.data = {};
         var myPopup = $ionicPopup.show({
             templateUrl: "js/directives/ccs-01-action-sheet/templates/picklistDamageTemplate.html",
@@ -105,8 +117,8 @@ angular.module('starter').controller('ActionSheetCtrl', function($ionicModal, Da
                         } else {
                             var obj = {
                                 "type": "1",
-                                "value" : $scope.data.value,
-                                "pnr" : reservationNumber
+                                "value": $scope.data.value,
+                                "pnr": reservationNumber
                             }
                             sendAlert(obj);
                         }
@@ -114,13 +126,13 @@ angular.module('starter').controller('ActionSheetCtrl', function($ionicModal, Da
                 }
             ]
         });
-    }
+    } */
 
     function alertDamage(book, modal) {
         var modalObj = {
-            "book":book,
-            "modalInstance" : modal,
-            "damageType": $scope.alertList.damage_type
+            "book": book,
+            "modalInstance": modal,
+            "callback": $scope.callback 
         }
         DamageService.setModalObj(modalObj)
         modal.show(book, modal);
@@ -146,8 +158,8 @@ angular.module('starter').controller('ActionSheetCtrl', function($ionicModal, Da
                         } else {
                             var obj = {
                                 "type": "0",
-                                "value" : $scope.data.value,
-                                "pnr" : reservationNumber
+                                "value": $scope.data.value,
+                                "pnr": reservationNumber
                             }
                             sendAlert(obj);
                         }
@@ -156,21 +168,17 @@ angular.module('starter').controller('ActionSheetCtrl', function($ionicModal, Da
             ]
         });
     }
-    
 
-    function sendAlert(info){
+
+    function sendAlert(info) {
         $ionicLoading.show();
         ScriptServices.getXMLResource(629).then(function (res) {
-            res = res.replace('{PNR}', info.pnr);
-            //Controllare la valorizzazione della request
-            if(info.type === "1"){
-                res = res.replace('{STATUS}', "Difetto");
-                res = res.replace('{STATUSD}', info.value);
-                res = res.replace('{STATUSC}', "");
-            }else{
-                res = res.replace('{STATUSC}', info.value);
-                res = res.replace('{STATUS}', "");
-            }
+            res = res.replace('{PNR}', ManipolationServices.fixRequestParam(info.pnr))
+            .replace('{STATUS}', ManipolationServices.fixRequestParam())
+            .replace('{STATUSC}', ManipolationServices.fixRequestParam(info.value))
+            .replace('{STATUSD}', ManipolationServices.fixRequestParam())
+            .replace('{TOW}', ManipolationServices.fixRequestParam())
+            .replace('{NOTES}', ManipolationServices.fixRequestParam());
             ScriptServices.callGenericService(res, 629).then(function (data) {
                 var response = data.data;
                 $ionicLoading.hide();
@@ -210,15 +218,15 @@ angular.module('starter').controller('ActionSheetCtrl', function($ionicModal, Da
             }]
         });
 
-        function callSetDelay(delayInfo){
+        function callSetDelay(delayInfo) {
             $ionicLoading.show();
-            ScriptServices.getXMLResource(619).then(function(res) {
+            ScriptServices.getXMLResource(619).then(function (res) {
                 res = res.replace('{PNR}', delayInfo.pnr).replace('{DELAY}', delayInfo.time);
                 delete $scope.contextPnr;
-                ScriptServices.callGenericService(res, 619).then(function(data) {
+                ScriptServices.callGenericService(res, 619).then(function (data) {
                     $ionicLoading.hide();
-                    PopUpServices.messagePopup('Ritardo comunicato con successo','Successo', $scope.callback());
-                }, function(error) {
+                    PopUpServices.messagePopup('Ritardo comunicato con successo', 'Successo', $scope.callback());
+                }, function (error) {
                     $ionicLoading.hide();
                     PopUpServices.errorPopup('Non è stato possibile comunicare il ritrado, riprovare.');
                 })
