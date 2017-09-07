@@ -1,0 +1,20 @@
+{
+    "retcode": 0,
+    "data": [
+        {
+            "description": "MARIO BIANCHI",
+            "badgeID": "41506",
+            "id": 856
+        },
+        {
+            "description": "GIUSEPPE VERDI",
+            "badgeID": "77144",
+            "id": 951
+        },
+        {
+            "description": "Roberto Amati",
+            "badgeID": "136616",
+            "id": 3404
+        }
+    ]
+}

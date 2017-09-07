@@ -1,0 +1,51 @@
+<ion-modal-view ng-controller="ChangeDriverCtrl">
+    <ion-header-bar class="bar-positive">
+        <button class="button button-clear button-light" ng-if="showCase==='confirm'" ng-click="changeState('start')">
+            Indietro
+        </button>
+        <h1 class="title">Cambio Guida</h1>
+        <button class="button button-clear button-light" ng-click="currentModalData.modalInstance.hide()">
+            Chiudi
+        </button>
+    </ion-header-bar>
+    <ion-content padding="true">
+        <div ng-show="showCase === 'start'">
+            <div class="bar bar-header item-input-inset">
+                <label class="item-input-wrapper">
+                    <i class="icon ion-ios-search placeholder-icon"></i>
+                    <input type="search" ng-model="searchVal" placeholder="Selezionare dipendente">
+                </label>
+            </div>
+            <div class="list">
+                <a ng-repeat="driver in currentModalData.driversList | filter:searchVal | orderBy:'Description'" class="item" ng-click="goToConfirm(driver)">
+                    {{driver.description | camelCase}}
+                    <span class="item-note">
+                    {{driver.badgeID}}
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div ng-show="showCase === 'confirm'">
+            <div class="list">
+                <div class="item item-icon-right">
+                    {{selectedDriver.description | camelCase}}
+                    <i class="icon ion-ios-person-outline"></i>
+                </div>
+                <div class="item item-icon-right">
+                    {{selectedDriver.badgeID}}
+                    <i class="icon ion-card"></i>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col col50">
+                    <button ng-click='close()' class="button button-block button-stable">Annulla</button>
+                </div>
+                <div class="col col50">
+                    <button ng-click="confirmChangeDriver()" class="button button-block button-positive">Conferma</button>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

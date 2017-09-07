@@ -28,7 +28,11 @@ angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, M
                         break;
                     case "changeDriver":
                         hideSheet();
-                        changeDriver($scope.book.pnr);
+                        $ionicModal.fromTemplateUrl('js/directives/ccs-01-action-sheet/templates/changeDriver.html', {
+                            scope: $scope
+                        }).then(function (modal) {
+                            changeDriver(modal);
+                        });
                         break;
                     case "defect":
                         hideSheet();
@@ -136,6 +140,25 @@ angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, M
         }
         DamageService.setModalObj(modalObj)
         modal.show(book, modal);
+    }
+
+    function changeDriver(modal) {
+        $ionicLoading.show();
+        ScriptServices.getXMLResource(631).then(function (res) {
+            res = res.replace('{PNR}', ManipolationServices.fixRequestParam($scope.book.pnr));
+            ScriptServices.callGenericService(res, 631).then(function (data) {
+                $ionicLoading.hide();
+                $scope.currentModalData = {
+                    "driversList": data.data,
+                    "modalInstance": modal,
+                    "callback": $scope.callback
+                }
+                modal.show();
+            }, function (error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup("Non è stato possibile recuperare la lista dei dipendenti abilitati. Riprovare!");
+            })
+        });
     }
 
     function alertCleanness(reservationNumber) {

@@ -83,3 +83,16 @@ angular.module('starter').factory("ManipolationServices", function() {
 
 
 })
+.filter( 'camelCase', function (){
+    var camelCaseFilter = function ( input ){
+        if(input){
+            var words = input.split( ' ' );
+            for ( var i = 0, len = words.length; i < len; i++ )
+                words[i] = words[i].charAt( 0 ).toUpperCase() + words[i].slice( 1 ).toLowerCase();
+            return words.join( ' ' );
+        }else{
+            return;
+        }
+    };
+    return camelCaseFilter;
+})

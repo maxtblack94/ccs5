@@ -51,7 +51,7 @@
        </button>
         </div>
         <div class="col col50">
-          <button ng-click="jumpStep()" class="button button-block button-positive">
+          <button ng-disabled="!requestParameters.statusD" ng-click="jumpStep()" class="button button-block button-positive">
           Continua
         </button>
         </div>
@@ -74,7 +74,7 @@
        </button>
         </div>
         <div class="col col50">
-          <button ng-click="changeShowCase('formNotes')" class="button button-block button-positive">
+          <button ng-disabled="!requestParameters.fuel" ng-click="changeShowCase('formNotes')" class="button button-block button-positive">
           Continua
         </button>
         </div>
@@ -84,11 +84,11 @@
       <!--<textarea ng-model="myModel" tagged-autogrow></textarea>-->
       <ion-list>
         <label ng-if="operationType === 'FAULT'" class="item item-input item-stacked-label">
-          <span class="input-label">Chilometraggio totale sul cruscotto</span>
+          <span class="input-label">Chilometraggio totale sul cruscotto<span class="color-error">*</span></span>
           <input type="number" ng-model="requestParameters.km" placeholder="Digitare il chilometraggio">
         </label>
         <label class="item item-input item-stacked-label">
-          <span class="input-label">Note</span>
+          <span class="input-label">Note<span class="color-error">*</span></span>
           <input type="text" ng-model="requestParameters.note" placeholder="Eventuali indicazioni utili">
         </label>
         <ion-toggle ng-if="operationType === 'FAULT'" ng-model="requestParameters.tow" toggle-class="toggle-positive">Veicolo rimorchiato in officina?</ion-toggle>
@@ -100,7 +100,7 @@
        </button>
         </div>
         <div class="col col50">
-          <button ng-click="submitData()" class="button button-block button-positive">
+          <button ng-disabled="!requestParameters.km || !requestParameters.note" ng-click="submitData()" class="button button-block button-positive">
           Conferma
         </button>
         </div>
