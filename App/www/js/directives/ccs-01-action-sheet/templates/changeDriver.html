@@ -1,8 +1,5 @@
 <ion-modal-view ng-controller="ChangeDriverCtrl">
     <ion-header-bar class="bar-positive">
-        <button class="button button-clear button-light" ng-if="showCase==='confirm'" ng-click="changeState('start')">
-            Indietro
-        </button>
         <h1 class="title">Cambio Guida</h1>
         <button class="button button-clear button-light" ng-click="currentModalData.modalInstance.hide()">
             Chiudi
@@ -27,9 +24,9 @@
         </div>
         <div ng-show="showCase === 'confirm'">
             <div class="list">
-                <div class="item item-icon-right">
+                <div class="item item-icon-right" ng-click="changeState('start')">
                     {{selectedDriver.description | camelCase}}
-                    <i class="icon ion-ios-person-outline"></i>
+                    <i class="icon ion-ios-color-wand-outline"></i>
                 </div>
                 <div class="item item-icon-right">
                     {{selectedDriver.badgeID}}

@@ -1,29 +1,26 @@
-angular.module('starter').controller('TabCtrl', function(InfoFactories, PopUpServices, $state, $scope) {
+angular.module('starter').controller('TabCtrl', function(PushEvents, InfoFactories, PopUpServices, $state, $scope) {
     var eventParams;
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
-    function manipolateEvents(){
+    function manipolateEvents(eventParams){
         switch (eventParams.name) {
         case 'gestioneRitardo':
-            $state.go('tab.bookings');
+            PushEvents.delayAlert(eventParams.params);
+            break;
+        case 'changeDriver':
+            PushEvents.changeDriver(eventParams.params);
             break;
         default:
-            console.log('Sorry, we are out of ' + eventName + '.');
+            PopUpServices.messagePopup(eventParams.params.message, eventParams.params.title);
         }
-        eventParams = {};
     }
     $scope.$on('cloud:push:notification', function(event, data) {
         if(data.message.raw && data.message.raw.additionalData && data.message.raw.additionalData.eventName){
             eventParams = {
                 "name" : data.message.raw.additionalData.eventName,
-                "params" : data.message.raw.additionalData.params
+                "params" : data.message.raw
             }
-            PopUpServices.messagePopup(
-                data.message.text,
-                data.message.title,
-                manipolateEvents
-            );
-            
+            manipolateEvents(eventParams);
         }else{
             PopUpServices.messagePopup(data.message.text, data.message.title);
         }
