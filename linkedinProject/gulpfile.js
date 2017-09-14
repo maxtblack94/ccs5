@@ -139,7 +139,18 @@ gulp.task('require', [], function(done) {
     .on('end', end);
 });
 
-gulp.task('install', ['build', 'angular', 'require', 'bootstrap', 'angular-ui-bootstrap'], function(done) {
+gulp.task('tether', [], function(done) {
+  var ends = 1;
+  function end() {
+    if (--ends) return;
+    done();
+  }
+  gulp.src(['./node_modules/tether/dist/js/tether.min.js'])
+    .pipe(gulp.dest('./www/lib/tether'))
+    .on('end', end);
+});
+
+gulp.task('install', ['build', 'angular', 'require', 'tether','bootstrap', 'angular-ui-bootstrap'], function(done) {
   done()
 });
 

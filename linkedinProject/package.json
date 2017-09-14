@@ -43,7 +43,9 @@
   "author": {
     "name": "Andrew Challen"
   },
-  "dependencies": {},
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6"
+  },
   "description": "A starter project that combines AngularJS, Bootstrap, UI Router, UI Bootstrap, RequireJS in for starting building your website.",
   "devDependencies": {
     "Respond.js": "https://github.com/scottjehl/Respond/tarball/86dea4ab1e93a275e2044965ab7452c3c1e2c6da",
