@@ -161,6 +161,13 @@ angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud', 'tagged.directiv
         cache: false,
         templateUrl: 'templates/commons/settings.html',
         controller: 'SettingsCtrl'
+      })
+      
+      .state('help', {
+        url: '/help',
+        cache: false,
+        templateUrl: 'templates/commons/help.html',
+        controller: 'HelpCtrl'
       });
 
     $urlRouterProvider.otherwise('/login');

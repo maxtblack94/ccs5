@@ -1,0 +1,15 @@
+<ion-view view-title="Aiuto">
+    <ion-content>
+        <div class="card" ng-repeat="helpInfo in helpList">
+            <div class="item item-divider">
+                {{helpInfo.title}}
+            </div>
+            <div class="item item-text-wrap">
+                {{helpInfo.description}}
+                <p class="m-top5">
+                    <a href="{{helpInfo.url}}" class="subdued">Continua a leggere...</a>
+                </p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
