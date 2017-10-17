@@ -54,7 +54,7 @@
             "lbljustification": "Giustificazione Utilizzo",
             "lbldestination": "Destinazione Trasferta",
             "lbldelay": "Ritarda",
-            "vehicleType": false,
+            "vehicleType": true,
             "clientCode": "6xc45e",
             "clientStyle": "http://ccsitalia.it/downloads/app/css/cssApp.css",
             "logo": "http://ccsitalia.it/downloads/app/logo/ccsLogo.png",

@@ -26,6 +26,9 @@ angular.module('starter').controller('ResumeCtrl', function(ManipolationServices
             res = res.replace('{IDPARK}', $scope.selectedParking.Nr);
             ScriptServices.callGenericService(res, 592).then(function(data) {
                 $scope.vehicleTypeList = data.typeList;
+                if($scope.vehicleTypeList.length === 0){
+                    PopUpServices.messagePopup("Non è stato possibile recuperare le tipologie di veicoli presenti in questo parcheggio!", "Info");
+                }
                 $ionicLoading.hide();
             }, function(error) {
                 $ionicLoading.hide();

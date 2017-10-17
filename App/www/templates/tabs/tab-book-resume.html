@@ -45,7 +45,7 @@
     </ion-list>
     <div class="row">
       <div class="col col-80 col-offset-10">
-        <button ng-click='searchVehicle()' class="button button-block button-positive">
+        <button ng-click='searchVehicle()' ng-disabled="selectedClient.vehicleType && selectedParking && vehicleTypeList.length===0" class="button button-block button-positive">
             {{ ::locale.booking.buttonConfirm }}
         </button>
       </div>
