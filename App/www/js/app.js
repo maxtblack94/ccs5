@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud', 'tagged.directives.autogrow'])
+angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud', 'tagged.directives.autogrow', 'angularMoment'])
 
   .run(function ($ionicPlatform, $cordovaStatusbar, $cordovaDevice) {
     $ionicPlatform.ready(function () {
@@ -152,6 +152,17 @@ angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud', 'tagged.directiv
           'tab-selcar': {
             templateUrl: 'templates/tabs/car-selection.html',
             controller: 'CarCtrl'
+          }
+        }
+      })
+
+      .state('tab.notifications', {
+        url: '/notifications',
+        cache: false,
+        views: {
+          'tab-notifications': {
+            templateUrl: 'templates/tabs/tab-notifications.html',
+            controller: 'notificationsCtrl'
           }
         }
       })

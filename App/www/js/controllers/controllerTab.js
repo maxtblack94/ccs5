@@ -2,7 +2,7 @@ angular.module('starter').controller('TabCtrl', function(PushEvents, InfoFactori
     var eventParams;
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
-    function manipolateEvents(eventParams){
+    $scope.model.manipolateEvents = function(eventParams){
         switch (eventParams.name) {
         case 'gestioneRitardo':
             PushEvents.delayAlert(eventParams.params);
@@ -20,7 +20,7 @@ angular.module('starter').controller('TabCtrl', function(PushEvents, InfoFactori
                 "name" : data.message.raw.additionalData.eventName,
                 "params" : data.message.raw
             }
-            manipolateEvents(eventParams);
+            $scope.model.manipolateEvents(eventParams);
         }else{
             PopUpServices.messagePopup(data.message.text, data.message.title);
         }

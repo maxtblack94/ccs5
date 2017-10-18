@@ -3,6 +3,8 @@ angular.module('starter').controller('AppCtrl', function($rootScope, $scope, $st
         $scope.currentState = toState.name;
     })
 
+    $scope.model = $scope.model || {};
+
     $scope.changeStateContacts = function(){
         if($scope.currentState !== "contacts"){
             $state.go("contacts");
