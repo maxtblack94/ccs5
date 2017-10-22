@@ -1,8 +1,9 @@
-angular.module('starter').controller('TabCtrl', function(PushEvents, InfoFactories, PopUpServices, $state, $scope) {
+angular.module('starter').controller('TabCtrl', function(PushEvents, ScriptServices, InfoFactories, PopUpServices, $state, $scope) {
     var eventParams;
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.model.manipolateEvents = function(eventParams){
+        notificationExecuted(eventParams.params.pushID); //TODO AGGIUNGERE ID PUSH DELLA PUSH CLASSICA
         switch (eventParams.name) {
         case 'gestioneRitardo':
             PushEvents.delayAlert(eventParams.params);
@@ -25,5 +26,17 @@ angular.module('starter').controller('TabCtrl', function(PushEvents, InfoFactori
             PopUpServices.messagePopup(data.message.text, data.message.title);
         }
     });
+
+    function notificationExecuted(pushID){
+        $scope.model.notificationsPending = null;
+        ScriptServices.getXMLResource(636).then(function(res) {
+            res = res.replace('{PUSHID}', pushID);
+            ScriptServices.callGenericService(res, 636).then(function(data) {
+                $scope.model.notificationsPending = data.data.dataList;
+            }, function(error) {
+
+            })
+        });
+    }
 
 })

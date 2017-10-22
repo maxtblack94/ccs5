@@ -3,8 +3,8 @@ angular.module('starter').factory("PushEvents", function ($ionicLoading, $ionicP
         function changeDriverResponse(eventParams, responseParam){
             $ionicLoading.show();
             ScriptServices.getXMLResource(633).then(function (res) {
-                res = res.replace('{PNR}', eventParams.additionalData.param.book.pnr)
-                .replace('{REQUESTID}', eventParams.additionalData.param.requestID)
+                res = res.replace('{PNR}', (((eventParams.additionalData || {}).param || {}).book || {}).pnr || eventParams.data.param.book.pnr)
+                .replace('{REQUESTID}', ((eventParams.additionalData || {}).param || {}).requestID || eventParams.data.param.requestID)
                 .replace('{DRIVERRESPONSE}', responseParam);
                 ScriptServices.callGenericService(res, 633).then(function (data) {
                     $ionicLoading.hide();

@@ -5,18 +5,18 @@ angular.module('starter').controller('AppCtrl', function(ScriptServices, InfoFac
 
     $scope.model = $scope.model || {};
 
-    $scope.model.getNotifications = function(){
+    function getNotifications(){
         ScriptServices.getXMLResource(635).then(function(res) {
             res = res.replace('{DRIVERNUMBER}', InfoFactories.getUserInfo().driverNumber);
             ScriptServices.callGenericService(res, 635).then(function(data) {
-                $scope.model.notificationsPending = data.data;
+                $scope.model.notificationsPending = ((data.data || {}).dataList || []);
             }, function(error) {
                 //PopUpServices.errorPopup("Non è stato possibile modificare i contatti");
             })
         });
     }
 
-    $scope.model.getNotifications();
+    getNotifications();
 
     $scope.changeStateContacts = function(){
         if($scope.currentState !== "contacts"){
