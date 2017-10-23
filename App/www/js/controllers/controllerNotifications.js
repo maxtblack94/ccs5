@@ -13,10 +13,9 @@ angular.module('starter').controller('notificationsCtrl', function(ScriptService
             ScriptServices.callGenericService(res, 635).then(function(data) {
                 $ionicLoading.hide();
                 $scope.model.notificationsPending = ((data.data || {}).dataList || []);
-                
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup("Non è stato possibile le notifiche dal server");
+                PopUpServices.errorPopup("Non è stato possibile recuperare le notifiche dal server");
             })
         });
     }

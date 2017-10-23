@@ -3,7 +3,7 @@ angular.module('starter').controller('TabCtrl', function(PushEvents, ScriptServi
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.model.manipolateEvents = function(eventParams){
-        notificationExecuted(eventParams.params.pushID); //TODO AGGIUNGERE ID PUSH DELLA PUSH CLASSICA
+        notificationExecuted(eventParams.params.pushID || ((eventParams.params.additionalData || {}).param || {}).pushID); //TODO AGGIUNGERE ID PUSH DELLA PUSH CLASSICA
         switch (eventParams.name) {
         case 'gestioneRitardo':
             PushEvents.delayAlert(eventParams.params);

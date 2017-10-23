@@ -7,7 +7,7 @@
         "title": "Forse sei in ritardo?",
         "priority": 10,
         "badge": 2,
-        "pushDate": 1508508936,
+        "pushDate": 1508785277,
         "pushID": "Ldodksodp32093od",
         "data": {
           "eventName": "gestioneRitardo"
@@ -25,9 +25,9 @@
       },
       {
         "message": "Accetti il cambio guida proposto da MARIO BIANCHI per il veicolo targato EX980DH ? ",
-        "title": "Richiesta cambio guida",
+        "title": "Richiesta cambio guida1111",
         "priority": "10",
-        "pushDate": 1508508936,
+        "pushDate": 1508785307,
         "pushID": "Ldodksodp32093od",
         "data": {
           "eventName": "changeDriver",

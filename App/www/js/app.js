@@ -1,6 +1,7 @@
 angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud', 'tagged.directives.autogrow', 'angularMoment'])
 
-  .run(function ($ionicPlatform, $cordovaStatusbar, $cordovaDevice) {
+  .run(function ($ionicPlatform, $cordovaStatusbar, $cordovaDevice, amMoment) {
+    amMoment.changeLocale('it');
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
