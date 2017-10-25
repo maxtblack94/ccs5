@@ -8,7 +8,7 @@ angular.module('starter').factory("PushEvents", function ($ionicLoading, $ionicP
                 .replace('{DRIVERRESPONSE}', responseParam);
                 ScriptServices.callGenericService(res, 633).then(function (data) {
                     $ionicLoading.hide();
-                    PopUpServices.messagePopup("Operazione avvenuta con successo", "Successo", $state.go('tab.bookings'));
+                    PopUpServices.messagePopup("Operazione avvenuta con successo", "Successo");
                 }, function (error) {
                     $ionicLoading.hide();
                     PopUpServices.errorPopup("Non siamo riusciti a sottomettere la richiesta.");
