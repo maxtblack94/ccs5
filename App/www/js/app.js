@@ -4,8 +4,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud', 'tagged.directiv
     amMoment.changeLocale('it');
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
-        cordova.plugins.Keyboard.disableScroll(true);
+        //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+        //cordova.plugins.Keyboard.disableScroll(true); questo risolve problema picklist native ma crea problema forms
       }
       if (window.StatusBar) {
         //StatusBar.styleDefault();

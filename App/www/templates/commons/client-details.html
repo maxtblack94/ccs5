@@ -33,7 +33,7 @@
                     <p>{{userInfo.registry.mobile_phone}}</p>
                 </ion-item>
             </div>
-            <div ng-show="request">
+            <div ng-if="request">
                 <ion-item class="item-input item-stacked-label">
                     <span class="input-label">Email<span class="color-error">*</span></span>
                     <input type="text" ng-model="request.email" placeholder="Email">
@@ -52,7 +52,7 @@
                 </button>
             </div>
         </div>
-        <div class="row" ng-if="request">
+        <div class="row" ng-show="request">
             <div class="col col-50">
                 <button ng-click='undo()' class="button button-block button-stable">
                     Annulla
