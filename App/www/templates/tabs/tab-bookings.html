@@ -73,28 +73,32 @@
           </div>
           <p class="pull-right value">{{ ::book.dateTimeTo | date:'dd/MM/yyyy HH:mm' }}</p>
         </div>
-        <div class="item" ng-if="book.status !== 'Delivered'">
+        <div class="item" ng-if="book.status === 'Booked'">
           <div class="row">
-            <div class="col col50" ng-if="selectedClient.btnOpenClose && tolleranceCheck && book.status !== 'Delivered'">
-              <button ng-click="openCarManipolation(book, '1')" ng-if="book.status === 'Collected'" class="button button-positive button-block pull-right" style="padding: 0px 15px;">
-                  {{ ::locale.booking.buttonCloseCar }}
-              </button>
-              <button ng-click="openCarManipolation(book, '0')"  ng-if="book.status === 'Booked'" class="button button-balanced button-block pull-right" style="padding: 0px 15px;">
+            <div class="col col50" ng-if="selectedClient.btnOpenClose && tolleranceCheck">
+              <button ng-click="openCarManipolation(book, '0')" class="button button-balanced button-block pull-right" style="padding: 0px 15px;">
                   {{ ::locale.booking.buttonOpenCar }}
               </button>
             </div>
-            <div class="col col50" ng-if="book.status === 'Booked'">
+            <div class="col col50">
               <button ng-click='delete(book)' class="button button-block button-positive">
                <i class="icon ion-ios-trash"></i> {{ ::locale.home.cancelReservation }}
              </button>
+          </div>
+        </div>
+        <div class="item" ng-if="book.status === 'Collected' && ((selectedClient.btnOpenClose && tolleranceCheck) || actions.buttons.length > 0)">
+          <div class="row">
+            <div class="col col50" ng-if="selectedClient.btnOpenClose && tolleranceCheck">
+              <button ng-click="openCarManipolation(book, '1')" class="button button-positive button-block pull-right" style="padding: 0px 15px;">
+                  {{ ::locale.booking.buttonCloseCar }}
+              </button>
             </div>
-            <div class="col col50" ng-if="book.status === 'Collected' && actions.buttons.length > 0">
+            <div class="col col50" ng-if="actions.buttons.length > 0">
               <ccs-action-sheet book="book" action-buttons="actions.buttons" callback="loadbookings()"></ccs-action-sheet>
             </div>
           </div>
         </div>
       </div>
-
     </ion-list>
   </ion-content>
 </ion-view>
