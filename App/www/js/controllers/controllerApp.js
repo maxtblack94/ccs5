@@ -1,7 +1,22 @@
-angular.module('starter').controller('AppCtrl', function($rootScope, $scope, $state) {
+angular.module('starter').controller('AppCtrl', function(ScriptServices, InfoFactories, $rootScope, $scope, $state) {
    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
         $scope.currentState = toState.name;
     })
+
+    $scope.model = $scope.model || {};
+
+    function getNotifications(){
+        ScriptServices.getXMLResource(635).then(function(res) {
+            res = res.replace('{DRIVERNUMBER}', InfoFactories.getUserInfo().driverNumber);
+            ScriptServices.callGenericService(res, 635).then(function(data) {
+                $scope.model.notificationsPending = ((data.data || {}).dataList || []);
+            }, function(error) {
+                //PopUpServices.errorPopup("Non è stato possibile modificare i contatti");
+            })
+        });
+    }
+
+    getNotifications();
 
     $scope.changeStateContacts = function(){
         if($scope.currentState !== "contacts"){

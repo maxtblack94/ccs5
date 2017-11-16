@@ -1,0 +1,44 @@
+{
+    "ListJustification": [
+        {
+            "text": "Sopralluogo",
+            "code": "BJ02"
+        },
+        {
+            "text": "Intervento Urgente dal Cliente",
+            "code": "BJ01"
+        },
+        {
+            "text": "Altro",
+            "code": "BJ03"
+        },
+        {
+            "text": "Convention",
+            "code": "BJ04"
+        },
+        {
+            "text": "Coordinamento risorse su altro Polo",
+            "code": "BJ05"
+        },
+        {
+            "text": "Formazione",
+            "code": "BJ07"
+        },
+        {
+            "text": "Progetti - Eventi",
+            "code": "BJ08"
+        },
+        {
+            "text": "Rappr. Lavor. per la sicurezza",
+            "code": "BJ09"
+        },
+        {
+            "text": "Riunione",
+            "code": "BJ10"
+        },
+        {
+            "text": "Visita Clienti",
+            "code": "BJ11"
+        }
+    ]
+}

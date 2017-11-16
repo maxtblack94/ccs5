@@ -1,4 +1,14 @@
 {
   "name": "Leasys",
   "app_id": "3c90749c"
+  "type": "ionic1",
+  "watchPatterns": [
+    "scss/**/*",
+    "www/**/*",
+    "!www/lib/**/*",
+    "!www/**/*.map"
+  ],
+  "integrations": {
+    "cordova": {}
+  }
 }

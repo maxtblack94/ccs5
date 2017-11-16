@@ -1,18 +1,13 @@
-angular.module('starter').controller('ParkingCtrl', function($scope, $rootScope, InfoFactories, $http, $state, $ionicLoading, WebService) {
+angular.module('starter').controller('ParkingCtrl', function($scope, PopUpServices, InfoFactories, $http, $state, $ionicLoading, ScriptServices) {
     $scope.locale = window.locale;
   
      function init() {
         $ionicLoading.show();
-		$http.get("res/512.xml").success(function(res) {
-			var driverNumber = InfoFactories.getUserInfo().driverNumber;
-			res = res.replace('{DRIVER_NUMBER}', driverNumber);
-			
-			WebService.ajaxPostRequest(res, 512, function(data) {
-                if(data.data.ParkingsList){
-	               $scope.parkingList = data.data.ParkingsList;
-                }else{
-                    $scope.parkingList = new Array();
-                }
+        ScriptServices.getXMLResource(512).then(function(res) {
+            var driverNumber = InfoFactories.getUserInfo().driverNumber;
+            res = res.replace('{DRIVER_NUMBER}', driverNumber);
+            ScriptServices.callGenericService(res, 512).then(function(data) {
+	            $scope.parkingList = data.data.ParkingsList || [];
                 var favo = window.localStorage.getItem('favoriteParking') ? eval('('+window.localStorage.getItem('favoriteParking')+')') : null;
                 if(favo){
                     for(var i = 0; i < $scope.parkingList.length; i++){
@@ -23,8 +18,11 @@ angular.module('starter').controller('ParkingCtrl', function($scope, $rootScope,
                     }
                 }
                 $ionicLoading.hide();
-			});
-		});
+            }, function(error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup(error+', riprovare!');
+            })
+        });
     };
     
     $scope.stopPropagation = function(e) {

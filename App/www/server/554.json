@@ -1,0 +1,19 @@
+{
+    "retcode": 0,
+    "data": {
+        "GetUser": [
+            {
+                "last_name": "Ouatu",
+                "first_name": "Alessandro",
+                "badge_id": "0104B85302CE2B80",
+                "email": "ouatu.alexandru@gmail.com",
+                "mobile_phone": "3282511990",
+                "username": "aouatu",
+                "password": "alex",
+                "time_of_booking": "7",
+                "sms_message": "False",
+                "push_message": "False"
+            }
+        ]
+    }
+}

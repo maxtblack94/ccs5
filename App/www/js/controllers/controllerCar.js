@@ -1,4 +1,4 @@
-angular.module('starter').controller('CarCtrl', function($scope, $http, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup, WebService) {
+angular.module('starter').controller('CarCtrl', function(ManipolationServices, PopUpServices, $scope, $http, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup, ScriptServices) {
     $scope.locale = window.locale;
     $scope.dateTimeFrom = InfoFactories.getDateTimeFrom();
     $scope.dateTimeTo = InfoFactories.getDateTimeTo();
@@ -20,8 +20,8 @@ angular.module('starter').controller('CarCtrl', function($scope, $http, $rootSco
         var cc = !$scope.selectedClient.cc ? false : InfoFactories.getCC();
         var telepass = !$scope.selectedClient.telepass ? false : InfoFactories.getTelepass()
         $ionicLoading.show();
-		$http.get("res/571.xml").success(function(res) {                                       
-			res = res.replace('{NUMBER_PARKING}', InfoFactories.getPark().Nr)
+         ScriptServices.getXMLResource(571).then(function(res) {
+            res = res.replace('{NUMBER_PARKING}', InfoFactories.getPark().Nr)
 					 .replace('{NUMBER_DRIVER}', InfoFactories.getUserInfo().driverNumber)
 					 .replace('{DATE_FROM}', moment($scope.dateTimeFrom).format('DD/MM/YYYY'))
 					 .replace('{DATE_TO}', moment($scope.dateTimeTo).format('DD/MM/YYYY'))
@@ -31,22 +31,29 @@ angular.module('starter').controller('CarCtrl', function($scope, $http, $rootSco
 					 .replace('{TELEPASS}', telepass)
 					 .replace('{DRIVING_RANGE}', InfoFactories.getSelectedRangeDriver().value)
                      .replace('{VEHICLETYPE}', InfoFactories.getSelectedVehicleType().value);
-
-            WebService.ajaxPostRequest(res, 571, function(data) {
+            ScriptServices.callGenericService(res, 571).then(function(data) {
                 $scope.loading = false;
                 $ionicLoading.hide();
-                                       
-                if(data.retcode == 1 || data.retcode == 2) {
-                    $state.go('tab.resume', {error : 'cannotReserve'});
+                if(data.retcode == 2) {
+                    PopUpServices.messagePopup($scope.locale.vehicle.labelCannotReserve, "Attenzione", callbackMissingRecords);
+                }else if(data.retcode == 1 || data.retcode == 3){
+                    PopUpServices.messagePopup("Nessun veicolo è al momento disponibile per il periodo da Te richiesto", "Attenzione", callbackMissingRecords);
                 }else{
                     $scope.vehicleList = data.data.VehiclesList;
                     for(var i = 0; i < $scope.vehicleList.length; i++) {
-                        $scope.vehicleList[i].fuel_quantity = InfoFactories.trascodeFuel($scope.vehicleList[i].fuel_quantity);
+                        $scope.vehicleList[i].fuel_quantity = ManipolationServices.trascodeFuel($scope.vehicleList[i].fuel_quantity);
                     }
                 }
-			});
-		});
+            }, function(error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup(error+', riprovare!');
+            })
+        });
     };
+
+    function callbackMissingRecords (){
+        $state.go('tab.resume');
+    }
 
 	$scope.refreshCars = function(){
 		$scope.vehicleList = null;
@@ -55,9 +62,9 @@ angular.module('starter').controller('CarCtrl', function($scope, $http, $rootSco
     }
 
     if(!$scope.dateTimeFrom || !$scope.dateTimeTo){
-            $timeout(function() {
-                $state.go('tab.resume');
-            }, 200);
+        $timeout(function() {
+            $state.go('tab.resume');
+        }, 200);
     }else{
         loadVehicles();
     }

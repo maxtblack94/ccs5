@@ -1,8 +1,8 @@
-angular.module('starter').factory("ScriptServices", function($q, $http, InfoFactories) {
+angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFactories) {
     function getXMLResource(scriptID) {
-        var scriptPath = "res/"+scriptID+".xml";
-        return $q(function(resolve, reject) {
-            $http.get(scriptPath).success(function(res) {
+        var scriptPath = "res/" + scriptID + ".xml";
+        return $q(function (resolve, reject) {
+            $http.get(scriptPath).success(function (res) {
                 if (res) {
                     resolve(res);
                 } else {
@@ -12,49 +12,119 @@ angular.module('starter').factory("ScriptServices", function($q, $http, InfoFact
         });
     };
 
-    function callGenericService(res, scriptID, server) {
-        var request = headerPOST(res, server);
-        return $q(function(resolve, reject) {
-        $http(request).then(function successCallback(response) {
-            var requestGET = headerGET(scriptID, response.data.d.Id, server);
-            $http(requestGET).then(function successCallback(response) {
-                var resultValue = response.data.d.ExecuteAdminScript.ResultValue;
-                if(resultValue){
-                    resultValue = JSON.parse(response.data.d.ExecuteAdminScript.ResultValue);
-                    if(resultValue.retcode == '-1' || resultValue.retcode == '-2'){
-                        reject('Error');
-                    }else{
+    function directWithOutScriptID(scriptID, server) {
+        if(window.serverRootLocal){
+            var requestGET = getLocalJson(scriptID);
+            return $q(function (resolve, reject) {
+                $http(requestGET).then(function successCallback(response) {
+                    var resultValue = response.data;
+                    if (resultValue.retcode || resultValue.retcode === 0) {
+                        if (resultValue.retcode == '-1' || resultValue.retcode == '-2') {
+                            reject('Error');
+                        } else {
+                            resolve(resultValue);
+                        }
+                    } else {
                         resolve(resultValue);
                     }
-                }else{
-                    reject('Error');
-                }
-                    
                 }, function errorCallback(response) {
-                    reject('Error');
+                    reject("ErrorStatus:"+response.status+", ErrorText"+response.statusText+", Url:" + response.config.url);
                 });
-            }, function errorCallback(response) {
-                reject('Error');
             });
-        });
+        }else{
+            var request = headerGET(scriptID, 0, server);
+            return $q(function (resolve, reject) {
+                $http(request).then(function successCallback(response) {
+                    var resultValue = response.data.d.ExecuteAdminScript.ResultValue;
+                    if (resultValue) {
+                        resultValue = JSON.parse(response.data.d.ExecuteAdminScript.ResultValue);
+                        if (resultValue.retcode == '-1' || resultValue.retcode == '-2') {
+                            reject('Error');
+                        } else {
+                            resolve(resultValue);
+                        }
+                    } else {
+                        reject('Error');
+                    }
+
+                }, function errorCallback(response) {
+                    reject("ErrorStatus:"+response.status+", ErrorText"+response.statusText+", Url:" + response.config.url);
+                });
+            });
+        }
     };
 
-    function headerGET (scriptID, callCode, server){
+    function callGenericService(res, scriptID, server) {
+        if (window.serverRootLocal) {
+            var requestGET = getLocalJson(scriptID);
+            return $q(function (resolve, reject) {
+                $http(requestGET).then(function successCallback(response) {
+                    var resultValue = response.data;
+                    if (resultValue.retcode || resultValue.retcode === 0) {
+                        if (resultValue.retcode == '-1' || resultValue.retcode == '-2') {
+                            reject('Error');
+                        } else {
+                            resolve(resultValue);
+                        }
+                    } else {
+                        resolve(resultValue);
+                    }
+                }, function errorCallback(response) {
+                    reject("ErrorStatus:"+response.status+", ErrorText"+response.statusText+", Url:" + response.config.url);
+                });
+            });
+        } else {
+            var request = headerPOST(res, server);
+            return $q(function (resolve, reject) {
+                $http(request).then(function successCallback(response) {
+                    var requestGET = headerGET(scriptID, response.data.d.Id, server);
+                    $http(requestGET).then(function successCallback(response) {
+                        var resultValue = response.data.d.ExecuteAdminScript.ResultValue;
+                        if (resultValue) {
+                            resultValue = JSON.parse(response.data.d.ExecuteAdminScript.ResultValue);
+                            if (resultValue.retcode == '-1' || resultValue.retcode == '-2') {
+                                reject('Error');
+                            } else {
+                                resolve(resultValue);
+                            }
+                        } else {
+                            reject('Error');
+                        }
+
+                    }, function errorCallback(response) {
+                        reject("ErrorStatus:"+response.status+", ErrorText"+response.statusText+", Url:" + response.config.url);
+                    });
+                }, function errorCallback(response) {
+                    reject("ErrorStatus:"+response.status+", ErrorText"+response.statusText+", Url:" + response.config.url);
+                });
+            });
+        }
+
+    };
+
+    function getLocalJson(scriptID) {
         return {
-            url: "http://"+(server || InfoFactories.getServer())+".corporatecarsharing.biz/api.svc/ExecuteAdminScript?scriptId="+ scriptID +"&scriptParameterSetId=" + callCode,
-            headers: {'TenForce-Auth': 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4'},
+            url: "server/" + scriptID + ".json",
             method: "GET"
         }
     }
 
-    function headerPOST (res, server){
+    function headerGET(scriptID, callCode, server) {
         return {
-            url: 'http://'+(server || InfoFactories.getServer())+'.corporatecarsharing.biz/api.svc/ScriptParameterSets',
+            url: "http://" + (server || InfoFactories.getServer()) + ".corporatecarsharing.biz/api.svc/ExecuteAdminScript?scriptId=" + scriptID + "&scriptParameterSetId=" + callCode,
+            headers: { 'TenForce-Auth': 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4' },
+            method: "GET"
+        }
+    }
+
+    function headerPOST(res, server) {
+        return {
+            url: 'http://' + (server || InfoFactories.getServer()) + '.corporatecarsharing.biz/api.svc/ScriptParameterSets',
             method: "POST",
             data: res,
             headers: {
-                'TenForce-Auth' : 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4', 
-                'Content-Type' : 'application/atom+xml'
+                'TenForce-Auth': 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4',
+                'Content-Type': 'application/atom+xml'
             }
         }
     }
@@ -65,6 +135,9 @@ angular.module('starter').factory("ScriptServices", function($q, $http, InfoFact
         },
         callGenericService: function (res, scriptID, server) {
             return callGenericService(res, scriptID, server);
+        },
+        directWithOutScriptID: function (scriptID, server) {
+            return directWithOutScriptID(scriptID, server);
         }
     };
 

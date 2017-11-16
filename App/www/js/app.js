@@ -1,10 +1,11 @@
-angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud'])
+angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud', 'tagged.directives.autogrow', 'angularMoment'])
 
-  .run(function ($ionicPlatform, $cordovaStatusbar, $cordovaDevice) {
+  .run(function ($ionicPlatform, $cordovaStatusbar, $cordovaDevice, amMoment) {
+    amMoment.changeLocale('it');
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
         //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
-        //cordova.plugins.Keyboard.disableScroll(true);
+        //cordova.plugins.Keyboard.disableScroll(true); questo risolve problema picklist native ma crea problema forms
       }
       if (window.StatusBar) {
         //StatusBar.styleDefault();
@@ -94,6 +95,17 @@ angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud'])
           }
         }
       })
+      
+      .state('tab.sos', {
+        url: '/sos',
+        cache: false,
+        views: {
+          'tab-sos': {
+            templateUrl: 'templates/tabs/tab-sos.html',
+            controller: 'SosCtrl'
+          }
+        }
+      })
 
       .state('tab.map', {
         url: '/map',
@@ -145,11 +157,29 @@ angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud'])
         }
       })
 
+      .state('tab.notifications', {
+        url: '/notifications',
+        cache: false,
+        views: {
+          'tab-notifications': {
+            templateUrl: 'templates/tabs/tab-notifications.html',
+            controller: 'notificationsCtrl'
+          }
+        }
+      })
+
       .state('settings', {
         url: '/settings',
         cache: false,
         templateUrl: 'templates/commons/settings.html',
         controller: 'SettingsCtrl'
+      })
+      
+      .state('help', {
+        url: '/help',
+        cache: false,
+        templateUrl: 'templates/commons/help.html',
+        controller: 'HelpCtrl'
       });
 
     $urlRouterProvider.otherwise('/login');

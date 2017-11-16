@@ -1,4 +1,4 @@
-angular.module('starter').controller('ResumeCtrl', function(ScriptServices, $timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, WebService, PopUpServices) {
+angular.module('starter').controller('ResumeCtrl', function(ManipolationServices, ScriptServices, $timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, WebService, PopUpServices) {
     $scope.locale = window.locale;
     InfoFactories.setTelepass(false);
     InfoFactories.setCC(false);
@@ -8,16 +8,16 @@ angular.module('starter').controller('ResumeCtrl', function(ScriptServices, $tim
     $scope.selectedVehicleType = InfoFactories.getSelectedVehicleType();
     $scope.dateTimeFrom = InfoFactories.getDateTimeFrom();
     $scope.dateTimeTo = InfoFactories.getDateTimeTo();
-    if($state.params.error){
-        PopUpServices.errorPopup($scope.locale.vehicle.labelCannotReserve, "1");
-    }
     
     if($scope.selectedClient.drivingRange){
         $ionicLoading.show();
-        WebService.ajaxPostRequestDirect(610, function(data) {
+        ScriptServices.directWithOutScriptID(610).then(function (data) {
             $scope.listDriverRange = data.ListDriverRange;
             $ionicLoading.hide();
-        });
+        }, function (error) {
+            PopUpServices.errorPopup("Non è stato possibile recuperare alcune informazioni!", "1");
+            $ionicLoading.hide();
+        })
     }
 
     if($scope.selectedClient.vehicleType && $scope.selectedParking){
@@ -26,6 +26,9 @@ angular.module('starter').controller('ResumeCtrl', function(ScriptServices, $tim
             res = res.replace('{IDPARK}', $scope.selectedParking.Nr);
             ScriptServices.callGenericService(res, 592).then(function(data) {
                 $scope.vehicleTypeList = data.typeList;
+                if($scope.vehicleTypeList.length === 0){
+                    PopUpServices.messagePopup("Non è stato possibile recuperare le tipologie di veicoli presenti in questo parcheggio!", "Info");
+                }
                 $ionicLoading.hide();
             }, function(error) {
                 $ionicLoading.hide();
@@ -77,14 +80,15 @@ angular.module('starter').controller('ResumeCtrl', function(ScriptServices, $tim
                 PopUpServices.errorPopup("La data di ritiro è maggiore della data di consegna", "1");
                 return false;
             }else if(!$scope.selectedParking.h24){
-                if((dateTimeFrom.getHours() < $scope.selectedParking.opening.getHours()) || (dateTimeFrom.getHours() >$scope.selectedParking.closing.getHours())){
+                if(!((dateTimeFrom.getHours() >= $scope.selectedParking.opening.getHours()) && (dateTimeFrom.getHours() < $scope.selectedParking.closing.getHours()))){
                     PopUpServices.errorPopup("La data di ritiro non rientra negli orari di apertura del parcheggio", "1");
                     return false;
-                }else if((dateTimeTo.getHours() < $scope.selectedParking.opening.getHours()) || (dateTimeTo.getHours() > $scope.selectedParking.closing.getHours())){
+                }else if(!((dateTimeTo.getHours() >= $scope.selectedParking.opening.getHours()) && (dateTimeTo.getHours() < $scope.selectedParking.closing.getHours()))){
                     PopUpServices.errorPopup("La data di consegna non rientra negli orari di apertura del parcheggio", "1");
                     return false;
                 }
-            }else if($scope.selectedClient.drivingRange == true && $scope.selectedDriverRange.value == "short"){
+            }
+            if($scope.selectedClient.drivingRange == true && $scope.selectedDriverRange.value == "short"){
                 PopUpServices.errorPopup("Non hai definito il raggio di percorrenza", "1");
                 return false;
             }else if($scope.selectedClient.vehicleType == true && !$scope.selectedVehicleType.value && $scope.vehicleTypeList){
@@ -116,13 +120,13 @@ angular.module('starter').controller('ResumeCtrl', function(ScriptServices, $tim
         var newDate = new Date(date).setHours(hours,minutes,0,0);
         if(type == 'to'){
             var dateFrom = $scope.dateTimeFrom ? $scope.dateTimeFrom : undefined;
-            $scope.dateTimeTo = InfoFactories.resetDateForDefect(newDate, dateFrom);
+            $scope.dateTimeTo = ManipolationServices.resetDateForDefect(newDate, dateFrom);
             InfoFactories.setDateTimeTo($scope.dateTimeTo);
         }else if(type == 'from'){
             if(new Date(Date.now() + 60000 * 10) - newDate > 0){
-                newDate = InfoFactories.resetDateService(newDate);
+                newDate = ManipolationServices.resetDateService(newDate);
             }else{
-                newDate = InfoFactories.resetDateForDefect(newDate);
+                newDate = ManipolationServices.resetDateForDefect(newDate);
             };
             $scope.dateTimeFrom = newDate;
             InfoFactories.setDateTimeFrom($scope.dateTimeFrom);

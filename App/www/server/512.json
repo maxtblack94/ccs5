@@ -1,0 +1,23 @@
+{
+    "retcode": 0,
+    "data": {
+        "ParkingsList": [
+            {
+                "Nr": "2627",
+                "parking_name": "Tupini",
+                "address": "Viale Umberto Tupini, 180",
+                "opening": "16/12/2016 05:00:00",
+                "closing": "16/12/2016 23:00:00",
+                "city": "Roma"
+            },
+            {
+                "Nr": "2629",
+                "parking_name": "Sede Centrale Verona",
+                "address": "Via Garibaldi, 1",
+                "opening": "14/02/2017 05:00:00",
+                "closing": "14/02/2017 23:00:00",
+                "city": "Verona"
+            }
+        ]
+    }
+}

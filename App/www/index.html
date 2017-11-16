@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head class="head">
   <meta charset="utf-8">
   <meta name="format-detection" content="telephone=no">
@@ -12,9 +13,9 @@
   <link href="css/stylesheet.css" rel="stylesheet">
   <script src="locale/angular-locale_it.js"></script>
 
-  <script src="lib/bluebird.min.js"></script>
+  <script src="lib/bluebird/js/browser/bluebird.min.js"></script>
   <script src="lib/ionic/js/ionic.bundle.js"></script>
-  <script src="lib/ionic.cloud.min.js"></script>
+  <script src="lib/cmobi-ionic-cloud/dist/bundle/ionic.cloud.min.js"></script>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUwH3aGBFHp6iKbHPRS3TXCfhqEncM8GA" async defer></script>
   <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
@@ -22,6 +23,7 @@
 
   <script src="lib/jquery/dist/jquery.min.js"></script>
   <script src="lib/moment/min/moment-with-locales.min.js"></script>
+  <script src="lib/angular-moment/angular-moment.min.js"></script>
   <script src="lib/underscore/underscore-min.js"></script>
   <script src="js/utility.js"></script>
   <script src="js/app.js"></script>
@@ -29,7 +31,11 @@
   <script src="js/services/ScriptServices.js"></script>
   <script src="js/services/InfoFactories.js"></script>
   <script src="js/services/PopupService.js"></script>
-  <script src="js/directives.js"></script>
+  <script src="js/services/ManipolationServices.js"></script>
+  <script src="js/services/PushEventsService.js"></script>
+  <script src="lib/tagged-autogrow/taggedAutogrow.min.js"></script>
+  <script src="js/directives/genericDirectives.js"></script>
+  <script src="js/directives/ccs-01-action-sheet/actionSheet.js"></script>
   <script src="js/controllers/controllerApp.js"></script>
   <script src="js/controllers/controllerLogin.js"></script>
   <script src="js/controllers/controllerCar.js"></script>
@@ -44,6 +50,12 @@
   <script src="js/controllers/controllerEditPassword.js"></script>
   <script src="js/controllers/controllerContacts.js"></script>
   <script src="js/controllers/controllerClientDetails.js"></script>
+  <script src="js/controllers/controllerSos.js"></script>
+  <script src="js/controllers/controllerHelp.js"></script>
+  <script src="js/controllers/controllerNotifications.js"></script>
+  <script src="js/directives/ccs-01-action-sheet/controllerActionSheet.js"></script>
+  <script src="js/directives/ccs-01-action-sheet/controllerHardDamage.js"></script>
+  <script src="js/directives/ccs-01-action-sheet/controllerChangeDriver.js"></script>
 </head>
 
 <body ng-app="starter" animation="slide-left-right-ios7" ng-controller="AppCtrl">

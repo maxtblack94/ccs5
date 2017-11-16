@@ -1,0 +1,85 @@
+{
+  "retcode": 0,
+  "data": {
+    "fuel": [
+    {
+      "text": "1/4",
+      "code": "ALMOST_EMPTY"
+    },
+    {
+      "text": "0/4",
+      "code": "RESERVE"
+    },
+    {
+      "text": "2/4",
+      "code": "HALF"
+    },
+    {
+      "text": "3/4",
+      "code": "ALMOST_FULL"
+    },
+    {
+      "text": "4/4",
+      "code": "FULL"
+    }
+  ],
+    "status": [
+      {
+        "text": "Difettoso",
+        "code": "DEFECTIVE"
+      },
+      {
+        "text": "Guasto",
+        "code": "FAULT"
+      },
+      {
+        "text": "Ottimo",
+        "code": "SUPER"
+      }
+    ],
+    "statusC": [
+      {
+        "text": "Esterno Pulito - Interno Sporco",
+        "code": "DIRTY_IN"
+      },
+      {
+        "text": "Pulito",
+        "code": "CLEAN"
+      },
+      {
+        "text": "Sporco",
+        "code": "DIRTY"
+      },
+      {
+        "text": "Esterno Sporco - Interno Pulito",
+        "code": "DIRTY_OUT"
+      }
+    ],
+    "damage_type": [
+      {
+        "text": "Carrozzeria",
+        "code": "DT001"
+      },
+      {
+        "text": "Meccanico",
+        "code": "DT005"
+      },
+      {
+        "text": "Elettrico",
+        "code": "DT003"
+      },
+      {
+        "text": "Pneumatici",
+        "code": "DT006"
+      },
+      {
+        "text": "Freni",
+        "code": "DT002"
+      },
+      {
+        "text": "Cristalli",
+        "code": "DT004"
+      }
+    ]
+  }
+}

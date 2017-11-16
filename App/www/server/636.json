@@ -1,0 +1,52 @@
+{
+    "retcode": 0,
+    "data": {
+      "dataList": [
+        {
+          "message": "Accetti il cambio guida proposto da MARIO BIANCHI per il veicolo targato EX980DH ? ",
+          "title": "Richiesta cambio guida",
+          "priority": "10",
+          "pushDate": 1508508936,
+          "pushID": "Ldodksodp32093od",
+          "data": {
+            "eventName": "changeDriver",
+            "param": {
+              "book": {
+                "Nr": "55947",
+                "status": "540",
+                "plate": "EX980DH",
+                "brand_model": "1461",
+                "pnr": "4150655947",
+                "pickup_parking": "SAR004",
+                "pickup_date": "21/09/2017",
+                "pickup_time": "04:00",
+                "return_parking": "SAR004",
+                "return_date": "21/09/2017",
+                "return_time": "07:00",
+                "pickup_date_tollerance": "21/09/2017",
+                "pickup_time_tollerance": "03:30",
+                "return_date_tollerance": "21/09/2017",
+                "return_time_tollerance": "08:00",
+                "cmb_color": "",
+                "image_max": "",
+                "image_min": "",
+                "km": "",
+                "vehicle_status": "",
+                "vehicle_cleanness_state": "",
+                "parking_slot": "",
+                "fuel": "",
+                "destination": "",
+                "lat": "",
+                "lng": "",
+                "latP": "",
+                "lngP": "",
+                "address": "",
+                "cmb_fuel_quantity": ""
+              },
+              "requestID": "318835"
+            }
+          }
+        }
+      ]
+    }
+  }
