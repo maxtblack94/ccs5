@@ -62,7 +62,7 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
                 $ionicLoading.hide();
             }, function (error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup("Non è stato possibile recuperare le prenotazioni.");
+                PopUpServices.errorPopup(error);
             })
         });
 
@@ -124,7 +124,7 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
                 startCloseOpenCarProcess(reservation, opT, carCoords);
             }, function (error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup("Non siamo riusciti a recuperare le coordinate del veicolo! Riprovare.");
+                PopUpServices.errorPopup(error+"Non siamo riusciti a recuperare le coordinate del veicolo! Riprovare.");
             })
         });
     }
@@ -144,7 +144,7 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
                 }
             }, function (err) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup("Non è stato possibile recuperare le tue coordinate", '1');
+                PopUpServices.errorPopup(err+"Non è stato possibile recuperare le tue coordinate", '1');
             });
         } else {
             var proximityResult = checkProximity(carCoords, { "lat": reservation.latP, "long": reservation.lngP }, opT);
@@ -180,7 +180,7 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
                 $ionicLoading.hide();
                 humanCheckCarOpened(rollbackData);
             }, function(error) {
-                PopUpServices.errorPopup("Non è stato possibile aprire la macchina, riprovare!");
+                PopUpServices.errorPopup(error+"Non è stato possibile aprire la macchina, riprovare!");
                 $ionicLoading.hide();
             })
         });

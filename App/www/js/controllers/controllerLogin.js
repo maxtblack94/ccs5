@@ -29,7 +29,7 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
                 }
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup('Non è stato possibile recuperare le informazioni aziendali');
+                PopUpServices.errorPopup(error, 'Non è stato possibile recuperare le informazioni aziendali');
             })
         });
     }

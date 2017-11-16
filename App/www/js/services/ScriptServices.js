@@ -28,7 +28,7 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
                         resolve(resultValue);
                     }
                 }, function errorCallback(response) {
-                    reject('Error');
+                    reject("ErrorStatus:"+response.status+", ErrorText"+response.statusText+", Url:" + response.config.url);
                 });
             });
         }else{
@@ -48,7 +48,7 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
                     }
 
                 }, function errorCallback(response) {
-                    reject('Error');
+                    reject("ErrorStatus:"+response.status+", ErrorText"+response.statusText+", Url:" + response.config.url);
                 });
             });
         }
@@ -70,7 +70,7 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
                         resolve(resultValue);
                     }
                 }, function errorCallback(response) {
-                    reject('Error');
+                    reject("ErrorStatus:"+response.status+", ErrorText"+response.statusText+", Url:" + response.config.url);
                 });
             });
         } else {
@@ -92,10 +92,10 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
                         }
 
                     }, function errorCallback(response) {
-                        reject('Error');
+                        reject("ErrorStatus:"+response.status+", ErrorText"+response.statusText+", Url:" + response.config.url);
                     });
                 }, function errorCallback(response) {
-                    reject('Error');
+                    reject("ErrorStatus:"+response.status+", ErrorText"+response.statusText+", Url:" + response.config.url);
                 });
             });
         }

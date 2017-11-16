@@ -1,5 +1,22 @@
 window.serverRootLocal = false;
 
+backupconsolelog = console.error.bind(console);
+
+console.error = function() {
+    check(this, arguments);
+    backupconsolelog.apply(this, arguments);
+}
+
+window.errorList = [];
+
+function check(param, args) {
+    // This will call your function above, so don't do it!
+    window.errorList.push(JSON.stringify(args));
+
+    // Instead call the browser's original implementation:
+    backupconsolelog('Foo');
+}
+
 function formatItemDate(dpick, tpick) {
 	var date = '';
 	var months = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'];
