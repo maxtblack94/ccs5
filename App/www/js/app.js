@@ -9,9 +9,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud', 'tagged.directiv
       }
       if (window.StatusBar) {
         //StatusBar.styleDefault();
-
         if ($cordovaDevice.getPlatform() == 'iOS')
-          $cordovaStatusbar.styleHex('#fff');
+          $cordovaStatusbar.styleHex('#ffffff');
       }
     });
   })
