@@ -1,4 +1,4 @@
-angular.module('starter').controller('ResumeCtrl', function(ManipolationServices, ScriptServices, $timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, WebService, PopUpServices) {
+angular.module('starter').controller('ResumeCtrl', function(ManipolationServices, ScriptServices, $timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, PopUpServices) {
     $scope.locale = window.locale;
     InfoFactories.setTelepass(false);
     InfoFactories.setCC(false);

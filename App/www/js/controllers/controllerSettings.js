@@ -1,4 +1,4 @@
-angular.module('starter').controller('SettingsCtrl', function($rootScope, $scope, $http, $state, $ionicLoading, InfoFactories, WebService) {
+angular.module('starter').controller('SettingsCtrl', function($rootScope, $scope, $http, $state, $ionicLoading, InfoFactories) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     
@@ -11,10 +11,10 @@ angular.module('starter').controller('SettingsCtrl', function($rootScope, $scope
         var driverNumber = InfoFactories.getUserInfo().driverNumber;
         window.localStorage.removeItem('userInfo');
         $ionicLoading.show();
-        $http.get("res/569.xml").success(function(res) {
-            $ionicLoading.hide();
+        ScriptServices.getXMLResource(569).then(function(res) {
             res = res.replace('{USER_ID}', driverNumber);
-            WebService.ajaxPostRequest(res, 569, null);
+            $ionicLoading.hide();
+            ScriptServices.callGenericService(res, 569);
             InfoFactories.resetService();
             if(action==='clearClient'){
                 window.localStorage.removeItem('selectedClient');

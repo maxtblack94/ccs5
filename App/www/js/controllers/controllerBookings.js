@@ -1,4 +1,4 @@
-angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $ionicActionSheet, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $http, $state, $ionicPopup, $ionicLoading, WebService, ScriptServices) {
+angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $ionicActionSheet, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $http, $state, $ionicPopup, $ionicLoading, ScriptServices) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
@@ -225,11 +225,13 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
                     return;
                 }
                 $ionicLoading.show();
-                $http.get("res/553.xml").success(function (res) {
+                ScriptServices.getXMLResource(553).then(function(res) {
                     res = res.replace('{BOOKING_NUMBER}', book.Nr);
-                    WebService.ajaxPostRequest(res, 553, function (data) {
+                    ScriptServices.callGenericService(res, 553).then(function(data) {
                         $scope.loadbookings();
-                    });
+                    }, function(error) {
+                        PopUpServices.errorPopup(error+"Non è stato possibile eliminare la prenotazione selezionata, riprovare!");
+                    })
                 });
             }
         });

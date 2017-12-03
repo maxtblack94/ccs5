@@ -1,4 +1,4 @@
-angular.module('starter').controller('ConfirmPrenotationCtrl', function(PopUpServices, ScriptServices, $scope, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup, WebService) {
+angular.module('starter').controller('ConfirmPrenotationCtrl', function(PopUpServices, ScriptServices, $scope, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup) {
     function init(){
         $scope.locale = window.locale;
         $scope.selectedClient = InfoFactories.getClientSelected();

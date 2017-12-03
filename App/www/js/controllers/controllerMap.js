@@ -1,4 +1,4 @@
-angular.module('starter').controller('MapCtrl', function (PopUpServices, $scope, $http, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup, WebService) {
+angular.module('starter').controller('MapCtrl', function (PopUpServices, $scope, $http, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup) {
     $scope.locale = window.locale;
     $scope.selectedBooking = $state.params.pnrInfo;
 
@@ -23,11 +23,14 @@ angular.module('starter').controller('MapCtrl', function (PopUpServices, $scope,
                     return;
 
                 $ionicLoading.show();
-                $http.get("res/553.xml").success(function (res) {
+                ScriptServices.getXMLResource(553).then(function(res) {
                     res = res.replace('{BOOKING_NUMBER}', book.Nr);
-                    WebService.ajaxPostRequest(res, 553, function (data) {
+                    ScriptServices.callGenericService(res, 553).then(function(data) {
                         $state.go('tab.bookings');
-                    });
+                    }, function(error) {
+                        PopUpServices.errorPopup(error+"Riprovare!");
+                        $ionicLoading.hide();
+                    })
                 });
             }
         });
