@@ -1,4 +1,4 @@
-angular.module('starter').controller('MenuCtrl', function($ionicSideMenuDelegate, $rootScope, $scope, $http, $state, $ionicLoading, InfoFactories, WebService) {
+angular.module('starter').controller('MenuCtrl', function($ionicSideMenuDelegate, $rootScope, $scope, $http, $state, $ionicLoading, InfoFactories) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
@@ -8,12 +8,12 @@ angular.module('starter').controller('MenuCtrl', function($ionicSideMenuDelegate
     	var driverNumber = InfoFactories.getUserInfo().driverNumber;
     	window.localStorage.removeItem('userInfo');
         $ionicLoading.show();
-        $http.get("res/569.xml").success(function(res) {
+        ScriptServices.getXMLResource(569).then(function(res) {
+            res = res.replace('{USER_ID}', driverNumber);
             $ionicLoading.hide();
-    		res = res.replace('{USER_ID}', driverNumber);
-    		WebService.ajaxPostRequest(res, 569, null);
+            ScriptServices.callGenericService(res, 569);
             InfoFactories.resetService();
             $state.go('login');
-    	});
+        });
     };
 })

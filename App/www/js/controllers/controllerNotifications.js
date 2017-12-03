@@ -1,4 +1,4 @@
-angular.module('starter').controller('notificationsCtrl', function(ScriptServices, $ionicSideMenuDelegate, $scope, $http, $state, $ionicLoading, InfoFactories, WebService) {
+angular.module('starter').controller('notificationsCtrl', function(ScriptServices, $ionicSideMenuDelegate, $scope, $http, $state, $ionicLoading, InfoFactories) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();

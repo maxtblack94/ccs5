@@ -1,4 +1,4 @@
-angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scope, $ionicPush, $rootScope, PopUpServices, InfoFactories, $http, $state, $ionicLoading, WebService, $ionicPopup) {
+angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scope, $ionicPush, $rootScope, PopUpServices, InfoFactories, $http, $state, $ionicLoading, $ionicPopup) {
     function init(){
         $ionicLoading.show();
         $scope.locale = window.locale;
@@ -85,9 +85,9 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
 
     function recoverPassowrd(){
         $ionicLoading.show();
-        $http.get("res/591.xml").success(function(res) {
+        ScriptServices.getXMLResource(591).then(function(res) {
             res = res.replace('{EMAIL}', $scope.request.email);
-            WebService.ajaxPostRequestTemp(res, 591, function(data) {
+            ScriptServices.callGenericService(res, 591).then(function(data) {
                 var pnrPopup = $ionicPopup.alert({
                     title: 'Esito richiesta',
                     template: data
@@ -96,8 +96,10 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
                     $scope.recorveryPasswordOn();
                 });
                 $ionicLoading.hide();
-                
-            });
+            }, function(error) {
+                PopUpServices.errorPopup(error+', riprovare!');
+                $ionicLoading.hide();
+            })
         });
     }
 
@@ -161,11 +163,10 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
     }
 
     function storeToken (pushId){
-        $http.get('res/567.xml').success(function(res) {  
+        ScriptServices.getXMLResource(567).then(function(res) {
             var driverNumber = InfoFactories.getUserInfo().driverNumber;
-            res = res.replace('{USER_ID}', driverNumber);
-            res = res.replace('{PUSH_ID}', pushId);
-            WebService.ajaxPostRequest(res, 567, null);
+            res = res.replace('{USER_ID}', driverNumber).replace('{PUSH_ID}', pushId);
+            ScriptServices.callGenericService(res, 567);
         });
     }
 
