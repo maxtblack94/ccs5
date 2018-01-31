@@ -111,15 +111,15 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
 
     function headerGET(scriptID, callCode, server) {
         return {
-            url: "http://" + (server || InfoFactories.getServer()) + ".corporatecarsharing.biz/api.svc/ExecuteAdminScript?scriptId=" + scriptID + "&scriptParameterSetId=" + callCode,
-            headers: { 'TenForce-Auth': 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4' },
-            method: "GET"
+                    url: (InfoFactories.getClientSelected() ? (InfoFactories.getClientSelected() || {}).serverProtocol : "https") + "://" + (server || InfoFactories.getServer()) + ".corporatecarsharing.biz/api.svc/ExecuteAdminScript?scriptId=" + scriptID + "&scriptParameterSetId=" + callCode,
+                    headers: { 'TenForce-Auth': 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4' },
+                    method: "GET"
         }
     }
 
     function headerPOST(res, server) {
         return {
-            url: 'http://' + (server || InfoFactories.getServer()) + '.corporatecarsharing.biz/api.svc/ScriptParameterSets',
+            url: (InfoFactories.getClientSelected() ? (InfoFactories.getClientSelected() || {}).serverProtocol : "https") + '://' + (server || InfoFactories.getServer()) + '.corporatecarsharing.biz/api.svc/ScriptParameterSets',
             method: "POST",
             data: res,
             headers: {
