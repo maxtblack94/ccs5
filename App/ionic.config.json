@@ -9,6 +9,7 @@
     "!www/**/*.map"
   ],
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "gulp": {}
   }
 }
