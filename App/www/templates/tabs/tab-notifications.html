@@ -4,10 +4,10 @@
         </ion-refresher>
         <p ng-if="model.notificationsPending.length==0" class="message-empty">Non ci sono notifiche..</p>
         <ion-list>
-            <ion-item ng-repeat="notification in model.notificationsPending | orderBy:'pushDate':true" class="item-icon-right" ng-click="model.manipolateEvents({name:notification.data.eventName, params: notification})">
-                <h2>{{notification.title}}</h2>
-                <p>{{notification.message}}</p>
-                <span am-time-ago="notification.pushDate | amFromUnix">
+            <ion-item ng-repeat="notification in model.notificationsPending | orderBy:'data.pushDate':true" class="item-icon-right" ng-click="openNotification(notification)">
+                <h2>{{notification.headings.it}}</h2>
+                <p>{{notification.contents.it}}</p>
+                <span am-time-ago="notification.data.pushDate | amFromUnix">
                 </span>
                 <i ng-if="notification.data.eventName === 'gestioneRitardo'" class="icon ion-ios-time-outline"></i>
                 <i ng-if="notification.data.eventName === 'changeDriver'" class="icon ion-model-s"></i>

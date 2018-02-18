@@ -58,7 +58,11 @@ angular.module('starter').factory("InfoFactories", [function () {
         return JSON.parse(window.localStorage.getItem('userInfo')) || {};
     };
     function getServer() {
-        return JSON.parse(window.localStorage.getItem('selectedClient')).value.toLowerCase();
+        if (window.localStorage.getItem('selectedClient')) {
+            return JSON.parse(window.localStorage.getItem('selectedClient')).value.toLowerCase();
+        }else{
+            return undefined;
+        }
     };
     function setSelectedCar(varCar) {
         selectedCar = varCar;

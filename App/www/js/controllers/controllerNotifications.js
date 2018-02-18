@@ -1,8 +1,7 @@
-angular.module('starter').controller('notificationsCtrl', function(ScriptServices, $ionicSideMenuDelegate, $scope, $http, $state, $ionicLoading, InfoFactories) {
+angular.module('starter').controller('notificationsCtrl', function($rootScope, PopUpServices, ScriptServices, $ionicSideMenuDelegate, $scope, $http, $state, $ionicLoading, InfoFactories) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
-
 
     $scope.refreshNotifications = function(refresh){
         $scope.$broadcast('scroll.refreshComplete');
@@ -20,9 +19,16 @@ angular.module('starter').controller('notificationsCtrl', function(ScriptService
         });
     }
 
-
-
-    
+    $scope.openNotification = function(notification){
+        var parsedNotification = {
+            "title" : notification.headings.it,
+            "body" : notification.contents.it,
+            "additionalData" : notification.data,
+            "eventName" : notification.data.eventName,
+            "notificationID" : notification.data.pushID
+        }
+        $rootScope.$broadcast('pushNotificationEvent', parsedNotification);
+    }
 
     if(!$scope.model.notificationsPending){
         $scope.refreshNotifications();

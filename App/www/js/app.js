@@ -1,46 +1,38 @@
-angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud', 'tagged.directives.autogrow', 'angularMoment'])
+angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', 'angularMoment'])
 
-  .run(function ($ionicPlatform, $cordovaStatusbar, $cordovaDevice, amMoment) {
+  .run(function ($ionicPlatform, $cordovaStatusbar, $cordovaDevice, amMoment, $rootScope) {
     amMoment.changeLocale('it');
     $ionicPlatform.ready(function () {
-      if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-        //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
-        //cordova.plugins.Keyboard.disableScroll(true); questo risolve problema picklist native ma crea problema forms
-      }
-      if (window.StatusBar) {
-        //StatusBar.styleDefault();
+      var pushCallback = function(jsonData) {
+        if (jsonData) {
+          $rootScope.$broadcast('pushNotificationEvent', jsonData.notification.payload);
+        }
+      };
+      window.plugins.OneSignal
+        .startInit("9e4aefd1-79ba-4ea2-b7c1-755e85dc5851")
+        .handleNotificationOpened(pushCallback)
+        .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
+        .endInit();
 
-        if ($cordovaDevice.getPlatform() == 'iOS')
-          $cordovaStatusbar.styleHex('#fff');
+      if (window.StatusBar) {
+        if ($cordovaDevice.getPlatform() == 'iOS'){
+          $cordovaStatusbar.styleHex('#111');
+        }
       }
     });
   })
 
-  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicCloudProvider, $ionicConfigProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
     $ionicConfigProvider.views.swipeBackEnabled(false);
     $httpProvider.defaults.timeout = 30000;
-    $ionicCloudProvider.init({
-      "core": {
-        "app_id": "849a6f49"
-      },
-      "push": {
-        "sender_id": "1052330991735",
-        "pluginConfig": {
-          "ios": {
-            "badge": true,
-            "sound": true
-          },
-          "android": {
-            "iconColor": "#343434"
-          }
-        }
-      }
-    });
     $stateProvider
 
       .state('login', {
         url: '/login',
         cache: false,
+        params: {
+          error401: null
+        },
         templateUrl: 'templates/login.html',
         controller: 'LoginCtrl'
       })

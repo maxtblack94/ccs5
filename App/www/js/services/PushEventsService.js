@@ -1,10 +1,10 @@
-angular.module('starter').factory("PushEvents", function ($ionicLoading, $ionicPopup, $state, PopUpServices, ScriptServices) {
-    function changeDriver(eventParams) {
-        function changeDriverResponse(eventParams, responseParam){
+angular.module('starter').service("PushEventsService", function ($ionicLoading, $state, PopUpServices, ScriptServices) {
+    this.changeDriver = function(body, title, pnr, requestID) {
+        function changeDriverResponse(pnr, requestID, responseParam){
             $ionicLoading.show();
             ScriptServices.getXMLResource(633).then(function (res) {
-                res = res.replace('{PNR}', (((eventParams.additionalData || {}).param || {}).book || {}).pnr || eventParams.data.param.book.pnr)
-                .replace('{REQUESTID}', ((eventParams.additionalData || {}).param || {}).requestID || eventParams.data.param.requestID)
+                res = res.replace('{PNR}', pnr)
+                .replace('{REQUESTID}', requestID)
                 .replace('{DRIVERRESPONSE}', responseParam);
                 ScriptServices.callGenericService(res, 633).then(function (data) {
                     $ionicLoading.hide();
@@ -20,32 +20,24 @@ angular.module('starter').factory("PushEvents", function ($ionicLoading, $ionicP
                 text: 'Rifiuta',
                 type: 'button-stable',
                 onTap: function () {
-                    changeDriverResponse(eventParams, false);
+                    changeDriverResponse(pnr, requestID, false);
                 }
             }, {
                 text: '<b>Accetta</b>',
                 type: 'button-positive',
                 onTap: function () {
-                    changeDriverResponse(eventParams, true);
+                    changeDriverResponse(pnr, requestID, true);
                 }
             }],
-            "message": eventParams.message,
-            "title": eventParams.title
+            "message": body,
+            "title": title
         }
         PopUpServices.buttonsPopup(configObj);
     };
-    function delayAlert(eventParams) {
+    this.delayAlert = function(body, title) {
         function goToBookings (){
             $state.go('tab.bookings');
         }
-        PopUpServices.messagePopup(eventParams.message, eventParams.title, goToBookings);
-    };
-    return {
-        changeDriver: function (eventParams) {
-            return changeDriver(eventParams);
-        },
-        delayAlert: function (eventParams) {
-            return delayAlert(eventParams);
-        }
+        PopUpServices.messagePopup(body, title, goToBookings);
     };
 })
