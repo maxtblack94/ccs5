@@ -6,7 +6,7 @@ angular.module('starter').controller('TabCtrl', function(PushEventsService, Scri
     });
 
     function manipolateEvents(eventParams){
-        notificationExecuted(eventParams.notificationID);
+        notificationExecuted(eventParams.additionalData.pushID);
         switch (eventParams.eventName) {
         case 'gestioneRitardo':
             PushEventsService.delayAlert(eventParams.body, eventParams.title);
