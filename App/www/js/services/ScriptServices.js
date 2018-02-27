@@ -21,7 +21,9 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
                     if (resultValue.retcode || resultValue.retcode === 0) {
                         if (resultValue.retcode == '-1' || resultValue.retcode == '-2') {
                             reject('Error');
-                        } else {
+                        }else if (resultValue.retcode == '401') {
+                            $state.go('login', {error401:true});
+                        }else {
                             resolve(resultValue);
                         }
                     } else {
@@ -40,7 +42,9 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
                         resultValue = JSON.parse(response.data.d.ExecuteAdminScript.ResultValue);
                         if (resultValue.retcode == '-1' || resultValue.retcode == '-2') {
                             reject('Error');
-                        } else {
+                        }else if (resultValue.retcode == '401') {
+                            $state.go('login', {error401:true});
+                        }else {
                             resolve(resultValue);
                         }
                     } else {

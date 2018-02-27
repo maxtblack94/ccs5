@@ -1,18 +1,18 @@
 angular.module('starter').controller('TabCtrl', function(PushEventsService, ScriptServices, InfoFactories, PopUpServices, $state, $scope) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
-    $scope.$on('pushNotificationEvent', function(event, notificationPayload) {
-        manipolateEvents(notificationPayload);
+    $scope.$on('pushNotificationEvent', function(event, notificationData) {
+        manipolateEvents(notificationData);
     });
 
     function manipolateEvents(eventParams){
-        notificationExecuted(eventParams.additionalData.pushID);
+        notificationExecuted(eventParams.pushID);
         switch (eventParams.eventName) {
         case 'gestioneRitardo':
             PushEventsService.delayAlert(eventParams.body, eventParams.title);
             break;
         case 'changeDriver':
-            PushEventsService.changeDriver(eventParams.body, eventParams.title, eventParams.additionalData.book.pnr, eventParams.additionalData.requestID);
+            PushEventsService.changeDriver(eventParams.body, eventParams.title, (eventParams.additionalData.book || {}).pnr, eventParams.additionalData.requestID);
             break;
         default:
             PopUpServices.messagePopup(eventParams.body, eventParams.title);

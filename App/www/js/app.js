@@ -5,7 +5,14 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
     $ionicPlatform.ready(function () {
       var pushCallback = function(jsonData) {
         if (jsonData) {
-          $rootScope.$broadcast('pushNotificationEvent', jsonData.notification.payload);
+          var parsedNotification = {
+              "title" : ((jsonData.notification || {}).payload || {}).title,
+              "body" : ((jsonData.notification || {}).payload || {}).body,
+              "additionalData" : (((jsonData.notification || {}).payload || {}).additionalData || {}),
+              "eventName" : (((jsonData.notification || {}).payload || {}).additionalData || {}).eventName,
+              "pushID" : (((jsonData.notification || {}).payload || {}).additionalData || {}).pushID
+          }
+          $rootScope.$broadcast('pushNotificationEvent', parsedNotification);
         }
       };
       window.plugins.OneSignal

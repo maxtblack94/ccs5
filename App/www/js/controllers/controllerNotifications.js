@@ -25,7 +25,7 @@ angular.module('starter').controller('notificationsCtrl', function($rootScope, P
             "body" : notification.contents.it,
             "additionalData" : notification.data,
             "eventName" : notification.data.eventName,
-            "notificationID" : notification.data.pushID
+            "pushID" : notification.data.pushID
         }
         $rootScope.$broadcast('pushNotificationEvent', parsedNotification);
     }
