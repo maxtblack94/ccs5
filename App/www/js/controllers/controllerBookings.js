@@ -230,7 +230,7 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
                     ScriptServices.callGenericService(res, 553).then(function(data) {
                         $scope.loadbookings();
                     }, function(error) {
-                        PopUpServices.errorPopup(error+"Non è stato possibile eliminare la prenotazione selezionata, riprovare!");
+                       
                     })
                 });
             }

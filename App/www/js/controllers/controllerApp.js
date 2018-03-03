@@ -1,6 +1,9 @@
 angular.module('starter').controller('AppCtrl', function(ScriptServices, InfoFactories, $rootScope, $scope, $state) {
    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
         $scope.currentState = toState.name;
+        if (toState.name === 'tab.bookings') {
+            getNotifications();
+        }
     })
 
     $scope.model = $scope.model || {};
@@ -15,8 +18,6 @@ angular.module('starter').controller('AppCtrl', function(ScriptServices, InfoFac
             })
         });
     }
-
-    getNotifications();
 
     $scope.changeStateContacts = function(){
         if($scope.currentState !== "contacts"){

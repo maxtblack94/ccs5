@@ -1,31 +1,23 @@
-angular.module('starter').controller('TabCtrl', function(PushEvents, ScriptServices, InfoFactories, PopUpServices, $state, $scope) {
-    var eventParams;
+angular.module('starter').controller('TabCtrl', function(PushEventsService, ScriptServices, InfoFactories, PopUpServices, $state, $scope) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
-    $scope.model.manipolateEvents = function(eventParams){
-        notificationExecuted(eventParams.params.pushID || ((eventParams.params.additionalData || {}).param || {}).pushID); //TODO AGGIUNGERE ID PUSH DELLA PUSH CLASSICA
-        switch (eventParams.name) {
+    $scope.$on('pushNotificationEvent', function(event, notificationData) {
+        manipolateEvents(notificationData);
+    });
+
+    function manipolateEvents(eventParams){
+        notificationExecuted(eventParams.pushID);
+        switch (eventParams.eventName) {
         case 'gestioneRitardo':
-            PushEvents.delayAlert(eventParams.params);
+            PushEventsService.delayAlert(eventParams.body, eventParams.title);
             break;
         case 'changeDriver':
-            PushEvents.changeDriver(eventParams.params);
+            PushEventsService.changeDriver(eventParams.body, eventParams.title, (eventParams.additionalData.book || {}).pnr, eventParams.additionalData.requestID);
             break;
         default:
-            PopUpServices.messagePopup(eventParams.params.message, eventParams.params.title);
+            PopUpServices.messagePopup(eventParams.body, eventParams.title);
         }
     }
-    $scope.$on('cloud:push:notification', function(event, data) {
-        if(data.message.raw && data.message.raw.additionalData && data.message.raw.additionalData.eventName){
-            eventParams = {
-                "name" : data.message.raw.additionalData.eventName,
-                "params" : data.message.raw
-            }
-            $scope.model.manipolateEvents(eventParams);
-        }else{
-            PopUpServices.messagePopup(data.message.text, data.message.title);
-        }
-    });
 
     function notificationExecuted(pushID){
         $scope.model.notificationsPending = null;
@@ -34,9 +26,8 @@ angular.module('starter').controller('TabCtrl', function(PushEvents, ScriptServi
             ScriptServices.callGenericService(res, 636).then(function(data) {
                 $scope.model.notificationsPending = data.data.dataList;
             }, function(error) {
-
+                $scope.model.notificationsPending = [];
             })
         });
     }
-
 })

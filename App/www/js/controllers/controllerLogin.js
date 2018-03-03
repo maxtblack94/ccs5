@@ -1,12 +1,30 @@
-angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scope, $ionicPush, $rootScope, PopUpServices, InfoFactories, $http, $state, $ionicLoading, $ionicPopup) {
+angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptServices, $scope, $rootScope, PopUpServices, InfoFactories, $http, $state, $ionicLoading, $ionicPopup) {
     function init(){
         $ionicLoading.show();
         $scope.locale = window.locale;
         $scope.recorveryPassword = false;
         $scope.request = {};
+        if ($stateParams.error401) {
+            logoutError401();
+        }else{
+            checkAndUpdateClientInfo();
+        }
+    };
+
+    function checkAndUpdateClientInfo (){
         getClientList('refresh');
         verifyUserLogged();
-        
+    }
+
+    function logoutError401() {
+    	var driverNumber = InfoFactories.getUserInfo().driverNumber;
+        window.localStorage.removeItem('userInfo');
+        InfoFactories.resetService();
+        checkAndUpdateClientInfo();
+        /* ScriptServices.getXMLResource(569).then(function(res) {
+            res = res.replace('{USER_ID}', driverNumber);
+            ScriptServices.callGenericService(res, 569);
+        }); */
     };
 
     function verifyClientSelected(){
@@ -33,7 +51,9 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
     function verifyUserLogged(){
         var driverNumber = InfoFactories.getUserInfo().driverNumber;
         if (driverNumber) {
-            registerPushID();
+            if (!window.serverRootLocal && window.plugins && window.plugins.OneSignal) {
+                registerPushID();
+            }
             $state.go('tab.bookings');
         }
     }
@@ -159,22 +179,15 @@ angular.module('starter').controller('LoginCtrl', function(ScriptServices, $scop
         });
     }
 
-    function storeToken (pushId){
-        ScriptServices.getXMLResource(567).then(function(res) {
-            var driverNumber = InfoFactories.getUserInfo().driverNumber;
-            res = res.replace('{USER_ID}', driverNumber).replace('{PUSH_ID}', pushId);
-            ScriptServices.callGenericService(res, 567);
-        });
-    }
-
-
     function registerPushID (){
-        $ionicPush.register().then(function(t) {
-            storeToken(t.token);
-            return $ionicPush.saveToken(t);
-        }).then(function(t) {
-            storeToken(t.token);
-            console.log('Token saved:', t.token);
+        window.plugins.OneSignal.getIds(function(ids) {
+            if (ids && ids.userId) {
+                ScriptServices.getXMLResource(567).then(function(res) {
+                    var driverNumber = InfoFactories.getUserInfo().driverNumber;
+                    res = res.replace('{USER_ID}', driverNumber).replace('{PUSH_ID}', ids.userId);
+                    ScriptServices.callGenericService(res, 567);
+                });
+            }
         });
     }
 

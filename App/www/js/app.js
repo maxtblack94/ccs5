@@ -1,45 +1,45 @@
-angular.module('starter', ['ionic', 'ngCordova', 'ionic.cloud', 'tagged.directives.autogrow', 'angularMoment'])
+angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', 'angularMoment'])
 
-  .run(function ($ionicPlatform, $cordovaStatusbar, $cordovaDevice, amMoment) {
+  .run(function ($ionicPlatform, $cordovaStatusbar, $cordovaDevice, amMoment, $rootScope) {
     amMoment.changeLocale('it');
     $ionicPlatform.ready(function () {
-      if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-        //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
-        //cordova.plugins.Keyboard.disableScroll(true); questo risolve problema picklist native ma crea problema forms
-      }
+      var pushCallback = function(jsonData) {
+        if (jsonData) {
+          var parsedNotification = {
+              "title" : ((jsonData.notification || {}).payload || {}).title,
+              "body" : ((jsonData.notification || {}).payload || {}).body,
+              "additionalData" : (((jsonData.notification || {}).payload || {}).additionalData || {}),
+              "eventName" : (((jsonData.notification || {}).payload || {}).additionalData || {}).eventName,
+              "pushID" : (((jsonData.notification || {}).payload || {}).additionalData || {}).pushID
+          }
+          $rootScope.$broadcast('pushNotificationEvent', parsedNotification);
+        }
+      };
+      window.plugins.OneSignal
+        .startInit("9e4aefd1-79ba-4ea2-b7c1-755e85dc5851")
+        .handleNotificationOpened(pushCallback)
+        .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
+        .endInit();
+
       if (window.StatusBar) {
-        //StatusBar.styleDefault();
-        if ($cordovaDevice.getPlatform() == 'iOS')
-          $cordovaStatusbar.styleHex('#ffffff');
+        if ($cordovaDevice.getPlatform() == 'iOS'){
+          $cordovaStatusbar.styleHex('#111');
+        }
       }
     });
   })
 
-  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicCloudProvider, $ionicConfigProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
     $ionicConfigProvider.views.swipeBackEnabled(false);
     $httpProvider.defaults.timeout = 30000;
-    $ionicCloudProvider.init({
-      "core": {
-        "app_id": "3c90749c"
-      },
-      "push": {
-        "sender_id": "327400843161",
-        "pluginConfig": {
-          "ios": {
-            "badge": true,
-            "sound": true
-          },
-          "android": {
-            "iconColor": "#343434"
-          }
-        }
-      }
-    });
     $stateProvider
 
       .state('login', {
         url: '/login',
         cache: false,
+        params: {
+          error401: null
+        },
         templateUrl: 'templates/login.html',
         controller: 'LoginCtrl'
       })
