@@ -118,7 +118,7 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
 
     function headerGET(scriptID, callCode, server) {
         return {
-                    url: (InfoFactories.getClientSelected() ? (InfoFactories.getClientSelected() || {}).serverProtocol : "https") + "://" + (server || InfoFactories.getServer()) + ".corporatecarsharing.biz/api.svc/ExecuteAdminScript?scriptId=" + scriptID + "&scriptParameterSetId=" + callCode,
+                    url: (InfoFactories.getClientSelected() && InfoFactories.getClientSelected().serverProtocol? (InfoFactories.getClientSelected() || {}).serverProtocol : "https") + "://" + (server || InfoFactories.getServer()) + ".corporatecarsharing.biz/api.svc/ExecuteAdminScript?scriptId=" + scriptID + "&scriptParameterSetId=" + callCode,
                     headers: { 'TenForce-Auth': 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4' , 'Cache-Control' : 'no-cache'},
                     method: "GET"
         }
@@ -126,7 +126,7 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
 
     function headerPOST(res, server) {
         return {
-            url: (InfoFactories.getClientSelected() ? (InfoFactories.getClientSelected() || {}).serverProtocol : "https") + '://' + (server || InfoFactories.getServer()) + '.corporatecarsharing.biz/api.svc/ScriptParameterSets',
+            url: (InfoFactories.getClientSelected() && InfoFactories.getClientSelected().serverProtocol ? (InfoFactories.getClientSelected() || {}).serverProtocol : "https") + '://' + (server || InfoFactories.getServer()) + '.corporatecarsharing.biz/api.svc/ScriptParameterSets',
             method: "POST",
             data: res,
             headers: {
