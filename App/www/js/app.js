@@ -15,11 +15,13 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
           $rootScope.$broadcast('pushNotificationEvent', parsedNotification);
         }
       };
-      window.plugins.OneSignal
-        .startInit("9e4aefd1-79ba-4ea2-b7c1-755e85dc5851")
+      if (window.plugins && window.plugins.OneSignal) {
+        window.plugins.OneSignal
+        .startInit("68e67a7c-98e7-4921-99e2-93d8392ac817")
         .handleNotificationOpened(pushCallback)
         .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
         .endInit();
+      }
 
       if (window.StatusBar) {
         if ($cordovaDevice.getPlatform() == 'iOS'){
