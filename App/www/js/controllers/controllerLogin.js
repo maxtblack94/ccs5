@@ -111,7 +111,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
             ScriptServices.callGenericService(res, 591).then(function(data) {
                 var pnrPopup = $ionicPopup.alert({
                     title: 'Esito richiesta',
-                    template: data
+                    template: data.data
                 });
                 pnrPopup.then(function(res) {
                     $scope.recorveryPasswordOn();
