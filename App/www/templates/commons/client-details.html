@@ -40,11 +40,50 @@
                 </ion-item>
                 <ion-item class="item-input item-stacked-label">
                     <span class="input-label">Cellulare</span>
-                    <input type="text" ng-model="request.cellulare" placeholder="Cellulare">
+                    <input type="text" ng-model="request.mobile_phone" placeholder="Cellulare">
+                </ion-item>
+            </div>
+            <ion-item ng-if="selectedClient.drivingLicense" class="item-divider">
+                <h2>Patente</h2>
+            </ion-item>
+            <div ng-if="selectedClient.drivingLicense && !request">
+                <ion-item ng-if="userInfo.registry.license_code">
+                    <h2>Numero Patente</h2>
+                    <p>{{userInfo.registry.license_code}}</p>
+                </ion-item>
+                <ion-item ng-if="userInfo.registry.license_place">
+                    <h2>Luogo di rilascio</h2>
+                    <p>{{userInfo.registry.license_place}}</p>
+                </ion-item>
+                <ion-item ng-if="userInfo.registry.license_date">
+                    <h2>Data di rilascio</h2>
+                    <p>{{userInfo.registry.license_date}}</p>
+                </ion-item>
+                <ion-item ng-if="userInfo.registry.license_expire">
+                    <h2>Data di scadenza</h2>
+                    <p>{{userInfo.registry.license_expire}}</p>
+                </ion-item>
+            </div>
+            <div ng-if="request && selectedClient.drivingLicense">
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">Numero Patente<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.license_code" placeholder="Numero">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">Luogo di rilascio<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.license_place" placeholder="Luogo di rilascio">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">Data di rilascio<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.license_date" placeholder="Data di rilascio">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">Data di scadenza<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.license_expire" placeholder="Luogo di scadenza">
                 </ion-item>
             </div>
         </ion-list>
-
+        
         <div class="row" ng-if="!request">
             <div class="col col-80 col-offset-10">
                 <button ng-click='edit()' class="button button-block button-positive">

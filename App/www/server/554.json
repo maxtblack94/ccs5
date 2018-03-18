@@ -2,18 +2,8 @@
     "retcode": 0,
     "data": {
         "GetUser": [
-            {
-                "last_name": "Ouatu",
-                "first_name": "Alessandro",
-                "badge_id": "0104B85302CE2B80",
-                "email": "ouatu.alexandru@gmail.com",
-                "mobile_phone": "3282511990",
-                "username": "aouatu",
-                "password": "alex",
-                "time_of_booking": "7",
-                "sms_message": "False",
-                "push_message": "False"
-            }
+            {"last_name":"Rossi","first_name":"Mario","badge_id":"1234","email":"marco.spazzacampagna@ccsitalia.it","mobile_phone":"0612345678","license_code":"RM-123456779","license_place":"MTCT Roma","license_date":"20/09/2008","license_expire":"19/09/2018","username":"m.rossi","password":"rossi0412","time_of_booking":"7","sms_message":"False","push_message":"False"}
         ]
     }
 }
+

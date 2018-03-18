@@ -20,9 +20,9 @@
         <div class="item">
           <div class="pull-left m-right20">
             <p>{{ ::locale.confirmation.labelColor }}</p>
-            <div class='color-cube'><div style='background-color: {{ car.color }};'></div></div>
+            <div class='color-cube'><div style='background-color: {{ car.colorApp }};'></div></div>
           </div>
-          <div class="pull-left">
+          <div class="pull-left" ng-show="car.seats">
             <p>{{ ::locale.confirmation.labelSeat }}</p>
             <p style='font-weight: bold; font-size: 20px; line-height: 26px; text-align: center;'>{{ car.seats }}</p>
           </div>

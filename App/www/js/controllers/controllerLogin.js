@@ -184,15 +184,17 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
     }
 
     function registerPushID (){
-        window.plugins.OneSignal.getIds(function(ids) {
-            if (ids && ids.userId) {
-                ScriptServices.getXMLResource(567).then(function(res) {
-                    var driverNumber = InfoFactories.getUserInfo().driverNumber;
-                    res = res.replace('{USER_ID}', driverNumber).replace('{PUSH_ID}', ids.userId);
-                    ScriptServices.callGenericService(res, 567);
-                });
-            }
-        });
+        if (window.plugins && window.plugins.OneSignal) {
+            window.plugins.OneSignal.getIds(function(ids) {
+                if (ids && ids.userId) {
+                    ScriptServices.getXMLResource(567).then(function(res) {
+                        var driverNumber = InfoFactories.getUserInfo().driverNumber;
+                        res = res.replace('{USER_ID}', driverNumber).replace('{PUSH_ID}', ids.userId);
+                        ScriptServices.callGenericService(res, 567);
+                    });
+                }
+            });
+        }
     }
 
     init();

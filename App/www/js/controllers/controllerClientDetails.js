@@ -4,10 +4,7 @@ angular.module('starter').controller('ClientDetailCtrl', function($state, $scope
     $scope.userInfo = InfoFactories.getUserInfo();
 
     $scope.edit = function(){
-        $scope.request = {
-            "email": (($scope.userInfo || {}).registry || {}).email,
-            "cellulare": (($scope.userInfo || {}).registry || {}).mobile_phone
-        }
+        $scope.request = angular.copy((($scope.userInfo || {}).registry))
     }
 
     $scope.undo = function(){
@@ -16,7 +13,9 @@ angular.module('starter').controller('ClientDetailCtrl', function($state, $scope
 
     $scope.save = function(){
         if(!$scope.request.email){
-            PopUpServices.errorPopup("Inserire tutti i campi obblicatori", "1");
+            PopUpServices.errorPopup("Il campo email è obbligatorio", "1");
+       }if ((!$scope.request.license_code || !$scope.request.license_place || !$scope.request.license_date || !$scope.request.license_expire) || $scope.selectedClient.drivingLicence) {
+            PopUpServices.errorPopup("I dati della patente sono obbligatori", "1");
        }else{
            callSaveService();
        }
@@ -29,7 +28,11 @@ angular.module('starter').controller('ClientDetailCtrl', function($state, $scope
             .replace('{PHONE}', $scope.request.cellulare)
             .replace('{EMAIL}', $scope.request.email)
             .replace('{SMS}', $scope.userInfo.sms)
-            .replace('{PUSH}', $scope.userInfo.push);
+            .replace('{PUSH}', $scope.userInfo.push)
+            .replace('{LICENSE_CODE}', ManipolationServices.fixRequestParam($scope.request.license_code))
+            .replace('{LICENSE_PLACE}', ManipolationServices.fixRequestParam($scope.request.license_place))
+            .replace('{LICENSE_DATE}', ManipolationServices.fixRequestParam($scope.request.license_date))
+            .replace('{LICENSE_EXPIRE}', ManipolationServices.fixRequestParam($scope.request.license_expire));
             ScriptServices.callGenericService(res, 558).then(function(data) {
                 $scope.request = undefined;
                 $scope.userInfo.registry = data.data;

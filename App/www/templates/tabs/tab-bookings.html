@@ -25,10 +25,10 @@
           <img ng-src="{{ book.image_max ? book.image_max : 'icons/vehicle-default-l.jpg' }}">
         </div>
         <div class="item">
-          <div class="pull-left">
+          <div class="pull-left m-right20">
             <p>{{ ::locale.confirmation.labelColor }}</p>
             <div class='color-cube'>
-              <div style='background-color: {{ book.cmb_color }};'></div>
+              <div style='background-color: {{ book.colorApp }};'></div>
             </div>
           </div>
           <div class="pull-left" ng-show='book.seats'>

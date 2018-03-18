@@ -81,7 +81,6 @@
       </div>
     </div>
     <div ng-show="showCase === 'formNotes'">
-      <!--<textarea ng-model="myModel" tagged-autogrow></textarea>-->
       <ion-list>
         <label ng-if="operationType === 'FAULT'" class="item item-input item-stacked-label">
           <span class="input-label">Chilometraggio totale sul cruscotto<span class="color-error">*</span></span>
@@ -100,7 +99,7 @@
        </button>
         </div>
         <div class="col col50">
-          <button ng-disabled="!requestParameters.km || !requestParameters.note" ng-click="submitData()" class="button button-block button-positive">
+          <button ng-disabled="(!requestParameters.km || operationType === 'FAULT') || !requestParameters.note" ng-click="submitData()" class="button button-block button-positive">
           Conferma
         </button>
         </div>

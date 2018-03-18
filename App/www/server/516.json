@@ -10,6 +10,7 @@
                 "pnr": "0104C1BF02CE2B8014496",
                 "pickup_parking": "Roma Tupini",
                 "pickup_date": "16/03/2017",
+                "seats":"8",
                 "pickup_time": "16/03/2017 15:40:42",
                 "return_parking": "Roma Tupini",
                 "return_date": "04/04/2018",
