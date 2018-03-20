@@ -78,131 +78,68 @@ scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
           </content>
         </entry>
         <entry>
-
           <title type="text"></title>
-
           <updated>2010-02-27T21:36:47Z</updated>
-
           <author>
-
             <name />
-
           </author>
-
           <category term="TenForce.Execution.Api2.Objects.ScriptParameter"
-
               scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
-
           <content type="application/xml">
-
             <m:properties>
-
               <d:Id m:type="Edm.Int32">0</d:Id>
-
-              <d:Name>{LICENSE_CODE}</d:Name>
-
-              <d:Value></d:Value>
-
+              <d:Name>license_code</d:Name>
+              <d:Value>{LICENSE_CODE}</d:Value>
             </m:properties>
-
           </content>
-
         </entry>
-
         <entry>
-
           <title type="text"></title>
-
           <updated>2010-02-27T21:36:47Z</updated>
-
           <author>
-
             <name />
-
           </author>
-
           <category term="TenForce.Execution.Api2.Objects.ScriptParameter"
-
               scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
-
           <content type="application/xml">
-
             <m:properties>
-
               <d:Id m:type="Edm.Int32">0</d:Id>
-
-              <d:Name>{LICENSE_PLACE}</d:Name>
-
-              <d:Value></d:Value>
-
+              <d:Name>license_place</d:Name>
+              <d:Value>{LICENSE_PLACE}</d:Value>
             </m:properties>
-
           </content>
-
         </entry>
-
         <entry>
-
           <title type="text"></title>
-
           <updated>2010-02-27T21:36:47Z</updated>
-
           <author>
-
             <name />
-
           </author>
-
           <category term="TenForce.Execution.Api2.Objects.ScriptParameter"
-
               scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
-
           <content type="application/xml">
-
             <m:properties>
-
               <d:Id m:type="Edm.Int32">0</d:Id>
-
-              <d:Name>{LICENSE_DATE}</d:Name>
-
-              <d:Value></d:Value>
-
+              <d:Name>license_date</d:Name>
+              <d:Value>{LICENSE_DATE}</d:Value>
             </m:properties>
-
           </content>
-
         </entry>
-
         <entry>
-
           <title type="text"></title>
-
           <updated>2010-02-27T21:36:47Z</updated>
-
           <author>
-
             <name />
-
           </author>
-
           <category term="TenForce.Execution.Api2.Objects.ScriptParameter"
-
               scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
-
           <content type="application/xml">
-
             <m:properties>
-
               <d:Id m:type="Edm.Int32">0</d:Id>
-
-              <d:Name>{LICENSE_EXPIRE}</d:Name>
-
-              <d:Value></d:Value>
-
+              <d:Name>license_expired</d:Name>
+              <d:Value>{LICENSE_EXPIRE}</d:Value>
             </m:properties>
-
           </content>
-
         </entry>
        <entry>
           <title type="text"></title>
