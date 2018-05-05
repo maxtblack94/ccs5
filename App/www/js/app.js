@@ -76,6 +76,13 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
         controller: 'ClientDetailCtrl'
       })
 
+      .state('license', {
+        url: '/license',
+        cache: false,
+        templateUrl: 'templates/commons/license-edit.html',
+        controller: 'LicenseEditCtrl'
+      })
+
       // setup an abstract state for the tabs directive
       .state('tab', {
         url: '/tab',

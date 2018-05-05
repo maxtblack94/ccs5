@@ -84,7 +84,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
         }else{
             refreshClientConfigs($scope.request.verifyCode);
             if($scope.configCompanyAccount === true){
-                PopUpServices.errorPopup('Il codice cliente inserito non esiste, riprovare!', '1');
+                PopUpServices.errorPopup('Il codice azienda inserito è inesistente, riprovare!', '1');
             }
         }
     }

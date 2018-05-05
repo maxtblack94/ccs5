@@ -1,5 +1,6 @@
 {
-    "retcode": 0,
+    "retcode": 50,
+    "retDescription" : "La tua patente è scaduta, non puoi effettuare prenotazioni",
     "data": {
         "VehiclesList": [
             {

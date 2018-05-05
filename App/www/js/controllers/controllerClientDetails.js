@@ -1,4 +1,4 @@
-angular.module('starter').controller('ClientDetailCtrl', function($cordovaDatePicker, ManipolationServices, $state, $scope, InfoFactories, PopUpServices, $ionicLoading, ScriptServices) {
+angular.module('starter').controller('ClientDetailCtrl', function($scope, InfoFactories, PopUpServices, $ionicLoading, ScriptServices) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
@@ -14,8 +14,6 @@ angular.module('starter').controller('ClientDetailCtrl', function($cordovaDatePi
     $scope.save = function(){
         if(!$scope.request.email){
             PopUpServices.errorPopup("Il campo email è obbligatorio", "1");
-       }if ((!$scope.request.license_code || !$scope.request.license_place || !$scope.request.license_date || !$scope.request.license_expire) && $scope.selectedClient.drivingLicense) {
-            PopUpServices.errorPopup("I dati della patente sono obbligatori", "1");
        }else{
            callSaveService();
        }
@@ -25,14 +23,14 @@ angular.module('starter').controller('ClientDetailCtrl', function($cordovaDatePi
         $ionicLoading.show();
         ScriptServices.getXMLResource(558).then(function(res) {
             res = res.replace('{DRIVERNUMBER}', InfoFactories.getUserInfo().driverNumber)
-            .replace('{PHONE}', $scope.request.mobile_phone)
+            .replace('{PHONE}', $scope.request.mobile_phone || '')
             .replace('{EMAIL}', $scope.request.email)
-            .replace('{SMS}', $scope.userInfo.sms)
-            .replace('{PUSH}', $scope.userInfo.push)
-            .replace('{LICENSE_CODE}', $scope.request.license_code ? $scope.request.license_code : '')
-            .replace('{LICENSE_PLACE}', $scope.request.license_place ? $scope.request.license_place : '')
-            .replace('{LICENSE_DATE}', $scope.request.license_date ? moment($scope.request.license_date).format('DD/MM/YYYY') : '')
-            .replace('{LICENSE_EXPIRE}', $scope.request.license_expire ? moment($scope.request.license_expire).format('DD/MM/YYYY') : '');
+            .replace('{SMS}', $scope.request.sms || '')
+            .replace('{PUSH}', $scope.request.push || '')
+            .replace('{LICENSE_CODE}', $scope.request.license_code || '')
+            .replace('{LICENSE_PLACE}', $scope.request.license_place || '')
+            .replace('{LICENSE_DATE}', $scope.request.license_date || '')
+            .replace('{LICENSE_EXPIRE}', $scope.request.license_expire || '');
             ScriptServices.callGenericService(res, 558).then(function(data) {
                 $scope.request = undefined;
                 $scope.userInfo.registry = data.data;
@@ -45,25 +43,5 @@ angular.module('starter').controller('ClientDetailCtrl', function($cordovaDatePi
             })
         });
     }
-
-    $scope.selectDate = function(dateType) {
-        var dateFromConfig = {
-            date: $scope.request[dateType] ? moment($scope.request[dateType],"DD/MM/YYYY").toDate(): new Date(),
-            mode: 'date',
-            allowOldDates: false,
-            allowFutureDates: true,
-            androidTheme: 4,
-            doneButtonLabel: $scope.locale.date.butChange,
-            cancelButtonLabel: $scope.locale.date.labelClose,
-            cancelButtonColor: '#000000',
-            locale: $scope.locale.locale
-        };
-        
-        $cordovaDatePicker.show(dateFromConfig).then(function(date) {
-            if(date){
-                $scope.request[dateType] = moment(date,"DD/MM/YYYY").toDate();
-            }            
-        });
-    };
 
 })
