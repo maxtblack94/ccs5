@@ -79,7 +79,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
         }else{
             refreshClientConfigs($scope.request.verifyCode);
             if($scope.configCompanyAccount === true){
-                PopUpServices.errorPopup('Il codice cliente inserito non esiste, riprovare!', '1');
+                PopUpServices.errorPopup('Il codice azienda inserito è inesistente, riprovare!', '1');
             }
         }
     }
@@ -107,7 +107,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
             ScriptServices.callGenericService(res, 591).then(function(data) {
                 var pnrPopup = $ionicPopup.alert({
                     title: 'Esito richiesta',
-                    template: data
+                    template: data.data
                 });
                 pnrPopup.then(function(res) {
                     $scope.recorveryPasswordOn();
@@ -180,15 +180,17 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
     }
 
     function registerPushID (){
-        window.plugins.OneSignal.getIds(function(ids) {
-            if (ids && ids.userId) {
-                ScriptServices.getXMLResource(567).then(function(res) {
-                    var driverNumber = InfoFactories.getUserInfo().driverNumber;
-                    res = res.replace('{USER_ID}', driverNumber).replace('{PUSH_ID}', ids.userId);
-                    ScriptServices.callGenericService(res, 567);
-                });
-            }
-        });
+        if (window.plugins && window.plugins.OneSignal) {
+            window.plugins.OneSignal.getIds(function(ids) {
+                if (ids && ids.userId) {
+                    ScriptServices.getXMLResource(567).then(function(res) {
+                        var driverNumber = InfoFactories.getUserInfo().driverNumber;
+                        res = res.replace('{USER_ID}', driverNumber).replace('{PUSH_ID}', ids.userId);
+                        ScriptServices.callGenericService(res, 567);
+                    });
+                }
+            });
+        }
     }
 
     init();

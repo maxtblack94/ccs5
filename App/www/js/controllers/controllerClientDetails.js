@@ -1,13 +1,10 @@
-angular.module('starter').controller('ClientDetailCtrl', function($state, $scope, InfoFactories, PopUpServices, $ionicLoading, ScriptServices) {
+angular.module('starter').controller('ClientDetailCtrl', function($scope, InfoFactories, PopUpServices, $ionicLoading, ScriptServices) {
     $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
 
     $scope.edit = function(){
-        $scope.request = {
-            "email": (($scope.userInfo || {}).registry || {}).email,
-            "cellulare": (($scope.userInfo || {}).registry || {}).mobile_phone
-        }
+        $scope.request = angular.copy((($scope.userInfo || {}).registry))
     }
 
     $scope.undo = function(){
@@ -16,7 +13,7 @@ angular.module('starter').controller('ClientDetailCtrl', function($state, $scope
 
     $scope.save = function(){
         if(!$scope.request.email){
-            PopUpServices.errorPopup("Inserire tutti i campi obblicatori", "1");
+            PopUpServices.errorPopup("Il campo email è obbligatorio", "1");
        }else{
            callSaveService();
        }
@@ -26,10 +23,14 @@ angular.module('starter').controller('ClientDetailCtrl', function($state, $scope
         $ionicLoading.show();
         ScriptServices.getXMLResource(558).then(function(res) {
             res = res.replace('{DRIVERNUMBER}', InfoFactories.getUserInfo().driverNumber)
-            .replace('{PHONE}', $scope.request.cellulare)
+            .replace('{PHONE}', $scope.request.mobile_phone || '')
             .replace('{EMAIL}', $scope.request.email)
-            .replace('{SMS}', $scope.userInfo.sms)
-            .replace('{PUSH}', $scope.userInfo.push);
+            .replace('{SMS}', $scope.request.sms || '')
+            .replace('{PUSH}', $scope.request.push || '')
+            .replace('{LICENSE_CODE}', $scope.request.license_code || '')
+            .replace('{LICENSE_PLACE}', $scope.request.license_place || '')
+            .replace('{LICENSE_DATE}', $scope.request.license_date || '')
+            .replace('{LICENSE_EXPIRE}', $scope.request.license_expire || '');
             ScriptServices.callGenericService(res, 558).then(function(data) {
                 $scope.request = undefined;
                 $scope.userInfo.registry = data.data;

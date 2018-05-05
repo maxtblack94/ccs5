@@ -38,6 +38,14 @@ angular.module('starter').controller('CarCtrl', function(ManipolationServices, P
                     PopUpServices.messagePopup($scope.locale.vehicle.labelCannotReserve, "Attenzione", callbackMissingRecords);
                 }else if(data.retcode == 1 || data.retcode == 3){
                     PopUpServices.messagePopup("Nessun veicolo è al momento disponibile per il periodo da Te richiesto", "Attenzione", callbackMissingRecords);
+                }else if(data.retcode == 50 && data.retDescription){
+                    PopUpServices.messagePopup(data.retDescription, "Attenzione", callbackMissingRecords);
+                }else if(data.retcode == 51 && data.retDescription){
+                    PopUpServices.messagePopup(data.retDescription, "Attenzione");
+                    $scope.vehicleList = data.data.VehiclesList;
+                    for(var i = 0; i < $scope.vehicleList.length; i++) {
+                        $scope.vehicleList[i].fuel_quantity = ManipolationServices.trascodeFuel($scope.vehicleList[i].fuel_quantity);
+                    }
                 }else{
                     $scope.vehicleList = data.data.VehiclesList;
                     for(var i = 0; i < $scope.vehicleList.length; i++) {
