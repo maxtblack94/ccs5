@@ -7,7 +7,10 @@ angular.module('starter').factory("ManipolationServices", function() {
         return newDate;
     };
     function trascodeFuel(value) {
-        switch(value) {
+        if (Number.isInteger(value)) {
+            return String(value) + '%';
+        }else{
+            switch(value) {
             default: 
                 break;
             case '0/4': 
@@ -20,7 +23,9 @@ angular.module('starter').factory("ManipolationServices", function() {
                 return '75%';
             case '4/4': 
                 return '100%';
+            }
         }
+        
     };
     function fixRequestParam(value) {
         return value || "";
