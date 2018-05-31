@@ -1,4 +1,4 @@
-angular.module('starter').controller('MapCtrl', function (PopUpServices, $scope, $http, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup) {
+angular.module('starter').controller('MapCtrl', function (PopUpServices, ScriptServices, $scope, $http, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup) {
     $scope.locale = window.locale;
     $scope.selectedBooking = $state.params.pnrInfo;
 
