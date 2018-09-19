@@ -115,6 +115,17 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
         }
       })
 
+      .state('tab.ble', {
+        url: '/ble',
+        cache: false,
+        views: {
+          'tab-ble': {
+            templateUrl: 'templates/tabs/tab-ble-test.html',
+            controller: 'BleCtrl'
+          }
+        }
+      })
+
       .state('tab.map', {
         url: '/map',
         params: {

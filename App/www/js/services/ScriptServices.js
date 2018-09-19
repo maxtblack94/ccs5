@@ -137,7 +137,19 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
         }
     }
 
+    
+    function generateUUID4() {
+        var fmt = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
+        return fmt.replace(/[xy]/g, function(c) {
+        var r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3|0x8);
+        return v.toString(16);
+        });
+    }
+
     return {
+        generateUUID4: function(){
+            return generateUUID4();
+        },
         getXMLResource: function (scriptID) {
             return getXMLResource(scriptID);
         },
@@ -149,6 +161,4 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
         }
     };
 
-
-
-})
+});

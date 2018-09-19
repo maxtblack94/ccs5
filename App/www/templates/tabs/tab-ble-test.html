@@ -1,0 +1,15 @@
+<ion-view title="BLE">
+    <ion-content>
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="startScan()">
+        </ion-refresher>
+        <button class="button button-balanced button-block" ng-click="disconnect()"> Disconnect</button>
+        <button class="button button-balanced button-block" ng-click="write('version')"> Versioning</button>
+        <button class="button button-balanced button-block" ng-click="write('pair')"> Pairing</button>
+        <button class="button button-balanced button-block" ng-click="notify()"> notify</button>
+        <ul class="list">
+            <li ng-repeat="item in items" class="item" ng-click="connect(item.id);">
+                <i ng-if="currentDevice.id === item.id" class="fa fa-check-circle" aria-hidden="true"></i> {{item.name || 'no name'}} ID: {{item.id}}
+            </li>
+        </ul>
+    </ion-content>
+</ion-view>
