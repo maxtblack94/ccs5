@@ -37,6 +37,14 @@ angular.module('starter').controller('BleCtrl', function(ArrayServices, ScriptSe
         console.log('connection fail', params);
     }
 
+    $scope.maxMTU = function(){
+        ble.requestMtu($scope.currentDevice.id, 512, callbackMTU, callbackMTU);
+    };
+
+    function callbackMTU(message) {
+        console.log('MaxSize', message);
+    }
+
 
     $scope.disconnect = function(){
         if ($scope.currentDevice && $scope.currentDevice.id) {
@@ -45,11 +53,11 @@ angular.module('starter').controller('BleCtrl', function(ArrayServices, ScriptSe
             console.log('no device connected')
         }
         
-    }
+    };
 
     var onData = function(buffer) {
         alert("Notify:"+ ArrayServices.bytesToString(buffer))
-    }
+    };
 
     $scope.write = function(type){
         var writeService = $scope.currentDevice.characteristics.find(function(item){
@@ -88,11 +96,11 @@ angular.module('starter').controller('BleCtrl', function(ArrayServices, ScriptSe
     }
 
     function writesucce(params) {
-        console.log('disconnectsuccs', params)
+        console.log('write success', params);
     }
 
     function writefail(params) {
-        console.log('disconnectFail', params)
+        console.log('writefail', params);
     }
 
     $scope.notify = function(){
