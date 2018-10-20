@@ -71,6 +71,9 @@ angular.module('starter').controller('BleCtrl', function(ArrayServices, ScriptSe
             case "pair":
                 string = pairingRequest();
                 break;
+            case "pushPNR":
+                string = pushPNRRequest();
+                break;
         
             default:
                 break;
@@ -94,6 +97,28 @@ angular.module('starter').controller('BleCtrl', function(ArrayServices, ScriptSe
             "PK": 11
         };
     }
+
+    function pushPNRRequest() {
+        var TKN = {
+            Version: "0000",
+            IDPNR : "2A8BB7231866",
+            MessageType: "5",
+            IDBadge: "0122578B2A000000"
+        };
+
+        var TKNString = JSON.stringify(TKN);
+        var TKNBase64 = btoa(TKNString);
+
+        return {
+            "TS": new Date().getTime(),
+            "TI": ScriptServices.generateUUID4(),
+            "MSG": ScriptServices.generateUUID4(),
+            "MT": 5000,
+            "TKN": TKNBase64
+        };
+    }
+
+    
 
     function writesucce(params) {
         console.log('write success', params);
