@@ -1,5 +1,4 @@
 angular.module('starter').controller('LicenseEditCtrl', function($cordovaDatePicker, ManipolationServices, $state, $scope, InfoFactories, PopUpServices, $ionicLoading, ScriptServices) {
-    $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
 
@@ -51,10 +50,10 @@ angular.module('starter').controller('LicenseEditCtrl', function($cordovaDatePic
             allowOldDates: false,
             allowFutureDates: true,
             androidTheme: 4,
-            doneButtonLabel: $scope.locale.date.butChange,
-            cancelButtonLabel: $scope.locale.date.labelClose,
+            doneButtonLabel: $filter('translate')('commons.select'),
+            cancelButtonLabel: $filter('translate')('commons.close'),
             cancelButtonColor: '#000000',
-            locale: $scope.locale.locale
+            locale: navigator.language
         };
         
         $cordovaDatePicker.show(dateFromConfig).then(function(date) {

@@ -1,7 +1,5 @@
 window.locale_it = {};
 
-window.locale_it.locale = 'it-IT';
-
 window.locale_it.leftMenu = {
 	menuTitle: 'Profilo Utente',
 	username: 'Username',
@@ -64,7 +62,19 @@ window.locale_it.commons = {
 	no: 'No',
 	legalNotice: 'Copyright © 2016 Corporate Car Solutions Italia  All Rights Reserved',
 	readMore: 'Continua a leggere...',
-	search: 'Cerca..'
+	search: 'Cerca..',
+	select: 'Seleziona',
+	close: 'Chiudi',
+	attention: 'Attenzione',
+	insert: 'Inserisci',
+	alert: 'Alert',
+	success: 'Successo',
+	error: 'Errore',
+	connectionProblem: 'Abbiamo riscontrato un problema di connessione!',
+	successOperation: "Operazione avvenuta con successo",
+	requestFail: "Non siamo riusciti a sottomettere la richiesta.",
+	refuse: 'Rifiuta',
+	accept: 'Accetta'
 };
 
 window.locale_it.bookResume = {
@@ -82,6 +92,17 @@ window.locale_it.bookResume = {
 	telepass_descr: 'Selezionare se si ha bisogno del telepass',
 	vahicleType: 'Tipologia veicolo',
 	confirm: 'Cerca veicolo',
+	returnDateIsOut: 'La data di ritiro non rientra negli orari di apertura del parcheggio',
+	returnDateIsMajor: 'La data di ritiro è maggiore della data di consegna',
+	returnDateNeedToBeMajor: 'La data di ritiro deve essere superiore alla data attuale',
+	isNotInTime: 'La data di consegna non rientra negli orari di apertura del parcheggio',
+	defineRange: 'Non hai definito il raggio di percorrenza',
+	missingVehicleType: 'Selezionare una tipologia di veicolo',
+	vehicleTypesNotFound: 'Non è stato possibile recuperare le tipologie di veicoli presenti in questo parcheggio!',
+	noDataFound: 'Non è stato possibile recuperare alcune informazioni!',
+	returnDateHaveToBe: 'La data di riconsegna deve essere entro il ',
+	wrongDates: 'Seleziona la data di ritiro e consegna per continuare',
+	wrongParking: 'Seleziona il parcheggio prima di continuare'
 };
 
 window.locale_it.map = {
@@ -109,6 +130,7 @@ window.locale_it.confirmReservation = {
 	dateTo: 'Data riconsegna',
 	cc: 'Carta carburante',
 	telepass: 'Telepass',
+	pnr: 'PNR'
 };
 
 window.locale_it.vehicle = {
@@ -119,7 +141,8 @@ window.locale_it.vehicle = {
 	seats: 'Posti',
 	color: 'Colore',
 	externalClean: 'Esterni',
-	internalClean: 'Interni'
+	internalClean: 'Interni',
+    labelCannotReserve: 'La Tua prenotazione non può essere accettata, in quanto per il periodo richiesto esiste già una prenotazione a Tuo nome.'
 };
 
 window.locale_it.login = {
@@ -185,132 +208,26 @@ window.locale_it.clientDetails = {
 	editContacts: 'Modifica contatti',
 	cancel: 'Annulla',
 	save: 'Salva'
-}
-
-/* window.locale_it.home = {
-	msgHello: 'Ciao, {0}',
-	msgNextRsv: 'Hai una prenotazione il {0} alle ore {0} ',
-	msgOnRsv : "Devi riconsegnare l'auto alle ore {0}",
-	labelCar: 'Veicolo',
-	labelGet: 'Ritiro',
-	labelSet: 'Riconsegna',
-	butBooking: 'Nuova prenotazione',
-	labelCountdown: 'Tempo residuo',
-	labelPlate: 'Targa',
-	cancelReservation: 'Annulla',
-	labelColor: 'Colore',
-	confirmDeleteBook: 'Annullare la prenotazione selezionata?',
-	title: 'Prenotazioni',
-	prenotationtitle: 'Dettaglio prenotazione',
-	vehicle_position: 'Indirizzo posizione veicolo'
-}; */
-
-/* window.locale_it.home.rsvinfo = {
-	labPrk: 'Parcheggio ',
-	labTime: ''
-}; */
-
-/* window.locale_it.login = {
-	login: 'Accedi',
-	forgotPassword: 'Password dimenticata?',
-	retrievePassword: 'Recupera Password',
-	haveAccount: 'Accedi',
-	placeholderMail: 'compagnia@dominio.it'
-
-}; */
-
-
-/* 
-
-window.locale_it.vehicle = {
-	
-	buttonBook: 'Prenota',
-	buttonConfirm:'',
-	
-	label: 'Veicolo',
-	
-	labelMotor: 'Motore',
-	labelSeats: 'Posti',
-	labelExternal: 'Esterni',
-	labelInterior: 'Interni',
-    labelColor: 'Colore',
-	yes: 'SI',
-	no: 'NO',
-	labelSelect: "Seleziona",
-    labelCannotReserve: 'La Tua prenotazione non può essere accettata, in quanto per il periodo richiesto esiste già una prenotazione a Tuo nome.'
 };
 
-window.locale_it.booking = {
-	buttonDate: 'Seleziona',
-	buttonParking: 'Seleziona',
-	messageEmptyDate: 'Selezionare il periodo correttamente.',
-	
-	dateFrom : 'Data ritiro',
-	dateTo: 'Data riconsegna',
-	alertMessage: 'Seleziona la data correttamente',
-	parking: 'Parcheggio',
-	justification: 'Giustificazione',
-	place: 'Luogo',
-	d
-	labelDelete: 'Elimina',
-	wrongInputs: 'Selezionare correttamente le date di prenotazione ed il parcheggio',
-	
-	driverName: 'Nome driver',
-	labelNavigate: 'Raggiungi veicolo',
-	buttonDetail: 'Dettaglio',
-	buttonOpenCar : 'Inizio corsa',
-	buttonCloseCar : 'Fine corsa',
-	labelCentralizzedButton: "Chiusura Centrallizzata"
+window.locale_it.actionSheet = {
+	chageDriver: 'Cambio Guida',
+	selectEmployee: 'Selezionare dipendente',
+	confirm: 'Conferma',
+	cancel: 'Annulla',
+	continue: 'Continue',
+	segnalation: 'Segnalazione',
+	attention: 'Attenzione',
+	damageInfo1: 'Effettuare la Segnalazione Guasto, solo dopo aver constatato, che il veicolo non è in grado di rientrare al parcheggio e necessita di essere portato o trasferito, presso una officina per la riparazione.',
+	damageInfo2: 'La Segnalazione Guasto, pertanto comporta la chiusura della presente corsa, così da poterle consentire di prenotare un altro veicolo se desiderato. Per chiudere la presente corsa, è richiesto di comunicare peraltro',
+	damageInfo3: 'Si precisa che una volta segnalato il Guasto il veicolo non sarà più utilizzabile',
+	totalKM: 'Chilometri Totali indicati sul cruscotto',
+	noteWithDesc: 'Note (utili per la diagnosi del problema)',
+	needSupport: 'Se il veicolo necessiti di essere rimorchiato o meno',
+	note: 'Note',
+	chooseDefectType: 'Scegli tipologia guasto',
+	fuelLevel: 'Selezionare il livello di carburante nel serbatoio',
+	notesPlaceholder: 'Eventuali indicazioni utili',
+	kmPlaceholder: 'Digitare il chilometraggio',
+	mechaninc: 'Veicolo rimorchiato in officina?'
 };
-
-window.locale_it.confirmation = {
-	title: 'Conferma Prenotazione',
-	back: 'Indietro',
-	buttonConfirm: 'Conferma',
-	labelWait: 'attendere..',
-	labelRequestComplete: 'Prenotazione Confermata',
-	labelSeat: "Posti",
-	labelColor: "Colore",
-	labelIncomplete: 'Attenzione',
-	labelSelectPlace: "Inserire il 'Luogo'",
-	labelSelectDriveName: "Inserire 'Nome driver'"
-};
-
-
-
-
-
-
-window.locale_it.date = {
-	startDate: 'Data ritiro',
-	startTime: 'Ora ritiro',
-	endDate: 'Data riconsegna',
-	endTime: 'Ora riconsegna',
-	button: 'Avanti',
-	messageDate: 'Seleziona la data correttamente',
-	messageTime: 'Seleziona l\'orario correttamente',
-	messageAlert: 'Si prega di selezionare correttamente',
-	butChange: 'Seleziona',
-	labelSelectRange: 'Scegli la data e l\'ora',
-	labelIncorrectDate: 'Selezionare il periodo correttamente',
-	labelSmallDate: "Date time can't be less then current date time",
-	labelToday: "Oggi",
-	labelClose: "Chiudi",
-	monthList: ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Sett", "Ott", "Nov", "Dic"],
-	weekDaysList: ["Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"]
-};
-
-window.locale_it.account = {
-	title: 'Impostazioni',
-	check1: 'Riduci Immagini',
-	client: 'Cliente',
-	logout: 'Logout',
-	check1_descr: 'Mostra le immagini dei veicoli ridotte'
-};
-
-window.locale_it.resume = {
-	title: 'Riepilogo',
-	wrongDates: 'Seleziona la data di ritiro e consegna per continuare',
-	wrongParking: 'Seleziona il parcheggio prima di continuare'
-}; */
-

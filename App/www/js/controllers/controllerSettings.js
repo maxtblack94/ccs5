@@ -1,5 +1,4 @@
 angular.module('starter').controller('SettingsCtrl', function(ScriptServices, $rootScope, $scope, $http, $state, $ionicLoading, InfoFactories) {
-    $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     
     $scope.setHasPicture = function() {

@@ -1,5 +1,4 @@
-angular.module('starter').controller('CarCtrl', function(ManipolationServices, PopUpServices, $scope, $http, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup, ScriptServices) {
-    $scope.locale = window.locale;
+angular.module('starter').controller('CarCtrl', function($filter, ManipolationServices, PopUpServices, $scope, $http, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup, ScriptServices) {
     $scope.dateTimeFrom = InfoFactories.getDateTimeFrom();
     $scope.dateTimeTo = InfoFactories.getDateTimeTo();
     $scope.selectedClient = InfoFactories.getClientSelected();
@@ -35,7 +34,7 @@ angular.module('starter').controller('CarCtrl', function(ManipolationServices, P
                 $scope.loading = false;
                 $ionicLoading.hide();
                 if(data.retcode == 2) {
-                    PopUpServices.messagePopup($scope.locale.vehicle.labelCannotReserve, "Attenzione", callbackMissingRecords);
+                    PopUpServices.messagePopup($filter('translate')('vehicle.labelCannotReserve'), "Attenzione", callbackMissingRecords);
                 }else if(data.retcode == 1 || data.retcode == 3){
                     PopUpServices.messagePopup("Nessun veicolo è al momento disponibile per il periodo da Te richiesto", "Attenzione", callbackMissingRecords);
                 }else if(data.retcode == 50 && data.retDescription){

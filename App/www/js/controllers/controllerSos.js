@@ -1,5 +1,4 @@
 angular.module('starter').controller('SosCtrl', function(PopUpServices, $scope, InfoFactories, ScriptServices, $ionicLoading) {
-    $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     
     function sendSos(sosPnr){

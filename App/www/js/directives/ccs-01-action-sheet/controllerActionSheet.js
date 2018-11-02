@@ -1,5 +1,4 @@
 angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, ManipolationServices, DamageService, InfoFactories, PopUpServices, $ionicLoading, ScriptServices, $ionicPopup, $ionicActionSheet, $scope) {
-    $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
 
     ScriptServices.directWithOutScriptID(628).then(function (data) {

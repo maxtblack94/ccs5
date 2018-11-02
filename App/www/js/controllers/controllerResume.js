@@ -1,5 +1,4 @@
-angular.module('starter').controller('ResumeCtrl', function(ManipolationServices, ScriptServices, $timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, PopUpServices) {
-    $scope.locale = window.locale;
+angular.module('starter').controller('ResumeCtrl', function(ManipolationServices, $filter, ScriptServices, $timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, PopUpServices) {
     InfoFactories.setTelepass(false);
     InfoFactories.setCC(false);
     $scope.selectedParking = InfoFactories.getPark();
@@ -15,7 +14,7 @@ angular.module('starter').controller('ResumeCtrl', function(ManipolationServices
             $scope.listDriverRange = data.ListDriverRange;
             $ionicLoading.hide();
         }, function (error) {
-            PopUpServices.errorPopup("Non è stato possibile recuperare alcune informazioni!", "1");
+            PopUpServices.errorPopup($filter('translate')('bookResume.noDataFound'), "1");
             $ionicLoading.hide();
         })
     }
@@ -27,12 +26,12 @@ angular.module('starter').controller('ResumeCtrl', function(ManipolationServices
             ScriptServices.callGenericService(res, 592).then(function(data) {
                 $scope.vehicleTypeList = data.typeList;
                 if($scope.vehicleTypeList.length === 0){
-                    PopUpServices.messagePopup("Non è stato possibile recuperare le tipologie di veicoli presenti in questo parcheggio!", "Info");
+                    PopUpServices.messagePopup($filter('translate')('bookResume.vehicleTypesNotFound'), "Info");
                 }
                 $ionicLoading.hide();
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup("Non è stato possibile recuperare le tipologie di veicoli presenti in questo parcheggio!", "1");
+                PopUpServices.errorPopup($filter('translate')('bookResume.vehicleTypesNotFound'), "1");
             })
         });
     }
@@ -64,35 +63,35 @@ angular.module('starter').controller('ResumeCtrl', function(ManipolationServices
 
     function datesCheck (){
         if(!$scope.selectedParking){
-            PopUpServices.errorPopup($scope.locale.resume.wrongParking, "1");
+            PopUpServices.errorPopup($filter('translate')('bookResume.wrongParking'), "1");
             return false;
         }
         if(!$scope.dateTimeTo || !$scope.dateTimeFrom){
-            PopUpServices.errorPopup($scope.locale.resume.wrongDates, "1");
+            PopUpServices.errorPopup($filter('translate')('bookResume.wrongDates'), "1");
             return false;
         }else{
             var dateTimeTo = new Date($scope.dateTimeTo);
             var dateTimeFrom = new Date($scope.dateTimeFrom)
             if(new Date() - dateTimeFrom > 0){
-                PopUpServices.errorPopup("La data di ritiro deve essere superiore alla data attuale", "1");
+                PopUpServices.errorPopup($filter('translate')('bookResume.returnDateNeedToBeMajor'), "1");
                 return false;
             }else if((dateTimeTo - dateTimeFrom) < 0){
-                PopUpServices.errorPopup("La data di ritiro è maggiore della data di consegna", "1");
+                PopUpServices.errorPopup($filter('translate')('bookResume.returnDateIsMajor'), "1");
                 return false;
             }else if(!$scope.selectedParking.h24){
                 if(!((dateTimeFrom.getHours() >= $scope.selectedParking.opening.getHours()) && (dateTimeFrom.getHours() < $scope.selectedParking.closing.getHours()))){
-                    PopUpServices.errorPopup("La data di ritiro non rientra negli orari di apertura del parcheggio", "1");
+                    PopUpServices.errorPopup($filter('translate')('bookResume.returnDateIsOut'), "1");
                     return false;
                 }else if(!((dateTimeTo.getHours() >= $scope.selectedParking.opening.getHours()) && (dateTimeTo.getHours() < $scope.selectedParking.closing.getHours()))){
-                    PopUpServices.errorPopup("La data di consegna non rientra negli orari di apertura del parcheggio", "1");
+                    PopUpServices.errorPopup($filter('translate')('bookResume.isNotInTime'), "1");
                     return false;
                 }
             }
             if($scope.selectedClient.drivingRange == true && $scope.selectedDriverRange.value == "short"){
-                PopUpServices.errorPopup("Non hai definito il raggio di percorrenza", "1");
+                PopUpServices.errorPopup($filter('translate')('bookResume.defineRange'), "1");
                 return false;
             }else if($scope.selectedClient.vehicleType == true && !$scope.selectedVehicleType.value && $scope.vehicleTypeList){
-                PopUpServices.errorPopup("Selezionare una tipologia di veicolo", "1");
+                PopUpServices.errorPopup($filter('translate')('bookResume.missingVehicleType'), "1");
                 return false;
             }
             if(InfoFactories.getUserInfo() && InfoFactories.getUserInfo().registry && InfoFactories.getUserInfo().registry.time_of_booking){
@@ -105,7 +104,7 @@ angular.module('starter').controller('ResumeCtrl', function(ManipolationServices
                     maxDate = moment(maxDate).add('days', days);
                 }
                 if(maxDate < new Date($scope.dateTimeTo)){
-                    PopUpServices.errorPopup("La data di riconsegna deve essere entro il "+moment(maxDate).format('DD/MM/YYYY HH:mm'), "1");
+                    PopUpServices.errorPopup($filter('translate')('bookResume.returnDateHaveToBe') +moment(maxDate).format('DD/MM/YYYY HH:mm'), "1");
                     return false;
                 }
             }
@@ -140,10 +139,10 @@ angular.module('starter').controller('ResumeCtrl', function(ManipolationServices
             allowOldDates: false,
             allowFutureDates: true,
             androidTheme: 4,
-            doneButtonLabel: $scope.locale.date.butChange,
-            cancelButtonLabel: $scope.locale.date.labelClose,
+            doneButtonLabel: $filter('translate')('commons.select'),
+            cancelButtonLabel: $filter('translate')('commons.close'),
             cancelButtonColor: '#000000',
-            locale: $scope.locale.locale
+            locale: navigator.language
         };
         
         $cordovaDatePicker.show(dateFromConfig).then(function(date) {
@@ -163,10 +162,10 @@ angular.module('starter').controller('ResumeCtrl', function(ManipolationServices
             androidTheme: 2,
             allowOldDates: true,
             allowFutureDates: true,
-            doneButtonLabel: $scope.locale.date.butChange,
-            cancelButtonLabel: $scope.locale.date.labelClose,
+            doneButtonLabel: $filter('translate')('commons.select'),
+            cancelButtonLabel: $filter('translate')('commons.close'),
             cancelButtonColor: '#000000',
-            locale: $scope.locale.locale
+            locale: navigator.language
         };
         
         $cordovaDatePicker.show(timeFromConfig).then(function(time) {
@@ -184,10 +183,10 @@ angular.module('starter').controller('ResumeCtrl', function(ManipolationServices
             androidTheme: 4,
             allowOldDates: false,
             allowFutureDates: true,
-            doneButtonLabel: $scope.locale.date.butChange,
-            cancelButtonLabel: $scope.locale.date.labelClose,
+            doneButtonLabel: $filter('translate')('commons.select'),
+            cancelButtonLabel: $filter('translate')('commons.close'),
             cancelButtonColor: '#000000',
-            locale: $scope.locale.locale
+            locale: navigator.language
         };
         
         $cordovaDatePicker.show(dateToConfig).then(function(date) {
@@ -207,10 +206,10 @@ angular.module('starter').controller('ResumeCtrl', function(ManipolationServices
             androidTheme: 2,
             allowOldDates: true,
             allowFutureDates: true,
-            doneButtonLabel: $scope.locale.date.butChange,
-            cancelButtonLabel: $scope.locale.date.labelClose,
+            doneButtonLabel: $filter('translate')('commons.select'),
+            cancelButtonLabel: $filter('translate')('commons.close'),
             cancelButtonColor: '#000000',
-            locale: $scope.locale.locale
+            locale: navigator.language
         };
         
         $cordovaDatePicker.show(timeToConfig).then(function(time) {

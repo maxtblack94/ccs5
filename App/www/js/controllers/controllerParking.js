@@ -1,5 +1,4 @@
 angular.module('starter').controller('ParkingCtrl', function($scope, PopUpServices, InfoFactories, $http, $state, $ionicLoading, ScriptServices) {
-    $scope.locale = window.locale;
   
      function init() {
         $ionicLoading.show();

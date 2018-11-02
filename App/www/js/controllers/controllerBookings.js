@@ -1,5 +1,4 @@
 angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $ionicActionSheet, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $http, $state, $ionicPopup, $ionicLoading, ScriptServices) {
-    $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
 
@@ -243,10 +242,10 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
             mode: 'date',
             allowOldDates: false,
             allowFutureDates: true,
-            doneButtonLabel: $scope.locale.date.butChange,
-            cancelButtonLabel: $scope.locale.date.labelClose,
+            doneButtonLabel: $filter('translate')('commons.select'),
+            cancelButtonLabel: $filter('translate')('commons.close'),
             cancelButtonColor: '#000000',
-            locale: $scope.locale.locale
+            locale: navigator.language
         };
 
         $cordovaDatePicker.show(dateToConfig).then(function (date) {
@@ -265,10 +264,10 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
             is24Hour: true,
             allowOldDates: true,
             allowFutureDates: true,
-            doneButtonLabel: $scope.locale.date.butChange,
-            cancelButtonLabel: $scope.locale.date.labelClose,
+            doneButtonLabel: $filter('translate')('commons.select'),
+            cancelButtonLabel: $filter('translate')('commons.close'),
             cancelButtonColor: '#000000',
-            locale: $scope.locale.locale
+            locale: navigator.language
         };
 
         $cordovaDatePicker.show(timeToConfig).then(function (time) {

@@ -1,6 +1,5 @@
 angular.module('starter').controller('ChangeDriverCtrl', function($scope, $rootScope, ManipolationServices, $filter, PopUpServices, ScriptServices, $ionicLoading) {
     function init(){
-        $scope.locale = window.locale;
         $scope.requestParameters = {};
         $scope.showCase = "start";
     }

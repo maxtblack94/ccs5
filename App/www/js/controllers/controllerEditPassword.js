@@ -1,5 +1,4 @@
 angular.module('starter').controller('EditPasswordCtrl', function($ionicHistory, InfoFactories, ScriptServices, $state, $scope, PopUpServices, $ionicLoading) {
-   $scope.locale = window.locale;
    $scope.userInfo = InfoFactories.getUserInfo();
    $scope.request = {};
    setTimeout(function() {$('#oldPassword').focus(); });

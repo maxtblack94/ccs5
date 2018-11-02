@@ -29,7 +29,6 @@ angular.module('starter').factory('DamageService', function() {
 })
 angular.module('starter').controller('hardDamageCtrl', function($scope, DamageService, ManipolationServices, PopUpServices, ScriptServices, $ionicLoading) {
     function init(){
-        $scope.locale = window.locale;
         $scope.requestParameters = {};
         $scope.operationType = DamageService.getOperationType().operationType;
         $scope.alertList = DamageService.getOperationType().alertList;

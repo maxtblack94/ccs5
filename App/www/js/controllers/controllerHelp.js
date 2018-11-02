@@ -1,5 +1,4 @@
 angular.module('starter').controller('HelpCtrl', function(ScriptServices, $scope, $http, $ionicLoading, InfoFactories) {
-    $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.openUrl = function(url){
         window.open(url, '_system', 'location=yes');

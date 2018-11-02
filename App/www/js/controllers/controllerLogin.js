@@ -1,7 +1,6 @@
 angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptServices, $scope, $rootScope, PopUpServices, InfoFactories, $http, $state, $ionicLoading, $ionicPopup) {
     function init(){
         $ionicLoading.show();
-        $scope.locale = window.locale;
         $scope.recorveryPassword = false;
         $scope.request = {};
         if ($stateParams.error401) {
