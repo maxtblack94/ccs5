@@ -14,8 +14,8 @@ angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, M
     $scope.alertActionSheet = function () {
         var hideSheet = $ionicActionSheet.show({
             buttons: $scope.actionButtons,
-            titleText: 'Segliere tipologia segnalazione..',
-            cancelText: ionic.Platform.isAndroid() ? '<i class="fa fa-times" aria-hidden="true"></i> Chiudi' : 'Chiudi',
+            titleText: $filter('translate')('actionSheet.chooseAlertType'),
+            cancelText: ionic.Platform.isAndroid() ? "<i class='fa fa-times' aria-hidden='true'></i> {{ 'commons.close' | translate }}" : "{{ 'commons.close' | translate }}",
             cancel: function () {
                 // add cancel code..
             },
@@ -155,7 +155,7 @@ angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, M
                 modal.show();
             }, function (error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup("Non è stato possibile recuperare la lista dei dipendenti abilitati. Riprovare!");
+                PopUpServices.errorPopup($filter('translate')('actionSheet.driversNotFound'));
             })
         });
     }
@@ -164,16 +164,16 @@ angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, M
         $scope.data = {};
         var myPopup = $ionicPopup.show({
             templateUrl: "js/directives/ccs-01-action-sheet/templates/picklistCleanTemplate.html",
-            title : "Segnalazione Pulizia",
-            subTitle : "Indicare lo stato di pulizia del veicolo",
+            title : $filter('translate')('actionSheet.cleanNotify'),
+            subTitle : $filter('translate')('actionSheet.selectCleanStatusInfo'),
             scope: $scope,
             buttons: [
                 {
-                    text: 'Annulla',
+                    text: $filter('translate')('commons.cancel'),
                     type: 'button-stable',
                 },
                 {
-                    text: '<b>Salva</b>',
+                    text: '<b>{{ "commons.save" | translate}}</b>',
                     type: 'button-positive',
                     onTap: function (e) {
                         if (!$scope.data.value) {
@@ -205,10 +205,10 @@ angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, M
             ScriptServices.callGenericService(res, 629).then(function (data) {
                 var response = data.data;
                 $ionicLoading.hide();
-                PopUpServices.errorPopup("Salvataggio effettuato con successo", "2");
+                PopUpServices.errorPopup($filter('translate')('actionSheet.successAlertSent'), "2");
             }, function (error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup("Non è stato possibile salvare la segnalazione. Riprovare");
+                PopUpServices.errorPopup($filter('translate')('actionSheet.failAlertSent'));
             })
         });
     }
@@ -218,14 +218,14 @@ angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, M
         $scope.dataDelay = {};
         var setDelayPopup = $ionicPopup.show({
             templateUrl: 'js/directives/ccs-01-action-sheet/templates/postDelay.html',
-            title: 'Segnala ritardo',
-            subTitle: "Quanto ritardo farai?",
+            title: $filter('translate')('actionSheet.delayNotify'),
+            subTitle: $filter('translate')('actionSheet.delayNotifyInfo'),
             scope: $scope,
             buttons: [{
-                text: 'Annulla',
+                text: $filter('translate')('commons.cancel'),
                 type: 'button-stable',
             }, {
-                text: '<b>Segnala</b>',
+                text: '<b>{{ "commons.save" | translate}} </b>',
                 type: 'button-positive',
                 onTap: function (e) {
                     if (!$scope.dataDelay.value) {
@@ -248,13 +248,13 @@ angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, M
                 delete $scope.contextPnr;
                 ScriptServices.callGenericService(res, 619).then(function (data) {
                     $ionicLoading.hide();
-                    PopUpServices.messagePopup('Ritardo comunicato con successo', 'Successo', $scope.callback());
+                    PopUpServices.messagePopup($filter('translate')('actionSheet.successDelaySent')), $filter('translate')('commons.success', $scope.callback());
                 }, function (error) {
                     $ionicLoading.hide();
-                    PopUpServices.errorPopup('Non è stato possibile comunicare il ritrado, riprovare.');
-                })
+                    PopUpServices.errorPopup($filter('translate')('actionSheet.failDelaySent'));
+                });
             });
         };
     }
 
-})
+});

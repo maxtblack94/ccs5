@@ -53,13 +53,15 @@ window.locale_it.tabs = {
 
 window.locale_it.notifications = {
 	title: 'Notifiche',
-	notFound: 'Non ci sono notifiche..'
+	notFound: 'Non ci sono notifiche..',
+	failGetNotfications: "Non è stato possibile recuperare le notifiche dal server"
 };
 
 window.locale_it.commons = {
 	refresh: 'Aggiorna...',
 	yes: 'Si',
 	no: 'No',
+	retry: 'Riprovare',
 	legalNotice: 'Copyright © 2016 Corporate Car Solutions Italia  All Rights Reserved',
 	readMore: 'Continua a leggere...',
 	search: 'Cerca..',
@@ -112,6 +114,9 @@ window.locale_it.map = {
 	set: 'Riconsegna',
 	goTo: 'Raggiungi veicolo',
 	delete: 'Elimina',
+	confirmDeleteTitle: 'Conferma Eliminazione',
+	confirmDeleteInfo: 'Sicuro di vole eliminare la prenotazione selezionata?',
+	noCoordsFound: 'Le coordinate dell\'auto non sono disponibili, riprovare più tardi!'
 };
 
 window.locale_it.confirmReservation = {
@@ -229,5 +234,15 @@ window.locale_it.actionSheet = {
 	fuelLevel: 'Selezionare il livello di carburante nel serbatoio',
 	notesPlaceholder: 'Eventuali indicazioni utili',
 	kmPlaceholder: 'Digitare il chilometraggio',
-	mechaninc: 'Veicolo rimorchiato in officina?'
+	mechaninc: 'Veicolo rimorchiato in officina?',
+	chooseAlertType: 'Segliere tipologia segnalazione..',
+	driversNotFound: "Non è stato possibile recuperare la lista dei dipendenti abilitati. Riprovare!",
+	cleanNotify: 'Segnalazione Pulizia',
+	selectCleanStatusInfo: 'Indicare lo stato di pulizia del veicolo',
+	successAlertSent: 'Salvataggio effettuato con successo',
+	failAlertSent: 'Non è stato possibile salvare la segnalazione. Riprovare',
+	delayNotify: 'Segnala ritardo',
+	delayNotifyInfo: 'Quanto ritardo farai?',
+	successDelaySent: "Ritardo comunicato con successo",
+	failDeilaySent: 'Non è stato possibile comunicare il ritrado, riprovare.'
 };

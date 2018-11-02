@@ -1,4 +1,4 @@
-angular.module('starter').controller('notificationsCtrl', function($rootScope, PopUpServices, ScriptServices, $ionicSideMenuDelegate, $scope, $http, $state, $ionicLoading, InfoFactories) {
+angular.module('starter').controller('notificationsCtrl', function($filter, $rootScope, PopUpServices, ScriptServices, $ionicSideMenuDelegate, $scope, $http, $state, $ionicLoading, InfoFactories) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
 
@@ -13,7 +13,7 @@ angular.module('starter').controller('notificationsCtrl', function($rootScope, P
                 $scope.model.notificationsPending = ((data.data || {}).dataList || []);
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup("Non è stato possibile recuperare le notifiche dal server");
+                PopUpServices.errorPopup($filter('translate')('notifications.failGetNotfications'));
             })
         });
     }
