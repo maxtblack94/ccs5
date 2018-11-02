@@ -42,7 +42,7 @@ window.locale_ro.parking = {
 };
 
 window.locale_ro.tabs = {
-	reservation: "Rezervari",
+	reservations: "Rezervari",
 	park: "Parkings",
 	reserve: "Rezervati",
 	vehicles: "Vehicule",
