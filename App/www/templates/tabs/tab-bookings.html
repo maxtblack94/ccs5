@@ -1,24 +1,24 @@
-<ion-view view-title="{{locale.home.title}}">
+<ion-view view-title="{{ 'bookings.title' | translate }}">
   <div fab ng-click='newBooking()'>
     <div class='ion-android-add'></div>
   </div>
   <ion-content>
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshBookings()">
     </ion-refresher>
-    <p ng-if='BookingsList && BookingsList.length==0' class="message-empty">{{ ::locale.home.msgNoRsv }}</p>
+    <p ng-if='BookingsList && BookingsList.length==0' class="message-empty">{{ 'bookings.notFound' | translate }}</p>
     <ion-list ng-if="BookingsList && BookingsList.length !== 0">
       <div ng-repeat='book in BookingsList' class="list card">
         <div class="item" ng-click="openBooking(book)" ng-if="selectedClient.map">
-          <p class="pull-left bold">{{ ::locale.home.rsvinfo.labPRN }}</p>
+          <p class="pull-left bold">{{ 'bookings.pnr' | translate }}</p>
           <h2 class="pull-right bold pnr" ng-click='openBooking(book)'><i class="ion-ios-location"></i> {{ ::book.pnr }}</h2>
         </div>
         <div class="item" ng-if="!selectedClient.map">
-          <p class="pull-left bold">{{ ::locale.home.rsvinfo.labPRN }}</p>
+          <p class="pull-left bold">{{ 'bookings.pnr' | translate }}}</p>
           <h2 class="pull-right bold pnr"> {{ ::book.pnr }}</h2>
         </div>
         <div class="item">
           <h2 class="brand_model">{{ ::book.brand_model }}</h2>
-          <p>{{ ::locale.home.labelPlate }}</p>
+          <p>{{ 'bookings.plate' | translate }}</p>
           <h2>{{ ::book.plate }}</h2>
         </div>
         <div ng-if='!hasPicture' class="item item-image">
@@ -26,13 +26,13 @@
         </div>
         <div class="item">
           <div class="pull-left m-right20">
-            <p>{{ ::locale.confirmation.labelColor }}</p>
+            <p>{{ 'bookings.color' | translate }}</p>
             <div class='color-cube'>
               <div style='background-color: {{ book.colorApp }};'></div>
             </div>
           </div>
           <div class="pull-left" ng-show='book.seats'>
-            <p>{{ ::locale.confirmation.labelSeat }}</p>
+            <p>{{ 'bookings.seats' | translate }}</p>
             <p class="bold" style='font-size: 20px; line-height: 26px; text-align: center;'>{{ ::book.seats }}</p>
           </div>
           <div class="pull-right" ng-if='hasPicture'>
@@ -41,14 +41,14 @@
         </div>
         <div class="item">
           <div style='display: inline-block; margin-right: 10px;'>
-            <div class="date-select-label" style='text-align: center;'>{{ ::locale.vehicle.labelExternal }}</div>
+            <div class="date-select-label" style='text-align: center;'>{{ 'bookings.externalClean' | translate }}</div>
             <div class="pull-left" style='width: 50px; height: 30px; text-align: center; padding-top: 4px;'>
               <i ng-if="book.vehicle_status != 'Fault'" class='ion-happy-outline' style='font-size: 26px; color: #fc0300;'></i>
               <i ng-if="book.vehicle_status == 'Fault'" class='ion-sad-outline' style='font-size: 26px; color: #fc0300;'></i>
             </div>
           </div>
           <div style='display: inline-block;'>
-            <div class="date-select-label text-center">{{ ::locale.vehicle.labelInterior }}</div>
+            <div class="date-select-label text-center">{{ 'bookings.internalClean' | translate }}</div>
             <div class="pull-left text-center" style='width: 50px; height: 30px;padding-top: 4px;'>
               <i ng-if="book.vehicle_cleanness_status != 'Dirty'" class='ion-happy-outline' style='font-size: 26px; color: #fc0300;'></i>
               <i ng-if="book.vehicle_cleanness_status == 'Dirty'" class='ion-sad-outline' style='font-size: 26px; color: #fc0300;'></i>
@@ -61,14 +61,14 @@
         </div>
         <div class="item">
           <div class="pull-left">
-            <h2>{{ ::locale.home.labelGet }}</h2>
+            <h2>{{ 'bookings.get' | translate }}</h2>
             <p>{{ ::book.pickup_parking }}</p>
           </div>
           <p class="pull-right value">{{ ::book.dateTimeFrom | date:'dd/MM/yyyy HH:mm' }}</p>
         </div>
         <div class="item">
           <div class="pull-left">
-            <h2>{{ ::locale.home.labelSet }}</h2>
+            <h2>{{ 'bookings.set' | translate }}</h2>
             <p>{{ ::book.return_parking }}</p>
           </div>
           <p class="pull-right value">{{ ::book.dateTimeTo | date:'dd/MM/yyyy HH:mm' }}</p>
@@ -77,12 +77,12 @@
           <div class="row">
             <div class="col col50" ng-if="selectedClient.btnOpenClose && tolleranceCheck">
               <button ng-click="openCarManipolation(book, '0')" class="button button-balanced button-block pull-right" style="padding: 0px 15px;">
-                  {{ ::locale.booking.buttonOpenCar }}
+                {{ 'bookings.openCar' | translate }}
               </button>
             </div>
             <div class="col col50">
               <button ng-click='delete(book)' class="button button-block button-positive">
-               <i class="icon ion-ios-trash"></i> {{ ::locale.home.cancelReservation }}
+               <i class="icon ion-ios-trash"></i> {{ 'bookings.cancelReservation' | translate }}
              </button>
           </div>
         </div>
@@ -91,7 +91,7 @@
           <div class="row">
             <div class="col col50" ng-if="selectedClient.btnOpenClose && tolleranceCheck">
               <button ng-click="openCarManipolation(book, '1')" class="button button-positive button-block pull-right" style="padding: 0px 15px;">
-                  {{ ::locale.booking.buttonCloseCar }}
+                {{ 'bookings.closeCar' | translate }}
               </button>
             </div>
             <div class="col col50" ng-if="actions.buttons.length > 0">

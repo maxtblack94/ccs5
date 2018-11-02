@@ -119,7 +119,7 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
     function headerGET(scriptID, callCode, server) {
         return {
                     url: (InfoFactories.getClientSelected() && InfoFactories.getClientSelected().serverProtocol? (InfoFactories.getClientSelected() || {}).serverProtocol : "https") + "://" + (server || InfoFactories.getServer()) + ".corporatecarsharing.biz/api.svc/ExecuteAdminScript?scriptId=" + scriptID + "&scriptParameterSetId=" + callCode,
-                    headers: { 'TenForce-Auth': 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4' , 'Cache-Control' : 'no-cache'},
+                    headers: { 'TenForce-Auth': getTenForceAuthID() , 'Cache-Control' : 'no-cache'},
                     method: "GET"
         }
     }
@@ -130,11 +130,28 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
             method: "POST",
             data: res,
             headers: {
-                'TenForce-Auth': 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4',
+                'TenForce-Auth': getTenForceAuthID(),
                 'Content-Type': 'application/atom+xml',
                 'Cache-Control' : 'no-cache'
             }
         }
+    }
+
+    function getTenForceAuthID() {
+        var deviceLanguage = navigator.language || navigator.userLanguage;
+        var authID;
+        switch (deviceLanguage) {
+            case 'ro-RO':
+                authID = 'dGVuZm9yY2Uucm9AVEYuY29tfGRlbW9ybzE4NDUy';
+                break;
+            case 'it-IT':
+                authID = 'dGVuZm9yY2Uucm9AVEYuY29tfGRlbW9ybzE4NDUy';
+                break;
+            default:
+                authID = 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4'; //English
+                break;
+        }
+        return authID;
     }
 
     return {

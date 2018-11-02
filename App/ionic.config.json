@@ -1,6 +1,9 @@
 {
   "name": "CCS_v1_1.2",
-  "app_id": "849a6f49",
+  "integrations": {
+    "cordova": {},
+    "gulp": {}
+  },
   "type": "ionic1",
   "watchPatterns": [
     "scss/**/*",
@@ -8,8 +11,5 @@
     "!www/lib/**/*",
     "!www/**/*.map"
   ],
-  "integrations": {
-    "cordova": {},
-    "gulp": {}
-  }
+  "pro_id": "849a6f49"
 }

@@ -1,91 +1,84 @@
 <ion-view>
   <ion-header-bar class="bar-positive">
-     <h1 class="title">{{locale.confirmation.title}}</h1>
+    <h1 class="title">{{ 'confirmReservation.title' | translate}}</h1>
   </ion-header-bar>
   <ion-content>
     <ion-list>
-    
       <ion-item>
-        <div class="pull-left"> 
-          <p>{{ locale.booking.dateFrom }}</p>
+        <div class="pull-left">
+          <p>{{ 'confirmReservation.dateFrom' | translate}}</p>
         </div>
-        <div class="pull-right"> 
+        <div class="pull-right">
           <h2 style='font-weight: bold;'>
             {{ dateTimeFrom | date:'dd/MM/yyyy HH:mm' }}
           </h2>
         </div>
       </ion-item>
       <ion-item>
-        <div class="pull-left"> 
-          <p>{{ locale.booking.dateTo }}</p>
+        <div class="pull-left">
+          <p>{{ 'confirmReservation.dateTo' | translate}}</p>
         </div>
-        <div class="pull-right"> 
+        <div class="pull-right">
           <h2 style='font-weight: bold;'>
-            {{ dateTimeTo | date:'dd/MM/yyyy HH:mm'  }}
+            {{ dateTimeTo | date:'dd/MM/yyyy HH:mm' }}
           </h2>
         </div>
       </ion-item>
       <ion-item>
-        <div class="pull-left"> 
-          <p>{{ locale.booking.parking }}</p>
+        <div class="pull-left">
+          <p>{{ 'confirmReservation.park' | translate}}</p>
         </div>
-        <div class="pull-right"> 
+        <div class="pull-right">
           <h2 style='font-weight: bold;'>{{ selectedParking.parking_name }}</h2>
           <p>{{ selectedParking.address }}</p>
         </div>
       </ion-item>
       <ion-item>
-        <div class="pull-left"> 
-          <p>{{ locale.booking.cc }}</p>
+        <div class="pull-left">
+          <p>{{ 'confirmReservation.cc' | translate}}</p>
         </div>
         <div class="pull-right">
-          <h2 ng-if='hasCC' style='font-weight: bold;'>{{ locale.vehicle.yes }}</h2>
-          <h2 ng-if='!hasCC' style='font-weight: bold;'>{{ locale.vehicle.no }}</h2>
+          <h2 style='font-weight: bold;'>{{ hasCC ? 'commons.yes': 'commons.no' | translate}}</h2>
         </div>
       </ion-item>
       <ion-item>
-        <div class="pull-left"> 
-          <p>{{ locale.booking.telepass }}</p>
+        <div class="pull-left">
+          <p>{{ 'confirmReservation.telepass' | translate}}</p>
         </div>
         <div class="pull-right">
-          <h2 ng-if='hasTelepass' style='font-weight: bold;'>{{ locale.vehicle.yes }}</h2>
-          <h2 ng-if='!hasTelepass' style='font-weight: bold;'>{{ locale.vehicle.no }}</h2>
+          <h2 style='font-weight: bold;'>{{ hasTelepass ? 'commons.yes' : 'commons.no' | translate}}</h2>
         </div>
       </ion-item>
       <ion-item>
-        <div> 
+        <div>
           <h2 style='line-height: 27px;'>{{ selectedCar.brand_model }}</h2>
           <h2 style='font-weight: bold; line-height: 27px;'>{{ selectedCar.plate }}</h2>
-          <p>{{ selectedCar.seats }} {{ locale.vehicle.labelSeats }}</p>
+          <p>{{ selectedCar.seats }} {{ 'confirmReservation.seats' | translate}}</p>
         </div>
       </ion-item>
       <ion-item ng-show='selectedClient.justifiedUse'>
-		<div style='overflow: auto;'>
-			<div class="date-select-label" style='margin-bottom: 10px;'>{{ selectedClient.lbljustification }}</div>
-			<div class='justify-list' style='font-size: 14pt;'>
-				<div ng-repeat='justify in justifyList' 
-					ng-click='selectJustify($index, justify)'
-					class="{{ justify.selected ? 'selected' : ''}}">{{ justify.text }}</div>
-			</div>
-		</div>
-      </ion-item>
-      <ion-item>
-        <div> 
-			<div class="date-select-label" style='margin-bottom: 10px;'>{{ selectedClient.lbldestination }}</div>
-			<div style='font-size: 14pt; margin-bottom: 10px;'>
-				<input class='place_val' type='text' style='padding: 10px; width: 100%; border: 1px solid #ccc; border-radius: 5px; -webkit-box-sizing: border-box;‌​ -moz-box-sizing: border-box; box-sizing: border-box;' />
-			</div>
+        <div style='overflow: auto;'>
+          <div class="date-select-label" style='margin-bottom: 10px;'>{{ selectedClient.lbljustification }}</div>
+          <div class='justify-list' style='font-size: 14pt;'>
+            <div ng-repeat='justify in justifyList' ng-click='selectJustify($index, justify)' class="{{ justify.selected ? 'selected' : ''}}">{{
+              justify.text }}</div>
+          </div>
         </div>
       </ion-item>
-      
+      <ion-item>
+        <div>
+          <div class="date-select-label" style='margin-bottom: 10px;'>{{ selectedClient.lbldestination }}</div>
+          <div style='font-size: 14pt; margin-bottom: 10px;'>
+            <input class='place_val' type='text' style='padding: 10px; width: 100%; border: 1px solid #ccc; border-radius: 5px; -webkit-box-sizing: border-box;‌​ -moz-box-sizing: border-box; box-sizing: border-box;' />
+          </div>
+        </div>
+      </ion-item>
       <div class="row">
-        <div class="col col-50"><button ng-click='backToCars()' class="button button-block button-stable">{{ locale.confirmation.back }}</button></div>
-        <div class="col col-50"><button ng-click='confirm()' class="button button-block button-positive">{{ locale.confirmation.buttonConfirm }}</button></div>
+        <div class="col col-50"><button ng-click='backToCars()' class="button button-block button-stable">{{
+            'confirmReservation.back' | translate}}</button></div>
+        <div class="col col-50"><button ng-click='confirm()' class="button button-block button-positive">{{
+            'confirmReservation.confirm' | translate}}</button></div>
       </div>
-
-      
-      
-     </ion-list>
+    </ion-list>
   </ion-content>
 </ion-view>
- 

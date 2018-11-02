@@ -1,8 +1,8 @@
-window.locale = {};
+window.locale_en = {};
 
-window.locale.locale = 'en-EN';
+window.locale_en.locale = 'en-EN';
 
-window.locale.menu = {
+window.locale_en.menu = {
 	home: 'Home',
 	date: 'Date',
 	parking: 'Parking',
@@ -10,7 +10,7 @@ window.locale.menu = {
 	vehicles: 'Vehicle'
 };
 
-window.locale.tabs = {
+window.locale_en.tabs = {
 	reservations: 'Reservations',
 	park: 'Park',
 	booking: 'Booking',
@@ -18,7 +18,7 @@ window.locale.tabs = {
 	settings: 'Settings'
 };
 
-window.locale.home = {
+window.locale_en.home = {
 	msgHello: "Hello, {0}",
 	msgNoRsv: 'You have no reservation in progress',
 	msgNextRsv: 'Hai una prenotazione il {0} alle ore {0} ',
@@ -37,13 +37,13 @@ window.locale.home = {
 	vehicle_position: 'Vehicle position address'
 };
 
-window.locale.home.rsvinfo = {
+window.locale_en.home.rsvinfo = {
 	labPRN: "PRN ",
 	labPrk: 'Parking ',
 	labTime: '',
 };
 
-window.locale.login = {
+window.locale_en.login = {
 	login: 'Login',
 	forgotPassword: 'Forgot password?',
 	retrievePassword: 'Retrieve Password',
@@ -51,7 +51,7 @@ window.locale.login = {
 	placeholderMail: 'company@domain.com'
 };
 
-window.locale.parking = {
+window.locale_en.parking = {
 	button: 'Next',  
 	labelSearch: 'Search parking..',
 	labelSelectParking: 'Select parking',
@@ -60,7 +60,7 @@ window.locale.parking = {
 };
 
 
-window.locale.vehicle = {
+window.locale_en.vehicle = {
 	buttonBook:'Reserve',
 	buttonConfirm: '',
 	title: 'Vehicles',
@@ -78,7 +78,7 @@ window.locale.vehicle = {
     labelCannotReserve: 'Your booking request cannot be accepted, due to an existing one in the same period at your name.'
 };
 
-window.locale.booking = {
+window.locale_en.booking = {
 	buttonDate: 'Change',
 	buttonParking: 'Change',
 	messageEmptyDate: 'There is something wrong in date.',
@@ -104,7 +104,7 @@ window.locale.booking = {
 	labelCentralizzedButton: "Open/Close Vehicle"
 };
 
-window.locale.confirmation = {
+window.locale_en.confirmation = {
 	title: 'Confirm reservation',
 	back: 'Cancel',
 	buttonConfirm: 'Confirm',
@@ -117,7 +117,7 @@ window.locale.confirmation = {
 	labelSelectDriveName: "Insert 'Driver name'"
 };
 
-window.locale.date = {
+window.locale_en.date = {
 	startDate: 'Pick-Up date',
 	startTime: 'Pick-Up time',
 	endDate: 'Return date',
@@ -137,7 +137,7 @@ window.locale.date = {
 	weekDaysList: ["Sun", "Mon", "Tue", "Wed", "thu", "Fri", "Sat"]
 };
 
-window.locale.account = {
+window.locale_en.account = {
 	title: 'Settings',
 	check1: 'Small list',
 	client: 'Client',
@@ -145,7 +145,7 @@ window.locale.account = {
 	check1_descr: 'Show list with small pictures'
 };
 
-window.locale.resume = {
+window.locale_en.resume = {
 	title: 'Resume',
 	wrongDates: 'Select pick-up and return date to continue',
 	wrongParking: 'Select parking to continue'

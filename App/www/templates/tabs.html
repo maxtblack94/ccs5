@@ -1,28 +1,28 @@
 
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
-  <ion-tab title="{{locale.tabs.reservations}}" icon-off="ion-ios-calendar-outline" icon-on="ion-ios-calendar" href="#/tab/bookings">
+  <ion-tab title="{{ 'tabs.reservations' | translate}}" icon-off="ion-ios-calendar-outline" icon-on="ion-ios-calendar" href="#/tab/bookings">
     <ion-nav-view name="tab-bookings"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="{{locale.tabs.park}}" icon-off="ion-ios-navigate-outline" icon-on="ion-ios-navigate" href="#/tab/parking">
+  <ion-tab title="{{ 'tabs.park' | translate}}" icon-off="ion-ios-navigate-outline" icon-on="ion-ios-navigate" href="#/tab/parking">
     <ion-nav-view name="tab-parking"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="{{locale.tabs.booking}}" icon-off="ion-ios-time-outline" icon-on="ion-ios-time" href="#/tab/resume">
+  <ion-tab title="{{ 'tabs.booking' | translate}}" icon-off="ion-ios-time-outline" icon-on="ion-ios-time" href="#/tab/resume">
     <ion-nav-view name="tab-resume"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="{{locale.tabs.vehicles}}" icon-off="ion-android-car" icon-on="ion-android-car" href="#/tab/selcar">
+  <ion-tab title="{{ 'tabs.vehicles' | translate}}" icon-off="ion-android-car" icon-on="ion-android-car" href="#/tab/selcar">
     <ion-nav-view name="tab-selcar"></ion-nav-view>
   </ion-tab>
   
-  <ion-tab ng-if="sosPnr && selectedClient.sos" title="SOS" icon-off="ion-ios-medkit-outline" icon-on="ion-ios-medkit" href="#/tab/sos">
+  <ion-tab ng-if="sosPnr && selectedClient.sos" title="{{ 'tabs.sos' | translate}}" icon-off="ion-ios-medkit-outline" icon-on="ion-ios-medkit" href="#/tab/sos">
     <ion-nav-view name="tab-sos"></ion-nav-view>
   </ion-tab>
   
 
-  <ion-tab title="Notifiche" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/notifications" badge="model.notificationsPending.length" badge-style="badge-balanced">
+  <ion-tab title="{{ 'tabs.notifications' | translate}}" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/notifications" badge="model.notificationsPending.length" badge-style="badge-balanced">
     <ion-nav-view name="tab-notifications"></ion-nav-view>
   </ion-tab>
   

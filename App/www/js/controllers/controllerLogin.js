@@ -39,7 +39,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
 
     function getClientList(action){
         ScriptServices.getXMLResource(589).then(function(res) {
-            res = res.replace('{LANGUAGE}', 'Italiano');
+            res = res.replace('{LANGUAGE}', navigator.language); //ask matteo
             ScriptServices.callGenericService(res, 589, 'demo').then(function(data) {
                 $ionicLoading.hide();
                 $scope.clientList = data.clientListBooking;

@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', 'angularMoment'])
+angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', 'angularMoment', 'pascalprecht.translate'])
 
   .run(function ($ionicPlatform, $cordovaStatusbar, $cordovaDevice, amMoment, $rootScope) {
     amMoment.changeLocale('it');
@@ -31,7 +31,13 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
     });
   })
 
-  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider, $translateProvider) {
+    $translateProvider.translations('en', window.locale_en);
+    $translateProvider.translations('it', window.locale_it);
+    $translateProvider.translations('ro', window.locale_ro);
+    $translateProvider.useSanitizeValueStrategy('sanitize');
+   
+    $translateProvider.preferredLanguage('it');
     $ionicConfigProvider.views.swipeBackEnabled(false);
     $httpProvider.defaults.timeout = 30000;
     $stateProvider
