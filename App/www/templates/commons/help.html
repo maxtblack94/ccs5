@@ -3,7 +3,7 @@
         <div class="bar bar-header item-input-inset" ng-show="helpList.length > 5">
             <label class="item-input-wrapper">
                 <i class="icon ion-ios-search placeholder-icon"></i>
-                <input type="search" ng-model="searchVal" placeholder="Cerca..">
+                <input type="search" ng-model="searchVal" placeholder="{{ 'commons.search' | translate }}">
             </label>
         </div>
         <div class="card" ng-repeat="helpInfo in helpList | filter:searchVal">
@@ -13,7 +13,7 @@
             <div class="item item-text-wrap">
                 {{helpInfo.description}}
                 <p class="m-top5">
-                    <a ng-click="openUrl(helpInfo.url)" href class="subdued">Continua a leggere...</a>
+                    <a ng-click="openUrl(helpInfo.url)" href class="subdued">{{ 'commons.readMore' | translate }}</a>
                 </p>
             </div>
         </div>

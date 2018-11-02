@@ -61,7 +61,10 @@ window.locale_it.notifications = {
 window.locale_it.commons = {
 	refresh: 'Aggiorna...',
 	yes: 'Si',
-	no: 'No'
+	no: 'No',
+	legalNotice: 'Copyright © 2016 Corporate Car Solutions Italia  All Rights Reserved',
+	readMore: 'Continua a leggere...',
+	search: 'Cerca..'
 };
 
 window.locale_it.bookResume = {
@@ -130,6 +133,58 @@ window.locale_it.login = {
 	placeholderEmail: 'compagnia@dominio.it',
 	companyCode: 'Verifica codice azienda',
 	companyCodePlaceholder: 'Inserisci codice azienda'
+};
+
+window.locale_it.settings = {
+	personalData: 'Dati personali',
+	client: 'Cliente',
+	title: 'Impostazioni',
+	check1: 'Riduci Immagini',
+	check1_descr: 'Mostra le immagini dei veicoli ridotte',
+	editPassword: 'Modifica password'
+};
+
+window.locale_it.driveLicense = {
+	title: 'Dati Patente',
+	license: 'Patente',
+	number: 'Numero Patente',
+	issuingCountry: 'Luogo di rilascio',
+	issuingDate: 'Data di rilascio',
+	expiringDate : 'Data di scadenza',
+	editLicense: 'Modifica dati patente',
+	cancel: 'Annulla',
+	save: 'Salva'
+};
+
+window.locale_it.editPassword = {
+	title: 'Modifica Password',
+	currentPassword: 'Inserisci password corrente',
+	newPassword: 'Inserisci password nuova',
+	repeatPassword: 'Conferma nuova password',
+	cancel: 'Annulla',
+	edit: 'Modifica'
+};
+
+window.locale_it.contacts = {
+	title: 'Contatti',
+	email: 'Email',
+	phone: 'Telefono',
+	time: 'Orari'
+};
+
+window.locale_it.clientDetails = {
+	title: 'Dati personali',
+	anagrafic: 'Anagrafica',
+	firstName: 'Nome',
+	lastName: 'Cognome',
+	username: 'Username',
+	badge: 'BadgeID',
+	contacts: 'Contatti',
+	email: 'Email',
+	phone: 'Cellulare',
+	editContacts: 'Modifica contatti',
+	cancel: 'Annulla',
+	save: 'Salva'
 }
 
 /* window.locale_it.home = {

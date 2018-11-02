@@ -1,20 +1,20 @@
-<ion-view view-title="{{locale.account.title}}">
+<ion-view view-title="{{'settings.title' | translate}}">
   <ion-content>
     <ion-list>
       <ion-item>
-        {{ locale.account.client }}
+          {{'settings.client' | translate}}
         <h2 ng-click="deleteClienteContext()" style='float: right; font-weight: bold;'>{{ selectedClient.text }}</h2>
       </ion-item>
       <ion-toggle ng-model="hasPicture" ng-click='setHasPicture()' toggle-class="toggle-positive">
-          <h2>{{ locale.account.check1 }}</h2>
-          <p style='white-space: normal;'>{{ locale.account.check1_descr }}</p>
+          <h2>{{'settings.check1' | translate}} </h2>
+          <p style='white-space: normal;'>{{'settings.check1_descr' | translate}}</p>
       </ion-toggle>
        <ion-item class="item-icon-right" href="#/client-details">
-        Dati personali
+        {{'settings.personalData' | translate}}
         <i class="icon ion-ios-person-outline"></i>
       </ion-item>
       <!--<ion-item class="item-icon-right" href="#/edit-password">
-        Modifica password
+        {{'settings.editPassword' | translate}}
         <i class="icon ion-ios-color-wand-outline"></i>-->
       </ion-item>
     </ion-list>

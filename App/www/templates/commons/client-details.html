@@ -1,46 +1,46 @@
-<ion-view title="Dati personali">
+<ion-view title="{{ 'clientDetails.title' | translate}}">
     <ion-content>
         <ion-list>
             <ion-item class="item-divider">
-                <h2>Anagrafica</h2>
+                <h2>{{ 'clientDetails.anagrafic' | translate}}</h2>
             </ion-item>
             <ion-item>
-                <h2>Nome</h2>
+                <h2>{{ 'clientDetails.firstName' | translate}}</h2>
                 <p>{{userInfo.registry.first_name}}</p>
             </ion-item>
             <ion-item>
-                <h2>Cognome</h2>
+                <h2>{{ 'clientDetails.lastName' | translate}}</h2>
                 <p>{{userInfo.registry.last_name}}</p>
             </ion-item>
             <ion-item>
-                <h2>Username</h2>
+                <h2>{{ 'clientDetails.username' | translate}}</h2>
                 <p>{{userInfo.registry.username}}</p>
             </ion-item>
             <ion-item>
-                <h2>BadgeID</h2>
+                <h2>{{ 'clientDetails.badge' | translate}}</h2>
                 <p>{{userInfo.registry.badge_id}}</p>
             </ion-item>
             <ion-item class="item-divider">
-                <h2>Contatti</h2>
+                <h2>{{ 'clientDetails.contacts' | translate}}</h2>
             </ion-item>
             <div ng-if="!request">
                 <ion-item>
-                    <h2>Email</h2>
+                    <h2>{{ 'clientDetails.email' | translate}}</h2>
                     <p>{{userInfo.registry.email}}</p>
                 </ion-item>
                 <ion-item ng-if="userInfo.registry.mobile_phone">
-                    <h2>Cellulare</h2>
+                    <h2>{{ 'clientDetails.phone' | translate}}</h2>
                     <p>{{userInfo.registry.mobile_phone}}</p>
                 </ion-item>
             </div>
             <div ng-if="request">
                 <ion-item class="item-input item-stacked-label">
-                    <span class="input-label">Email<span class="color-error">*</span></span>
-                    <input type="text" ng-model="request.email" placeholder="Email">
+                    <span class="input-label">{{ 'clientDetails.email' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.email" placeholder="{{ 'clientDetails.email' | translate}}">
                 </ion-item>
                 <ion-item class="item-input item-stacked-label">
-                    <span class="input-label">Cellulare</span>
-                    <input type="text" ng-model="request.mobile_phone" placeholder="Cellulare">
+                    <span class="input-label">{{ 'clientDetails.phone' | translate}}</span>
+                    <input type="text" ng-model="request.mobile_phone" placeholder="{{ 'clientDetails.phone' | translate}}">
                 </ion-item>
             </div>
         </ion-list>
@@ -48,19 +48,19 @@
         <div class="row" ng-if="!request">
             <div class="col col-80 col-offset-10">
                 <button ng-click='edit()' class="button button-block button-positive">
-                    Modifica contatti
+                        {{ 'clientDetails.editContacts' | translate}}
                 </button>
             </div>
         </div>
         <div class="row" ng-show="request">
             <div class="col col-50">
                 <button ng-click='undo()' class="button button-block button-stable">
-                    Annulla
+                        {{ 'clientDetails.cancel' | translate}}
                 </button>
             </div>
             <div class="col col-50">
                 <button ng-click='save()' class="button button-block button-positive">
-                    Salva
+                        {{ 'clientDetails.save' | translate}}
                 </button>
             </div>
         </div>
