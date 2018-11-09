@@ -26,9 +26,9 @@ window.locale_ro.bookings = {
 	plate: "Targa",
 	color: "Culoare",
 	seats: "Locuri",
-	externalClean: "extern",
-	internalClean: "Interni",
-	primi: "Retragere",
+	externalClean: "Extern",
+	internalClean: "Intern",
+	get: "Retragere",
 	set: "Revenire",
 	openCar: "Incepeti sa rulati",
 	closeCar: "Sfarsitul rundei",
@@ -43,8 +43,8 @@ window.locale_ro.parking = {
 
 window.locale_ro.tabs = {
 	reservations: "Rezervari",
-	park: "Parkings",
-	reserve: "Rezervati",
+	park: "Parcari",
+	booking: "Rezervati",
 	vehicles: "Vehicule",
 	settings: "Setari",
 	sos: "SOS",
@@ -53,14 +53,15 @@ window.locale_ro.tabs = {
 
 window.locale_ro.notifications = {
 	title: "Notificari",
-	notFound: "Nu exista notificari .."
+	notFound: "Nu exista notificari ..",
+	failGetNotfications: "Nu este posibil recuperarea notificelor"
 };
 
 window.locale_ro.commons = {
 	refresh: "Actualizare ...",
 	yes: "Da",
 	no: "Nu",
-	legalNotice: "Drepturi de autor © 2016 Corporate Solutions Italia Toate drepturile rezervate",
+	legalNotice: "Drepturi de autor - 2016 Corporate Solutions Italia Toate drepturile rezervate",
 	readMore: 'Continue reading ...',
 	search: 'Cautare ..',
 	select: 'Selectati',
@@ -108,26 +109,26 @@ window.locale_ro.bookResume = {
 window.locale_ro.map = {
 	title: "Detaliile rezervarii",
 	carLocation: "Adresa pozitiei vehiculului",
-	primi: "Retragere",
+	get: "Retragere",
 	set: "Revenire",
 	goTo: "Reach vehicul",
-	stergeti: "Ștergeti",
+	delete: "Ștergeti",
 };
 
 window.locale_ro.confirmReservation = {
 	title: "Confirmarea rezervarii",
-	inapoi: "Inapoi",
-	confirmati: "Confirmati",
-	asteptati: "asteptati ..",
+	back: "Inapoi",
+	confirm: "Confirmati",
+	wait: "asteptati ..",
 	requestComplete: "Rezervare confirmata",
-	locuri: "Locuri",
-	culoare: "Culoare",
-	incompleta: "Atentie",
-	parc: "Parcare",
+	seats: "Locuri",
+	color: "Culoare",
+	Attention: "Atentie",
+	park: "Parcare",
 	selectPlace: "Introduceti Locul",
 	selectDriveName: "Introduceti numele soferului",
 	dateFrom: 'data colectarii',
-	dataTo: "Data livrarii",
+	dateTo: "Data livrarii",
 	cc: "Cardul de carburant",
 	telepass: "Telepass",
 	pnr: "PNR"
@@ -136,20 +137,20 @@ window.locale_ro.confirmReservation = {
 window.locale_ro.vehicle = {
 	title: "Selecteaza vehicul",
 	notFound: "Ne pare rau, toate vehiculele sunt rezervate pentru perioada pe care ati solicitat-o.",
-	placa: "Targa",
-	selectati: 'Selectati',
-	locuri: "Locuri",
-	culoare: "Culoare",
-	externClean: "extern",
-	internClean: "Interni",
+	plate: "Targa",
+	select: 'Selectati',
+	seats: "Locuri",
+	color: "Culoare",
+	externalClean: "Extern",
+	internalClean: "Intern",
 	labelCannotReserve: "Rezervarea dvs. nu poate fi acceptata, deoarece exista deja o rezervare in numele dvs. pentru perioada solicitata."
 };
 
 window.locale_ro.login = {
 	username: "Utilizator",
-	parola: 'Parola',
+	password: 'Parola',
 	login: 'Login',
-	uitatPassword: "Parola uitata?",
+	forgotPassword: "Parola uitata?",
 	retrievePassword: 'Recuperare parola',
 	haveAccount: 'Login',
 	email: 'Email',
@@ -192,7 +193,7 @@ window.locale_ro.contacts = {
 	title: "Contacte",
 	email: 'Email',
 	phone: 'Telefon',
-	orari: "ore"
+	time: "ore"
 };
 
 window.locale_ro.clientDetails = {
@@ -213,11 +214,11 @@ window.locale_ro.clientDetails = {
 window.locale_ro.actionSheet = {
 	chageDriver: "Ghid de schimbare",
 	selectEmployee: 'selectati angajatul',
-	confirmati: "Confirmati",
+	confirm: "Confirmati",
 	cancel: "Anulati",
-	continuati: "Continuati",
+	continue: "Continuati",
 	Raportarea: "Raportarea",
-	atentie: "Atentie",
+	attention: "Atentie",
 	damageInfo1: "Efectuati Raportarea defectiunilor, numai dupa ce ati constatat ca vehiculul nu este in masura sa se intoarca la parcare si trebuie sa fie adus sau transferat intr-un magazin de reparatii.",
 	damageInfo2: "Raportarea defectiunilor implica, prin urmare, inchiderea cursei actuale, pentru a le permite sa rezerve un alt vehicul, daca se doreste. Pentru a incheia aceasta cursa, este solicitata sa comunice in plus ",
 	damageInfo3: "Va rugam sa retineti ca odata ce a fost raportata defectiunea, vehiculul nu va mai fi utilizabil",

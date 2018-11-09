@@ -1,6 +1,6 @@
 angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', 'angularMoment', 'pascalprecht.translate'])
 
-  .run(function ($ionicPlatform, $cordovaStatusbar, $cordovaDevice, amMoment, $rootScope) {
+  .run(function ($ionicPlatform, $cordovaStatusbar, $cordovaDevice, amMoment, $rootScope, LanguageService) {
     amMoment.changeLocale('it');
     $ionicPlatform.ready(function () {
       var pushCallback = function(jsonData) {
@@ -33,11 +33,17 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
 
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider, $translateProvider) {
     $translateProvider.translations('en', window.locale_en);
-    $translateProvider.translations('it', window.locale_it);
-    $translateProvider.translations('ro', window.locale_ro);
+    $translateProvider.translations('it_IT', window.locale_it);
+    $translateProvider.translations('ro_RO', window.locale_ro);
     $translateProvider.useSanitizeValueStrategy('sanitize');
-   
-    $translateProvider.preferredLanguage('it');
+    if (navigator.language === "it-IT" || navigator.language === "it_IT") {
+      $translateProvider.preferredLanguage("it_IT");
+    }else if (navigator.language === "ro-RO" || navigator.language === "ro_RO") {
+      $translateProvider.preferredLanguage("ro_RO");
+    }else {
+      $translateProvider.preferredLanguage('en');
+    }
+    
     $ionicConfigProvider.views.swipeBackEnabled(false);
     $httpProvider.defaults.timeout = 30000;
     $stateProvider
