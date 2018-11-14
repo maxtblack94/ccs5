@@ -74,6 +74,9 @@ angular.module('starter').controller('BleCtrl', function(ArrayServices, ScriptSe
             case "pushPNR":
                 string = pushPNRRequest();
                 break;
+            case "pushPNRClose":
+                string = pushPNRRequest('close');
+                break;
         
             default:
                 break;
@@ -98,11 +101,11 @@ angular.module('starter').controller('BleCtrl', function(ArrayServices, ScriptSe
         };
     }
 
-    function pushPNRRequest() {
+    function pushPNRRequest(action) {
         var TKN = {
             Version: "0000",
             IDPNR : "2A8BB7231866",
-            MessageType: "5",
+            MessageType: action ? "6": "5",
             IDBadge: "0122578B2A000000"
         };
 
