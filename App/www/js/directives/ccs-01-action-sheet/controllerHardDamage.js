@@ -27,7 +27,7 @@ angular.module('starter').factory('DamageService', function() {
         }
     }
 })
-angular.module('starter').controller('hardDamageCtrl', function($scope, DamageService, ManipolationServices, PopUpServices, ScriptServices, $ionicLoading) {
+angular.module('starter').controller('hardDamageCtrl', function($scope, DamageService, ManipolationServices, PopUpServices, ScriptServices, $ionicLoading, $filter) {
     function init(){
         $scope.requestParameters = {};
         $scope.operationType = DamageService.getOperationType().operationType;
@@ -64,11 +64,11 @@ angular.module('starter').controller('hardDamageCtrl', function($scope, DamageSe
                     closeReservation();
                 }else{
                     $ionicLoading.hide();
-                    PopUpServices.messagePopup('Segnalazione effettuta con successo', 'Successo', createCallback());
+                    PopUpServices.messagePopup($filter('translate')('actionSheet.damageSuccess'), $filter('translate')('commons.success'), createCallback());
                 }
             }, function (error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup("Non è stato possibile salvare la segnalazione. Riprovare");
+                PopUpServices.errorPopup($filter('translate')('actionSheet.damageError'));
             })
         });
     }
@@ -81,10 +81,10 @@ angular.module('starter').controller('hardDamageCtrl', function($scope, DamageSe
             .replace('{FUEL}', ManipolationServices.fixRequestParam($scope.requestParameters.fuel));
             ScriptServices.callGenericService(res, 630).then(function (data) {
                 $ionicLoading.hide();
-                PopUpServices.messagePopup('Segnalazione effettuta con successo', 'Successo', createCallback());
+                PopUpServices.messagePopup($filter('translate')('actionSheet.damageSuccess'), $filter('translate')('commons.success'), createCallback());
             }, function (error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup("Non è stato possibile salvare la segnalazione. Riprovare");
+                PopUpServices.errorPopup($filter('translate')('actionSheet.damageError'));
             })
         });
     }

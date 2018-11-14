@@ -1,4 +1,4 @@
-angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, ManipolationServices, DamageService, InfoFactories, PopUpServices, $ionicLoading, ScriptServices, $ionicPopup, $ionicActionSheet, $scope) {
+angular.module('starter').controller('ActionSheetCtrl', function ($filter, $ionicModal, ManipolationServices, DamageService, InfoFactories, PopUpServices, $ionicLoading, ScriptServices, $ionicPopup, $ionicActionSheet, $scope) {
     $scope.selectedClient = InfoFactories.getClientSelected();
 
     ScriptServices.directWithOutScriptID(628).then(function (data) {
@@ -15,7 +15,7 @@ angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, M
         var hideSheet = $ionicActionSheet.show({
             buttons: $scope.actionButtons,
             titleText: $filter('translate')('actionSheet.chooseAlertType'),
-            cancelText: ionic.Platform.isAndroid() ? "<i class='fa fa-times' aria-hidden='true'></i> {{ 'commons.close' | translate }}" : "{{ 'commons.close' | translate }}",
+            cancelText: ionic.Platform.isAndroid() ? "<i class='fa fa-times' aria-hidden='true'></i> "+$filter('translate')('commons.close') : $filter('translate')('commons.close'),
             cancel: function () {
                 // add cancel code..
             },
@@ -173,7 +173,7 @@ angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, M
                     type: 'button-stable',
                 },
                 {
-                    text: '<b>{{ "commons.save" | translate}}</b>',
+                    text: '<b>'+$filter('translate')('commons.save')+'</b>',
                     type: 'button-positive',
                     onTap: function (e) {
                         if (!$scope.data.value) {
@@ -225,7 +225,7 @@ angular.module('starter').controller('ActionSheetCtrl', function ($ionicModal, M
                 text: $filter('translate')('commons.cancel'),
                 type: 'button-stable',
             }, {
-                text: '<b>{{ "commons.save" | translate}} </b>',
+                text: '<b>'+$filter('translate')('commons.save')+'</b>',
                 type: 'button-positive',
                 onTap: function (e) {
                     if (!$scope.dataDelay.value) {

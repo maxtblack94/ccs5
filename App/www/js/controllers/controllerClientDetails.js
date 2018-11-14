@@ -1,4 +1,4 @@
-angular.module('starter').controller('ClientDetailCtrl', function($scope, InfoFactories, PopUpServices, $ionicLoading, ScriptServices) {
+angular.module('starter').controller('ClientDetailCtrl', function($scope, InfoFactories, PopUpServices, $ionicLoading, ScriptServices, $filter) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
 
@@ -12,7 +12,7 @@ angular.module('starter').controller('ClientDetailCtrl', function($scope, InfoFa
 
     $scope.save = function(){
         if(!$scope.request.email){
-            PopUpServices.errorPopup("Il campo email è obbligatorio", "1");
+            PopUpServices.errorPopup($filter('translate')('clientDetails.mandatory'), "1");
        }else{
            callSaveService();
        }
@@ -35,10 +35,10 @@ angular.module('starter').controller('ClientDetailCtrl', function($scope, InfoFa
                 $scope.userInfo.registry = data.data;
                 window.localStorage.setItem('userInfo', JSON.stringify($scope.userInfo));
                 $ionicLoading.hide();
-                PopUpServices.messagePopup("Contatti modificati!", "Successo");
+                PopUpServices.messagePopup($filter('translate')('clientDetails.editSuccess'), $filter('translate')('commons.success'));
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup("Non è stato possibile modificare i contatti");
+                PopUpServices.errorPopup($filter('translate')('clientDetails.editFail'));
             })
         });
     }

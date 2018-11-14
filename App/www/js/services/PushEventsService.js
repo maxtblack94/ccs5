@@ -17,13 +17,13 @@ angular.module('starter').service("PushEventsService", function ($filter, $ionic
         }
         var configObj = {
             "buttons": [{
-                text: "{{ 'commons.refuse' | translate}}",
+                text: $filter('translate')('commons.refuse'),
                 type: 'button-stable',
                 onTap: function () {
                     changeDriverResponse(pnr, requestID, false);
                 }
             }, {
-                text: "<b>{{ 'commons.accept' | translate}}</b>",
+                text: '<b>'+$filter('translate')('commons.accept')+'</b>',
                 type: 'button-positive',
                 onTap: function () {
                     changeDriverResponse(pnr, requestID, true);

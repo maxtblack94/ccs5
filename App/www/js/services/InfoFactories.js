@@ -59,7 +59,7 @@ angular.module('starter').factory("InfoFactories", [function () {
     };
     function getServer() {
         if (window.localStorage.getItem('selectedClient')) {
-            return JSON.parse(window.localStorage.getItem('selectedClient')).value.toLowerCase();
+            return JSON.parse(window.localStorage.getItem('selectedClient')).serverName.toLowerCase();
         }else{
             return undefined;
         }

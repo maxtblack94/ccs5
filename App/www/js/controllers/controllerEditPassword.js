@@ -1,4 +1,4 @@
-angular.module('starter').controller('EditPasswordCtrl', function($ionicHistory, InfoFactories, ScriptServices, $state, $scope, PopUpServices, $ionicLoading) {
+angular.module('starter').controller('EditPasswordCtrl', function($filter, $ionicHistory, InfoFactories, ScriptServices, $state, $scope, PopUpServices, $ionicLoading) {
    $scope.userInfo = InfoFactories.getUserInfo();
    $scope.request = {};
    setTimeout(function() {$('#oldPassword').focus(); });
@@ -6,12 +6,12 @@ angular.module('starter').controller('EditPasswordCtrl', function($ionicHistory,
 
    $scope.edit = function(){
        if(!$scope.request.oldPassword || !$scope.request.newPassword || !$scope.request.confirmedPassword){
-            PopUpServices.errorPopup("Inserisci tutte le informazioni necessarie", "1");
+            PopUpServices.errorPopup($filter('translate')('editPasssword.mandatory'), "1");
             setTimeout(function() {$('#newPassword').focus(); });
        }else if(($scope.userInfo && $scope.userInfo.registry) && $scope.userInfo.registry.password !== $scope.request.oldPassword){
-            PopUpServices.errorPopup("La vecchia password non è corretta", "1");
+            PopUpServices.errorPopup($filter('translate')('editPasssword.oldPasswordInvalid'), "1");
        }else if($scope.request.newPassword !== $scope.request.confirmedPassword){
-            PopUpServices.errorPopup("La nuova password non coincide", "1");
+            PopUpServices.errorPopup($filter('translate')('editPasssword.passwordNoMatch'), "1");
        }else{
            callEditService($scope.request.newPassword);
        }
@@ -36,10 +36,10 @@ angular.module('starter').controller('EditPasswordCtrl', function($ionicHistory,
                 ($scope.userInfo.registry || {}).password = data.data;
                 window.localStorage.setItem('userInfo', JSON.stringify($scope.userInfo));
                 $ionicLoading.hide();
-                PopUpServices.messagePopup("Password modificata correttamente", "Successo", returnBooking);
+                PopUpServices.messagePopup($filter('translate')('editPasssword.editSuccess'), $filter('translate')('commons.success'), returnBooking);
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup("Non è stato possibile modificare la password");
+                PopUpServices.errorPopup($filter('translate')('editPasssword.editFail'));
             })
         });
    };

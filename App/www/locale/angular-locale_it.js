@@ -16,7 +16,8 @@ window.locale_it.leftMenu = {
 window.locale_it.sos = {
 	title: 'SOS',
 	info: 'La sezione di SOS ti da supporto 24H. E\' importante usufruire del servizio solo in caso di vera emergenza!',
-	sendRequest: 'Invia Richiesta SOS'
+	sendRequest: 'Invia Richiesta SOS',
+	noInfo: 'Non è stato possibile recuperare alcune informazioni!'
 }
 
 window.locale_it.bookings = {
@@ -30,9 +31,25 @@ window.locale_it.bookings = {
 	internalClean: 'Interni',
 	get: 'Ritiro',
 	set: 'Riconsegna',
+	delay: 'Ritardo',
+	changeDriver: 'Cambio Guida',
+	damage: 'Difetto (auto rientra al parcheggio)',
+	cleaness: 'Pulizia',
+	noCoords: 'Non siamo riusciti a recuperare le coordinate del veicolo! Riprovare.',
+	noYourCoords: 'Non è stato possibile recuperare le tue coordinate',
+	errorOpenCar: 'Non è stato possibile aprire la macchina, riprovare!',
+	humanCheckCarOpenTitle: 'Controllo',
+	humanCheckCarOpenSubTitle: 'Conferma stato del veicolo!',
+	humanCheckCarOpenMessage: 'Attendere qualche secondo! Se dopo qualche secondo il veicolo non si apre, riprovare.',
+	humanCheckCarCloseMessage: 'Attendere qualche secondo! Se dopo qualche secondo il veicolo non si chiude, riprovare.',
+	needCurrectPark: 'L\'automobile deve essere posizionata nel parcheggio prima di poterla chiudere',
+	needProximity: 'Devi essere in prossimità dell\'automobile per poterla aprire',
+	damageHard: 'Guasto (auto trainata in officina)',
 	openCar : 'Inizio corsa',
 	closeCar : 'Fine corsa',
-	cancelReservation: 'Annulla'
+	cancelReservation: 'Annulla',
+	cancelConfirmTitle: 'Conferma eliminazione',
+	cancelConfirmBody: 'Sicuro di vole eliminare la prenotazione selezionata?'
 }
 
 window.locale_it.parking = {
@@ -68,6 +85,8 @@ window.locale_it.commons = {
 	select: 'Seleziona',
 	close: 'Chiudi',
 	attention: 'Attenzione',
+	cancel: 'Annulla',
+	save: 'Salva',
 	insert: 'Inserisci',
 	alert: 'Alert',
 	success: 'Successo',
@@ -147,6 +166,7 @@ window.locale_it.vehicle = {
 	color: 'Colore',
 	externalClean: 'Esterni',
 	internalClean: 'Interni',
+	noVehiclesInThisMoment: 'Nessun veicolo è al momento disponibile per il periodo da Te richiesto',
     labelCannotReserve: 'La Tua prenotazione non può essere accettata, in quanto per il periodo richiesto esiste già una prenotazione a Tuo nome.'
 };
 
@@ -160,7 +180,11 @@ window.locale_it.login = {
 	email : 'Email',
 	placeholderEmail: 'compagnia@dominio.it',
 	companyCode: 'Verifica codice azienda',
-	companyCodePlaceholder: 'Inserisci codice azienda'
+	companyCodePlaceholder: 'Inserisci codice azienda',
+	companiesMissing: 'Non è stato possibile recuperare le informazioni aziendali',
+	retryCompanyCode: "Il codice azienda inserito è inesistente, riprovare!",
+	result: 'Esito Richiesta',
+	dataWrong: 'Email/Password sono errati, '
 };
 
 window.locale_it.settings = {
@@ -181,7 +205,10 @@ window.locale_it.driveLicense = {
 	expiringDate : 'Data di scadenza',
 	editLicense: 'Modifica dati patente',
 	cancel: 'Annulla',
-	save: 'Salva'
+	save: 'Salva',
+	fieldMandatory: 'I dati della patente sono obbligatori',
+	editSuccess: 'Dati patente modificati!',
+	editFail: "Non è stato possibile modificare i dati della patente"
 };
 
 window.locale_it.editPassword = {
@@ -190,14 +217,20 @@ window.locale_it.editPassword = {
 	newPassword: 'Inserisci password nuova',
 	repeatPassword: 'Conferma nuova password',
 	cancel: 'Annulla',
-	edit: 'Modifica'
+	edit: 'Modifica',
+	mandatory: 'Inserisci tutte le informazioni necessarie',
+	passwordNoMatch: 'La nuova password non coincide',
+	oldPasswordInvalid: 'La vecchia password non è corretta',
+	editSuccess: 'Password modificata correttamente',
+	editFail: 'Non è stato possibile modificare la password'
 };
 
 window.locale_it.contacts = {
 	title: 'Contatti',
 	email: 'Email',
 	phone: 'Telefono',
-	time: 'Orari'
+	time: 'Orari',
+	emailSubject: 'CCS Richiesta supporto #'
 };
 
 window.locale_it.clientDetails = {
@@ -212,7 +245,10 @@ window.locale_it.clientDetails = {
 	phone: 'Cellulare',
 	editContacts: 'Modifica contatti',
 	cancel: 'Annulla',
-	save: 'Salva'
+	save: 'Salva',
+	mandatory: 'Il campo email è obbligatorio',
+	editSuccess: 'Contatti modificati!',
+	editFail: 'Non è stato possibile modificare i contatti'
 };
 
 window.locale_it.actionSheet = {
@@ -230,6 +266,7 @@ window.locale_it.actionSheet = {
 	noteWithDesc: 'Note (utili per la diagnosi del problema)',
 	needSupport: 'Se il veicolo necessiti di essere rimorchiato o meno',
 	note: 'Note',
+	note2: 'Note',
 	chooseDefectType: 'Scegli tipologia guasto',
 	fuelLevel: 'Selezionare il livello di carburante nel serbatoio',
 	notesPlaceholder: 'Eventuali indicazioni utili',
@@ -244,5 +281,9 @@ window.locale_it.actionSheet = {
 	delayNotify: 'Segnala ritardo',
 	delayNotifyInfo: 'Quanto ritardo farai?',
 	successDelaySent: "Ritardo comunicato con successo",
-	failDeilaySent: 'Non è stato possibile comunicare il ritrado, riprovare.'
+	failDeilaySent: 'Non è stato possibile comunicare il ritrado, riprovare.',
+	damageSuccess: 'Segnalazione effettuta con successo',
+	damageError: 'Non è stato possibile salvare la segnalazione. Riprovare',
+	changeDriverSuccess:'Richiesta cambio guida inviata con successo a',
+	changeDriverError: 'Non è stato possibile effettuare il cambio guida. Riprovare'
 };

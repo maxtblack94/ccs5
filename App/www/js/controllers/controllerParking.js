@@ -1,4 +1,4 @@
-angular.module('starter').controller('ParkingCtrl', function($scope, PopUpServices, InfoFactories, $http, $state, $ionicLoading, ScriptServices) {
+angular.module('starter').controller('ParkingCtrl', function($scope, PopUpServices, InfoFactories, $filter, $state, $ionicLoading, ScriptServices) {
   
      function init() {
         $ionicLoading.show();
@@ -19,7 +19,7 @@ angular.module('starter').controller('ParkingCtrl', function($scope, PopUpServic
                 $ionicLoading.hide();
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup(error+', riprovare!');
+                PopUpServices.errorPopup(error+', '+ $filter('translate')('commons.retry'));
             })
         });
     };

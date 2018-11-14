@@ -1,4 +1,4 @@
-angular.module('starter').controller('LicenseEditCtrl', function($cordovaDatePicker, ManipolationServices, $state, $scope, InfoFactories, PopUpServices, $ionicLoading, ScriptServices) {
+angular.module('starter').controller('LicenseEditCtrl', function($cordovaDatePicker, $filter, $scope, InfoFactories, PopUpServices, $ionicLoading, ScriptServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
 
@@ -12,7 +12,7 @@ angular.module('starter').controller('LicenseEditCtrl', function($cordovaDatePic
 
     $scope.save = function(){
        if ((!$scope.request.license_code || !$scope.request.license_place || !$scope.request.license_date || !$scope.request.license_expire) && $scope.selectedClient.drivingLicense) {
-            PopUpServices.errorPopup("I dati della patente sono obbligatori", "1");
+            PopUpServices.errorPopup($filter('translate')('driveLicense.fieldMandatory'), "1");
        }else{
            callSaveService();
        }
@@ -35,10 +35,10 @@ angular.module('starter').controller('LicenseEditCtrl', function($cordovaDatePic
                 $scope.userInfo.registry = data.data;
                 window.localStorage.setItem('userInfo', JSON.stringify($scope.userInfo));
                 $ionicLoading.hide();
-                PopUpServices.messagePopup("Dati patente modificati!", "Successo");
+                PopUpServices.messagePopup($filter('translate')('driveLicense.editSuccess'), $filter('translate')('commons.success'));
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup("Non è stato possibile modificare i dati della patente");
+                PopUpServices.errorPopup($filter('translate')('driveLicense.editFail'));
             })
         });
     }
