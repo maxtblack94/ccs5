@@ -1,4 +1,4 @@
-angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFactories, $state) {
+angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFactories, $state, LanguageService) {
     function getXMLResource(scriptID) {
         var scriptPath = "res/" + scriptID + ".xml";
         return $q(function (resolve, reject) {
@@ -119,7 +119,7 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
     function headerGET(scriptID, callCode, server) {
         return {
                     url: (InfoFactories.getClientSelected() && InfoFactories.getClientSelected().serverProtocol? (InfoFactories.getClientSelected() || {}).serverProtocol : "https") + "://" + (server || InfoFactories.getServer()) + ".corporatecarsharing.biz/api.svc/ExecuteAdminScript?scriptId=" + scriptID + "&scriptParameterSetId=" + callCode,
-                    headers: { 'TenForce-Auth': 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4' , 'Cache-Control' : 'no-cache'},
+                    headers: { 'TenForce-Auth': LanguageService.getTenForceAuthID() , 'Cache-Control' : 'no-cache'},
                     method: "GET"
         }
     }
@@ -130,7 +130,7 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
             method: "POST",
             data: res,
             headers: {
-                'TenForce-Auth': 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4',
+                'TenForce-Auth': LanguageService.getTenForceAuthID(),
                 'Content-Type': 'application/atom+xml',
                 'Cache-Control' : 'no-cache'
             }

@@ -14,6 +14,7 @@
     "cmobi-ionic-cloud": "^0.9.0",
     "tagged-autogrow": "^1.0.4",
     "angular-moment": "^1.1.0",
-    "angular-uuid": "^0.1.0"
+    "angular-uuid": "^0.1.0",
+    "angular-translate": "^2.18.1"
   }
 }

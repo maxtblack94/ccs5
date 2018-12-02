@@ -1,21 +1,21 @@
-<ion-view title="Contatti">
+<ion-view title="{{ 'contacts.title' | translate}}">
     <ion-content>
         <ion-list>
             <ion-item class="item-divider">
                 <h2>{{clientContacts.name}}</h2>
             </ion-item>
             <ion-item class="item-icon-right" ng-if="clientContacts.email" ng-click="openEmail(clientContacts.email)">
-                <h2>Email</h2>
+                <h2>{{ 'contacts.email' | translate}}</h2>
                 <p>{{clientContacts.email}}</p>
                 <i class="icon ion-ios-email-outline"></i>
             </ion-item>
             <ion-item class="item-icon-right" ng-if="clientContacts.telephone" ng-click="startCall(clientContacts.telephone)">
-                <h2>Telefono</h2>
+                <h2>{{ 'contacts.phone' | translate}}</h2>
                 <p>{{clientContacts.telephone}}</p>
                 <i class="icon ion-ios-telephone-outline"></i>
             </ion-item>
             <ion-item class="item-icon-right" ng-if="clientContacts.timeO">
-                <h2>Orari</h2>
+                <h2>{{ 'contacts.time' | translate}}</h2>
                 <p>{{clientContacts.timeO}}</p>
                 <i class="icon ion-ios-time-outline"></i>
             </ion-item>

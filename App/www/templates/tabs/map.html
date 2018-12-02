@@ -1,22 +1,22 @@
-<ion-view view-title="{{locale.home.prenotationtitle}}">
+<ion-view view-title="{{ 'map.title' | translate}}">
   <ion-content>
     <div id='map' style='width: 100%; height: 40%;'></div>
 
     <div style='padding: 20px; border-top: 1px solid #ddd;' >
         <div ng-click='centerToMarker()' ng-show='g_address' style='margin-bottom: 20px;'>
-          <div style='color: #666;'><i class="ion-ios-location"></i> {{ locale.home.vehicle_position }}</div>
+          <div style='color: #666;'><i class="ion-ios-location"></i> {{ 'map.carLocation' | translate}}</div>
           <h4 style='margin-top: 0; font-size: 15px;'>{{ g_address }}</h4>
         </div>
         <div class="item" style='overflow: auto; border-left: none; border-right: none;border-bottom: none; margin-top: 1px; padding: 10px 0;'>
           <div style='float: left;'>
-            <h2>{{ locale.home.labelGet }}</h2>
+            <h2>{{ 'map.get' | translate}}</h2>
             <p>{{ selectedBooking.pickup_parking }}</p>
           </div>
           <p style='float: right; font-size: 18px; color: #111; margin-top: 12px;'>{{ selectedBooking.dateTimeFrom | date:'dd/MM/yyyy HH:mm'}}</p>
         </div>
         <div class="item" style='overflow: auto; border-left: none; border-right: none; margin-top: 1px; padding: 10px 0;'>
           <div style='float: left;'>
-            <h2>{{ locale.home.labelSet }}</h2>
+            <h2>{{ 'map.set' | translate}}</h2>
             <p>{{ selectedBooking.return_parking }}</p>
           </div>
           <p style='float: right; font-size: 18px; color: #111; margin-top: 12px;'>{{ selectedBooking.dateTimeTo | date:'dd/MM/yyyy HH:mm'}}</p>
@@ -26,12 +26,12 @@
             <h2 class="row">
               <div class="col col50" ng-if="selectedBooking.status === 'Booked'">
                 <button ng-click='delete(selectedBooking)' class="button button-positive button-block">
-                  {{ locale.booking.labelDelete }}
+                    {{ 'map.delete' | translate}}
                 </button>
               </div>
               <div class="col col50" ng-show="g_address">
                 <button ng-click='navigate(selectedBooking)' class="button button-stable button-block" style="float: right">
-                  {{ locale.booking.labelNavigate }}
+                    {{ 'map.goTo' | translate}}
                 </button>
               </div>
             </h2>

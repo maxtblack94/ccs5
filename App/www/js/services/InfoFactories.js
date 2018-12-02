@@ -30,13 +30,13 @@ angular.module('starter').factory("InfoFactories", [function () {
         dateTimeFrom = varDate;
     };
     function getDateTimeFrom() {
-        return window.serverRootLocal ? "16/03/2018 14:40:00" : dateTimeFrom;
+        return window.serverRootLocal ? "16/11/2018 14:40:00" : dateTimeFrom;
     };
     function setDateTimeTo(varDate) {
         dateTimeTo = varDate;
     };
     function getDateTimeTo() {
-        return window.serverRootLocal ? "16/03/2018 17:40:00" : dateTimeTo;
+        return window.serverRootLocal ? "16/11/2018 17:40:00" : dateTimeTo;
     };
     function setPark(varPark) {
         
@@ -59,7 +59,7 @@ angular.module('starter').factory("InfoFactories", [function () {
     };
     function getServer() {
         if (window.localStorage.getItem('selectedClient')) {
-            return JSON.parse(window.localStorage.getItem('selectedClient')).value.toLowerCase();
+            return JSON.parse(window.localStorage.getItem('selectedClient')).serverName.toLowerCase();
         }else{
             return undefined;
         }

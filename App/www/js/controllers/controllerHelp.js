@@ -1,5 +1,4 @@
 angular.module('starter').controller('HelpCtrl', function(ScriptServices, $scope, $http, $ionicLoading, InfoFactories) {
-    $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.openUrl = function(url){
         window.open(url, '_system', 'location=yes');
@@ -9,7 +8,7 @@ angular.module('starter').controller('HelpCtrl', function(ScriptServices, $scope
         $scope.helpList = data.data.helpList;
         $ionicLoading.hide();
     }, function (error) {
-        PopUpServices.errorPopup("Non è stato possibile recuperare alcune informazioni!", "1");
+        PopUpServices.errorPopup($filter('translate')('sos.noInfo'), "1");
         $ionicLoading.hide();
     })
 

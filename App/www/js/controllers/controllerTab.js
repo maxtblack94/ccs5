@@ -1,5 +1,4 @@
 angular.module('starter').controller('TabCtrl', function(PushEventsService, ScriptServices, InfoFactories, PopUpServices, $state, $scope) {
-    $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.$on('pushNotificationEvent', function(event, notificationData) {
         manipolateEvents(notificationData);

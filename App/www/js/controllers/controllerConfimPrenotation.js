@@ -1,6 +1,5 @@
-angular.module('starter').controller('ConfirmPrenotationCtrl', function(PopUpServices, ScriptServices, $scope, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup) {
+angular.module('starter').controller('ConfirmPrenotationCtrl', function($filter, PopUpServices, ScriptServices, $scope, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup) {
     function init(){
-        $scope.locale = window.locale;
         $scope.selectedClient = InfoFactories.getClientSelected();
         $scope.dateTimeFrom = InfoFactories.getDateTimeFrom();
         $scope.dateTimeTo = InfoFactories.getDateTimeTo();
@@ -45,8 +44,8 @@ angular.module('starter').controller('ConfirmPrenotationCtrl', function(PopUpSer
             
         if(!place) {
             $ionicPopup.alert({
-                title: $scope.locale.confirmation.labelIncomplete,
-                template: 'Inserire "'+$scope.selectedClient.lbldestination+'"'
+                title: $filter('translate')('commons.attention'),
+                template: $filter('translate')('commons.insert') +' "' +$scope.selectedClient.lbldestination+'"'
             });
             return;
         }
@@ -70,8 +69,8 @@ angular.module('starter').controller('ConfirmPrenotationCtrl', function(PopUpSer
                 $scope.PNRstring = data.data.PNRstring[0].PNR;
                 $scope.isConfirmed = true;
                 var pnrPopup = $ionicPopup.alert({
-                    title: $scope.locale.confirmation.labelRequestComplete,
-                    template: $scope.locale.home.rsvinfo.labPRN + ': <b>' + $scope.PNRstring + '</b>'
+                    title: $filter('translate')('confirmReservation.requestComplete'),
+                    template: $filter('translate')('confirmReservation.pnr') + ': <b>' + $scope.PNRstring + '</b>'
                 });
                 pnrPopup.then(function(res) {
                     $state.go('tab.bookings');

@@ -1,5 +1,4 @@
-angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $ionicActionSheet, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $http, $state, $ionicPopup, $ionicLoading, ScriptServices) {
-    $scope.locale = window.locale;
+angular.module('starter').controller('BookingsCtrl', function ($filter, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
 
@@ -73,31 +72,31 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
         $scope.actions.buttons = [];
         if($scope.selectedClient.delay){
             $scope.actions.buttons.push({ 
-                text: ionic.Platform.isAndroid() ? '<i class="fa ion-android-time" aria-hidden="true"></i> ' + $scope.selectedClient.lbldelay || 'Ritardo': $scope.selectedClient.lbldelay || 'Ritardo', 
+                text: ionic.Platform.isAndroid() ? '<i class="fa ion-android-time" aria-hidden="true"></i> ' + $scope.selectedClient.lbldelay || $filter('translate')('bookings.delay'): $scope.selectedClient.lbldelay || $filter('translate')('bookings.delay'), 
                 type: "delay" 
             });
         }
         if($scope.selectedClient.changeDriver){
             $scope.actions.buttons.push({ 
-                text: ionic.Platform.isAndroid() ? '<i class="fa fa-id-card-o" aria-hidden="true"></i> Cambio guida' : 'Cambio guida', 
+                text: ionic.Platform.isAndroid() ? '<i class="fa fa-id-card-o" aria-hidden="true"></i>' +$filter('translate')('bookings.changeDriver') : $filter('translate')('bookings.changeDriver'), 
                 type: "changeDriver" 
             });
         }
         if($scope.selectedClient.damage){
             $scope.actions.buttons.push({ 
-                text: ionic.Platform.isAndroid() ? '<i class="fa fa-wrench" aria-hidden="true"></i> Guasto (auto trainata in officina)' : 'Guasto (auto trainata in officina)', 
+                text: ionic.Platform.isAndroid() ? '<i class="fa fa-wrench" aria-hidden="true"></i> ' +$filter('translate')('bookings.damageHard') : $filter('translate')('bookings.damageHard'), 
                 type: "damage" 
             });
         }
         if($scope.selectedClient.defect){
             $scope.actions.buttons.push({ 
-                text: ionic.Platform.isAndroid() ? '<i class="fa fa-wrench" aria-hidden="true"></i> Difetto (auto rientra al parcheggio)' : 'Difetto (auto rientra al parcheggio)', 
+                text: ionic.Platform.isAndroid() ? '<i class="fa fa-wrench" aria-hidden="true"></i> ' +$filter('translate')('bookings.damage'): $filter('translate')('bookings.damage'), 
                 type: "defect" 
             });
         }
         if($scope.selectedClient.cleanness){
             $scope.actions.buttons.push({ 
-                text: ionic.Platform.isAndroid() ? '<i class="fa fa-recycle" aria-hidden="true"></i> Pulizia': 'Pulizia', 
+                text: ionic.Platform.isAndroid() ? '<i class="fa fa-recycle" aria-hidden="true"></i> ' + $filter('translate')('bookings.cleaness'): $filter('translate')('bookings.cleaness'), 
                 type: "cleanness"
             });
         }
@@ -124,7 +123,7 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
                 startCloseOpenCarProcess(reservation, opT, carCoords);
             }, function (error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup(error+"Non siamo riusciti a recuperare le coordinate del veicolo! Riprovare.");
+                PopUpServices.errorPopup(error+ $filter('translate')('bookings.noCoords'));
             })
         });
     }
@@ -140,11 +139,11 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
                     openCloseCar(reservation, opT);
                 } else {
                     $ionicLoading.hide();
-                    PopUpServices.errorPopup("Devi essere in prossimità dell'automobile per poterla aprire", '1');
+                    PopUpServices.errorPopup($filter('translate')('bookings.needProximity'), '1');
                 }
             }, function (err) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup(err+"Non è stato possibile recuperare le tue coordinate", '1');
+                PopUpServices.errorPopup(err+ $filter('translate')('bookings.noYourCoords'), '1');
             });
         } else {
             var proximityResult = checkProximity(carCoords, { "lat": reservation.latP, "long": reservation.lngP }, opT);
@@ -152,7 +151,7 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
                 openCloseCar(reservation, opT);
             } else {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup("L'automobile deve essere posizionata nel pareggio prima di poterla chiudere", '1');
+                PopUpServices.errorPopup($filter('translate')('bookings.needCurrectPark'), '1');
             }
         }
     }
@@ -180,7 +179,7 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
                 $ionicLoading.hide();
                 humanCheckCarOpened(rollbackData);
             }, function(error) {
-                PopUpServices.errorPopup(error+"Non è stato possibile aprire la macchina, riprovare!");
+                PopUpServices.errorPopup(error+ $filter('translate')('bookings.errorOpenCar'));
                 $ionicLoading.hide();
             })
         });
@@ -189,21 +188,21 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
     function humanCheckCarOpened (rollbackData){
         var configObj = {
             "buttons": [{ 
-                text: 'Chiudi',
+                text: $filter('translate')('commons.close'),
                 type: 'button-stable',
                 onTap: function() {
                     $scope.loadbookings();
                 }
             },{
-                text: '<b>Riprova</b>',
+                text: '<b>'+ $filter('translate')('commons.retry') +'</b>',
                 type: 'button-positive',
                 onTap: function() {
                     openCloseCar(rollbackData.reservation, rollbackData.opT);
                 }
             }],
-            "message" : rollbackData.opT === "0" ? "Attendere qualche secondo! Se dopo qualche secondo il veicolo non si apre, riprovare." : "Attendere qualche secondo! Se dopo qualche secondo il veicolo non si chiude, riprovare.",
-            "title" : "Controllo",
-            "subTitle" : "Conferma stato del veicolo!"
+            "message" : rollbackData.opT === "0" ? $filter('translate')('bookings.humanCheckCarOpenMessage') : $filter('translate')('bookings.humanCheckCarCloseMessage'),
+            "title" : $filter('translate')('bookings.humanCheckCarOpenTitle'),
+            "subTitle" : $filter('translate')('bookings.humanCheckCarOpenSubTitle')
         }
         PopUpServices.buttonsPopup(configObj);
     }
@@ -215,8 +214,8 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
 
     $scope.delete = function (book) {
         var confirmPopup = $ionicPopup.confirm({
-            title: 'Conferma eliminazione',
-            template: 'Sicuro di vole eliminare la prenotazione selezionata?'
+            title: $filter('translate')('bookings.cancelConfirmTitle'),
+            template: $filter('translate')('bookings.cancelConfirmBody'),
         });
 
         confirmPopup.then(function (res) {
@@ -243,10 +242,10 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
             mode: 'date',
             allowOldDates: false,
             allowFutureDates: true,
-            doneButtonLabel: $scope.locale.date.butChange,
-            cancelButtonLabel: $scope.locale.date.labelClose,
+            doneButtonLabel: $filter('translate')('commons.select'),
+            cancelButtonLabel: $filter('translate')('commons.close'),
             cancelButtonColor: '#000000',
-            locale: $scope.locale.locale
+            locale: navigator.language
         };
 
         $cordovaDatePicker.show(dateToConfig).then(function (date) {
@@ -265,10 +264,10 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicPlatform, $
             is24Hour: true,
             allowOldDates: true,
             allowFutureDates: true,
-            doneButtonLabel: $scope.locale.date.butChange,
-            cancelButtonLabel: $scope.locale.date.labelClose,
+            doneButtonLabel: $filter('translate')('commons.select'),
+            cancelButtonLabel: $filter('translate')('commons.close'),
             cancelButtonColor: '#000000',
-            locale: $scope.locale.locale
+            locale: navigator.language
         };
 
         $cordovaDatePicker.show(timeToConfig).then(function (time) {

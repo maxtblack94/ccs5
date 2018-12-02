@@ -1,6 +1,5 @@
-angular.module('starter').controller('ChangeDriverCtrl', function($scope, $rootScope, ManipolationServices, $filter, PopUpServices, ScriptServices, $ionicLoading) {
+angular.module('starter').controller('ChangeDriverCtrl', function($scope, ManipolationServices, $filter, PopUpServices, ScriptServices, $ionicLoading) {
     function init(){
-        $scope.locale = window.locale;
         $scope.requestParameters = {};
         $scope.showCase = "start";
     }
@@ -21,10 +20,10 @@ angular.module('starter').controller('ChangeDriverCtrl', function($scope, $rootS
             .replace('{DRIVERID}', $scope.selectedDriver.id);
             ScriptServices.callGenericService(res, 632).then(function (data) {
                 $ionicLoading.hide();
-                PopUpServices.messagePopup('Richiesta cambio guida inviata con successo a '+ $filter('camelCase')($scope.selectedDriver.description), 'Successo', createCallback());
+                PopUpServices.messagePopup($filter('translate')('actionSheet.changeDriverSuccess')+ $filter('camelCase')($scope.selectedDriver.description), $filter('translate')('commons.success'), createCallback());
             }, function (error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup("Non è stato possibile effettuare il cambio guida. Riprovare");
+                PopUpServices.errorPopup($filter('translate')('actionSheet.changeDriverError'));
             })
         });
     }

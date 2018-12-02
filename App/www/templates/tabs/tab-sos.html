@@ -1,14 +1,14 @@
-<ion-view title="Sos">
+<ion-view title="{{ 'sos.title' | translate}}">
     <ion-content>
         <div class="card">
             <div class="item item-text-wrap">
-                La sezione di SOS ti da supporto 24H. E' importante usufruire del servizio solo in caso di vera emergenza!
+                {{ 'sos.info' | translate}}
             </div>
         </div>
         <div class="row">
             <div class="col">
               <button ng-click='startCall(sosPnr)' class="button button-block button-positive">
-               <i class="fa fa-medkit" aria-hidden="true"></i> Invia Richiesta SOS
+               <i class="fa fa-medkit" aria-hidden="true"></i> {{ 'sos.sendRequest' | translate}}
              </button>
             </div>
         </div>

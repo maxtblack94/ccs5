@@ -1,19 +1,19 @@
 <ion-list>
     <ion-item class="item-icon-right" href="#/client-details" menu-close>
-        <span>Username: {{userInfo.registry.username}}</span>
+        <span>{{ 'leftMenu.username' | translate}}: {{userInfo.registry.username}}</span>
         <h2>{{userInfo.registry.first_name}} {{userInfo.registry.last_name}}</h2>
         <p>{{userInfo.registry.email}}</p>
         <i class="icon ion-ios-person-outline"></i>
     </ion-item>
     <ion-item class="item-icon-right" href="#/edit-password" menu-close>
-        <h2>Modifica Password</h2>
+        <h2>{{ 'leftMenu.editPassword' | translate}}</h2>
         <i class="icon ion-ios-color-wand-outline"></i>
     </ion-item>
     <ion-item class="item-divider">
-        <h2>Menu</h2>
+        <h2>{{ 'leftMenu.menuDivider' | translate}}</h2>
     </ion-item>
     <ion-item class="item-icon-right" href="#/tab/bookings" menu-close>
-        <h2>Home</h2>
+        <h2>{{ 'leftMenu.home' | translate}}</h2>
         <i class="icon ion-ios-home-outline"></i>
     </ion-item>
     <!--<ion-item class="item-icon-right" ng-click="goBookings();" menu-close>
@@ -21,15 +21,15 @@
         <i class="icon ion-ios-filing-outline"></i>
     </ion-item>-->
     <ion-item ng-if="selectedClient.drivingLicense"  class="item-icon-right" href="#/license" menu-close>
-        <h2>Dati Patente</h2>
+        <h2>{{ 'leftMenu.driveLicense' | translate}}</h2>
         <i class="icon ion-ios-list-outline"></i>
     </ion-item>
     <ion-item class="item-icon-right" href="#/settings" menu-close>
-        <h2>{{locale.tabs.settings}}</h2>
+        <h2>{{ 'leftMenu.settings' | translate}}</h2>
         <i class="icon ion-ios-gear-outline"></i>
     </ion-item>
     <ion-item ng-if="selectedClient.helpSection" class="item-icon-right" href="#/help" menu-close>
-        <h2>Aiuto</h2>
+        <h2>{{ 'leftMenu.help' | translate}}</h2>
         <i class="icon ion-ios-help-outline"></i>
     </ion-item>
 </ion-list>
@@ -37,7 +37,7 @@
 <div class="row">
     <div class="col col-80 col-offset-10">
         <button ng-click='logout()' class="button button-block button-positive">
-         {{ locale.account.logout }}
+            {{ 'leftMenu.logout' | translate}}
         </button>
     </div>
 </div>

@@ -1,8 +1,8 @@
-angular.module('starter').factory("PopUpServices", function($ionicPopup) {
+angular.module('starter').factory("PopUpServices", function($ionicPopup, $filter) {
     function errorPopup(message, type) {
        $ionicPopup.alert({
-            title: type === '1' ? 'Attenzione' : type === '2' ? 'Successo' : 'Errore',
-            template: message || 'Abbiamo riscontrato un problema di connessione!'
+            title: type === '1' ? $filter('translate')('commons.attention') : type === '2' ? $filter('translate')('commons.success') : $filter('translate')('commons.error'),
+            template: message || $filter('translate')('commons.connectionProblem')
         });
     };
 

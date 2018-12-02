@@ -1,7 +1,6 @@
-angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptServices, $scope, $rootScope, PopUpServices, InfoFactories, $http, $state, $ionicLoading, $ionicPopup) {
+angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptServices, $scope, PopUpServices, InfoFactories, $filter, $state, $ionicLoading, $ionicPopup) {
     function init(){
         $ionicLoading.show();
-        $scope.locale = window.locale;
         $scope.recorveryPassword = false;
         $scope.request = {};
         if ($stateParams.error401) {
@@ -39,7 +38,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
 
     function getClientList(action){
         ScriptServices.getXMLResource(589).then(function(res) {
-            res = res.replace('{LANGUAGE}', 'Italiano');
+            res = res.replace('{LANGUAGE}', navigator.language); //ask matteo
             ScriptServices.callGenericService(res, 589, 'demo').then(function(data) {
                 $ionicLoading.hide();
                 $scope.clientList = data.clientListBooking;
@@ -48,7 +47,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
                 }
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup(error, 'Non è stato possibile recuperare le informazioni aziendali');
+                PopUpServices.errorPopup(error, $filter('translate')('login.companiesMissing'));
             })
         });
     }
@@ -84,7 +83,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
         }else{
             refreshClientConfigs($scope.request.verifyCode);
             if($scope.configCompanyAccount === true){
-                PopUpServices.errorPopup('Il codice azienda inserito è inesistente, riprovare!', '1');
+                PopUpServices.errorPopup($filter('translate')('login.retryCompanyCode'), '1');
             }
         }
     }
@@ -110,7 +109,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
             res = res.replace('{EMAIL}', $scope.request.email);
             ScriptServices.callGenericService(res, 591).then(function(data) {
                 var pnrPopup = $ionicPopup.alert({
-                    title: 'Esito richiesta',
+                    title: $filter('translate')('login.result'),
                     template: data.data
                 });
                 pnrPopup.then(function(res) {
@@ -118,7 +117,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
                 });
                 $ionicLoading.hide();
             }, function(error) {
-                PopUpServices.errorPopup(error+', riprovare!');
+                PopUpServices.errorPopup(error+', '+ $filter('translate')('commons.retry'));
                 $ionicLoading.hide();
             })
         });
@@ -157,12 +156,12 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
                     };
                     getUserInfo(userInfo);
                 }else{
-                    PopUpServices.errorPopup('Email/Password sono errati, riprovare!');
+                    PopUpServices.errorPopup($filter('translate')('login.dataWrong')+ $filter('translate')('commons.retry'));
                     $ionicLoading.hide(); 
                 }
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup(error+', riprovare!');
+                PopUpServices.errorPopup(error+', '+ $filter('translate')('commons.retry'));
             })
         });
     }
@@ -178,7 +177,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
                 $ionicLoading.hide(); 
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup(error+', riprovare!');
+                PopUpServices.errorPopup(error+', '+ $filter('translate')('commons.retry'));
             })
         });
     }

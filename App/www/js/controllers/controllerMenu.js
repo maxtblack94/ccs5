@@ -1,5 +1,4 @@
 angular.module('starter').controller('MenuCtrl', function($ionicSideMenuDelegate, $rootScope, $scope, $http, $state, $ionicLoading, InfoFactories, ScriptServices) {
-    $scope.locale = window.locale;
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
 

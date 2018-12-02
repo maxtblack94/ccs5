@@ -1,4 +1,4 @@
-angular.module('starter').service("PushEventsService", function ($ionicLoading, $state, PopUpServices, ScriptServices) {
+angular.module('starter').service("PushEventsService", function ($filter, $ionicLoading, $state, PopUpServices, ScriptServices) {
     this.changeDriver = function(body, title, pnr, requestID) {
         function changeDriverResponse(pnr, requestID, responseParam){
             $ionicLoading.show();
@@ -8,22 +8,22 @@ angular.module('starter').service("PushEventsService", function ($ionicLoading, 
                 .replace('{DRIVERRESPONSE}', responseParam);
                 ScriptServices.callGenericService(res, 633).then(function (data) {
                     $ionicLoading.hide();
-                    PopUpServices.messagePopup("Operazione avvenuta con successo", "Successo");
+                    PopUpServices.messagePopup($filter('translate')('commons.successOperation'), $filter('translate')('commons.success'));
                 }, function (error) {
                     $ionicLoading.hide();
-                    PopUpServices.errorPopup("Non siamo riusciti a sottomettere la richiesta.");
+                    PopUpServices.errorPopup($filter('translate')('commons.requestFail'));
                 })
             });
         }
         var configObj = {
             "buttons": [{
-                text: 'Rifiuta',
+                text: $filter('translate')('commons.refuse'),
                 type: 'button-stable',
                 onTap: function () {
                     changeDriverResponse(pnr, requestID, false);
                 }
             }, {
-                text: '<b>Accetta</b>',
+                text: '<b>'+$filter('translate')('commons.accept')+'</b>',
                 type: 'button-positive',
                 onTap: function () {
                     changeDriverResponse(pnr, requestID, true);

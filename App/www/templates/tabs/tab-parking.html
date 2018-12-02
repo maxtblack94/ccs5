@@ -1,15 +1,15 @@
-<ion-view view-title="{{ locale.parking.labelSelectParking }}">
+<ion-view view-title="{{ 'parking.title' | translate }}">
   <ion-content>
-    <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshParks()">
+    <ion-refresher pulling-text="{{'commons.refresh' | translate}}" on-refresh="refreshParks()">
   </ion-refresher>
   <div class="bar bar-header item-input-inset" ng-show="parkingList.length > 10">
     <label class="item-input-wrapper">
       <i class="icon ion-ios-search placeholder-icon"></i>
-      <input type="search" ng-model="searchVal" placeholder="{{locale.parking.placeholderSearch}}">
+      <input type="search" ng-model="searchVal" placeholder="{{ 'parking.placeholderSearch' | translate }}">
     </label>
   </div>
       
-    <p ng-if='parkingList.length==0 && !loading' class="message-empty">{{ locale.parking.noparking }}</p>
+    <p ng-if='parkingList.length==0 && !loading' class="message-empty">{{ 'parking.noparking' | translate }}</p>
       
     <ul class="list">
         <li ng-repeat="parking in parkingList | orderBy: 'parking_name'  | filter:searchVal" ng-click='selectParking(parking)' class="item" style='overflow: auto;'>

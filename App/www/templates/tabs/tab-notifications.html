@@ -1,8 +1,8 @@
-<ion-view view-title="Notifiche">
+<ion-view view-title="{{ 'notifications.title' | translate}}">
     <ion-content>
-        <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshNotifications()">
+        <ion-refresher pulling-text="{{'commons.refresh' | translate}}" on-refresh="refreshNotifications()">
         </ion-refresher>
-        <p ng-if="model.notificationsPending.length==0" class="message-empty">Non ci sono notifiche..</p>
+        <p ng-if="model.notificationsPending.length==0" class="message-empty">{{'notifications.noNotifications'}}</p>
         <ion-list>
             <ion-item ng-repeat="notification in model.notificationsPending | orderBy:'data.pushDate':true" class="item-icon-right" ng-click="openNotification(notification)">
                 <h2>{{notification.headings.it}}</h2>

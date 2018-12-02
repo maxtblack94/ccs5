@@ -1,5 +1,4 @@
-angular.module('starter').controller('MapCtrl', function (PopUpServices, ScriptServices, $scope, $http, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup) {
-    $scope.locale = window.locale;
+angular.module('starter').controller('MapCtrl', function ($filter, PopUpServices, ScriptServices, $scope, $http, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup) {
     $scope.selectedBooking = $state.params.pnrInfo;
 
     $scope.navigate = function () {
@@ -13,8 +12,8 @@ angular.module('starter').controller('MapCtrl', function (PopUpServices, ScriptS
     };
     $scope.delete = function (book) {
         var confirmPopup = $ionicPopup.confirm({
-            title: 'Conferma eliminazione',
-            template: 'Sicuro di vole eliminare la prenotazione selezionata?'
+            title: $filter('translate')('map.confirmDeleteTitle'),
+            template: $filter('translate')('map.confirmDeleteInfo')
         });
 
         confirmPopup.then(function (res) {
@@ -28,7 +27,7 @@ angular.module('starter').controller('MapCtrl', function (PopUpServices, ScriptS
                     ScriptServices.callGenericService(res, 553).then(function(data) {
                         $state.go('tab.bookings');
                     }, function(error) {
-                        PopUpServices.errorPopup(error+"Riprovare!");
+                        PopUpServices.errorPopup(error+$filter('translate')('commons.retry'));
                         $ionicLoading.hide();
                     })
                 });
@@ -74,10 +73,10 @@ angular.module('starter').controller('MapCtrl', function (PopUpServices, ScriptS
                 $scope.$apply();
                 $scope.centerToMarker();
             } else {
-                PopUpServices.errorPopup("Le coordinate dell'auto non sono disponibili, riprovare più tardi!", '1');
+                PopUpServices.errorPopup($filter('translate')('map.noCoordsFound'), '1');
             }
         } else {
-            PopUpServices.errorPopup("Le coordinate dell'auto non sono disponibili, riprovare più tardi!", '1');
+            PopUpServices.errorPopup($filter('translate')('map.noCoordsFound'), '1');
         }
     });
 

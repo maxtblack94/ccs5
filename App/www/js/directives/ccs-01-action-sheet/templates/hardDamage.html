@@ -1,34 +1,34 @@
 <ion-modal-view ng-controller="hardDamageCtrl">
   <ion-header-bar class="bar-positive">
-    <h1 class="title">Segnalazione {{operationType === "FAULT" ? "Guasto" : "Difetto"}}</h1>
+    <h1 class="title">{{ 'actionSheet.segnalation' | translate }} {{operationType === "FAULT" ? "Guasto" : "Difetto"}}</h1>
   </ion-header-bar>
   <ion-content padding="true">
     <div ng-show="showCase === 'start'">
       <div class="card">
         <div class="item item-text-wrap">
-          <strong class="energized"><i class="icon ion-android-alert"></i>Attenzione</strong>
-          <p>Effettuare la Segnalazione Guasto, solo dopo aver constatato, che il veicolo non è in grado di rientrare al parcheggio e necessita di essere portato o trasferito, presso una officina per la riparazione.</p>
+          <strong class="energized"><i class="icon ion-android-alert"></i>{{ 'actionSheet.attention' | translate }}</strong>
+          <p>{{ 'actionSheet.damageInfo1' | translate }} </p>
           </br>
-          <p>La Segnalazione Guasto, pertanto comporta la chiusura della presente corsa, così da poterle consentire di prenotare un altro veicolo se desiderato. Per chiudere la presente corsa, è richiesto di comunicare peraltro:</p>
+          <p>{{ 'actionSheet.damageInfo2' | translate }}:</p>
           </br>
           <ul class="my-list">
-            <li>Chilometri Totali indicati sul cruscotto</li>
-            <li>Note (utili per la diagnosi del problema)</li>
-            <li>Se il veicolo necessiti di essere rimorchiato o meno</li>
+            <li>{{ 'actionSheet.totalKM' | translate }}</li>
+            <li>{{ 'actionSheet.noteWithDesc' | translate }}</li>
+            <li>{{ 'actionSheet.needSupport' | translate }}</li>
           </ul>
           </br>
-          <p>Si precisa che una volta segnalato il Guasto il veicolo non sarà più utilizzabile.</p>
+          <p>{{ 'actionSheet.damageInfo3' | translate }}.</p>
         </div>
       </div>
       <div class="row">
         <div class="col col50">
           <button ng-click='close()' class="button button-block button-stable">
-         Annulla
+         {{ 'actionSheet.cancel' | translate }}
        </button>
         </div>
         <div class="col col50">
           <button ng-click="changeShowCase('formDamage')" class="button button-block button-positive">
-          Continua
+          {{ 'actionSheet.continue' | translate }}
         </button>
         </div>
       </div>
@@ -38,7 +38,7 @@
       <div class="bar bar-header item-input-inset">
         <label class="item-input-wrapper">
           <i class="icon ion-ios-search placeholder-icon"></i>
-          <input type="search" ng-model="searchVal" placeholder="Scegli tipologia guasto">
+          <input type="search" ng-model="searchVal" placeholder="{{ 'actionSheet.chooseDefectType' | translate }}">
         </label>
       </div>
       <ion-list>
@@ -47,12 +47,12 @@
       <div class="row">
         <div class="col col50">
           <button ng-click='close()' class="button button-block button-stable">
-         Annulla
+         {{ 'actionSheet.cancel' | translate }}
        </button>
         </div>
         <div class="col col50">
           <button ng-disabled="!requestParameters.statusD" ng-click="jumpStep()" class="button button-block button-positive">
-          Continua
+          {{ 'actionSheet.continue' | translate }}
         </button>
         </div>
       </div>
@@ -61,7 +61,7 @@
       <div class="bar bar-header item-input-inset">
         <label class="item-input-wrapper">
           <i class="icon ion-ios-search placeholder-icon"></i>
-          <input type="search" ng-model="searchVal" placeholder="Selezionare il livello di carburante nel serbatoio">
+          <input type="search" ng-model="searchVal" placeholder="{{ 'actionSheet.fuelLevel' | translate }}">
         </label>
       </div>
       <ion-list>
@@ -70,12 +70,12 @@
       <div class="row">
         <div class="col col50">
           <button ng-click='close()' class="button button-block button-stable">
-         Annulla
+         {{ 'actionSheet.cancel' | translate }}
        </button>
         </div>
         <div class="col col50">
           <button ng-disabled="!requestParameters.fuel" ng-click="changeShowCase('formNotes')" class="button button-block button-positive">
-          Continua
+          {{ 'actionSheet.continue' | translate }}
         </button>
         </div>
       </div>
@@ -83,24 +83,24 @@
     <div ng-show="showCase === 'formNotes'">
       <ion-list>
         <label ng-if="operationType === 'FAULT'" class="item item-input item-stacked-label">
-          <span class="input-label">Chilometraggio totale sul cruscotto<span class="color-error">*</span></span>
-          <input type="number" ng-model="requestParameters.km" placeholder="Digitare il chilometraggio">
+          <span class="input-label">{{ 'actionSheet.totalKM' | translate }}<span class="color-error">*</span></span>
+          <input type="number" ng-model="requestParameters.km" placeholder="{{ 'actionSheet.kmPlaceholder' | translate }}">
         </label>
         <label class="item item-input item-stacked-label">
-          <span class="input-label">Note<span class="color-error">*</span></span>
-          <input type="text" ng-model="requestParameters.note" placeholder="Eventuali indicazioni utili">
+          <span class="input-label">{{ 'actionSheet.note2' | translate }}<span class="color-error">*</span></span>
+          <input type="text" ng-model="requestParameters.note" placeholder="{{ 'actionSheet.notesPlaceholder' | translate }}">
         </label>
-        <ion-toggle ng-if="operationType === 'FAULT'" ng-model="requestParameters.tow" toggle-class="toggle-positive">Veicolo rimorchiato in officina?</ion-toggle>
+        <ion-toggle ng-if="operationType === 'FAULT'" ng-model="requestParameters.tow" toggle-class="toggle-positive">{{ 'actionSheet.mechaninc' | translate }}</ion-toggle>
       </ion-list>
       <div class="row">
         <div class="col col50">
           <button ng-click='close()' class="button button-block button-stable">
-         Annulla
+         {{ 'actionSheet.cancel' | translate }}
        </button>
         </div>
         <div class="col col50">
           <button ng-disabled="(!requestParameters.km && operationType === 'FAULT') || !requestParameters.note" ng-click="submitData()" class="button button-block button-positive">
-          Conferma
+          {{ 'actionSheet.confirm' | translate }}
         </button>
         </div>
       </div>
