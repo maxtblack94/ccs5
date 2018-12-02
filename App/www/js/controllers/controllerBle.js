@@ -1,11 +1,35 @@
-angular.module('starter').controller('BleCtrl', function(ArrayServices, ScriptServices, InfoFactories, $rootScope, $scope, $ionicLoading) {
+angular.module('starter').controller('BleCtrl', function(BluetoothServices, ArrayServices, ScriptServices, InfoFactories, $rootScope, $scope, $ionicLoading) {
 
-    $scope.startScan = function() {
+    $scope.startMission = function() {
+        BluetoothServices.write("pushPNR");
+    };
+
+    $scope.pairing = function() {
+        BluetoothServices.write("pair");
+    };
+
+    $scope.versioning = function() {
+        BluetoothServices.write("version");
+    };
+
+    $scope.connect = function() {
+        BluetoothServices.connectToVehicle({bleID:"B4:B8:59:16:08:76"});
+    };
+
+    $scope.disconnect = function(){
+        BluetoothServices.disconnect();
+    };
+
+
+
+    /* $scope.startScan = function() {
         $scope.$broadcast('scroll.refreshComplete');
         $scope.items = [];
         ble.startScan([], function(device) {
             $scope.items.push(device);
-        }, failure);
+        }, function() { 
+            console.log("stopScan failed");
+        });
         
         setTimeout(ble.stopScan,
             10000,
@@ -16,15 +40,15 @@ angular.module('starter').controller('BleCtrl', function(ArrayServices, ScriptSe
                 console.log("stopScan failed");
             }
         );
-    }
+    } */
 
-    $scope.startScan();
+    /* $scope.startScan();
 
     function failure(params) {
         console.log('operation failed', params)
-    }
+    } */
 
-    $scope.connect = function (deviceID) {
+    /* $scope.connect = function (deviceID) {
         ble.connect(deviceID, onSuccesfullConnection, onFailConnection);
     }
 
@@ -46,16 +70,9 @@ angular.module('starter').controller('BleCtrl', function(ArrayServices, ScriptSe
     }
 
 
-    $scope.disconnect = function(){
-        if ($scope.currentDevice && $scope.currentDevice.id) {
-            ble.disconnect($scope.currentDevice.id, disconnectSuccess, disconnectFail);
-        }else{
-            console.log('no device connected')
-        }
-        
-    };
+     */
 
-    var onData = function(buffer) {
+    /* var onData = function(buffer) {
         alert("Notify:"+ ArrayServices.bytesToString(buffer))
     };
 
@@ -136,13 +153,13 @@ angular.module('starter').controller('BleCtrl', function(ArrayServices, ScriptSe
             return item.characteristic === '75dcca42-81c1-4552-b3b1-1dce25eb4ea2';
         });
         ble.withPromises.startNotification($scope.currentDevice.id, notifyService.service, notifyService.characteristic, onData, notifyFail);
-    };
+    }; */
 
     /* function onData (buffer){
         console.log(ArrayServices.bytesToString(buffer));
     } */
 
-    function notifyFail(param) {
+    /* function notifyFail(param) {
         console.log(param);
     }
 
@@ -153,6 +170,6 @@ angular.module('starter').controller('BleCtrl', function(ArrayServices, ScriptSe
 
     function disconnectFail(params) {
         console.log('disconnectFail', params)
-    }
+    } */
 
-})
+});

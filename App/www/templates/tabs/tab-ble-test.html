@@ -2,14 +2,19 @@
     <ion-content>
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="startScan()">
         </ion-refresher>
+        <button class="button button-balanced button-block" ng-click="connect()"> Connect Bluetooth</button>
+        <button class="button button-balanced button-block" ng-click="pairing()"> StartPairing</button>
+        <button class="button button-balanced button-block" ng-click="startMission()"> Start Mission</button>
+        <button class="button button-balanced button-block" ng-click="stopMission()"> Stop Mission</button>
+        <button class="button button-balanced button-block" ng-click="versioning()"> Versioning</button>
         <button class="button button-balanced button-block" ng-click="disconnect()"> Disconnect</button>
-        <button class="button button-balanced button-block" ng-click="write('version')"> Versioning</button>
+        <!-- <button class="button button-balanced button-block" ng-click="write('version')"> Versioning</button>
         <button class="button button-balanced button-block" ng-click="write('pair')"> Pairing</button>
         <button class="button button-balanced button-block" ng-click="write('pushPNR')"> pushpnr</button>
         <button class="button button-balanced button-block" ng-click="write('pushPNRClose')"> pushpnrClose</button>
         
         <button class="button button-balanced button-block" ng-click="notify()"> notify</button>
-        <button class="button button-balanced button-block" ng-click="maxMTU()"> mtu</button>
+        <button class="button button-balanced button-block" ng-click="maxMTU()"> mtu</button> -->
         <ul class="list">
             <li ng-repeat="item in items" class="item" ng-click="connect(item.id);">
                 <i ng-if="currentDevice.id === item.id" class="fa fa-check-circle" aria-hidden="true"></i> {{item.name || 'no name'}} ID: {{item.id}}
