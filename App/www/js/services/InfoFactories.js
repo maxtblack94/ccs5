@@ -3,7 +3,8 @@ angular.module('starter').factory("InfoFactories", [function () {
     telepass = false, 
     CC = false, 
     selectedVehicleType = { value: null },
-    selectedRangeDriver = { value: 'short' };
+    selectedRangeDriver = { value: 'short' },
+    lastDeviceCoords;
 
     function resetService (){
         parking = undefined, selectedCar = undefined, telepass = false, CC = false, selectedRangeDriver = { value: 'short' },
@@ -94,9 +95,26 @@ angular.module('starter').factory("InfoFactories", [function () {
     function getSelectedRangeDriver() {
         return selectedRangeDriver;
     };
+
+    function getLastDeviceCoords (){
+        return lastDeviceCoords;
+    };
+
+    function setLastDeviceCoords (coords){
+        lastDeviceCoords = coords;
+    }
     
 
     return {
+        getLastDeviceCoords: function () {
+            return getLastDeviceCoords();
+        },
+        setLastDeviceCoords: function (coords) {
+            return setLastDeviceCoords(coords);
+        },
+        getPark: function () {
+            return getPark();
+        },
         setPark: function (varPark) {
             return setPark(varPark);
         },

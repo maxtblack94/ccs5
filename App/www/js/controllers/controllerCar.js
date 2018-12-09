@@ -53,7 +53,7 @@ angular.module('starter').controller('CarCtrl', function($filter, ManipolationSe
                 }
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup(error+', ' + $filter('translate')('commons.retry'));
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
             })
         });
     };

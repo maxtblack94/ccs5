@@ -15,14 +15,14 @@ window.locale_it.leftMenu = {
 
 window.locale_it.sos = {
 	title: 'SOS',
-	info: 'La sezione di SOS ti da supporto 24H. E\' importante usufruire del servizio solo in caso di vera emergenza!',
+	info: 'Il servizio SOS dà supporto H24. E\' importante usufruire del servizio solo in caso di vera emergenza!',
 	sendRequest: 'Invia Richiesta SOS',
 	noInfo: 'Non è stato possibile recuperare alcune informazioni!'
 }
 
 window.locale_it.bookings = {
 	title: 'Prenotazioni',
-	notFound: 'Al momento non hai nessuna prenotazione in corso',
+	notFound: 'Al momento non hai nessuna prenotazione in corso.',
 	pnr: 'PNR ',
 	plate: 'Targa',
 	color: 'Colore',
@@ -36,19 +36,19 @@ window.locale_it.bookings = {
 	damage: 'Difetto (auto rientra al parcheggio)',
 	cleaness: 'Pulizia',
 	noCoords: 'Non siamo riusciti a recuperare le coordinate del veicolo! Riprovare.',
-	noYourCoords: 'Non è stato possibile recuperare le tue coordinate',
+	noYourCoords: 'Non è stato possibile recuperare le tue coordinate.',
 	errorOpenCar: 'Non è stato possibile aprire la macchina, riprovare!',
 	humanCheckCarOpenTitle: 'Controllo',
 	humanCheckCarOpenSubTitle: 'Conferma stato del veicolo!',
 	humanCheckCarOpenMessage: 'Attendere qualche secondo! Se dopo qualche secondo il veicolo non si apre, riprovare.',
 	humanCheckCarCloseMessage: 'Attendere qualche secondo! Se dopo qualche secondo il veicolo non si chiude, riprovare.',
-	needCurrectPark: 'L\'automobile deve essere posizionata nel parcheggio prima di poterla chiudere',
-	needProximity: 'Devi essere in prossimità dell\'automobile per poterla aprire',
+	needCurrectPark: 'L\'automobile deve essere posizionata nel parcheggio prima di poterla chiudere.',
+	needProximity: 'Devi essere in prossimità dell\'automobile per poterla aprire.',
 	damageHard: 'Guasto (auto trainata in officina)',
-	openCar : 'Inizio corsa',
-	closeCar : 'Fine corsa',
+	openCar : 'Inizio Corsa',
+	closeCar : 'Fine Corsa',
 	cancelReservation: 'Annulla',
-	cancelConfirmTitle: 'Conferma eliminazione',
+	cancelConfirmTitle: 'Conferma Eliminazione',
 	cancelConfirmBody: 'Sicuro di vole eliminare la prenotazione selezionata?'
 }
 
@@ -70,8 +70,8 @@ window.locale_it.tabs = {
 
 window.locale_it.notifications = {
 	title: 'Notifiche',
-	notFound: 'Non ci sono notifiche..',
-	failGetNotfications: "Non è stato possibile recuperare le notifiche dal server"
+	notFound: 'Non ci sono notifiche.',
+	failGetNotfications: "Non è stato possibile recuperare le notifiche dal server."
 };
 
 window.locale_it.commons = {
@@ -79,9 +79,9 @@ window.locale_it.commons = {
 	yes: 'Si',
 	no: 'No',
 	retry: 'Riprovare',
-	legalNotice: 'Copyright © 2016 Corporate Car Solutions Italia  All Rights Reserved',
+	legalNotice: 'Copyright © 2016 Corporate Car Solutions Italia - All Rights Reserved',
 	readMore: 'Continua a leggere...',
-	search: 'Cerca..',
+	search: 'Cerca...',
 	select: 'Seleziona',
 	close: 'Chiudi',
 	attention: 'Attenzione',
@@ -92,7 +92,7 @@ window.locale_it.commons = {
 	success: 'Successo',
 	error: 'Errore',
 	connectionProblem: 'Abbiamo riscontrato un problema di connessione!',
-	successOperation: "Operazione avvenuta con successo",
+	successOperation: "Operazione eseguita con successo.",
 	requestFail: "Non siamo riusciti a sottomettere la richiesta.",
 	refuse: 'Rifiuta',
 	accept: 'Accetta'
@@ -104,37 +104,37 @@ window.locale_it.bookResume = {
 	parkOpenedFrom: 'Aperto dalle',
 	parkOpenedTo: 'Alle',
 	parkOpened24h: 'Aperto H24',
-	dateFrom : 'Data ritiro',
-	dateTo: 'Data riconsegna',
-	cc: 'Carta carburante',
-	cc_descr: 'Selezionare se si ha bisogno della carta carburante',
-	drivingRange: 'Raggio di percorrenza',
+	dateFrom : 'Data Ritiro',
+	dateTo: 'Data Riconsegna',
+	cc: 'Carta Carburante',
+	cc_descr: 'Selezionare, se si ha bisogno della carta carburante.',
+	drivingRange: 'Raggio di Percorrenza',
 	telepass: 'Telepass',
-	telepass_descr: 'Selezionare se si ha bisogno del telepass',
-	vahicleType: 'Tipologia veicolo',
-	confirm: 'Cerca veicolo',
-	returnDateIsOut: 'La data di ritiro non rientra negli orari di apertura del parcheggio',
-	returnDateIsMajor: 'La data di ritiro è maggiore della data di consegna',
-	returnDateNeedToBeMajor: 'La data di ritiro deve essere superiore alla data attuale',
-	isNotInTime: 'La data di consegna non rientra negli orari di apertura del parcheggio',
-	defineRange: 'Non hai definito il raggio di percorrenza',
-	missingVehicleType: 'Selezionare una tipologia di veicolo',
+	telepass_descr: 'Selezionare, se si ha bisogno del telepass.',
+	vahicleType: 'Tipologia Veicolo',
+	confirm: 'Cerca Veicolo',
+	returnDateIsOut: 'La data di ritiro non rientra negli orari di apertura del parcheggio!',
+	returnDateIsMajor: 'La data di ritiro è maggiore della data di consegna!',
+	returnDateNeedToBeMajor: 'La data di ritiro deve essere superiore alla data attuale!',
+	isNotInTime: 'La data di consegna non rientra negli orari di apertura del parcheggio!',
+	defineRange: 'Non hai definito il raggio di percorrenza!',
+	missingVehicleType: 'Selezionare una tipologia di veicolo.',
 	vehicleTypesNotFound: 'Non è stato possibile recuperare le tipologie di veicoli presenti in questo parcheggio!',
 	noDataFound: 'Non è stato possibile recuperare alcune informazioni!',
 	returnDateHaveToBe: 'La data di riconsegna deve essere entro il ',
-	wrongDates: 'Seleziona la data di ritiro e consegna per continuare',
-	wrongParking: 'Seleziona il parcheggio prima di continuare'
+	wrongDates: 'Seleziona la data di ritiro e consegna per continuare.',
+	wrongParking: 'Seleziona il parcheggio prima di continuare.'
 };
 
 window.locale_it.map = {
-	title: 'Dettaglio prenotazione',
-	carLocation: 'Indirizzo posizione veicolo',
+	title: 'Dettaglio Prenotazione',
+	carLocation: 'Indirizzo Posizione Veicolo',
 	get: 'Ritiro',
 	set: 'Riconsegna',
-	goTo: 'Raggiungi veicolo',
+	goTo: 'Raggiungi Veicolo',
 	delete: 'Elimina',
 	confirmDeleteTitle: 'Conferma Eliminazione',
-	confirmDeleteInfo: 'Sicuro di vole eliminare la prenotazione selezionata?',
+	confirmDeleteInfo: 'Sicuro di voler eliminare la prenotazione selezionata?',
 	noCoordsFound: 'Le coordinate dell\'auto non sono disponibili, riprovare più tardi!'
 };
 
@@ -142,23 +142,23 @@ window.locale_it.confirmReservation = {
 	title: 'Conferma Prenotazione',
 	back: 'Indietro',
 	confirm: 'Conferma',
-	wait: 'attendere..',
-	requestComplete: 'Prenotazione Confermata',
+	wait: 'Attendere...',
+	requestComplete: 'Prenotazione Confermata!',
 	seats: "Posti",
 	color: "Colore",
 	incomplete: 'Attenzione',
 	park: 'Parcheggio',
 	selectPlace: "Inserire il 'Luogo'",
-	selectDriveName: "Inserire 'Nome driver'",
-	dateFrom : 'Data ritiro',
-	dateTo: 'Data riconsegna',
-	cc: 'Carta carburante',
+	selectDriveName: "Inserire il 'Nome Driver'",
+	dateFrom : 'Data Ritiro',
+	dateTo: 'Data Riconsegna',
+	cc: 'Carta Carburante',
 	telepass: 'Telepass',
 	pnr: 'PNR'
 };
 
 window.locale_it.vehicle = {
-	title: 'Seleziona veicolo',
+	title: 'Seleziona Veicolo',
 	notFound: 'Siamo spiacenti, tutti i veicoli sono prenotati per il periodo da Te richiesto.',
 	plate: 'Targa',
 	select: 'Seleziona',
@@ -166,7 +166,7 @@ window.locale_it.vehicle = {
 	color: 'Colore',
 	externalClean: 'Esterni',
 	internalClean: 'Interni',
-	noVehiclesInThisMoment: 'Nessun veicolo è al momento disponibile per il periodo da Te richiesto',
+	noVehiclesInThisMoment: 'Nessun veicolo è al momento disponibile per il periodo da Te richiesto!',
     labelCannotReserve: 'La Tua prenotazione non può essere accettata, in quanto per il periodo richiesto esiste già una prenotazione a Tuo nome.'
 };
 
@@ -174,14 +174,14 @@ window.locale_it.login = {
 	username: 'Username',
 	password: 'Password',
 	login: 'Accedi',
-	forgotPassword: 'Password dimenticata?',
+	forgotPassword: 'Password Dimenticata?',
 	retrievePassword: 'Recupera Password',
 	haveAccount: 'Accedi',
 	email : 'Email',
 	placeholderEmail: 'compagnia@dominio.it',
-	companyCode: 'Verifica codice azienda',
-	companyCodePlaceholder: 'Inserisci codice azienda',
-	companiesMissing: 'Non è stato possibile recuperare le informazioni aziendali',
+	companyCode: 'Verifica codice azienda.',
+	companyCodePlaceholder: 'Inserisci codice azienda.',
+	companiesMissing: '!',
 	retryCompanyCode: "Il codice azienda inserito è inesistente, riprovare!",
 	result: 'Esito Richiesta',
 	dataWrong: 'Email/Password sono errati, '
@@ -192,37 +192,37 @@ window.locale_it.settings = {
 	client: 'Cliente',
 	title: 'Impostazioni',
 	check1: 'Riduci Immagini',
-	check1_descr: 'Mostra le immagini dei veicoli ridotte',
-	editPassword: 'Modifica password'
+	check1_descr: 'Mostra le immagini dei veicoli ridotte.',
+	editPassword: 'Modifica Password'
 };
 
 window.locale_it.driveLicense = {
 	title: 'Dati Patente',
 	license: 'Patente',
 	number: 'Numero Patente',
-	issuingCountry: 'Luogo di rilascio',
-	issuingDate: 'Data di rilascio',
-	expiringDate : 'Data di scadenza',
-	editLicense: 'Modifica dati patente',
+	issuingCountry: 'Luogo Rilascio',
+	issuingDate: 'Data Rilascio',
+	expiringDate : 'Data Scadenza',
+	editLicense: 'Modifica Dati Patente',
 	cancel: 'Annulla',
 	save: 'Salva',
-	fieldMandatory: 'I dati della patente sono obbligatori',
+	fieldMandatory: 'I dati della patente sono obbligatori!',
 	editSuccess: 'Dati patente modificati!',
-	editFail: "Non è stato possibile modificare i dati della patente"
+	editFail: "Non è stato possibile modificare i dati della patente."
 };
 
 window.locale_it.editPassword = {
 	title: 'Modifica Password',
-	currentPassword: 'Inserisci password corrente',
-	newPassword: 'Inserisci password nuova',
-	repeatPassword: 'Conferma nuova password',
+	currentPassword: 'Inserisci Password Corrente',
+	newPassword: 'Inserisci Nuova Password',
+	repeatPassword: 'Conferma Nuova Password',
 	cancel: 'Annulla',
 	edit: 'Modifica',
-	mandatory: 'Inserisci tutte le informazioni necessarie',
-	passwordNoMatch: 'La nuova password non coincide',
-	oldPasswordInvalid: 'La vecchia password non è corretta',
-	editSuccess: 'Password modificata correttamente',
-	editFail: 'Non è stato possibile modificare la password'
+	mandatory: 'Inserisci tutte le informazioni necessarie!',
+	passwordNoMatch: 'La nuova password non coincide!',
+	oldPasswordInvalid: 'La vecchia password non è corretta!',
+	editSuccess: 'Password modificata correttamente.',
+	editFail: 'Non è stato possibile modificare la password!'
 };
 
 window.locale_it.contacts = {
@@ -243,24 +243,24 @@ window.locale_it.clientDetails = {
 	contacts: 'Contatti',
 	email: 'Email',
 	phone: 'Cellulare',
-	editContacts: 'Modifica contatti',
+	editContacts: 'Modifica Contatti',
 	cancel: 'Annulla',
 	save: 'Salva',
-	mandatory: 'Il campo email è obbligatorio',
+	mandatory: 'Il campo email è obbligatorio!',
 	editSuccess: 'Contatti modificati!',
-	editFail: 'Non è stato possibile modificare i contatti'
+	editFail: 'Non è stato possibile modificare i contatti!'
 };
 
 window.locale_it.actionSheet = {
 	chageDriver: 'Cambio Guida',
-	selectEmployee: 'Selezionare dipendente',
+	selectEmployee: 'Selezionare Dipendente',
 	confirm: 'Conferma',
 	cancel: 'Annulla',
-	continue: 'Continue',
+	continue: 'Continua',
 	segnalation: 'Segnalazione',
 	attention: 'Attenzione',
 	damageInfo1: 'Effettuare la Segnalazione Guasto, solo dopo aver constatato, che il veicolo non è in grado di rientrare al parcheggio e necessita di essere portato o trasferito, presso una officina per la riparazione.',
-	damageInfo2: 'La Segnalazione Guasto, pertanto comporta la chiusura della presente corsa, così da poterle consentire di prenotare un altro veicolo se desiderato. Per chiudere la presente corsa, è richiesto di comunicare peraltro',
+	damageInfo2: 'La Segnalazione Guasto, pertanto comporta la chiusura della presente corsa, così da poterti consentire di prenotare un altro veicolo se desiderato. Per chiudere la presente corsa, è richiesto di comunicare peraltro',
 	damageInfo3: 'Si precisa che una volta segnalato il Guasto il veicolo non sarà più utilizzabile',
 	totalKM: 'Chilometri Totali indicati sul cruscotto',
 	noteWithDesc: 'Note (utili per la diagnosi del problema)',
@@ -272,18 +272,18 @@ window.locale_it.actionSheet = {
 	notesPlaceholder: 'Eventuali indicazioni utili',
 	kmPlaceholder: 'Digitare il chilometraggio',
 	mechaninc: 'Veicolo rimorchiato in officina?',
-	chooseAlertType: 'Segliere tipologia segnalazione..',
+	chooseAlertType: 'Segliere tipologia segnalazione...',
 	driversNotFound: "Non è stato possibile recuperare la lista dei dipendenti abilitati. Riprovare!",
 	cleanNotify: 'Segnalazione Pulizia',
 	selectCleanStatusInfo: 'Indicare lo stato di pulizia del veicolo',
 	successAlertSent: 'Salvataggio effettuato con successo',
-	failAlertSent: 'Non è stato possibile salvare la segnalazione. Riprovare',
+	failAlertSent: 'Non è stato possibile salvare la segnalazione. Riprovare!',
 	delayNotify: 'Segnala ritardo',
 	delayNotifyInfo: 'Quanto ritardo farai?',
 	successDelaySent: "Ritardo comunicato con successo",
-	failDeilaySent: 'Non è stato possibile comunicare il ritrado, riprovare.',
+	failDeilaySent: 'Non è stato possibile comunicare il ritardo. Riprovare!',
 	damageSuccess: 'Segnalazione effettuta con successo',
-	damageError: 'Non è stato possibile salvare la segnalazione. Riprovare',
+	damageError: 'Non è stato possibile salvare la segnalazione. Riprovare!',
 	changeDriverSuccess:'Richiesta cambio guida inviata con successo a',
-	changeDriverError: 'Non è stato possibile effettuare il cambio guida. Riprovare'
+	changeDriverError: 'Non è stato possibile effettuare il cambio guida. Riprovare!'
 };

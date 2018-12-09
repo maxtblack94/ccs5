@@ -2,233 +2,288 @@ window.locale_ro = {};
 
 window.locale_ro.leftMenu = {
 	menuTitle: 'Profilul utilizatorului',
-	username: "Utilizator",
-	editPassword: "Schimbati parola",
-	menuDivider: "Meniu",
-	home: "Acasa",
-	driveLicense: "Date de licenta",
-	settings: "Setari",
-	help: "Ajutor",
-	reserveHistory: "Istoric rezervari",
-	logout: "Logout"
+	username: 'Username',
+	editPassword: 'Schimbați parola',
+	menuDivider: 'Meniu',
+	home: 'Home',
+	driveLicense: 'Conducerea datelor',
+	settings: 'Setări',
+	help: 'Ajutor',
+	reserveHistory: 'Istoricul rezervărilor',
+	logout: 'Deconectare'
 }
 
 window.locale_ro.sos = {
-	title: "SOS",
-	info: "Sectiunea SOS va ofera suport pentru 24h. Este important sa folositi serviciul numai in cazul unei urgente reale!",
-	sendRequest: 'Trimiteti SOS Request'
-};
+	title: 'SOS',
+	info: 'Secțiunea SOS vă oferă suport 24 ore. Este important să utilizați serviciul numai în cazul unei urgențe reale!',
+	sendRequest: 'Trimiteți Solicitare SOS',
+	noInfo: 'Unele informații nu au putut fi preluate!'
+}
 
 window.locale_ro.bookings = {
-	title: "Rezervari",
-	notFound: "In prezent nu aveti rezervari curente",
-	pnr: "PNR",
-	plate: "Targa",
-	color: "Culoare",
-	seats: "Locuri",
-	externalClean: "Extern",
-	internalClean: "Intern",
-	get: "Retragere",
-	set: "Revenire",
-	openCar: "Incepeti sa rulati",
-	closeCar: "Sfarsitul rundei",
-	cancelReservation: 'Anulare'
+	title: 'Rezervare',
+	notFound: 'În momentul în care nu aveți nicio rezervă în curs',
+	pnr: 'PNR ',
+	plate: 'Targa',
+	color: 'Culoare',
+	seats: 'Locuri',
+	externalClean: 'în aer liber',
+	internalClean: 'interior',
+	get: 'retragere',
+	set: 'picătură',
+	delay: 'întârziere',
+	changeDriver: 'Modificarea Ghidului',
+	damage: 'Defect (mașina se întoarce la parcare)',
+	cleaness: 'curățenie',
+	noCoords: 'Nu am putut recupera coordonatele vehiculului! Vă rugăm să încercați din nou.',
+	noYourCoords: 'Coordonatele nu au putut fi recuperate',
+	errorOpenCar: 'Mașina nu a putut fi deschisă, încercați din nou!',
+	humanCheckCarOpenTitle: 'control',
+	humanCheckCarOpenSubTitle: 'Confirmați starea vehiculului!',
+	humanCheckCarOpenMessage: 'Așteaptă câteva secunde! Dacă autovehiculul nu se deschide după câteva secunde, încercați din nou.',
+	humanCheckCarCloseMessage: 'Așteaptă câteva secunde! Dacă vehiculul nu se închide după câteva secunde, încercați din nou.',
+	needCurrectPark: 'Mașina trebuie să fie poziționată în parcare înainte de a fi închisă',
+	needProximity: 'Trebuie să fiți aproape de mașină pentru a vă deschide',
+	damageHard: 'Nerespectarea (masina remorcata in atelier)',
+	openCar : 'Începerea cursei',
+	closeCar : 'Sfârșitul călătoriei',
+	cancelReservation: 'anula',
+	cancelConfirmTitle: 'Confirmați ștergerea',
+	cancelConfirmBody: 'Sigur doriți să ștergeți rezervarea selectată?'
 }
 
 window.locale_ro.parking = {
-	title: "Alegeti parcarea",
-	noparking: "Nu sa gasit parcare",
-	placeholderCautare: "Cautare"
+	title: 'Alegeți parcarea',
+	noparking: 'Nu sa găsit parcare',
+	placeholderSearch: 'căutare'
 };
 
 window.locale_ro.tabs = {
-	reservations: "Rezervari",
-	park: "Parcari",
-	booking: "Rezervati",
-	vehicles: "Vehicule",
-	settings: "Setari",
-	sos: "SOS",
-	notifications: "Notificari"
+	reservations: 'rezervare',
+	park: 'parcare',
+	booking: 'carte',
+	vehicles: 'vehicule',
+	settings: 'Setări',
+	sos: 'SOS',
+	notifications: 'notificări'
 };
 
 window.locale_ro.notifications = {
-	title: "Notificari",
-	notFound: "Nu exista notificari ..",
-	failGetNotfications: "Nu este posibil recuperarea notificelor"
+	title: 'notificări',
+	notFound: 'Nu există notificări...',
+	failGetNotfications: "Notificările de la server nu au putut fi preluate"
 };
 
 window.locale_ro.commons = {
-	refresh: "Actualizare ...",
-	yes: "Da",
-	no: "Nu",
-	legalNotice: "Drepturi de autor - 2016 Corporate Solutions Italia Toate drepturile rezervate",
-	readMore: 'Continue reading ...',
-	search: 'Cautare ..',
-	select: 'Selectati',
-	close: "Inchideti",
-	attention: "Atentie",
-	insert: "Introduceti",
-	alert: "Alert",
-	succes: "Succes",
-	error: "Eroare",
-	connectionProblem: "Am intampinat o problema de conectare!",
-	succesOperatie: "Operatiunea de succes",
+	refresh: 'Reîmprospăta...',
+	yes: 'Ea',
+	no: 'Nu',
+	retry: 'încercați din nou',
+	legalNotice: 'Copyright B) 2016 Corporate Car Solutions Italia  All Rights Reserved',
+	readMore: 'Continuați să citiți ...',
+	search: 'căutare...',
+	select: 'selecta',
+	close: 'închide',
+	attention: 'Atenție',
+	cancel: 'anula',
+	save: 'Salvați',
+	insert: 'introduce',
+	alert: 'alerta',
+	success: 'succes',
+	error: 'eroare',
+	connectionProblem: 'Am întâmpinat o problemă de conectare!',
+	successOperation: "Operațiunea a reușit",
 	requestFail: "Nu am putut trimite cererea.",
-	refuse: "Respingeti",
-	accept: "Accept"
+	refuse: 'Respinge',
+	accept: 'Accepta'
 };
 
 window.locale_ro.bookResume = {
-	title: "Carte",
-	parking: "Parcare",
-	parkOpenedFrom: 'Deschis de la',
-	parkOpenedTo: "Alle",
-	parkOpened24h: 'Open H24',
-	dateFrom: 'data colectarii',
-	dateTo: "Data livrarii",
-	cc: "Cardul de carburant",
-	cc_descr: "Selectati daca aveti nevoie de cartea de combustibil",
-	drivingRange: "Raza de calatorie",
-	telepass: "Telepass",
-	telepass_descr: "Selectati daca aveti nevoie de telepass",
-	vahicleType: "Tipul vehiculului",
-	confirm: 'Cautati vehicul',
-	returnDateIsOut: "Data colectarii este in afara orelor de parcare",
-	returnDateIsMajor: "Data colectarii este mai mare decat data livrarii",
-	returnDateNeedToBeMajor: "Data colectarii trebuie sa fie mai mare decat data curenta",
-	isNotInTime: "Data livrarii este in afara orelor de parcare",
-	defineRange: "Nu ati definit raza de calatorie",
-	missingVehicleType: "Selectati un tip de vehicul",
-	vehicleTypesNotFound: "Nu a fost posibila recuperarea tipurilor de vehicule din acest parc auto!",
-	noDataFound: "Unele informatii nu au putut fi preluate!",
-	returnDateHaveToBe: "Data de intoarcere trebuie sa fie inainte",
-	wrongDates: "Selectati data colectarii si data livrarii pentru a continua",
-	wrongParking: "Selectati parcarea inainte de a continua"
+	title : 'Carte',
+	parking: 'Parcare',
+	parkOpenedFrom: 'Deschideți de la',
+	parkOpenedTo: 'La',
+	parkOpened24h: 'Deschideți 24 de ore',
+	dateFrom : 'Data colecției',
+	dateTo: 'Data livrării',
+	cc: 'Cartelă de combustibil',
+	cc_descr: 'Selectați dacă aveți nevoie de cardul de combustibil',
+	drivingRange: 'Raza de călătorie',
+	telepass: 'Telepass',
+	telepass_descr: 'Selectați dacă aveți nevoie de telepass',
+	vahicleType: 'Tipul vehiculului',
+	confirm: 'Căutați vehicul',
+	returnDateIsOut: 'Data colectării nu se încadrează în orele de programare ale parcării',
+	returnDateIsMajor: 'Data colectării este mai mare decât data livrării',
+	returnDateNeedToBeMajor: 'Data colectării trebuie să fie mai mare decât data curentă',
+	isNotInTime: 'Data livrării nu se încadrează în orele de deschidere a parcării',
+	defineRange: 'Nu ați definit raza de deplasare',
+	missingVehicleType: 'Selectați un tip de vehicul',
+	vehicleTypesNotFound: 'Nu a fost posibilă recuperarea tipurilor de vehicule din parcarea respectivă!',
+	noDataFound: 'Unele informații nu au putut fi preluate!',
+	returnDateHaveToBe: 'Data de întoarcere trebuie să fie în intervalul ',
+	wrongDates: 'Selectați data de preluare și de livrare pentru a continua',
+	wrongParking: 'Selectați parcarea înainte de a continua'
 };
 
 window.locale_ro.map = {
-	title: "Detaliile rezervarii",
-	carLocation: "Adresa pozitiei vehiculului",
-	get: "Retragere",
-	set: "Revenire",
-	goTo: "Reach vehicul",
-	delete: "Ștergeti",
+	title: 'Detaliile rezervării',
+	carLocation: 'Poziția vehiculului',
+	get: 'Retragere',
+	set: 'Picătură',
+	goTo: 'Acoperiți un vehicul',
+	delete: 'șterge',
+	confirmDeleteTitle: 'Confirmați ștergerea',
+	confirmDeleteInfo: 'Sigur pentru a șterge rezervarea selectată?',
+	noCoordsFound: 'Coordonatele mașinii nu sunt disponibile, încercați din nou mai târziu!'
 };
 
 window.locale_ro.confirmReservation = {
-	title: "Confirmarea rezervarii",
-	back: "Inapoi",
-	confirm: "Confirmati",
-	wait: "asteptati ..",
-	requestComplete: "Rezervare confirmata",
+	title: 'Confirmați rezervarea',
+	back: 'înapoi',
+	confirm: 'Confirmare',
+	wait: 'aștepta..',
+	requestComplete: 'Rezervare confirmată',
 	seats: "Locuri",
-	color: "Culoare",
-	Attention: "Atentie",
-	park: "Parcare",
-	selectPlace: "Introduceti Locul",
-	selectDriveName: "Introduceti numele soferului",
-	dateFrom: 'data colectarii',
-	dateTo: "Data livrarii",
-	cc: "Cardul de carburant",
-	telepass: "Telepass",
-	pnr: "PNR"
+	color: "culoare",
+	incomplete: 'Atenție',
+	park: 'Parcare',
+	selectPlace: "Introduceți 'Locul'",
+	selectDriveName: "Introduceți 'Nume șofer'",
+	dateFrom : 'Data colecției',
+	dateTo: 'Data livrării',
+	cc: 'Cartelă de combustibil',
+	telepass: 'Telepass',
+	pnr: 'PNR'
 };
 
 window.locale_ro.vehicle = {
-	title: "Selecteaza vehicul",
-	notFound: "Ne pare rau, toate vehiculele sunt rezervate pentru perioada pe care ati solicitat-o.",
-	plate: "Targa",
-	select: 'Selectati',
-	seats: "Locuri",
-	color: "Culoare",
-	externalClean: "Extern",
-	internalClean: "Intern",
-	labelCannotReserve: "Rezervarea dvs. nu poate fi acceptata, deoarece exista deja o rezervare in numele dvs. pentru perioada solicitata."
+	title: 'Selectați vehiculul',
+	notFound: 'Ne pare rău, toate vehiculele sunt rezervate pentru perioada solicitată de dvs.',
+	plate: 'Targa',
+	select: 'Selecta',
+	seats: 'Locuri',
+	color: 'Culoare',
+	externalClean: 'în aer liber',
+	internalClean: 'Interior',
+	noVehiclesInThisMoment: 'În prezent, nu este disponibil un vehicul pentru perioada solicitată de dvs.',
+    labelCannotReserve: 'Rezervarea dvs. nu poate fi acceptată, deoarece pentru perioada solicitată există deja o rezervare în numele dvs.'
 };
 
 window.locale_ro.login = {
-	username: "Utilizator",
-	password: 'Parola',
-	login: 'Login',
-	forgotPassword: "Parola uitata?",
-	retrievePassword: 'Recuperare parola',
-	haveAccount: 'Login',
-	email: 'Email',
-	placeholderEmail: "compagnia@dominio.it",
-	companyCode: "Verificati codul companiei",
-	companyCodePlaceholder: 'Introduceti codul companiei'
+	username: 'Username',
+	password: 'Password',
+	login: 'Acces',
+	forgotPassword: 'Password Ai uitat?',
+	retrievePassword: 'Recuperează Password',
+	haveAccount: 'Accedi',
+	email : 'Email',
+	placeholderEmail: 'companie@domeniu.it',
+	companyCode: 'Verificați codul companiei',
+	companyCodePlaceholder: 'Introduceți codul companiei',
+	companiesMissing: 'Informațiile despre companie nu au putut fi preluate',
+	retryCompanyCode: "Codul companiei introdus este inexistent, încercați din nou!",
+	result: 'Rezultatul cererii',
+	dataWrong: 'Email/Password ei se înșeală, '
 };
 
 window.locale_ro.settings = {
-	personalData: "Date personale",
-	client: "Client",
-	title: "Setari",
-	check1: 'Minimize Images',
-	check1_descr: "Afiseaza imaginile reduse ale vehiculului",
-	editPassword: "Schimbati parola"
+	personalData: 'Datele personale',
+	client: 'Client',
+	title: 'Setări',
+	check1: 'Reduceți imaginile',
+	check1_descr: 'Afișați imagini reduse ale vehiculului',
+	editPassword: 'Schimbați password'
 };
 
 window.locale_ro.driveLicense = {
-	title: "Permis de conducere",
-	licenta: "Licenta",
-	numarul: "Numarul licentei",
-	issuingCountry: "Locul emiterii",
-	issuingDate: 'Data de lansare',
-	expiringDate: "Data de expirare",
-	editLicense: "Modificati datele de brevet",
-	cancel: "Anulati",
-	save: 'Salvati'
+	title: 'Conducerea datelor',
+	license: 'licență',
+	number: 'Numărul licenței',
+	issuingCountry: 'Luogo di rilascio',
+	issuingDate: 'Locul eliberării',
+	expiringDate : 'Data expirării',
+	editLicense: 'Modificați datele privind brevetele',
+	cancel: 'Anula',
+	save: 'Salvați',
+	fieldMandatory: 'Datele privind permisul de conducere sunt obligatorii!',
+	editSuccess: 'Datele de conducere modificate!',
+	editFail: "Datele licenței nu au putut fi modificate"
 };
 
 window.locale_ro.editPassword = {
-	title: "Schimbarea parolei",
-	currentPassword: 'Introduceti parola curenta',
-	newPassword: 'Introduceti o noua parola',
-	repeatPassword: "Confirmati o noua parola",
-	cancel: "Anulati",
-	edit: 'Edit'
+	title: 'Schimbați Password',
+	currentPassword: 'Introduceți password curentă',
+	newPassword: 'Inserisci password nuova',
+	repeatPassword: 'Introduceți o nouă password',
+	cancel: 'Anula',
+	edit: 'Edita',
+	mandatory: 'Introduceți toate informațiile necesare',
+	passwordNoMatch: 'Noua password nu se potrivește',
+	oldPasswordInvalid: 'Password veche este incorectă',
+	editSuccess: 'Password modificată corect',
+	editFail: 'Password nu a putut fi modificată'
 };
 
 window.locale_ro.contacts = {
-	title: "Contacte",
+	title: 'Contacte',
 	email: 'Email',
 	phone: 'Telefon',
-	time: "ore"
+	time: 'Orar',
+	emailSubject: 'CCS Cerere de asistență #'
 };
 
 window.locale_ro.clientDetails = {
-	title: "Date personale",
-	anagrafic: "Anagrafica",
-	firstName: "Nume",
+	title: 'Datele personale',
+	anagrafic: 'Datele personale',
+	firstName: 'Nume',
 	lastName: 'Nume de familie',
-	username: "Utilizator",
-	badge: "BadgeID",
+	username: 'Username',
+	badge: 'BadgeID',
 	contacts: 'Contacte',
 	email: 'Email',
-	phone: 'Mobile',
-	editContacts: 'Editati contactele',
-	cancel: "Anulati",
-	save: 'Salvati'
+	phone: 'Telefon mobil',
+	editContacts: 'Editați contactele',
+	cancel: 'Anula',
+	save: 'Salvați',
+	mandatory: 'Câmpul de e-mail este obligatoriu',
+	editSuccess: 'Contactele modificate!',
+	editFail: 'Contactele nu au putut fi schimbate'
 };
 
 window.locale_ro.actionSheet = {
-	chageDriver: "Ghid de schimbare",
-	selectEmployee: 'selectati angajatul',
-	confirm: "Confirmati",
-	cancel: "Anulati",
-	continue: "Continuati",
-	Raportarea: "Raportarea",
-	attention: "Atentie",
-	damageInfo1: "Efectuati Raportarea defectiunilor, numai dupa ce ati constatat ca vehiculul nu este in masura sa se intoarca la parcare si trebuie sa fie adus sau transferat intr-un magazin de reparatii.",
-	damageInfo2: "Raportarea defectiunilor implica, prin urmare, inchiderea cursei actuale, pentru a le permite sa rezerve un alt vehicul, daca se doreste. Pentru a incheia aceasta cursa, este solicitata sa comunice in plus ",
-	damageInfo3: "Va rugam sa retineti ca odata ce a fost raportata defectiunea, vehiculul nu va mai fi utilizabil",
-	totalKM: "Total kilometri afisati pe tabloul de bord",
-	noteWithDesc: "Note (utile pentru diagnosticarea problemei)",
-	needSupport: "Daca vehiculul trebuie remorcat sau nu",
-	note: "Note",
-	chooseDefectType: "Alege tipul de defect",
-	fuelLevel: "Selectati nivelul combustibilului din rezervor",
-	notesPlaceholder: "Informatii utile",
-	kmPlaceholder: 'Tastati kilometrajul',
-	mechanicalinc: "Vehicul remorcat in atelier?"
-};
+	chageDriver: 'Modificarea Ghidului',
+	selectEmployee: 'Selectați angajatul',
+	confirm: 'Confirmare',
+	cancel: 'Anula',
+	continue: 'Continua',
+	segnalation: 'Semnalizare',
+	attention: 'Atenție',
+	damageInfo1: 'Efectuați Semnalarea defectuoasă, numai după ce ați constatat că vehiculul nu este C (care poate să se întoarcă la parcare și trebuie să fie adus sau transferat, într-o reparație.',
+	damageInfo2: 'Prin urmare, semnalizarea defecțiunilor implică închiderea cursei actuale, astfel încât să se poată rezerva un alt vehicul, dacă se dorește. Pentru a închide această cursă, este necesar să comunicați în plus',
+	damageInfo3: 'Trebuie remarcat faptul că, odată ce vina a fost raportată, vehiculul nu va mai fi utilizabil',
+	totalKM: 'Kilometri total afișați pe tabloul de bord',
+	noteWithDesc: 'Note (utile pentru diagnosticarea problemei)',
+	needSupport: 'Dacă vehiculul trebuie remorcat sau nu',
+	note: 'Notițe',
+	note2: 'Notițe',
+	chooseDefectType: 'Alegeți tipul de defecțiune',
+	fuelLevel: 'Selectați nivelul combustibilului din rezervor',
+	notesPlaceholder: 'Informații utile',
+	kmPlaceholder: 'Introduceți kilometrajul',
+	mechaninc: 'Vehicul remorcat în atelier?',
+	chooseAlertType: 'Alegeți tipul de semnal..',
+	driversNotFound: "Lista angajaților autorizați nu a putut fi recuperată. Încercați din nou!",
+	cleanNotify: 'Raportarea curățeniei',
+	selectCleanStatusInfo: 'Indicați starea de curățare a vehiculului',
+	successAlertSent: 'Salvarea reușită',
+	failAlertSent: 'Mesajul nu a putut fi salvat. încercați din nou',
+	delayNotify: 'Raportați întârzierea',
+	delayNotifyInfo: 'Cât vei întârzia?',
+	successDelaySent: "Întârzierea a fost comunicată cu succes",
+	failDeilaySent: 'Nu a fost posibil să comunicați returul, încercați din nou.',
+	damageSuccess: 'Raportul a fost efectuat cu succes',
+	damageError: 'Mesajul nu a putut fi salvat. încercați din nou',
+	changeDriverSuccess:'Solicitarea unei modificări a ghidului a fost trimisă',
+	changeDriverError: 'Nu a fost posibilă schimbarea ghidului. încercați din nou'
+}

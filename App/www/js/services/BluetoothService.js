@@ -1,7 +1,9 @@
 angular.module('starter').factory("BluetoothServices", function(ArrayServices, $q, ScriptServices) {
     var currentDevice;
+    var lastReservation;
 
     function connectToVehicle(reservation) {
+        lastReservation = reservation;
         ble.isEnabled(function() {
             console.log('ble is enabled');
             isConnected(reservation);
@@ -60,8 +62,30 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
             return item.characteristic === '75dcca42-81c1-4552-b3b1-1dce25eb4ea2';
         });
         ble.withPromises.startNotification(currentDevice.id, notifyService.service, notifyService.characteristic, function(buffer) {
-            alert("Notify:"+ ArrayServices.bytesToString(buffer));
-            console.log('notify',ArrayServices.bytesToString(buffer) );
+            if (buffer) {
+                var notifyData = ArrayServices.bytesToString(buffer);
+                notifyData = JSON.parse(notifyData);
+                if (notifyData && notifyData.MT) {
+                    switch (notifyData.MT) {
+                        case 100:
+                            console.log('pairingSuccess');
+                            write('pushPNR');
+                            break;
+                        case 5000:
+                            
+                            break;
+                        case 10000:
+                            
+                            break;
+                    
+                        default:
+                            break;
+                    }
+                }
+                
+                console.log('notify',notifyData);
+            }
+            
         }, function() {
             console.log('notifyFail');
             currentDevice = null;
@@ -69,7 +93,7 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
         setTimeout(function() {
             console.log('start Pair');
             write('pair');
-        }, 5000);
+        }, 500);
     }
 
     function versioningRequest() {

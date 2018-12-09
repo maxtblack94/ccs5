@@ -27,7 +27,7 @@ angular.module('starter').controller('MapCtrl', function ($filter, PopUpServices
                     ScriptServices.callGenericService(res, 553).then(function(data) {
                         $state.go('tab.bookings');
                     }, function(error) {
-                        PopUpServices.errorPopup(error+$filter('translate')('commons.retry'));
+                        PopUpServices.errorPopup($filter('translate')('commons.retry'));
                         $ionicLoading.hide();
                     })
                 });

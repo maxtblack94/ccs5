@@ -47,7 +47,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
                 }
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup(error, $filter('translate')('login.companiesMissing'));
+                PopUpServices.errorPopup($filter('translate')('login.companiesMissing'));
             })
         });
     }
@@ -117,7 +117,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
                 });
                 $ionicLoading.hide();
             }, function(error) {
-                PopUpServices.errorPopup(error+', '+ $filter('translate')('commons.retry'));
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
                 $ionicLoading.hide();
             })
         });
@@ -161,7 +161,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
                 }
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup(error+', '+ $filter('translate')('commons.retry'));
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
             })
         });
     }
@@ -177,7 +177,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
                 $ionicLoading.hide(); 
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup(error+', '+ $filter('translate')('commons.retry'));
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
             })
         });
     }

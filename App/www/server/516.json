@@ -4,6 +4,7 @@
         "BookingsList": [
             {
                 "Nr": "14496",
+                "bleID": "B4:B8:59:16:08:76",
                 "status": "Collected",
                 "plate": "ER311YB",
                 "brand_model": "YARIS 1.5 HYBRID ACTIVE 5P CA VM",

@@ -11,6 +11,23 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Manipola
         $scope.$broadcast('scroll.refreshComplete');
     }
 
+    var watchOptions = {
+        timeout : 1000
+      };
+    
+    $cordovaGeolocation.watchPosition(watchOptions).then(null,
+    function(err) {
+        console.log('No position found');
+    }, function(position) {
+        var lat  = position.coords.latitude;
+        var long = position.coords.longitude;
+        InfoFactories.setLastDeviceCoords({
+            lat: lat,
+            long: long
+        });
+        console.log(lat,long);
+    });
+
     /*$scope.scheduleDelayedNotification = function (pnr) {
         var now = new Date().getTime();
         var _10SecondsFromNow = new Date(now + 10 * 1000);
@@ -61,7 +78,7 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Manipola
                 $ionicLoading.hide();
             }, function (error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup(error);
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
             })
         });
 
@@ -123,7 +140,7 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Manipola
                 startCloseOpenCarProcess(reservation, opT, carCoords);
             }, function (error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup(error+ $filter('translate')('bookings.noCoords'));
+                PopUpServices.errorPopup($filter('translate')('bookings.noCoords'));
             })
         });
     }
@@ -132,8 +149,8 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Manipola
         if (opT === "0") {
             var posOptions = { timeout: 10000, enableHighAccuracy: false };
             $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-                var lat = position.coords.latitude
-                var long = position.coords.longitude
+                var lat = position.coords.latitude;
+                var long = position.coords.longitude;
                 var proximityResult = checkProximity(carCoords, { "lat": lat, "long": long }, opT);
                 if (proximityResult) {
                     openCloseCar(reservation, opT);
@@ -142,8 +159,18 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Manipola
                     PopUpServices.errorPopup($filter('translate')('bookings.needProximity'), '1');
                 }
             }, function (err) {
-                $ionicLoading.hide();
-                PopUpServices.errorPopup(err+ $filter('translate')('bookings.noYourCoords'), '1');
+                if (InfoFactories.getLastDeviceCoords() && InfoFactories.getLastDeviceCoords().lat && InfoFactories.getLastDeviceCoords().long) {
+                    var proximityResult = checkProximity(carCoords, InfoFactories.getLastDeviceCoords(), opT);
+                    if (proximityResult) {
+                        openCloseCar(reservation, opT);
+                    } else {
+                        $ionicLoading.hide();
+                        PopUpServices.errorPopup($filter('translate')('bookings.needProximity'), '1');
+                    }
+                }else{
+                    $ionicLoading.hide();
+                    PopUpServices.errorPopup($filter('translate')('bookings.noYourCoords'), '1');
+                }
             });
         } else {
             var proximityResult = checkProximity(carCoords, { "lat": reservation.latP, "long": reservation.lngP }, opT);
@@ -179,7 +206,7 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Manipola
                 $ionicLoading.hide();
                 humanCheckCarOpened(rollbackData);
             }, function(error) {
-                PopUpServices.errorPopup(error+ $filter('translate')('bookings.errorOpenCar'));
+                PopUpServices.errorPopup($filter('translate')('bookings.errorOpenCar'));
                 $ionicLoading.hide();
             })
         });

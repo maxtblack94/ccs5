@@ -17,7 +17,7 @@ angular.module('starter').controller('ConfirmPrenotationCtrl', function($filter,
                 $ionicLoading.hide();
             }, function (error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup(error);
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
             })
         }
     }
@@ -77,7 +77,7 @@ angular.module('starter').controller('ConfirmPrenotationCtrl', function($filter,
                 });
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup(error);
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
             })
         });
     };
