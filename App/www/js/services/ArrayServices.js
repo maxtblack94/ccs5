@@ -8,9 +8,21 @@ angular.module('starter').factory("ArrayServices", function() {
         return array.buffer;
     }
     
-    // ASCII only
     function bytesToString(buffer) {
         return String.fromCharCode.apply(null, new Uint8Array(buffer));
+    }
+
+    function bytesToObject(buffer) {
+        var a = String.fromCharCode.apply(null, new Uint8Array(buffer));
+        console.log('arraybuffer', a);
+        var MT = a.match(/MT":([^;]+),/i);
+        if (MT && MT[1]) {
+            MT = a.match(/MT":([^;]+),/i)[1];
+        }
+        var obj = {
+            MT: MT || null
+        };
+        return obj;
     }
  
 
@@ -21,6 +33,9 @@ angular.module('starter').factory("ArrayServices", function() {
         },
         bytesToString: function (buffer) {
             return bytesToString(buffer);
+        },
+        bytesToObject: function (buffer) {
+            return bytesToObject(buffer);
         }
     };
 

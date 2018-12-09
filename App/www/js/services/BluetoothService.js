@@ -1,8 +1,10 @@
-angular.module('starter').factory("BluetoothServices", function(ArrayServices, $q, ScriptServices) {
+angular.module('starter').factory("BluetoothServices", function(InfoFactories, ArrayServices, $q, ScriptServices) {
     var currentDevice;
-    var lastReservation;
+    var lastReservation, lastOperation, userInfo;
 
-    function connectToVehicle(reservation) {
+    function connectToVehicle(reservation, operation) {
+        userInfo = InfoFactories.getUserInfo();
+        lastOperation = operation;
         lastReservation = reservation;
         ble.isEnabled(function() {
             console.log('ble is enabled');
@@ -63,18 +65,16 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
         });
         ble.withPromises.startNotification(currentDevice.id, notifyService.service, notifyService.characteristic, function(buffer) {
             if (buffer) {
-                var notifyData = ArrayServices.bytesToString(buffer);
-                notifyData = JSON.parse(notifyData);
+                var notifyData = ArrayServices.bytesToObject(buffer);
                 if (notifyData && notifyData.MT) {
                     switch (notifyData.MT) {
-                        case 100:
-                            console.log('pairingSuccess');
+                        case "100":
                             write('pushPNR');
                             break;
-                        case 5000:
+                        case "5000":
                             
                             break;
-                        case 10000:
+                        case "10000":
                             
                             break;
                     
@@ -117,7 +117,7 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
             Version: "0000",
             IDPNR : lastReservation.pnr,
             MessageType: action ? "6": "5",
-            IDBadge: lastReservation.Nr
+            IDBadge: (userInfo.registry || {}).badge_id
         };
 
         var TKNString = JSON.stringify(TKN);
@@ -145,7 +145,7 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
                 string = pairingRequest();
                 break;
             case "pushPNR":
-                string = pushPNRRequest();
+                string = lastOperation ==='pushPNR'? pushPNRRequest():pushPNRRequest('close');;
                 break;
             case "pushPNRClose":
                 string = pushPNRRequest('close');
@@ -163,6 +163,7 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
             console.log('write', error);
         });
     };
+
 
     
 

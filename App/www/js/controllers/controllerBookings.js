@@ -1,7 +1,6 @@
-angular.module('starter').controller('BookingsCtrl', function ($filter, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices) {
+angular.module('starter').controller('BookingsCtrl', function ($filter, LocationService, BluetoothServices, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
-    var permissions;
 
     var favo = window.localStorage.getItem('favoriteParking') ? eval('(' + window.localStorage.getItem('favoriteParking') + ')') : null;
     if (favo) {
@@ -12,38 +11,18 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Manipola
         $scope.$broadcast('scroll.refreshComplete');
     }
 
+    setTimeout(function() {
+        LocationService.requestLocationAuthorization();
+        doWatchLocation();
+    }, 2000);
 
-    if (cordova.plugins && cordova.plugins.permissions) {
-        permissions = cordova.plugins.permissions;
-    }
-
-
-    if (permissions) {
-        permissions.checkPermission(permissions.ACCESS_COARSE_LOCATION, function (success) {
-            if (success.hasPermission) {
-                doWatchLocation();
-            }else{
-                requestGPSPermissions();
-            }
-        }, function (error) {
-            requestGPSPermissions();
-        });
-    }
-
-    function requestGPSPermissions(params) {
-        permissions.requestPermission(permissions.ACCESS_COARSE_LOCATION, function (success) {
-            doWatchLocation();
-        }, function (error) {
-            requestGPSPermissions();
-        });
-    }
 
     function doWatchLocation (){
         var watchOptions = {
             timeout : 5000
           };
         
-        navigator.geolocation.watchPosition(watchOptions).then(null, function(position) {
+        navigator.geolocation.watchPosition(function(position) {
             var lat  = position.coords.latitude;
             var long = position.coords.longitude;
             InfoFactories.setLastDeviceCoords({
@@ -53,7 +32,7 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Manipola
             console.log(lat,long);
         }, function(err) {
             console.log('No position found');
-        });
+        }, watchOptions);
     }
 
     /*$scope.scheduleDelayedNotification = function (pnr) {
@@ -174,8 +153,14 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Manipola
     }
 
     function startCloseOpenCarProcess(reservation, opT, carCoords) {
-        if (opT === "0") {
-            var posOptions = { timeout: 10000, enableHighAccuracy: false };
+        /* if (opT === "0" && reservation.bleID) {
+            BluetoothServices.connectToVehicle(reservation, "pushPNR");
+            $ionicLoading.hide();
+        }else if (opT === "1" && reservation.bleID) {
+            BluetoothServices.connectToVehicle(reservation, "pushPNRClose");
+            $ionicLoading.hide();
+        }else  */if (opT === "0") {
+            var posOptions = { timeout: 3000, enableHighAccuracy: false };
             $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
                 var lat = position.coords.latitude;
                 var long = position.coords.longitude;

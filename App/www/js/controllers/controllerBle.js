@@ -13,7 +13,41 @@ angular.module('starter').controller('BleCtrl', function(BluetoothServices, Arra
     };
 
     $scope.connect = function() {
-        BluetoothServices.connectToVehicle({bleID:"B4:B8:59:16:08:76"});
+        BluetoothServices.connectToVehicle({
+            "Nr": "14496",
+            "bleID": "B4:B8:59:16:08:76",
+            "bleCharacteristics" : "75dcca42-81c1-4552-b3b1-1dce25eb4ea2",
+            "status": "Booked",
+            "plate": "ER311YB",
+            "brand_model": "YARIS 1.5 HYBRID ACTIVE 5P CA VM",
+            "pnr": "0104C1BF02CE2B8014496",
+            "pickup_parking": "Roma Tupini",
+            "pickup_date": "16/03/2017",
+            "seats":"8",
+            "pickup_time": "16/03/2017 15:40:42",
+            "return_parking": "Roma Tupini",
+            "return_date": "04/04/2018",
+            "return_time": "16/03/2017 23:59:00",
+            "pickup_date_tollerance": "16/03/2017",
+            "pickup_time_tollerance": "16/03/2017 14:40:00",
+            "return_date_tollerance": "04/04/2018",
+            "return_time_tollerance": "16/03/2017 23:59:00",
+            "cmb_color": "Blu",
+            "image_max": "http://corporatecarsharing.it/images/vehicles/toyota/yaris-hybrid-white-l.jpg",
+            "image_min": "http://corporatecarsharing.it/images/vehicles/toyota/yaris-hybrid-white-s.jpg",
+            "km": "47.692",
+            "vehicle_status": "Ok",
+            "vehicle_cleanness_state": "Ok",
+            "parking_slot": "0",
+            "fuel": "Benzina",
+            "destination": "",
+            "lat": "41.8289516666667",
+            "lng": "12.4603988333333",
+            "latP": "41.830809",
+            "lngP": "12.4598",
+            "address": "Viale Umberto Tupini, 180",
+            "cmb_fuel_quantity": "2/4"
+        });
     };
 
     $scope.disconnect = function(){

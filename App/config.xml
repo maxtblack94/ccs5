@@ -20,6 +20,7 @@
     <preference name="xwalkMultipleApk" value="true" />
     <preference name="windows-target-version" value="10.0" />
     <preference name="SplashScreenBackgroundColor" value="#fc0300" />
+    <preference name="cordova.plugins.diagnostic.modules" value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
@@ -101,6 +102,8 @@
         <variable name="BLUETOOTH_USAGE_DESCRIPTION" value="Your description here" />
     </plugin>
     <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
-    <engine name="android" spec="6.3.0" />
+    <plugin name="cordova-plugin-request-location-accuracy" spec="^2.2.3" />
+    <plugin name="cordova.plugins.diagnostic" spec="^4.0.10" />
     <engine name="ios" spec="4.5.4" />
+    <engine name="android" spec="7.0.0" />
 </widget>
