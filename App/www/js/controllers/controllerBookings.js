@@ -1,6 +1,7 @@
 angular.module('starter').controller('BookingsCtrl', function ($filter, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
+    var permissions;
 
     var favo = window.localStorage.getItem('favoriteParking') ? eval('(' + window.localStorage.getItem('favoriteParking') + ')') : null;
     if (favo) {
@@ -11,22 +12,49 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Manipola
         $scope.$broadcast('scroll.refreshComplete');
     }
 
-    var watchOptions = {
-        timeout : 1000
-      };
-    
-    $cordovaGeolocation.watchPosition(watchOptions).then(null,
-    function(err) {
-        console.log('No position found');
-    }, function(position) {
-        var lat  = position.coords.latitude;
-        var long = position.coords.longitude;
-        InfoFactories.setLastDeviceCoords({
-            lat: lat,
-            long: long
+
+    if (cordova.plugins && cordova.plugins.permissions) {
+        permissions = cordova.plugins.permissions;
+    }
+
+
+    if (permissions) {
+        permissions.checkPermission(permissions.ACCESS_COARSE_LOCATION, function (success) {
+            if (success.hasPermission) {
+                doWatchLocation();
+            }else{
+                requestGPSPermissions();
+            }
+        }, function (error) {
+            requestGPSPermissions();
         });
-        console.log(lat,long);
-    });
+    }
+
+    function requestGPSPermissions(params) {
+        permissions.requestPermission(permissions.ACCESS_COARSE_LOCATION, function (success) {
+            doWatchLocation();
+        }, function (error) {
+            requestGPSPermissions();
+        });
+    }
+
+    function doWatchLocation (){
+        var watchOptions = {
+            timeout : 5000
+          };
+        
+        navigator.geolocation.watchPosition(watchOptions).then(null, function(position) {
+            var lat  = position.coords.latitude;
+            var long = position.coords.longitude;
+            InfoFactories.setLastDeviceCoords({
+                lat: lat,
+                long: long
+            });
+            console.log(lat,long);
+        }, function(err) {
+            console.log('No position found');
+        });
+    }
 
     /*$scope.scheduleDelayedNotification = function (pnr) {
         var now = new Date().getTime();

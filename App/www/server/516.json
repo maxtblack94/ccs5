@@ -5,7 +5,8 @@
             {
                 "Nr": "14496",
                 "bleID": "B4:B8:59:16:08:76",
-                "status": "Collected",
+                "bleCharacteristics" : "75dcca42-81c1-4552-b3b1-1dce25eb4ea2",
+                "status": "Booked",
                 "plate": "ER311YB",
                 "brand_model": "YARIS 1.5 HYBRID ACTIVE 5P CA VM",
                 "pnr": "0104C1BF02CE2B8014496",

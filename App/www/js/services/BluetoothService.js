@@ -59,7 +59,7 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
     function doNotifyRequest() {
         console.log('start notify');
         var notifyService = currentDevice.characteristics.find(function(item){
-            return item.characteristic === '75dcca42-81c1-4552-b3b1-1dce25eb4ea2';
+            return item.characteristic === lastReservation.bleCharacteristics;
         });
         ble.withPromises.startNotification(currentDevice.id, notifyService.service, notifyService.characteristic, function(buffer) {
             if (buffer) {
@@ -115,9 +115,9 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
     function pushPNRRequest(action) {
         var TKN = {
             Version: "0000",
-            IDPNR : "2A8BB7767666",
+            IDPNR : lastReservation.pnr,
             MessageType: action ? "6": "5",
-            IDBadge: "0122578B2A000000"
+            IDBadge: lastReservation.Nr
         };
 
         var TKNString = JSON.stringify(TKN);
@@ -134,7 +134,7 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
 
     function write(action){
         var writeService = currentDevice.characteristics.find(function(item){
-            return item.characteristic === '75dcca42-81c1-4552-b3b1-1dce25eb4ea2';
+            return item.characteristic === lastReservation.bleCharacteristics;
         });
         var string = "";
         switch (action) {
