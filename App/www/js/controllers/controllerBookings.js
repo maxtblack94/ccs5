@@ -12,7 +12,10 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Location
     }
 
     setTimeout(function() {
-        LocationService.requestLocationAuthorization();
+        var location = LocationService.requestLocationAuthorization();
+        if (!location) {
+            LocationService.isLocationAviable();
+        }
         doWatchLocation();
     }, 2000);
 

@@ -6,7 +6,7 @@
     "@ionic/cloud": "0.16.0",
     "bluebird": "3.5.0",
     "cordova-android": "7.0.0",
-    "cordova-ios": "4.5.4",
+    "cordova-ios": "4.5.5",
     "cordova-plugin-android-permissions": "^1.0.0",
     "cordova-plugin-ble-central": "1.2.2",
     "cordova-plugin-compat": "1.2.0",
@@ -59,8 +59,8 @@
   ],
   "cordova": {
     "platforms": [
-      "ios",
-      "android"
+      "android",
+      "ios"
     ],
     "plugins": {
       "cordova-plugin-device": {},

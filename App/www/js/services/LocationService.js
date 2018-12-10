@@ -1,4 +1,4 @@
-angular.module('starter').factory("LocationService", function ($ionicPlatform) {
+angular.module('starter').factory("LocationService", function ($ionicPlatform, PopUpServices, $filter) {
     var platform;
     $ionicPlatform.ready(function () {
         platform = cordova.platformId;
@@ -73,12 +73,23 @@ angular.module('starter').factory("LocationService", function ($ionicPlatform) {
         });
     }
 
+    function isLocationAviable(){
+        cordova.plugins.diagnostic.isLocationAvailable(function (success) {
+            if (!success && platform === "ios") {
+                PopUpServices.errorPopup($filter('translate')('commons.locationNotAviable'), '1');
+            }
+        });
+    }
+
     return {
         requestLocationAuthorization: function () {
             return requestLocationAuthorization();
         },
         requestLocationAccuracy: function () {
             return requestLocationAccuracy();
+        },
+        isLocationAviable: function () {
+            return isLocationAviable();
         }
     };
 });

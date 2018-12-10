@@ -79,6 +79,7 @@ window.locale_ro.commons = {
 	yes: 'Ea',
 	no: 'Nu',
 	retry: 'încercați din nou',
+	locationNotAviable: 'Pentru a putea utiliza serviciul "Start Race" / "End of Race" disponibil pe APP, este necesar să permiteți localizarea geografică a acestui smartphone. În caz contrar, nu puteți fi activat pentru serviciu.',
 	legalNotice: 'Copyright © 2016 Corporate Car Solutions Italia  All Rights Reserved',
 	readMore: 'Continuați să citiți ...',
 	search: 'căutare...',

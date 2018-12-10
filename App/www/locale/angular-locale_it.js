@@ -78,6 +78,7 @@ window.locale_it.commons = {
 	refresh: 'Aggiorna...',
 	yes: 'Si',
 	no: 'No',
+	locationNotAviable: 'Per poter utilizzare il servizio "Inizio Corsa" / "Fine Corsa" disponibile sulla nostra APP, è necessario consentire la geolocalizzazione di questo smartphone. In caso contrario non potrete essere abilitati al servizio.',
 	retry: 'Riprovare',
 	legalNotice: 'Copyright © 2016 Corporate Car Solutions Italia - All Rights Reserved',
 	readMore: 'Continua a leggere...',
