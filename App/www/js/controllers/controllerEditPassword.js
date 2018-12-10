@@ -36,10 +36,10 @@ angular.module('starter').controller('EditPasswordCtrl', function($filter, $ioni
                 ($scope.userInfo.registry || {}).password = data.data;
                 window.localStorage.setItem('userInfo', JSON.stringify($scope.userInfo));
                 $ionicLoading.hide();
-                PopUpServices.messagePopup($filter('translate')('editPasssword.editSuccess'), $filter('translate')('commons.success'), returnBooking);
+                PopUpServices.messagePopup($filter('translate')('editPassword.editSuccess'), $filter('translate')('commons.success'), returnBooking);
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup($filter('translate')('editPasssword.editFail'));
+                PopUpServices.errorPopup($filter('translate')('editPassword.editFail'));
             })
         });
    };

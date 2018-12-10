@@ -79,7 +79,7 @@ window.locale_ro.commons = {
 	yes: 'Ea',
 	no: 'Nu',
 	retry: 'încercați din nou',
-	legalNotice: 'Copyright B) 2016 Corporate Car Solutions Italia  All Rights Reserved',
+	legalNotice: 'Copyright © 2016 Corporate Car Solutions Italia  All Rights Reserved',
 	readMore: 'Continuați să citiți ...',
 	search: 'căutare...',
 	select: 'selecta',
