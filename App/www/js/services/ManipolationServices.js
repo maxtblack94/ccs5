@@ -7,23 +7,23 @@ angular.module('starter').factory("ManipolationServices", function() {
         return newDate;
     };
     function trascodeFuel(value) {
-        if (Number.isInteger(value)) {
-            return String(value) + '%';
-        }else{
+        if (value.search("/")) {
             switch(value) {
-            default: 
-                break;
-            case '0/4': 
-                return '0%';
-            case '1/4': 
-                return '25%';
-            case '2/4': 
-                return '50%';
-            case '3/4': 
-                return '75%';
-            case '4/4': 
-                return '100%';
-            }
+                default: 
+                    break;
+                case '0/4': 
+                    return '0%';
+                case '1/4': 
+                    return '25%';
+                case '2/4': 
+                    return '50%';
+                case '3/4': 
+                    return '75%';
+                case '4/4': 
+                    return '100%';
+                }
+        }else{
+            return value;
         }
         
     };

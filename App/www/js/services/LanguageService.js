@@ -9,10 +9,10 @@ angular.module('starter').factory("LanguageService", function($translate) {
                 break;
             case 'it-IT':
             case 'it_IT':
-                tenForceAuthID = 'dGVuZm9yY2Uucm9AVEYuY29tfGRlbW9ybzE4NDUy';
+                tenForceAuthID = 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4';
                 break;
             default:
-                tenForceAuthID = 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4'; //English
+                tenForceAuthID = 'dGVuZm9yY2UuZW5AVEYuY29tfHRlbmZvcmNlNTYyNDc='; //English
                 break;
         }
         return tenForceAuthID;

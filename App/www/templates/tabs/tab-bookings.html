@@ -54,7 +54,11 @@
               <i ng-if="book.vehicle_cleanness_status == 'Dirty'" class='ion-sad-outline' style='font-size: 26px; color: #fc0300;'></i>
             </div>
           </div>
-          <div class="pull-right fuel_container">
+          <div class="pull-right fuel_container" ng-if="book.cmb_electric_quantity">
+            <i class="fa fa-bolt elecric-icon" aria-hidden="true"></i>
+            <div class="pull-right bold fuel_value">{{ ::book.cmb_electric_quantity }}</div>
+          </div>
+          <div class="pull-right fuel_container" ng-if="book.cmb_fuel_quantity">
             <div class="pull-left fuel"></div>
             <div class="pull-left bold fuel_value">{{ ::book.cmb_fuel_quantity }}</div>
           </div>

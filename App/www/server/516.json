@@ -35,7 +35,8 @@
                 "latP": "41.830809",
                 "lngP": "12.4598",
                 "address": "Viale Umberto Tupini, 180",
-                "cmb_fuel_quantity": "2/4"
+                "cmb_fuel_quantity": "2/4",
+                "cmb_electric_quantity": "68%"
             }
         ]
     }

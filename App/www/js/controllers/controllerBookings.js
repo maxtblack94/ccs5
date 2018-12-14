@@ -144,8 +144,8 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Location
             ScriptServices.callGenericService(res, 627).then(function (data) {
                 var response = data.data.split(',');
                 var carCoords = {
-                    "lat": response[0],
-                    "long": response[1]
+                    "lat": parseFloat(response[0]),
+                    "long": parseFloat(response[1])
                 }
                 startCloseOpenCarProcess(reservation, opT, carCoords);
             }, function (error) {
@@ -189,7 +189,7 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Location
                 }
             });
         } else {
-            var proximityResult = checkProximity(carCoords, { "lat": reservation.latP, "long": reservation.lngP }, opT);
+            var proximityResult = checkProximity(carCoords, reservation, opT);
             if (proximityResult) {
                 openCloseCar(reservation, opT);
             } else {
@@ -199,14 +199,21 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Location
         }
     }
     function checkProximity(carCoords, coordsCustom, type) {
-        var configuredDistance = $scope.selectedClient.distanceRange || ($scope.userInfo.registry || {}).distanceRange || 0.20;
-        var radlat1 = Math.PI * carCoords.lat / 180;
-        var radlat2 = Math.PI * coordsCustom.lat / 180;
-        var theta = carCoords.long - coordsCustom.long;
-        var radtheta = Math.PI * theta / 180;
+        var configuredDistance;
+        if (type === "0") {
+            configuredDistance = $scope.selectedClient.distanceRange || ($scope.userInfo.registry || {}).distanceRange || 0.2;
+        }else{
+            configuredDistance = reservation.num_radius_parking || 0.3;
+            coordsCustom.lat = reservation.latP;
+            coordsCustom.long = reservation.lngP;
+        }
+        var radlat1 = Math.PI * carCoords.lat/180;
+        var radlat2 = Math.PI * coordsCustom.lat/180;
+        var theta = carCoords.long-coordsCustom.long;
+        var radtheta = Math.PI * theta/180;
         var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-        dist = Math.acos(dist);
-        dist = dist * 180 / Math.PI;
+        dist = Math.acos(dist)
+        dist = dist * 180/Math.PI;
         dist = dist * 60 * 1.1515;
         dist = dist * 1.609344;
         configuredDistance = angular.isString(configuredDistance) ? parseInt(configuredDistance) : configuredDistance;

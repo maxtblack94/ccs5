@@ -1,5 +1,5 @@
 {
-    "retcode": 50,
+    "retcode": 0,
     "retDescription" : "La tua patente è scaduta, non puoi effettuare prenotazioni",
     "data": {
         "VehiclesList": [
@@ -13,6 +13,7 @@
                 "vehicle_status": "Ok",
                 "vehicle_cleanness_status": "Ok",
                 "fuel_quantity": "2/4",
+                "electric_quantity": "69%",
                 "daily_mileage": "0",
                 "km": "00",
                 "fuel": "Gasolio",

@@ -1,7 +1,9 @@
 angular.module('starter').factory("LocationService", function ($ionicPlatform, PopUpServices, $filter) {
     var platform;
     $ionicPlatform.ready(function () {
-        platform = cordova.platformId;
+        if (cordova) {
+            platform = cordova.platformId;
+        }
     });
 
 
@@ -40,7 +42,9 @@ angular.module('starter').factory("LocationService", function ($ionicPlatform, P
     }
 
     function requestLocationAuthorization() {
-        cordova.plugins.diagnostic.requestLocationAuthorization(handleLocationAuthorizationStatus, onError);
+        if (cordova) {
+            cordova.plugins.diagnostic.requestLocationAuthorization(handleLocationAuthorizationStatus, onError);
+        }
     }
 
     function requestLocationAccuracy() {
