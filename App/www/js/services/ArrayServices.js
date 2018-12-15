@@ -15,6 +15,7 @@ angular.module('starter').factory("ArrayServices", function() {
     function bytesToObject(buffer) {
         var a = String.fromCharCode.apply(null, new Uint8Array(buffer));
         console.log('arraybuffer', a);
+        alert('notify:', a);
         var MT = a.match(/MT":([^;]+),/i);
         if (MT && MT[1]) {
             MT = a.match(/MT":([^;]+),/i)[1];

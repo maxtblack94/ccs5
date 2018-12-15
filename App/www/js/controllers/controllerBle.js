@@ -1,26 +1,28 @@
 angular.module('starter').controller('BleCtrl', function(BluetoothServices, ArrayServices, ScriptServices, InfoFactories, $rootScope, $scope, $ionicLoading) {
 
     $scope.startMission = function() {
-        BluetoothServices.write("pushPNR");
+        BluetoothServices.connectToVehicle(defineReservation(), "pushPNR");
     };
 
-    $scope.pairing = function() {
-        BluetoothServices.write("pair");
+    $scope.customPNR = '';
+
+    $scope.stopMission = function() {
+        BluetoothServices.connectToVehicle(defineReservation(), "pushPNRClose");
     };
 
     $scope.versioning = function() {
         BluetoothServices.write("version");
     };
-
-    $scope.connect = function() {
-        BluetoothServices.connectToVehicle({
+    
+    function defineReservation() {
+        return {
             "Nr": "14496",
-            "bleID": "B4:B8:59:16:08:76",
+            "bleID": "B4:B8:59:16:08:76",//00:A0:50:9E:2B:67
             "bleCharacteristics" : "75dcca42-81c1-4552-b3b1-1dce25eb4ea2",
             "status": "Booked",
             "plate": "ER311YB",
             "brand_model": "YARIS 1.5 HYBRID ACTIVE 5P CA VM",
-            "pnr": "0104C1BF02CE2B8014496",
+            "pnr": $scope.customPNR || new Date().getTime(),
             "pickup_parking": "Roma Tupini",
             "pickup_date": "16/03/2017",
             "seats":"8",
@@ -47,8 +49,8 @@ angular.module('starter').controller('BleCtrl', function(BluetoothServices, Arra
             "lngP": "12.4598",
             "address": "Viale Umberto Tupini, 180",
             "cmb_fuel_quantity": "2/4"
-        });
-    };
+        }
+    }
 
     $scope.disconnect = function(){
         BluetoothServices.disconnect();

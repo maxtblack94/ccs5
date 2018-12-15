@@ -156,13 +156,13 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Location
     }
 
     function startCloseOpenCarProcess(reservation, opT, carCoords) {
-        /* if (opT === "0" && reservation.bleID) {
+        if (opT === "0" && reservation.bleID) {
             BluetoothServices.connectToVehicle(reservation, "pushPNR");
             $ionicLoading.hide();
         }else if (opT === "1" && reservation.bleID) {
             BluetoothServices.connectToVehicle(reservation, "pushPNRClose");
             $ionicLoading.hide();
-        }else  */if (opT === "0") {
+        }else if (opT === "0") {
             var posOptions = { timeout: 3000, enableHighAccuracy: false };
             $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
                 var lat = position.coords.latitude;
