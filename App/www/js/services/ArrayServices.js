@@ -1,4 +1,4 @@
-angular.module('starter').factory("ArrayServices", function() {
+angular.module('starter').factory("ArrayServices", function(PopUpServices) {
     // ASCII only
     function stringToBytes(string) {
         var array = new Uint8Array(string.length);
@@ -15,7 +15,7 @@ angular.module('starter').factory("ArrayServices", function() {
     function bytesToObject(buffer) {
         var a = String.fromCharCode.apply(null, new Uint8Array(buffer));
         console.log('arraybuffer', a);
-        alert('notify:', a);
+        PopUpServices.messagePopup(a, 'Notify');
         var MT = a.match(/MT":([^;]+),/i);
         if (MT && MT[1]) {
             MT = a.match(/MT":([^;]+),/i)[1];

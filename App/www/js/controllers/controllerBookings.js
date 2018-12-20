@@ -11,13 +11,16 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Location
         $scope.$broadcast('scroll.refreshComplete');
     }
 
-    setTimeout(function() {
-        var location = LocationService.requestLocationAuthorization();
-        if (!location) {
-            LocationService.isLocationAviable();
-        }
-        doWatchLocation();
-    }, 2000);
+    if ($scope.selectedClient.map) {
+        setTimeout(function() {
+            var location = LocationService.requestLocationAuthorization();
+            if (!location) {
+                LocationService.isLocationAviable();
+            }
+            doWatchLocation();
+        }, 2000);
+    }
+    
 
 
     function doWatchLocation (){
@@ -156,13 +159,13 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Location
     }
 
     function startCloseOpenCarProcess(reservation, opT, carCoords) {
-        if (opT === "0" && reservation.bleID) {
+        /* if (opT === "0" && reservation.bleID) {
             BluetoothServices.connectToVehicle(reservation, "pushPNR");
             $ionicLoading.hide();
         }else if (opT === "1" && reservation.bleID) {
             BluetoothServices.connectToVehicle(reservation, "pushPNRClose");
             $ionicLoading.hide();
-        }else if (opT === "0") {
+        }else  */if (opT === "0") {
             var posOptions = { timeout: 3000, enableHighAccuracy: false };
             $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
                 var lat = position.coords.latitude;
@@ -203,9 +206,9 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Location
         if (type === "0") {
             configuredDistance = $scope.selectedClient.distanceRange || ($scope.userInfo.registry || {}).distanceRange || 0.2;
         }else{
-            configuredDistance = reservation.num_radius_parking || 0.3;
-            coordsCustom.lat = reservation.latP;
-            coordsCustom.long = reservation.lngP;
+            configuredDistance = coordsCustom.radius_parking || 0.3;
+            coordsCustom.lat = coordsCustom.latP;
+            coordsCustom.long = coordsCustom.lngP;
         }
         var radlat1 = Math.PI * carCoords.lat/180;
         var radlat2 = Math.PI * coordsCustom.lat/180;

@@ -1,43 +1,42 @@
 {
     "retcode": 0,
     "data": {
-        "BookingsList": [
-            {
-                "Nr": "14496",
-                "bleID": "B4:B8:59:16:08:76",
-                "bleCharacteristics" : "75dcca42-81c1-4552-b3b1-1dce25eb4ea2",
-                "status": "Booked",
-                "plate": "ER311YB",
-                "brand_model": "YARIS 1.5 HYBRID ACTIVE 5P CA VM",
-                "pnr": "0104C1BF02CE2B8014496",
-                "pickup_parking": "Roma Tupini",
-                "pickup_date": "16/03/2017",
-                "seats":"8",
-                "pickup_time": "16/03/2017 15:40:42",
-                "return_parking": "Roma Tupini",
-                "return_date": "04/04/2018",
-                "return_time": "16/03/2017 23:59:00",
-                "pickup_date_tollerance": "16/03/2017",
-                "pickup_time_tollerance": "16/03/2017 14:40:00",
-                "return_date_tollerance": "04/04/2018",
-                "return_time_tollerance": "16/03/2017 23:59:00",
-                "cmb_color": "Blu",
-                "image_max": "http://corporatecarsharing.it/images/vehicles/toyota/yaris-hybrid-white-l.jpg",
-                "image_min": "http://corporatecarsharing.it/images/vehicles/toyota/yaris-hybrid-white-s.jpg",
-                "km": "47.692",
-                "vehicle_status": "Ok",
-                "vehicle_cleanness_state": "Ok",
-                "parking_slot": "0",
-                "fuel": "Benzina",
-                "destination": "",
-                "lat": "41.8289516666667",
-                "lng": "12.4603988333333",
-                "latP": "41.830809",
-                "lngP": "12.4598",
-                "address": "Viale Umberto Tupini, 180",
-                "cmb_fuel_quantity": "2/4",
-                "cmb_electric_quantity": "68%"
-            }
-        ]
+      "BookingsList": [
+        {
+          "Nr": "48111",
+          "status": "Collected",
+          "plate": "FD627KF",
+          "brand_model": "208 ACTIVE 1.4 HDI 68CV FAP 5 PORTE",
+          "pnr": "00000104D96FD2AA488048111",
+          "pickup_parking": "Roma Demo",
+          "pickup_date": "20/12/2018",
+          "pickup_time": "20/12/2018 17:30:00",
+          "return_parking": "Roma Demo",
+          "return_date": "20/12/2018",
+          "return_time": "20/12/2018 17:45:00",
+          "pickup_date_tollerance": "20/12/2018",
+          "pickup_time_tollerance": "20/12/2018 17:00:00",
+          "return_date_tollerance": "20/12/2018",
+          "return_time_tollerance": "20/12/2018 18:15:00",
+          "cmb_color": "Grigio",
+          "image_max": "https://texa.corporatecarsharing.it/images/vehicles/peugeot/208-grey-l.jpg",
+          "image_min": "https://texa.corporatecarsharing.it/images/vehicles/peugeot/208-grey-s.jpg",
+          "km": "23.352",
+          "vehicle_status": "Ok",
+          "vehicle_cleanness_state": "Ok",
+          "parking_slot": "0",
+          "fuel": "Elettrica",
+          "destination": "Test ccs",
+          "returnDateChanged": "False",
+          "lat": "41.831382",
+          "lng": "12.462942",
+          "latP": "41.8318414",
+          "lngP": "12.4631551",
+          "address": "Piazzale dello Sport",
+          "radius_parking": "495",
+          "cmb_electric_quantity": "49%",
+          "cmb_fuel_quantity": ""
+        }
+      ]
     }
-}
+  }

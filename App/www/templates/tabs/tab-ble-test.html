@@ -4,7 +4,10 @@
         </ion-refresher>
         <div class="list">
             <label class="item item-input">
-                <input type="text" placeholder="PNR" ng-model="customPNR">
+                <input type="text" placeholder="PNR" ng-model="model.customPNR">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="BLE ID (MAC)" ng-model="model.bleID">
             </label>
         </div>
         <button class="button button-balanced button-block" ng-click="startMission()"> Start Mission</button>

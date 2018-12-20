@@ -4,7 +4,10 @@ angular.module('starter').controller('BleCtrl', function(BluetoothServices, Arra
         BluetoothServices.connectToVehicle(defineReservation(), "pushPNR");
     };
 
-    $scope.customPNR = '';
+    $scope.model = $scope.model || {};
+
+    $scope.model.customPNR = '';
+    $scope.model.bleID = "00:A0:50:9E:2B:67";
 
     $scope.stopMission = function() {
         BluetoothServices.connectToVehicle(defineReservation(), "pushPNRClose");
@@ -17,12 +20,12 @@ angular.module('starter').controller('BleCtrl', function(BluetoothServices, Arra
     function defineReservation() {
         return {
             "Nr": "14496",
-            "bleID": "B4:B8:59:16:08:76",//00:A0:50:9E:2B:67
+            "bleID": $scope.model.bleID || "B4:B8:59:16:08:76",
             "bleCharacteristics" : "75dcca42-81c1-4552-b3b1-1dce25eb4ea2",
             "status": "Booked",
             "plate": "ER311YB",
             "brand_model": "YARIS 1.5 HYBRID ACTIVE 5P CA VM",
-            "pnr": $scope.customPNR || new Date().getTime(),
+            "pnr": $scope.model.customPNR || new Date().getTime(),
             "pickup_parking": "Roma Tupini",
             "pickup_date": "16/03/2017",
             "seats":"8",

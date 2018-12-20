@@ -115,9 +115,9 @@ angular.module('starter').factory("BluetoothServices", function(InfoFactories, A
     function pushPNRRequest(action) {
         var TKN = {
             Version: "0000",
-            IDPNR : lastReservation.pnr,
+            IDPNR : lastReservation.pnr || "82939992889",
             MessageType: action ? "6": "5",
-            IDBadge: (userInfo.registry || {}).badge_id
+            IDBadge: "0122578B2A000000" //(userInfo.registry || {}).badge_id
         };
 
         var TKNString = JSON.stringify(TKN);
@@ -179,8 +179,8 @@ angular.module('starter').factory("BluetoothServices", function(InfoFactories, A
 
 
     return {
-        connectToVehicle: function (reservation) {
-            return connectToVehicle(reservation);
+        connectToVehicle: function (reservation, operation) {
+            return connectToVehicle(reservation, operation);
         },
         disconnect: function () {
             return disconnect();
