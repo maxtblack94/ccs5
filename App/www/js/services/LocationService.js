@@ -43,8 +43,16 @@ angular.module('starter').factory("LocationService", function ($ionicPlatform, P
 
     function requestLocationAuthorization() {
         if (cordova) {
-            cordova.plugins.diagnostic.requestLocationAuthorization(handleLocationAuthorizationStatus, onError);
+            if (platform !=='android') {
+                PopUpServices.messagePopup($filter('translate')('bookings.gpsAlert'), $filter('translate')('commons.attention'), polocyPopupCallback);
+            }else{
+                cordova.plugins.diagnostic.requestLocationAuthorization(handleLocationAuthorizationStatus, onError);
+            }
         }
+    }
+
+    function polocyPopupCallback(params) {
+        cordova.plugins.diagnostic.requestLocationAuthorization(handleLocationAuthorizationStatus, onError);
     }
 
     function requestLocationAccuracy() {
@@ -80,7 +88,7 @@ angular.module('starter').factory("LocationService", function ($ionicPlatform, P
     function isLocationAviable(){
         cordova.plugins.diagnostic.isLocationAvailable(function (success) {
             if (!success && platform === "ios") {
-                PopUpServices.errorPopup($filter('translate')('commons.locationNotAviable'), '1');
+                PopUpServices.errorPopup($filter('translate')('bookings.gpsAlert'), '1');
             }
         });
     }

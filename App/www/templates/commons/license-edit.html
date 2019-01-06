@@ -2,7 +2,7 @@
     <ion-content>
         <ion-list>
             <ion-item class="item-divider">
-                <h2>{{ 'driveLicense.license' | translate}}"</h2>
+                <h2>{{ 'driveLicense.license' | translate}}</h2>
             </ion-item>
             <div ng-if="!request">
                 <ion-item>
@@ -24,7 +24,7 @@
             </div>
             <div ng-if="request">
                 <ion-item class="item-input item-stacked-label">
-                    <span class="input-label">{{ 'driveLicense.number' | translate}<span class="color-error">*</span></span>
+                    <span class="input-label">{{ 'driveLicense.number' | translate}}<span class="color-error">*</span></span>
                     <input type="text" ng-model="request.license_code" placeholder="Numero">
                 </ion-item>
                 <ion-item class="item-input item-stacked-label">
@@ -32,7 +32,7 @@
                     <input type="text" ng-model="request.license_place" placeholder="Luogo di rilascio">
                 </ion-item>
                 <a class="item item-icon-right" style="min-height: 80px;" ng-click='selectDate("license_date")' href="#">
-                    <p>{ 'driveLicense.issuingDate' | translate}}<span class="color-error">*</span></p>
+                    <p>{{ 'driveLicense.issuingDate' | translate}}<span class="color-error">*</span></p>
                     <h2><strong>{{ request.license_date | date:'dd/MM/yyyy' }}</strong></h2>
                     <i class="icon ion-ios-calendar-outline icons-reservation"></i>
                 </a>

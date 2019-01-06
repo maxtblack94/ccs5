@@ -49,7 +49,8 @@ window.locale_ro.bookings = {
 	closeCar : 'Sfârșitul călătoriei',
 	cancelReservation: 'anula',
 	cancelConfirmTitle: 'Confirmați ștergerea',
-	cancelConfirmBody: 'Sigur doriți să ștergeți rezervarea selectată?'
+	cancelConfirmBody: 'Sigur doriți să ștergeți rezervarea selectată?',
+	gpsAlert: 'Această aplicație necesită locație pentru a autoriza deschiderea și închiderea caracteristicilor vehiculului'
 }
 
 window.locale_ro.parking = {

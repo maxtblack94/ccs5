@@ -49,7 +49,8 @@ window.locale_it.bookings = {
 	closeCar : 'Fine Corsa',
 	cancelReservation: 'Annulla',
 	cancelConfirmTitle: 'Conferma Eliminazione',
-	cancelConfirmBody: 'Sicuro di vole eliminare la prenotazione selezionata?'
+	cancelConfirmBody: 'Sicuro di vole eliminare la prenotazione selezionata?',
+	gpsAlert: 'Questa applicazione richiede la posizione per autorizzare le funzioni di apertura e chiusura del veicolo'
 }
 
 window.locale_it.parking = {

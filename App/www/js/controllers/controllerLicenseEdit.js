@@ -47,7 +47,7 @@ angular.module('starter').controller('LicenseEditCtrl', function($cordovaDatePic
         var dateFromConfig = {
             date: $scope.request[dateType] ? moment($scope.request[dateType],"DD/MM/YYYY").toDate(): new Date(),
             mode: 'date',
-            allowOldDates: false,
+            allowOldDates: true,
             allowFutureDates: true,
             androidTheme: 4,
             doneButtonLabel: $filter('translate')('commons.select'),

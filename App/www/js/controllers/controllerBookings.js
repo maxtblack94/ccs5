@@ -14,10 +14,9 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Location
     if ($scope.selectedClient.map) {
         setTimeout(function() {
             var location = LocationService.requestLocationAuthorization();
-            if (!location) {
-                LocationService.isLocationAviable();
+            if (location) {
+                doWatchLocation();
             }
-            doWatchLocation();
         }, 2000);
     }
     

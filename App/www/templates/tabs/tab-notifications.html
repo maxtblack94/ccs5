@@ -2,7 +2,7 @@
     <ion-content>
         <ion-refresher pulling-text="{{'commons.refresh' | translate}}" on-refresh="refreshNotifications()">
         </ion-refresher>
-        <p ng-if="model.notificationsPending.length==0" class="message-empty">{{'notifications.noNotifications'}}</p>
+        <p ng-if="model.notificationsPending.length==0" class="message-empty">{{'notifications.notFound' | translate}}</p>
         <ion-list>
             <ion-item ng-repeat="notification in model.notificationsPending | orderBy:'data.pushDate':true" class="item-icon-right" ng-click="openNotification(notification)">
                 <h2>{{notification.headings.it}}</h2>

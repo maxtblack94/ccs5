@@ -13,6 +13,7 @@ angular.module('starter').controller('notificationsCtrl', function($filter, $roo
                 $scope.model.notificationsPending = ((data.data || {}).dataList || []);
             }, function(error) {
                 $ionicLoading.hide();
+                $scope.model.notificationsPending = [];
                 PopUpServices.errorPopup($filter('translate')('notifications.failGetNotfications'));
             })
         });

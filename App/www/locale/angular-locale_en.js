@@ -49,7 +49,8 @@ window.locale_en.bookings = {
 	closeCar : 'End Run',
 	cancelReservation: 'Delete',
 	cancelConfirmTitle: 'Confirm deletion',
-	cancelConfirmBody: 'Would you really delete selected booking?'
+	cancelConfirmBody: 'Would you really delete selected booking?',
+	gpsAlert: 'This app requires location to authorize the opening and closing vehicle features'
 }
 
 window.locale_en.parking = {
