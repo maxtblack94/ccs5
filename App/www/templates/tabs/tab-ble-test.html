@@ -14,5 +14,13 @@
         <button class="button button-balanced button-block" ng-click="stopMission()"> Stop Mission</button>
         <button class="button button-balanced button-block" ng-click="versioning()"> Versioning</button>
         <button class="button button-balanced button-block" ng-click="disconnect()"> Disconnect</button>
+
+
+        <ul class="list">
+            <li ng-repeat="item in items" class="item" ng-click="connect(item.id);">
+                <i ng-if="currentDevice.id === item.id" class="fa fa-check-circle" aria-hidden="true"></i> {{item.name || 'no name'}} ID: {{item.id}}
+            </li>
+        </ul>
+
     </ion-content>
 </ion-view>

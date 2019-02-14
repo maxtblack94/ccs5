@@ -1,6 +1,6 @@
-angular.module('starter').factory("BluetoothServices", function(InfoFactories, ArrayServices, $q, ScriptServices) {
+angular.module('starter').factory("BluetoothServices", function($cordovaDevice, InfoFactories, ArrayServices, $rootScope, ScriptServices) {
     var currentDevice;
-    var lastReservation, lastOperation, userInfo;
+    var lastReservation, lastOperation, userInfo, actionsList = [];
 
     function connectToVehicle(reservation, operation) {
         userInfo = InfoFactories.getUserInfo();
@@ -12,6 +12,7 @@ angular.module('starter').factory("BluetoothServices", function(InfoFactories, A
         },
         function() {
             alert('Ti preghiamo di abilitare il Bluetooth e riprovare.');
+            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Ti preghiamo di abilitare il Bluetooth e riprovare"});
         });
     }
 
@@ -41,55 +42,73 @@ angular.module('starter').factory("BluetoothServices", function(InfoFactories, A
         },
         function(error) {
             console.log('Fail connection, i try again...', error);
+            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Fail connection, i try again..."});
             currentDevice = null;
-            doConnection(reservation);
+            /* doConnection(reservation); */
         });
     }
 
     function mtuSize(){
-        ble.requestMtu(currentDevice.id, 512,function() {
-            console.log('MTU OK');
+        if ($cordovaDevice.getPlatform() == 'iOS') {
             setTimeout(function() {
                 doNotifyRequest();
             }, 500);
-        }, function() {
-            console.log('MTU Fail, i try again.');
-            mtuSize();
-        });
+        }else{
+            ble.requestMtu(currentDevice.id, 512,function() {
+                console.log('MTU OK');
+                setTimeout(function() {
+                    doNotifyRequest();
+                }, 500);
+            }, function() {
+                console.log('MTU Fail, i try again.');
+                $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "MTU Fail, i try again."});
+                mtuSize();
+            });
+        }
+        
     }
 
-    function doNotifyRequest() {
+    function doNotifyRequest(withPair) {
         console.log('start notify');
         var notifyService = currentDevice.characteristics.find(function(item){
-            return item.characteristic === lastReservation.bleCharacteristics;
+            console.log('ho langiato 1');
+            return item.characteristic.toLowerCase() === lastReservation.bleCharacteristics.toLowerCase();
         });
+        
         ble.withPromises.startNotification(currentDevice.id, notifyService.service, notifyService.characteristic, function(buffer) {
             if (buffer) {
-                var notifyData = ArrayServices.bytesToObject(buffer);
-                if (notifyData && notifyData.MT) {
-                    switch (notifyData.MT) {
-                        case "100":
+                console.log('notify buffer', buffer);
+                var notifyData = ArrayServices.bytesToString(buffer);
+                console.log('notify notifyData', notifyData);
+                var interaction = actionsList.find(function (item) {
+                    return item.TI === notifyData.TI;
+                });
+                console.log('notify interaction', interaction);
+                if (interaction && interaction.MT) {
+                    switch (interaction.MT) {
+                        case 100:
                             write('pushPNR');
                             break;
-                        case "5000":
-                            
+                        case 5000:
+                            $rootScope.$broadcast('bleInteraction', parsedNotification);
                             break;
-                        case "10000":
+                        case 10000:
                             
                             break;
                     
                         default:
                             break;
                     }
+                }else{
+                    $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "TID non trovato"});
                 }
                 
-                console.log('notify',notifyData);
             }
             
         }, function() {
-            console.log('notifyFail');
             currentDevice = null;
         });
+        console.log('ho langiato notify');
         setTimeout(function() {
             console.log('start Pair');
             write('pair');
@@ -107,34 +126,56 @@ angular.module('starter').factory("BluetoothServices", function(InfoFactories, A
             "TS": new Date().getTime(),
             "TI": ScriptServices.generateUUID4(),
             "MSG": ScriptServices.generateUUID4(),
-            "MT": 10,
+            "MT": 100,
             "PK": 11
         };
     }
 
     function pushPNRRequest(action) {
-        var TKN = {
-            Version: "0000",
-            IDPNR : lastReservation.pnr || "82939992889",
-            MessageType: action ? "6": "5",
-            IDBadge: "0122578B2A000000" //(userInfo.registry || {}).badge_id
-        };
-
-        var TKNString = JSON.stringify(TKN);
+        var TKNString = JSON.stringify({ 
+            "tid": "c9854e45-ed79-403f-b0c5-6f348d129f46", 
+            "ty": action ? 6: 0, 
+            "data": {
+            "rid": lastReservation.pnr || "000001043B84FA3E3E808325",
+            "bid": "000001043B84FA3E3E80",
+            "st": new Date().getTime() - 600000 ,
+            "et": new Date().getTime() + 600000 ,
+            "pid": 8,
+            "v": "0000",
+            "rty": 0,
+            "e": true,
+            "io": true,
+            "poi": {
+              "geo": {
+                "type": "Point",
+                "coordinates": [
+                  41.8749715,
+                  12.3899344
+                ]
+              },
+              "r": 1000
+            }
+          }
+        });
         var TKNBase64 = btoa(TKNString);
+
+
+
 
         return {
             "TS": new Date().getTime(),
             "TI": ScriptServices.generateUUID4(),
             "MSG": ScriptServices.generateUUID4(),
             "MT": 5000,
+            "CRY": false,
+            "CT": 0,
             "TKN": TKNBase64
         };
-    }
+    };
 
     function write(action){
         var writeService = currentDevice.characteristics.find(function(item){
-            return item.characteristic === lastReservation.bleCharacteristics;
+            return item.characteristic.toLowerCase() === lastReservation.bleCharacteristics.toLowerCase();
         });
         var string = "";
         switch (action) {
@@ -154,7 +195,9 @@ angular.module('starter').factory("BluetoothServices", function(InfoFactories, A
             default:
                 break;
         }
-        console.log('write', string);
+        console.log('write', JSON.stringify(string));
+        actionsList.push(string);
+        console.log('actionlist', JSON.stringify(actionsList));
         string = ArrayServices.stringToBytes(JSON.stringify(string));
         ble.write(currentDevice.id, writeService.service, writeService.characteristic, string, function(params) {
             console.log('write OK');

@@ -1,15 +1,22 @@
 angular.module('starter').controller('BleCtrl', function(BluetoothServices, ArrayServices, ScriptServices, InfoFactories, $rootScope, $scope, $ionicLoading) {
 
     $scope.startMission = function() {
+        $ionicLoading.show();
         BluetoothServices.connectToVehicle(defineReservation(), "pushPNR");
     };
+
+    $scope.$on('bleInteraction', function(event, interactionData) {
+        $ionicLoading.hide();
+        console.log('interaction', interactionData);
+    });
 
     $scope.model = $scope.model || {};
 
     $scope.model.customPNR = '';
-    $scope.model.bleID = "00:A0:50:9E:2B:67";
+    $scope.model.bleID = "9D14D1A5-2325-45B1-9CAB-9363C34A5B8F";
 
     $scope.stopMission = function() {
+        $ionicLoading.show();
         BluetoothServices.connectToVehicle(defineReservation(), "pushPNRClose");
     };
 
@@ -61,7 +68,7 @@ angular.module('starter').controller('BleCtrl', function(BluetoothServices, Arra
 
 
 
-    /* $scope.startScan = function() {
+    $scope.startScan = function() {
         $scope.$broadcast('scroll.refreshComplete');
         $scope.items = [];
         ble.startScan([], function(device) {
@@ -71,7 +78,7 @@ angular.module('starter').controller('BleCtrl', function(BluetoothServices, Arra
         });
         
         setTimeout(ble.stopScan,
-            10000,
+            2000,
             function() { 
                 console.log("Scan complete"); 
             },
@@ -79,11 +86,11 @@ angular.module('starter').controller('BleCtrl', function(BluetoothServices, Arra
                 console.log("stopScan failed");
             }
         );
-    } */
+    }
 
-    /* $scope.startScan();
+    //$scope.startScan(); 
 
-    function failure(params) {
+    /* function failure(params) {
         console.log('operation failed', params)
     } */
 

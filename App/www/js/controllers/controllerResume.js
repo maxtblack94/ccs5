@@ -21,10 +21,11 @@ angular.module('starter').controller('ResumeCtrl', function(ManipolationServices
 
     if($scope.selectedClient.vehicleType && $scope.selectedParking){
         $ionicLoading.show();
+        $scope.vehicleTypeList = [];
         ScriptServices.getXMLResource(592).then(function(res) {
             res = res.replace('{IDPARK}', $scope.selectedParking.Nr);
             ScriptServices.callGenericService(res, 592).then(function(data) {
-                $scope.vehicleTypeList = data.typeList;
+                $scope.vehicleTypeList = (data.typeList || []);
                 if($scope.vehicleTypeList.length === 0){
                     PopUpServices.messagePopup($filter('translate')('bookResume.vehicleTypesNotFound'), "Info");
                 }

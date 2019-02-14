@@ -9,7 +9,10 @@ angular.module('starter').factory("ArrayServices", function(PopUpServices) {
     }
     
     function bytesToString(buffer) {
-        return String.fromCharCode.apply(null, new Uint8Array(buffer));
+        var a = String.fromCharCode.apply(null, new Uint8Array(buffer));
+        a = JSON.parse(a);
+        console.log(a);
+        return a;
     }
 
     function bytesToObject(buffer) {

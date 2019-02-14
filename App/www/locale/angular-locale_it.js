@@ -113,7 +113,7 @@ window.locale_it.bookResume = {
 	drivingRange: 'Raggio di Percorrenza',
 	telepass: 'Telepass',
 	telepass_descr: 'Selezionare, se si ha bisogno del telepass.',
-	vahicleType: 'Tipologia Veicolo',
+	vehicleType: 'Tipologia Veicolo',
 	confirm: 'Cerca Veicolo',
 	returnDateIsOut: 'La data di ritiro non rientra negli orari di apertura del parcheggio!',
 	returnDateIsMajor: 'La data di ritiro è maggiore della data di consegna!',

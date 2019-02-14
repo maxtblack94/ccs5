@@ -113,7 +113,7 @@ window.locale_en.bookResume = {
 	drivingRange: 'Driving Range',
 	telepass: 'Telepass',
 	telepass_descr: 'If you need it, please select Telepass option',
-	vahicleType: 'Vehicle Type',
+	vehicleType: 'Vehicle Type',
 	confirm: 'Search vehicle',
 	returnDateIsOut: 'Pick-Up Date does not fall within parking opening hours!',
 	returnDateIsMajor: 'Pick-Up Date is greater than Returm date!',
