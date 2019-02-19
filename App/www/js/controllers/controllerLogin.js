@@ -15,8 +15,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
             getClientList('refresh');
             verifyUserLogged();
         }else{
-            $scope.configCompanyAccount = true;
-            getClientList();
+            getClientList('refresh', 'h5rt8d'); //codice E-vai
         }
     }
 
@@ -36,14 +35,14 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
         return $scope.selectedClient?true:false
     }
 
-    function getClientList(action){
+    function getClientList(action, companyCode){
         ScriptServices.getXMLResource(589).then(function(res) {
             res = res.replace('{LANGUAGE}', navigator.language); //ask matteo
             ScriptServices.callGenericService(res, 589, 'demo').then(function(data) {
                 $ionicLoading.hide();
                 $scope.clientList = data.clientListBooking;
                 if(action === 'refresh'){
-                    refreshClientConfigs($scope.selectedClient.clientCode);
+                    refreshClientConfigs(($scope.selectedClient || {}).clientCode || companyCode);
                 }
             }, function(error) {
                 $ionicLoading.hide();
@@ -67,7 +66,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
             var element = $scope.clientList[i];
             if(clientCode === $scope.clientList[i].clientCode){
                 $scope.selectedClient = $scope.clientList[i];
-                InfoFactories.applyClientStyle($scope.clientList[i].clientStyle);
+                /* InfoFactories.applyClientStyle($scope.clientList[i].clientStyle); */
                 window.localStorage.setItem('selectedClient', JSON.stringify($scope.clientList[i]));
                 $scope.configCompanyAccount = false;
                 break;
@@ -75,7 +74,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
         }
     }
 
-    $scope.verifyCompanyCode = function(){
+    /* $scope.verifyCompanyCode = function(){
         if(!$scope.request.verifyCode){
             setTimeout(function() {
                 $('#verifyCode-input').focus();
@@ -86,7 +85,7 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
                 PopUpServices.errorPopup($filter('translate')('login.retryCompanyCode'), '1');
             }
         }
-    }
+    } */
 
     $scope.recorveryPasswordOn = function(){
         $scope.recorveryPassword = !$scope.recorveryPassword;

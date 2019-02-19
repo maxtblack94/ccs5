@@ -1,45 +1,45 @@
 .bar.bar-positive {
-    border-color: #ec0300;
-    background-color: #fc0300;
-    background-image: linear-gradient(0deg, #ec0300, #ec0300 50%, transparent 50%);
+    border-color: rgba(31, 103, 146);
+    background-color: rgba(31, 103, 146);
+    background-image: none
 }
 .bar.bar-positive.bar-footer {
-    background-image: linear-gradient(180deg, #ec0300, #ec0300 50%, transparent 50%);
+    background-image: linear-gradient(180deg, rgba(209, 206, 0), rgba(209, 206, 0) 50%, transparent 50%);
 }
 .bar-positive .button {
-    background-color: #fc0300;
+    background-color: rgba(31, 103, 146);
 }
 .bar-positive .button.active,
 .bar-positive .button.activated {
-    background-color: #ec0300;
+    background-color: rgb(34, 98, 136)
 }
 .tabs-positive > .tabs,
 .tabs.tabs-positive {
-    border-color: #ec0300;
-    background-color: #fc0300;
-    background-image: linear-gradient(0deg, #ec0300, #ec0300 50%, transparent 50%);
+    border-color: rgba(209, 206, 0);
+    background-color: rgba(31, 103, 146);
+    background-image: linear-gradient(0deg, rgba(209, 206, 0), rgba(209, 206, 0) 50%, transparent 50%);
 }
 .tabs-positive > .tabs .tab-item .badge,
 .tabs.tabs-positive .tab-item .badge {
-    color: #fc0300;
+    color: rgba(31, 103, 146);
 }
 .tabs-striped.tabs-positive .tabs {
-    background-color: #fc0300;
+    background-color: rgba(31, 103, 146);
 }
 .tabs-striped.tabs-background-positive .tabs {
-    background-color: #fc0300;
+    background-color: rgba(31, 103, 146);
 }
 .tabs-striped.tabs-color-positive .tab-item.tab-item-active,
 .tabs-striped.tabs-color-positive .tab-item.active,
 .tabs-striped.tabs-color-positive .tab-item.activated {
-    color: #fc0300;
-    border: 0 solid #fc0300;
+    color: rgba(31, 103, 146);
+    border: 0 solid rgba(31, 103, 146);
 }
 .tabs-color-positive .tab-item.tab-item-active,
 .tabs-color-positive .tab-item.active,
 .tabs-color-positive .tab-item.activated {
-    color: #fc0300;
-    border: 0 solid #fc0300;
+    color: rgba(31, 103, 146);
+    border: 0 solid rgba(31, 103, 146);
 }
 ion-tabs.tabs-color-active-positive .tab-item {
     color: #444;
@@ -47,85 +47,101 @@ ion-tabs.tabs-color-active-positive .tab-item {
 ion-tabs.tabs-color-active-positive .tab-item.tab-item-active,
 ion-tabs.tabs-color-active-positive .tab-item.active,
 ion-tabs.tabs-color-active-positive .tab-item.activated {
-    color: #fc0300;
+    color: rgba(31, 103, 146);
 }
 .tab-item.tab-item-active.tab-item-positive,
 .tab-item.active.tab-item-positive,
 .tab-item.activated.tab-item-positive {
-    color: #fc0300;
+    color: rgba(31, 103, 146);
 }
 .item-complex.item-positive > .item-content {
-    border-color: #ec0300;
-    background-color: #fc0300;
+    border-color: rgba(209, 206, 0);
+    background-color: rgba(31, 103, 146);
 }
 .item-complex.item-positive > .item-content.active,
 .item-complex.item-positive > .item-content:active {
-    border-color: #ec0300;
-    background-color: #ec0300;
+    border-color: rgba(209, 206, 0);
+    background-color: rgba(209, 206, 0);
 }
 .item-complex.item-positive > .item-content.active.item-complex > .item-content,
 .item-complex.item-positive > .item-content:active.item-complex > .item-content {
-    border-color: #ec0300;
-    background-color: #ec0300;
+    border-color: rgba(209, 206, 0);
+    background-color: rgba(209, 206, 0);
 }
 .tabs .tab-item .badge.badge-positive,
 .badge.badge-positive {
-    background-color: #fc0300;
+    background-color: rgba(31, 103, 146);
 }
 .toggle.toggle-positive input:checked + .track {
-    border-color: #fc0300;
-    background-color: #fc0300;
+    border-color: rgba(31, 103, 146);
+    background-color: rgba(31, 103, 146);
 }
 .toggle-small .toggle-positive input:checked + .track {
     background-color: rgba(239, 71, 58, 0.5);
 }
 .toggle-small .toggle-positive input:checked + .track .handle {
-    background-color: #fc0300;
+    background-color: rgba(31, 103, 146);
 }
 .button.button-positive {
     border-color: transparent;
-    background-color: #fc0300;
+    background-color: rgba(31, 103, 146);
 }
 .button.button-positive.active,
 .button.button-positive.activated {
-    background-color: #ec0300;
+    background-color: rgb(34, 98, 136)
 }
 .button.button-positive.button-clear {
-    color: #fc0300;
+    color: rgba(31, 103, 146);
 }
 .button.button-positive.button-outline {
-    border-color: #fc0300;
-    color: #fc0300;
+    border-color: rgba(31, 103, 146);
+    color: rgba(31, 103, 146);
 }
 .button.button-positive.button-outline.active,
 .button.button-positive.button-outline.activated {
-    background-color: #fc0300;
+    background-color: rgba(31, 103, 146);
 }
 .positive,
 a.positive {
-    color: #fc0300;
+    color: rgba(31, 103, 146);
 }
 .positive-bg {
-    background-color: #fc0300;
+    background-color: rgba(31, 103, 146);
 }
 .positive-border {
-    border-color: #ec0300;
+    border-color: rgba(209, 206, 0);
 }
 
 .tab-item-active,
 .tab-item.activated {
-	color: #fc0300!important;
-	border-bottom-color: #fc0300!important;
+	color: rgba(227, 6, 19)!important;
+	border-bottom-color: rgba(227, 6, 19)!important;
 }
 
 [fab] {
-	background-color: #fc0300;
+	background-color: rgba(209, 206, 0);
 }
 
 .multi-bg-outer .bg-overlay {
-    background-color: #fc0300;
+    background-color: rgba(31, 103, 146);
 }
 
 .welcome-view .bottom-content .enter-account {
-    background: #ec0300;
+    background: rgba(209, 206, 0);
+    color: rgba(31, 103, 146);
+}
+
+.tabs .tab-item .badge.badge-balanced, .badge.badge-balanced .custom-color {
+    background-color: rgba(209, 206, 0);
+}
+
+.button.button-balanced {
+    border-color: transparent;
+    background-color: rgba(209, 206, 0);
+    color: rgba(31, 103, 146);
+}
+
+.button.button-balanced.active, .button.button-balanced.activated {
+    background-color:  rgba(209, 206, 0);
+    color: rgba(31, 103, 146);
 }
