@@ -44,7 +44,8 @@ angular.module('starter').factory("LocationService", function ($ionicPlatform, P
     function requestLocationAuthorization() {
         if (cordova) {
             if (platform !=='android') {
-                PopUpServices.messagePopup($filter('translate')('bookings.gpsAlert'), $filter('translate')('commons.attention'), polocyPopupCallback);
+                //PopUpServices.messagePopup($filter('translate')('bookings.gpsAlert'), $filter('translate')('commons.attention'), polocyPopupCallback);
+                cordova.plugins.diagnostic.requestLocationAuthorization(handleLocationAuthorizationStatus, onError);
             }else{
                 cordova.plugins.diagnostic.requestLocationAuthorization(handleLocationAuthorizationStatus, onError);
             }

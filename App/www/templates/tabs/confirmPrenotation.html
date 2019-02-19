@@ -33,7 +33,7 @@
           <p>{{ selectedParking.address }}</p>
         </div>
       </ion-item>
-      <ion-item>
+      <ion-item ng-show="selectedClient.cc">
         <div class="pull-left">
           <p>{{ 'confirmReservation.cc' | translate}}</p>
         </div>
@@ -41,7 +41,7 @@
           <h2 style='font-weight: bold;'>{{ hasCC ? 'commons.yes': 'commons.no' | translate}}</h2>
         </div>
       </ion-item>
-      <ion-item>
+      <ion-item ng-show="selectedClient.telepass">
         <div class="pull-left">
           <p>{{ 'confirmReservation.telepass' | translate}}</p>
         </div>
@@ -50,11 +50,9 @@
         </div>
       </ion-item>
       <ion-item>
-        <div>
-          <h2 style='line-height: 27px;'>{{ selectedCar.brand_model }}</h2>
-          <h2 style='font-weight: bold; line-height: 27px;'>{{ selectedCar.plate }}</h2>
-          <p>{{ selectedCar.seats }} {{ 'confirmReservation.seats' | translate}}</p>
-        </div>
+        <h2 style='line-height: 27px;'>{{ selectedCar.brand_model }}</h2>
+        <h2 style='font-weight: bold; line-height: 27px;'>{{ selectedCar.plate }}</h2>
+        <p>{{ selectedCar.seats }} {{ 'confirmReservation.seats' | translate}}</p>
       </ion-item>
       <ion-item ng-show='selectedClient.justifiedUse'>
         <div style='overflow: auto;'>
@@ -66,19 +64,17 @@
         </div>
       </ion-item>
       <ion-item>
-        <div>
-          <div class="date-select-label" style='margin-bottom: 10px;'>{{ selectedClient.lbldestination }}</div>
-          <div style='font-size: 14pt; margin-bottom: 10px;'>
-            <input class='place_val' type='text' style='padding: 10px; width: 100%; border: 1px solid #ccc; border-radius: 5px; -webkit-box-sizing: border-box;‌​ -moz-box-sizing: border-box; box-sizing: border-box;' />
-          </div>
+        <div class="date-select-label" style='margin-bottom: 10px;'>{{ selectedClient.lbldestination }}</div>
+        <div style='font-size: 14pt; margin-bottom: 10px;'>
+          <input class='place_val' type='text' style='padding: 10px; width: 100%; border: 1px solid #ccc; border-radius: 5px; -webkit-box-sizing: border-box;‌​ -moz-box-sizing: border-box; box-sizing: border-box;' />
         </div>
       </ion-item>
-      <div class="row">
-        <div class="col col-50"><button ng-click='backToCars()' class="button button-block button-stable">{{
-            'confirmReservation.back' | translate}}</button></div>
-        <div class="col col-50"><button ng-click='confirm()' class="button button-block button-positive">{{
-            'confirmReservation.confirm' | translate}}</button></div>
-      </div>
     </ion-list>
+    <div class="row">
+      <div class="col col-50"><button ng-click='backToCars()' class="button button-block button-stable">{{
+          'confirmReservation.back' | translate}}</button></div>
+      <div class="col col-50"><button ng-click='confirm()' class="button button-block button-positive">{{
+          'confirmReservation.confirm' | translate}}</button></div>
+    </div>
   </ion-content>
 </ion-view>

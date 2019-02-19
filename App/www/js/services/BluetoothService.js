@@ -71,8 +71,7 @@ angular.module('starter').factory("BluetoothServices", function($cordovaDevice, 
     function doNotifyRequest(withPair) {
         console.log('start notify');
         var notifyService = currentDevice.characteristics.find(function(item){
-            console.log('ho langiato 1');
-            return item.characteristic.toLowerCase() === lastReservation.bleCharacteristics.toLowerCase();
+            return item.characteristic.toLowerCase() === "75dcca42-81c1-4552-b3b1-1dce25eb4ea2";
         });
         
         ble.withPromises.startNotification(currentDevice.id, notifyService.service, notifyService.characteristic, function(buffer) {
@@ -90,7 +89,7 @@ angular.module('starter').factory("BluetoothServices", function($cordovaDevice, 
                             write('pushPNR');
                             break;
                         case 5000:
-                            $rootScope.$broadcast('bleInteraction', parsedNotification);
+                            $rootScope.$broadcast('bleInteraction', interaction);
                             break;
                         case 10000:
                             
@@ -108,9 +107,7 @@ angular.module('starter').factory("BluetoothServices", function($cordovaDevice, 
         }, function() {
             currentDevice = null;
         });
-        console.log('ho langiato notify');
         setTimeout(function() {
-            console.log('start Pair');
             write('pair');
         }, 500);
     }
@@ -133,29 +130,29 @@ angular.module('starter').factory("BluetoothServices", function($cordovaDevice, 
 
     function pushPNRRequest(action) {
         var TKNString = JSON.stringify({ 
-            "tid": "c9854e45-ed79-403f-b0c5-6f348d129f46", 
+            "tid": "6f348d129f32", 
             "ty": action ? 6: 0, 
             "data": {
-            "rid": lastReservation.pnr || "000001043B84FA3E3E808325",
-            "bid": "000001043B84FA3E3E80",
-            "st": new Date().getTime() - 600000 ,
-            "et": new Date().getTime() + 600000 ,
-            "pid": 8,
-            "v": "0000",
-            "rty": 0,
-            "e": true,
-            "io": true,
-            "poi": {
-              "geo": {
-                "type": "Point",
-                "coordinates": [
-                  41.8749715,
-                  12.3899344
-                ]
-              },
-              "r": 1000
+                "rid": lastReservation.pnr || "000001043B84FA3E3E808325",
+                "bid": "000001043B84FA3E3E80",
+                "st": new Date().getTime() - 600000 ,
+                "et": new Date().getTime() + 600000 ,
+                "pid": 8,
+                "v": "0000",
+                "rty": 0,
+                "e": true,
+                "io": true,
+                "poi": {
+                "geo": {
+                    "type": "Point",
+                    "coordinates": [
+                    41.8749715,
+                    12.3899344
+                    ]
+                },
+                "r": 1000
+                }
             }
-          }
         });
         var TKNBase64 = btoa(TKNString);
 
@@ -167,15 +164,16 @@ angular.module('starter').factory("BluetoothServices", function($cordovaDevice, 
             "TI": ScriptServices.generateUUID4(),
             "MSG": ScriptServices.generateUUID4(),
             "MT": 5000,
-            "CRY": false,
-            "CT": 0,
-            "TKN": TKNBase64
+            "CRY": true,
+            "CT": 1,
+            "TKN": lastReservation.TKN || TKNBase64
         };
+
     };
 
     function write(action){
         var writeService = currentDevice.characteristics.find(function(item){
-            return item.characteristic.toLowerCase() === lastReservation.bleCharacteristics.toLowerCase();
+            return item.characteristic.toLowerCase() === "75dcca42-81c1-4552-b3b1-1dce25eb4ea2";
         });
         var string = "";
         switch (action) {
@@ -202,6 +200,7 @@ angular.module('starter').factory("BluetoothServices", function($cordovaDevice, 
         ble.write(currentDevice.id, writeService.service, writeService.characteristic, string, function(params) {
             console.log('write OK');
         }, function(error) {
+            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Errore Write"});
             currentDevice = null;
             console.log('write', error);
         });

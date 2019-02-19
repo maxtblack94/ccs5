@@ -1,5 +1,8 @@
 angular.module('starter').controller('ConfirmPrenotationCtrl', function($filter, PopUpServices, ScriptServices, $scope, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup) {
     function init(){
+        if (window.plugins && window.plugins.Keyboard) {
+            window.plugins.Keyboard.disableScroll(true);
+        }
         $scope.selectedClient = InfoFactories.getClientSelected();
         $scope.dateTimeFrom = InfoFactories.getDateTimeFrom();
         $scope.dateTimeTo = InfoFactories.getDateTimeTo();

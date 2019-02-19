@@ -140,31 +140,69 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Location
     };
 
     $scope.openCarManipolation = function (reservation, opT) {
+        if (opT === "0" && reservation.bluetooth_id) {
+            openVehicleWithBle(reservation, "pushPNR");
+        }else if (opT === "1" && reservation.bluetooth_id) {
+            closeVehicleWithBle(reservation, "pushPNRClose");
+        }else {
+            $ionicLoading.show();
+            ScriptServices.getXMLResource(627).then(function (res) {
+                res = res.replace('{PNR}', reservation.pnr);
+                ScriptServices.callGenericService(res, 627).then(function (data) {
+                    var response = data.data.split(',');
+                    var carCoords = {
+                        "lat": parseFloat(response[0]),
+                        "long": parseFloat(response[1])
+                    };
+                    startCloseOpenCarProcess(reservation, opT, carCoords);
+                }, function (error) {
+                    $ionicLoading.hide();
+                    PopUpServices.errorPopup($filter('translate')('bookings.noCoords'));
+                });
+            });
+        }
+    };
+
+    $scope.$on('bleInteraction', function(event, interactionData) {
+        $ionicLoading.hide();
+        $scope.refreshBookings();
+        console.log('interaction', interactionData);
+    });
+
+    function openVehicleWithBle(reservation, action) {
         $ionicLoading.show();
-        ScriptServices.getXMLResource(627).then(function (res) {
+        
+        ScriptServices.getXMLResource(639).then(function(res) {
             res = res.replace('{PNR}', reservation.pnr);
-            ScriptServices.callGenericService(res, 627).then(function (data) {
-                var response = data.data.split(',');
-                var carCoords = {
-                    "lat": parseFloat(response[0]),
-                    "long": parseFloat(response[1])
-                }
-                startCloseOpenCarProcess(reservation, opT, carCoords);
-            }, function (error) {
+            ScriptServices.callGenericService(res, 639).then(function(data) {
+                reservation.TKN = data.data.encryptedStr;
+                reservation.bleID = reservation.bluetooth_id;
+                BluetoothServices.connectToVehicle(reservation, action);
+            }, function(error) {
+                PopUpServices.errorPopup($filter('translate')('bookings.errorOpenCar'));
                 $ionicLoading.hide();
-                PopUpServices.errorPopup($filter('translate')('bookings.noCoords'));
-            })
+            });
+        });
+    }
+
+    function closeVehicleWithBle(reservation, action) {
+        $ionicLoading.show();
+        
+        ScriptServices.getXMLResource(640).then(function(res) {
+            res = res.replace('{PNR}', reservation.pnr).replace('{OPT}', 1);
+            ScriptServices.callGenericService(res, 640).then(function(data) {
+                reservation.TKN = data.data.encryptedStr;
+                reservation.bleID = reservation.bluetooth_id;
+                BluetoothServices.connectToVehicle(reservation, action);
+            }, function(error) {
+                PopUpServices.errorPopup($filter('translate')('bookings.errorOpenCar'));
+                $ionicLoading.hide();
+            });
         });
     }
 
     function startCloseOpenCarProcess(reservation, opT, carCoords) {
-        /* if (opT === "0" && reservation.bleID) {
-            BluetoothServices.connectToVehicle(reservation, "pushPNR");
-            $ionicLoading.hide();
-        }else if (opT === "1" && reservation.bleID) {
-            BluetoothServices.connectToVehicle(reservation, "pushPNRClose");
-            $ionicLoading.hide();
-        }else  */if (opT === "0") {
+        if (opT === "0") {
             var posOptions = { timeout: 3000, enableHighAccuracy: false };
             $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
                 var lat = position.coords.latitude;
