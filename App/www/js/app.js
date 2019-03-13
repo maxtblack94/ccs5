@@ -1,6 +1,6 @@
 angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', 'angularMoment', 'pascalprecht.translate'])
 
-  .run(function ($ionicPlatform, $cordovaStatusbar, $cordovaDevice, amMoment, $rootScope, LanguageService) {
+  .run(function ($ionicPlatform, $cordovaStatusbar, $cordovaDevice, amMoment, $rootScope) {
     amMoment.changeLocale('it');
     $ionicPlatform.ready(function () {
       var pushCallback = function(jsonData) {
@@ -211,6 +211,42 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
         cache: false,
         templateUrl: 'templates/commons/help.html',
         controller: 'HelpCtrl'
+      })
+      
+      
+      .state('subscriptions', {
+        url: '/subscriptions',
+        cache: false,
+        templateUrl: 'templates/reservation/subscriptions.html',
+        controller: 'SubscriptionsCtrl'
+      })
+
+      .state('park', {
+        url: '/park',
+        cache: false,
+        templateUrl: 'templates/reservation/park.html',
+        controller: 'ParkCtrl'
+      })
+
+      .state('reserve', {
+        url: '/reserve',
+        cache: false,
+        templateUrl: 'templates/reservation/reserve.html',
+        controller: 'ReserveCtrl'
+      })
+
+      .state('vehicles', {
+        url: '/vehicles',
+        cache: false,
+        templateUrl: 'templates/reservation/vehicle.html',
+        controller: 'VehicleCtrl'
+      })
+
+      .state('confirm', {
+        url: '/confirm',
+        cache: false,
+        templateUrl: 'templates/reservation/confirm.html',
+        controller: 'ConfirmCtrl'
       });
 
     $urlRouterProvider.otherwise('/login');

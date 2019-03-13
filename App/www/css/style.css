@@ -447,3 +447,52 @@ display: none;
     font-size: 32px;
     color: #ff0000;
 }
+
+
+.service-item {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin: 10px;
+    border-radius: 5px;
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75)
+}
+
+.item-avatar.fix-item img {
+    min-width: 60px;
+    min-height: 60px;
+    top: 5px;
+    left: 10px;
+}
+
+.item.item-toggle.custom {
+    font-weight: 600;
+    white-space: inherit;
+    color: #f79600;
+}
+
+.item.item-toggle.custom .toggle {
+    top: 15px
+}
+
+.toggle.toggle-secondary input:checked + .track {
+    border-color: #cfcf00;
+    background-color: #cfcf00;
+}
+
+.item.park-item {
+    min-height: 90px;
+}
+
+.item.date-item {
+    min-height: 80px;
+}
+
+ion-item.typologie {
+    border-bottom: none; margin-bottom: 10px;
+}
+
+ion-item.typologie p {
+    line-height: 30px;
+}

@@ -1,7 +1,7 @@
 angular.module('starter').factory("LocationService", function ($ionicPlatform, PopUpServices, $filter) {
     var platform;
     $ionicPlatform.ready(function () {
-        if (cordova) {
+        if (!window.serverRootLocal && cordova) {
             platform = cordova.platformId;
         }
     });

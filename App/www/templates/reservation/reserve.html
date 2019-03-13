@@ -1,0 +1,66 @@
+<ion-view view-title="{{ 'bookResume.title' | translate}}">
+    <ion-content>
+        <div class="list m-bottom0">
+            <a class="item item-icon-right park-item" ng-click='changeParking()'>
+                <p>{{ 'bookResume.parking' | translate}}<span class="color-error">*</span></p>
+                <h2><strong>{{ selectedPark.parking_name }}</strong></h2>
+                <p>{{ selectedPark.address }}</p>
+                <p ng-if="selectedPark && !selectedPark.h24">{{ 'bookResume.parkOpenedFrom' | translate}}
+                    {{selectedPark.opening | date: 'HH:mm'}} {{ 'bookResume.parkOpenedTo' | translate}}
+                    {{selectedPark.closing | date: 'HH:mm'}}</p>
+                <p ng-if="selectedPark && selectedPark.h24">{{ 'bookResume.parkOpened24h' | translate}}</p>
+                <i class="icon ion-ios-navigate-outline icons-reservation"></i>
+            </a>
+            <!-- <a class="item item-icon-right park-item" ng-if="selectedParkB" ng-click='changeParking()'>
+                <p>{{ 'bookResume.parking' | translate}}<span class="color-error">*</span></p>
+                <h2><strong>{{ selectedParkB.parking_name }}</strong></h2>
+                <p>{{ selectedParkB.address }}</p>
+                <p ng-if="selectedParkB && !selectedParkB.h24">{{ 'bookResume.parkOpenedFrom' | translate}}
+                    {{selectedParkB.opening | date: 'HH:mm'}} {{ 'bookResume.parkOpenedTo' | translate}}
+                    {{selectedParkB.closing | date: 'HH:mm'}}</p>
+                <p ng-if="selectedParkB && selectedParkB.h24">{{ 'bookResume.parkOpened24h' | translate}}</p>
+                <i class="icon ion-ios-navigate-outline icons-reservation"></i>
+            </a> -->
+            <a class="item item-icon-right date-item" ng-click='selectFromDate()'>
+                <p>{{ 'bookResume.dateFrom' | translate}}<span class="color-error">*</span></p>
+                <h2><strong>{{ dateTimeFrom | date:'dd/MM/yyyy HH:mm' }}</strong></h2>
+                <i class="icon ion-ios-calendar-outline icons-reservation"></i>
+            </a>
+            <a class="item item-icon-right date-item" ng-click='selectToDate()'>
+                <p>{{ 'bookResume.dateTo' | translate}}<span class="color-error">*</span></p>
+                <h2><strong>{{ dateTimeTo | date:'dd/MM/yyyy HH:mm' }}</strong></h2>
+                <i class="icon ion-ios-calendar-outline icons-reservation"></i>
+            </a>
+        </div>
+        <ion-list>
+            <!-- <ion-toggle ng-show="selectedClient.cc" ng-model="cc" ng-click='setHasCC()' toggle-class="toggle-positive">
+                <h2>{{ 'bookResume.cc' | translate}}</h2>
+                <p>{{ 'bookResume.cc_descr' | translate}}</p>
+            </ion-toggle>
+            <ion-toggle ng-show="selectedClient.telepass" ng-model="telepass" toggle-class="toggle-positive"
+                ng-click='setHasTelepass()'>
+                <h2>{{ 'bookResume.telepass' | translate}}</h2>
+                <p>{{ 'bookResume.telepass_descr' | translate}}</p>
+            </ion-toggle> -->
+            <!-- <ion-item class="typologie" ng-show='selectedClient.drivingRange'>
+                <p>{{ 'bookResume.drivingRange' | translate }}<span class="color-error">*</span></p>
+                <ion-list>
+                    <ion-radio ng-repeat='range in listDriverRange' ng-model="selectedRange" ng-change="driverRange = selectedRange.value" ng-value="range.code">{{range.text }}</ion-radio>
+                </ion-list>
+            </ion-item>
+            <ion-item class="typologie" ng-if='selectedClient.vehicleType && vehicleTypeList'>
+                <p>{{ 'bookResume.vehicleType' | translate}} <span class="color-error">*</span></p>
+                <ion-list>
+                    <ion-radio ng-repeat='type in vehicleTypeList' ng-model="vehicleType" ng-value="type.code">{{type.text }}</ion-radio>
+                </ion-list>
+            </ion-item> -->
+        </ion-list>
+        <div class="row">
+            <div class="col col-80 col-offset-10">
+                <button ng-click='searchVehicle()' class="button button-block button-positive">
+                    {{ 'bookResume.confirm' | translate}}
+                </button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

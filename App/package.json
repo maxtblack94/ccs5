@@ -1,7 +1,7 @@
 {
-  "name": "CCS",
+  "name": "EVAI",
   "version": "1.0.0",
-  "description": "CCS",
+  "description": "EVAI",
   "dependencies": {
     "@ionic/cloud": "0.16.0",
     "bluebird": "3.5.0",
@@ -59,8 +59,8 @@
   ],
   "cordova": {
     "platforms": [
-      "ios",
-      "android"
+      "android",
+      "ios"
     ],
     "plugins": {
       "cordova-plugin-device": {},

@@ -11,7 +11,7 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Location
         $scope.$broadcast('scroll.refreshComplete');
     }
 
-    if ($scope.selectedClient.map) {
+    if ($scope.selectedClient.map && !window.serverRootLocal) {
         setTimeout(function() {
             var location = LocationService.requestLocationAuthorization();
             if (location) {
@@ -20,7 +20,9 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Location
         }, 2000);
     }
     
-
+    $scope.startBooking = function (params) {
+        $state.go('subscriptions');
+    }
 
     function doWatchLocation (){
         var watchOptions = {
@@ -77,7 +79,7 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Location
                         
                         obj.pickup_time_tollerance = ManipolationServices.dateAndTimeAggregation(obj.pickup_date_tollerance, obj.pickup_time_tollerance);
                         if (new Date(obj.pickup_time_tollerance) <= new Date()) {
-                            $scope.tolleranceCheck = true;
+                            obj.tolleranceCheck = true;
                             $rootScope.sosPnr = obj.status === "Collected"? obj.pnr:undefined;
                         }
                     }

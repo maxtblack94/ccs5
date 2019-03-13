@@ -1,0 +1,11 @@
+<ion-view view-title="Servizi">
+    <ion-content>
+        <div class="list card">
+            <div ng-click="selectService(service)" ng-repeat="service in user.registry.services" class="item item-avatar fix-item">
+                <img src="{{service.icon}}">
+                <h2>{{service.name}}</h2>
+                <p>{{service.parkingType}}</p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
