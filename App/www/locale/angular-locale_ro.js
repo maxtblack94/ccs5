@@ -168,8 +168,8 @@ window.locale_ro.vehicle = {
 	color: 'Culoare',
 	externalClean: 'Extern',
 	internalClean: 'Intern',
-	noVehiclesInThisMoment: 'În prezent, nu este disponibil un vehicul pentru perioada solicitată de dvs.',
-    labelCannotReserve: 'Rezervarea dvs. nu poate fi acceptată, deoarece pentru perioada solicitată există deja o rezervare în numele dvs.'
+	noVehiclesInThisMoment: 'Momentan nu este disponibil nici un vehicul pentru perioada solicitată de dvs.',
+    labelCannotReserve: 'Cerere respinsa deoarece pentru perioada solicitată există deja o rezervare în numele dvs.'
 };
 
 window.locale_ro.login = {
@@ -259,14 +259,14 @@ window.locale_ro.actionSheet = {
 	confirm: 'Confirmare',
 	cancel: 'Anula',
 	continue: 'Continua',
-	segnalation: 'Semnalizare',
+	segnalation: 'Semnalare probleme',
 	attention: 'Atenție',
-	damageInfo1: 'Efectuați Semnalarea defectuoasă, numai după ce ați constatat că vehiculul nu este C (care poate să se întoarcă la parcare și trebuie să fie adus sau transferat, într-o reparație.',
-	damageInfo2: 'Prin urmare, semnalizarea defecțiunilor implică închiderea cursei actuale, astfel încât să se poată rezerva un alt vehicul, dacă se dorește. Pentru a închide această cursă, este necesar să comunicați în plus',
-	damageInfo3: 'Trebuie remarcat faptul că, odată ce vina a fost raportată, vehiculul nu va mai fi utilizabil',
-	totalKM: 'Kilometri total afișați pe tabloul de bord',
-	noteWithDesc: 'Note (utile pentru diagnosticarea problemei)',
-	needSupport: 'Dacă vehiculul trebuie remorcat sau nu',
+	damageInfo1: 'Transmiteti aceasta alerta numai dupa ce v-ati asigurat ca autovehiculul nu mai poate ajunge prin mijloace proprii la parcarea de baza si ca are nevoie sa fie transferat si reparat in service.',
+	damageInfo2: 'TRimitand aceasta alerta se va inchide rezervarea, putand astfel sa rezervati alt autovehicul. Pentru a inchide aceasta rezervare este nevoie sa transmiteti:',
+	damageInfo3: 'Din momentul transmiterii acestei alerte, autovehiculul devine inutilizabil si se va putea folosi numai dupa reparare!',
+	totalKM: 'Km din bord',
+	noteWithDesc: 'Descriere a problemelor',
+	needSupport: 'Daca necesita remorcare/tractare',
 	note: 'Notițe',
 	note2: 'Notițe',
 	chooseDefectType: 'Alegeți tipul de defecțiune',

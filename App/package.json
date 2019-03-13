@@ -59,7 +59,6 @@
   ],
   "cordova": {
     "platforms": [
-      "android",
       "ios"
     ],
     "plugins": {
