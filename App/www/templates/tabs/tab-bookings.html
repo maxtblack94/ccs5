@@ -79,7 +79,7 @@
         </div>
         <div class="item" ng-if="book.status === 'Booked'">
           <div class="row">
-            <div class="col col50" ng-if="selectedClient.btnOpenClose && tolleranceCheck">
+            <div class="col col50" ng-if="selectedClient.btnOpenClose && book.tolleranceCheck">
               <button ng-click="openCarManipolation(book, '0')" class="button button-balanced button-block pull-right" style="padding: 0px 15px;">
                 {{ 'bookings.openCar' | translate }}
               </button>
@@ -91,9 +91,9 @@
           </div>
         </div>
       </div>
-        <div class="item" ng-if="book.status === 'Collected' && ((selectedClient.btnOpenClose && tolleranceCheck) || actions.buttons.length > 0)">
+        <div class="item" ng-if="book.status === 'Collected' && ((selectedClient.btnOpenClose && book.tolleranceCheck) || actions.buttons.length > 0)">
           <div class="row">
-            <div class="col col50" ng-if="selectedClient.btnOpenClose && tolleranceCheck">
+            <div class="col col50" ng-if="selectedClient.btnOpenClose && book.tolleranceCheck">
               <button ng-click="openCarManipolation(book, '1')" class="button button-positive button-block pull-right" style="padding: 0px 15px;">
                 {{ 'bookings.closeCar' | translate }}
               </button>
