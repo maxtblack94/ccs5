@@ -1,4 +1,4 @@
-window.serverRootLocal = false;
+window.serverRootLocal = true;
 
 backupconsolelog = console.error.bind(console);
 

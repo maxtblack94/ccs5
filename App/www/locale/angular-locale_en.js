@@ -87,7 +87,7 @@ window.locale_en.commons = {
 	select: 'Select',
 	close: 'Close',
 	attention: 'Warning',
-	cancel: 'Delete',
+	cancel: 'Cancel',
 	save: 'Save',
 	insert: 'Insert',
 	alert: 'Alert',

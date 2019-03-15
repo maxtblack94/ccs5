@@ -7,7 +7,7 @@ angular.module('starter').factory("ManipolationServices", function() {
         return newDate;
     };
     function trascodeFuel(value) {
-        if (value.search("/")) {
+        if (value && value.search("/")) {
             switch(value) {
                 default: 
                     break;

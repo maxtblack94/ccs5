@@ -31,6 +31,8 @@
                 <h2><strong>{{ dateTimeTo | date:'dd/MM/yyyy HH:mm' }}</strong></h2>
                 <i class="icon ion-ios-calendar-outline icons-reservation"></i>
             </a>
+
+                
         </div>
         <ion-list>
             <!-- <ion-toggle ng-show="selectedClient.cc" ng-model="cc" ng-click='setHasCC()' toggle-class="toggle-positive">
@@ -42,18 +44,18 @@
                 <h2>{{ 'bookResume.telepass' | translate}}</h2>
                 <p>{{ 'bookResume.telepass_descr' | translate}}</p>
             </ion-toggle> -->
-            <!-- <ion-item class="typologie" ng-show='selectedClient.drivingRange'>
+            <ion-item class="typologie" ng-if='selectedClient.drivingRange'>
                 <p>{{ 'bookResume.drivingRange' | translate }}<span class="color-error">*</span></p>
                 <ion-list>
-                    <ion-radio ng-repeat='range in listDriverRange' ng-model="selectedRange" ng-change="driverRange = selectedRange.value" ng-value="range.code">{{range.text }}</ion-radio>
+                    <ion-radio ng-repeat='range in listDriverRange' ng-click="alert('pippo')" ng-model="pippo" ng-value="range">{{range.text }}</ion-radio>
                 </ion-list>
             </ion-item>
             <ion-item class="typologie" ng-if='selectedClient.vehicleType && vehicleTypeList'>
                 <p>{{ 'bookResume.vehicleType' | translate}} <span class="color-error">*</span></p>
                 <ion-list>
-                    <ion-radio ng-repeat='type in vehicleTypeList' ng-model="vehicleType" ng-value="type.code">{{type.text }}</ion-radio>
+                    <ion-radio ng-repeat='type in vehicleTypeList' ng-model="vehicleType" ng-change="setVehicleType(selectedRange.value)" ng-value="type.code">{{type.text }}</ion-radio>
                 </ion-list>
-            </ion-item> -->
+            </ion-item>
         </ion-list>
         <div class="row">
             <div class="col col-80 col-offset-10">

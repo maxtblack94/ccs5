@@ -1,6 +1,7 @@
 angular.module('starter').controller('ReserveCtrl', function(ReservationService, ManipolationServices, $filter, ScriptServices, $timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, PopUpServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope = Object.assign($scope, ReservationService.instance);
+    $scope.pippo = '';
 
     if($scope.selectedClient.drivingRange){
         $ionicLoading.show();
@@ -13,7 +14,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
         });
     }
 
-    /* if($scope.selectedClient.vehicleType && $scope.selectedPark){
+    if($scope.selectedClient.vehicleType && $scope.selectedPark){
         $ionicLoading.show();
         $scope.vehicleTypeList = [];
         ScriptServices.getXMLResource(592).then(function(res) {
@@ -29,7 +30,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
                 PopUpServices.errorPopup($filter('translate')('bookResume.vehicleTypesNotFound'), "1");
             });
         });
-    } */
+    }
 
     /* $scope.setHasCC = function() {
         $scope.hasCC = !$scope.hasCC;
@@ -44,13 +45,13 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
     $scope.searchVehicle = function() {
         console.log('cerca veicoli');
         if(datesCheck()){
-           /*  if($scope.selectedClient.drivingRange){
+            if($scope.selectedClient.drivingRange){
                 $scope.reservationInfo.drivingRange = ReservationService.drivingRange = $scope.selectedClient.drivingRange;
             }
             if($scope.selectedClient.vehicleType){
                 $scope.reservationInfo.vehicleType = ReservationService.vehicleType = $scope.selectedClient.vehicleType;
-            } */
-            $state.go('tab.selcar');
+            }
+            $state.go('vehicles');
         }
     };
 
@@ -80,13 +81,13 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
                     return false;
                 }
             }
-            /* if($scope.selectedClient.drivingRange == true && $scope.driverRange == "short"){
+            if($scope.selectedClient.drivingRange == true && $scope.driverRange == "short"){
                 PopUpServices.errorPopup($filter('translate')('bookResume.defineRange'), "1");
                 return false;
             }else if($scope.selectedClient.vehicleType == true && !$scope.vehicleType && $scope.vehicleTypeList){
                 PopUpServices.errorPopup($filter('translate')('bookResume.missingVehicleType'), "1");
                 return false;
-            } */
+            }
             if(InfoFactories.getUserInfo() && InfoFactories.getUserInfo().registry && InfoFactories.getUserInfo().registry.time_of_booking){
                 var days = InfoFactories.getUserInfo().registry.time_of_booking;
                 var maxDate;
@@ -113,7 +114,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
         if(type == 'to'){
             var dateFrom = $scope.dateTimeFrom ? $scope.dateTimeFrom : undefined;
             $scope.dateTimeTo = ManipolationServices.resetDateForDefect(newDate, dateFrom);
-            InfoFactories.setDateTimeTo($scope.dateTimeTo);
+            ReservationService.setDateTimeTo($scope.dateTimeTo);
         }else if(type == 'from'){
             if(new Date(Date.now() + 60000 * 10) - newDate > 0){
                 newDate = ManipolationServices.resetDateService(newDate);
@@ -121,7 +122,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
                 newDate = ManipolationServices.resetDateForDefect(newDate);
             };
             $scope.dateTimeFrom = newDate;
-            InfoFactories.setDateTimeFrom($scope.dateTimeFrom);
+            ReservationService.setDateTimeFrom($scope.dateTimeFrom);
         }
     }
 

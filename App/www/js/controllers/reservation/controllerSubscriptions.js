@@ -5,4 +5,8 @@ angular.module('starter').controller('SubscriptionsCtrl', function(InfoFactories
         ReservationService.setService(service);
         $state.go('park');
     };
+
+    $scope.cancel = function () {
+        console.log('cancel');
+    };
 });
