@@ -505,6 +505,7 @@ ion-item.typologie p {
     left: 0;
     bottom: 0;
     width: 100%;
+    height: 80px;
 }
 
 .footer-fixed {
@@ -515,4 +516,22 @@ ion-item.typologie p {
     left: 0;
     bottom: 0;
     width: 100%;
+    height: 80px;
+}
+
+.mb80{
+    margin-bottom: 80px;
+}
+
+.item.subscription img.icon{
+    float: right;
+    width: 60px;
+}
+
+.item.subscription p{
+    width: 60%;
+}
+
+.item.subscription h2{
+    width: 60%;
 }

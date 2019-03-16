@@ -3,7 +3,7 @@ angular.module('starter').controller('VehicleCtrl', function($filter, Reservatio
     $scope = Object.assign($scope, ReservationService.instance);
     
     $scope.onSelect = function(car) {
-        $state.go('confirmPrenotation', {'car':car});
+        $state.go('confirm', {'car':car});
     };
 
     function loadVehicles () {

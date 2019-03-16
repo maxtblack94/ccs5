@@ -21,8 +21,8 @@ angular.module('starter').factory("ReservationService", function($ionicPopup, $f
         self.preselectPark = {value : false};
         self.driverRange = {"value":{"text":"","code":"short"}};
         self.vehicleType = undefined;
-        self.dateTimeFrom = window.serverRootLocal ? "2019-03-12T00:21:15.120Z" : undefined;
-        self.dateTimeTo = window.serverRootLocal ? "2019-03-12T00:21:30.120Z" : undefined;
+        self.dateTimeFrom = window.serverRootLocal ? "2019-04-12T00:21:15.120Z" : null;
+        self.dateTimeTo = window.serverRootLocal ? "2019-04-12T00:21:30.120Z" : null;
     }
 
     return {

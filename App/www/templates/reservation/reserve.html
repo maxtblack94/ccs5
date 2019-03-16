@@ -1,5 +1,5 @@
 <ion-view view-title="{{ 'bookResume.title' | translate}}">
-    <ion-content>
+    <ion-content class="mb80">
         <div class="list m-bottom0">
             <a class="item item-icon-right park-item" ng-click='changeParking("A")'>
                 <p>{{ 'bookResume.parking' | translate}}<span class="color-error">*</span></p>
@@ -60,17 +60,17 @@
                 </ion-list>
             </ion-item>
         </ion-list>
-        <div class="row sticky-footer">
-            <div class="col col-50">
-                <button ng-click='cancel()' class="button button-block button-balanced">
-                    {{ 'commons.cancel' | translate}}
-                </button>
-            </div>
-            <div class="col col-50">
-                <button ng-click='searchVehicle()' class="button button-block button-positive">
-                    {{ 'bookResume.confirm' | translate}}
-                </button>
-            </div>
-        </div>
     </ion-content>
+    <div class="row footer-fixed">
+        <div class="col col-50">
+            <button ng-click='cancel()' class="button button-block button-balanced">
+                {{ 'commons.cancel' | translate}}
+            </button>
+        </div>
+        <div class="col col-50">
+            <button ng-click='searchVehicle()' class="button button-block button-positive">
+                {{ 'bookResume.confirm' | translate}}
+            </button>
+        </div>
+    </div>
 </ion-view>

@@ -1,5 +1,5 @@
 <ion-view view-title="{{ 'vehicle.title' | translate}}">
-    <ion-content>
+    <ion-content class="mb80">
       <ion-refresher pulling-text="{{ 'commons.refresh' | translate}}" on-refresh="refreshCars()">
     </ion-refresher>
       <ion-list>
@@ -91,13 +91,14 @@
           </div>
         
       </ion-list>
-      <div class="row sticky-footer">
-          <div class="col col-80 col-offset-10">
-              <button ng-click="cancel();" class="button button-block button-balanced">
-                  {{ 'commons.cancel' | translate}}
-              </button>
-          </div>
-      </div>
+      
     </ion-content>
+    <div class="row footer-fixed">
+        <div class="col col-80 col-offset-10">
+            <button ng-click="cancel();" class="button button-block button-balanced">
+                {{ 'commons.cancel' | translate}}
+            </button>
+        </div>
+    </div>
   </ion-view>
   
