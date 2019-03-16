@@ -496,3 +496,23 @@ ion-item.typologie {
 ion-item.typologie p {
     line-height: 30px;
 }
+
+.sticky-footer {
+    position: sticky;
+    z-index: 1000;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-fixed {
+    position: fixed;
+    z-index: 1000;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

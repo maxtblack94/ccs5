@@ -1,6 +1,6 @@
 <ion-view view-title="Servizi">
-    <ion-content>
-        <div class="list card">
+    <ion-content scroll="false">
+        <div class="list card" ng-if="user.registry.services.length">
             <div ng-click="selectService(service)" ng-repeat="service in user.registry.services" class="item item-avatar fix-item">
                 <img src="{{service.icon}}">
                 <h2>{{service.name}}</h2>
@@ -8,7 +8,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row footer-fixed">
             <div class="col col-80 col-offset-10">
                 <button ng-click="cancel();" class="button button-block button-balanced">
                     {{ 'commons.cancel' | translate}}

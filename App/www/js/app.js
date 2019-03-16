@@ -224,6 +224,9 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
       .state('park', {
         url: '/park',
         cache: false,
+        params: {
+          parkDirection: null
+        },
         templateUrl: 'templates/reservation/park.html',
         controller: 'ParkCtrl'
       })

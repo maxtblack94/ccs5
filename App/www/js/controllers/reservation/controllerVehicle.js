@@ -14,6 +14,11 @@ angular.module('starter').controller('VehicleCtrl', function($filter, Reservatio
         }
     }
 
+    $scope.cancel = function () {
+        ReservationService.resetReservation();
+        $state.go('tab.bookings');
+    };
+
     function callbackMissingRecords (){
         $state.go('reserve');
     }
@@ -33,6 +38,8 @@ angular.module('starter').controller('VehicleCtrl', function($filter, Reservatio
             ScriptServices.callGenericService(res, 641).then(function(data) {
                 $scope.loading = false;
                 $ionicLoading.hide();
+                // da rimuovere dopo fix matteo
+                data.data.VehiclesList = data.data;
                 finalizeData(data);
             }, function(error) {
                 $ionicLoading.hide();
@@ -59,7 +66,7 @@ angular.module('starter').controller('VehicleCtrl', function($filter, Reservatio
         }else {
             $scope.vehicleList = data.data.VehiclesList;
             for(var k = 0; k < $scope.vehicleList.length; k++) {
-                if (condition) {
+                if ($scope.vehicleList[k].fuel_quantity) {
                     $scope.vehicleList[k].fuel_quantity = ManipolationServices.trascodeFuel($scope.vehicleList[k].fuel_quantity);
                 }
             }
@@ -80,7 +87,7 @@ angular.module('starter').controller('VehicleCtrl', function($filter, Reservatio
 					 .replace('{TIME_TO}', moment($scope.dateTimeTo).format('HH:mm'))
 					 .replace('{CC}', cc)
 					 .replace('{TELEPASS}', telepass)
-					 .replace('{DRIVING_RANGE}', $scope.driverRange || 'short')
+					 .replace('{DRIVING_RANGE}', $scope.driverRange.value.code || 'short')
                      .replace('{VEHICLETYPE}', $scope.vehicleType || null);
             ScriptServices.callGenericService(res, 571).then(function(data) {
                 $scope.loading = false;

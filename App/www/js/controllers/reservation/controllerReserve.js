@@ -1,7 +1,6 @@
 angular.module('starter').controller('ReserveCtrl', function(ReservationService, ManipolationServices, $filter, ScriptServices, $timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, PopUpServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope = Object.assign($scope, ReservationService.instance);
-    $scope.pippo = '';
 
     if($scope.selectedClient.drivingRange){
         $ionicLoading.show();
@@ -45,14 +44,15 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
     $scope.searchVehicle = function() {
         console.log('cerca veicoli');
         if(datesCheck()){
-            if($scope.selectedClient.drivingRange){
-                $scope.reservationInfo.drivingRange = ReservationService.drivingRange = $scope.selectedClient.drivingRange;
-            }
             if($scope.selectedClient.vehicleType){
                 $scope.reservationInfo.vehicleType = ReservationService.vehicleType = $scope.selectedClient.vehicleType;
             }
             $state.go('vehicles');
         }
+    };
+
+    $scope.changeParking = function(park) {
+        $state.go('park', { parkDirection: park});
     };
 
     function datesCheck (){
@@ -81,7 +81,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
                     return false;
                 }
             }
-            if($scope.selectedClient.drivingRange == true && $scope.driverRange == "short"){
+            if($scope.selectedClient.drivingRange == true && $scope.driverRange.value.code == "short"){
                 PopUpServices.errorPopup($filter('translate')('bookResume.defineRange'), "1");
                 return false;
             }else if($scope.selectedClient.vehicleType == true && !$scope.vehicleType && $scope.vehicleTypeList){
@@ -211,5 +211,11 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
                 fixDateTime(date, time, 'to');
             }
         });
+
     }
+
+    $scope.cancel = function () {
+        ReservationService.resetReservation();
+        $state.go('tab.bookings');
+    };
  });

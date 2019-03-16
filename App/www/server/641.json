@@ -1,0 +1,43 @@
+{
+    "retcode": 0,
+    "data": [{
+        "id": 72188,
+        "brand": "Nissan",
+        "model": "Leaf",
+        "fuelType": "Elettrica",
+        "drivingRange": "Urbano, Extraurbano",
+        "vehicleType": "City Car",
+        "seats": "5",
+        "displacement": "",
+        "color": "Bianco",
+        "hp": "80",
+        "imgl": "https://e-vai.corporatecarsharing.it/images/vehicles/nissan/leaf-white-l.jpg",
+        "imgs": "https://e-vai.corporatecarsharing.it/images/vehicles/nissan/leaf-white-s.jpg"
+    }, {
+        "id": 72189,
+        "brand": "Citroen",
+        "model": "C Zero",
+        "fuelType": "Elettrica",
+        "drivingRange": "Urbano",
+        "vehicleType": "City Car",
+        "seats": "4",
+        "displacement": "",
+        "color": "Bianco",
+        "hp": "35",
+        "imgl": "https://e-vai.corporatecarsharing.it/images/vehicles/citroen/c0-white-l.jpg",
+        "imgs": "https://e-vai.corporatecarsharing.it/images/vehicles/citroen/c0-white-s.jpg"
+    }, {
+        "id": 72190,
+        "brand": "Renault",
+        "model": "Zoe",
+        "fuelType": "Elettrica",
+        "drivingRange": "Urbano, Extraurbano",
+        "vehicleType": "City Car",
+        "seats": "5",
+        "displacement": "",
+        "color": "Bianco",
+        "hp": "43",
+        "imgl": "https://e-vai.corporatecarsharing.it/images/vehicles/renault/zoe-white-l.jpg",
+        "imgs": "https://e-vai.corporatecarsharing.it/images/vehicles/renault/zoe-white-s.jpg"
+    }]
+}

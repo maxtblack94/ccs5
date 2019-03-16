@@ -9,12 +9,11 @@
             </label>
         </div>
         <p ng-if='parkingList.length==0 && !loading' class="message-empty">{{ 'parking.noparking' | translate }}</p>
-
         <ul class="list">
-            <li class="item item-toggle custom">
+            <li class="item item-toggle custom" ng-show="!parkDirection || parkDirection === 'A'">
                 Parcheggio di ritiro diverso da quello di riconsegna?
                 <label class="toggle toggle-secondary">
-                    <input type="checkbox">
+                    <input type="checkbox" ng-model="preselectPark.value">
                     <div class="track">
                         <div class="handle"></div>
                     </div>
@@ -29,17 +28,13 @@
             </li>
         </ul>
 
-        <div class="row">
+        
+    </ion-content>
+    <div class="row footer-fixed">
             <div class="col col-80 col-offset-10">
                 <button ng-click="cancel();" class="button button-block button-balanced">
                     {{ 'commons.cancel' | translate}}
                 </button>
             </div>
-            <!-- <div class="col col-80 col-offset-10">
-                <button ng-click="back();" class="button button-block button-positive">
-                    {{ 'commons.back' | translate}}
-                </button>
-            </div> -->
         </div>
-    </ion-content>
 </ion-view>

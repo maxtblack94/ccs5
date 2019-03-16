@@ -180,7 +180,7 @@
       "lbljustification": "Giustificazione Utilizzo",
       "lbldestination": "",
       "lbldelay": "Ritarda",
-      "vehicleType": true,
+      "vehicleType": false,
       "clientCode": "h5rt8d",
       "clientStyle": "http://ccsitalia.it/downloads/app/css/texaApp.css",
       "serverName": "e-vai",

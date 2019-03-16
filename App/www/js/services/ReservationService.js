@@ -6,8 +6,9 @@ angular.module('starter').factory("ReservationService", function($ionicPopup, $f
     this.selectedParkB,
     this.telepass = false,
     this.cc = false,
-    this.driverRange = 'short',
+    this.driverRange = {"value":{"text":"","code":"short"}},
     this.vehicleType,
+    this.preselectPark = {value : false},
     this.dateTimeFrom = window.serverRootLocal ? "2019-04-12T10:20:15.120Z" : undefined,
     this.dateTimeTo = window.serverRootLocal ? "2019-04-12T11:20:30.120Z" : undefined;
 
@@ -17,7 +18,8 @@ angular.module('starter').factory("ReservationService", function($ionicPopup, $f
         self.selectedParkB = undefined;
         self.telepass = false;
         self.cc = false;
-        self.driverRange = 'short';
+        self.preselectPark = {value : false};
+        self.driverRange = {"value":{"text":"","code":"short"}};
         self.vehicleType = undefined;
         self.dateTimeFrom = window.serverRootLocal ? "2019-03-12T00:21:15.120Z" : undefined;
         self.dateTimeTo = window.serverRootLocal ? "2019-03-12T00:21:30.120Z" : undefined;
@@ -39,8 +41,17 @@ angular.module('starter').factory("ReservationService", function($ionicPopup, $f
             }
             self.selectedPark = varPark;
         },
-        setParkB: function (parkB) {
-            self.selectedParkB = parkB;
+        setParkB: function (varPark) {
+            if (varPark) {
+                if(varPark.opening == "00:00" && varPark.closing == "23:59"){
+                    varPark.h24 = true;
+                }else{
+                    varPark.opening = new Date(moment(varPark.opening, 'DD/MM/YYYY HH:mm:ss'));
+                    varPark.closing = new Date(moment(varPark.closing, 'DD/MM/YYYY HH:mm:ss'));
+                }
+            }
+            
+            self.selectedParkB = varPark;
         },
         setTelepass: function (telepass) {
             self.telepass = telepass;

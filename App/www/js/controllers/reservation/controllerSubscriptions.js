@@ -7,6 +7,7 @@ angular.module('starter').controller('SubscriptionsCtrl', function(InfoFactories
     };
 
     $scope.cancel = function () {
-        console.log('cancel');
+        ReservationService.resetReservation();
+        $state.go('tab.bookings');
     };
 });
