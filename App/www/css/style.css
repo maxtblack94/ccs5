@@ -489,14 +489,6 @@ display: none;
     min-height: 80px;
 }
 
-ion-item.typologie {
-    border-bottom: none; margin-bottom: 10px;
-}
-
-ion-item.typologie p {
-    line-height: 30px;
-}
-
 .sticky-footer {
     position: sticky;
     z-index: 1000;
@@ -534,4 +526,23 @@ ion-item.typologie p {
 
 .item.subscription h2{
     width: 60%;
+}
+
+.price {
+    color: #ba0200!important;
+    float: right;
+}
+
+
+.item .brand_model{
+	line-height: 20px;
+    font-size: 15px;
+    white-space: initial;
+}
+
+
+
+.typologie {
+    padding: 20px;
+    color: #666;
 }

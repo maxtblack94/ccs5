@@ -7,6 +7,7 @@ angular.module('starter').factory("ReservationService", function($ionicPopup, $f
     this.telepass = false,
     this.cc = false,
     this.driverRange = {"value":{"text":"","code":"short"}},
+    this.selectedTarif = {"value":{"text":"","id":""}},
     this.vehicleType,
     this.preselectPark = {value : false},
     this.dateTimeFrom = window.serverRootLocal ? "2019-04-12T10:20:15.120Z" : undefined,
@@ -20,6 +21,7 @@ angular.module('starter').factory("ReservationService", function($ionicPopup, $f
         self.cc = false;
         self.preselectPark = {value : false};
         self.driverRange = {"value":{"text":"","code":"short"}};
+        self.selectedTarif = {"value":{"text":"","id":""}};
         self.vehicleType = undefined;
         self.dateTimeFrom = window.serverRootLocal ? "2019-04-12T00:21:15.120Z" : null;
         self.dateTimeTo = window.serverRootLocal ? "2019-04-12T00:21:30.120Z" : null;
@@ -30,6 +32,11 @@ angular.module('starter').factory("ReservationService", function($ionicPopup, $f
             return resetReservation();
         },
         setService: function (service) {
+            if (service && service.tarifs && service.tarifs.length) {
+                this.setTarif({
+                    value: service.tarifs[0]
+                });
+            }
             self.selectedService = service;
         },
         setPark: function (varPark) {
@@ -70,6 +77,9 @@ angular.module('starter').factory("ReservationService", function($ionicPopup, $f
         },
         setDateTimeTo: function (dateTimeTo) {
             self.dateTimeTo = dateTimeTo;
+        },
+        setTarif: function (tarif) {
+            self.selectedTarif = tarif;
         },
         instance: self
     };

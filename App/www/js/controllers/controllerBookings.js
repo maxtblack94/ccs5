@@ -42,6 +42,24 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Location
         }, watchOptions);
     }
 
+    $scope.getService = function(serviceID) {
+        var service = $scope.userInfo.registry.services.find(function (serviceItem) {
+            return serviceItem.id === serviceID;
+        });
+        return service || {};
+    };
+
+    $scope.getTarif = function (serviceID, tarifID) {
+        var tarif;
+        var service = $scope.getService(serviceID);
+        if (service.tarifs && service.tarifs.length) {
+            tarif = service.tarifs.find(function (tarifItem) {
+                return tarifItem.id === tarifID;
+            });
+        }
+        return tarif || {};
+    };
+
     /*$scope.scheduleDelayedNotification = function (pnr) {
         var now = new Date().getTime();
         var _10SecondsFromNow = new Date(now + 10 * 1000);
@@ -315,10 +333,11 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Location
                 if (!book) {
                     return;
                 }
+                var script = book.status === 'Registered' ? 643 : 553;
                 $ionicLoading.show();
-                ScriptServices.getXMLResource(553).then(function(res) {
+                ScriptServices.getXMLResource(script).then(function(res) {
                     res = res.replace('{BOOKING_NUMBER}', book.Nr);
-                    ScriptServices.callGenericService(res, 553).then(function(data) {
+                    ScriptServices.callGenericService(res, script).then(function(data) {
                         $scope.loadbookings();
                     }, function(error) {
                        

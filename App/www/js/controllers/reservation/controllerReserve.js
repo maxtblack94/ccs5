@@ -47,6 +47,8 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
             if($scope.selectedClient.vehicleType){
                 $scope.reservationInfo.vehicleType = ReservationService.vehicleType = $scope.selectedClient.vehicleType;
             }
+
+            ReservationService.setTarif($scope.selectedTarif);
             $state.go('vehicles');
         }
     };

@@ -44,22 +44,28 @@
                 <h2>{{ 'bookResume.telepass' | translate}}</h2>
                 <p>{{ 'bookResume.telepass_descr' | translate}}</p>
             </ion-toggle> -->
-            <ion-item class="typologie" ng-if='selectedClient.drivingRange'>
-                <p>{{ 'bookResume.drivingRange' | translate }}<span class="color-error">*</span></p>
-                {{driverRange}}
-                <ion-list>
-                    <ion-radio ng-repeat='range in listDriverRange' ng-model="driverRange.value" ng-value="range">{{range.text
-                        }}</ion-radio>
-                </ion-list>
-            </ion-item>
-            <ion-item class="typologie" ng-if='selectedClient.vehicleType && vehicleTypeList'>
+            
+            <!-- <ion-item class="typologie" ng-if='selectedClient.vehicleType && vehicleTypeList'>
                 <p>{{ 'bookResume.vehicleType' | translate}} <span class="color-error">*</span></p>
                 <ion-list>
                     <ion-radio ng-repeat='type in vehicleTypeList' ng-model="vehicleType" ng-change="setVehicleType(selectedRange.value)"
                         ng-value="type.code">{{type.text }}</ion-radio>
                 </ion-list>
-            </ion-item>
+            </ion-item> -->
+
         </ion-list>
+        <div class="typologie" ng-if='selectedClient.drivingRange'>
+            <p>{{ 'bookResume.drivingRange' | translate }}<span class="color-error">*</span></p>
+            <ion-list>
+                <ion-radio ng-repeat='range in listDriverRange' id="driverRange" ng-model="driverRange.value" ng-value="range">{{range.text}}</ion-radio>
+            </ion-list>
+        </div>
+        <div class="typologie">
+            <p>Tariffa <span class="color-error">*</span></p>
+            <ion-list>
+                <ion-radio ng-repeat='tarif in selectedService.tarifs' name="tarif" ng-model="selectedTarif.value" ng-value="tarif">{{tarif.text}}</ion-radio>
+            </ion-list>
+        </div>
     </ion-content>
     <div class="row footer-fixed">
         <div class="col col-50">

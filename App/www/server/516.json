@@ -19,6 +19,8 @@
           "return_date_tollerance": "20/12/2018",
           "return_time_tollerance": "20/12/2018 18:15:00",
           "cmb_color": "Grigio",
+          "serviceID": 72193,
+          "tarifID" : 73695,
           "image_max": "https://texa.corporatecarsharing.it/images/vehicles/peugeot/208-grey-l.jpg",
           "image_min": "https://texa.corporatecarsharing.it/images/vehicles/peugeot/208-grey-s.jpg",
           "km": "23.352",
@@ -36,6 +38,30 @@
           "radius_parking": "495",
           "cmb_electric_quantity": "49%",
           "cmb_fuel_quantity": ""
+        },{
+          "Nr": "48111",
+          "status": "Registered",
+          "brand": "Nissan",
+          "serviceID": 72192,
+          "tarifID" : 73695,
+          "importoPresunto": 35.34,
+          "pnr": "00000104D96FD2AA488048111",
+          "model": "Leaf",
+          "pickup_parking": "Roma Demo",
+          "pickup_date": "20/12/2018",
+          "pickup_time": "20/12/2018 17:30:00",
+          "return_parking": "Roma Demo",
+          "return_date": "20/12/2018",
+          "seats": "8",
+          "return_time": "20/12/2018 17:45:00",
+          "pickup_date_tollerance": "20/12/2018",
+          "pickup_time_tollerance": "20/12/2018 17:00:00",
+          "return_date_tollerance": "20/12/2018",
+          "return_time_tollerance": "20/12/2018 18:15:00",
+          "image_max": "https://texa.corporatecarsharing.it/images/vehicles/peugeot/208-grey-l.jpg",
+          "image_min": "https://texa.corporatecarsharing.it/images/vehicles/peugeot/208-grey-s.jpg",
+          "fuel": "Elettrica",
+          "destination": "Test ccs"
         }
       ]
     }

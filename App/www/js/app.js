@@ -248,6 +248,9 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
       .state('confirm', {
         url: '/confirm',
         cache: false,
+        params: {
+          car: null
+        },
         templateUrl: 'templates/reservation/confirm.html',
         controller: 'ConfirmCtrl'
       });

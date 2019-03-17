@@ -34,7 +34,11 @@ angular.module('starter').controller('VehicleCtrl', function($filter, Reservatio
         $scope.vehicleList = null;
         $ionicLoading.show();
          ScriptServices.getXMLResource(641).then(function(res) {
-            res = res.replace('{NUMBER_DRIVER}', InfoFactories.getUserInfo().driverNumber);
+            res = res.replace('{NUMBER_DRIVER}', InfoFactories.getUserInfo().driverNumber)
+            .replace('{SERVICE}', $scope.selectedService.id)
+            .replace('{TARIFFAID}', $scope.selectedTarif.value.id)
+            .replace('{DATADA}', $scope.dateTimeFrom)
+            .replace('{DATAA}', $scope.dateTimeTo);
             ScriptServices.callGenericService(res, 641).then(function(data) {
                 $scope.loading = false;
                 $ionicLoading.hide();

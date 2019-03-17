@@ -6,104 +6,11 @@
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshBookings()">
     </ion-refresher>
     <p ng-if='BookingsList && BookingsList.length==0' class="message-empty">{{ 'bookings.notFound' | translate }}</p>
-    <ion-list ng-if="BookingsList && BookingsList.length !== 0">
-      <div ng-repeat='book in BookingsList' class="list card">
-        <div class="item" ng-click="openBooking(book)" ng-if="selectedClient.map">
-          <p class="pull-left bold">{{ 'bookings.pnr' | translate }}</p>
-          <h2 class="pull-right bold pnr" ng-click='openBooking(book)'><i class="ion-ios-location"></i> {{ ::book.pnr }}</h2>
+    <ion-list ng-if="BookingsList && BookingsList.length">
+        <div ng-repeat='book in BookingsList'>
+            <ng-include src="'templates/tabs/bookings-cards/reservation.html'" ng-if="book.status !== 'Registered'"></ng-include>
+            <ng-include src="'templates/tabs/bookings-cards/order.html'" ng-if="book.status === 'Registered'"></ng-include>
         </div>
-        <div class="item" ng-if="!selectedClient.map">
-          <p class="pull-left bold">{{ 'bookings.pnr' | translate }}</p>
-          <h2 class="pull-right bold pnr"> {{ ::book.pnr }}</h2>
-        </div>
-        <div class="item">
-          <h2 class="brand_model">{{ ::book.brand_model }}</h2>
-          <p>{{ 'bookings.plate' | translate }}</p>
-          <h2>{{ ::book.plate }}</h2>
-        </div>
-        <div ng-if='!hasPicture' class="item item-image">
-          <img ng-src="{{ book.image_max ? book.image_max : 'icons/vehicle-default-l.jpg' }}">
-        </div>
-        <div class="item">
-          <div class="pull-left m-right20">
-            <p>{{ 'bookings.color' | translate }}</p>
-            <div class='color-cube'>
-              <div style='background-color: {{ book.colorApp }};'></div>
-            </div>
-          </div>
-          <div class="pull-left" ng-show='book.seats'>
-            <p>{{ 'bookings.seats' | translate }}</p>
-            <p class="bold" style='font-size: 20px; line-height: 26px; text-align: center;'>{{ ::book.seats }}</p>
-          </div>
-          <div class="pull-right" ng-if='hasPicture'>
-            <img ng-src="{{ book.image_min ? book.image_min : 'icons/vehicle-default-s.jpg' }}" style='max-width: 94px;'>
-          </div>
-        </div>
-        <div class="item">
-          <div style='display: inline-block; margin-right: 10px;'>
-            <div class="date-select-label" style='text-align: center;'>{{ 'bookings.externalClean' | translate }}</div>
-            <div class="pull-left" style='width: 50px; height: 30px; text-align: center; padding-top: 4px;'>
-              <i ng-if="book.vehicle_status != 'Fault'" class='ion-happy-outline' style='font-size: 26px; color: #fc0300;'></i>
-              <i ng-if="book.vehicle_status == 'Fault'" class='ion-sad-outline' style='font-size: 26px; color: #fc0300;'></i>
-            </div>
-          </div>
-          <div style='display: inline-block;'>
-            <div class="date-select-label text-center">{{ 'bookings.internalClean' | translate }}</div>
-            <div class="pull-left text-center" style='width: 50px; height: 30px;padding-top: 4px;'>
-              <i ng-if="book.vehicle_cleanness_status != 'Dirty'" class='ion-happy-outline' style='font-size: 26px; color: #fc0300;'></i>
-              <i ng-if="book.vehicle_cleanness_status == 'Dirty'" class='ion-sad-outline' style='font-size: 26px; color: #fc0300;'></i>
-            </div>
-          </div>
-          <div class="pull-right fuel_container" ng-if="book.cmb_electric_quantity">
-            <i class="fa fa-bolt elecric-icon" aria-hidden="true"></i>
-            <div class="pull-right bold fuel_value">{{ ::book.cmb_electric_quantity }}</div>
-          </div>
-          <div class="pull-right fuel_container" ng-if="book.cmb_fuel_quantity">
-            <div class="pull-left fuel"></div>
-            <div class="pull-left bold fuel_value">{{ ::book.cmb_fuel_quantity }}</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="pull-left">
-            <h2>{{ 'bookings.get' | translate }}</h2>
-            <p>{{ ::book.pickup_parking }}</p>
-          </div>
-          <p class="pull-right value">{{ ::book.dateTimeFrom | date:'dd/MM/yyyy HH:mm' }}</p>
-        </div>
-        <div class="item">
-          <div class="pull-left">
-            <h2>{{ 'bookings.set' | translate }}</h2>
-            <p>{{ ::book.return_parking }}</p>
-          </div>
-          <p class="pull-right value">{{ ::book.dateTimeTo | date:'dd/MM/yyyy HH:mm' }}</p>
-        </div>
-        <div class="item" ng-if="book.status === 'Booked'">
-          <div class="row">
-            <div class="col col50" ng-if="selectedClient.btnOpenClose && book.tolleranceCheck">
-              <button ng-click="openCarManipolation(book, '0')" class="button button-balanced button-block pull-right" style="padding: 0px 15px;">
-                {{ 'bookings.openCar' | translate }}
-              </button>
-            </div>
-            <div class="col col50">
-              <button ng-click='delete(book)' class="button button-block button-positive">
-               <i class="icon ion-ios-trash"></i> {{ 'bookings.cancelReservation' | translate }}
-             </button>
-          </div>
-        </div>
-      </div>
-        <div class="item" ng-if="book.status === 'Collected' && ((selectedClient.btnOpenClose && book.tolleranceCheck) || actions.buttons.length > 0)">
-          <div class="row">
-            <div class="col col50" ng-if="selectedClient.btnOpenClose && book.tolleranceCheck">
-              <button ng-click="openCarManipolation(book, '1')" class="button button-positive button-block pull-right" style="padding: 0px 15px;">
-                {{ 'bookings.closeCar' | translate }}
-              </button>
-            </div>
-            <div class="col col50" ng-if="actions.buttons.length > 0">
-              <ccs-action-sheet book="book" action-buttons="actions.buttons" callback="loadbookings()"></ccs-action-sheet>
-            </div>
-          </div>
-        </div>
-      </div>
     </ion-list>
   </ion-content>
 </ion-view>

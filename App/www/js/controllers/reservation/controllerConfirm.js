@@ -1,5 +1,6 @@
 angular.module('starter').controller('ConfirmCtrl', function(ReservationService, $filter, PopUpServices, ScriptServices, $scope, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup) {
     $scope.selectedClient = InfoFactories.getClientSelected();
+    $scope.userInfo = InfoFactories.getUserInfo();
     $scope = Object.assign($scope, ReservationService.instance);
     $scope.selectedCar = $state.params.car;
     /* $scope.hasTelepass  = InfoFactories.getTelepass();
@@ -66,7 +67,9 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
             .replace('{PLACE}', place)
             .replace('{JUSTIFICATION}', justifyCode)
             .replace('{CC}', cc || false)
-            .replace('{TELEPASS}', telepass || false);
+            .replace('{TELEPASS}', telepass || false)
+            .replace('{PARKA}', $scope.selectedPark.Nr)
+            .replace('{PARKB}', ($scope.selectedParkB || {}).Nr || $scope.selectedPark.Nr);
             ScriptServices.callGenericService(res, 514).then(function(data) {
                 $ionicLoading.hide();
                 InfoFactories.setDateTimeFrom();
@@ -87,10 +90,61 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
         });
     }
 
-    function regionalReserve(params) {
-        console.log('regionalReserve');
+    function regionalReserve() {
+        $ionicLoading.show();
+        ScriptServices.getXMLResource(642).then(function(res) {
+            var driverNumber = InfoFactories.getUserInfo().driverNumber;
+            res = res.replace('{MODEL}', $scope.selectedCar.id)
+            .replace('{NUMBER_DRIVER}', driverNumber)
+            .replace('{DATE_FROM}', moment($scope.dateTimeFrom ).format('DD/MM/YYYY'))
+            .replace('{DATE_TO}', moment($scope.dateTimeTo).format('DD/MM/YYYY'))
+            .replace('{TIME_FROM}', moment($scope.dateTimeFrom).format('HH:mm'))
+            .replace('{TIME_TO}', moment($scope.dateTimeTo).format('HH:mm'))
+            .replace('{SERVICE}', $scope.selectedService.id)
+            .replace('{TARIFFAID}', $scope.selectedTarif.value.id)
+            .replace('{PARKA}', $scope.selectedPark.Nr)
+            .replace('{PARKB}', ($scope.selectedParkB || {}).Nr || $scope.selectedPark.Nr)
+            .replace('{DRIVERRANGE}', $scope.driverRange.value.code || 'short');
+            ScriptServices.callGenericService(res, 642).then(function(data) {
+                $ionicLoading.hide();
+                $scope.PNRstring = data.data.PNRstring[0].PNR;
+                $scope.isConfirmed = true;
+                var pnrPopup = $ionicPopup.alert({
+                    title: $filter('translate')('confirmReservation.requestComplete'),
+                    template: $filter('translate')('confirmReservation.pnr') + ': <b>' + $scope.PNRstring + '</b>'
+                });
+                pnrPopup.then(function(res) {
+                    $state.go('tab.bookings');
+                });
+            }, function(error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
+            });
+        });
     }
 
+    $scope.getService = function(serviceID) {
+        var service = $scope.userInfo.registry.services.find(function (serviceItem) {
+            return serviceItem.id === serviceID;
+        });
+        return service || {};
+    };
+
+    $scope.getTarif = function (serviceID, tarifID) {
+        var tarif;
+        var service = $scope.getService(serviceID);
+        if (service.tarifs && service.tarifs.length) {
+            tarif = service.tarifs.find(function (tarifItem) {
+                return tarifItem.id === tarifID;
+            });
+        }
+        return tarif || {};
+    };
+
+    $scope.cancel = function () {
+        ReservationService.resetReservation();
+        $state.go('tab.bookings');
+    };
 
     init();
 
