@@ -1,4 +1,4 @@
-angular.module('starter').controller('BookingsCtrl', function ($filter, LocationService, BluetoothServices, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices) {
+angular.module('starter').controller('BookingsCtrl', function (ReservationService, $filter, LocationService, BluetoothServices, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
 
@@ -21,8 +21,9 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Location
     }
     
     $scope.startBooking = function (params) {
+        ReservationService.resetReservation();
         $state.go('subscriptions');
-    }
+    };
 
     function doWatchLocation (){
         var watchOptions = {

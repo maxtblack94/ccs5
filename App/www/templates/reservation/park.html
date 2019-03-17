@@ -1,4 +1,4 @@
-<ion-view view-title="{{ 'parking.title' | translate }}">
+<ion-view view-title="{{ parkDirection === 'B' ? 'Choose Return Parking' : 'Choose Pick-up Parking'  | translate }}">
     <ion-content class="mb80">
         <ion-refresher pulling-text="{{'commons.refresh' | translate}}" on-refresh="refreshParks()">
         </ion-refresher>

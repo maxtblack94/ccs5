@@ -31,27 +31,31 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
         });
     }
 
-    /* $scope.setHasCC = function() {
-        $scope.hasCC = !$scope.hasCC;
-        $scope.reservationInfo.cc = ReservationService.cc = $scope.hasCC;
+    $scope.setHasCC = function(cc) {
+        ReservationService.setCC(cc);
     };
 
-    $scope.setHasTelepass = function() {
-        $scope.hasTelepass = !$scope.hasTelepass;
-        $scope.reservationInfo.telepass = ReservationService.telepass = $scope.hasTelepass;
+    $scope.setHasTelepass = function(telepass) {
+        ReservationService.setTelepass(telepass);
     };
-     */
+    
     $scope.searchVehicle = function() {
         console.log('cerca veicoli');
         if(datesCheck()){
             if($scope.selectedClient.vehicleType){
-                $scope.reservationInfo.vehicleType = ReservationService.vehicleType = $scope.selectedClient.vehicleType;
+                ReservationService.setVehicleType($scope.selectedClient.vehicleType);
             }
 
-            ReservationService.setTarif($scope.selectedTarif);
+            if ($scope.selectedTarif.value.id) {
+                ReservationService.setTarif($scope.selectedTarif);
+            }
             $state.go('vehicles');
         }
     };
+
+    $scope.ciao = function (params) {
+        console.log('pippos')
+    }
 
     $scope.changeParking = function(park) {
         $state.go('park', { parkDirection: park});

@@ -1,5 +1,9 @@
 {
-    "typeList": [
-        
-    ]
+    "typeList": [{
+        "code": "pippo",
+        "text": "pippo"
+    },{
+        "code": "pluto",
+        "text": "pluto"
+    }]
 }
