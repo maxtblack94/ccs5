@@ -1,0 +1,65 @@
+<ion-view class="welcome-view" hide-nav-bar="true" cache-view="false" >
+    <ion-content style="background-color: rgba(31, 103, 146)">
+        <!-- <div multi-bg="['http://i.giphy.com/13f7pejozPXuta.gif']" interval="3000" helper-class="no-facebook-welcome-bg"> -->
+        <div multi-bg="['img/giphy-bg-2.gif']" interval="3000">
+            <div class="top-content row" style="height: 25%">
+                <div class="app-copy col col-center">
+                    <h1 ng-show="selectedClient.logo" class="app-logo"><img class='logo'
+                            ng-src="{{selectedClient.logo}}" style='max-width: 70%;' /></h1>
+                    <h1 ng-show="!selectedClient.logo" class="app-logo"><img class='logo'
+                            src="icons/CCSsharing-Logo-Red-l-2.1c.png" style='max-width: 70%;' /></h1>
+                    <p class="app-tagline">
+                    </p>
+                </div>
+            </div>
+            <div class="bottom-content">
+                <div class="form-container">
+                    <form style="width:80%;margin: 20px auto;">
+                        <label class="item item-input" style="border-radius: 5px 5px 0px 0px;">
+                            <span class="input-label">{{ 'Nome' | translate}}<span class="color-error">*</span></span>
+                            <input type="text" autocapitalize="none" id="user-input" ng-model="request.firstName"
+                                placeholder="Nome">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">{{ 'Cognome' | translate}}<span class="color-error">*</span></span>
+                            <input type="text" id="firstName-input" ng-model="request.lastName"
+                                placeholder="Cognome">
+                        </label>
+                        <label class="item item-input" >
+                            <span class="input-label">{{ 'Email' | translate}}<span class="color-error">*</span></span>
+                            <input type="email" id="lastName-input" ng-model="request.email"
+                                placeholder="Email">
+                        </label>
+                        <label class="item item-input" >
+                            <span class="input-label">{{ 'login.password' | translate}}<span class="color-error">*</span></span>
+                            <input type="password" id="password-input" ng-model="request.password"
+                                placeholder="{{ 'login.password' | translate}}">
+                        </label>
+                        <label class="item item-input" >
+                            <span class="input-label">{{ 'Password' | translate}}<span class="color-error">*</span></span>
+                            <input type="password" id="confirmPassword-input" ng-model="request.confirmPassword"
+                                placeholder="Conferma Password">
+                        </label>
+                        <label class="item item-input" >
+                            <span class="input-label">{{ 'Promozione' | translate}}</span>
+                            <input type="text" id="promo-input" ng-model="request.promo"
+                                placeholder="Codice Promozione">
+                        </label>
+                        <label class="item item-input" style="border-radius: 0px 0px 5px 5px;">
+                            <span class="input-label">{{ 'Azienda' | translate}}</span>
+                            <input type="text" id="company-input" ng-model="request.company"
+                                placeholder="Codice Azienda">
+                        </label>
+                    </form>
+                    <a class="button button-block enter-account" ng-click="create()">
+                        {{ 'Conferma' | translate}}
+                    </a>
+
+                    <a class="forgot-password button button-clear button-block" ng-click="cancel()">
+                        {{ 'commons.cancel' | translate}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

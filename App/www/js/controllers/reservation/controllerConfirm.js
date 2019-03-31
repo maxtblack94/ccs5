@@ -3,8 +3,6 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
     $scope.userInfo = InfoFactories.getUserInfo();
     $scope = Object.assign($scope, ReservationService.instance);
     $scope.selectedCar = $state.params.car;
-    /* $scope.hasTelepass  = InfoFactories.getTelepass();
-        $scope.hasCC = InfoFactories.getCC(); */
     
     function init(){
         if (window.plugins && window.plugins.Keyboard) {
@@ -69,7 +67,10 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
             .replace('{CC}', cc || false)
             .replace('{TELEPASS}', telepass || false)
             .replace('{PARKA}', $scope.selectedPark.Nr)
-            .replace('{PARKB}', ($scope.selectedParkB || {}).Nr || $scope.selectedPark.Nr);
+            .replace('{PARKB}', ($scope.selectedParkB || {}).Nr || $scope.selectedPark.Nr)
+            .replace('{IMPORTOPRESUNTO}', $scope.selectedCar.importoPresunto || 0)
+            .replace('{SERVICEID}', $scope.selectedService.id)
+            .replace('{TARIFFAID}', (($scope.selectedTarif || {}).value || {}).id || null);
             ScriptServices.callGenericService(res, 514).then(function(data) {
                 $ionicLoading.hide();
                 InfoFactories.setDateTimeFrom();
@@ -104,7 +105,8 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
             .replace('{TARIFFAID}', $scope.selectedTarif.value.id)
             .replace('{PARKA}', $scope.selectedPark.Nr)
             .replace('{PARKB}', ($scope.selectedParkB || {}).Nr || $scope.selectedPark.Nr)
-            .replace('{DRIVERRANGE}', $scope.driverRange.value.code || 'short');
+            .replace('{DRIVERRANGE}', $scope.driverRange.value.code || 'short')
+            .replace('{IMPORTOPRESUNTO}', $scope.selectedCar.importoPresunto || 0);
             ScriptServices.callGenericService(res, 642).then(function(data) {
                 $ionicLoading.hide();
                 $scope.PNRstring = data.data.PNRstring[0].PNR;

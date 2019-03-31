@@ -37,8 +37,10 @@ angular.module('starter').controller('VehicleCtrl', function($filter, Reservatio
             res = res.replace('{NUMBER_DRIVER}', InfoFactories.getUserInfo().driverNumber)
             .replace('{SERVICE}', $scope.selectedService.id)
             .replace('{TARIFFAID}', $scope.selectedTarif.value.id)
-            .replace('{DATADA}', $scope.dateTimeFrom)
-            .replace('{DATAA}', $scope.dateTimeTo);
+            .replace('{DATADA}', moment($scope.dateTimeFrom).format('DD/MM/YYYY'))
+            .replace('{DATAA}', moment($scope.dateTimeTo).format('DD/MM/YYYY'))
+            .replace('{ORADA}', moment($scope.dateTimeFrom).format('HH:mm'))
+            .replace('{ORAA}', moment($scope.dateTimeTo).format('HH:mm'));
             ScriptServices.callGenericService(res, 641).then(function(data) {
                 $scope.loading = false;
                 $ionicLoading.hide();
@@ -92,7 +94,9 @@ angular.module('starter').controller('VehicleCtrl', function($filter, Reservatio
 					 .replace('{CC}', cc)
 					 .replace('{TELEPASS}', telepass)
 					 .replace('{DRIVING_RANGE}', $scope.driverRange.value.code || 'short')
-                     .replace('{VEHICLETYPE}', $scope.vehicleType || null);
+                     .replace('{VEHICLETYPE}', $scope.vehicleType || null)
+                     .replace('{SERVICEID}', $scope.selectedService.id)
+                    .replace('{TARIFFAID}', $scope.selectedTarif.value.id);
             ScriptServices.callGenericService(res, 571).then(function(data) {
                 $scope.loading = false;
                 $ionicLoading.hide();

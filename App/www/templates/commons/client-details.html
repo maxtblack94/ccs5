@@ -16,7 +16,7 @@
                 <h2>{{ 'clientDetails.username' | translate}}</h2>
                 <p>{{userInfo.registry.username}}</p>
             </ion-item>
-            <ion-item>
+            <ion-item ng-if="userInfo.registry.badge_id">
                 <h2>{{ 'clientDetails.badge' | translate}}</h2>
                 <p>{{userInfo.registry.badge_id}}</p>
             </ion-item>

@@ -1,20 +1,24 @@
 <div ng-if="!recorveryPassword" class="form-container">
+    <a class="forgot-password button button-clear button-block" ng-click="newAccount()">
+        {{ 'Registrati' | translate}}
+    </a>
     <form style="width:80%;margin: 20px auto;">
         <label class="item item-input" style="border-radius: 5px 5px 0px 0px;">
             <span class="input-label">{{ 'login.username' | translate}}</span>
-            <input type="text" autocapitalize="none" id="user-input" ng-model="request.userid" placeholder="{{ 'login.username' | translate}}">
+            <input type="text" autocapitalize="none" id="user-input" ng-model="request.userid"
+                placeholder="{{ 'login.username' | translate}}">
         </label>
         <label class="item item-input" style="border-radius: 0px 0px 5px 5px;">
             <span class="input-label">{{ 'login.password' | translate}}</span>
-            <input type="password" id="password-input" ng-model="request.password" placeholder="{{ 'login.password' | translate}}">
+            <input type="password" id="password-input" ng-model="request.password"
+                placeholder="{{ 'login.password' | translate}}">
         </label>
     </form>
     <a class="button button-block enter-account" ng-click="login()">
-        {{ locale.login.login }}
         {{ 'login.login' | translate}}
     </a>
+
     <a class="forgot-password button button-clear button-block" ng-click="recorveryPasswordOn()">
-        {{ locale.login.forgotPassword }}
         {{ 'login.forgotPassword' | translate}}
     </a>
 </div>
@@ -22,7 +26,8 @@
     <form style="width:80%;margin: 20px auto;">
         <label class="item item-input" style="border-radius: 5px;">
             <span class="input-label">{{ 'login.email' | translate}}</span>
-            <input type="email" autocapitalize="none" id="email-input" ng-model="request.email" placeholder="{{ 'login.placeholderEmail' | translate}}">
+            <input type="email" autocapitalize="none" id="email-input" ng-model="request.email"
+                placeholder="{{ 'login.placeholderEmail' | translate}}">
         </label>
     </form>
     <a class="button button-block enter-account" ng-click="callRecoverService()">

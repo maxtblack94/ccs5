@@ -1,4 +1,4 @@
-angular.module('starter').controller('BookingsCtrl', function (ReservationService, $filter, LocationService, BluetoothServices, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices) {
+angular.module('starter').controller('BookingsCtrl', function ($ionicSideMenuDelegate, ReservationService, $filter, LocationService, BluetoothServices, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
 
@@ -44,18 +44,22 @@ angular.module('starter').controller('BookingsCtrl', function (ReservationServic
     }
 
     $scope.getService = function(serviceID) {
-        var service = $scope.userInfo.registry.services.find(function (serviceItem) {
-            return serviceItem.id === serviceID;
+        var service = (($scope.userInfo.registry || {}).services || []).find(function (serviceItem) {
+            return serviceItem.id == serviceID;
         });
         return service || {};
     };
+
+    $scope.$on('$ionicView.afterEnter', function(event) { 
+        $ionicSideMenuDelegate.canDragContent(true); 
+    });
 
     $scope.getTarif = function (serviceID, tarifID) {
         var tarif;
         var service = $scope.getService(serviceID);
         if (service.tarifs && service.tarifs.length) {
             tarif = service.tarifs.find(function (tarifItem) {
-                return tarifItem.id === tarifID;
+                return tarifItem.id == tarifID;
             });
         }
         return tarif || {};

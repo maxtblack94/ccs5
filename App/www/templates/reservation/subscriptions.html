@@ -1,5 +1,6 @@
 <ion-view view-title="Servizi">
     <ion-content scroll="false">
+        <p ng-if='!user.registry || !user.registry.services || user.registry.services.length==0' class="message-empty">{{ 'Non ci sono servizi attivi' | translate }}</p>
         <div class="list card" ng-if="user.registry.services.length">
             <div ng-click="selectService(service)" ng-repeat="service in user.registry.services" class="item item-avatar fix-item">
                 <img src="{{service.icon}}">

@@ -1,6 +1,6 @@
 <ion-list>
-    <ion-item class="item-icon-right" href="#/client-details" menu-close>
-        <span>{{ 'leftMenu.username' | translate}}: {{userInfo.registry.username}}</span>
+    <ion-item class="item-icon-right" ng-if="getUserInfo();" href="#/client-details" menu-close>
+        <span ng-if="userInfo.registry.username">{{ 'leftMenu.username' | translate}}: {{userInfo.registry.username}}</span>
         <h2>{{userInfo.registry.first_name}} {{userInfo.registry.last_name}}</h2>
         <p>{{userInfo.registry.email}}</p>
         <i class="icon ion-ios-person-outline"></i>

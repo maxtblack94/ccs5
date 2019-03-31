@@ -1,4 +1,4 @@
-angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptServices, $scope, PopUpServices, InfoFactories, $filter, $state, $ionicLoading, $ionicPopup) {
+angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegate, $stateParams, ScriptServices, $scope, PopUpServices, InfoFactories, $filter, $state, $ionicLoading, $ionicPopup) {
     function init(){
         $ionicLoading.show();
         $scope.recorveryPassword = false;
@@ -122,6 +122,10 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
         });
     }
 
+    $scope.newAccount = function (params) {
+        $state.go('register');
+    }
+
     getClientInfo = function(action){
         if(action === 'login'){
             callLoginService($scope.request.userid, $scope.request.password);
@@ -194,6 +198,10 @@ angular.module('starter').controller('LoginCtrl', function($stateParams, ScriptS
             });
         }
     }
+
+    $scope.$on('$ionicView.afterEnter', function(event) { 
+        $ionicSideMenuDelegate.canDragContent(false); 
+    });
 
     init();
 })

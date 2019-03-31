@@ -15,4 +15,9 @@ angular.module('starter').controller('MenuCtrl', function($ionicSideMenuDelegate
             $state.go('login');
         });
     };
+
+    $scope.getUserInfo  = function() {
+        $scope.userInfo = InfoFactories.getUserInfo();
+        return true;
+    };
 })

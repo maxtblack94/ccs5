@@ -35,11 +35,14 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
     $translateProvider.translations('en', window.locale_en);
     $translateProvider.translations('it_IT', window.locale_it);
     $translateProvider.translations('ro_RO', window.locale_ro);
+    $translateProvider.translations('hr_HR', window.locale_hr);
     $translateProvider.useSanitizeValueStrategy(null);
     if (navigator.language === "it-IT" || navigator.language === "it_IT") {
       $translateProvider.preferredLanguage("it_IT");
     }else if (navigator.language === "ro-RO" || navigator.language === "ro_RO") {
       $translateProvider.preferredLanguage("ro_RO");
+    }else if (navigator.language === "hr-HR" || navigator.language === "hr_HR") {
+      $translateProvider.preferredLanguage("hr_HR");
     }else {
       $translateProvider.preferredLanguage('en');
     }
@@ -56,6 +59,16 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
         },
         templateUrl: 'templates/login.html',
         controller: 'LoginCtrl'
+      })
+
+      .state('register', {
+        url: '/register',
+        cache: false,
+        params: {
+          error401: null
+        },
+        templateUrl: 'templates/register.html',
+        controller: 'RegisterCtrl'
       })
 
       .state('confirmPrenotation', {
