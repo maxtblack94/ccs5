@@ -15,7 +15,8 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
             getClientList('refresh');
             verifyUserLogged();
         }else{
-            getClientList('refresh', 'h5rt8d'); //codice E-vai
+            $scope.configCompanyAccount = true;
+            getClientList();
         }
     }
 
@@ -66,7 +67,7 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
             var element = $scope.clientList[i];
             if(clientCode === $scope.clientList[i].clientCode){
                 $scope.selectedClient = $scope.clientList[i];
-                /* InfoFactories.applyClientStyle($scope.clientList[i].clientStyle); */
+                InfoFactories.applyClientStyle($scope.clientList[i].clientStyle);
                 window.localStorage.setItem('selectedClient', JSON.stringify($scope.clientList[i]));
                 $scope.configCompanyAccount = false;
                 break;
@@ -74,7 +75,7 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
         }
     }
 
-    /* $scope.verifyCompanyCode = function(){
+    $scope.verifyCompanyCode = function(){
         if(!$scope.request.verifyCode){
             setTimeout(function() {
                 $('#verifyCode-input').focus();
@@ -85,7 +86,7 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
                 PopUpServices.errorPopup($filter('translate')('login.retryCompanyCode'), '1');
             }
         }
-    } */
+    }
 
     $scope.recorveryPasswordOn = function(){
         $scope.recorveryPassword = !$scope.recorveryPassword;
@@ -121,11 +122,9 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
             })
         });
     }
-
     $scope.newAccount = function (params) {
         $state.go('register');
-    }
-
+    };
     getClientInfo = function(action){
         if(action === 'login'){
             callLoginService($scope.request.userid, $scope.request.password);
@@ -198,10 +197,8 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
             });
         }
     }
-
     $scope.$on('$ionicView.afterEnter', function(event) { 
         $ionicSideMenuDelegate.canDragContent(false); 
     });
-
     init();
-})
+});
