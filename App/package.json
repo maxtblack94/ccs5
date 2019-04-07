@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "CCS",
   "dependencies": {
+    "@ionic-native/deeplinks": "^5.3.0",
     "@ionic/cloud": "0.16.0",
     "bluebird": "3.5.0",
     "cordova-android": "7.0.0",
@@ -28,6 +29,8 @@
     "gulp-sourcemaps": "2.4.1",
     "gulp-uglify": "2.0.1",
     "ionic-minify": "2.0.10",
+    "ionic-native": "^2.9.0",
+    "ionic-plugin-deeplinks": "^1.0.19",
     "ionic-plugin-keyboard": "2.2.1",
     "onesignal-cordova-plugin": "2.3.1",
     "phonegap-plugin-push": "1.10.5"
@@ -59,8 +62,8 @@
   ],
   "cordova": {
     "platforms": [
-      "ios",
-      "android"
+      "android",
+      "ios"
     ],
     "plugins": {
       "cordova-plugin-device": {},
@@ -83,7 +86,25 @@
       },
       "cordova-plugin-android-permissions": {},
       "cordova-plugin-request-location-accuracy": {},
-      "cordova.plugins.diagnostic": {}
+      "cordova.plugins.diagnostic": {},
+      "ionic-plugin-deeplinks": {
+        "URL_SCHEME": "ccsapp",
+        "DEEPLINK_SCHEME": "http",
+        "DEEPLINK_HOST": "ccsitalia.it",
+        "ANDROID_PATH_PREFIX": "/",
+        "ANDROID_2_PATH_PREFIX": "/",
+        "ANDROID_3_PATH_PREFIX": "/",
+        "ANDROID_4_PATH_PREFIX": "/",
+        "ANDROID_5_PATH_PREFIX": "/",
+        "DEEPLINK_2_SCHEME": " ",
+        "DEEPLINK_2_HOST": " ",
+        "DEEPLINK_3_SCHEME": " ",
+        "DEEPLINK_3_HOST": " ",
+        "DEEPLINK_4_SCHEME": " ",
+        "DEEPLINK_4_HOST": " ",
+        "DEEPLINK_5_SCHEME": " ",
+        "DEEPLINK_5_HOST": " "
+      }
     }
   }
 }

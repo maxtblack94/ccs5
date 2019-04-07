@@ -1,6 +1,6 @@
-angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', 'angularMoment', 'pascalprecht.translate'])
+angular.module('starter', ['ionic', 'ngCordova', 'ionic.native', 'tagged.directives.autogrow', 'angularMoment', 'pascalprecht.translate'])
 
-  .run(function ($ionicPlatform, $cordovaStatusbar, $cordovaDevice, amMoment, $rootScope, LanguageService) {
+  .run(function ($cordovaDeeplinks, $ionicPlatform, $cordovaStatusbar, $cordovaDevice, amMoment, $rootScope, $state) {
     amMoment.changeLocale('it');
     $ionicPlatform.ready(function () {
       var pushCallback = function(jsonData) {
@@ -28,6 +28,25 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
           $cordovaStatusbar.styleHex('#111');
         }
       }
+
+      $cordovaDeeplinks.route({
+        '/bookings': {
+            target: 'tab.bookings',
+            parent: 'tab.bookings'
+        }
+      }).subscribe(function(match) {
+          $timeout(function() {
+              $state.go(match.$route.parent, match.$args);
+      
+              if (match.$route.target != match.$route.parent) {
+                  $timeout(function() {
+                      $state.go(match.$route.target, {chatId: match.$args.chatId});
+                  }, 800);
+              }
+          }, 100); // Timeouts can be tweaked to customize the feel of the deeplink
+      }, function(nomatch) {
+          console.warn('No match', nomatch);
+      });
     });
   })
 
