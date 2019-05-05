@@ -10,8 +10,8 @@ angular.module('starter').factory("ReservationService", function($ionicPopup, $f
     this.selectedTarif = {"value":{"text":"","id":""}},
     this.vehicleType = {"value":{"text":"","code":""}},
     this.preselectPark = {value : false},
-    this.dateTimeFrom = window.serverRootLocal ? "2019-04-12T10:20:15.120Z" : undefined,
-    this.dateTimeTo = window.serverRootLocal ? "2019-04-12T11:20:30.120Z" : undefined;
+    this.dateTimeFrom = window.serverRootLocal ? "2019-06-12T10:20:15.120Z" : undefined,
+    this.dateTimeTo = window.serverRootLocal ? "2019-06-12T11:20:30.120Z" : undefined;
 
     function resetReservation() {
         self.selectedService = undefined;
@@ -23,8 +23,8 @@ angular.module('starter').factory("ReservationService", function($ionicPopup, $f
         self.driverRange = {"value":{"text":"","code":"short"}};
         self.selectedTarif = {"value":{"text":"","id":""}};
         self.vehicleType = {"value":{"text":"","code":""}};
-        self.dateTimeFrom = window.serverRootLocal ? "2019-05-12T00:21:15.120Z" : null;
-        self.dateTimeTo = window.serverRootLocal ? "2019-05-12T00:21:30.120Z" : null;
+        self.dateTimeFrom = window.serverRootLocal ? "2019-06-12T00:21:15.120Z" : null;
+        self.dateTimeTo = window.serverRootLocal ? "2019-06-12T00:21:30.120Z" : null;
     }
 
     return {
