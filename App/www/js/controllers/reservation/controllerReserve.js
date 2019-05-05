@@ -62,7 +62,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
             tarif.closing = new Date(moment(tarif.closing, 'DD/MM/YYYY HH:mm:ss'));
 
             if(!((dateTimeTo.getHours() >= tarif.opening.getHours()) && (dateTimeTo.getHours() < tarif.closing.getHours()))){
-                PopUpServices.errorPopup("non è possibile prenotare con questa subscription", "1");
+                PopUpServices.errorPopup("The reservation time is not compatible with your subscription", "1");
                 return true;
             } else if(!((dateTimeFrom.getHours() >= tarif.opening.getHours()) && (dateTimeFrom.getHours() < tarif.closing.getHours()))){
                 PopUpServices.errorPopup($filter('translate')('bookResume.isNotInTime'), "1");
