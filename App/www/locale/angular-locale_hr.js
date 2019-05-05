@@ -1,5 +1,3 @@
-
-
 window.locale_hr = {};
 
 window.locale_hr.leftMenu = {
@@ -60,7 +58,7 @@ window.locale_hr.parking = {
 	title: "Odaberite parkiralište",
 	noparking: "Nije pronađen parking",
 	placeholderSearch: "Traži"
-};
+}
 
 window.locale_hr.tabs = {
 	reservations: "Rezervacije",
@@ -169,9 +167,7 @@ window.locale_hr.vehicle = {
 	plate: "Ploča",
 	select: "Odaberi",
 	seats: "sjedala",
-    color: "Boja",
-    model: "Model",
-    fuelType: "Motor",
+	color: "Boja",
 	externalClean: "Externale",
 	internalClean: "Interna",
 	noVehiclesInThisMoment: "Trenutno vozilo nije dostupno za razdoblje koje ste zatražili.",
@@ -185,7 +181,7 @@ window.locale_hr.login = {
 	forgotPassword: "Zaboravljena lozinka?",
 	retrievePassword: "Obnova lozinke",
 	haveAccount: "Prijaviti se",
-	email : "E",
+	email : "Email",
 	placeholderEmail: "Company@domain.it",
 	companyCode: "Potvrdite kôd tvrtke",
 	companyCodePlaceholder: "Umetni kôd tvrtke",
@@ -210,7 +206,7 @@ window.locale_hr.driveLicense = {
 	number: "ID vozačke dozvole",
 	issuingCountry: "Mjesto izdavanja",
 	issuingDate: "Datum izlaska",
-	expiringDate : "Izazov" ,
+	expiringDate : "Izazov",
 	editLicense: "Ažuriraj podatke o vozačkoj dozvoli",
 	cancel: "Otkazati",
 	save: "Uštedjeti",
