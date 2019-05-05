@@ -10,4 +10,10 @@ angular.module('starter').controller('SubscriptionsCtrl', function(InfoFactories
         ReservationService.resetReservation();
         $state.go('tab.bookings');
     };
+
+    if ((($scope.user.registry || {}).services || []) && $scope.user.registry.services.length === 1) {
+        $scope.selectService($scope.user.registry.services[0]);
+    }
+
+    
 });
