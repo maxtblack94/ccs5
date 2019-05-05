@@ -53,9 +53,26 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
         }
     };
 
-    $scope.ciao = function (params) {
-        console.log('pippos')
-    }
+
+
+    checkErrorTarifTime = function (dateTimeTo, dateTimeFrom) {
+        var tarif = $scope.selectedTarif.value;
+        if (tarif.opening) {
+            tarif.opening = new Date(moment(tarif.opening, 'DD/MM/YYYY HH:mm:ss'));
+            tarif.closing = new Date(moment(tarif.closing, 'DD/MM/YYYY HH:mm:ss'));
+
+            if(!((dateTimeTo.getHours() >= tarif.opening.getHours()) && (dateTimeTo.getHours() < tarif.closing.getHours()))){
+                PopUpServices.errorPopup("non è possibile prenotare con questa subscription", "1");
+                return true;
+            } else if(!((dateTimeFrom.getHours() >= tarif.opening.getHours()) && (dateTimeFrom.getHours() < tarif.closing.getHours()))){
+                PopUpServices.errorPopup($filter('translate')('bookResume.isNotInTime'), "1");
+                return true;
+            }
+            return false;
+        } else {
+            return false;
+        }
+    };
 
     $scope.changeParking = function(park) {
         $state.go('park', { parkDirection: park});
@@ -85,7 +102,14 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
                 }else if(!((dateTimeTo.getHours() >= $scope.selectedPark.opening.getHours()) && (dateTimeTo.getHours() < $scope.selectedPark.closing.getHours()))){
                     PopUpServices.errorPopup($filter('translate')('bookResume.isNotInTime'), "1");
                     return false;
+                }else if(!((dateTimeFrom.getHours() >= $scope.selectedPark.opening.getHours()) && (dateTimeFrom.getHours() < $scope.selectedPark.closing.getHours()))){
+                    PopUpServices.errorPopup($filter('translate')('bookResume.isNotInTime'), "1");
+                    return false;
                 }
+                // controllo date subscription
+            }
+            if(checkErrorTarifTime(dateTimeTo, dateTimeFrom)) {
+                return false;
             }
             if($scope.selectedClient.drivingRange == true && $scope.driverRange.value.code == "short"){
                 PopUpServices.errorPopup($filter('translate')('bookResume.defineRange'), "1");
