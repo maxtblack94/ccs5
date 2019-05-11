@@ -11,6 +11,10 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicSideMenuDel
         $scope.$broadcast('scroll.refreshComplete');
     }
 
+    $scope.goToNewTrack = function () {
+        $state.go('fast-track');
+    };
+
     if ($scope.selectedClient.map && !window.serverRootLocal) {
         setTimeout(function() {
             var location = LocationService.requestLocationAuthorization();
@@ -19,11 +23,7 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicSideMenuDel
             }
         }, 2000);
     }
-    
-    $scope.startBooking = function (params) {
-        ReservationService.resetReservation();
-        $state.go('subscriptions');
-    };
+
 
     function doWatchLocation (){
         var watchOptions = {

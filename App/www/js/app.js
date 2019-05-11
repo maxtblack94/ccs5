@@ -71,16 +71,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
         controller: 'RegisterCtrl'
       })
 
-      .state('confirmPrenotation', {
-        url: '/confirm-prenotation',
-        params: {
-          car: null
-        },
-        cache: false,
-        templateUrl: 'templates/tabs/confirmPrenotation.html',
-        controller: 'ConfirmPrenotationCtrl'
-      })
-
       .state('contacts', {
         url: '/contacts',
         cache: false,
@@ -107,6 +97,14 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
         templateUrl: 'templates/commons/license-edit.html',
         controller: 'LicenseEditCtrl'
       })
+
+      .state('fast-track', {
+        url: '/fast-track',
+        cache: false,
+        templateUrl: 'templates/fast-track.html',
+        controller: 'FastTrackCtrl'
+      })
+
 
       // setup an abstract state for the tabs directive
       .state('tab', {
@@ -140,17 +138,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
         }
       })
 
-      .state('tab.ble', {
-        url: '/ble',
-        cache: false,
-        views: {
-          'tab-ble': {
-            templateUrl: 'templates/tabs/tab-ble-test.html',
-            controller: 'BleCtrl'
-          }
-        }
-      })
-
       .state('tab.map', {
         url: '/map',
         params: {
@@ -161,42 +148,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
           'tab-bookings': {
             templateUrl: 'templates/tabs/map.html',
             controller: 'MapCtrl'
-          }
-        }
-      })
-
-      .state('tab.parking', {
-        url: '/parking',
-        cache: false,
-        views: {
-          'tab-parking': {
-            templateUrl: 'templates/tabs/tab-parking.html',
-            controller: 'ParkingCtrl'
-          }
-        }
-      })
-
-      .state('tab.resume', {
-        url: '/resume',
-        cache: false,
-        params: {
-          error: null
-        },
-        views: {
-          'tab-resume': {
-            templateUrl: 'templates/tabs/tab-book-resume.html',
-            controller: 'ResumeCtrl'
-          }
-        }
-      })
-
-      .state('tab.selcar', {
-        url: '/selcar',
-        cache: false,
-        views: {
-          'tab-selcar': {
-            templateUrl: 'templates/tabs/car-selection.html',
-            controller: 'CarCtrl'
           }
         }
       })
@@ -227,47 +178,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
       })
       
       
-      .state('subscriptions', {
-        url: '/subscriptions',
-        cache: false,
-        templateUrl: 'templates/reservation/subscriptions.html',
-        controller: 'SubscriptionsCtrl'
-      })
-
-      .state('park', {
-        url: '/park',
-        cache: false,
-        params: {
-          parkDirection: null
-        },
-        templateUrl: 'templates/reservation/park.html',
-        controller: 'ParkCtrl'
-      })
-
-      .state('reserve', {
-        url: '/reserve',
-        cache: false,
-        templateUrl: 'templates/reservation/reserve.html',
-        controller: 'ReserveCtrl'
-      })
-
-      .state('vehicles', {
-        url: '/vehicles',
-        cache: false,
-        templateUrl: 'templates/reservation/vehicle.html',
-        controller: 'VehicleCtrl'
-      })
-
-      .state('confirm', {
-        url: '/confirm',
-        cache: false,
-        params: {
-          car: null
-        },
-        templateUrl: 'templates/reservation/confirm.html',
-        controller: 'ConfirmCtrl'
-      });
-
     $urlRouterProvider.otherwise('/login');
 
   });

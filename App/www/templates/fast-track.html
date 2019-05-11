@@ -1,0 +1,21 @@
+<ion-view view-title="{{ 'Nuovo Fast Track' | translate}}">
+    <ion-content class="mb80">
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="startScan()">
+        </ion-refresher>
+        <p ng-if="!items.length" class="message-empty">{{ 'Tira giù con il dito per ricercare veicoli in prossimità' | translate }}</p>
+        <div class="list card" ng-if="items.length">
+            <div ng-click="selectService(service)" ng-repeat="item in items" class="item item-avatar fix-item">
+                <img src="{{item.imgs}}">
+                <h2>{{item.plate}}</h2>
+                <p>{{item.brand}} {{item.model}}</p>
+            </div>
+        </div>
+    </ion-content>
+    <div class="row footer-fixed">
+            <div class="col col-80 col-offset-10">
+                <button ng-click="cancel();" class="button button-block button-balanced">
+                    {{ 'commons.cancel' | translate}}
+                </button>
+            </div>
+        </div>
+</ion-view>
