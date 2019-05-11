@@ -50,13 +50,17 @@ window.locale_ro.bookings = {
 	cancelReservation: 'Anuleaza',
 	cancelConfirmTitle: 'Confirmați ștergerea',
 	cancelConfirmBody: 'Sigur doriți să ștergeți rezervarea selectată?',
-	gpsAlert: 'Această aplicație necesită locație pentru a autoriza deschiderea și închiderea caracteristicilor vehiculului'
+	gpsAlert: 'Această aplicație necesită locație pentru a autoriza deschiderea și închiderea caracteristicilor vehiculului',
+	tarif: 'Tarif',
+	price: 'Pret ipotetic',
+	orderPending: "Attention, this order waiting for approve"
 }
 
 window.locale_ro.parking = {
 	title: 'Alegeți parcarea',
 	noparking: 'Nu sa găsit parcare',
-	placeholderSearch: 'căutare'
+	placeholderSearch: 'căutare',
+	pickupDirection: 'Pick-up park is different than return park?'
 };
 
 window.locale_ro.tabs = {
@@ -97,7 +101,8 @@ window.locale_ro.commons = {
 	successOperation: "Operațiunea a reușit",
 	requestFail: "Nu am putut trimite cererea.",
 	refuse: 'Respinge',
-	accept: 'Accepta'
+	accept: 'Accepta',
+	services: 'Servitiul'
 };
 
 window.locale_ro.bookResume = {
@@ -125,7 +130,11 @@ window.locale_ro.bookResume = {
 	noDataFound: 'Unele informații nu au putut fi preluate!',
 	returnDateHaveToBe: 'Data de întoarcere trebuie să fie în intervalul ',
 	wrongDates: 'Selectați data de preluare și de livrare pentru a continua',
-	wrongParking: 'Selectați parcarea înainte de a continua'
+	wrongParking: 'Selectați parcarea înainte de a continua',
+	pickupReturnlabel: "Pick-up/Return Parking",
+	pickupPark : "Pick-up Parking",
+	returnPark : "Return Parking",
+	subscriptionIncompatible: "The reservation time is not compatible with your tarif"
 };
 
 window.locale_ro.map = {

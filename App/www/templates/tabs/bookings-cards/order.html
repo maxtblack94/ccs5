@@ -47,17 +47,17 @@
     </div>
     <div class="item">
         <div class="pull-left m-right20">
-            <h2>Tariffa</h2>
+            <h2>{{ 'bookings.tarif' | translate }}</h2>
             <p class="bold">{{getTarif(book.serviceID, book.tarifID).text}}</p>
         </div>
         <div class="pull-right">
-            <h2>Importo Presunto</h2>
+            <h2>{{ 'bookings.price' | translate }}</h2>
             <p class="bold price">{{book.importoPresunto | currency: '€ '}}</p>
         </div>
 
     </div>
     <div class="item text-center">
-        <strong class="energized"><i class="icon ion-android-alert"></i> Attenzione, quest'ordine è in lavorazione</strong>
+        <strong class="energized"><i class="icon ion-android-alert"></i> {{ 'bookings.orderPending' | translate }}</strong>
         <button ng-click='delete(book)' class="button button-block button-positive ">
             <i class="icon ion-ios-trash"></i> {{ 'bookings.cancelReservation' | translate }}
         </button>

@@ -75,11 +75,11 @@
     </div>
     <div class="item" ng-if="book.importoPresunto || book.importoPresunto === 0">
         <div class="pull-left m-right20">
-            <h2>Tariffa</h2>
+            <h2>{{ 'bookings.tarif' | translate }}</h2>
             <p class="bold">{{getTarif(book.serviceID, book.tarifID).text}}</p>
         </div>
         <div class="pull-right">
-            <h2>Importo Presunto</h2>
+            <h2>{{ 'bookings.price' | translate }}</h2>
             <p class="bold price">{{book.importoPresunto | currency: '€ '}}</p>
         </div>
 

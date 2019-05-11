@@ -50,14 +50,18 @@ window.locale_hr.bookings = {
 	closeCar : "Kraj izvođenja",
 	cancelReservation: "Izbrisati",
 	cancelConfirmTitle: "Potvrdi brisanje",
-	cancelConfirmBody: "Želite li stvarno izbrisati odabranu rezervaciju?"
+	cancelConfirmBody: "Želite li stvarno izbrisati odabranu rezervaciju?",
+	tarif: 'Tarif',
+	price: 'Price',
+	orderPending: "Attention, this order waiting for approve"
 
 }
 
 window.locale_hr.parking = {
 	title: "Odaberite parkiralište",
 	noparking: "Nije pronađen parking",
-	placeholderSearch: "Traži"
+	placeholderSearch: "Traži",
+	pickupDirection: 'Pick-up park is different than return park?'
 }
 
 window.locale_hr.tabs = {
@@ -98,7 +102,8 @@ window.locale_hr.commons = {
 	successOperation: "Operacija je uspješno dovršena",
 	requestFail: "Nismo mogli poslati vaš zahtjev.",
 	refuse: "Odbiti",
-	accept: "Prihvatiti"
+	accept: "Prihvatiti",
+	services: 'Service'
 
 };
 
@@ -127,7 +132,11 @@ window.locale_hr.bookResume = {
 	noDataFound: "Neke podatke nije moguće dohvatiti!",
 	returnDateHaveToBe: "Datum povratka mora biti unutar" ,
 	wrongDates: "Odaberite datum preuzimanja i povratka za nastavak.",
-	wrongParking: "Odaberite parkiranje prije nastavka."
+	wrongParking: "Odaberite parkiranje prije nastavka.",
+	pickupReturnlabel: "Pick-up/Return Parking",
+	pickupPark : "Pick-up Parking",
+	returnPark : "Return Parking",
+	subscriptionIncompatible: "The reservation time is not compatible with your tarif"
 };
 
 window.locale_hr.map = {
