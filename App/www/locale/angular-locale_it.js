@@ -50,13 +50,17 @@ window.locale_it.bookings = {
 	cancelReservation: 'Annulla',
 	cancelConfirmTitle: 'Conferma Eliminazione',
 	cancelConfirmBody: 'Sicuro di vole eliminare la prenotazione selezionata?',
-	gpsAlert: 'Questa applicazione richiede la posizione per autorizzare le funzioni di apertura e chiusura del veicolo'
+	gpsAlert: 'Questa applicazione richiede la posizione per autorizzare le funzioni di apertura e chiusura del veicolo',
+	tarif: 'Tariffa',
+	price: 'Importo Presunto',
+	orderPending: "Attenzione, quest'ordine è in lavorazione"
 }
 
 window.locale_it.parking = {
 	title: 'Scegli il parcheggio',
 	noparking: 'Nessun parcheggio trovato',
-	placeholderSearch: 'Cerca'
+	placeholderSearch: 'Cerca',
+	pickupDirection: 'Parcheggio di ritiro diverso da quello di riconsegna?'
 };
 
 window.locale_it.tabs = {
@@ -97,7 +101,8 @@ window.locale_it.commons = {
 	successOperation: "Operazione eseguita con successo.",
 	requestFail: "Non siamo riusciti a sottomettere la richiesta.",
 	refuse: 'Rifiuta',
-	accept: 'Accetta'
+	accept: 'Accetta',
+	services: 'Servizi'
 };
 
 window.locale_it.bookResume = {
@@ -125,7 +130,11 @@ window.locale_it.bookResume = {
 	noDataFound: 'Non è stato possibile recuperare alcune informazioni!',
 	returnDateHaveToBe: 'La data di riconsegna deve essere entro il ',
 	wrongDates: 'Seleziona la data di ritiro e consegna per continuare.',
-	wrongParking: 'Seleziona il parcheggio prima di continuare.'
+	wrongParking: 'Seleziona il parcheggio prima di continuare.',
+	pickupReturnlabel: "Parcheggio Ritiro/Riconsegna",
+	pickupPark : "Parcheggio di ritiro",
+	returnPark : "Parcheggio di riconsegna",
+	subscriptionIncompatible: "L'orario della prenotazione non è compatibile con la tariffa scelta"
 };
 
 window.locale_it.map = {

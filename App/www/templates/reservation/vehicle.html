@@ -61,11 +61,11 @@
         </div>
         <div class="item" ng-if="selectedTarif.value.text">
           <div class="pull-left m-right20">
-            <h2>Tariffa</h2>
+            <h2>{{ 'bookings.tarif' | translate }}</h2>
             <p class="bold">{{selectedTarif.value.text}}</p>
           </div>
           <div class="pull-right">
-            <h2>Importo Presunto</h2>
+            <h2>{{ 'bookings.price' | translate }}</h2>
             <p class="bold price">{{car.importoPresunto | currency: '€ '}}</p>
           </div>
         </div>
@@ -102,11 +102,11 @@
         </div>
         <div class="item">
           <div class="pull-left m-right20">
-            <h2>Tariffa</h2>
+            <h2>{{ 'bookings.tarif' | translate }}</h2>
             <p class="bold">{{selectedTarif.value.text}}</p>
           </div>
           <div class="pull-right">
-            <h2>Importo Presunto</h2>
+            <h2>{{ 'bookings.price' | translate }}</h2>
             <p class="bold price">{{car.importoPresunto | currency: '€ '}}</p>
           </div>
         </div>

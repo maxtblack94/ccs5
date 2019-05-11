@@ -2,7 +2,7 @@
     <ion-content class="mb80">
         <div class="list m-bottom0">
             <a class="item item-icon-right park-item" ng-click='changeParking("A")'>
-                <p>{{ selectedParkB ? 'Pick-up Parking' : 'Pick-up/Return Parking' | translate}}<span class="color-error">*</span></p>
+                <p>{{ selectedParkB ? 'bookResume.pickupPark' : 'bookResume.pickupReturnlabel' | translate}}<span class="color-error">*</span></p>
                 <h2><strong>{{ selectedPark.parking_name }}</strong></h2>
                 <p>{{ selectedPark.address }}</p>
                 <p ng-if="selectedPark && !selectedPark.h24">{{ 'bookResume.parkOpenedFrom' | translate}}
@@ -12,7 +12,7 @@
                 <i class="icon ion-ios-navigate-outline icons-reservation"></i>
             </a>
             <a class="item item-icon-right park-item" ng-if="selectedParkB" ng-click='changeParking("B")'>
-                <p>{{ 'Return Parking' | translate}}<span class="color-error">*</span></p>
+                <p>{{ 'bookResume.returnPark' | translate}}<span class="color-error">*</span></p>
                 <h2><strong>{{ selectedParkB.parking_name }}</strong></h2>
                 <p>{{ selectedParkB.address }}</p>
                 <p ng-if="selectedParkB && !selectedParkB.h24">{{ 'bookResume.parkOpenedFrom' | translate}}
@@ -56,7 +56,7 @@
             </ion-list>
         </div>
         <div class="typologie" ng-if="selectedService.tarifs.length">
-            <p>Tariffa <span class="color-error">*</span></p>
+            <p>{{ 'bookings.tarif' | translate }} <span class="color-error">*</span></p>
             <ion-list>
                 <ion-radio ng-repeat='tarif in selectedService.tarifs' name="tarif" ng-model="selectedTarif.value"
                     ng-value="tarif">{{tarif.text}}</ion-radio>

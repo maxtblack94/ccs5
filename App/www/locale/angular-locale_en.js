@@ -50,13 +50,17 @@ window.locale_en.bookings = {
 	cancelReservation: 'Delete',
 	cancelConfirmTitle: 'Confirm deletion',
 	cancelConfirmBody: 'Would you really delete selected booking?',
-	gpsAlert: 'This app requires location to authorize the opening and closing vehicle features'
+	gpsAlert: 'This app requires location to authorize the opening and closing vehicle features',
+	tarif: 'Tarif',
+	price: 'Price',
+	orderPending: "Attention, this order waiting for approve"
 }
 
 window.locale_en.parking = {
 	title: 'Chose parking',
 	noparking: 'No parking found',
-	placeholderSearch: 'Search'
+	placeholderSearch: 'Search',
+	pickupDirection: 'Pick-up park is different than return park?'
 };
 
 window.locale_en.tabs = {
@@ -97,7 +101,8 @@ window.locale_en.commons = {
 	successOperation: "Operation successfully completed",
 	requestFail: "We have not been able to submit your request.",
 	refuse: 'Refuse',
-	accept: 'Accept'
+	accept: 'Accept',
+	services: 'Services'
 };
 
 window.locale_en.bookResume = {
@@ -125,7 +130,11 @@ window.locale_en.bookResume = {
 	noDataFound: 'Some information could not be retrieved!',
 	returnDateHaveToBe: 'Return Date must be within the ',
 	wrongDates: 'Select the Pick-Up and Return date to continue.',
-	wrongParking: 'Select parking before continuing.'
+	wrongParking: 'Select parking before continuing.',
+	pickupReturnlabel: "Pick-up/Return Parking",
+	pickupPark : "Pick-up Parking",
+	returnPark : "Return Parking",
+	subscriptionIncompatible: "The reservation time is not compatible with your tarif"
 };
 
 window.locale_en.map = {

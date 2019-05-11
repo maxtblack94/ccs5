@@ -58,16 +58,25 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
     checkErrorTarifTime = function (dateTimeTo, dateTimeFrom) {
         var tarif = $scope.selectedTarif.value;
         if (tarif.opening) {
-            tarif.opening = new Date(moment(tarif.opening, 'DD/MM/YYYY HH:mm:ss'));
-            tarif.closing = new Date(moment(tarif.closing, 'DD/MM/YYYY HH:mm:ss'));
-
-            if(!((dateTimeTo.getHours() >= tarif.opening.getHours()) && (dateTimeTo.getHours() < tarif.closing.getHours()))){
-                PopUpServices.errorPopup("The reservation time is not compatible with your subscription", "1");
+            var tarifTmp = {
+                opening: new Date(moment('12/10/2020' + ' ' + tarif.opening, 'DD/MM/YYYY HH:mm:ss')),
+                closing: new Date(moment('12/10/2020' + ' ' + tarif.closing, 'DD/MM/YYYY HH:mm:ss'))
+            };
+            if (!(tarifTmp.opening.getHours() <= dateTimeFrom.getHours() && dateTimeFrom.getHours() < tarifTmp.closing.getHours()) ) {
+                PopUpServices.errorPopup($filter('translate')('bookResume.subscriptionIncompatible'), "1");
                 return true;
-            } else if(!((dateTimeFrom.getHours() >= tarif.opening.getHours()) && (dateTimeFrom.getHours() < tarif.closing.getHours()))){
-                PopUpServices.errorPopup($filter('translate')('bookResume.isNotInTime'), "1");
+            } else if(!(tarifTmp.opening.getHours() <= dateTimeTo.getHours() && dateTimeTo.getHours() < tarifTmp.closing.getHours())) {
+                PopUpServices.errorPopup($filter('translate')('bookResume.subscriptionIncompatible'), "1");
                 return true;
             }
+
+            /* if(dateTimeTo.getHours() < tarifTmp.opening.getHours() || dateTimeTo.getHours() > tarifTmp.closing.getHours()){
+                PopUpServices.errorPopup($filter('translate')('bookResume.subscriptionIncompatible'), "1");
+                return true;
+            } else if(!(dateTimeFrom.getHours() >= tarifTmp.opening.getHours()) && (dateTimeFrom.getHours() < tarifTmp.closing.getHours())){
+                PopUpServices.errorPopup($filter('translate')('bookResume.isNotInTime'), "1");
+                return true;
+            } */
             return false;
         } else {
             return false;
