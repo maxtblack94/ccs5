@@ -4,10 +4,13 @@
         </ion-refresher>
         <p ng-if="!items.length" class="message-empty">{{ 'Tira giù con il dito per ricercare veicoli in prossimità' | translate }}</p>
         <div class="list card" ng-if="items.length">
-            <div ng-click="selectService(service)" ng-repeat="item in items" class="item item-avatar fix-item">
-                <img src="{{item.imgs}}">
-                <h2>{{item.plate}}</h2>
-                <p>{{item.brand}} {{item.model}}</p>
+            <div ng-click="startFastTrack(item)" ng-repeat="item in items" class="item fix-item">
+                <div style="display: inline-block;">
+                    <h2>{{item.plate}}</h2>
+                    <p>{{item.brand}} {{item.model}}</p>
+                </div>
+                <img style="display: inline-block; max-width: 26%; float: right;" src="{{item.image_min? item.image_min : 'icons/vehicle-default-l.jpg'}}">
+                
             </div>
         </div>
     </ion-content>

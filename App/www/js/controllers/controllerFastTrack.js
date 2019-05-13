@@ -8,17 +8,37 @@ angular.module('starter').controller('FastTrackCtrl', function(InfoFactories, Sc
  
     
     function getCarInfo(device){
-         ScriptServices.getXMLResource(670).then(function(res) {
+         ScriptServices.getXMLResource(646).then(function(res) {
              res = res.replace('{BLEID}', device.id);
-             ScriptServices.callGenericService(res, 670).then(function(data) {
-                 if (!$scope.firstSearch) {
+             ScriptServices.callGenericService(res, 646).then(function(data) {
+                 if (data.data) {
+                     data.data.carInfo.bleID = device.id;
+                     data.data.carInfo.pnr = ScriptServices.generateUUID4();
                     $scope.items.push(data.data.carInfo);
-                    $scope.firstSearch = true;
                  }
              }, function(error) {
              });
          });
     };
+
+    $scope.startFastTrack = function(carInfo) {
+        openVehicleWithBle(carInfo, 'pushPNR');
+    }
+
+    function openVehicleWithBle(reservation, action) {
+        $ionicLoading.show();
+        
+        ScriptServices.getXMLResource(640).then(function(res) {
+            res = res.replace('{PNR}', null).replace('{OPT}', 0);
+            ScriptServices.callGenericService(res, 640).then(function(data) {
+                reservation.TKN = data.data.encryptedStr;
+                BluetoothServices.connectToVehicle(reservation, action);
+            }, function(error) {
+                PopUpServices.errorPopup($filter('translate')('bookings.errorOpenCar'));
+                $ionicLoading.hide();
+            });
+        });
+    }
 
     $scope.startScan = function() {
         $scope.firstSearch = false;

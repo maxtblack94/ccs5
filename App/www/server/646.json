@@ -1,0 +1,20 @@
+{
+    "retcode": 0,
+    "data": {
+      "carInfo": {
+        "id": 75492,
+        "brand": "Renault",
+        "model": "Zoe Z.E. 40",
+        "fuelType": "Elettrica",
+        "drivingRange": "Urbano, Extraurbano",
+        "vehicleType": "City Car",
+        "seats": "5",
+       "displacement": "0",
+        "plate": "FP920WN",
+        "color": "Bianco",
+        "hp": "",
+        "image_max": "https://e-vai.corporatecarsharing.it/images/vehicles/renault/zoe-white-l.jpg",
+        "image_min": "https://e-vai.corporatecarsharing.it/images/vehicles/renault/zoe-white-s.jpg"
+      }
+    }
+  }
