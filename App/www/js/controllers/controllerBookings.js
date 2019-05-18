@@ -1,4 +1,4 @@
-angular.module('starter').controller('BookingsCtrl', function ($ionicSideMenuDelegate, ReservationService, $filter, LocationService, BluetoothServices, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices) {
+angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnectionService, IosBleConnectionService, $ionicSideMenuDelegate, ReservationService, $filter, LocationService, $cordovaDevice, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
 
@@ -202,7 +202,11 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicSideMenuDel
             ScriptServices.callGenericService(res, 639).then(function(data) {
                 reservation.TKN = data.data.encryptedStr;
                 reservation.bleID = reservation.bluetooth_id;
-                BluetoothServices.connectToVehicle(reservation, action);
+                if ($cordovaDevice.getPlatform() !== 'iOS') {
+                    AndroidBleConnectionService.connectToVehicle(reservation, action);
+                } else {
+                    IosBleConnectionService.connectToVehicle(reservation, action);
+                }
             }, function(error) {
                 PopUpServices.errorPopup($filter('translate')('bookings.errorOpenCar'));
                 $ionicLoading.hide();
@@ -218,7 +222,11 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicSideMenuDel
             ScriptServices.callGenericService(res, 640).then(function(data) {
                 reservation.TKN = data.data.encryptedStr;
                 reservation.bleID = reservation.bluetooth_id;
-                BluetoothServices.connectToVehicle(reservation, action);
+                if ($cordovaDevice.getPlatform() !== 'iOS') {
+                    AndroidBleConnectionService.connectToVehicle(reservation, action);
+                } else {
+                    IosBleConnectionService.connectToVehicle(reservation, action);
+                }
             }, function(error) {
                 PopUpServices.errorPopup($filter('translate')('bookings.errorOpenCar'));
                 $ionicLoading.hide();
