@@ -78,7 +78,7 @@ angular.module('starter').controller('BleCtrl', function(BluetoothServices, Arra
         });
         
         setTimeout(ble.stopScan,
-            2000,
+            4000,
             function() { 
                 console.log("Scan complete"); 
             },
@@ -94,13 +94,28 @@ angular.module('starter').controller('BleCtrl', function(BluetoothServices, Arra
         console.log('operation failed', params)
     } */
 
-    /* $scope.connect = function (deviceID) {
+    $scope.connect = function (deviceID) {
         ble.connect(deviceID, onSuccesfullConnection, onFailConnection);
     }
 
     function onSuccesfullConnection(params) {
         $scope.currentDevice = params;
-        console.log('connection successfull', params)
+        console.log('connection successfull', params);
+
+        for (let k = 0; k < params.characteristics.length; k++) {
+            if (params.characteristics[k].characteristic === "648DC9CB-989B-4612-92A9-4D6E5106EB98") {
+                ble.read(params.id, params.characteristics[k].service, params.characteristics[k].characteristic,
+                    function(data){
+                        if ("B4:B8:59:16:08:76".split(':').reverse().join("").toLowerCase() && ArrayServices.arrayBufferToHex(data)) {
+                            alert("BleId Match"+ ArrayServices.arrayBufferToHex(data));
+                        }
+                    },
+                    function(failure){
+                        alert("Failed to read characteristic from device.");
+                    }
+                );
+            }
+        }
     }
 
     function onFailConnection(params) {
@@ -116,7 +131,6 @@ angular.module('starter').controller('BleCtrl', function(BluetoothServices, Arra
     }
 
 
-     */
 
     /* var onData = function(buffer) {
         alert("Notify:"+ ArrayServices.bytesToString(buffer))

@@ -10,10 +10,23 @@ angular.module('starter').factory("ArrayServices", function(PopUpServices) {
     
     function bytesToString(buffer) {
         var a = String.fromCharCode.apply(null, new Uint8Array(buffer));
-        a = JSON.parse(a);
+        if (/^[\],:{}\s]*$/.test(a.replace(/\\["\\\/bfnrtu]/g, '@').
+            replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
+            replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+
+                a = JSON.parse(a);
+
+            }
+        
         console.log(a);
         return a;
     }
+
+    function toHexString(byteArray) {
+        return Array.from(byteArray, function(byte) {
+          return ('0' + (byte & 0xFF).toString(16)).slice(-2);
+        }).join('')
+      }
 
     function bytesToObject(buffer) {
         var a = String.fromCharCode.apply(null, new Uint8Array(buffer));
@@ -28,6 +41,23 @@ angular.module('starter').factory("ArrayServices", function(PopUpServices) {
         };
         return obj;
     }
+
+    function arrayBufferToHex (arrayBuffer) {
+        if (typeof arrayBuffer !== 'object' || arrayBuffer === null || typeof arrayBuffer.byteLength !== 'number') {
+          throw new TypeError('Expected input to be an ArrayBuffer')
+        }
+      
+        var view = new Uint8Array(arrayBuffer)
+        var result = ''
+        var value
+      
+        for (var i = 0; i < view.length; i++) {
+          value = view[i].toString(16)
+          result += (value.length === 1 ? '0' + value : value)
+        }
+      
+        return result
+      }
  
 
 
@@ -40,6 +70,9 @@ angular.module('starter').factory("ArrayServices", function(PopUpServices) {
         },
         bytesToObject: function (buffer) {
             return bytesToObject(buffer);
+        },
+        arrayBufferToHex: function (buffer) {
+            return arrayBufferToHex(buffer);
         }
     };
 
