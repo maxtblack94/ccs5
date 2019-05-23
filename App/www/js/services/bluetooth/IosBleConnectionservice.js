@@ -10,7 +10,11 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
         lastReservation = reservation;
         ble.isEnabled(function() {
             console.log('ble is enabled');
-            isConnected();
+            if (currentDevice && currentDevice.id) {
+                isConnected();
+            } else {
+                startScan();
+            }
         },
         function() {
             alert('Ti preghiamo di abilitare il Bluetooth e riprovare.');
@@ -70,7 +74,7 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
 
     function isConnected() {
         console.log('I check connection');
-        ble.isConnected(lastReservation.bleID, function(status) {
+        ble.isConnected(currentDevice.id, function(status) {
             if (status === 'OK') {
                 console.log('Im already connected');
                 setTimeout(function() {
