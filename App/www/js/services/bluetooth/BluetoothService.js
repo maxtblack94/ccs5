@@ -135,6 +135,7 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
         console.log('actionlist', JSON.stringify(actionsList));
         string = ArrayServices.stringToBytes(JSON.stringify(string));
         ble.write(currentDevice.id, writeService.service, writeService.characteristic, string, function(params) {
+            
             console.log('write OK');
         }, function(error) {
             $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Errore Write"});
