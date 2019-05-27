@@ -110,7 +110,7 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
 
     function write(action){
         var writeService = currentDevice.characteristics.find(function(item){
-            return item.characteristic.toLowerCase() === "75dcca42-81c1-4552-b3b1-1dce25eb4ea2";
+            return item.characteristic.toUpperCase() === "75dcca42-81c1-4552-b3b1-1dce25eb4ea2".toUpperCase();
         });
         var string = "";
         switch (action) {
