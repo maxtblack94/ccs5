@@ -1,6 +1,7 @@
 angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnectionService, IosBleConnectionService, $ionicSideMenuDelegate, ReservationService, $filter, LocationService, $cordovaDevice, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
+    refreshUserInfo();
 
     var favo = window.localStorage.getItem('favoriteParking') ? eval('(' + window.localStorage.getItem('favoriteParking') + ')') : null;
     if (favo) {
@@ -408,4 +409,17 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
         $scope.contextPnr.dateTimeTo = ManipolationServices.resetDateForDefect(newDate);
     }
 
-})
+
+    function refreshUserInfo(userInfo){
+        ScriptServices.getXMLResource(554).then(function(res) {
+            res = res.replace('{NUMBER_DRIVER}', $scope.userInfo.driverNumber);
+            ScriptServices.callGenericService(res, 554).then(function(data) {
+                var userInfo = window.localStorage.getItem('userInfo');
+                userInfo = JSON.parse(userInfo);
+                userInfo.registry =  data.data.GetUser[0];
+                window.localStorage.setItem('userInfo', JSON.stringify(userInfo));
+            });
+        });
+    }
+
+});
