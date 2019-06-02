@@ -98,12 +98,12 @@
     <plugin name="cordova-plugin-statusbar" spec="~2.4.2-dev" />
     <plugin name="cordova-plugin-email-composer" spec="~0.8.15" />
     <plugin name="onesignal-cordova-plugin" spec="~2.3.1" />
-    <plugin name="cordova-plugin-ble-central" spec="1.2.2">
-        <variable name="BLUETOOTH_USAGE_DESCRIPTION" value="Your description here" />
-    </plugin>
     <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
     <plugin name="cordova-plugin-request-location-accuracy" spec="^2.2.3" />
     <plugin name="cordova.plugins.diagnostic" spec="^4.0.10" />
+    <plugin name="cordova-plugin-ble-central" spec="^1.2.2">
+        <variable name="BLUETOOTH_USAGE_DESCRIPTION" value="using to open car sharing cars" />
+    </plugin>
     <engine name="android" spec="7.0.0" />
     <engine name="ios" spec="4.5.5" />
 </widget>

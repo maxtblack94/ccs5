@@ -61,7 +61,8 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
                         ble.read(params.id, params.characteristics[k].service, params.characteristics[k].characteristic, function(data){
                             if (lastReservation.bleID.split(':').reverse().join("").toLowerCase() && ArrayServices.arrayBufferToHex(data)) {
                                 console.log('ble Match');
-                                BluetoothServices.doNotifyRequest(lastReservation, lastOperation, currentDevice);
+                                disconnectWithID();
+                                //BluetoothServices.doNotifyRequest(lastReservation, lastOperation, currentDevice);
                             }
                         });
                     }
@@ -90,6 +91,28 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
         });
     }
 
+    function disconnectWithID(){
+        if (currentDevice) {
+            ble.disconnect(currentDevice.id, function (params) {
+                connectBle();
+            }, function (params) {
+                console.log("disconnect fail", params);
+            });
+        }
+    };
+
+    function connectBle() {
+        ble.connect(currentDevice.id, function(params) {
+            ble.startStateNotifications(
+                function(state) {
+                    console.log("Bluetooth is " + state);
+                }
+            );
+            BluetoothServices.doNotifyRequest(lastReservation, lastOperation, currentDevice);
+        }, function (error) {
+            
+        });
+    }
 
 /*     function doConnection(reservation){
         console.log('Connecting...');
