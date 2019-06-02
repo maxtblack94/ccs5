@@ -36,7 +36,7 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
             4000,
             function() { 
                 if (devices.length) {
-                    searchBLEID();
+                    searchBLEID(0);
                 } else if (scanCount < 3) {
                     scanCount++;
                     startScan();
@@ -51,26 +51,27 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
         );
     }
 
-    function searchBLEID() {
-        for (var i = 0; i < devices.length; i++) {
-            ble.connect(devices[i].id, function(params) {
-                currentDevice = params;
-                console.log('connection successfull', params);
-                for (let k = 0; k < params.characteristics.length; k++) {
-                    if (params.characteristics[k].characteristic === "648DC9CB-989B-4612-92A9-4D6E5106EB98") {
-                        ble.read(params.id, params.characteristics[k].service, params.characteristics[k].characteristic, function(data){
-                            if (lastReservation.bleID.split(':').reverse().join("").toLowerCase() && ArrayServices.arrayBufferToHex(data)) {
-                                console.log('ble Match');
-                                disconnectWithID();
-                                //BluetoothServices.doNotifyRequest(lastReservation, lastOperation, currentDevice);
-                            }
-                        });
-                    }
-                }
-            }, function (error) {
-                
+    function searchBLEID(index) {
+        ble.connect(devices[index].id, function(params) {
+            currentDevice = params;
+            var characteristicExist = params.characteristics.find(function (item) {
+                return item.characteristic.toLowerCase() === "648DC9CB-989B-4612-92A9-4D6E5106EB98".toLowerCase();
             });
-        }
+            if (characteristicExist) {
+                ble.read(params.id, characteristicExist.service, characteristicExist.characteristic, function(data){
+                    if (lastReservation.bleID.split(':').reverse().join("").toLowerCase() && ArrayServices.arrayBufferToHex(data)) {
+                        console.log('ble Match');
+                        disconnectWithID();
+                    } else {
+                        searchBLEID(index++);
+                    }
+                });
+            } else {
+                searchBLEID(index++);
+            }
+        }, function (error) {
+            
+        });
     }
 
     function isConnected() {

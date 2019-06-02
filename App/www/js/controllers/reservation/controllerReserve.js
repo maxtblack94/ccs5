@@ -41,7 +41,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
     
     $scope.searchVehicle = function() {
         console.log('cerca veicoli');
-        if(datesCheck()){
+        /* if(datesCheck()){ */
             if($scope.selectedClient.vehicleType){
                 ReservationService.setVehicleType($scope.selectedClient.vehicleType);
             }
@@ -50,7 +50,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
                 ReservationService.setTarif($scope.selectedTarif);
             }
             $state.go('vehicles');
-        }
+        /* } */
     };
 
 
