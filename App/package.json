@@ -8,7 +8,7 @@
     "cordova-android": "7.0.0",
     "cordova-ios": "4.5.5",
     "cordova-plugin-android-permissions": "^1.0.0",
-    "cordova-plugin-ble-central": "1.2.2",
+    "cordova-plugin-ble-central": "^1.2.2",
     "cordova-plugin-compat": "1.2.0",
     "cordova-plugin-datepicker": "0.9.3",
     "cordova-plugin-device": "1.1.6",
@@ -78,12 +78,12 @@
         "SENDER_ID": "1052330991735"
       },
       "onesignal-cordova-plugin": {},
-      "cordova-plugin-ble-central": {
-        "BLUETOOTH_USAGE_DESCRIPTION": "Your description here"
-      },
       "cordova-plugin-android-permissions": {},
       "cordova-plugin-request-location-accuracy": {},
-      "cordova.plugins.diagnostic": {}
+      "cordova.plugins.diagnostic": {},
+      "cordova-plugin-ble-central": {
+        "BLUETOOTH_USAGE_DESCRIPTION": "using to open car sharing cars"
+      }
     }
   }
 }

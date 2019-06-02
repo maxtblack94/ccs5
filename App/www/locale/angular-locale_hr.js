@@ -62,14 +62,9 @@ window.locale_hr.bookings = {
 window.locale_hr.parking = {
 	title: "Odaberite parkiralište",
 	noparking: "Nije pronađen parking",
-<<<<<<< HEAD
-	placeholderSearch: "Traži"
-};
-=======
 	placeholderSearch: "Traži",
 	pickupDirection: 'Pick-up park is different than return park?'
 }
->>>>>>> f698e9b... avanzamento
 
 window.locale_hr.tabs = {
 	reservations: "Rezervacije",

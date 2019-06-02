@@ -27,6 +27,7 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
                             break;
                         case 5000:
                             $rootScope.$broadcast('bleInteraction', interaction);
+                            disconnect();
                             break;
                         case 10000:
                             
@@ -130,17 +131,51 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
             default:
                 break;
         }
-        console.log('write', JSON.stringify(string));
+        
+        console.log('write obj', string);
         actionsList.push(string);
-        console.log('actionlist', JSON.stringify(actionsList));
-        string = ArrayServices.stringToBytes(JSON.stringify(string));
-        ble.write(currentDevice.id, writeService.service, writeService.characteristic, string, function(params) {
-            console.log('write OK');
-        }, function(error) {
-            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Errore Write"});
-            currentDevice = null;
-            console.log('write', error);
-        });
+        var stringArray = ArrayServices.stringToBytes(JSON.stringify(string));
+        var bufferLength = stringArray.byteLength;
+        var totalCounts = bufferLength / 50 > 0 ? bufferLength / 50: 1;
+        for (var k = 0; k <  totalCounts; k++) {
+            var stringItem;
+            if (k === 0) {
+                stringItem = stringArray.slice(0, 50);
+            } else if (k === 1) {
+                stringItem = stringArray.slice(50, 100);
+            } else if (k === 2) {
+                stringItem = stringArray.slice(100, 150);
+            } else if (k === 3) {
+                stringItem = stringArray.slice(150, 200);
+            } else if (k === 4) {
+                stringItem = stringArray.slice(200, 250);
+            } else if (k === 5) {
+                stringItem = stringArray.slice(250, 300);
+            } else if (k === 6) {
+                stringItem = stringArray.slice(300, 350);
+            } else if (k === 7) {
+                stringItem = stringArray.slice(350, 400);
+            } else if (k === 8) {
+                stringItem = stringArray.slice(400, 450);
+            } else if (k === 9) {
+                stringItem = stringArray.slice(450, 500);
+            } else if (k === 10) {
+                stringItem = stringArray.slice(500, 550);
+            }
+             
+            console.log('write piece', stringItem);
+            ble.write(currentDevice.id, writeService.service, writeService.characteristic, stringItem, function(params) {
+                
+                console.log('write OK');
+            }, function(error) {
+                $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Errore Write"});
+                currentDevice = null;
+                console.log('write', error);
+            });
+        }
+
+        
+        
     };
 
 
