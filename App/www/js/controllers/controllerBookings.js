@@ -190,6 +190,11 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
     };
 
     $scope.$on('bleInteraction', function(event, interactionData) {
+        if (interactionData.resultStatus === 'KO') {
+            PopUpServices.errorPopup(interactionData.errorMessage ,'1');
+        } else {
+            PopUpServices.errorPopup("Operazione avvenuta con successo!" ,'2');
+        }
         $ionicLoading.hide();
         $scope.refreshBookings();
         console.log('interaction', interactionData);
