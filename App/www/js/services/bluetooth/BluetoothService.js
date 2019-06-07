@@ -21,23 +21,27 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
                 });
                 console.log('notify interaction', interaction);
                 if (interaction && interaction.MT) {
-                    switch (interaction.MT) {
-                        case 100:
-                            write('pushPNR');
-                            break;
-                        case 5000:
-                            $rootScope.$broadcast('bleInteraction', interaction);
-                            disconnect();
-                            break;
-                        case 10000:
-                            
-                            break;
-                    
-                        default:
-                            break;
+                    if (notifyData.RC) {
+                        errorHandler(notifyData.RC, notifyData.MT);
+                    } else {
+                        switch (interaction.MT) {
+                            case 100:
+                                write('pushPNR');
+                                break;
+                            case 5000:
+                                $rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction});
+                                disconnect();
+                                break;
+                            case 10000:
+                                
+                                break;
+                        
+                            default:
+                                break;
+                        }
                     }
                 }else{
-                    $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "TID non trovato"});
+                    errorHandler('GENERIC_ERROR');
                 }
                 
             }
@@ -168,7 +172,7 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
                 
                 console.log('write OK');
             }, function(error) {
-                $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Errore Write"});
+                errorHandler("WRITE_ERROR");
                 currentDevice = null;
                 console.log('write', error);
             });
@@ -177,6 +181,38 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
         
         
     };
+
+
+    function errorHandler (RC, MT) {
+        var errorMessage; 
+        var errorCode;
+        switch (RC) {
+            case 10:
+            case 30:
+            case 40:
+            case 50:
+            case 80:
+            case 'GENERIC_ERROR':
+                errorCode = 'GENERIC_ERROR';
+                errorMessage = 'Qualcosa è andato storto, riprova';
+                break;
+            case 20:
+                errorCode = 'INVALID_KEY';
+                errorMessage = "Assicurati di aver posizionato nel portachiavi la chiave del veicolo giusto";
+                break;
+            case 150:
+                errorCode = 'ALREADY_DID';
+                errorMessage = "La richiesta di apertura è già stata gestita precedentemente";
+                break;
+            case 160:
+                errorCode = 'NO_KEY';
+                errorMessage = "Assicurati che la chiave del veicolo sia nel portachiavi al momento della chiusura del veicolo";
+                break;
+            default:
+                break;
+        }
+        $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorCode: errorCode, errorMessage: errorMessage});
+    }
 
 
     
