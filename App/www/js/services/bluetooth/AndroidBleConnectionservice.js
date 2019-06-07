@@ -11,7 +11,6 @@ angular.module('starter').factory("AndroidBleConnectionService", function(Blueto
             isConnected(reservation);
         },
         function() {
-            alert('Ti preghiamo di abilitare il Bluetooth e riprovare.');
             $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Ti preghiamo di abilitare il Bluetooth e riprovare"});
         });
     }

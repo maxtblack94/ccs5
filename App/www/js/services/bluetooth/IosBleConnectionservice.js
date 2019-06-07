@@ -1,3 +1,5 @@
+import { disconnect } from "cluster";
+
 angular.module('starter').factory("IosBleConnectionService", function(BluetoothServices, $rootScope, ArrayServices) {
     var currentDevice;
     var lastReservation, lastOperation;
@@ -5,21 +7,30 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
     var devices = [];
 
     function connectToVehicle(reservation, operation) {
-        scanCount = 0;
-        lastOperation = operation;
-        lastReservation = reservation;
-        ble.isEnabled(function() {
-            console.log('ble is enabled');
-            if (currentDevice && currentDevice.id) {
-                isConnected();
-            } else {
-                startScan();
-            }
-        },
-        function() {
-            alert('Ti preghiamo di abilitare il Bluetooth e riprovare.');
-            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Ti preghiamo di abilitare il Bluetooth e riprovare"});
-        });
+        if (!currentDevice) {
+            scanCount = 0;
+            lastOperation = operation;
+            lastReservation = reservation;
+            ble.isEnabled(function() {
+                console.log('ble is enabled');
+                if (currentDevice && currentDevice.id) {
+                    isConnected();
+                } else {
+                    startScan();
+                }
+            },
+            function() {
+                $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Ti preghiamo di abilitare il Bluetooth e riprovare"});
+            });
+        } else {
+            ble.disconnect(currentDevice.id, function (params) {
+                currentDevice = undefined;
+                connectToVehicle();
+            }, function (params) {
+                console.log("disconnect fail", params);
+            });
+        }
+        
     }
 
     function startScan() {
@@ -41,7 +52,6 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
                     scanCount++;
                     startScan();
                 } else {
-                    alert('Connessione al veicolo non riuscita. Riprovare');
                     $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Dispositivi non trovati"});
                 }
             },
