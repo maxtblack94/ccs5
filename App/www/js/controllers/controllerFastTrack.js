@@ -1,4 +1,4 @@
-angular.module('starter').controller('FastTrackCtrl', function(InfoFactories, AndroidBleConnectionService, ScriptServices, $state, $scope, $ionicLoading) {
+angular.module('starter').controller('FastTrackCtrl', function(InfoFactories, AndroidBleConnectionService, ScriptServices, $state, $scope, $ionicLoading, PopUpServices) {
     $scope.userInfo = InfoFactories.getUserInfo();
 
     $scope.cancel = function(){
@@ -7,7 +7,14 @@ angular.module('starter').controller('FastTrackCtrl', function(InfoFactories, An
 
     $scope.$on('bleInteraction', function(event, interactionData) {
         $ionicLoading.hide();
-        $scope.refreshBookings();
+        if (interactionData.resultStatus === 'KO') {
+            PopUpServices.errorPopup(interactionData.errorMessage ,'1');
+        } else {
+            PopUpServices.errorPopup("Operazione avvenuta con successo!" ,'2');
+            setTimeout(() => {
+                $state.go("tab.bookings");
+            }, 1000);
+        }
         console.log('interaction', interactionData);
     });
 
