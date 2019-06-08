@@ -1,12 +1,10 @@
-angular.module('starter').controller('FastTrackCtrl', function(InfoFactories, ScriptServices, $state, $scope, $ionicLoading) {
+angular.module('starter').controller('FastTrackCtrl', function(InfoFactories, BluetoothServices, ScriptServices, $state, $scope, $ionicLoading) {
     $scope.userInfo = InfoFactories.getUserInfo();
-
 
     $scope.cancel = function(){
         $state.go("tab.bookings");
     };
- 
-    
+
     function getCarInfo(device){
          ScriptServices.getXMLResource(646).then(function(res) {
              res = res.replace('{BLEID}', device.id);
@@ -23,14 +21,14 @@ angular.module('starter').controller('FastTrackCtrl', function(InfoFactories, Sc
 
     $scope.startFastTrack = function(carInfo) {
         openVehicleWithBle(carInfo, 'pushPNR');
-    }
+    };
 
     function openVehicleWithBle(reservation, action) {
         $ionicLoading.show();
         
-        ScriptServices.getXMLResource(640).then(function(res) {
-            res = res.replace('{PNR}', null).replace('{OPT}', 0);
-            ScriptServices.callGenericService(res, 640).then(function(data) {
+        ScriptServices.getXMLResource(648).then(function(res) {
+            res = res.replace('{BLEID}', reservation.bleID).replace('{DRIVERID}', $scope.userInfo.driverNumber);
+            ScriptServices.callGenericService(res, 648).then(function(data) {
                 reservation.TKN = data.data.encryptedStr;
                 BluetoothServices.connectToVehicle(reservation, action);
             }, function(error) {
@@ -41,6 +39,16 @@ angular.module('starter').controller('FastTrackCtrl', function(InfoFactories, Sc
     }
 
     $scope.startScan = function() {
+        ble.isEnabled(function() {
+            console.log('ble is enabled');
+            doScan();
+        },
+        function() {
+            alert('Ti preghiamo di abilitare il Bluetooth e riprovare.');
+        });
+    };
+
+    function doScan() {
         $scope.firstSearch = false;
         $scope.$broadcast('scroll.refreshComplete');
         $scope.items = [];
@@ -52,7 +60,7 @@ angular.module('starter').controller('FastTrackCtrl', function(InfoFactories, Sc
         });
         
         setTimeout(ble.stopScan,
-            2000,
+            3000,
             function() { 
                 console.log("Scan complete"); 
             },
@@ -61,5 +69,8 @@ angular.module('starter').controller('FastTrackCtrl', function(InfoFactories, Sc
             }
         );
     }
+
+
+    $scope.startScan();
  
 });

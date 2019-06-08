@@ -2,18 +2,25 @@ angular.module('starter').factory("BluetoothServices", function($cordovaDevice, 
     var currentDevice;
     var lastReservation, lastOperation, userInfo, actionsList = [];
 
+    
+
     function connectToVehicle(reservation, operation) {
         userInfo = InfoFactories.getUserInfo();
         lastOperation = operation;
         lastReservation = reservation;
-        ble.isEnabled(function() {
-            console.log('ble is enabled');
-            isConnected(reservation);
-        },
-        function() {
-            alert('Ti preghiamo di abilitare il Bluetooth e riprovare.');
-            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Ti preghiamo di abilitare il Bluetooth e riprovare"});
-        });
+        if (currentDevice) {
+            disconnect();
+        } else {
+            ble.isEnabled(function() {
+                console.log('ble is enabled');
+                isConnected(reservation);
+            },
+            function() {
+                alert('Ti preghiamo di abilitare il Bluetooth e riprovare.');
+                $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Ti preghiamo di abilitare il Bluetooth e riprovare"});
+            });
+        }
+        
     }
 
     function isConnected(reservation) {
@@ -128,37 +135,8 @@ angular.module('starter').factory("BluetoothServices", function($cordovaDevice, 
         };
     }
 
-    function pushPNRRequest(action) {
-        var TKNString = JSON.stringify({ 
-            "tid": "6f348d129f32", 
-            "ty": action ? 6: 0, 
-            "data": {
-                "rid": lastReservation.pnr || "000001043B84FA3E3E808325",
-                "bid": "000001043B84FA3E3E80",
-                "st": new Date().getTime() - 600000 ,
-                "et": new Date().getTime() + 600000 ,
-                "pid": 8,
-                "v": "0000",
-                "rty": 0,
-                "e": true,
-                "io": true,
-                "poi": {
-                "geo": {
-                    "type": "Point",
-                    "coordinates": [
-                    41.8749715,
-                    12.3899344
-                    ]
-                },
-                "r": 1000
-                }
-            }
-        });
-        var TKNBase64 = btoa(TKNString);
-
-
-
-
+    function pushPNRRequest() {
+        
         return {
             "TS": new Date().getTime(),
             "TI": ScriptServices.generateUUID4(),
@@ -166,7 +144,7 @@ angular.module('starter').factory("BluetoothServices", function($cordovaDevice, 
             "MT": 5000,
             "CRY": true,
             "CT": 1,
-            "TKN": lastReservation.TKN || TKNBase64
+            "TKN": lastReservation.TKN
         };
 
     };
@@ -212,6 +190,8 @@ angular.module('starter').factory("BluetoothServices", function($cordovaDevice, 
     function disconnect(){
         if (currentDevice) {
             ble.disconnect(currentDevice.id, function (params) {
+                currentDevice = undefined;
+                connectToVehicle(lastReservation, lastOperation);
                 console.log("disconnect success", params);
             }, function (params) {
                 console.log("disconnect fail", params);
