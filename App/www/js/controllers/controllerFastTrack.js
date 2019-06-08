@@ -1,4 +1,4 @@
-angular.module('starter').controller('FastTrackCtrl', function(InfoFactories, BluetoothServices, ScriptServices, $state, $scope, $ionicLoading) {
+angular.module('starter').controller('FastTrackCtrl', function(InfoFactories, AndroidBleConnectionService, ScriptServices, $state, $scope, $ionicLoading) {
     $scope.userInfo = InfoFactories.getUserInfo();
 
     $scope.cancel = function(){
@@ -36,7 +36,7 @@ angular.module('starter').controller('FastTrackCtrl', function(InfoFactories, Bl
             res = res.replace('{BLEID}', reservation.bleID).replace('{DRIVERID}', $scope.userInfo.driverNumber);
             ScriptServices.callGenericService(res, 648).then(function(data) {
                 reservation.TKN = data.data.encryptedStr;
-                BluetoothServices.connectToVehicle(reservation, action);
+                AndroidBleConnectionService.connectToVehicle(reservation, action);
             }, function(error) {
                 PopUpServices.errorPopup($filter('translate')('bookings.errorOpenCar'));
                 $ionicLoading.hide();
