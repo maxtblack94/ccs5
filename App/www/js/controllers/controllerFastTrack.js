@@ -5,6 +5,12 @@ angular.module('starter').controller('FastTrackCtrl', function(InfoFactories, Bl
         $state.go("tab.bookings");
     };
 
+    $scope.$on('bleInteraction', function(event, interactionData) {
+        $ionicLoading.hide();
+        $scope.refreshBookings();
+        console.log('interaction', interactionData);
+    });
+
     function getCarInfo(device){
          ScriptServices.getXMLResource(646).then(function(res) {
              res = res.replace('{BLEID}', device.id);
@@ -44,11 +50,13 @@ angular.module('starter').controller('FastTrackCtrl', function(InfoFactories, Bl
             doScan();
         },
         function() {
+            $scope.$broadcast('scroll.refreshComplete');
             alert('Ti preghiamo di abilitare il Bluetooth e riprovare.');
         });
     };
 
     function doScan() {
+        $ionicLoading.show();
         $scope.firstSearch = false;
         $scope.$broadcast('scroll.refreshComplete');
         $scope.items = [];
@@ -56,6 +64,7 @@ angular.module('starter').controller('FastTrackCtrl', function(InfoFactories, Bl
             getCarInfo(device);
             
         }, function() { 
+            $ionicLoading.hide();
             console.log("stopScan failed");
         });
         
@@ -63,8 +72,12 @@ angular.module('starter').controller('FastTrackCtrl', function(InfoFactories, Bl
             3000,
             function() { 
                 console.log("Scan complete"); 
+                $scope.$broadcast('scroll.refreshComplete');
+                $ionicLoading.hide();
             },
             function() { 
+                $ionicLoading.hide();
+                $scope.$broadcast('scroll.refreshComplete');
                 console.log("stopScan failed");
             }
         );
