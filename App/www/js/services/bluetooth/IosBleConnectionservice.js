@@ -1,5 +1,3 @@
-import { disconnect } from "cluster";
-
 angular.module('starter').factory("IosBleConnectionService", function(BluetoothServices, $rootScope, ArrayServices) {
     var currentDevice;
     var lastReservation, lastOperation;
