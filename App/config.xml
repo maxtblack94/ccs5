@@ -104,7 +104,6 @@
     <plugin name="cordova-plugin-ble-central" spec="^1.2.2">
         <variable name="BLUETOOTH_USAGE_DESCRIPTION" value="using to open car sharing cars" />
     </plugin>
-    <engine name="android" spec="7.0.0" />
     <engine name="ios" spec="4.5.5" />
     <engine name="android" spec="7.0.0" />
 </widget>
