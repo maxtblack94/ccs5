@@ -5,10 +5,10 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
     var devices = [];
 
     function connectToVehicle(reservation, operation) {
+        scanCount = 0;
+        lastOperation = operation;
+        lastReservation = reservation;
         if (!currentDevice) {
-            scanCount = 0;
-            lastOperation = operation;
-            lastReservation = reservation;
             ble.isEnabled(function() {
                 console.log('ble is enabled');
                 if (currentDevice && currentDevice.id) {
@@ -23,7 +23,7 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
         } else {
             ble.disconnect(currentDevice.id, function (params) {
                 currentDevice = undefined;
-                connectToVehicle();
+                connectToVehicle(lastReservation, lastOperation);
             }, function (params) {
                 console.log("disconnect fail", params);
             });
@@ -60,6 +60,7 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
     }
 
     function searchBLEID(index) {
+        var bleid = lastReservation.bluetooth_id || lastReservation.bleID;
         ble.connect(devices[index].id, function(params) {
             currentDevice = params;
             var characteristicExist = params.characteristics.find(function (item) {
@@ -67,7 +68,7 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
             });
             if (characteristicExist) {
                 ble.read(params.id, characteristicExist.service, characteristicExist.characteristic, function(data){
-                    if (lastReservation.bleID.split(':').reverse().join("").toLowerCase() && ArrayServices.arrayBufferToHex(data)) {
+                    if (bleid.split(':').reverse().join("").toLowerCase() && ArrayServices.arrayBufferToHex(data)) {
                         console.log('ble Match');
                         disconnectWithID();
                     } else {

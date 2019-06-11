@@ -29,7 +29,11 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
                                 write('pushPNR');
                                 break;
                             case 5000:
-                                $rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction});
+                                $rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction, operation: lastOperation});
+                                disconnect();
+                                break;
+                            case 5001:
+                                $rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction, operation: lastOperation});
                                 disconnect();
                                 break;
                             case 10000:

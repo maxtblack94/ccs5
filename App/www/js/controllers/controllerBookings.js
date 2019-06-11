@@ -1,4 +1,4 @@
-angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnectionService, IosBleConnectionService, $ionicSideMenuDelegate, ReservationService, $filter, LocationService, $cordovaDevice, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices) {
+angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnectionService, IosBleConnectionService, $ionicSideMenuDelegate, ReservationService, $filter, LocationService, $cordovaDevice, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices, UpdateStatusBBService) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
     refreshUserInfo();
@@ -193,6 +193,7 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
         if (interactionData.resultStatus === 'KO') {
             PopUpServices.errorPopup(interactionData.errorMessage ,'1');
         } else {
+            /* UpdateStatusBBService.processUpdate(interactionData); */
             PopUpServices.errorPopup("Operazione avvenuta con successo!" ,'2');
         }
         $ionicLoading.hide();
