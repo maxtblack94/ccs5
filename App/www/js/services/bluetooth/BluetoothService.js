@@ -1,4 +1,4 @@
-angular.module('starter').factory("BluetoothServices", function(ArrayServices, $rootScope, ScriptServices) {
+angular.module('starter').factory("BluetoothServices", function(UpdateBBService, ArrayServices, $rootScope, ScriptServices) {
     var currentDevice;
     var lastReservation, lastOperation, actionsList = [];
 
@@ -18,31 +18,13 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
                 console.log('notify notifyData', notifyData);
                 var interaction = actionsList.find(function (item) {
                     return item.TI === notifyData.TI;
-                });
+                }) || notifyData;
                 console.log('notify interaction', interaction);
                 if (interaction && interaction.MT) {
-                    if (notifyData.RC) {
-                        errorHandler(notifyData.RC, notifyData.MT);
+                    if (interaction.RC) {
+                        errorHandler(interaction.RC, interaction.MT);
                     } else {
-                        switch (interaction.MT) {
-                            case 100:
-                                write('pushPNR');
-                                break;
-                            case 5000:
-                                disconnect();
-                                $rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction});
-                                break;
-                            case 5001:
-                                disconnect();
-                                $rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction});
-                                break;
-                            case 10000:
-                                
-                                break;
-                        
-                            default:
-                                break;
-                        }
+                        executeInteraction(interaction);
                     }
                 }else{
                     errorHandler('GENERIC_ERROR');
@@ -56,6 +38,28 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
         setTimeout(function() {
             write('pair');
         }, 500);
+    }
+
+    function executeInteraction(interaction) {
+        switch (interaction.MT) {
+            case 100:
+                write('pushPNR');
+                break;
+            case 5000:
+                $rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction});
+                disconnect();
+                break;
+            case 5001:
+                UpdateBBService.setUpdateRequest(interaction.TKN);
+                //$rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction});
+                break;
+            case 10000:
+                
+                break;
+        
+            default:
+                break;
+        }
     }
 
     function versioningRequest() {

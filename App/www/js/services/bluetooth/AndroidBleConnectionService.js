@@ -1,6 +1,6 @@
 angular.module('starter').factory("AndroidBleConnectionService", function(BluetoothServices, InfoFactories, $rootScope) {
     var currentDevice;
-    var lastReservation, lastOperation, userInfo, actionsList = [];
+    var lastReservation, lastOperation = [];
 
     function connectToVehicle(reservation, operation) {
         userInfo = InfoFactories.getUserInfo();
@@ -11,7 +11,6 @@ angular.module('starter').factory("AndroidBleConnectionService", function(Blueto
             isConnected(reservation);
         },
         function() {
-            alert('Ti preghiamo di abilitare il Bluetooth e riprovare.');
             $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Ti preghiamo di abilitare il Bluetooth e riprovare"});
         });
     }
@@ -41,10 +40,7 @@ angular.module('starter').factory("AndroidBleConnectionService", function(Blueto
             mtuSize();
         },
         function(error) {
-            console.log('Fail connection, i try again...', error);
-            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Fail connection, i try again..."});
             currentDevice = null;
-            /* doConnection(reservation); */
         });
     }
 
@@ -55,8 +51,6 @@ angular.module('starter').factory("AndroidBleConnectionService", function(Blueto
                 BluetoothServices.doNotifyRequest(lastReservation, lastOperation, currentDevice);
             }, 500);
         }, function() {
-            console.log('MTU Fail, i try again.');
-            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "MTU Fail, i try again."});
             mtuSize();
         });
     }

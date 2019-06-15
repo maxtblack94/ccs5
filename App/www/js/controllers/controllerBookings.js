@@ -1,4 +1,4 @@
-angular.module('starter').controller('BookingsCtrl', function ($ionicSideMenuDelegate, ReservationService, $filter, LocationService, AndroidBleConnectionService, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices) {
+angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, $ionicSideMenuDelegate, ReservationService, $filter, LocationService, AndroidBleConnectionService, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
 
@@ -7,8 +7,16 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicSideMenuDel
         InfoFactories.setPark(favo);
     }
     $scope.refreshBookings = function () {
-        $scope.loadbookings();
+        checkUpdateBB();
         $scope.$broadcast('scroll.refreshComplete');
+    };
+
+    function checkUpdateBB() {
+        UpdateBBService.updateBB().then(function (response) {
+            $scope.loadbookings();
+        }, function (error) {
+            $scope.loadbookings();
+        });
     }
 
     $scope.goToNewTrack = function () {
@@ -158,7 +166,7 @@ angular.module('starter').controller('BookingsCtrl', function ($ionicSideMenuDel
 
     returnActions();
 
-    $scope.loadbookings();
+    //checkUpdateBB();
 
     $scope.newBooking = function () {
         $state.go('tab.parking');
