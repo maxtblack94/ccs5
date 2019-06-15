@@ -6,10 +6,11 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
     var devices = [];
 
     function connectToVehicle(reservation, operation) {
+        scanCount = 0;
+        lastOperation = operation;
+        lastReservation = reservation;
         if (!currentDevice) {
-            scanCount = 0;
-            lastOperation = operation;
-            lastReservation = reservation;
+            
             ble.isEnabled(function() {
                 console.log('ble is enabled');
                 if (currentDevice && currentDevice.id) {
@@ -24,7 +25,7 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
         } else {
             ble.disconnect(currentDevice.id, function (params) {
                 currentDevice = undefined;
-                connectToVehicle();
+                connectToVehicle(lastReservation,lastOperation);
             }, function (params) {
                 console.log("disconnect fail", params);
             });
