@@ -1,19 +1,40 @@
-angular.module('starter').factory("UpdateStatusBBService", function($ionicLoading, ScriptServices) {
-    
-    function processUpdate(interactionData) {
-        var token = interactionData.interaction.TKN;
-        var action = interactionData.operation;
-        var tknObj = JSON.parse(atob(token));
-        console.log("tknObj", tknObj);
-        if (action === 'pushPNR') {
-            pickupUpdate(tknObj);
-        } else {
-            returnUpdate(tknObj);
-        }
+angular.module('starter').service("UpdateBBService", function($q, $rootScope, ScriptServices) {
+
+    function checkIsExistingRequest() {
+       var updateBB = localStorage.getItem('updateBB');
+       return updateBB ? true: false;
     }
 
-    function checkUpdateInSession(params) {
-        console.log('check update in session');
+    function setUpdateRequest(TKN) {
+        localStorage.setItem('updateBB', TKN);
+    }
+
+    function getExistingToken() {
+        return localStorage.getItem('updateBB');
+    }
+
+    function deleteExistingRequest() {
+        localStorage.removeItem(updateBB);
+    }
+
+    function updateBB() {
+        return $q(function(resolve, reject) {
+            if (checkIsExistingRequest()) {
+                var tknObj = JSON.parse(atob(getExistingToken));
+                console.log("tknObj", tknObj);
+                if (tknObj.ty === 0) {
+                    pickupUpdate(tknObj, resolve, reject);
+                } else {
+                    returnUpdate(tknObj, resolve, reject);
+                }
+                resolve();
+                console.log('i updateBB');
+                deleteExistingRequest();
+            } else {
+                resolve();
+            }
+        });
+        
     }
 
     function pickupUpdate(tknObj) {
@@ -57,12 +78,16 @@ angular.module('starter').factory("UpdateStatusBBService", function($ionicLoadin
         });
     }
 
-
     return {
-        processUpdate: function (tkn, action) {
-            return processUpdate(tkn, action);
-        }
-        
+        updateBB: function () {
+            return updateBB();
+        },
+        setUpdateRequest: function (TKN) {
+            return setUpdateRequest(TKN);
+        },
+        checkIsExistingRequest: function () {
+            return checkIsExistingRequest();
+        },
     };
 
-})
+});
