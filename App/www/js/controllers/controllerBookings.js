@@ -167,10 +167,12 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
     returnActions();
 
     //checkUpdateBB();
-
+    
     $scope.newBooking = function () {
         $state.go('tab.parking');
     };
+
+    $scope.loadbookings();
 
     $scope.openCarManipolation = function (reservation, opT) {
         if (opT === "0" && reservation.bluetooth_id) {
