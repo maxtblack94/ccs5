@@ -7,7 +7,8 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
         InfoFactories.setPark(favo);
     }
     $scope.refreshBookings = function () {
-        checkUpdateBB();
+        //checkUpdateBB();
+        $scope.loadbookings();
         $scope.$broadcast('scroll.refreshComplete');
     };
 
