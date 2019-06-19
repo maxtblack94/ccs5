@@ -103,8 +103,12 @@ window.locale_hr.commons = {
 	requestFail: "Nismo mogli poslati vaš zahtjev.",
 	refuse: "Odbiti",
 	accept: "Prihvatiti",
-	services: 'Service'
-
+	services: 'Service',
+	bleConnection: 'Ti preghiamo di abilitare il Bluetooth e riprovare',
+	bleConnectionGenericError: 'Qualcosa è andato storto, riprova',
+	bleConnectionInvalidKey: 'Assicurati di aver posizionato nel portachiavi la chiave del veicolo giusto',
+	bleConnectionAlreadyProcessedRequest: 'La richiesta di apertura è già stata gestita precedentemente',
+	bleConnectionNoKey: 'Assicurati che la chiave del veicolo sia nel portachiavi al momento della chiusura del veicolo'
 };
 
 window.locale_hr.bookResume = {

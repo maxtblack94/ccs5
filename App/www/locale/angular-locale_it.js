@@ -102,7 +102,12 @@ window.locale_it.commons = {
 	requestFail: "Non siamo riusciti a sottomettere la richiesta.",
 	refuse: 'Rifiuta',
 	accept: 'Accetta',
-	services: 'Servizi'
+	services: 'Servizi',
+	bleConnection: 'Ti preghiamo di abilitare il Bluetooth e riprovare',
+	bleConnectionGenericError: 'Qualcosa è andato storto, riprova',
+	bleConnectionInvalidKey: 'Assicurati di aver posizionato nel portachiavi la chiave del veicolo giusto',
+	bleConnectionAlreadyProcessedRequest: 'La richiesta di apertura è già stata gestita precedentemente',
+	bleConnectionNoKey: 'Assicurati che la chiave del veicolo sia nel portachiavi al momento della chiusura del veicolo'
 };
 
 window.locale_it.bookResume = {

@@ -102,7 +102,12 @@ window.locale_en.commons = {
 	requestFail: "We have not been able to submit your request.",
 	refuse: 'Refuse',
 	accept: 'Accept',
-	services: 'Services'
+	services: 'Services',
+	bleConnection: 'Please enable bluetooth and retry',
+	bleConnectionGenericError: 'There was an error, retry',
+	bleConnectionInvalidKey: 'Assicurati di aver posizionato nel portachiavi la chiave del veicolo giusto',
+	bleConnectionAlreadyProcessedRequest: 'La richiesta di apertura è già stata gestita precedentemente',
+	bleConnectionNoKey: 'Assicurati che la chiave del veicolo sia nel portachiavi al momento della chiusura del veicolo'
 };
 
 window.locale_en.bookResume = {
