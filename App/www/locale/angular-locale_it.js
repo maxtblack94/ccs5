@@ -110,6 +110,11 @@ window.locale_it.commons = {
 	bleConnectionNoKey: 'Assicurati che la chiave del veicolo sia nel portachiavi al momento della chiusura del veicolo'
 };
 
+window.locale_it.register = {
+	title: 'Completa registrazione',
+
+};
+
 window.locale_it.bookResume = {
 	title : 'Prenota',
 	parking: 'Parcheggio',

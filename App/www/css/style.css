@@ -547,3 +547,26 @@ display: none;
     color: #666;
 }
 
+.first {
+    border-radius: 10px 10px 0px 0px;
+}
+
+.last {
+    border-radius: 0px 0px 10px 10px;
+}
+
+.m-bottom-10 {
+    margin-bottom: 10px
+}
+
+.item-checked {
+    background-color: #f7f7f7;
+}
+
+.picklist .popup{
+    width: 80%;
+}
+
+.item-disabled {
+    background-color: #f5f5f5;
+}

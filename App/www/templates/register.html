@@ -31,12 +31,21 @@
                                 placeholder="Email">
                         </label>
                         <label class="item item-input" >
+                            <span class="input-label">{{ 'Email' | translate}}<span class="color-error">*</span></span>
+                            <input type="email" id="lastName-input" ng-model="request.confirmEmail"
+                                placeholder="Conferma Email">
+                        </label>
+                        <label class="item item-input" >
+                            <span class="input-label">{{ 'Username' | translate}}<span class="color-error">*</span></span>
+                            <input type="text" id="username-input" ng-model="request.username" placeholder="Username">
+                        </label>
+                        <label class="item item-input" >
                             <span class="input-label">{{ 'login.password' | translate}}<span class="color-error">*</span></span>
                             <input type="password" id="password-input" ng-model="request.password"
                                 placeholder="{{ 'login.password' | translate}}">
                         </label>
                         <label class="item item-input" >
-                            <span class="input-label">{{ 'Password' | translate}}<span class="color-error">*</span></span>
+                            <span class="input-label">{{ 'login.password' | translate}}<span class="color-error">*</span></span>
                             <input type="password" id="confirmPassword-input" ng-model="request.confirmPassword"
                                 placeholder="Conferma Password">
                         </label>
@@ -50,6 +59,17 @@
                             <input type="text" id="company-input" ng-model="request.company"
                                 placeholder="Codice Azienda">
                         </label>
+                        
+                    </form>
+
+                    <form style="width:80%;margin: 20px auto;">
+                        <ion-list ng-repeat="item in acceptances | filter: { step: '1'}">
+                            <div class="item item-divider first" style="white-space: inherit;">
+                               {{item.text}}
+                            </div>
+                            <ion-radio ng-if="item.id !== 'accept1'" id="{{item.id}}" name="{{item.id}}" ng-repeat="value in item.values" ng-class="{'last m-bottom-10': $last }" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-radio>
+                            <ion-checkbox ng-if="item.id === 'accept1'" id="{{item.id}}" name="{{item.id}}" ng-class="{'last m-bottom-10': $last }" ng-repeat="value in item.values" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-checkbox>
+                          </ion-list>
                     </form>
                     <a class="button button-block enter-account" ng-click="create()">
                         {{ 'Conferma' | translate}}

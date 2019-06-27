@@ -1,5 +1,10 @@
 window.locale_en = {};
 
+window.locale_en.register = {
+	title: 'Complete registration',
+
+};
+
 window.locale_en.leftMenu = {
 	menuTitle: 'User Profile',
 	username: 'Username',

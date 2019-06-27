@@ -1,0 +1,156 @@
+{
+  "retcode": 0,
+  "data": {
+    "id": "52907",
+    "lname": "Alex",
+    "fname": "Alex Ouatu",
+    "email": "wegfwffg",
+    "username": "wegfwffg",
+    "password": "viola",
+    "promo": "ewfwfwef",
+    "company": "",
+    "acceptances": [
+      {
+        "id": "accept1",
+        "text": "Gentile Cliente, al fine di completare la registrazione, La invitiamo a leggere l’Informativa privacy di E-Vai S.r.l. (l’ “Informativa”) resa ai sensi del Reg. U.E. 679/2016 (“Regolamento”) e del D. Lgs. 196 del 2003 (“Codice”) e a compilare i campi sotto riportati:",
+        "url": "",
+        "step": "1",
+        "values": [
+          {
+            "text": "Ho letto l'informativa di E-VAI",
+            "code": "YES"
+          }
+        ]
+      },
+      {
+        "id": "accept2",
+        "text": "Letta l’informativa, consapevole dei diritti riconosciuti dal Regolamento e dal Codice, espressamente e liberamente esprimo il mio consenso con riferimento al trattamento dei miei dati personali per la seguente finalità: “invio di comunicazioni, trasmesse esclusivamente via email all’indirizzo di posta elettronica da me comunicato, per rilevare il livello di gradimento del servizio stesso, anche mediante invio di questionari con trattamento di dati in modo del tutto anonimo”",
+        "url": "",
+        "step": "1",
+        "values": [
+          {
+            "text": "Acconsento",
+            "code": "YES"
+          },
+          {
+            "text": "Non Acconsento",
+            "code": "NO"
+          }
+        ]
+      },
+      {
+        "id": "accept3",
+        "text": "Letta l’Informativa, consapevole dei diritti riconosciuti dal Regolamento e dal Codice, espressamente e liberamente esprimo il mio consenso con riferimento al trattamento dei miei dati personali per le seguenti finalità: “invio di comunicazioni, trasmesse esclusivamente via email all’indirizzo di posta elettronica comunicato, per fini commerciali e promozionali; in particolare E-Vai intende proporre i propri servizi o servizi analoghi a quelli prestati esclusivamente tramite invio di email pubblicitarie all’indirizzo di posta elettronica da me comunicato”.",
+        "url": "",
+        "step": "1",
+        "values": [
+          {
+            "text": "Acconsento",
+            "code": "YES"
+          },
+          {
+            "text": "Non Acconsento",
+            "code": "NO"
+          }
+        ]
+      },
+      {
+        "id": "accept4",
+        "text": "Letta l’informativa, consapevole dei diritti riconosciuti dal Regolamento e dal Codice espressamente e liberamente esprimo il mio consenso con riferimento al trattamento dei miei dati personali per la seguente finalità: “invio di comunicazioni trasmesse esclusivamente via email all’indirizzo di posta elettronica comunicato per ricerche di mercato svolte anche con la collaborazione di terzi ”",
+        "url": "https://www2.e-vai.com/documents/10124/474274/Informativa+Privacy/d1e030d3-e629-4302-ba5a-527d15790cef",
+        "step": "1",
+        "values": [
+          {
+            "text": "Acconsento",
+            "code": "YES"
+          },
+          {
+            "text": "Non Acconsento",
+            "code": "NO"
+          }
+        ]
+      },
+      {
+        "id": "accept5",
+        "text": "Scarica qui il contratto",
+        "url": "https://www2.e-vai.com/documents/10124/474274/contratto_intermodale.pdf/001c786c-e3a9-451f-9356-504c2d580aa7",
+        "step": "2",
+        "values": [
+          {
+            "text": "Accetta",
+            "code": "YES"
+          },
+          {
+            "text": "Non Accetta",
+            "code": "NO"
+          }
+        ]
+      },
+      {
+        "id": "accept6",
+        "text": "Clausole art. 1341-1342",
+        "url": "",
+        "step": "2",
+        "values": [
+          {
+            "text": "Accetta",
+            "code": "YES"
+          },
+          {
+            "text": "Non Accetta",
+            "code": "NO"
+          }
+        ]
+      },
+      {
+        "id": "accept7",
+        "text": "Scarica qui l'informativa consumatore",
+        "url": "https://www2.e-vai.com/documents/10124/474274/Informativa+consumatori+25.01.2017/94ae127d-0b2b-4afa-be66-8f572c7a8485",
+        "step": "2",
+        "values": [
+          {
+            "text": "Accetta",
+            "code": "YES"
+          },
+          {
+            "text": "Non Accetta",
+            "code": "NO"
+          }
+        ]
+      }
+    ],
+    "service": [
+      {
+        "id": "72192",
+        "name": "E-VAI Regional Electric",
+        "url": "https://e-vai.corporatecarsharing.it/images/logos/E-VAI-RegionalElectric.png",
+        "tarif": [
+          {
+            "text": "Silver",
+            "code": "73695",
+            "color": "#C0C0C0"
+          },
+          {
+            "text": "Gold",
+            "code": "73694",
+            "color": "#D4AF37"
+          }
+        ]
+      }
+    ],
+    "docType": [
+      {
+        "text": "Carta d'Identità",
+        "code": "DT01"
+      },
+      {
+        "text": "Passaporto",
+        "code": "DT02"
+      },
+      {
+        "text": "Altro",
+        "code": "DT03"
+      }
+    ]
+  }
+}

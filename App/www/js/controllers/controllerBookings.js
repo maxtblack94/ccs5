@@ -9,8 +9,26 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
     }
     $scope.refreshBookings = function () {
         $scope.loadbookings();
+        getUserInfo();
         $scope.$broadcast('scroll.refreshComplete');
     }
+
+    function getUserInfo(){
+        ScriptServices.getXMLResource(554).then(function(res) {
+            res = res.replace('{NUMBER_DRIVER}', InfoFactories.getUserInfo().driverNumber);
+            ScriptServices.callGenericService(res, 554).then(function(data) {
+                var userInfo = InfoFactories.getUserInfo();
+                userInfo.registry =  data.data.GetUser[0];
+                window.localStorage.setItem('userInfo', JSON.stringify(userInfo));
+                $ionicLoading.hide(); 
+            }, function(error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
+            })
+        });
+    }
+
+    getUserInfo();
 
     if ($scope.selectedClient.map && !window.serverRootLocal) {
         setTimeout(function() {
@@ -22,8 +40,13 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
     }
     
     $scope.startBooking = function (params) {
-        ReservationService.resetReservation();
-        $state.go('subscriptions');
+        var isNotRegistered = window.localStorage.getItem("isNotRegistered");
+        if (isNotRegistered && isNotRegistered == 'true') {
+            $state.go('completeRegistration');
+        } else {
+            ReservationService.resetReservation();
+            $state.go('subscriptions');
+        }
     };
 
     function doWatchLocation (){

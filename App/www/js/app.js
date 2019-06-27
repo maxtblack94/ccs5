@@ -225,6 +225,13 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
         templateUrl: 'templates/commons/help.html',
         controller: 'HelpCtrl'
       })
+
+      .state('completeRegistration', {
+        url: '/completeRegistration',
+        cache: false,
+        templateUrl: 'templates/completeRegistration.html',
+        controller: 'CompleteRegistrationCtrl'
+      })
       
       
       .state('subscriptions', {
