@@ -64,8 +64,8 @@
 
                     <form style="width:80%;margin: 20px auto;">
                         <ion-list ng-repeat="item in acceptances | filter: { step: '1'}">
-                            <div class="item item-divider first" style="white-space: inherit;">
-                               {{item.text}}
+                            <div class="item item-divider first" style="white-space: inherit;" ng-click="openUrl(item.url)">
+                                <i ng-if="item.url" class="fa fa-file-pdf-o" aria-hidden="true"></i> {{item.text}} <a ng-if="item.url" href class="subdued">{{ 'commons.readMore' | translate }}</a>
                             </div>
                             <ion-radio ng-if="item.id !== 'accept1'" id="{{item.id}}" name="{{item.id}}" ng-repeat="value in item.values" ng-class="{'last m-bottom-10': $last }" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-radio>
                             <ion-checkbox ng-if="item.id === 'accept1'" id="{{item.id}}" name="{{item.id}}" ng-class="{'last m-bottom-10': $last }" ng-repeat="value in item.values" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-checkbox>

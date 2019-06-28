@@ -130,7 +130,6 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             !$scope.request.accept5 || 
             !$scope.request.accept6 ||
             !$scope.request.accept7 ||
-            !$scope.currentTarif ||
             !$scope.request.mobile ||
             !$scope.request.birthNation ||
             !$scope.request.birthPlace ||
@@ -167,12 +166,24 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             PopUpServices.messagePopup('Completare tutti i campi relativi alla fatturazione', 'Attenzione');
         } else if (!$scope.request.sdi && !$scope.request.pec && $scope.request.isDatiFatt) {
             PopUpServices.messagePopup('Inserire Codice SDI oppure pec per la fatturazione', 'Attenzione');
-        } else if(!$scope.request.fattCap.match(/^\d{5}$/) || !$scope.request.cap.match(/^\d{5}$/)) {
+        } else if(!$scope.request.cap.match(/^\d{5}$/)) {
             PopUpServices.messagePopup('Il valore del cap non è corretto', 'Attenzione');
-        } else if(!$scope.request.email.match(/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)) {
-            PopUpServices.messagePopup('Il valore del Email non è corretto', 'Attenzione');
+/*         } else if(!$scope.request.email.match(/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)) {
+            PopUpServices.messagePopup('Il valore del Email non è corretto', 'Attenzione'); */
+        } else if($scope.request.fattCap && $scope.request.isDatiFatt && !$scope.request.fattCap.match(/^\d{5}$/)) {
+            PopUpServices.messagePopup('Prima di procedere accetta tutti i consensi', 'Attenzione');
+        } else if($scope.request.accept5 !== 'YES' || $scope.request.accept6 !== 'YES' || $scope.request.accept7 !== 'YES') {
+            PopUpServices.messagePopup('Prima di procedere accetta tutti i consensi', 'Attenzione');
+        } else if(!$scope.currentTarif) {
+            PopUpServices.messagePopup('Seleziona il profilo di noleggio', 'Attenzione');
         } else {
             completeRegistration();
+        }
+    }
+
+    $scope.openUrl = function(url){
+        if (url) {
+            window.open(url, '_system', 'location=yes');
         }
     }
 
@@ -222,6 +233,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             ScriptServices.callGenericService(res, 652).then(function(data) {
                 window.localStorage.removeItem('isNotRegistered');
                 $state.go('tab.bookings');
+                PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Verrai contattato per mail quando il tuo profilo sarà abilitato al servizio E-Vai.", "Profilo in attesa di abilitazione");
                 $ionicLoading.hide();
             }, function(error) {
                 PopUpServices.errorPopup($filter('translate')('commons.retry'));

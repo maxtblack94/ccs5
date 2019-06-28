@@ -65,6 +65,11 @@ angular.module('starter').controller('RegisterCtrl', function($filter, $state, P
             })
         });
     }
+    $scope.openUrl = function(url){
+        if (url) {
+            window.open(url, '_system', 'location=yes');
+        }
+    }
 
     function callLoginService(user, pw){
         $ionicLoading.show(); 

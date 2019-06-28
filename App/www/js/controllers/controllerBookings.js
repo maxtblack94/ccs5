@@ -43,6 +43,8 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
         var isNotRegistered = window.localStorage.getItem("isNotRegistered");
         if (isNotRegistered && isNotRegistered == 'true') {
             $state.go('completeRegistration');
+        } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED') {
+            PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Verrai contattato per mail quando il tuo profilo sarà abilitato al servizio E-Vai.", "Profilo in attesa di abilitazione");
         } else {
             ReservationService.resetReservation();
             $state.go('subscriptions');
