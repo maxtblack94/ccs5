@@ -242,4 +242,28 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
         });
     }
 
+
+    $scope.paymentModal = function (params) {
+        var modalContent = '<div class="bt-content" style="padding: 20px; z-index: 9999; color: rgb(0, 0, 0);">Gentile Cliente, per tua tutela, ti verra’ chiesto di autorizzare un blocco platfond di 0,02 euro (che verranno riaccreditati) al fine di verificare la validita’ dei dati inseriti.<br><br><br>Per portare a termine la procedura di iscrizione, come previsto dall’istituto bancario Banca Intesa, e’ quindi necessario digitare il pulsante "paga".<br><br><br>Per info e supporto contattaci al n.verde 800.77.44.55</div>';
+        var configObj = {
+            "buttons": [{
+                text: $filter('translate')('Annulla'),
+                type: 'button-stable'
+            }, {
+                text: '<b>'+$filter('translate')('Procedi')+'</b>',
+                type: 'button-positive',
+                onTap: function () {
+                    startSetefy();
+                }
+            }],
+            "message": modalContent,
+            "title": 'Modalità pagamento',
+            "cssClass": 'info'
+        }
+        PopUpServices.buttonsPopup(configObj);
+    }
+
+    function startSetefy() {
+        console.log('setefi')
+    }
 })

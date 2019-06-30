@@ -567,6 +567,10 @@ display: none;
     width: 80%;
 }
 
+.info .popup{
+    width: 90%
+}
+
 .item-disabled {
     background-color: #f5f5f5;
 }

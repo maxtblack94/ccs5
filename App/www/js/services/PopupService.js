@@ -23,7 +23,8 @@ angular.module('starter').factory("PopUpServices", function($ionicPopup, $filter
             template: obj.message,
             title: obj.title,
             subTitle: obj.subTitle,
-            buttons: obj.buttons
+            buttons: obj.buttons,
+            cssClass: obj.cssClass
         });
 
         if(obj.callback){
