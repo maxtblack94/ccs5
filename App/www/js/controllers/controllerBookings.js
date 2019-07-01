@@ -9,8 +9,54 @@ angular.module('starter').controller('BookingsCtrl', function ($filter, Location
     }
     $scope.refreshBookings = function () {
         $scope.loadbookings();
+        getUserInfo();
         $scope.$broadcast('scroll.refreshComplete');
     }
+    
+    function refreshClient(action){
+        ScriptServices.getXMLResource(589).then(function(res) {
+            res = res.replace('{LANGUAGE}', navigator.language); //ask matteo
+            ScriptServices.callGenericService(res, 589, 'demo').then(function(data) {
+                var clientList = data.clientListBooking;
+                refreshClientConfigs($scope.selectedClient.clientCode, clientList);
+            }, function(error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup($filter('translate')('login.companiesMissing'));
+            })
+        });
+    }
+
+    function refreshClientConfigs(clientCode, clientList){
+        for (var i = 0; i < clientList.length; i++) {
+            var element = clientList[i];
+            if(clientCode === clientList[i].clientCode){
+                $scope.selectedClient = clientList[i];
+                InfoFactories.applyClientStyle(clientList[i].clientStyle);
+                window.localStorage.setItem('selectedClient', JSON.stringify(clientList[i]));
+                $scope.configCompanyAccount = false;
+                break;
+            }
+        }
+    }
+
+    function getUserInfo(){
+        ScriptServices.getXMLResource(554).then(function(res) {
+            res = res.replace('{NUMBER_DRIVER}', InfoFactories.getUserInfo().driverNumber);
+            ScriptServices.callGenericService(res, 554).then(function(data) {
+                var userInfo = InfoFactories.getUserInfo();
+                userInfo.registry =  data.data.GetUser[0];
+                window.localStorage.setItem('userInfo', JSON.stringify(userInfo));
+                $ionicLoading.hide(); 
+            }, function(error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
+            })
+        });
+    }
+
+    getUserInfo();
+    refreshClient();
+
 
     if ($scope.selectedClient.map) {
         setTimeout(function() {

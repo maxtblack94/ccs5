@@ -258,6 +258,8 @@ window.locale_it.actionSheet = {
 	selectEmployee: 'Selezionare Dipendente',
 	confirm: 'Conferma',
 	cancel: 'Annulla',
+	defect: 'Difetto',
+	hardDamage: 'Guasto',
 	continue: 'Continua',
 	segnalation: 'Segnalazione',
 	attention: 'Attenzione',

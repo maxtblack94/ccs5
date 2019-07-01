@@ -1,6 +1,6 @@
 <ion-modal-view ng-controller="hardDamageCtrl">
   <ion-header-bar class="bar-positive">
-    <h1 class="title">{{ 'actionSheet.segnalation' | translate }} {{operationType === "FAULT" ? "Guasto" : "Difetto"}}</h1>
+    <h1 class="title">{{ 'actionSheet.segnalation' | translate }} {{operationType === "FAULT" ? 'actionSheet.hardDamage' | translate : 'actionSheet.defect' | translate}}</h1>
   </ion-header-bar>
   <ion-content padding="true">
     <div ng-show="showCase === 'start'">

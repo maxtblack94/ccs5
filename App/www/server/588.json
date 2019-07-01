@@ -1,44 +1,83 @@
 {
     "ListJustification": [
-        {
-            "text": "Sopralluogo",
-            "code": "BJ02"
-        },
-        {
-            "text": "Intervento Urgente dal Cliente",
-            "code": "BJ01"
-        },
-        {
-            "text": "Altro",
-            "code": "BJ03"
-        },
-        {
-            "text": "Convention",
-            "code": "BJ04"
-        },
-        {
-            "text": "Coordinamento risorse su altro Polo",
-            "code": "BJ05"
-        },
-        {
-            "text": "Formazione",
-            "code": "BJ07"
-        },
-        {
-            "text": "Progetti - Eventi",
-            "code": "BJ08"
-        },
-        {
-            "text": "Rappr. Lavor. per la sicurezza",
-            "code": "BJ09"
-        },
-        {
-            "text": "Riunione",
-            "code": "BJ10"
-        },
-        {
-            "text": "Visita Clienti",
-            "code": "BJ11"
-        }
+      {
+        "text": "Utilizzo in Deroga Autorizzato",
+        "code": "BJ15",
+        "order": 1
+      },
+      {
+        "text": "Manutenzione",
+        "code": "BJ14",
+        "order": 2
+      },
+      {
+        "text": "Missione",
+        "code": "BJ12",
+        "order": 3
+      },
+      {
+        "text": "Altro",
+        "code": "BJ16",
+        "order": 4
+      },
+      {
+        "text": "Visita Commerciale",
+        "code": "BJ13",
+        "order": 5
+      }
+    ],
+    "ListSeatsRequested": [
+      {
+        "text": "1",
+        "code": "1",
+        "order": 0
+      },
+      {
+        "text": "2",
+        "code": "2",
+        "order": 0
+      },
+      {
+        "text": "3",
+        "code": "3",
+        "order": 0
+      },
+      {
+        "text": "4",
+        "code": "4",
+        "order": 0
+      },
+      {
+        "text": "5",
+        "code": "5",
+        "order": 0
+      }
+    ],
+    "ListBagsQty": [
+      {
+        "text": "1",
+        "code": "1",
+        "order": 0
+      },
+      {
+        "text": "2",
+        "code": "2",
+        "order": 0
+      },
+      {
+        "text": "3",
+        "code": "3",
+        "order": 0
+      },
+      {
+        "text": "4",
+        "code": "4",
+        "order": 0
+      },
+      {
+        "text": "5",
+        "code": "5",
+        "order": 0
+      }
     ]
-}
+  }
