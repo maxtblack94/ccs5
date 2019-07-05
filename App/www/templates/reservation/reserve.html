@@ -49,7 +49,7 @@
                 <ion-radio ng-repeat='type in vehicleTypeList' name="vehicleType" ng-model="vehicleType.value" ng-value="type.code">{{type.text }}</ion-radio>
             </ion-list>
         </div>
-        <div class="typologie" ng-if='selectedClient.drivingRange'>
+        <div class="typologie" ng-if='selectedClient.drivingRange && selectedService.parkingTypeCode !== "BT2"'>
             <p>{{ 'bookResume.drivingRange' | translate }}<span class="color-error">*</span></p>
             <ion-list>
                 <ion-radio ng-repeat='range in listDriverRange' name="driverRange" ng-model="driverRange.value" ng-value="range">{{range.text}}</ion-radio>
@@ -58,7 +58,7 @@
         <div class="typologie" ng-if="selectedService.tarifs.length">
             <p>{{ 'bookings.tarif' | translate }} <span class="color-error">*</span></p>
             <ion-list>
-                <ion-radio ng-repeat='tarif in selectedService.tarifs' name="tarif" ng-model="selectedTarif.value"
+                <ion-radio ng-repeat='tarif in selectedService.tarifs' id="{{tarif.code}}" name="{{tarif.code}}" ng-model="selectedTarif.value"
                     ng-value="tarif">{{tarif.text}}</ion-radio>
             </ion-list>
         </div>

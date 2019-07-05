@@ -367,28 +367,38 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
     };
 
     $scope.delete = function (book) {
-        var confirmPopup = $ionicPopup.confirm({
+        PopUpServices.buttonsPopup({
             title: $filter('translate')('bookings.cancelConfirmTitle'),
-            template: $filter('translate')('bookings.cancelConfirmBody'),
+            message: $filter('translate')('bookings.cancelConfirmBody'),
+            buttons: [{ 
+                text: $filter('translate')('commons.close'),
+                type: 'button-stable',
+            },{
+                text: '<b>'+ $filter('translate')('commons.confirm') +'</b>',
+                type: 'button-positive',
+                onTap: function() {
+                    var script = book.status === 'Registered' ? 643 : 553;
+                    $ionicLoading.show();
+                    ScriptServices.getXMLResource(script).then(function(res) {
+                        res = res.replace('{BOOKING_NUMBER}', book.Nr);
+                        ScriptServices.callGenericService(res, script).then(function(data) {
+                            $scope.loadbookings();
+                        }, function(error) {
+                        
+                        })
+                    });
+                }
+            }],
         });
 
-        confirmPopup.then(function (res) {
+        /* confirmPopup.then(function (res) {
             if (res) {
                 if (!book) {
                     return;
                 }
-                var script = book.status === 'Registered' ? 643 : 553;
-                $ionicLoading.show();
-                ScriptServices.getXMLResource(script).then(function(res) {
-                    res = res.replace('{BOOKING_NUMBER}', book.Nr);
-                    ScriptServices.callGenericService(res, script).then(function(data) {
-                        $scope.loadbookings();
-                    }, function(error) {
-                       
-                    })
-                });
+                
             }
-        });
+        }); */
     };
 
     $scope.selectToDate = function () {

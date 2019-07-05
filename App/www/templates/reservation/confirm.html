@@ -76,6 +76,18 @@
                     <input class='place_val' type='text' style='padding: 10px; width: 100%; border: 1px solid #ccc; border-radius: 5px; -webkit-box-sizing: border-box;‌​ -moz-box-sizing: border-box; box-sizing: border-box;' />
                 </div>
             </ion-item>
+<!--             <ion-item ng-click="selectPicklistValue('selectedSeats')">
+                <h2>{{ 'Numero di posti auto richiesto' | translate}}<span class="color-error">*</span></h2>
+                <p>{{ request.selectedSeats}}</p>
+            </ion-item>
+            <ion-item ng-click="selectPicklistValue('selectedBags')">
+                <h2>{{ 'Numero di Valigie previste' | translate}}<span class="color-error">*</span></h2>
+                <p>{{ request.selectedBags}}</p>
+            </ion-item> -->
+            <ion-item class="item-input item-stacked-label">
+                <span class="input-label">{{ 'Note' | translate}}</span>
+                <input type="text" ng-model="request.note">
+            </ion-item>
 
             <!-- <ion-item ng-show="selectedClient.cc">
                 <div class="pull-left">
