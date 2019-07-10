@@ -68,23 +68,35 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
                 opening: new Date(moment('12/10/2020' + ' ' + tarif.opening, 'DD/MM/YYYY HH:mm:ss')),
                 closing: new Date(moment('12/10/2020' + ' ' + tarif.closing, 'DD/MM/YYYY HH:mm:ss'))
             };
-            if (!(tarifTmp.opening.getHours() <= dateTimeFrom.getHours() && dateTimeFrom.getHours() < tarifTmp.closing.getHours()) ) {
+
+            var isDayInverted = tarifTmp.opening.getHours() > tarifTmp.closing.getHours();
+            var isSameDay = moment(dateTimeTo).format('DD/MM/YYYY') === moment(dateTimeFrom).format('DD/MM/YYYY') ? true: false;
+            var maxDate = isDayInverted ? moment(dateTimeFrom, "DD-MM-YYYY").add(1, 'days') : moment(dateTimeFrom, "DD-MM-YYYY");
+            var maxDateString = moment(maxDate).format('DD/MM/YYYY');
+            var minDateString = moment(dateTimeFrom).format('DD/MM/YYYY');
+            
+            var dateTimeFromMoment = moment(dateTimeFrom, "DD-MM-YYYY");
+            var dateTimeToMoment = moment(dateTimeTo, "DD-MM-YYYY");
+            var tarifTmpMoment = {
+                opening: moment(minDateString + ' ' + tarif.opening, 'DD/MM/YYYY HH:mm:ss'),
+                closing: moment(maxDateString + ' ' + tarif.closing, 'DD/MM/YYYY HH:mm:ss'),
+                openingSameDay: moment(moment(dateTimeFrom, "DD-MM-YYYY").subtract(1, 'days').format('DD/MM/YYYY') + ' ' + tarif.closing, 'DD/MM/YYYY HH:mm:ss'),
+                closingSameDay: moment(minDateString + ' ' + tarif.closing, 'DD/MM/YYYY HH:mm:ss')
+            };
+            
+            if (!isDayInverted && (tarifTmp.opening.getHours() > dateTimeFrom.getHours() || dateTimeFrom.getHours() > tarifTmp.closing.getHours() || tarifTmp.opening.getHours() > dateTimeTo.getHours() || dateTimeTo.getHours() > tarifTmp.closing.getHours())) {
                 PopUpServices.errorPopup($filter('translate')('bookResume.subscriptionIncompatible'), "1");
                 $scope.selectedTarif.value = {};
                 return true;
-            } else if(!(tarifTmp.opening.getHours() <= dateTimeTo.getHours() && dateTimeTo.getHours() < tarifTmp.closing.getHours())) {
+            } else if(isDayInverted && !isSameDay && (!dateTimeFromMoment.isBetween(tarifTmpMoment.opening, tarifTmpMoment.closing) || !dateTimeToMoment.isBetween(tarifTmpMoment.opening, tarifTmpMoment.closing))) {
+                PopUpServices.errorPopup($filter('translate')('bookResume.subscriptionIncompatible'), "1");
+                $scope.selectedTarif.value = {};
+                return true;
+            } else if(isDayInverted && isSameDay && (!dateTimeFromMoment.isBetween(tarifTmpMoment.openingSameDay, tarifTmpMoment.closingSameDay) || !dateTimeToMoment.isBetween(tarifTmpMoment.openingSameDay, tarifTmpMoment.closingSameDay))) {
                 PopUpServices.errorPopup($filter('translate')('bookResume.subscriptionIncompatible'), "1");
                 $scope.selectedTarif.value = {};
                 return true;
             }
-
-            /* if(dateTimeTo.getHours() < tarifTmp.opening.getHours() || dateTimeTo.getHours() > tarifTmp.closing.getHours()){
-                PopUpServices.errorPopup($filter('translate')('bookResume.subscriptionIncompatible'), "1");
-                return true;
-            } else if(!(dateTimeFrom.getHours() >= tarifTmp.opening.getHours()) && (dateTimeFrom.getHours() < tarifTmp.closing.getHours())){
-                PopUpServices.errorPopup($filter('translate')('bookResume.isNotInTime'), "1");
-                return true;
-            } */
             return false;
         } else {
             return false;

@@ -148,6 +148,10 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
         }
     };
 
+    $scope.userFix = function () {
+        $scope.request.userid = $scope.request.userid.toLowerCase();
+    }
+
     function callLoginService(user, pw){
         $ionicLoading.show(); 
         ScriptServices.getXMLResource(515).then(function(res) {

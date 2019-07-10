@@ -11,29 +11,33 @@ angular.module('starter').controller('MapCtrl', function ($filter, PopUpServices
         }
     };
     $scope.delete = function (book) {
-        var confirmPopup = $ionicPopup.confirm({
-            title: $filter('translate')('map.confirmDeleteTitle'),
-            template: $filter('translate')('map.confirmDeleteInfo')
+        PopUpServices.buttonsPopup({
+            title: $filter('translate')('bookings.cancelConfirmTitle'),
+            message: $filter('translate')('bookings.cancelConfirmBody'),
+            buttons: [{ 
+                text: $filter('translate')('commons.close'),
+                type: 'button-stable',
+            },{
+                text: '<b>'+ $filter('translate')('commons.confirm') +'</b>',
+                type: 'button-positive',
+                onTap: function() {
+                    var script = book.status === 'Registered' ? 643 : 553;
+                    $ionicLoading.show();
+                    ScriptServices.getXMLResource(script).then(function(res) {
+                        res = res.replace('{BOOKING_NUMBER}', book.Nr);
+                        ScriptServices.callGenericService(res, script).then(function(data) {
+                            $state.go('tab.bookings');
+                        }, function(error) {
+                        
+                        })
+                    });
+                }
+            }],
         });
 
-        confirmPopup.then(function (res) {
-            if (res) {
-                if (!book)
-                    return;
-
-                $ionicLoading.show();
-                ScriptServices.getXMLResource(553).then(function(res) {
-                    res = res.replace('{BOOKING_NUMBER}', book.Nr);
-                    ScriptServices.callGenericService(res, 553).then(function(data) {
-                        $state.go('tab.bookings');
-                    }, function(error) {
-                        PopUpServices.errorPopup($filter('translate')('commons.retry'));
-                        $ionicLoading.hide();
-                    })
-                });
-            }
-        });
     };
+
+
 
     function convertCoordinates() {
         return {
