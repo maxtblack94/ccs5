@@ -69,6 +69,7 @@ window.locale_it.tabs = {
 	booking: 'Prenota',
 	vehicles: 'Veicoli',
 	settings: 'Impostazioni',
+	plafond: 'Ricarica',
 	sos: 'SOS',
 	notifications: 'Notifiche'
 };
@@ -108,7 +109,11 @@ window.locale_it.commons = {
 	bleConnectionGenericError: 'Qualcosa è andato storto, riprova',
 	bleConnectionInvalidKey: 'Assicurati di aver posizionato nel portachiavi la chiave del veicolo giusto',
 	bleConnectionAlreadyProcessedRequest: 'La richiesta di apertura è già stata gestita precedentemente',
-	bleConnectionNoKey: 'Assicurati che la chiave del veicolo sia nel portachiavi al momento della chiusura del veicolo'
+	bleConnectionNoKey: 'Assicurati che la chiave del veicolo sia nel portachiavi al momento della chiusura del veicolo',
+	plafond: 'Saldo',
+	currentPlafond: "Saldo attuale",
+	chargePlafond: "Ricarica",
+	choosePlafond: "Seleziona la quantità della ricarica e continua"
 };
 
 window.locale_it.register = {

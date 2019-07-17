@@ -5,6 +5,11 @@
         <p>{{userInfo.registry.email}}</p>
         <i class="icon ion-ios-person-outline"></i>
     </ion-item>
+    <ion-item class="item-icon-right" href="#/tab/plafond" menu-close>
+        <h2>{{ 'commons.currentPlafond' | translate}}</h2>
+        <p>{{ userInfo.registry.plafond || 0 | currency: '€ '}}</p>
+        <i class="icon ion-card"></i>
+    </ion-item>
     <ion-item class="item-icon-right" href="#/edit-password" menu-close>
         <h2>{{ 'leftMenu.editPassword' | translate}}</h2>
         <i class="icon ion-ios-color-wand-outline"></i>

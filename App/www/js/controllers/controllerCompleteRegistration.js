@@ -135,7 +135,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             !$scope.request.birthPlace ||
             !$scope.request.birthDate ||
             !$scope.request.indirizzo ||
-            !$scope.request.civico ||
+            /* !$scope.request.civico || */
             !$scope.request.city ||
             !$scope.request.cap ||
             !$scope.request.nationResidence ||
@@ -232,8 +232,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             .replace('{PEC}', $scope.request.pec || '');
             ScriptServices.callGenericService(res, 652).then(function(data) {
                 window.localStorage.removeItem('isNotRegistered');
-                $state.go('tab.bookings');
-                PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Verrai contattato per mail quando il tuo profilo sarà abilitato al servizio E-Vai.", "Profilo in attesa di abilitazione");
+                PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Procedi all'attivazione della modalità di pagamento", "Profilo in attesa di abilitazione", $scope.paymentModal);
                 $ionicLoading.hide();
             }, function(error) {
                 PopUpServices.errorPopup($filter('translate')('commons.retry'));
@@ -244,11 +243,17 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
 
 
     $scope.paymentModal = function (params) {
-        var modalContent = '<div class="bt-content" style="padding: 20px; z-index: 9999; color: rgb(0, 0, 0);">Gentile Cliente, per tua tutela, ti verra’ chiesto di autorizzare un blocco platfond di 0,02 euro (che verranno riaccreditati) al fine di verificare la validita’ dei dati inseriti.<br><br><br>Per portare a termine la procedura di iscrizione, come previsto dall’istituto bancario Banca Intesa, e’ quindi necessario digitare il pulsante "paga".<br><br><br>Per info e supporto contattaci al n.verde 800.77.44.55</div>';
+        var modalContent = `<div class="bt-content" style="padding: 20px; z-index: 9999; color: rgb(0, 0, 0);">Gentile Cliente, per tua tutela, ti verra’ chiesto di autorizzare un blocco platfond di 0,02 euro (che verranno riaccreditati) al fine di verificare la validita’ dei dati inseriti.<br><br><br>Per portare a termine la procedura di iscrizione, come previsto dall’istituto bancario Banca Intesa, e’ quindi necessario digitare il pulsante "paga".<br><br><br>Per info e supporto contattaci al n.verde 800.77.44.55</div>
+                <ion-item class="item-image">
+                    <img src="icons/cartedicredito.jpg">
+                </ion-item>`;
         var configObj = {
             "buttons": [{
                 text: $filter('translate')('Annulla'),
-                type: 'button-stable'
+                type: 'button-stable',
+                onTap: function () {
+                    $state.go('tab.bookings');
+                }
             }, {
                 text: '<b>'+$filter('translate')('Procedi')+'</b>',
                 type: 'button-positive',
@@ -264,6 +269,17 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
     }
 
     function startSetefy() {
-        console.log('setefi')
+        $ionicLoading.show();
+        ScriptServices.getXMLResource(655).then(function(res) {
+            res = res.replace('{DRIVERID}', $scope.user.driverNumber || null);
+            ScriptServices.callGenericService(res, 655).then(function(data) {
+                window.open(data.data, '_system', 'location=yes');
+                $state.go('tab.bookings');
+                $ionicLoading.hide();
+            }, function(error) {
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
+                $ionicLoading.hide();
+            });
+        });
     }
 })

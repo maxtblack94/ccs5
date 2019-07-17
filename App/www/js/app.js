@@ -128,6 +128,17 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
           }
         }
       })
+
+      .state('tab.plafond', {
+        url: '/plafond',
+        cache: false,
+        views: {
+          'tab-plafond': {
+            templateUrl: 'templates/tabs/tab-plafond.html',
+            controller: 'PlafondCtrl'
+          }
+        }
+      })
       
       .state('tab.sos', {
         url: '/sos',

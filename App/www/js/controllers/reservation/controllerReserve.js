@@ -80,8 +80,8 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
             var tarifTmpMoment = {
                 opening: moment(minDateString + ' ' + tarif.opening, 'DD/MM/YYYY HH:mm:ss'),
                 closing: moment(maxDateString + ' ' + tarif.closing, 'DD/MM/YYYY HH:mm:ss'),
-                openingSameDay: moment(moment(dateTimeFrom, "DD-MM-YYYY").subtract(1, 'days').format('DD/MM/YYYY') + ' ' + tarif.closing, 'DD/MM/YYYY HH:mm:ss'),
-                closingSameDay: moment(minDateString + ' ' + tarif.closing, 'DD/MM/YYYY HH:mm:ss')
+                openingSameDay: dateTimeFrom.getHours() <= 23 && tarifTmp.opening.getHours() <= dateTimeFrom.getHours() ? moment(moment(dateTimeFrom, "DD-MM-YYYY").format('DD/MM/YYYY') + ' ' + tarif.opening, 'DD/MM/YYYY HH:mm:ss') : moment(moment(dateTimeFrom, "DD-MM-YYYY").subtract(1, 'days').format('DD/MM/YYYY') + ' ' + tarif.closing, 'DD/MM/YYYY HH:mm:ss'),
+                closingSameDay: dateTimeFrom.getHours() <= 23 && tarifTmp.opening.getHours() <= dateTimeFrom.getHours() ? moment(minDateString + ' ' + "23:59", 'DD/MM/YYYY HH:mm:ss') : moment(minDateString + ' ' + tarif.closing, 'DD/MM/YYYY HH:mm:ss')
             };
             
             if (!isDayInverted && (tarifTmp.opening.getHours() > dateTimeFrom.getHours() || dateTimeFrom.getHours() > tarifTmp.closing.getHours() || tarifTmp.opening.getHours() > dateTimeTo.getHours() || dateTimeTo.getHours() > tarifTmp.closing.getHours())) {
