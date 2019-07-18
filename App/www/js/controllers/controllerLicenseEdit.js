@@ -3,10 +3,8 @@ angular.module('starter').controller('LicenseEditCtrl', function($cordovaDatePic
     $scope.userInfo = InfoFactories.getUserInfo();
 
     $scope.edit = function(){
-        if ((($scope.userInfo || {}).registry).license_code) {
-            $scope.request = angular.copy((($scope.userInfo || {}).registry))
-        }
-    }
+        $scope.request = angular.copy((($scope.userInfo || {}).registry))
+    };
 
     $scope.undo = function(){
         $scope.request = undefined;

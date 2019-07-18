@@ -15,7 +15,8 @@
         </div>
         <ion-list ng-if="movimentsList.length" class="list-scrollable">
             <ion-item ng-repeat="moviment in movimentsList" class="item-icon-right">
-                <h2>Ricarica {{ userInfo.registry.date}}</h2>
+                <h2 ng-if="moviment.type === 'charge'">Ricarica {{ moviment.date}}</h2>
+                <h2 ng-if="moviment.type === 'credit'">Addebito {{ moviment.date}}</h2>
                 <p>{{ moviment.amount || 0 | currency: '€ '}}</p>
                 <i class="icon ion-arrow-up-b" style="color: green" ng-if="moviment.type === 'charge'"></i>
                 <i class="icon ion-arrow-down-b" style="color: red" ng-if="moviment.type === 'credit'"></i>

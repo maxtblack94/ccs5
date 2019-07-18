@@ -69,7 +69,7 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
             });
             if (characteristicExist) {
                 ble.read(params.id, characteristicExist.service, characteristicExist.characteristic, function(data){
-                    if (lastReservation.bleID.split(':').reverse().join("").toLowerCase() && ArrayServices.arrayBufferToHex(data)) {
+                    if (lastReservation.bleID.split(':').reverse().join("").toLowerCase() === ArrayServices.arrayBufferToHex(data)) {
                         console.log('ble Match');
                         disconnectWithID();
                     } else {
