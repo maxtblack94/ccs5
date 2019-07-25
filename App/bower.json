@@ -1,5 +1,5 @@
 {
-  "name": "ccs-italia",
+  "name": "CCS Flexible Car Sharing",
   "private": "true",
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.2.1"

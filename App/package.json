@@ -1,7 +1,7 @@
 {
-  "name": "ccs",
+  "name": "CCS Flexible Car Sharing",
   "version": "1.0.0",
-  "description": "ccs",
+  "description": "CCS Flexible Car Sharing",
   "dependencies": {
     "@ionic/cloud": "0.16.0",
     "bluebird": "3.5.0",
