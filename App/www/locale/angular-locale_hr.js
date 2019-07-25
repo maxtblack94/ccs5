@@ -87,6 +87,7 @@ window.locale_hr.commons = {
 	refresh: "Ažuriranje...",
 	yes: "Da",
 	no: "Ne",
+	back: "Leđa",
 	retry: "Pokušaj ponovno",
 	legalNotice: "Autorsko pravo © 2016 Corporate Car Solutions Italija Sva prava pridržana",
 	readMore: "Čitaj više...",

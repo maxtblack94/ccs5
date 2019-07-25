@@ -1,4 +1,11 @@
 <ion-view view-title="{{ parkDirection === 'B' ? 'Parcheggio riconsegna' : 'Parcheggio ritiro'  | translate }}">
+        <ion-nav-buttons side="left">
+                <button class="button button-clear" ng-click="back()" >
+                    <i class="icon ion-ios-arrow-back"> 
+                            {{ 'commons.back' | translate}}
+                    </i>
+                </button>
+            </ion-nav-buttons>
     <ion-content class="mb80">
         <ion-refresher pulling-text="{{'commons.refresh' | translate}}" on-refresh="refreshParks()">
         </ion-refresher>

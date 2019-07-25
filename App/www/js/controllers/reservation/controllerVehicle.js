@@ -1,4 +1,4 @@
-angular.module('starter').controller('VehicleCtrl', function($filter, ReservationService, ManipolationServices, PopUpServices, $scope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup, ScriptServices) {
+angular.module('starter').controller('VehicleCtrl', function($filter, $ionicHistory, ReservationService, ManipolationServices, PopUpServices, $scope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup, ScriptServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope = Object.assign($scope, ReservationService.instance);
     
@@ -13,6 +13,11 @@ angular.module('starter').controller('VehicleCtrl', function($filter, Reservatio
             getFullList();
         }
     }
+
+
+    $scope.back = function (params) {
+       $ionicHistory.goBack();
+    };
 
     $scope.cancel = function () {
         ReservationService.resetReservation();

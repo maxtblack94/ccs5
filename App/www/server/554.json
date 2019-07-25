@@ -1,8 +1,189 @@
 {
     "retcode": 0,
     "data": {
-        "GetUser": [
-            {"last_name":"Rossi","first_name":"Mario","badge_id":"1234","email":"marco.spazzacampagna@ccsitalia.it","mobile_phone":"0612345678","license_code":"RM-123456779","license_place":"MTCT Roma","license_date":"20/09/2008","license_expire":"19/09/2018","username":"m.rossi","password":"rossi0412","time_of_booking":"7","sms_message":"False","push_message":"False"}
+        "GetUser": [{
+  
+    "last_name": "Madaro",
+    "first_name": "Matteo",
+    "badge_id": "106950",
+    "email": "matteo.madaro@ccsitalia.it",
+    "mobile_phone": "86432",
+    "plafond": "2328",
+    "account_status": "ACTIVE",
+    "username": "mmadaro",
+    "password": "mm",
+    "license_code": "Ef",
+    "license_place": "Fhnj",
+    "license_date": "15/07/2019",
+    "license_expire": "15/07/2019",
+    "time_of_booking": "7",
+    "badge_type": "driver",
+    "services": [
+      {
+        "id": 72192,
+        "name": "E-VAI Regional Electric",
+        "parkingType": "A to B",
+        "parkingTypeCode": "BT2",
+        "icon": "https://e-vai.corporatecarsharing.it/images/logos/E-VAI-RegionalElectric.png",
+        "tarifs": [
+          {
+            "text": "Silver",
+            "id": 73695,
+            "opening": null,
+            "closing": null,
+            "openingW": null,
+            "closingW": null,
+            "weeklyDays": []
+          },
+          {
+            "text": "Gold",
+            "id": 73694,
+            "opening": null,
+            "closing": null,
+            "openingW": null,
+            "closingW": null,
+            "weeklyDays": []
+          }
+        ]
+      },
+      {
+        "id": 72193,
+        "name": "E-VAI Public",
+        "parkingType": "A to A",
+        "parkingTypeCode": "BT1",
+        "icon": "https://e-vai.corporatecarsharing.it/images/logos/E-VAI-Public.png",
+        "tarifs": [
+          {
+            "text": "Company Beta User Comune BG",
+            "id": 81798,
+            "weekend": false,
+            "opening": "08:30",
+            "closing": "17:30",
+            "openingW": "",
+            "closingW": "",
+            "weeklyDays": [
+              1,
+              3,
+              4,
+              2,
+              5
+            ]
+          },
+          {
+            "text": "Private Gold WE Beta User BG",
+            "id": 135639,
+            "weekend": true,
+            "opening": "",
+            "closing": "",
+            "openingW": "00:00",
+            "closingW": "23:59",
+            "weeklyDays": [
+              6,
+              7,
+              1,
+              3,
+              4,
+              2,
+              5
+            ]
+          },
+          {
+            "text": "Private Gold Beta User Bergamo",
+            "id": 81799,
+            "weekend": false,
+            "opening": "18:00",
+            "closing": "23:59",
+            "openingW": "",
+            "closingW": "",
+            "weeklyDays": [
+              1,
+              3,
+              4,
+              2,
+              5
+            ]
+          }
+        ]
+      },
+      {
+        "id": 72194,
+        "name": "E-VAI Easy Station",
+        "parkingType": "A to A",
+        "parkingTypeCode": "BT1",
+        "icon": "https://e-vai.corporatecarsharing.it/images/logos/E-VAI-EasyStation.png",
+        "tarifs": [
+          {
+            "text": "Dipendente Pirelli",
+            "id": 81650,
+            "weekend": false,
+            "opening": "07:30",
+            "closing": "17:30",
+            "openingW": "",
+            "closingW": "",
+            "weeklyDays": [
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "text": "Pendolare Pirelli",
+            "id": 81651,
+            "weekend": false,
+            "opening": "18:00",
+            "closing": "07:00",
+            "openingW": "00:00",
+            "closingW": "23:59",
+            "weeklyDays": [
+              6,
+              7,
+              1,
+              3,
+              4,
+              2,
+              5
+            ]
+          },
+          {
+            "text": "Dipendente Solvay",
+            "id": 81693,
+            "weekend": false,
+            "opening": "08:15",
+            "closing": "18:30",
+            "openingW": "",
+            "closingW": "",
+            "weeklyDays": [
+              1,
+              3,
+              4,
+              2,
+              5
+            ]
+          },
+          {
+            "text": "Pendolare Solvay",
+            "id": 81694,
+            "weekend": false,
+            "opening": "19:00",
+            "closing": "08:00",
+            "openingW": "00:00",
+            "closingW": "23:59",
+            "weeklyDays": [
+              6,
+              7,
+              1,
+              3,
+              4,
+              2,
+              5
+            ]
+          }
+        ]
+      }
+    ],
+    "sms_message": "False",
+    "push_message": "True"
+  }
         ]
     }
 }

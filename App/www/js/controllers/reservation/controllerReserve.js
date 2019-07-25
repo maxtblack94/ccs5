@@ -1,4 +1,4 @@
-angular.module('starter').controller('ReserveCtrl', function(ReservationService, ManipolationServices, $filter, ScriptServices, $timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, PopUpServices) {
+angular.module('starter').controller('ReserveCtrl', function(ReservationService, $ionicHistory, ManipolationServices, $filter, ScriptServices, $timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, PopUpServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope = Object.assign($scope, ReservationService.instance);
     $scope.selectedTarif.value = {};
@@ -96,12 +96,55 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
                 PopUpServices.errorPopup($filter('translate')('bookResume.subscriptionIncompatible'), "1");
                 $scope.selectedTarif.value = {};
                 return true;
+            } else if(!checkDayMatch($scope.selectedTarif.value.weeklyDays, dateTimeFromMoment.isoWeekday())) {
+                PopUpServices.errorPopup($filter('translate')('bookResume.subscriptionIncompatible'), "1");
+                $scope.selectedTarif.value = {};
+                return true;
             }
             return false;
+        } else if(tarif.weekend) {
+            var dateTimeFromMoment = moment(dateTimeFrom, "DD-MM-YYYY");
+            var dateTimeToMoment = moment(dateTimeTo, "DD-MM-YYYY");
+
+            var isInWeekend = dateTimeFromMoment.isoWeekday() === 5 || dateTimeFromMoment.isoWeekday() === 6 || dateTimeFromMoment.isoWeekday() === 7;
+
+
+            if (isInWeekend) {
+                fromMomentCopy = angular.copy(dateTimeFromMoment);
+                fromMomentCopy2 = angular.copy(dateTimeFromMoment);
+
+                var maxDateString = moment(fromMomentCopy.day(fromMomentCopy.isoWeekday() === 7? 1: 8)).format('DD/MM/YYYY');
+                var minDateString = moment(fromMomentCopy.day(-2)).format('DD/MM/YYYY');
+                
+
+                var tarifTmpMoment = {
+                    opening: moment(minDateString + ' ' + tarif.openingW, 'DD/MM/YYYY HH:mm:ss'),
+                    closing: moment(maxDateString + ' ' + tarif.closingW, 'DD/MM/YYYY HH:mm:ss'),
+                };
+                if (!dateTimeFromMoment.isBetween(tarifTmpMoment.opening, tarifTmpMoment.closing) || !dateTimeToMoment.isBetween(tarifTmpMoment.opening, tarifTmpMoment.closing)) {
+                    PopUpServices.errorPopup($filter('translate')('bookResume.subscriptionIncompatible'), "1");
+                    $scope.selectedTarif.value = {};
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                PopUpServices.errorPopup($filter('translate')('bookResume.subscriptionIncompatible'), "1");
+                $scope.selectedTarif.value = {};
+                return true;
+            }
+            
         } else {
             return false;
         }
     };
+
+    function checkDayMatch(days, currentDay) {
+        var dayExists = days.find(function (day) {
+            return day === currentDay;
+        });
+        return dayExists ? true: false;
+    }
 
     $scope.changeParking = function(park) {
         $state.go('park', { parkDirection: park});
@@ -277,4 +320,8 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
         ReservationService.resetReservation();
         $state.go('tab.bookings');
     };
+
+    $scope.back = function (params) {
+        $ionicHistory.goBack();
+     };
  });

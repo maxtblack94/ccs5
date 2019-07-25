@@ -1,4 +1,4 @@
-angular.module('starter').controller('ConfirmCtrl', function(ReservationService, $filter, PopUpServices, ScriptServices, $scope, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup) {
+angular.module('starter').controller('ConfirmCtrl', function(ReservationService, $ionicHistory, $filter, PopUpServices, ScriptServices, $scope, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
     $scope = Object.assign($scope, ReservationService.instance);
@@ -129,6 +129,10 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
             });
         });
     }
+
+    $scope.back = function (params) {
+        $ionicHistory.goBack();
+     };
 
     function regionalReserve() {
         $ionicLoading.show();

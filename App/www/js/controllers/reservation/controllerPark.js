@@ -1,4 +1,4 @@
-angular.module('starter').controller('ParkCtrl', function($stateParams, $ionicNavBarDelegate, $scope, ReservationService, PopUpServices, InfoFactories, $filter, $state, $ionicLoading, ScriptServices) {
+angular.module('starter').controller('ParkCtrl', function($ionicHistory, $stateParams, $ionicNavBarDelegate, $scope, ReservationService, PopUpServices, InfoFactories, $filter, $state, $ionicLoading, ScriptServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope = Object.assign($scope, ReservationService.instance);
     var preselectParkBackup = $scope.preselectPark.value;
@@ -50,6 +50,10 @@ angular.module('starter').controller('ParkCtrl', function($stateParams, $ionicNa
     ReservationService.resetReservation();
     $state.go('tab.bookings');
    };
+
+   $scope.back = function (params) {
+    $ionicHistory.goBack();
+    };
    
    init();
 })
