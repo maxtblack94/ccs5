@@ -9,8 +9,26 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
     }
     $scope.refreshBookings = function () {
         $scope.loadbookings();
+        getUserInfo();
         $scope.$broadcast('scroll.refreshComplete');
     }
+
+    function getUserInfo(){
+        ScriptServices.getXMLResource(554).then(function(res) {
+            res = res.replace('{NUMBER_DRIVER}', InfoFactories.getUserInfo().driverNumber);
+            ScriptServices.callGenericService(res, 554).then(function(data) {
+                var userInfo = InfoFactories.getUserInfo();
+                userInfo.registry =  data.data.GetUser[0];
+                window.localStorage.setItem('userInfo', JSON.stringify(userInfo));
+                $ionicLoading.hide(); 
+            }, function(error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
+            })
+        });
+    }
+
+    getUserInfo();
 
     if ($scope.selectedClient.map && !window.serverRootLocal) {
         setTimeout(function() {
@@ -22,9 +40,59 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
     }
     
     $scope.startBooking = function (params) {
-        ReservationService.resetReservation();
-        $state.go('subscriptions');
+        var isNotRegistered = window.localStorage.getItem("isNotRegistered");
+        if (isNotRegistered && isNotRegistered == 'true') {
+            $state.go('completeRegistration');
+        } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED_WITH_PAY') {
+            PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Verrai contattato per mail quando il tuo profilo sarà abilitato al servizio E-Vai.", "Profilo in attesa di abilitazione");
+        } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED') {
+            PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Procedi all'attivazione della modalità di pagamento", "Profilo in attesa di abilitazione", $scope.paymentModal);
+        } else {
+            ReservationService.resetReservation();
+            $state.go('subscriptions');
+        }
     };
+
+    $scope.paymentModal = function (params) {
+        var modalContent = `<div class="bt-content" style="padding: 20px; z-index: 9999; color: rgb(0, 0, 0);">Gentile Cliente, per tua tutela, ti verra’ chiesto di autorizzare un blocco platfond di 0,02 euro (che verranno riaccreditati) al fine di verificare la validita’ dei dati inseriti.<br><br><br>Per portare a termine la procedura di iscrizione, come previsto dall’istituto bancario Banca Intesa, e’ quindi necessario digitare il pulsante "paga".<br><br><br>Per info e supporto contattaci al n.verde 800.77.44.55</div>
+                <ion-item class="item-image">
+                    <img src="icons/cartedicredito.jpg">
+                </ion-item>`;
+        var configObj = {
+            "buttons": [{
+                text: $filter('translate')('Annulla'),
+                type: 'button-stable',
+                onTap: function () {
+                    $state.go('tab.bookings');
+                }
+            }, {
+                text: '<b>'+$filter('translate')('Procedi')+'</b>',
+                type: 'button-positive',
+                onTap: function () {
+                    startSetefy();
+                }
+            }],
+            "message": modalContent,
+            "title": 'Modalità pagamento',
+            "cssClass": 'info'
+        }
+        PopUpServices.buttonsPopup(configObj);
+    }
+
+    function startSetefy() {
+        $ionicLoading.show();
+        ScriptServices.getXMLResource(655).then(function(res) {
+            res = res.replace('{DRIVERID}', InfoFactories.getUserInfo().driverNumber || null);
+            ScriptServices.callGenericService(res, 655).then(function(data) {
+                window.open(data.data, '_system', 'location=yes');
+                $state.go('tab.bookings');
+                $ionicLoading.hide();
+            }, function(error) {
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
+                $ionicLoading.hide();
+            });
+        });
+    }
 
     function doWatchLocation (){
         var watchOptions = {
@@ -342,28 +410,38 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
     };
 
     $scope.delete = function (book) {
-        var confirmPopup = $ionicPopup.confirm({
+        PopUpServices.buttonsPopup({
             title: $filter('translate')('bookings.cancelConfirmTitle'),
-            template: $filter('translate')('bookings.cancelConfirmBody'),
+            message: $filter('translate')('bookings.cancelConfirmBody'),
+            buttons: [{ 
+                text: $filter('translate')('commons.close'),
+                type: 'button-stable',
+            },{
+                text: '<b>'+ $filter('translate')('commons.confirm') +'</b>',
+                type: 'button-positive',
+                onTap: function() {
+                    var script = book.status === 'Registered' ? 643 : 553;
+                    $ionicLoading.show();
+                    ScriptServices.getXMLResource(script).then(function(res) {
+                        res = res.replace('{BOOKING_NUMBER}', book.Nr);
+                        ScriptServices.callGenericService(res, script).then(function(data) {
+                            $scope.loadbookings();
+                        }, function(error) {
+                        
+                        })
+                    });
+                }
+            }],
         });
 
-        confirmPopup.then(function (res) {
+        /* confirmPopup.then(function (res) {
             if (res) {
                 if (!book) {
                     return;
                 }
-                var script = book.status === 'Registered' ? 643 : 553;
-                $ionicLoading.show();
-                ScriptServices.getXMLResource(script).then(function(res) {
-                    res = res.replace('{BOOKING_NUMBER}', book.Nr);
-                    ScriptServices.callGenericService(res, script).then(function(data) {
-                        $scope.loadbookings();
-                    }, function(error) {
-                       
-                    })
-                });
+                
             }
-        });
+        }); */
     };
 
     $scope.selectToDate = function () {

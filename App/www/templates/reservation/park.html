@@ -1,4 +1,11 @@
-<ion-view view-title="{{ parkDirection === 'B' ? 'Choose Return Parking' : 'Choose Pick-up Parking'  | translate }}">
+<ion-view view-title="{{ parkDirection === 'B' ? 'Parcheggio riconsegna' : 'Parcheggio ritiro'  | translate }}">
+        <ion-nav-buttons side="left">
+                <button class="button button-clear" ng-click="back()" >
+                    <i class="icon ion-ios-arrow-back"> 
+                            {{ 'commons.back' | translate}}
+                    </i>
+                </button>
+            </ion-nav-buttons>
     <ion-content class="mb80">
         <ion-refresher pulling-text="{{'commons.refresh' | translate}}" on-refresh="refreshParks()">
         </ion-refresher>
@@ -10,7 +17,7 @@
         </div>
         <p ng-if='parkingList.length==0 && !loading' class="message-empty">{{ 'parking.noparking' | translate }}</p>
         <ul class="list">
-            <li class="item item-toggle custom" ng-show="(!parkDirection || parkDirection === 'A') && selectedService.parkingTypeCode === 'BT2' ">
+            <li class="item item-toggle custom" ng-show="(!parkDirection || parkDirection === 'A') && (selectedService.parkingTypeCode === 'BT2' || selectedService.parkingTypeCode === 'BT3') ">
                 {{ 'parking.pickupDirection' | translate }}
                 <label class="toggle toggle-secondary">
                     <input type="checkbox" ng-model="preselectPark.value">

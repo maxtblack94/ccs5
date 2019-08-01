@@ -1,0 +1,148 @@
+
+.bar.bar-positive {
+    border-color: #1f6792;
+    background-color: #1f6792;
+    background-image: none;
+}
+.bar.bar-positive.bar-footer {
+    background-image: linear-gradient(180deg, #d1ce00, #d1ce00 50%, transparent 50%);
+}
+.bar-positive .button {
+    background-color: #1f6792
+}
+.bar-positive .button.active,
+.bar-positive .button.activated {
+    background-color: rgb(34, 98, 136)
+}
+.tabs-positive > .tabs,
+.tabs.tabs-positive {
+    border-color: #d1ce00;
+    background-color: #1f6792;
+    background-image: linear-gradient(0deg, #d1ce00, #d1ce00 50%, transparent 50%);
+}
+.tabs-positive > .tabs .tab-item .badge,
+.tabs.tabs-positive .tab-item .badge {
+    color: #1f6792
+}
+.tabs-striped.tabs-positive .tabs {
+    background-color: #1f6792
+}
+.tabs-striped.tabs-background-positive .tabs {
+    background-color: #1f6792
+}
+.tabs-striped.tabs-color-positive .tab-item.tab-item-active,
+.tabs-striped.tabs-color-positive .tab-item.active,
+.tabs-striped.tabs-color-positive .tab-item.activated {
+    color: #1f6792;
+    border: 0 solid #1f6792
+}
+.tabs-color-positive .tab-item.tab-item-active,
+.tabs-color-positive .tab-item.active,
+.tabs-color-positive .tab-item.activated {
+    color: #1f6792;
+    border: 0 solid #1f6792
+}
+ion-tabs.tabs-color-active-positive .tab-item {
+    color: #444;
+}
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active,
+ion-tabs.tabs-color-active-positive .tab-item.active,
+ion-tabs.tabs-color-active-positive .tab-item.activated {
+    color: #1f6792
+}
+.tab-item.tab-item-active.tab-item-positive,
+.tab-item.active.tab-item-positive,
+.tab-item.activated.tab-item-positive {
+    color: #1f6792
+}
+.item-complex.item-positive > .item-content {
+    border-color: #d1ce00;
+    background-color: #1f6792
+}
+.item-complex.item-positive > .item-content.active,
+.item-complex.item-positive > .item-content:active {
+    border-color: #d1ce00;
+    background-color: #d1ce00;
+}
+.item-complex.item-positive > .item-content.active.item-complex > .item-content,
+.item-complex.item-positive > .item-content:active.item-complex > .item-content {
+    border-color: #d1ce00;
+    background-color: #d1ce00;
+}
+.tabs .tab-item .badge.badge-positive,
+.badge.badge-positive {
+    background-color: #1f6792
+}
+.toggle.toggle-positive input:checked + .track {
+    border-color: #1f6792;
+    background-color: #1f6792;
+}
+.toggle-small .toggle-positive input:checked + .track {
+    background-color: rgba(239, 71, 58, 0.5);
+}
+.toggle-small .toggle-positive input:checked + .track .handle {
+    background-color: #1f6792
+}
+.button.button-positive {
+    border-color: transparent;
+    background-color: #1f6792
+}
+.button.button-positive.active,
+.button.button-positive.activated {
+    background-color: rgb(34, 98, 136)
+}
+.button.button-positive.button-clear {
+    color: #1f6792
+}
+.button.button-positive.button-outline {
+    border-color: #1f6792;
+    color: #1f6792;
+}
+.button.button-positive.button-outline.active,
+.button.button-positive.button-outline.activated {
+    background-color: #1f6792
+}
+.positive,
+a.positive {
+    color: #1f6792
+}
+.positive-bg {
+    background-color: #1f6792
+}
+.positive-border {
+    border-color: #d1ce00;
+}
+
+.tab-item-active,
+.tab-item.activated {
+	color: #e30613!important;
+	border-bottom-color: #e30613!important;
+}
+
+[fab] {
+	background-color: #d1ce00;
+}
+
+.multi-bg-outer .bg-overlay {
+    background-color: #1f6792
+}
+
+.welcome-view .bottom-content .enter-account {
+    background: #d1ce00;
+    color: #1f6792
+}
+
+.tabs .tab-item .badge.badge-balanced, .badge.badge-balanced .custom-color {
+    background-color: #d1ce00;
+}
+
+.button.button-balanced {
+    border-color: transparent;
+    background-color: #d1ce00;
+    color: #1f6792
+}
+
+.button.button-balanced.active, .button.button-balanced.activated {
+    background-color:  #d1ce00;
+    color: #1f6792
+}

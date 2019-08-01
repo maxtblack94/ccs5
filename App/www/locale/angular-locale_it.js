@@ -49,7 +49,7 @@ window.locale_it.bookings = {
 	closeCar : 'Fine Corsa',
 	cancelReservation: 'Annulla',
 	cancelConfirmTitle: 'Conferma Eliminazione',
-	cancelConfirmBody: 'Sicuro di vole eliminare la prenotazione selezionata?',
+	cancelConfirmBody: 'Sicuro di voler eliminare la prenotazione selezionata?',
 	gpsAlert: 'Questa applicazione richiede la posizione per autorizzare le funzioni di apertura e chiusura del veicolo',
 	tarif: 'Tariffa',
 	price: 'Importo Presunto',
@@ -69,6 +69,7 @@ window.locale_it.tabs = {
 	booking: 'Prenota',
 	vehicles: 'Veicoli',
 	settings: 'Impostazioni',
+	plafond: 'Ricarica',
 	sos: 'SOS',
 	notifications: 'Notifiche'
 };
@@ -82,7 +83,9 @@ window.locale_it.notifications = {
 window.locale_it.commons = {
 	refresh: 'Aggiorna...',
 	yes: 'Si',
+	back: 'Indietro',
 	no: 'No',
+	confirm: 'Conferma',
 	locationNotAviable: 'Per poter utilizzare il servizio "Inizio Corsa" / "Fine Corsa" disponibile sulla nostra APP, è necessario consentire la geolocalizzazione di questo smartphone. In caso contrario non potrete essere abilitati al servizio.',
 	retry: 'Riprovare',
 	legalNotice: 'Copyright © 2016 Corporate Car Solutions Italia - All Rights Reserved',
@@ -107,7 +110,16 @@ window.locale_it.commons = {
 	bleConnectionGenericError: 'Qualcosa è andato storto, riprova',
 	bleConnectionInvalidKey: 'Assicurati di aver posizionato nel portachiavi la chiave del veicolo giusto',
 	bleConnectionAlreadyProcessedRequest: 'La richiesta di apertura è già stata gestita precedentemente',
-	bleConnectionNoKey: 'Assicurati che la chiave del veicolo sia nel portachiavi al momento della chiusura del veicolo'
+	bleConnectionNoKey: 'Assicurati che la chiave del veicolo sia nel portachiavi al momento della chiusura del veicolo',
+	plafond: 'Saldo',
+	currentPlafond: "Saldo attuale",
+	chargePlafond: "Ricarica",
+	choosePlafond: "Seleziona la quantità della ricarica e continua"
+};
+
+window.locale_it.register = {
+	title: 'Completa registrazione',
+
 };
 
 window.locale_it.bookResume = {

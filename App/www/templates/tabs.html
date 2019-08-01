@@ -4,7 +4,11 @@
   <ion-tab title="{{ 'tabs.reservations' | translate}}" icon-off="ion-ios-calendar-outline" icon-on="ion-ios-calendar" href="#/tab/bookings">
     <ion-nav-view name="tab-bookings"></ion-nav-view>
   </ion-tab>
-  
+
+ <!--  <ion-tab title="{{ 'tabs.plafond' | translate}}" icon-off="ion-card" icon-on="ion-card" href="#/tab/plafond">
+    <ion-nav-view name="tab-plafond"></ion-nav-view>
+  </ion-tab>
+   -->
   <ion-tab ng-if="sosPnr && selectedClient.sos" title="{{ 'tabs.sos' | translate}}" icon-off="ion-ios-medkit-outline" icon-on="ion-ios-medkit" href="#/tab/sos">
     <ion-nav-view name="tab-sos"></ion-nav-view>
   </ion-tab>

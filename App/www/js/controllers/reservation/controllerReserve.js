@@ -1,6 +1,7 @@
-angular.module('starter').controller('ReserveCtrl', function(ReservationService, ManipolationServices, $filter, ScriptServices, $timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, PopUpServices) {
+angular.module('starter').controller('ReserveCtrl', function(ReservationService, $ionicHistory, ManipolationServices, $filter, ScriptServices, $timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, PopUpServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope = Object.assign($scope, ReservationService.instance);
+    $scope.selectedTarif.value = {};
 
     if($scope.selectedClient.drivingRange){
         $ionicLoading.show();
@@ -48,8 +49,13 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
 
             if ($scope.selectedTarif.value.id) {
                 ReservationService.setTarif($scope.selectedTarif);
+                $state.go('vehicles');
+            } else if (!$scope.selectedTarif.value.id && $scope.selectedService.tarifs.length) {
+                PopUpServices.errorPopup($filter('translate')('Selezionare un tariffa'), "1");
+            } else {
+                $state.go('vehicles');
             }
-            $state.go('vehicles');
+            
         }
     };
 
@@ -120,7 +126,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
             if(checkErrorTarifTime(dateTimeTo, dateTimeFrom)) {
                 return false;
             }
-            if($scope.selectedClient.drivingRange == true && $scope.driverRange.value.code == "short"){
+            if($scope.selectedClient.drivingRange == true && $scope.selectedService.parkingTypeCode !== "BT2" && $scope.driverRange.value.code == "short"){
                 PopUpServices.errorPopup($filter('translate')('bookResume.defineRange'), "1");
                 return false;
             }else if($scope.selectedClient.vehicleType == true && !$scope.vehicleType && $scope.vehicleTypeList){
@@ -257,4 +263,8 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
         ReservationService.resetReservation();
         $state.go('tab.bookings');
     };
+
+    $scope.back = function (params) {
+        $ionicHistory.goBack();
+     };
  });

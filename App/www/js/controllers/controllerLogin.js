@@ -147,6 +147,10 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
         }
     };
 
+    $scope.userFix = function () {
+        $scope.request.userid = $scope.request.userid.toLowerCase();
+    }
+
     function callLoginService(user, pw){
         $ionicLoading.show(); 
         ScriptServices.getXMLResource(515).then(function(res) {
@@ -156,7 +160,7 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
                     var userInfo = {
                         driverNumber : data.data.DriverList[0].Nr
                     };
-                    getUserInfo(userInfo);
+                    getUserInfo(userInfo, data.retcode && data.retcode === 2);
                 }else{
                     PopUpServices.errorPopup($filter('translate')('login.dataWrong')+ $filter('translate')('commons.retry'));
                     $ionicLoading.hide(); 
@@ -168,14 +172,20 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
         });
     }
 
-    function getUserInfo(userInfo){
-        ScriptServices.getXMLResource(554).then(function(res) {
+    function getUserInfo(userInfo, isStatus2){
+            ScriptServices.getXMLResource(554).then(function(res) {
             res = res.replace('{NUMBER_DRIVER}', userInfo.driverNumber);
             ScriptServices.callGenericService(res, 554).then(function(data) {
                 userInfo.registry =  data.data.GetUser[0];
                 window.localStorage.setItem('userInfo', JSON.stringify(userInfo));
                 registerPushID();
-                $state.go('tab.bookings');
+                if (isStatus2) {
+                    window.localStorage.setItem('isNotRegistered', "true");
+                    $state.go('completeRegistration');
+                } else {
+                    window.localStorage.removeItem('isNotRegistered');
+                    $state.go('tab.bookings');
+                }
                 $ionicLoading.hide(); 
             }, function(error) {
                 $ionicLoading.hide();

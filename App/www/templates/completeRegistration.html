@@ -1,0 +1,249 @@
+<ion-view title="{{'register.title' | translate}}">
+    <ion-content class="mb80">
+            <ion-list>
+                <ion-item class="item-divider">
+                    <h2>{{ 'Scegli il tuo profilo di noleggio' | translate}}</h2>
+                </ion-item>
+                <div ng-repeat="service in services">
+                    <div ng-click="selectTarif(tarif)" ng-repeat="tarif in service.tarif" class="item item-avatar fix-item item-icon-right" ng-class="{'item-checked': currentTarif.code === tarif.code}">
+                        <img ng-if="service.url" src="{{service.url}}">
+                        <h2>{{service.name}}</h2>
+                        <p>{{tarif.text}}
+                            <div class='color-cube icon' style=" top: 25px;height: 34%; border: 2px solid #aaa;">
+                                <div style='background-color: {{ tarif.color }};'></div>
+                            </div>
+                        </p>
+                        <i ng-if="currentTarif.code === tarif.code" class="icon ion-checkmark-round" style="font-size: 14px; right: 8px; color: #f9f9f9;"></i>
+                    </div>
+                </div>
+                
+                <ion-item class="item-divider">
+                    <h2>{{ 'Riferimenti' | translate}}</h2>
+                </ion-item>
+                <ion-item>
+                    <h2>{{ 'Nome' | translate}}</h2>
+                    <p>{{ request.firstName || '-'}}</p>
+                </ion-item>
+                <ion-item>
+                    <h2>{{ 'Cognome' | translate}}</h2>
+                    <p>{{ request.lastName || '-'}}</p>
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'Email' | translate}}<span class="color-error">*</span></span>
+                    <input type="email" ng-model="request.email" placeholder="Email">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'Conferma Email' | translate}}<span class="color-error">*</span></span>
+                    <input type="email" ng-model="request.emailConfirm" placeholder="Conferma Email">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'Username' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.username" placeholder="Username">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'Password' | translate}}<span class="color-error">*</span></span>
+                    <input type="password" ng-model="request.password" placeholder="Password">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'Conferma Password' | translate}}<span class="color-error">*</span></span>
+                    <input type="password" ng-model="request.confirmPassword" placeholder="Conferma Password">
+                </ion-item>
+                <ion-item class="item-divider">
+                    <h2>{{ 'La tua anagrafica' | translate}}</h2>
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'Cellulare' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.mobile" placeholder="Cellulare">
+                </ion-item>
+                <ion-item ng-click="selectPicklistValue('birthNation')">
+                    <h2>{{ 'Nazione di nascita' | translate}}<span class="color-error">*</span></h2>
+                    <p ng-if="request.birthNation">{{ request.birthNation}}</p>
+                    <p ng-if="!request.birthNation"> {{ 'Seleziona una nazione' | translate}} </p>
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'Luogo di nascita' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.birthPlace" placeholder="Luogo di nascita">
+                </ion-item>
+                <ion-item ng-click='selectBirthDate()'>
+                    <h2>{{ 'Data di nascita' | translate}}<span class="color-error">*</span></h2>
+                    <p ng-if="request.birthDate">{{ request.birthDate | date:'dd/MM/yyyy'}}</p>
+                    <p ng-if="!request.birthDate"> {{ 'Seleziona una data' | translate}} </p>
+                </ion-item>
+                <ion-item class="item-divider">
+                    <h2>{{ 'Abitazione' | translate}}</h2>
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'Via' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.indirizzo" placeholder="Via">
+                </ion-item>
+                <!-- <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'N°' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.civico" placeholder="N°">
+                </ion-item> -->
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'Comune' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.city" placeholder="Comune">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'CAP' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.cap" placeholder="CAP">
+                </ion-item>
+                <ion-item ng-click="selectPicklistValue('nationResidence')">
+                    <h2>{{ 'Nazione di residenza' | translate}}<span class="color-error">*</span></h2>
+                    <p ng-if="request.nationResidence">{{ request.nationResidence}}</p>
+                    <p ng-if="!request.nationResidence"> {{ 'Seleziona una nazione' | translate}} </p>
+                </ion-item>
+                <ion-item ng-click="selectPicklistValue('shortProvinceResidence')">
+                    <h2>{{ 'Sigla Provincia di residenza' | translate}}<span class="color-error">*</span></h2>
+                    <p ng-if="request.shortProvinceResidence">{{ request.shortProvinceResidence}}</p>
+                    <p ng-if="!request.shortProvinceResidence"> {{ 'Seleziona una provincia' | translate}} </p>
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'Codice Fiscale' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.fiscalCode" placeholder="Codice Fiscale">
+                </ion-item>
+
+
+
+
+                <!-- DATI DOCUMENTO -->
+                <ion-item class="item-divider">
+                    <h2>{{ 'Documento' | translate}}</h2>
+                </ion-item>
+                <ion-item ng-click="selectPicklistValue('documentType')">
+                    <h2>{{ 'Tipo Documento' | translate}}<span class="color-error">*</span></h2>
+                    <p ng-if="request.documentType">{{ request.documentType.text}}</p>
+                    <p ng-if="!request.documentType"> {{ 'Seleziona un tipo' | translate}} </p>
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'Numero documento' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.docNumber" placeholder="Inserisci numero documento">
+                </ion-item>
+                <ion-item ng-click='selectDate("docEndDate")'>
+                    <h2>{{ 'Scadenza documento' | translate}}<span class="color-error">*</span></h2>
+                    <p ng-if="request.docEndDate">{{ request.docEndDate | date:'dd/MM/yyyy'}}</p>
+                    <p ng-if="!request.docEndDate"> {{ 'Seleziona una data' | translate}} </p>
+                </ion-item>
+
+
+
+                <!-- DATI PATENTE -->
+                <ion-item class="item-divider">
+                    <h2>{{ 'Patente' | translate}}</h2>
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'Patente Numero' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.licenseNumber" placeholder="Inserisci numero della patente">
+                </ion-item>
+                <ion-item ng-click='selectDate("licenseIssueDate")'>
+                    <h2>{{ 'Data rilascio' | translate}}<span class="color-error">*</span></h2>
+                    <p ng-if="request.licenseIssueDate">{{ request.licenseIssueDate | date:'dd/MM/yyyy'}}</p>
+                    <p ng-if="!request.licenseIssueDate"> {{ 'Seleziona una data' | translate}} </p>
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'Rilasciato da' | translate}}</span>
+                    <input type="text" ng-model="request.licenseIssueIstitute">
+                </ion-item>
+                <ion-item ng-click='selectDate("licenseEndDate")'>
+                    <h2>{{ 'Data scadenza' | translate}}<span class="color-error">*</span></h2>
+                    <p ng-if="request.licenseEndDate">{{ request.licenseEndDate | date:'dd/MM/yyyy'}}</p>
+                    <p ng-if="!request.licenseEndDate"> {{ 'Seleziona una data' | translate}} </p>
+                </ion-item>
+
+
+                <!-- DATI PAGAMANETO -->
+                <!-- <ion-item class="item-divider" style="white-space: inherit!important;">
+                    <h2 style="white-space: inherit!important;">{{ 'Modalità di pagamento' | translate}}</h2>
+                </ion-item>
+                <ion-item ng-click='paymentModal()' class="item-icon-right">
+                    <h2>{{ 'Registra nuova carta di credito' | translate}}<span class="color-error">*</span></h2>
+                    <p> {{ 'Clicca per aggiungere la modalità di pagamento' | translate}} </p>
+                    <i class="icon ion-information-circled" style="color: #d1ce00;"></i>
+                </ion-item>
+                <ion-item class="item-image">
+                    <img src="icons/cartedicredito.jpg">
+                </ion-item> -->
+
+
+
+
+                <!-- DATI FATTURAZIONE -->
+                <ion-item class="item-divider" style="white-space: inherit!important;">
+                    <h2 style="white-space: inherit!important;">{{ 'Dati di fatturazione (solo se in possesso di Partita Iva)' | translate}}</h2>
+                </ion-item>
+                <ion-checkbox id="datiFatt" name="datiFatt" ng-change="request.isDatiFatt === false ? request.isDittaindividuale = false: null" ng-value="true" ng-model="request.isDatiFatt">Abilita Fatturazione</ion-checkbox>
+                <ion-checkbox id="isDittaindividuale" ng-disabled="!request.isDatiFatt" name="isDittaindividuale" ng-value="true" ng-model="request.isDittaindividuale">Ditta Individuale</ion-checkbox>
+                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt">
+                    <span class="input-label">{{ 'Ragione sociale' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.fattRagioneSociale">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt">
+                    <span class="input-label">{{ 'Partita IVA' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.fattPiva">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label" ng-if="request.isDittaindividuale">
+                    <span class="input-label">{{ 'Codice Fiscale' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.fattCF">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt">
+                    <span class="input-label">{{ 'Indirizzo' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.fattIndirizzo">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt">
+                    <span class="input-label">{{ 'CAP' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.fattCap">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt">
+                    <span class="input-label">{{ 'Comune' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.fattCity">
+                </ion-item>
+                <ion-item ng-click="selectPicklistValue('fattNation')" ng-if="request.isDatiFatt">
+                    <h2>{{ 'Nazione' | translate}}<span class="color-error">*</span></h2>
+                    <p ng-if="request.fattNation">{{ request.fattNation}}</p>
+                    <p ng-if="!request.fattNation"> {{ 'Seleziona una nazione' | translate}} </p>
+                </ion-item>
+                <ion-item ng-click="selectPicklistValue('fattProvince')" ng-if="request.isDatiFatt">
+                    <h2>{{ 'Provincia' | translate}}<span class="color-error">*</span></h2>
+                    <p ng-if="request.fattProvince">{{ request.fattProvince}}</p>
+                    <p ng-if="!request.fattProvince"> {{ 'Seleziona una provincia' | translate}}</span></p>
+                </ion-item>
+                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt">
+                    <span class="input-label">{{ 'Codice Destinatario SDI' | translate}}<span ng-if="!request.pec" class="color-error">*</span></span>
+                    <input type="text" ng-model="request.sdi">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt">
+                    <span class="input-label">{{ 'Indirizzo Pec' | translate}}<span ng-if="!request.sdi" class="color-error">*</span></span>
+                    <input type="text" ng-model="request.pec">
+                </ion-item>
+
+
+                <ion-item class="item-divider">
+                    <h2>{{ 'Promozioni' | translate}}</h2>
+                </ion-item>
+                <ion-item class="item-input item-stacked-label" ng-class="{'item-disabled': disabledPromo}">
+                    <span class="input-label">{{ 'Hai un codice promozionale?' | translate}}</span>
+                    <p ng-if="disabledPromo">{{ request.promo}}</p>
+                    <input ng-if="!disabledPromo" type="text" ng-model="request.promo" placeholder="inserisci qui il codice promo">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label" ng-class="{'item-disabled': disabledCompany}">
+                    <span class="input-label">{{ 'Hai un codice azienda?' | translate}}</span>
+                    <p ng-if="disabledCompany">{{ request.company}}</p>
+                    <input ng-if="!disabledCompany" type="text" ng-model="request.company" placeholder="inserisci qui il codice azienda   ">
+                </ion-item>
+            </ion-list>
+            <ion-list ng-repeat="item in acceptances | filter: { step: '2'}">
+                <div class="item item-divider" style="white-space: inherit;" ng-click="openUrl(item.url)">
+                    <i ng-if="item.url" class="fa fa-file-pdf-o" aria-hidden="true"></i> {{item.text}}<!--  <a ng-if="item.url" href class="subdued">{{ 'commons.readMore' | translate }}</a> -->
+                </div>
+                <ion-radio ng-if="item.values.length > 1" id="{{item.id}}" name="{{item.id}}" ng-repeat="value in item.values" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-radio>
+                <ion-checkbox ng-if="item.values.length == 1" id="{{item.id}}" name="{{item.id}}" ng-repeat="value in item.values" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-checkbox>
+            </ion-list>
+    </ion-content>
+    <div class="row footer-fixed">
+        <div class="col col-80 col-offset-10">
+            <button ng-click="isValid();" class="button button-block button-balanced">
+                {{ 'Procedi' | translate}}
+            </button>
+        </div>
+    </div>
+</ion-view>

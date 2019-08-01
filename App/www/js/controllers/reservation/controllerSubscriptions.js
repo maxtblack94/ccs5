@@ -1,4 +1,4 @@
-angular.module('starter').controller('SubscriptionsCtrl', function(InfoFactories, $scope, ReservationService, $state) {
+angular.module('starter').controller('SubscriptionsCtrl', function($ionicHistory, InfoFactories, $scope, ReservationService, $state) {
     $scope.user = InfoFactories.getUserInfo();
 
     $scope.selectService = function(service) {
@@ -9,6 +9,10 @@ angular.module('starter').controller('SubscriptionsCtrl', function(InfoFactories
     $scope.cancel = function () {
         ReservationService.resetReservation();
         $state.go('tab.bookings');
+    };
+
+    $scope.back = function (params) {
+        $ionicHistory.goBack();
     };
 
     if ((($scope.user.registry || {}).services || []) && $scope.user.registry.services.length === 1) {

@@ -1,8 +1,10 @@
-angular.module('starter').controller('ConfirmCtrl', function(ReservationService, $filter, PopUpServices, ScriptServices, $scope, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup) {
+angular.module('starter').controller('ConfirmCtrl', function(ReservationService, $ionicHistory, $filter, PopUpServices, ScriptServices, $scope, $rootScope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
     $scope = Object.assign($scope, ReservationService.instance);
     $scope.selectedCar = $state.params.car;
+    $scope.selectedBags, $scope.selectedBags = null;
+    $scope.request = {};
     
     function init(){
         if (window.plugins && window.plugins.Keyboard) {
@@ -14,6 +16,10 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
                 $scope.justifyList = data.ListJustification;
                 $scope.justifyList[0].selected = true;
                 $scope.selectedJustify = $scope.justifyList[0]; 
+/*                 $scope.bagsList = data.ListBagsQty;
+                $scope.seatsList = data.ListSeatsRequested;
+                $scope.selectedBags = $scope.bagsList[0];
+                $scope.selectedSeats = $scope.seatsList[0]; */
                 $ionicLoading.hide();
             }, function (error) {
                 $ionicLoading.hide();
@@ -38,6 +44,39 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
         } else {
             classicReserve();
         }
+    };
+
+    $scope.selectPicklistValue = function (picklist, title, subTitle) {
+        var templateUrl;
+        if (picklist === 'selectedSeats') {
+            templateUrl = "templates/picklists/seats.html";
+        } else if(picklist === 'selectedBags') {
+            templateUrl = "templates/picklists/bags.html";
+        }
+
+        $ionicPopup.show({
+            templateUrl: templateUrl,
+            title: title,
+            subTitle: subTitle,
+            cssClass: 'picklist',
+            scope: $scope,
+            buttons: [{
+                text: $filter('translate')('commons.cancel'),
+                type: 'button-stable',
+            }, {
+                text: '<b>'+$filter('translate')('commons.save')+'</b>',
+                type: 'button-positive',
+                onTap: function (e) {
+                    if (!$scope.request.picklistValue) {
+                        $scope.request.picklistValue = null;
+                        e.preventDefault();
+                    } else {
+                        $scope.request[picklist] = $scope.request.picklistValue;
+                        $scope.request.picklistValue = null;
+                    }
+                }
+            }]
+        });
     };
 
     function classicReserve(params) {
@@ -91,6 +130,10 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
         });
     }
 
+    $scope.back = function (params) {
+        $ionicHistory.goBack();
+     };
+
     function regionalReserve() {
         $ionicLoading.show();
         ScriptServices.getXMLResource(642).then(function(res) {
@@ -106,6 +149,9 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
             .replace('{PARKA}', $scope.selectedPark.Nr)
             .replace('{PARKB}', ($scope.selectedParkB || {}).Nr || $scope.selectedPark.Nr)
             .replace('{DRIVERRANGE}', $scope.driverRange.value.code || 'short')
+            /* .replace('{SEAT}', $scope.selectedSeats || 1)
+            .replace('{BAGS}', $scope.selectedBags || 1) */
+            .replace('{NOTE}', $scope.request.note || '')
             .replace('{IMPORTOPRESUNTO}', $scope.selectedCar.importoPresunto || 0);
             ScriptServices.callGenericService(res, 642).then(function(data) {
                 $ionicLoading.hide();

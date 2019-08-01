@@ -29,11 +29,11 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
                                 write('pushPNR');
                                 break;
                             case 5000:
-                                $rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction, operation: lastOperation});
+                                $rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction});
                                 disconnect();
                                 break;
                             case 5001:
-                                $rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction, operation: lastOperation});
+                                $rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction});
                                 disconnect();
                                 break;
                             case 10000:
@@ -119,7 +119,7 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
 
     function write(action){
         var writeService = currentDevice.characteristics.find(function(item){
-            return item.characteristic.toUpperCase() === "75dcca42-81c1-4552-b3b1-1dce25eb4ea2".toUpperCase();
+            return item.characteristic.toLowerCase() === "75dcca42-81c1-4552-b3b1-1dce25eb4ea2";
         });
         var string = "";
         switch (action) {

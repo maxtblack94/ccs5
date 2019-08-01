@@ -1,5 +1,10 @@
 window.locale_en = {};
 
+window.locale_en.register = {
+	title: 'Complete registration',
+
+};
+
 window.locale_en.leftMenu = {
 	menuTitle: 'User Profile',
 	username: 'Username',
@@ -65,6 +70,7 @@ window.locale_en.parking = {
 
 window.locale_en.tabs = {
 	reservations: 'Bookings',
+	plafond: 'Plafond',
 	park: 'Parkings',
 	booking: 'Book',
 	vehicles: 'Vehicles',
@@ -83,6 +89,7 @@ window.locale_en.commons = {
 	refresh: 'Update...',
 	yes: 'Yes',
 	no: 'No',
+	back: 'Back',
 	locationNotAviable: 'In order to use the "Start Race" / "End of Race" service available on our APP, it is necessary to allow geolocation of this smartphone. Otherwise you can not be enabled for the service.',
 	retry: 'Try again',
 	legalNotice: 'Copyright © 2016 Corporate Car Solutions Italia  All Rights Reserved',
@@ -107,7 +114,12 @@ window.locale_en.commons = {
 	bleConnectionGenericError: 'There was an error, retry',
 	bleConnectionInvalidKey: 'Assicurati di aver posizionato nel portachiavi la chiave del veicolo giusto',
 	bleConnectionAlreadyProcessedRequest: 'La richiesta di apertura è già stata gestita precedentemente',
-	bleConnectionNoKey: 'Assicurati che la chiave del veicolo sia nel portachiavi al momento della chiusura del veicolo'
+	bleConnectionNoKey: 'Assicurati che la chiave del veicolo sia nel portachiavi al momento della chiusura del veicolo',
+
+	plafond: "Plafond",
+	currentPlafond: "Current plafond",
+	chargePlafond: "Charge plafond",
+	choosePlafond: "Choose a plafond value and contiue"
 };
 
 window.locale_en.bookResume = {

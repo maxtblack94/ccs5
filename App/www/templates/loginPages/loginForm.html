@@ -5,7 +5,7 @@
     <form style="width:80%;margin: 20px auto;">
         <label class="item item-input" style="border-radius: 5px 5px 0px 0px;">
             <span class="input-label">{{ 'login.username' | translate}}</span>
-            <input type="text" autocapitalize="none" id="user-input" ng-model="request.userid"
+            <input type="text" ng-change="userFix()" name="user-input" id="user-input" ng-model="request.userid"
                 placeholder="{{ 'login.username' | translate}}">
         </label>
         <label class="item item-input" style="border-radius: 0px 0px 5px 5px;">

@@ -1,4 +1,11 @@
 <ion-view view-title="{{ 'commons.services' | translate}}">
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="back()" >
+            <i class="icon ion-ios-arrow-back"> 
+                    {{ 'commons.back' | translate}}
+            </i>
+        </button>
+    </ion-nav-buttons>
     <ion-content scroll="false">
         <p ng-if='!user.registry || !user.registry.services || user.registry.services.length==0' class="message-empty">{{ 'Non ci sono servizi attivi' | translate }}</p>
         <div class="list card" ng-if="user.registry.services.length">

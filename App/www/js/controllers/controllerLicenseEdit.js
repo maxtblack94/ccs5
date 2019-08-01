@@ -4,7 +4,7 @@ angular.module('starter').controller('LicenseEditCtrl', function($cordovaDatePic
 
     $scope.edit = function(){
         $scope.request = angular.copy((($scope.userInfo || {}).registry))
-    }
+    };
 
     $scope.undo = function(){
         $scope.request = undefined;
