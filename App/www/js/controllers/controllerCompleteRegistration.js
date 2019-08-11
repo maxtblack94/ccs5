@@ -1,4 +1,4 @@
-angular.module('starter').controller('CompleteRegistrationCtrl', function($filter, LovServices, $cordovaDatePicker, PopUpServices, $scope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup, ScriptServices) {
+angular.module('starter').controller('CompleteRegistrationCtrl', function($filter, LovServices, $cordovaDatePicker, PopUpServices, RegexService, $scope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup, ScriptServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.user = InfoFactories.getUserInfo();
     $scope.currentTarif = undefined;
@@ -103,8 +103,8 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
         var dateFromConfig = {
             date: $scope.request[input] ? new Date($scope.request[input]) : new Date(),
             mode: 'date',
-            /* allowOldDates: true,
-            allowFutureDates: false, */
+            allowOldDates: input === 'licenseIssueDate' || input === 'docEndDate' ? true: false,
+            allowFutureDates: input === 'licenseEndDate' ? true: false,
             androidTheme: 4,
             doneButtonLabel: $filter('translate')('commons.select'),
             cancelButtonLabel: $filter('translate')('commons.close'),
@@ -140,7 +140,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             !$scope.request.cap ||
             !$scope.request.nationResidence ||
             !$scope.request.shortProvinceResidence ||
-            !$scope.request.fiscalCode ||
+            (!$scope.request.fiscalCode && $scope.request.nationResidence === 'ITALIA') ||
             !$scope.request.documentType ||
             !$scope.request.docNumber ||
             !$scope.request.docEndDate ||
@@ -149,6 +149,8 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             !$scope.request.licenseIssueDate 
         ) {
             PopUpServices.messagePopup('Compilare tutti i campi obbligatori', 'Attenzione');
+        } else if($scope.request.password && !$scope.request.password.match(RegexService.getRegex().password)){
+            PopUpServices.messagePopup('La password deve contentere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola e almeno un numero', 'Attenzione');
         } else if ($scope.request.password !== $scope.request.confirmPassword ) {
             PopUpServices.messagePopup('I campi password non combaciano', 'Attenzione');
         } else if ($scope.request.email !== $scope.request.emailConfirm) {
@@ -164,6 +166,8 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             !$scope.request.fattPiva
             )) {
             PopUpServices.messagePopup('Completare tutti i campi relativi alla fatturazione', 'Attenzione');
+        } else if($scope.request.isDatiFatt && $scope.request.fattPiva && !$scope.request.fattPiva.match(RegexService.getRegex().piva) && $scope.request.fattNation === 'ITALIA') {
+            PopUpServices.messagePopup('La Partita IVA non è valida, deve essere di 11 caratteri', 'Attenzione');
         } else if (!$scope.request.sdi && !$scope.request.pec && $scope.request.isDatiFatt) {
             PopUpServices.messagePopup('Inserire Codice SDI oppure pec per la fatturazione', 'Attenzione');
         } else if(!$scope.request.cap.match(/^\d{5}$/)) {
@@ -176,6 +180,8 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             PopUpServices.messagePopup('Prima di procedere accetta tutti i consensi', 'Attenzione');
         } else if(!$scope.currentTarif) {
             PopUpServices.messagePopup('Seleziona il profilo di noleggio', 'Attenzione');
+        } else if($scope.request.nationResidence === 'ITALIA' && $scope.request.fiscalCode && !$scope.request.fiscalCode.match(RegexService.getRegex().cf)) {
+            PopUpServices.messagePopup('Il codice fiscale non è valido', 'Attenzione');
         } else {
             completeRegistration();
         }

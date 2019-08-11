@@ -97,7 +97,7 @@ window.locale_it.commons = {
 	cancel: 'Annulla',
 	save: 'Salva',
 	insert: 'Inserisci',
-	alert: 'Alert',
+	alert: 'Segnala',
 	success: 'Successo',
 	error: 'Errore',
 	connectionProblem: 'Abbiamo riscontrato un problema di connessione!',
@@ -114,7 +114,7 @@ window.locale_it.commons = {
 	plafond: 'Saldo',
 	currentPlafond: "Saldo attuale",
 	chargePlafond: "Ricarica",
-	choosePlafond: "Seleziona la quantità della ricarica e continua"
+	choosePlafond: "Seleziona l’importo della ricarica"
 };
 
 window.locale_it.register = {

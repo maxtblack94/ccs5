@@ -61,6 +61,7 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
     }
 
     function searchBLEID(index) {
+        console.log('connectTo:', devices[index]);
         ble.connect(devices[index].id, function(params) {
             currentDevice = params;
             var characteristicExist = params.characteristics.find(function (item) {
@@ -72,15 +73,24 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
                         console.log('ble Match');
                         disconnectWithID();
                     } else {
-                        searchBLEID(index++);
+                        manageNotFoundVehicle(index, devices);
                     }
                 });
             } else {
-                searchBLEID(index++);
+                manageNotFoundVehicle(index, devices);
             }
         }, function (error) {
-            
+            manageNotFoundVehicle(index, devices);
         });
+    }
+
+    function manageNotFoundVehicle (index, devices) {
+        if (index+1 >= devices.length) {
+            disconnect();
+            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorCode: 'NOT_FOUND_VEHICLE', errorMessage: 'Non è stato possibile trovare il veicolo ricercato'});
+        } else {
+            disconnect(index+1);
+        }
     }
 
     function isConnected() {
@@ -105,6 +115,20 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
         if (currentDevice) {
             ble.disconnect(currentDevice.id, function (params) {
                 connectBle();
+            }, function (params) {
+                console.log("disconnect fail", params);
+            });
+        }
+    };
+
+    function disconnect(index){
+        if (currentDevice) {
+            ble.disconnect(currentDevice.id, function (params) {
+                if (index) {
+                    setTimeout(() => {
+                        searchBLEID(index);
+                    }, 300);
+                }
             }, function (params) {
                 console.log("disconnect fail", params);
             });

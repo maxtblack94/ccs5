@@ -26,8 +26,7 @@
     <form style="width:80%;margin: 20px auto;">
         <label class="item item-input" style="border-radius: 5px;">
             <span class="input-label">{{ 'login.email' | translate}}</span>
-            <input type="email" autocapitalize="none" id="email-input" ng-model="request.email"
-                placeholder="{{ 'login.placeholderEmail' | translate}}">
+            <input type="email" autocapitalize="none" id="email-input" ng-model="request.email">
         </label>
     </form>
     <a class="button button-block enter-account" ng-click="callRecoverService()">

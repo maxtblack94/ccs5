@@ -1,4 +1,4 @@
-angular.module('starter').controller('RegisterCtrl', function($filter, $state, PopUpServices, $scope, InfoFactories, ScriptServices, $ionicLoading) {
+angular.module('starter').controller('RegisterCtrl', function($filter, RegexService, $state, PopUpServices, $scope, InfoFactories, ScriptServices, $ionicLoading) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.request = {};
 
@@ -27,10 +27,12 @@ angular.module('starter').controller('RegisterCtrl', function($filter, $state, P
             PopUpServices.messagePopup('Compilare tutti i campi obbligatori', 'Attenzione');
         }else if($scope.request.password !== $scope.request.confirmPassword ){
             PopUpServices.messagePopup('I campi password non combaciano', 'Attenzione');
+        }else if($scope.request.password && !$scope.request.password.match(RegexService.getRegex().password)){
+            PopUpServices.messagePopup('La password deve contentere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola e almeno un numero', 'Attenzione');
         }else{
             createAccount();
         }
-    }
+    };
 
     function createAccount(){
         $ionicLoading.show();

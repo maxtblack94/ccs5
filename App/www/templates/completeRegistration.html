@@ -70,11 +70,11 @@
                     <p ng-if="!request.birthDate"> {{ 'Seleziona una data' | translate}} </p>
                 </ion-item>
                 <ion-item class="item-divider">
-                    <h2>{{ 'Abitazione' | translate}}</h2>
+                    <h2>{{ 'Residenza' | translate}}</h2>
                 </ion-item>
                 <ion-item class="item-input item-stacked-label">
-                    <span class="input-label">{{ 'Via' | translate}}<span class="color-error">*</span></span>
-                    <input type="text" ng-model="request.indirizzo" placeholder="Via">
+                    <span class="input-label">{{ 'Via e numero civico' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.indirizzo" placeholder="Via e numero civico">
                 </ion-item>
                 <!-- <ion-item class="item-input item-stacked-label">
                     <span class="input-label">{{ 'N°' | translate}}<span class="color-error">*</span></span>
@@ -99,7 +99,7 @@
                     <p ng-if="!request.shortProvinceResidence"> {{ 'Seleziona una provincia' | translate}} </p>
                 </ion-item>
                 <ion-item class="item-input item-stacked-label">
-                    <span class="input-label">{{ 'Codice Fiscale' | translate}}<span class="color-error">*</span></span>
+                    <span class="input-label">{{ 'Codice Fiscale' | translate}}<span class="color-error" ng-if="request.nationResidence === 'ITALIA'">*</span></span>
                     <input type="text" ng-model="request.fiscalCode" placeholder="Codice Fiscale">
                 </ion-item>
 
