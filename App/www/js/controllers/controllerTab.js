@@ -29,4 +29,8 @@ angular.module('starter').controller('TabCtrl', function(PushEventsService, Scri
             })
         });
     }
+
+    $scope.chargeOn = function () {
+        return InfoFactories.isRegionalSilver();
+    }
 })

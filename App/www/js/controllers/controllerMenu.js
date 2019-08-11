@@ -20,4 +20,8 @@ angular.module('starter').controller('MenuCtrl', function($ionicSideMenuDelegate
         $scope.userInfo = InfoFactories.getUserInfo();
         return true;
     };
+
+    $scope.chargeOn = function () {
+        return InfoFactories.isRegionalSilver();
+    }
 })

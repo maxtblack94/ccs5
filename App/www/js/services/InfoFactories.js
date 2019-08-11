@@ -6,6 +6,23 @@ angular.module('starter').factory("InfoFactories", [function () {
     selectedRangeDriver = { value: 'short' },
     lastDeviceCoords;
 
+    function isRegionalSilver() {
+        userInfo = getUserInfo();
+        var isSilver = false;
+        if (((userInfo.registry || {}).services || []) && userInfo.registry.services.length > 0) {
+            for (var k = 0; k < userInfo.registry.services.length; k++) {
+                isSilver = userInfo.registry.services[k].tarifs.find(function (item) {
+                    return item.text === 'Gold';
+                });
+                if (isSilver) {
+                    break;
+                }
+            }
+        }
+        return isSilver ? true: false;
+        
+    }
+
     function resetService (){
         parking = undefined, selectedCar = undefined, telepass = false, CC = false, selectedRangeDriver = { value: 'short' },
         dateTimeFrom = undefined, dateTimeTo = undefined, selectedVehicleType = { value: null };
@@ -177,6 +194,9 @@ angular.module('starter').factory("InfoFactories", [function () {
         },
         getUserInfo: function () {
             return getUserInfo();
+        },
+        isRegionalSilver: function (userInfo) {
+            return isRegionalSilver(userInfo);
         }
     };
 

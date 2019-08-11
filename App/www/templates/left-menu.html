@@ -5,7 +5,7 @@
         <p>{{userInfo.registry.email}}</p>
         <i class="icon ion-ios-person-outline"></i>
     </ion-item>
-    <ion-item class="item-icon-right" href="#/tab/plafond" menu-close>
+    <ion-item class="item-icon-right" href="#/tab/plafond" ng-if="chargeOn()" menu-close>
         <h2>{{ 'commons.currentPlafond' | translate}}</h2>
         <p>{{ userInfo.registry.plafond || 0 | currency: '€ '}}</p>
         <i class="icon ion-card"></i>

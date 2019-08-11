@@ -88,7 +88,7 @@ window.locale_it.commons = {
 	confirm: 'Conferma',
 	locationNotAviable: 'Per poter utilizzare il servizio "Inizio Corsa" / "Fine Corsa" disponibile sulla nostra APP, è necessario consentire la geolocalizzazione di questo smartphone. In caso contrario non potrete essere abilitati al servizio.',
 	retry: 'Riprovare',
-	legalNotice: 'Copyright © 2016 Corporate Car Solutions Italia - All Rights Reserved',
+	legalNotice: 'Powered by CCS | Corporare Car Solutions Italia',
 	readMore: 'Continua a leggere...',
 	search: 'Cerca...',
 	select: 'Seleziona',
@@ -97,7 +97,7 @@ window.locale_it.commons = {
 	cancel: 'Annulla',
 	save: 'Salva',
 	insert: 'Inserisci',
-	alert: 'Alert',
+	alert: 'Segnala',
 	success: 'Successo',
 	error: 'Errore',
 	connectionProblem: 'Abbiamo riscontrato un problema di connessione!',
@@ -114,7 +114,7 @@ window.locale_it.commons = {
 	plafond: 'Saldo',
 	currentPlafond: "Saldo attuale",
 	chargePlafond: "Ricarica",
-	choosePlafond: "Seleziona la quantità della ricarica e continua"
+	choosePlafond: "Seleziona l’importo della ricarica"
 };
 
 window.locale_it.register = {

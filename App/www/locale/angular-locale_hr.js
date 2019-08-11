@@ -89,7 +89,7 @@ window.locale_hr.commons = {
 	no: "Ne",
 	back: "Leđa",
 	retry: "Pokušaj ponovno",
-	legalNotice: "Autorsko pravo © 2016 Corporate Car Solutions Italija Sva prava pridržana",
+	legalNotice: 'Powered by CCS | Corporare Car Solutions Italia',
 	readMore: "Čitaj više...",
 	search: "Traži...",
 	select: "Odaberi",

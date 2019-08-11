@@ -92,7 +92,7 @@ window.locale_en.commons = {
 	back: 'Back',
 	locationNotAviable: 'In order to use the "Start Race" / "End of Race" service available on our APP, it is necessary to allow geolocation of this smartphone. Otherwise you can not be enabled for the service.',
 	retry: 'Try again',
-	legalNotice: 'Copyright © 2016 Corporate Car Solutions Italia  All Rights Reserved',
+	legalNotice: 'Powered by CCS | Corporare Car Solutions Italia',
 	readMore: 'Read more...',
 	search: 'Search...',
 	select: 'Select',

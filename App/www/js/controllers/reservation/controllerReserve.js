@@ -322,6 +322,11 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
     };
 
     $scope.back = function (params) {
-        $ionicHistory.goBack();
+        if ($scope.user && $scope.user.registry && scope.user.registry.services.length > 1) {
+            $ionicHistory.goBack();
+        } else {
+            $scope.cancel(); 
+        }
+        
      };
  });
