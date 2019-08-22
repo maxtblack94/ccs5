@@ -53,8 +53,8 @@ window.locale_hr.bookings = {
 	cancelReservation: "Izbrisati",
 	cancelConfirmTitle: "Potvrdi brisanje",
 	cancelConfirmBody: "Želite li stvarno izbrisati odabranu rezervaciju?",
-	tarif: 'Tarif',
-	price: 'Price',
+	tarif: 'Brzina',
+	price: 'Cijena',
 	orderPending: "Attention, this order waiting for approve"
 
 }
@@ -63,7 +63,7 @@ window.locale_hr.parking = {
 	title: "Odaberite parkiralište",
 	noparking: "Nije pronađen parking",
 	placeholderSearch: "Traži",
-	pickupDirection: 'Pick-up park is different than return park?'
+	pickupDirection: 'Parking za preuzimanje drugačiji od dostave?'
 }
 
 window.locale_hr.tabs = {
@@ -88,6 +88,8 @@ window.locale_hr.commons = {
 	yes: "Da",
 	no: "Ne",
 	back: "Leđa",
+	confirm: 'Potvrdi',
+	note: "Bilješka",
 	retry: "Pokušaj ponovno",
 	legalNotice: 'Powered by CCS | Corporare Car Solutions Italia',
 	readMore: "Čitaj više...",
@@ -103,15 +105,25 @@ window.locale_hr.commons = {
 	error: "Greška",
 	connectionProblem: "Imamo problema s povezivanjem!",
 	successOperation: "Operacija je uspješno dovršena",
+<<<<<<< HEAD
 	requestFail: "Nismo mogli poslati vaš zahtjev.",
 	refuse: "Odbiti",
 	accept: "Prihvatiti",
 	services: 'Service',
 	bleConnection: 'Ti preghiamo di abilitare il Bluetooth e riprovare',
 	bleConnectionGenericError: 'Qualcosa è andato storto, riprova',
+=======
+	requestFail: "Nismo mogli poslati Vaš zahtjev.",
+	refuse: "Odbij",
+	accept: "Prihvati",
+	services: 'Servis',
+	bleConnection: 'Omogućite Bluetooth i pokušajte ponovo',
+	bleConnectionGenericError: 'Nešto je pošlo po zlu, pokušajte ponovo',
+>>>>>>> 32389eb... mix
 	bleConnectionInvalidKey: 'Assicurati di aver posizionato nel portachiavi la chiave del veicolo giusto',
-	bleConnectionAlreadyProcessedRequest: 'La richiesta di apertura è già stata gestita precedentemente',
-	bleConnectionNoKey: 'Assicurati che la chiave del veicolo sia nel portachiavi al momento della chiusura del veicolo'
+	bleConnectionAlreadyProcessedRequest: 'Provjerite da li imate pravi ključ vozila u privjesku za ključeve',
+	bleConnectionNoKey: 'Provjerite je li ključ vozila u prstenastom ključu kada je vozilo zatvoreno',
+	bleSuccess: 'Operacija je uspješno okončana!'
 };
 
 window.locale_hr.bookResume = {
@@ -137,13 +149,13 @@ window.locale_hr.bookResume = {
 	missingVehicleType: "Odaberite tip vozila.",
 	vehicleTypesNotFound: "Nije bilo moguće vratiti tipove vozila na ovom parkiralištu!",
 	noDataFound: "Neke podatke nije moguće dohvatiti!",
-	returnDateHaveToBe: "Datum povratka mora biti unutar" ,
-	wrongDates: "Odaberite datum preuzimanja i povratka za nastavak.",
-	wrongParking: "Odaberite parkiranje prije nastavka.",
-	pickupReturnlabel: "Pick-up/Return Parking",
-	pickupPark : "Pick-up Parking",
+	returnDateHaveToBe: "Datum povratka mora ulaziti u" ,
+	wrongDates: "Za nastavak, odaberite datum preuzimanja i povratka.",
+	wrongParking: "Prije nastavka, odaberite parkiralište.",
+	pickupReturnlabel: "Parking za preuzimanje / povratak",
+	pickupPark : "Parking za preuzimanje",
 	returnPark : "Return Parking",
-	subscriptionIncompatible: "The reservation time is not compatible with your tarif"
+	subscriptionIncompatible: "Vrijeme rezervacije nije kompatibilno s vašom tarifom"
 };
 
 window.locale_hr.map = {
