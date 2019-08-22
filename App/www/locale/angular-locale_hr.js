@@ -105,21 +105,12 @@ window.locale_hr.commons = {
 	error: "Greška",
 	connectionProblem: "Imamo problema s povezivanjem!",
 	successOperation: "Operacija je uspješno dovršena",
-<<<<<<< HEAD
-	requestFail: "Nismo mogli poslati vaš zahtjev.",
-	refuse: "Odbiti",
-	accept: "Prihvatiti",
-	services: 'Service',
-	bleConnection: 'Ti preghiamo di abilitare il Bluetooth e riprovare',
-	bleConnectionGenericError: 'Qualcosa è andato storto, riprova',
-=======
 	requestFail: "Nismo mogli poslati Vaš zahtjev.",
 	refuse: "Odbij",
 	accept: "Prihvati",
 	services: 'Servis',
 	bleConnection: 'Omogućite Bluetooth i pokušajte ponovo',
 	bleConnectionGenericError: 'Nešto je pošlo po zlu, pokušajte ponovo',
->>>>>>> 32389eb... mix
 	bleConnectionInvalidKey: 'Assicurati di aver posizionato nel portachiavi la chiave del veicolo giusto',
 	bleConnectionAlreadyProcessedRequest: 'Provjerite da li imate pravi ključ vozila u privjesku za ključeve',
 	bleConnectionNoKey: 'Provjerite je li ključ vozila u prstenastom ključu kada je vozilo zatvoreno',
@@ -218,7 +209,10 @@ window.locale_hr.login = {
 	companiesMissing: "Nije moguće dohvatiti podatke o tvrtki",
 	retryCompanyCode: "Šifra tvrtke nije, unesite je ponovo!",
 	result: "Zatražena povratna informacija",
-	dataWrong: "E-pošta / zaporka su pogrešni"
+	dataWrong: "E-pošta / zaporka su pogrešni",
+	usernameMandatory: "Il campo username è obbligatorio",
+	passwordMandatory: "Il campo password è obbligatorio",
+	emailMandatory: "Il campo email è obbligatorio"
 };
 
 window.locale_hr.settings = {
@@ -227,7 +221,8 @@ window.locale_hr.settings = {
 	title: "Postavke",
 	check1: "Smanjena slika",
 	check1_descr: "Prikaži smanjene slike vozila",
-	editPassword: "Izmijeni zaporku"
+	editPassword: "Izmijeni zaporku",
+	editPayment: 'Metodo di pagamento'
 };
 
 window.locale_hr.driveLicense = {

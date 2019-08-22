@@ -97,6 +97,7 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
             setTimeout(function() {
                 $('#email-input').focus();
             });
+            PopUpServices.errorPopup($filter('translate')('login.passwordMandatory'), '1');
         }else{
             getClientInfo('recover');
         }
@@ -141,10 +142,12 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
             setTimeout(function() {
                 $('#user-input').focus();
             });
+            PopUpServices.errorPopup($filter('translate')('login.usernameMandatory'),'1');
         }else if(!$scope.request.password){
             setTimeout(function() {
                 $('#password-input').focus();
             });
+            PopUpServices.errorPopup($filter('translate')('login.passwordMandatory'),'1');
         }
     };
 

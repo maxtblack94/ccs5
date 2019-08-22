@@ -216,7 +216,10 @@ window.locale_it.login = {
 	companiesMissing: '!',
 	retryCompanyCode: "Il codice azienda inserito è inesistente, riprovare!",
 	result: 'Esito Richiesta',
-	dataWrong: 'Email/Password sono errati, '
+	dataWrong: 'Email/Password sono errati, ',
+	usernameMandatory: "Il campo username è obbligatorio",
+	passwordMandatory: "Il campo password è obbligatorio",
+	emailMandatory: "Il campo email è obbligatorio"
 };
 
 window.locale_it.settings = {
@@ -225,7 +228,8 @@ window.locale_it.settings = {
 	title: 'Impostazioni',
 	check1: 'Riduci Immagini',
 	check1_descr: 'Mostra le immagini dei veicoli ridotte.',
-	editPassword: 'Modifica Password'
+	editPassword: 'Modifica Password',
+	editPayment: 'Metodo di pagamento'
 };
 
 window.locale_it.driveLicense = {

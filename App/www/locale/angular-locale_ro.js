@@ -200,7 +200,10 @@ window.locale_ro.login = {
 	companiesMissing: 'Informațiile despre companie nu au putut fi preluate',
 	retryCompanyCode: "Codul companiei introdus este inexistent, încercați din nou!",
 	result: 'Rezultatul cererii',
-	dataWrong: 'Email/Password ei se înșeală, '
+	dataWrong: 'Email/Password ei se înșeală, ',
+	usernameMandatory: "Il campo username è obbligatorio",
+	passwordMandatory: "Il campo password è obbligatorio",
+	emailMandatory: "Il campo email è obbligatorio"
 };
 
 window.locale_ro.settings = {
@@ -209,7 +212,8 @@ window.locale_ro.settings = {
 	title: 'Setări',
 	check1: 'Reduceți imaginile',
 	check1_descr: 'Afișați imagini reduse ale vehiculului',
-	editPassword: 'Schimbați password'
+	editPassword: 'Schimbați password',
+	editPayment: 'Metodo di pagamento'
 };
 
 window.locale_ro.driveLicense = {

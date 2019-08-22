@@ -1,5 +1,6 @@
 angular.module('starter').controller('SettingsCtrl', function(ScriptServices, $rootScope, $scope, $http, $state, $ionicLoading, InfoFactories) {
     $scope.selectedClient = InfoFactories.getClientSelected();
+    $scope.userInfo = InfoFactories.getUserInfo();
     
     $scope.setHasPicture = function() {
         $rootScope.hasPicture = !$rootScope.hasPicture;
@@ -29,5 +30,11 @@ angular.module('starter').controller('SettingsCtrl', function(ScriptServices, $r
         }else{
             counter++
         }
+    }
+
+
+    $scope.openLink = function () {
+        window.open($scope.userInfo.registry.mercuryUrl, '_system', 'location=yes');
+        $state.go('tab.bookings');
     }
 })

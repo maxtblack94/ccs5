@@ -1,5 +1,7 @@
 angular.module('starter').controller('ParkCtrl', function($ionicHistory, $stateParams, $ionicNavBarDelegate, $scope, ReservationService, PopUpServices, InfoFactories, $filter, $state, $ionicLoading, ScriptServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
+    $scope.userInfo = InfoFactories.getUserInfo();
+    
     $scope = Object.assign($scope, ReservationService.instance);
     var preselectParkBackup = $scope.preselectPark.value;
 
@@ -52,7 +54,14 @@ angular.module('starter').controller('ParkCtrl', function($ionicHistory, $stateP
    };
 
    $scope.back = function (params) {
-    $ionicHistory.goBack();
+       if ($scope.parkDirection === 'B') {
+        $ionicHistory.goBack();
+       } else if ((($scope.userInfo.registry || {}).services || []) && $scope.userInfo.registry.services.length === 1) {
+        $scope.cancel();
+       } else {
+        $ionicHistory.goBack();
+       }
+    
     };
    
    init();

@@ -218,7 +218,10 @@ window.locale_en.login = {
 	companiesMissing: 'Company information could not be retrieved',
 	retryCompanyCode: "Company Code does not, please enter it again!",
 	result: 'Feedback Requested',
-	dataWrong: 'Email/Password are wrong, '
+	dataWrong: 'Email/Password are wrong, ',
+	usernameMandatory: "Username field is mandatory",
+	passwordMandatory: "Password field is mandatory",
+	emailMandatory: "Email field is mandatory"
 };
 
 window.locale_en.settings = {
@@ -227,7 +230,8 @@ window.locale_en.settings = {
 	title: 'Settings',
 	check1: 'Reduced Picture',
 	check1_descr: 'Show reduced vehicle images',
-	editPassword: 'Modify Password'
+	editPassword: 'Modify Password',
+	editPayment: 'Payment method'
 };
 
 window.locale_en.driveLicense = {
