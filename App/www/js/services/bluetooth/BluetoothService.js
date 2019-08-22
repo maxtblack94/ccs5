@@ -1,4 +1,4 @@
-angular.module('starter').factory("BluetoothServices", function(ArrayServices, $rootScope, ScriptServices) {
+angular.module('starter').factory("BluetoothServices", function(ArrayServices, $rootScope, ScriptServices, $filter) {
     var currentDevice;
     var lastReservation, lastOperation, actionsList = [];
 
@@ -198,19 +198,19 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
             case 80:
             case 'GENERIC_ERROR':
                 errorCode = 'GENERIC_ERROR';
-                errorMessage = 'Qualcosa è andato storto, riprova';
+                errorMessage = $filter('translate')('commons.bleConnectionGenericError');
                 break;
             case 20:
                 errorCode = 'INVALID_KEY';
-                errorMessage = "Assicurati di aver posizionato nel portachiavi la chiave del veicolo giusto";
+                errorMessage = $filter('translate')('commons.bleConnectionInvalidKey');
                 break;
             case 150:
                 errorCode = 'ALREADY_DID';
-                errorMessage = "La richiesta di apertura è già stata gestita precedentemente";
+                errorMessage = $filter('translate')('commons.bleConnectionAlreadyProcessedRequest');
                 break;
             case 160:
                 errorCode = 'NO_KEY';
-                errorMessage = "Assicurati che la chiave del veicolo sia nel portachiavi al momento della chiusura del veicolo";
+                errorMessage = $filter('translate')('commons.bleConnectionNoKey');
                 break;
             default:
                 break;
