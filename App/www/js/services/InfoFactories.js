@@ -6,13 +6,30 @@ angular.module('starter').factory("InfoFactories", [function () {
     selectedRangeDriver = { value: 'short' },
     lastDeviceCoords;
 
-    function isRegionalSilver() {
+    function isRegionalGold() {
         userInfo = getUserInfo();
         var isSilver = false;
-        if (((userInfo.registry || {}).services || []) && userInfo.registry.services.length > 0) {
+        if (userInfo && userInfo.registry && (userInfo.registry.services || []) && userInfo.registry.services.length > 0) {
             for (var k = 0; k < userInfo.registry.services.length; k++) {
                 isSilver = userInfo.registry.services[k].tarifs.find(function (item) {
                     return item.text === 'Gold';
+                });
+                if (isSilver) {
+                    break;
+                }
+            }
+        }
+        return isSilver ? true: false;
+        
+    }
+
+    function isRegionalSilver() {
+        userInfo = getUserInfo();
+        var isSilver = false;
+        if (userInfo && userInfo.registry && (userInfo.registry.services || []) && userInfo.registry.services.length > 0) {
+            for (var k = 0; k < userInfo.registry.services.length; k++) {
+                isSilver = userInfo.registry.services[k].tarifs.find(function (item) {
+                    return item.text === 'Silver';
                 });
                 if (isSilver) {
                     break;
@@ -197,6 +214,9 @@ angular.module('starter').factory("InfoFactories", [function () {
         },
         isRegionalSilver: function (userInfo) {
             return isRegionalSilver(userInfo);
+        },
+        isRegionalGold: function (userInfo) {
+            return isRegionalGold(userInfo);
         }
     };
 

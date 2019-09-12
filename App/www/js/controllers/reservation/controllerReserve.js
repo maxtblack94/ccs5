@@ -51,7 +51,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
                 ReservationService.setTarif($scope.selectedTarif);
                 $state.go('vehicles');
             } else if (!$scope.selectedTarif.value.id && $scope.selectedService.tarifs.length) {
-                PopUpServices.errorPopup($filter('translate')('Selezionare un tariffa'), "1");
+                PopUpServices.errorPopup($filter('translate')('Selezionare una tariffa'), "1");
             } else {
                 $state.go('vehicles');
             }
@@ -84,7 +84,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
                 closingSameDay: dateTimeFrom.getHours() <= 23 && tarifTmp.opening.getHours() <= dateTimeFrom.getHours() ? moment(minDateString + ' ' + "23:59", 'DD/MM/YYYY HH:mm:ss') : moment(minDateString + ' ' + tarif.closing, 'DD/MM/YYYY HH:mm:ss')
             };
             
-            if (!isDayInverted && (tarifTmp.opening.getHours() > dateTimeFrom.getHours() || dateTimeFrom.getHours() > tarifTmp.closing.getHours() || tarifTmp.opening.getHours() > dateTimeTo.getHours() || dateTimeTo.getHours() > tarifTmp.closing.getHours())) {
+            if (!isDayInverted && (tarifTmp.opening.getHours() >= dateTimeFrom.getHours() || dateTimeFrom.getHours() >= tarifTmp.closing.getHours() || tarifTmp.opening.getHours() >= dateTimeTo.getHours() || dateTimeTo.getHours() >= tarifTmp.closing.getHours())) {
                 PopUpServices.errorPopup($filter('translate')('bookResume.subscriptionIncompatible'), "1");
                 $scope.selectedTarif.value = {};
                 return true;

@@ -94,10 +94,11 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
 
     $scope.callRecoverService = function(){
         if(!$scope.request.email){
-            setTimeout(function() {
-                $('#email-input').focus();
+            PopUpServices.messagePopup($filter('translate')('login.emailMandatory'), $filter('translate')('commons.attention'), function (params) {
+                setTimeout(function() {
+                    $('#email-input').focus();
+                });
             });
-            PopUpServices.errorPopup($filter('translate')('login.passwordMandatory'), '1');
         }else{
             getClientInfo('recover');
         }
@@ -139,15 +140,17 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
         if($scope.request.userid && $scope.request.password){
             getClientInfo('login');
         }else if(!$scope.request.userid){
-            setTimeout(function() {
-                $('#user-input').focus();
+            PopUpServices.messagePopup($filter('translate')('login.usernameMandatory'), $filter('translate')('commons.attention'), function (params) {
+                setTimeout(function() {
+                    $('#user-input').focus();
+                });
             });
-            PopUpServices.errorPopup($filter('translate')('login.usernameMandatory'),'1');
         }else if(!$scope.request.password){
-            setTimeout(function() {
-                $('#password-input').focus();
+            PopUpServices.messagePopup($filter('translate')('login.passwordMandatory'), $filter('translate')('commons.attention'), function (params) {
+                setTimeout(function() {
+                    $('#password-input').focus();
+                });
             });
-            PopUpServices.errorPopup($filter('translate')('login.passwordMandatory'),'1');
         }
     };
 

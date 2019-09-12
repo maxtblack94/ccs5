@@ -34,7 +34,21 @@ angular.module('starter').controller('SettingsCtrl', function(ScriptServices, $r
 
 
     $scope.openLink = function () {
-        window.open($scope.userInfo.registry.mercuryUrl, '_system', 'location=yes');
-        $state.go('tab.bookings');
+        $ionicLoading.show();
+        ScriptServices.getXMLResource(663).then(function(res) {
+            res = res.replace('{DRIVERID}', $scope.userInfo.driverNumber || null);
+            ScriptServices.callGenericService(res, 663).then(function(data) {
+                window.open(data.data, '_system', 'location=yes');
+                $state.go('tab.bookings');
+                $ionicLoading.hide();
+            }, function(error) {
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
+                $ionicLoading.hide();
+            });
+        });
+    }
+
+    $scope.editAccount = function() {
+        $state.go('completeRegistration', {isEdit: true});
     }
 })

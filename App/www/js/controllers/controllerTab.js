@@ -22,7 +22,7 @@ angular.module('starter').controller('TabCtrl', function(PushEventsService, Scri
         $scope.model.notificationsPending = null;
         ScriptServices.getXMLResource(636).then(function(res) {
             res = res.replace('{PUSHID}', pushID);
-            ScriptServices.callGenericService(res, 636).then(function(data) {
+            ScriptServices.callGenericService(res, 667).then(function(data) {
                 $scope.model.notificationsPending = data.data.dataList;
             }, function(error) {
                 $scope.model.notificationsPending = [];
@@ -31,6 +31,6 @@ angular.module('starter').controller('TabCtrl', function(PushEventsService, Scri
     }
 
     $scope.chargeOn = function () {
-        return InfoFactories.isRegionalSilver();
+        return InfoFactories.isRegionalGold();
     }
 })

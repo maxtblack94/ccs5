@@ -24,8 +24,8 @@
             <button ng-click='onSelect(car)' class="button button-positive">{{ 'vehicle.select' | translate}}</button>
           </div>
         </div>
-        <div class="item">
-          <div class="pull-left m-right20">
+        <div class="item" ng-if="hasPicture">
+          <!-- <div class="pull-left m-right20">
             <p>{{ 'vehicle.color' | translate}}</p>
             <div class='color-cube'>
               <div style='background-color: {{ car.colorApp }};'></div>
@@ -34,7 +34,7 @@
           <div class="pull-left" ng-show="car.seats">
             <p>{{ 'vehicle.seats' | translate}}</p>
             <p style='font-weight: bold; font-size: 20px; line-height: 26px; text-align: center;'>{{ car.seats }}</p>
-          </div>
+          </div> -->
           <div ng-if='hasPicture' style='float: right;'>
             <img ng-src="{{ car.image_min ? car.image_min : 'icons/vehicle-default-s.jpg' }}" style='max-width: 94px;'>
           </div>
@@ -43,7 +43,7 @@
           <img ng-src="{{ car.image_max ? car.image_max : 'icons/vehicle-default-l.jpg' }}">
         </div>
         <div class="item" style='overflow: auto;'>
-          <div style='display: inline-block; margin-right: 10px;'>
+          <!-- <div style='display: inline-block; margin-right: 10px;'>
             <div class="date-select-label" style='text-align: center;'>{{ 'vehicle.externalClean' | translate}}</div>
             <div style='width: 50px; height: 30px; float: left; text-align: center; padding-top: 4px;'>
               <i ng-if="car.vehicle_status == 'Ok'" class='ion-happy-outline' style='font-size: 26px; color: #fc0300;'></i>
@@ -56,7 +56,7 @@
               <i ng-if="car.vehicle_cleanness_status == 'Ok'" class='ion-happy-outline' style='font-size: 26px; color: #fc0300;'></i>
               <i ng-if="car.vehicle_cleanness_status != 'Ok'" class='ion-sad-outline' style='font-size: 26px; color: #fc0300;'></i>
             </div>
-          </div>
+          </div> -->
           <div class="pull-right fuel_container" ng-if="car.electric_quantity">
             <i class="fa fa-bolt elecric-icon" aria-hidden="true"></i>
             <div class="pull-right bold fuel_value">{{ car.electric_quantity }}</div>

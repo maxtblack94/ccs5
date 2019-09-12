@@ -13,7 +13,11 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
         $scope.$broadcast('scroll.refreshComplete');
     }
 
-    function getUserInfo(){
+    function getUserInfo(statusCheck){
+        if (statusCheck) {
+            $ionicLoading.show();
+        }
+
         ScriptServices.getXMLResource(554).then(function(res) {
             res = res.replace('{NUMBER_DRIVER}', InfoFactories.getUserInfo().driverNumber);
             ScriptServices.callGenericService(res, 554).then(function(data) {
@@ -21,6 +25,17 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
                 userInfo.registry =  data.data.GetUser[0];
                 window.localStorage.setItem('userInfo', JSON.stringify(userInfo));
                 $ionicLoading.hide(); 
+                $scope.userInfo = userInfo;
+                if (statusCheck) {
+                    if ($scope.userInfo.registry.account_status === 'SUBSCRIBED_WITH_PAY') {
+                        PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Verrai contattato per mail quando il tuo profilo sarà abilitato al servizio E-Vai.", "Profilo in attesa di abilitazione");
+                    } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED') {
+                        PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Procedi all'attivazione della modalità di pagamento", "Profilo in attesa di abilitazione", $scope.paymentModal);
+                    } else  if ($scope.userInfo.registry.account_status === 'ACTIVE') {
+                        ReservationService.resetReservation();
+                        $state.go('subscriptions');
+                    }
+                }
             }, function(error) {
                 $ionicLoading.hide();
                 PopUpServices.errorPopup($filter('translate')('commons.retry'));
@@ -41,15 +56,13 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
     
     $scope.startBooking = function (params) {
         var isNotRegistered = window.localStorage.getItem("isNotRegistered");
-        if (isNotRegistered && isNotRegistered == 'true') {
-            $state.go('completeRegistration');
-        } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED_WITH_PAY') {
-            PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Verrai contattato per mail quando il tuo profilo sarà abilitato al servizio E-Vai.", "Profilo in attesa di abilitazione");
-        } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED') {
-            PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Procedi all'attivazione della modalità di pagamento", "Profilo in attesa di abilitazione", $scope.paymentModal);
-        } else {
+        if ($scope.userInfo.registry.account_status === 'ACTIVE') {
             ReservationService.resetReservation();
             $state.go('subscriptions');
+        } else if (isNotRegistered && isNotRegistered == 'true') {
+            $state.go('completeRegistration');
+        } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED_WITH_PAY' || $scope.userInfo.registry.account_status === 'SUBSCRIBED') {
+            getUserInfo(true);
         }
     };
 

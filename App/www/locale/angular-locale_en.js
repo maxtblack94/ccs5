@@ -2,7 +2,7 @@ window.locale_en = {};
 
 window.locale_en.register = {
 	title: 'Complete registration',
-
+	titleEdit: 'Profile'
 };
 
 window.locale_en.leftMenu = {
@@ -94,7 +94,7 @@ window.locale_en.commons = {
 	confirm: "Confirm",
 	locationNotAviable: 'In order to use the "Start Race" / "End of Race" service available on our APP, it is necessary to allow geolocation of this smartphone. Otherwise you can not be enabled for the service.',
 	retry: 'Try again',
-	legalNotice: 'Powered by CCS | Corporare Car Solutions Italia',
+	legalNotice: 'Powered by CCS | Corporate Car Solutions Italia',
 	readMore: 'Read more...',
 	search: 'Search...',
 	select: 'Select',
@@ -268,7 +268,7 @@ window.locale_en.contacts = {
 	email: 'Email',
 	phone: 'Phone',
 	time: 'Timetable',
-	emailSubject: 'CCS Support request #'
+	emailSubject: 'E-VAI Support request #'
 };
 
 window.locale_en.clientDetails = {

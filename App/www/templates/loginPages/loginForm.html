@@ -1,5 +1,5 @@
 <div ng-if="!recorveryPassword" class="form-container">
-    <a class="forgot-password button button-clear button-block" ng-click="newAccount()">
+    <a class="forgot-password button button-clear button-block" style="text-decoration: underline" ng-click="newAccount()">
         {{ 'Registrati' | translate}}
     </a>
     <form style="width:80%;margin: 20px auto;">
@@ -18,21 +18,21 @@
         {{ 'login.login' | translate}}
     </a>
 
-    <a class="forgot-password button button-clear button-block" ng-click="recorveryPasswordOn()">
+    <a class="forgot-password button button-clear button-block" style="text-decoration: underline" ng-click="recorveryPasswordOn()">
         {{ 'login.forgotPassword' | translate}}
     </a>
 </div>
 <div ng-if="recorveryPassword" class="form-container">
     <form style="width:80%;margin: 20px auto;">
         <label class="item item-input" style="border-radius: 5px;">
-            <span class="input-label">{{ 'login.email' | translate}}</span>
+            <span class="input-label" style="max-width: 60px">{{ 'login.email' | translate}}</span>
             <input type="email" autocapitalize="none" id="email-input" ng-model="request.email">
         </label>
     </form>
     <a class="button button-block enter-account" ng-click="callRecoverService()">
         {{ 'login.retrievePassword' | translate}}
     </a>
-    <a class="forgot-password button button-clear button-block" ng-click="recorveryPasswordOn()">
-        {{ 'login.haveAccount' | translate}}
+    <a class="forgot-password button button-clear button-block" style="text-decoration: underline" ng-click="recorveryPasswordOn()">
+        {{ 'commons.cancel' | translate}}
     </a>
 </div>

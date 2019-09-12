@@ -22,6 +22,10 @@ angular.module('starter').controller('MenuCtrl', function($ionicSideMenuDelegate
     };
 
     $scope.chargeOn = function () {
-        return InfoFactories.isRegionalSilver();
+        return InfoFactories.isRegionalGold();
+    }
+
+    $scope.editAccount = function() {
+        $state.go('completeRegistration', {isEdit: true});
     }
 })

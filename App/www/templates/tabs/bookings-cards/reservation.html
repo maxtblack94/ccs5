@@ -20,8 +20,8 @@
     <div ng-if='!hasPicture' class="item item-image">
         <img ng-src="{{ book.image_max ? book.image_max : 'icons/vehicle-default-l.jpg' }}">
     </div>
-    <div class="item">
-        <div class="pull-left m-right20">
+    <div class="item" ng-if='hasPicture'>
+        <!-- <div class="pull-left m-right20">
             <p>{{ 'bookings.color' | translate }}</p>
             <div class='color-cube'>
                 <div style='background-color: {{ book.colorApp }};'></div>
@@ -30,13 +30,13 @@
         <div ng-class="{'pull-left': hasPicture, 'pull-right': !hasPicture}">
             <p>{{ 'bookings.seats' | translate }}</p>
             <p class="bold" style='font-size: 20px; line-height: 26px; text-align: center;'>{{ ::book.seats }}</p>
-        </div>
+        </div> -->
         <div class="pull-right" ng-if='hasPicture'>
             <img ng-src="{{ book.image_min ? book.image_min : 'icons/vehicle-default-s.jpg' }}" style='max-width: 94px;'>
         </div>
     </div>
     <div class="item">
-        <div style='display: inline-block; margin-right: 10px;'>
+        <!-- <div style='display: inline-block; margin-right: 10px;'>
             <div class="date-select-label" style='text-align: center;'>{{ 'bookings.externalClean' | translate }}</div>
             <div class="pull-left" style='width: 50px; height: 30px; text-align: center; padding-top: 4px;'>
                 <i ng-if="book.vehicle_status == 'Ok'" class='ion-happy-outline' style='font-size: 26px; color: #fc0300;'></i>
@@ -49,7 +49,7 @@
                 <i ng-if="book.vehicle_cleanness_state == 'Ok'" class='ion-happy-outline' style='font-size: 26px; color: #fc0300;'></i>
                 <i ng-if="book.vehicle_cleanness_state != 'Ok'" class='ion-sad-outline' style='font-size: 26px; color: #fc0300;'></i>
             </div>
-        </div>
+        </div> -->
         <div class="pull-right fuel_container" ng-if="book.cmb_electric_quantity">
             <i class="fa fa-bolt elecric-icon" aria-hidden="true"></i>
             <div class="pull-right bold fuel_value">{{ ::book.cmb_electric_quantity }}</div>

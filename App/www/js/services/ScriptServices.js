@@ -1,6 +1,13 @@
 angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFactories, $state, LanguageService) {
+    
     function getXMLResource(scriptID) {
-        var scriptPath = "res/" + scriptID + ".xml";
+        var scriptPath;
+        if (window.Ionic && window.Ionic.WebView) {
+            scriptPath = window.Ionic.WebView.convertFileSrc("res/" + scriptID + ".xml");
+        } else {
+            scriptPath = "res/" + scriptID + ".xml";
+        }
+        
         return $q(function (resolve, reject) {
             $http.get(scriptPath).success(function (res) {
                 if (res) {

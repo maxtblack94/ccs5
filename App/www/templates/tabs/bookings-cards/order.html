@@ -16,8 +16,8 @@
     <div ng-if='!hasPicture' class="item item-image">
         <img ng-src="{{ book.image_max ? book.image_max : 'icons/vehicle-default-l.jpg' }}">
     </div>
-    <div class="item">
-        <div class="pull-left m-right20">
+    <div class="item" ng-if="hasPicture">
+        <!-- <div class="pull-left m-right20">
             <p>{{ 'bookings.color' | translate }}</p>
             <div class='color-cube'>
                 <div style='background-color: {{ book.colorApp }};'></div>
@@ -26,7 +26,7 @@
         <div ng-class="{'pull-left': hasPicture, 'pull-right': !hasPicture}">
             <p>{{ 'bookings.seats' | translate }}</p>
             <p class="bold" style='font-size: 20px; line-height: 26px; text-align: center;'>{{ ::book.seats }}</p>
-        </div>
+        </div> -->
         <div class="pull-right" ng-if='hasPicture'>
             <img ng-src="{{ book.image_min ? book.image_min : 'icons/vehicle-default-s.jpg' }}" style='max-width: 94px;'>
         </div>

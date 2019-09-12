@@ -17,7 +17,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
       };
       if (window.plugins && window.plugins.OneSignal) {
         window.plugins.OneSignal
-        .startInit("9e4aefd1-79ba-4ea2-b7c1-755e85dc5851")
+        .startInit("fb50572d-7de0-464c-977a-8c00b70d1ecd")
         .handleNotificationOpened(pushCallback)
         .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
         .endInit();
@@ -239,6 +239,9 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
 
       .state('completeRegistration', {
         url: '/completeRegistration',
+        params: {
+          isEdit: false
+        },
         cache: false,
         templateUrl: 'templates/completeRegistration.html',
         controller: 'CompleteRegistrationCtrl'

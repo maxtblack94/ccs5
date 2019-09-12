@@ -8,7 +8,7 @@ angular.module('starter').controller('notificationsCtrl', function($filter, $roo
         $scope.model.notificationsPending = null;
         ScriptServices.getXMLResource(635).then(function(res) {
             res = res.replace('{DRIVERNUMBER}', InfoFactories.getUserInfo().driverNumber);
-            ScriptServices.callGenericService(res, 635).then(function(data) {
+            ScriptServices.callGenericService(res, 665).then(function(data) {
                 $ionicLoading.hide();
                 $scope.model.notificationsPending = ((data.data || {}).dataList || []);
             }, function(error) {

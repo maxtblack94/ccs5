@@ -11,7 +11,7 @@ angular.module('starter').controller('AppCtrl', function(ScriptServices, InfoFac
     function getNotifications(){
         ScriptServices.getXMLResource(635).then(function(res) {
             res = res.replace('{DRIVERNUMBER}', InfoFactories.getUserInfo().driverNumber);
-            ScriptServices.callGenericService(res, 635).then(function(data) {
+            ScriptServices.callGenericService(res, 665).then(function(data) {
                 $scope.model.notificationsPending = ((data.data || {}).dataList || []);
             }, function(error) {
                 //PopUpServices.errorPopup("Non è stato possibile modificare i contatti");

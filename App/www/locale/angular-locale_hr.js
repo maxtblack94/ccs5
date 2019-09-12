@@ -91,7 +91,7 @@ window.locale_hr.commons = {
 	confirm: 'Potvrdi',
 	note: "Bilješka",
 	retry: "Pokušaj ponovno",
-	legalNotice: 'Powered by CCS | Corporare Car Solutions Italia',
+	legalNotice: 'Powered by CCS | Corporate Car Solutions Italia',
 	readMore: "Čitaj više...",
 	search: "Traži...",
 	select: "Odaberi",
@@ -114,7 +114,11 @@ window.locale_hr.commons = {
 	bleConnectionInvalidKey: 'Assicurati di aver posizionato nel portachiavi la chiave del veicolo giusto',
 	bleConnectionAlreadyProcessedRequest: 'Provjerite da li imate pravi ključ vozila u privjesku za ključeve',
 	bleConnectionNoKey: 'Provjerite je li ključ vozila u prstenastom ključu kada je vozilo zatvoreno',
-	bleSuccess: 'Operacija je uspješno okončana!'
+	bleSuccess: 'Operacija je uspješno okončana!',
+	plafond: 'Vjerovati',
+	currentPlafond: "Trenutni kredit",
+	chargePlafond: "Osvježi",
+	choosePlafond: "Odaberite dodatni iznos"
 };
 
 window.locale_hr.bookResume = {
@@ -259,7 +263,7 @@ window.locale_hr.contacts = {
 	email: "E",
 	phone: "Telefon",
 	time: "Raspored",
-	emailSubject: "Zahtjev CCS podrške #"
+	emailSubject: "Zahtjev E-VAI podrške #"
 };
 
 window.locale_hr.clientDetails = {

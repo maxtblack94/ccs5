@@ -1,5 +1,5 @@
 <ion-list>
-    <ion-item class="item-icon-right" ng-if="getUserInfo();" href="#/client-details" menu-close>
+    <ion-item class="item-icon-right" ng-if="getUserInfo();" ng-click="editAccount()" menu-close>
         <span ng-if="userInfo.registry.username">{{ 'leftMenu.username' | translate}}: {{userInfo.registry.username}}</span>
         <h2>{{userInfo.registry.first_name}} {{userInfo.registry.last_name}}</h2>
         <p>{{userInfo.registry.email}}</p>

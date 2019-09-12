@@ -1,10 +1,10 @@
-<ion-view title="{{'register.title' | translate}}">
+<ion-view title="{{isEdit ? 'register.titleEdit':'register.title' | translate}}">
     <ion-content class="mb80">
             <ion-list>
-                <ion-item class="item-divider">
+                <ion-item class="item-divider" ng-if="!isEdit">
                     <h2>{{ 'Scegli il tuo profilo di noleggio' | translate}}</h2>
                 </ion-item>
-                <div ng-repeat="service in services">
+                <div ng-repeat="service in services" ng-if="!isEdit">
                     <div ng-click="selectTarif(tarif)" ng-repeat="tarif in service.tarif" class="item item-avatar fix-item item-icon-right" ng-class="{'item-checked': currentTarif.code === tarif.code}">
                         <img ng-if="service.url" src="{{service.url}}">
                         <h2>{{service.name}}</h2>
@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 
-                <ion-item class="item-divider">
+                <ion-item class="item-divider" ng-if="!isEdit">
                     <h2>{{ 'Riferimenti' | translate}}</h2>
                 </ion-item>
                 <ion-item>
@@ -169,63 +169,63 @@
 
                 <!-- DATI FATTURAZIONE -->
                 <ion-item class="item-divider" style="white-space: inherit!important;">
-                    <h2 style="white-space: inherit!important;">{{ 'Dati di fatturazione (solo se in possesso di Partita Iva)' | translate}}</h2>
+                    <h2 style="white-space: inherit!important;">{{ 'Dati di fatturazione ' | translate}} <span ng-if="!isEdit">(solo se in possesso di Partita Iva)</span></h2> 
                 </ion-item>
-                <ion-checkbox id="datiFatt" name="datiFatt" ng-change="request.isDatiFatt === false ? request.isDittaindividuale = false: null" ng-value="true" ng-model="request.isDatiFatt">Abilita Fatturazione</ion-checkbox>
-                <ion-checkbox id="isDittaindividuale" ng-disabled="!request.isDatiFatt" name="isDittaindividuale" ng-value="true" ng-model="request.isDittaindividuale">Ditta Individuale</ion-checkbox>
-                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt">
+                <ion-checkbox ng-if="!isEdit || (isEdit && !request.fattPiva)" id="datiFatt" name="datiFatt" ng-change="request.isDatiFatt === false ? request.isDittaindividuale = false: null" ng-value="true" ng-model="request.isDatiFatt">Abilita Fatturazione</ion-checkbox>
+                <ion-checkbox ng-if="!isEdit || (isEdit && !request.fattPiva)" id="isDittaindividuale" ng-disabled="!request.isDatiFatt" name="isDittaindividuale" ng-value="true" ng-model="request.isDittaindividuale">Ditta Individuale</ion-checkbox>
+                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt || (isEdit && fattPiva)">
                     <span class="input-label">{{ 'Ragione sociale' | translate}}<span class="color-error">*</span></span>
                     <input type="text" ng-model="request.fattRagioneSociale">
                 </ion-item>
-                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt">
+                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt || (isEdit && fattPiva)">
                     <span class="input-label">{{ 'Partita IVA' | translate}}<span class="color-error">*</span></span>
                     <input type="text" ng-model="request.fattPiva">
                 </ion-item>
-                <ion-item class="item-input item-stacked-label" ng-if="request.isDittaindividuale">
+                <ion-item class="item-input item-stacked-label" ng-if="request.isDittaindividuale || (isEdit && fattCf)">
                     <span class="input-label">{{ 'Codice Fiscale' | translate}}<span class="color-error">*</span></span>
                     <input type="text" ng-model="request.fattCF">
                 </ion-item>
-                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt">
+                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt || (isEdit && fattPiva)">
                     <span class="input-label">{{ 'Indirizzo' | translate}}<span class="color-error">*</span></span>
                     <input type="text" ng-model="request.fattIndirizzo">
                 </ion-item>
-                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt">
+                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt || (isEdit && fattPiva)">
                     <span class="input-label">{{ 'CAP' | translate}}<span class="color-error">*</span></span>
                     <input type="text" ng-model="request.fattCap">
                 </ion-item>
-                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt">
+                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt || (isEdit && fattPiva)">
                     <span class="input-label">{{ 'Comune' | translate}}<span class="color-error">*</span></span>
                     <input type="text" ng-model="request.fattCity">
                 </ion-item>
-                <ion-item ng-click="selectPicklistValue('fattNation')" ng-if="request.isDatiFatt">
+                <ion-item ng-click="selectPicklistValue('fattNation')" ng-if="request.isDatiFatt || (isEdit && fattPiva)">
                     <h2>{{ 'Nazione' | translate}}<span class="color-error">*</span></h2>
                     <p ng-if="request.fattNation">{{ request.fattNation}}</p>
                     <p ng-if="!request.fattNation"> {{ 'Seleziona una nazione' | translate}} </p>
                 </ion-item>
-                <ion-item ng-click="selectPicklistValue('fattProvince')" ng-if="request.isDatiFatt">
+                <ion-item ng-click="selectPicklistValue('fattProvince')" ng-if="request.isDatiFatt || (isEdit && fattPiva)">
                     <h2>{{ 'Provincia' | translate}}<span class="color-error">*</span></h2>
                     <p ng-if="request.fattProvince">{{ request.fattProvince}}</p>
                     <p ng-if="!request.fattProvince"> {{ 'Seleziona una provincia' | translate}}</span></p>
                 </ion-item>
-                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt">
+                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt || (isEdit && fattPiva)">
                     <span class="input-label">{{ 'Codice Destinatario SDI' | translate}}<span ng-if="!request.pec" class="color-error">*</span></span>
                     <input type="text" ng-model="request.sdi">
                 </ion-item>
-                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt">
+                <ion-item class="item-input item-stacked-label" ng-if="request.isDatiFatt || (isEdit && fattPiva)">
                     <span class="input-label">{{ 'Indirizzo Pec' | translate}}<span ng-if="!request.sdi" class="color-error">*</span></span>
                     <input type="text" ng-model="request.pec">
                 </ion-item>
 
 
-                <ion-item class="item-divider">
+                <ion-item class="item-divider" ng-if="!isEdit">
                     <h2>{{ 'Promozioni' | translate}}</h2>
                 </ion-item>
-                <ion-item class="item-input item-stacked-label" ng-class="{'item-disabled': disabledPromo}">
+                <ion-item class="item-input item-stacked-label" ng-class="{'item-disabled': disabledPromo}" ng-if="!isEdit">
                     <span class="input-label">{{ 'Hai un codice promozionale?' | translate}}</span>
                     <p ng-if="disabledPromo">{{ request.promo}}</p>
-                    <input ng-if="!disabledPromo" type="text" ng-model="request.promo" placeholder="inserisci qui il codice promo">
+                    <input ng-if="!disabledPromo" type="text" ng-model="request.promo" placeholder="inserisci qui il codice promo" >
                 </ion-item>
-                <ion-item class="item-input item-stacked-label" ng-class="{'item-disabled': disabledCompany}">
+                <ion-item class="item-input item-stacked-label" ng-class="{'item-disabled': disabledCompany}" ng-if="!isEdit">
                     <span class="input-label">{{ 'Hai un codice azienda?' | translate}}</span>
                     <p ng-if="disabledCompany">{{ request.company}}</p>
                     <input ng-if="!disabledCompany" type="text" ng-model="request.company" placeholder="inserisci qui il codice azienda   ">
@@ -235,14 +235,18 @@
                 <div class="item item-divider" style="white-space: inherit;" ng-click="openUrl(item.url)">
                     <i ng-if="item.url" class="fa fa-file-pdf-o" aria-hidden="true"></i> {{item.text}}<!--  <a ng-if="item.url" href class="subdued">{{ 'commons.readMore' | translate }}</a> -->
                 </div>
-                <ion-radio ng-if="item.values.length > 1" id="{{item.id}}" name="{{item.id}}" ng-repeat="value in item.values" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-radio>
-                <ion-checkbox ng-if="item.values.length == 1" id="{{item.id}}" name="{{item.id}}" ng-repeat="value in item.values" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-checkbox>
+                <ion-radio ng-if="item.values.length > 1" id="id1_{{item.id}}" name="{{item.id}}" ng-repeat="value in item.values" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-radio>
+                <ion-checkbox ng-if="item.values.length == 1" id="id2_{{item.id}}" name="{{item.id}}" ng-repeat="value in item.values" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-checkbox>
             </ion-list>
     </ion-content>
     <div class="row footer-fixed">
         <div class="col col-80 col-offset-10">
-            <button ng-click="isValid();" class="button button-block button-balanced">
+            <button ng-if="!isEdit" ng-click="isValid();" class="button button-block button-balanced">
                 {{ 'Procedi' | translate}}
+            </button>
+
+            <button ng-if="isEdit" ng-click="isValid();" class="button button-block button-balanced">
+                {{ 'Salva Modifiche' | translate}}
             </button>
         </div>
     </div>

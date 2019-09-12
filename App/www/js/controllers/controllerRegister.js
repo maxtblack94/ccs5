@@ -28,7 +28,11 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
         }else if($scope.request.password !== $scope.request.confirmPassword ){
             PopUpServices.messagePopup('I campi password non combaciano', 'Attenzione');
         }else if($scope.request.password && !$scope.request.password.match(RegexService.getRegex().password)){
-            PopUpServices.messagePopup('La password deve contentere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola e almeno un numero', 'Attenzione');
+            PopUpServices.messagePopup('La password deve contenere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola e almeno un numero', 'Attenzione');
+        }else if(!$scope.request.accept1){
+            PopUpServices.messagePopup("E' obbligatorio leggere l'informativa E-vai", 'Attenzione');
+        }else if($scope.request.accept2 === undefined || $scope.request.accept3 === undefined || $scope.request.accept3 === undefined){
+            PopUpServices.messagePopup("E' obbligatorio valorizzare tutti i consensi", 'Attenzione');
         }else{
             createAccount();
         }
@@ -56,8 +60,14 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
                         
                     });
                     
-                }else{
+                }else if(data.retcode === 5){
                     PopUpServices.errorPopup('Email già presente nel sistema. '+ $filter('translate')('commons.retry'));
+                    $ionicLoading.hide(); 
+                }else if(data.retcode === 3){
+                    PopUpServices.errorPopup('Username già presente nel sistema. '+ $filter('translate')('commons.retry'));
+                    $ionicLoading.hide(); 
+                }else{
+                    PopUpServices.errorPopup('Si è verificato un errore. '+ $filter('translate')('commons.retry'));
                     $ionicLoading.hide(); 
                 }
                 $ionicLoading.hide();
@@ -129,5 +139,12 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
             })
         });
     }
+
+
+
+    /* var myInput = document.getElementById('confirmEmail');
+    myInput.onpaste = function(e) {
+        e.preventDefault();
+    } */
     
 })

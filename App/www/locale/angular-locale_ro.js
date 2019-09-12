@@ -87,7 +87,7 @@ window.locale_ro.commons = {
 	confirm: 'Confirmare',
 	retry: 'încercați din nou',
 	locationNotAviable: 'Pentru a putea utiliza serviciul "Start Race" / "End of Race" disponibil pe APP, este necesar să permiteți localizarea geografică a acestui smartphone. În caz contrar, nu puteți fi activat pentru serviciu.',
-	legalNotice: 'Powered by CCS | Corporare Car Solutions Italia',
+	legalNotice: 'Powered by CCS | Corporate Car Solutions Italia',
 	readMore: 'Continuați să citiți ...',
 	search: 'căutare...',
 	select: 'selecta',
@@ -104,7 +104,17 @@ window.locale_ro.commons = {
 	requestFail: "Nu am putut trimite cererea.",
 	refuse: 'Respinge',
 	accept: 'Accepta',
-	services: 'Servitiul'
+	services: 'Servitiul',
+	bleConnection: 'Vă rugăm să activați Bluetooth și încercați din nou',
+	bleConnectionGenericError: 'Ceva nu a mers bine',
+	bleSuccess: "Operațiunea a fost finalizată cu succes!",
+	bleConnectionInvalidKey: 'Asigurați-vă că aveți cheia corectă a vehiculului în breloc',
+	bleConnectionAlreadyProcessedRequest: 'Cererea de deschidere a fost deja tratată anterior',
+	bleConnectionNoKey: 'Asigurați-vă că cheia vehiculului este în inelul de cheie când vehiculul este închis',
+	plafond: 'Credit',
+	currentPlafond: "Credit actual",
+	chargePlafond: "Reîncarcă",
+	choosePlafond: "Selectați suma suplimentară"
 };
 
 window.locale_ro.bookResume = {
@@ -250,7 +260,7 @@ window.locale_ro.contacts = {
 	email: 'Email',
 	phone: 'Telefon',
 	time: 'Orar',
-	emailSubject: 'CCS Cerere de asistență #'
+	emailSubject: 'E-VAI Cerere de asistență #'
 };
 
 window.locale_ro.clientDetails = {

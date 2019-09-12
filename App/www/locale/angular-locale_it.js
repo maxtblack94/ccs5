@@ -88,7 +88,7 @@ window.locale_it.commons = {
 	confirm: 'Conferma',
 	locationNotAviable: 'Per poter utilizzare il servizio "Inizio Corsa" / "Fine Corsa" disponibile sulla nostra APP, è necessario consentire la geolocalizzazione di questo smartphone. In caso contrario non potrete essere abilitati al servizio.',
 	retry: 'Riprovare',
-	legalNotice: 'Powered by CCS | Corporare Car Solutions Italia',
+	legalNotice: 'Powered by CCS | Corporate Car Solutions Italia',
 	readMore: 'Continua a leggere...',
 	search: 'Cerca...',
 	select: 'Seleziona',
@@ -120,7 +120,7 @@ window.locale_it.commons = {
 
 window.locale_it.register = {
 	title: 'Completa registrazione',
-
+	titleEdit: 'Dati Personali'
 };
 
 window.locale_it.bookResume = {
@@ -264,9 +264,9 @@ window.locale_it.editPassword = {
 window.locale_it.contacts = {
 	title: 'Contatti',
 	email: 'Email',
-	phone: 'Telefono',
-	time: 'Orari',
-	emailSubject: 'CCS Richiesta supporto #'
+	phone: 'Numero verde H24',
+	time: 'Orari Ufficio Cadorna',
+	emailSubject: 'E-VAI Richiesta supporto #'
 };
 
 window.locale_it.clientDetails = {

@@ -4,6 +4,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
     $scope.currentTarif = undefined;
     $scope.nazioni = LovServices.getNations();
     $scope.province = LovServices.getProvinces();
+    $scope.isEdit = $state.params.isEdit;
     
 
     function getConsensi(){
@@ -38,10 +39,68 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             password: data.password,
             confirmPassword: data.password,
             promo: data.promo,
-            company: data.company
+            company: data.company,
+            mobile: data.mobile_phone,
+            birthNation: data.birth_country,
+            birthPlace: data.birth_place,
+            birthDate: data.birthday,
+            indirizzo: data.address,
+            city: data.city,
+            cap: data.zip_code,
+            nationResidence: data.residence_country,
+            shortProvinceResidence: data.residence_province,
+            fiscalCode: data.tax_code,
+            docNumber: data.document_number,
+            docEndDate: data.document_expire_date,
+            licenseNumber: data.driver_license_code,
+            licenseIssueDate: data.driver_license_date,
+            licenseEndDate: data.driver_expire_license_date,
+            licenseIssueIstitute: data.driver_license_place,
+            fattRagioneSociale: data.business_name,
+            fattPiva: data.vat_number,
+            fattCF: data.tax_code_vat,
+            fattIndirizzo: data.address_vat,
+            fattCap: data.zip_code_vat,
+            fattCity: data.city_vat,
+            fattNation: data.country_vat,
+            fattProvince: data.province_vat,
+            sdi: data.sdi_code,
+            pec: data.pec,
+            accept5: data.contract_acceptance,
+            accept6: data.clauses_1341_1342,
+            accept7: data.consumer_info
+
+
+
         };
+
+        defineDocument(data);
+        preselectTarif(data);
+
+        // da settare documentType.text vs document_type
         $scope.disabledPromo = data.promo ? true: false;
         $scope.disabledCompany = data.company ? true: false;
+    }
+
+    function defineDocument(data) {
+        var documentFound = $scope.documentsType.find(function (item) {
+            return item.code === data.document_type;
+        });
+        if (documentFound) {
+            $scope.request.documentType = documentFound;
+        }
+    }
+
+    function preselectTarif() {
+        if ($scope.isEdit) {
+            var tarifCode = InfoFactories.isRegionalGold() ? "73694" : "73695";
+            var tarifFound = $scope.services[0].tarif.find(function (item) {
+                return item.code === tarifCode;
+            });
+            if (tarifFound) {
+                $scope.currentTarif = tarifFound;
+            }
+        }
     }
 
     $scope.selectPicklistValue = function (picklist, title, subTitle) {
@@ -150,7 +209,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
         ) {
             PopUpServices.messagePopup('Compilare tutti i campi obbligatori', 'Attenzione');
         } else if($scope.request.password && !$scope.request.password.match(RegexService.getRegex().password)){
-            PopUpServices.messagePopup('La password deve contentere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola e almeno un numero', 'Attenzione');
+            PopUpServices.messagePopup('La password deve contenere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola e almeno un numero', 'Attenzione');
         } else if ($scope.request.password !== $scope.request.confirmPassword ) {
             PopUpServices.messagePopup('I campi password non combaciano', 'Attenzione');
         } else if ($scope.request.email !== $scope.request.emailConfirm) {
@@ -178,7 +237,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             PopUpServices.messagePopup('Prima di procedere accetta tutti i consensi', 'Attenzione');
         } else if($scope.request.accept5 !== 'YES' || $scope.request.accept6 !== 'YES' || $scope.request.accept7 !== 'YES') {
             PopUpServices.messagePopup('Prima di procedere accetta tutti i consensi', 'Attenzione');
-        } else if(!$scope.currentTarif) {
+        } else if(!$scope.currentTarif && !$scope.isEdit) {
             PopUpServices.messagePopup('Seleziona il profilo di noleggio', 'Attenzione');
         } else if($scope.request.nationResidence === 'ITALIA' && $scope.request.fiscalCode && !$scope.request.fiscalCode.match(RegexService.getRegex().cf)) {
             PopUpServices.messagePopup('Il codice fiscale non è valido', 'Attenzione');

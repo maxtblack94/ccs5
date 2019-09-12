@@ -9,11 +9,11 @@
           <h2>{{'settings.check1' | translate}} </h2>
           <p style='white-space: normal;'>{{'settings.check1_descr' | translate}}</p>
       </ion-toggle>
-      <ion-item class="item-icon-right" href="#/client-details">
+      <ion-item class="item-icon-right" ng-click="editAccount()">
         {{'settings.personalData' | translate}}
         <i class="icon ion-ios-person-outline"></i>
       </ion-item>
-      <ion-item class="item-icon-right" ng-if="userInfo.registry.mercuryUrl" ng-click="openLink();">
+      <ion-item class="item-icon-right" ng-click="openLink();">
         {{'settings.editPayment' | translate}}
         <i class="icon ion-card"></i>
       </ion-item>

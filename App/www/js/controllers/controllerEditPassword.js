@@ -13,7 +13,7 @@ angular.module('starter').controller('EditPasswordCtrl', function(RegexService, 
         }else if($scope.request.newPassword !== $scope.request.confirmedPassword){
             PopUpServices.errorPopup($filter('translate')('editPasssword.passwordNoMatch'), "1");
         }else if($scope.request.confirmedPassword && !$scope.request.confirmedPassword.match(RegexService.getRegex().password)){
-            PopUpServices.messagePopup('La password deve contentere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola e almeno un numero', 'Attenzione');
+            PopUpServices.messagePopup('La password deve contenere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola e almeno un numero', 'Attenzione');
         }else{
            callEditService($scope.request.newPassword);
        }

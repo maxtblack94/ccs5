@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "66532991819",
+    "firebase_url": "https://e-vai-app.firebaseio.com",
+    "project_id": "e-vai-app",
+    "storage_bucket": "e-vai-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66532991819:android:669b855b31a6c34e",
+        "android_client_info": {
+          "package_name": "it.ccsevai.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66532991819-3frqk2q7ug3asnh9udrhbi68eajl7nr7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYPPIj1j72dWDtxES_Jw5HR5x-Hg07WqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66532991819-3frqk2q7ug3asnh9udrhbi68eajl7nr7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
