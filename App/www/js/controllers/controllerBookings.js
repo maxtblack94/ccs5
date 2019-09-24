@@ -19,6 +19,18 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
             ScriptServices.callGenericService(res, 554).then(function(data) {
                 var userInfo = InfoFactories.getUserInfo();
                 userInfo.registry =  data.data.GetUser[0];
+                /** WORK AROUND */
+                /* userInfo.registry.services.push({
+                    "id": 72198,
+                    "name": "Pooling",
+                    "parkingType": "A to B Pooling",
+                    "parkingTypeCode": "PF3",
+                    "icon": "",
+                    "tarifs": []
+                  }); */
+
+
+                /** fine WA */
                 window.localStorage.setItem('userInfo', JSON.stringify(userInfo));
                 $ionicLoading.hide(); 
             }, function(error) {

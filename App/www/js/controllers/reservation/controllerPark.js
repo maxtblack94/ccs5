@@ -7,7 +7,7 @@ angular.module('starter').controller('ParkCtrl', function($ionicHistory, $stateP
         $scope.parkDirection = $stateParams.parkDirection;
         $ionicNavBarDelegate.showBackButton(false);
         $ionicLoading.show();
-        if (($scope.selectedService || {}).parkingTypeCode === 'BT2' || ($scope.selectedService || {}).parkingTypeCode === 'BT3') {
+        if (($scope.selectedService || {}).parkingTypeCode === 'BT2' || ($scope.selectedService || {}).parkingTypeCode === 'BT3' || ($scope.selectedService || {}).parkingTypeCode === 'PF3' ) {
             $scope.preselectPark.value = true;
         }
         ScriptServices.getXMLResource(512).then(function(res) {
@@ -30,15 +30,23 @@ angular.module('starter').controller('ParkCtrl', function($ionicHistory, $stateP
        } else if(!$scope.preselectPark.value) {
         ReservationService.setPark(parking);
         ReservationService.setParkB(null);
-        $state.go('reserve');
+        goReserve();
        } else if ($scope.parkDirection === 'A') {
         ReservationService.setPark(parking);
-        $state.go('reserve');
+        goReserve();
        } else if ($scope.parkDirection === 'B') {
         ReservationService.setParkB(parking);
-        $state.go('reserve');
+        goReserve();
        }
    };
+
+   function goReserve() {
+       if (($scope.selectedService || {}).parkingTypeCode === 'PF3') {
+        $state.go('pooling-reserve');
+       } else {
+        $state.go('reserve');
+       }
+   }
 
    $scope.refreshParks = function(){
        $scope.parkingList = null;

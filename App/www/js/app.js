@@ -269,6 +269,30 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
         controller: 'ReserveCtrl'
       })
 
+      .state('pooling-reserve', {
+        url: '/pooling-reserve',
+        cache: false,
+        templateUrl: 'templates/reservation/pooling/pooling-reserve.html',
+        controller: 'PoolingReserveCtrl'
+      })
+
+      .state('pooling-times', {
+        url: '/pooling-times',
+        cache: false,
+        templateUrl: 'templates/reservation/pooling/pooling-times.html',
+        controller: 'PoolingTimesCtrl'
+      })
+
+      .state('pooling-confirm', {
+        url: '/pooling-confirm',
+        cache: false,
+        params: {
+          time: null
+        },
+        templateUrl: 'templates/reservation/pooling/pooling-confirm.html',
+        controller: 'PoolingConfirmCtrl'
+      })
+
       .state('vehicles', {
         url: '/vehicles',
         cache: false,

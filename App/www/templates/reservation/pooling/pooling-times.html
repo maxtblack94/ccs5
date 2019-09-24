@@ -1,0 +1,59 @@
+<ion-view view-title="{{ 'Partenze' | translate}}">
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="back()" >
+            <i class="icon ion-ios-arrow-back"> 
+                    {{ 'commons.back' | translate}}
+            </i>
+        </button>
+    </ion-nav-buttons>
+  <ion-content class="mb80">
+    <ion-refresher pulling-text="{{ 'commons.refresh' | translate}}" on-refresh="refreshCars()">
+    </ion-refresher>
+    <ion-list>
+
+      <p ng-if='!vehicleList || vehicleList.length==0' class="message-empty">{{ 'vehicle.notFound' | translate}}</p>
+
+      <div ng-repeat='car in vehicleList' class="list card">
+        <div class="item">
+          <div class="pull-left" style="width: 65%;">
+            <h2 style='line-height: 30px; font-size: 18px;white-space: initial'>{{ 'Modello' | translate }}</h2>
+            <p>{{ car.brand_model }}</p>
+          </div>
+          <div class="pull-right">
+            <button ng-click='onSelect(car)' class="button button-positive">{{ 'vehicle.select' | translate}}</button>
+          </div>
+        </div>
+        <div class="item">
+          <div class="pull-left" style="width: 65%;">
+            <p>{{ 'vehicle.plate' | translate}}</p>
+            <h2>{{ car.plate }}</h2>
+          </div>
+          <div style='float: right;'>
+            <img ng-src="{{ car.image_min ? car.image_min : 'icons/vehicle-default-s.jpg' }}" style='max-width: 94px;'>
+          </div>
+        </div>
+        <div class="item">
+          <div class="pull-left m-right20">
+            <h2>{{ 'Data' | translate }}</h2>
+            <p class="bold">{{ car.date }}</p>
+          </div>
+          <div class="pull-right">
+            <h2>{{ 'Orario' | translate }}</h2>
+            <p class="bold price">{{ car.time }}</p>
+          </div>
+        </div>
+      </div>
+
+
+
+    </ion-list>
+
+  </ion-content>
+  <div class="row footer-fixed">
+    <div class="col col-80 col-offset-10">
+      <button ng-click="cancel();" class="button button-block button-balanced">
+        {{ 'commons.cancel' | translate}}
+      </button>
+    </div>
+  </div>
+</ion-view>
