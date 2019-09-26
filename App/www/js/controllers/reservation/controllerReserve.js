@@ -14,6 +14,10 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
         });
     }
 
+    if ($scope.selectedService && $scope.selectedService.tarifs.length === 1) {
+        $scope.selectedTarif.value = $scope.selectedService.tarifs[0];
+    }
+
     if($scope.selectedClient.vehicleType && $scope.selectedPark){
         $ionicLoading.show();
         $scope.vehicleTypeList = [];

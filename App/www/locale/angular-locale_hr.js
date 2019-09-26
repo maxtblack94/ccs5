@@ -118,7 +118,8 @@ window.locale_hr.commons = {
 	plafond: 'Vjerovati',
 	currentPlafond: "Trenutni kredit",
 	chargePlafond: "Osvježi",
-	choosePlafond: "Odaberite dodatni iznos"
+	choosePlafond: "Odaberite dodatni iznos",
+	procede: 'Procedi'
 };
 
 window.locale_hr.bookResume = {

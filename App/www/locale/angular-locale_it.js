@@ -115,7 +115,9 @@ window.locale_it.commons = {
 	plafond: 'Saldo',
 	currentPlafond: "Saldo attuale",
 	chargePlafond: "Ricarica",
-	choosePlafond: "Seleziona l’importo della ricarica"
+	choosePlafond: "Seleziona l’importo della ricarica",
+	note: 'Note',
+	procede: 'Procedi'
 };
 
 window.locale_it.register = {
@@ -216,7 +218,7 @@ window.locale_it.login = {
 	companiesMissing: '!',
 	retryCompanyCode: "Il codice azienda inserito è inesistente, riprovare!",
 	result: 'Esito Richiesta',
-	dataWrong: 'Email/Password sono errati, ',
+	dataWrong: 'Username/Password sono errati, ',
 	usernameMandatory: "Il campo username è obbligatorio",
 	passwordMandatory: "Il campo password è obbligatorio",
 	emailMandatory: "Il campo email è obbligatorio"

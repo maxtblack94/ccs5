@@ -114,7 +114,8 @@ window.locale_ro.commons = {
 	plafond: 'Credit',
 	currentPlafond: "Credit actual",
 	chargePlafond: "Reîncarcă",
-	choosePlafond: "Selectați suma suplimentară"
+	choosePlafond: "Selectați suma suplimentară",
+	procede: 'Procedi'
 };
 
 window.locale_ro.bookResume = {

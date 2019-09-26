@@ -122,7 +122,8 @@ window.locale_en.commons = {
 	plafond: "Plafond",
 	currentPlafond: "Current plafond",
 	chargePlafond: "Charge plafond",
-	choosePlafond: "Choose a plafond value and contiue"
+	choosePlafond: "Choose a plafond value and contiue",
+	procede: 'Procedi'
 };
 
 window.locale_en.bookResume = {

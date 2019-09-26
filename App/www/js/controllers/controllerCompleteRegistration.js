@@ -12,6 +12,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
         ScriptServices.getXMLResource(651).then(function(res) {
             res = res.replace('{DRIVERID}', $scope.user.driverNumber || null);
             ScriptServices.callGenericService(res, 651).then(function(data) {
+                checkIsCompanyUser(data.data);
                 $scope.acceptances = data.data.acceptances;
                 $scope.services = data.data.service;
                 $scope.documentsType = data.data.docType;
@@ -22,6 +23,27 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
                 $ionicLoading.hide();
             });
         });
+    }
+
+    function checkIsCompanyUser(data) {
+        if (data.isSuperGold) {
+            $ionicPopup.show({
+                template: "Gentile cliente, grazie per aver scelto i servizi e-Vai, la tua registrazione al servizio aziendale è andata a buon fine. Se vuoi usufruire dei servizi e-Vai anche come privato clicca su PROSEGUI in caso contrario sul tasto TERMINA",
+                title: "Attenzione",
+                cssClass: 'picklist',
+                scope: $scope,
+                buttons: [{
+                    text: '<b>'+$filter('translate')('Termina')+'</b>',
+                    type: 'button-positive',
+                    onTap: function (e) {
+                        $state.go('tab.bookings');
+                    }
+                },{
+                    text: $filter('translate')('commons.procede'),
+                    type: 'button-stable',
+                }]
+            });
+        }
     }
 
     $scope.selectTarif = function (tarif) {

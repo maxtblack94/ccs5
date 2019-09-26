@@ -217,19 +217,19 @@
                 </ion-item>
 
 
-                <ion-item class="item-divider" ng-if="!isEdit">
+                <!-- <ion-item class="item-divider" ng-if="!isEdit">
                     <h2>{{ 'Promozioni' | translate}}</h2>
                 </ion-item>
                 <ion-item class="item-input item-stacked-label" ng-class="{'item-disabled': disabledPromo}" ng-if="!isEdit">
                     <span class="input-label">{{ 'Hai un codice promozionale?' | translate}}</span>
                     <p ng-if="disabledPromo">{{ request.promo}}</p>
                     <input ng-if="!disabledPromo" type="text" ng-model="request.promo" placeholder="inserisci qui il codice promo" >
-                </ion-item>
-                <ion-item class="item-input item-stacked-label" ng-class="{'item-disabled': disabledCompany}" ng-if="!isEdit">
+                </ion-item> -->
+                <!-- <ion-item class="item-input item-stacked-label" ng-class="{'item-disabled': disabledCompany}" ng-if="!isEdit">
                     <span class="input-label">{{ 'Hai un codice azienda?' | translate}}</span>
                     <p ng-if="disabledCompany">{{ request.company}}</p>
                     <input ng-if="!disabledCompany" type="text" ng-model="request.company" placeholder="inserisci qui il codice azienda   ">
-                </ion-item>
+                </ion-item> -->
             </ion-list>
             <ion-list ng-repeat="item in acceptances | filter: { step: '2'}">
                 <div class="item item-divider" style="white-space: inherit;" ng-click="openUrl(item.url)">

@@ -15,7 +15,6 @@
     "cordova-plugin-email-composer": "git+https://github.com/katzer/cordova-plugin-email-composer.git",
     "cordova-plugin-geolocation": "2.4.3",
     "cordova-plugin-inappbrowser": "^1.7.1",
-    "cordova-plugin-ionic-webview": "^4.1.1",
     "cordova-plugin-request-location-accuracy": "^2.2.3",
     "cordova-plugin-splashscreen": "4.0.3",
     "cordova-plugin-statusbar": "2.2.1",
@@ -84,9 +83,6 @@
       "cordova.plugins.diagnostic": {},
       "cordova-plugin-ble-central": {
         "BLUETOOTH_USAGE_DESCRIPTION": "using to open car sharing cars"
-      },
-      "cordova-plugin-ionic-webview": {
-        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       }
     }
   }
