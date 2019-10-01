@@ -12,63 +12,25 @@
             <p>{{ selectedParkB ? 'bookResume.pickupStation' : 'bookResume.returnStation' | translate}}<span class="color-error">*</span></p>
             <h2><strong>{{ selectedPark.parking_name }}</strong></h2>
             <p>{{ selectedPark.address }}, {{ selectedPark.city }}</p>
-            <!-- <p ng-if="selectedPark && !selectedPark.h24">{{ 'bookResume.parkOpenedFrom' | translate}}
-                {{selectedPark.opening | date: 'HH:mm'}} {{ 'bookResume.parkOpenedTo' | translate}}
-                {{selectedPark.closing | date: 'HH:mm'}}</p>
-            <p ng-if="selectedPark && selectedPark.h24">{{ 'bookResume.parkOpened24h' | translate}}</p> -->
             <i class="icon ion-ios-navigate-outline icons-reservation"></i>
         </a>
         <a class="item item-icon-right park-item" ng-click='changeParking("B")'>
             <p>{{ 'bookResume.returnStation' | translate}}<span class="color-error">*</span></p>
             <h2><strong>{{ selectedParkB.parking_name }}</strong></h2>
             <p>{{ selectedParkB.address }}, {{ selectedParkB.city }}</p>
-            <!-- <p ng-if="selectedParkB && !selectedParkB.h24">{{ 'bookResume.parkOpenedFrom' | translate}}
-                {{selectedParkB.opening | date: 'HH:mm'}} {{ 'bookResume.parkOpenedTo' | translate}}
-                {{selectedParkB.closing | date: 'HH:mm'}}</p>
-            <p ng-if="selectedParkB && selectedParkB.h24">{{ 'bookResume.parkOpened24h' | translate}}</p> -->
             <i class="icon ion-ios-navigate-outline icons-reservation"></i>
         </a>
         <a class="item item-icon-right date-item" ng-click='selectFromDate()'>
             <p>{{ 'bookResume.dateStationFrom' | translate}}<span class="color-error">*</span></p>
-            <h2><strong>{{ dateTimeFrom | date:'dd/MM/yyyy HH:mm' }}</strong></h2>
+            <h2><strong>{{ dateTimeFrom | date:'dd/MM/yyyy' }}</strong></h2>
             <i class="icon ion-ios-calendar-outline icons-reservation"></i>
         </a>
-     <!--    <a class="item item-icon-right date-item" ng-click='selectToDate()'>
-            <p>{{ 'bookResume.dateTo' | translate}}<span class="color-error">*</span></p>
-            <h2><strong>{{ dateTimeTo | date:'dd/MM/yyyy HH:mm' }}</strong></h2>
-            <i class="icon ion-ios-calendar-outline icons-reservation"></i>
-        </a> -->
-
-        <!-- <ion-toggle ng-show="selectedClient.cc && selectedService.parkingTypeCode !== 'BT2'" ng-model="cc" ng-click='setHasCC(cc);'
-            toggle-class="toggle-positive">
-            <h2>{{ 'bookResume.cc' | translate}}</h2>
-            <p>{{ 'bookResume.cc_descr' | translate}}</p>
-        </ion-toggle>
-        <ion-toggle ng-show="selectedClient.telepass && selectedService.parkingTypeCode !== 'BT2'" ng-model="telepass"
-            toggle-class="toggle-positive" ng-click='setHasTelepass(telepass)'>
-            <h2>{{ 'bookResume.telepass' | translate}}</h2>
-            <p>{{ 'bookResume.telepass_descr' | translate}}</p>
-        </ion-toggle> -->
+        <a class="item item-icon-right date-item" ng-click='selectFromDate()'>
+            <p>{{ 'bookResume.dateStationFrom' | translate}}<span class="color-error">*</span></p>
+            <h2><strong>{{ dateTimeFrom | date:'dd/MM/yyyy HH:mm' }}</strong></h2>
+            <i class="icon ion-clock"></i>
+        </a>
     </div>
-    <!-- <div class="typologie" ng-if='selectedClient.vehicleType && vehicleTypeList && selectedService.parkingTypeCode !== "BT2"'>
-        <p>{{ 'bookResume.vehicleType' | translate}} <span class="color-error">*</span></p>
-        <ion-list>
-            <ion-radio ng-repeat='type in vehicleTypeList' name="vehicleType" ng-model="vehicleType.value" ng-value="type.code">{{type.text }}</ion-radio>
-        </ion-list>
-    </div>
-    <div class="typologie" ng-if='selectedClient.drivingRange && selectedService.parkingTypeCode !== "BT2"'>
-        <p>{{ 'bookResume.drivingRange' | translate }}<span class="color-error">*</span></p>
-        <ion-list>
-            <ion-radio ng-repeat='range in listDriverRange' name="driverRange" ng-model="driverRange.value" ng-value="range">{{range.text}}</ion-radio>
-        </ion-list>
-    </div>
-    <div class="typologie" ng-if="selectedService.tarifs.length">
-        <p>{{ 'bookings.tarif' | translate }} <span class="color-error">*</span></p>
-        <ion-list>
-            <ion-radio ng-repeat='tarif in selectedService.tarifs' id="{{tarif.code}}" name="{{tarif.code}}" ng-model="selectedTarif.value"
-                ng-value="tarif">{{tarif.text}}</ion-radio>
-        </ion-list>
-    </div> -->
 </ion-content>
 <div class="row footer-fixed">
     <div class="col col-50">

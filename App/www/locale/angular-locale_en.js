@@ -154,10 +154,10 @@ window.locale_en.bookResume = {
 	pickupReturnlabel: "Pick-up/Return Parking",
 	pickupPark : "Pick-up Parking",
 	returnPark : "Return Parking",
-	pickupStation : "Fermata di partenza",
-	returnStation : "Fermata di arrivo",
-	dateStationFrom: "Data di partenza",
-	confirmStation: "Scopri orari",
+	pickupStation : "Fermata di Partenza",
+	returnStation : "Fermata di Arrivo",
+	dateStationFrom: "Data di Partenza",
+	confirmStation: "Scopri Orari",
 	subscriptionIncompatible: "The reservation time is not compatible with your tarif"
 };
 

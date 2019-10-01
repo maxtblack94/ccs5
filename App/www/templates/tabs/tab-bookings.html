@@ -5,7 +5,7 @@
   <ion-content>
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshBookings()">
     </ion-refresher>
-    <!-- <p ng-if='BookingsList && BookingsList.length==0' class="message-empty">{{ 'bookings.notFound' | translate }}</p> -->
+    <p ng-if='BookingsList && BookingsList.length==0' class="message-empty">{{ 'bookings.notFound' | translate }}</p>
     <!-- MOCK PRENOTAZIONE -->
 
     <div class="list card">
@@ -28,25 +28,17 @@
             <div class="pull-left">
                 <h2>{{ 'bookResume.pickupStation' | translate }}</h2>
                 <p>Roma, Piazzale dell'industria</p>
+                <!-- <p>10/10/2019 11.30</p> -->
             </div>
-            <p class="pull-right value">{{ ::book.dateTimeFrom | date:'dd/MM/yyyy HH:mm' }}</p>
+            <p class="pull-right value">10/10/2019 11.30</p>
         </div>
         <div class="item">
             <div class="pull-left">
                 <h2>{{ 'bookResume.returnStation' | translate }}</h2>
                 <p>Roma, Piazzale dello Sport</p>
+                <!-- <p>10/10/2019 12.30</p> -->
             </div>
-            <p class="pull-right value">{{ ::book.dateTimeTo | date:'dd/MM/yyyy HH:mm' }}</p>
-        </div>
-        <div class="item">
-            <div class="pull-left m-right20">
-                <h2>{{ 'Data' | translate }}</h2>
-                <p class="bold">10/10/2019</p>
-            </div>
-            <div class="pull-right">
-                <h2>{{ 'Orario' | translate }}</h2>
-                <p class="bold price">11.30</p>
-            </div>
+            <p class="pull-right value">10/10/2019 12.30</p>
         </div>
         <div class="item text-center">
             <button ng-click='delete(book)' class="button button-block button-positive ">
