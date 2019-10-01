@@ -156,7 +156,8 @@ window.locale_it.bookResume = {
 	returnStation : "Fermata di Arrivo",
 	dateStationFrom: "Data di Partenza",
 	confirmStation: "Scopri Orari",
-	subscriptionIncompatible: "L'orario della prenotazione non è compatibile con la tariffa scelta"
+	subscriptionIncompatible: "L'orario della prenotazione non è compatibile con la tariffa scelta",
+	timeStationFrom: 'Orario di Partenza'
 };
 
 window.locale_it.map = {

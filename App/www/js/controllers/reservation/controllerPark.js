@@ -15,6 +15,12 @@ angular.module('starter').controller('ParkCtrl', function($ionicHistory, $stateP
             res = res.replace('{DRIVER_NUMBER}', driverNumber);
             ScriptServices.callGenericService(res, 512).then(function(data) {
                 $scope.parkingList = data.data.ParkingsList || [];
+
+                if ($scope.parkDirection === 'B') {
+                    $scope.parkingList = $scope.parkingList.filter(function (item) {
+                        return item.position > $scope.selectedPark.position;
+                    });
+                }
                 $ionicLoading.hide();
             }, function(error) {
                 $ionicLoading.hide();

@@ -1,7 +1,8 @@
-angular.module('starter').controller('PoolingReserveCtrl', function(ReservationService, $ionicHistory, ManipolationServices, $filter, ScriptServices, $timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, PopUpServices) {
+angular.module('starter').controller('PoolingReserveCtrl', function($ionicPopup, ReservationService, $ionicHistory, ManipolationServices, $filter, ScriptServices, $timeout, $cordovaDatePicker, $scope, InfoFactories, $state, $ionicLoading, PopUpServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope = Object.assign($scope, ReservationService.instance);
     $scope.selectedTarif.value = {};
+    $scope.request = {};
 
     $scope.searchVehicle = function() {
         console.log('cerca veicoli');
@@ -16,6 +17,37 @@ angular.module('starter').controller('PoolingReserveCtrl', function(ReservationS
             }
          /*    
         } */
+    };
+
+    $scope.selectPicklistValue = function (picklist, title, subTitle) {
+        var templateUrl = "templates/picklists/timesList.html";
+
+        $ionicPopup.show({
+            templateUrl: templateUrl,
+            title: title,
+            subTitle: subTitle,
+            cssClass: 'picklist',
+            scope: $scope,
+            buttons: [{
+                text: $filter('translate')('commons.cancel'),
+                type: 'button-stable',
+            }, {
+                text: '<b>'+$filter('translate')('commons.save')+'</b>',
+                type: 'button-positive',
+                onTap: function (e) {
+                    if (!$scope.request.picklistValue) {
+                        $scope.request.picklistValue = null;
+                        e.preventDefault();
+                    } else {
+                        $scope.request[picklist] = $scope.request.picklistValue;
+                        $scope.request.picklistValue = null;
+                        if (picklist === 'timeFrom') {
+                            ReservationService.setTimeFrom($scope.request[picklist]);
+                        }
+                    }
+                }
+            }]
+        });
     };
 
 
@@ -105,7 +137,7 @@ angular.module('starter').controller('PoolingReserveCtrl', function(ReservationS
         
     }
  */
-    function fixDateTime (date, time, type){
+    /* function fixDateTime (date, time, type){
         var hours = new Date(time).getHours();
         var minutes = new Date(time).getMinutes();
         var newDate = new Date(date).setHours(hours,minutes,0,0);
@@ -122,7 +154,7 @@ angular.module('starter').controller('PoolingReserveCtrl', function(ReservationS
             $scope.dateTimeFrom = newDate;
             ReservationService.setDateTimeFrom($scope.dateTimeFrom);
         }
-    }
+    } */
 
     $scope.selectFromDate = function() {
         var dateFromConfig = {
@@ -140,13 +172,14 @@ angular.module('starter').controller('PoolingReserveCtrl', function(ReservationS
         $cordovaDatePicker.show(dateFromConfig).then(function(date) {
             if(date){
                 $timeout(function() {
-                    selectFromTime(date);
+                    $scope.dateFrom = date;
+                    ReservationService.setDateFrom(date);
                 }, 300);
             }            
         });
     };
     
-    function selectFromTime (date) {
+    /* function selectFromTime (date) {
         var timeFromConfig = {
             date: $scope.dateTimeFrom ? new Date($scope.dateTimeFrom) : new Date(),
             mode: 'time',
@@ -165,9 +198,9 @@ angular.module('starter').controller('PoolingReserveCtrl', function(ReservationS
                 fixDateTime(date, time, 'from');
             }
         });
-    }
+    } */
 
-    $scope.selectToDate = function() {
+    /* $scope.selectToDate = function() {
             
         var dateToConfig = {
             date: $scope.dateTimeFrom ? new Date($scope.dateTimeFrom) : $scope.dateTimeTo ? new Date($scope.dateTimeTo) : new Date(),
@@ -188,9 +221,9 @@ angular.module('starter').controller('PoolingReserveCtrl', function(ReservationS
                 }, 500)
             }
         });
-    };
+    }; */
     
-    function selectToTime (date) {
+    /* function selectToTime (date) {
         var timeToConfig = {
             date: $scope.dateTimeFrom ? new Date($scope.dateTimeFrom) : $scope.dateTimeTo ? new Date($scope.dateTimeTo) : new Date(),
             mode: 'time',
@@ -210,7 +243,7 @@ angular.module('starter').controller('PoolingReserveCtrl', function(ReservationS
             }
         });
 
-    }
+    } */
 
     $scope.cancel = function () {
         ReservationService.resetReservation();

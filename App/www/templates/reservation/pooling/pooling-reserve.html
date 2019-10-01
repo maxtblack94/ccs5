@@ -22,12 +22,12 @@
         </a>
         <a class="item item-icon-right date-item" ng-click='selectFromDate()'>
             <p>{{ 'bookResume.dateStationFrom' | translate}}<span class="color-error">*</span></p>
-            <h2><strong>{{ dateTimeFrom | date:'dd/MM/yyyy' }}</strong></h2>
+            <h2><strong>{{ dateFrom | date:'dd/MM/yyyy' }}</strong></h2>
             <i class="icon ion-ios-calendar-outline icons-reservation"></i>
         </a>
-        <a class="item item-icon-right date-item" ng-click='selectFromDate()'>
-            <p>{{ 'bookResume.dateStationFrom' | translate}}<span class="color-error">*</span></p>
-            <h2><strong>{{ dateTimeFrom | date:'dd/MM/yyyy HH:mm' }}</strong></h2>
+        <a class="item item-icon-right date-item" ng-click="selectPicklistValue('timeFrom', 'Orario', 'Scegli orario di partenza')">
+            <p>{{ 'bookResume.timeStationFrom' | translate}}<span class="color-error">*</span></p>
+            <h2><strong>{{ request.timeFrom }}</strong></h2>
             <i class="icon ion-clock"></i>
         </a>
     </div>

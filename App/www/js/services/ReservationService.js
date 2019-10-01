@@ -12,6 +12,8 @@ angular.module('starter').factory("ReservationService", function($ionicPopup, $f
     this.preselectPark = {value : false},
     this.dateTimeFrom = window.serverRootLocal ? "2019-06-12T10:20:15.120Z" : undefined,
     this.dateTimeTo = window.serverRootLocal ? "2019-06-12T11:20:30.120Z" : undefined;
+    this.dateFrom = window.serverRootLocal ? "2019-06-12" : undefined;
+    this.timeFrom = window.serverRootLocal ? "11:20" : undefined;
 
     function resetReservation() {
         self.selectedService = undefined;
@@ -25,6 +27,8 @@ angular.module('starter').factory("ReservationService", function($ionicPopup, $f
         self.vehicleType = {"value":{"text":"","code":""}};
         self.dateTimeFrom = window.serverRootLocal ? "2019-06-12T00:21:15.120Z" : null;
         self.dateTimeTo = window.serverRootLocal ? "2019-06-12T00:21:30.120Z" : null;
+        self.dateFrom = window.serverRootLocal ? "2019-06-12" : undefined;
+        self.timeFrom = window.serverRootLocal ? "11:20" : undefined;
     }
 
     return {
@@ -77,6 +81,12 @@ angular.module('starter').factory("ReservationService", function($ionicPopup, $f
         },
         setDateTimeTo: function (dateTimeTo) {
             self.dateTimeTo = dateTimeTo;
+        },
+        setDateFrom: function (dateFrom) {
+            self.dateFrom = dateFrom;
+        },
+        setTimeFrom: function (timeFrom) {
+            self.timeFrom = timeFrom;
         },
         setTarif: function (tarif) {
             self.selectedTarif = tarif;

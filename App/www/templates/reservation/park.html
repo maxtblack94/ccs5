@@ -26,7 +26,7 @@
                     </div>
                 </label>
             </li>
-            <li ng-repeat="parking in parkingList | orderBy: 'position' | filter: position > 2   | filter:searchVal" ng-click='selectParking(parking)'
+            <li ng-repeat="parking in parkingList | orderBy: 'position' | filter:searchVal" ng-click='selectParking(parking)'
                 class="item" style='overflow: auto;'>
                 <div>
                     <h2>{{ parking.parking_name }}</h2>

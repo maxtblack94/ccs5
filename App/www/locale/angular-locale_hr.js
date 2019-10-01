@@ -144,7 +144,12 @@ window.locale_hr.bookResume = {
 	pickupReturnlabel: "Parking za preuzimanje / povratak",
 	pickupPark : "Parking za preuzimanje",
 	returnPark : "Return Parking",
-	subscriptionIncompatible: "Vrijeme rezervacije nije kompatibilno s vašom tarifom"
+	subscriptionIncompatible: "Vrijeme rezervacije nije kompatibilno s vašom tarifom",
+	pickupStation : "Fermata di Partenza",
+	returnStation : "Fermata di Arrivo",
+	dateStationFrom: "Data di Partenza",
+	confirmStation: "Scopri Orari",
+	timeStationFrom: 'Orario di Partenza'
 };
 
 window.locale_hr.map = {
