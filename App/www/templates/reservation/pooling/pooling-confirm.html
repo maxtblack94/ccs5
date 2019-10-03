@@ -27,9 +27,9 @@
         <ion-item>
             <div class="pull-left">
                 <h2>{{ 'bookResume.pickupStation' | translate }}</h2>
-                <p>{{ selectedPark.parking_name }}</p>
+                <p>{{ selectedPark.parking_name }} </p>
             </div>
-            <p class="pull-right value">{{ dateTimeFrom | date:'dd/MM/yyyy HH:mm' }}</p>
+            <p class="pull-right value">{{ selectedCar.date}} {{selectedCar.time}}</p>
             </div>
         </ion-item>
         <ion-item>
@@ -37,9 +37,9 @@
                 <h2>{{ 'bookResume.returnStation' | translate }}</h2>
                 <p>{{ (selectedParkB || selectedPark).parking_name}}</p>
             </div>
-            <p class="pull-right value">{{ dateTimeTo | date:'dd/MM/yyyy HH:mm' }}</p>
+            <!-- <p class="pull-right value">{{ dateTimeTo | date:'dd/MM/yyyy HH:mm' }}</p> -->
         </ion-item>
-        <div class="item">
+        <!-- <div class="item">
             <div class="pull-left m-right20">
                 <h2>{{ 'Data' | translate }}</h2>
                 <p class="bold">{{selectedCar.date}}</p>
@@ -48,7 +48,7 @@
                 <h2>{{ 'Orario' | translate }}</h2>
                 <p class="bold price">{{selectedCar.time}}</p>
             </div>
-        </div>
+        </div> -->
 
 
     </ion-list>

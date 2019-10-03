@@ -23,7 +23,7 @@ scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
             <m:properties>
               <d:Id m:type="Edm.Int32">0</d:Id>
               <d:Name>driverID</d:Name>
-              <d:Value>4324234234</d:Value>
+              <d:Value>{NUMBER_DRIVER}</d:Value>
             </m:properties>
           </content>
         </entry>
@@ -37,7 +37,7 @@ scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
             <m:properties>
               <d:Id m:type="Edm.Int32">0</d:Id>
               <d:Name>codiceViaggio</d:Name>
-              <d:Value>4324234234</d:Value>
+              <d:Value>{TRAVELNR}</d:Value>
             </m:properties>
           </content>
         </entry>
@@ -51,7 +51,7 @@ scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
             <m:properties>
               <d:Id m:type="Edm.Int32">0</d:Id>
               <d:Name>fermataP</d:Name>
-              <d:Value>45191</d:Value>
+              <d:Value>{PARKA}</d:Value>
             </m:properties>
           </content>
         </entry>
@@ -65,7 +65,7 @@ scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
             <m:properties>
               <d:Id m:type="Edm.Int32">0</d:Id>
               <d:Name>fermataA</d:Name>
-              <d:Value>45191</d:Value>
+              <d:Value>{PARKB}</d:Value>
             </m:properties>
           </content>
         </entry>
@@ -79,7 +79,7 @@ scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
             <m:properties>
               <d:Id m:type="Edm.Int32">0</d:Id>
               <d:Name>dataDa</d:Name>
-              <d:Value>30/09/2019</d:Value>
+              <d:Value>{DATE_FROM}</d:Value>
             </m:properties>
           </content>
         </entry>
@@ -93,7 +93,7 @@ scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
             <m:properties>
               <d:Id m:type="Edm.Int32">0</d:Id>
               <d:Name>orada</d:Name>
-              <d:Value>10:00</d:Value>
+              <d:Value>{TIME_FROM}</d:Value>
             </m:properties>
           </content>
         </entry>

@@ -42,26 +42,16 @@ angular.module('starter').controller('PoolingConfirmCtrl', function(ReservationS
     };
 
     function reserve(params) {
-        $state.go('tab.bookings');
-        /* $ionicLoading.show();
-        ScriptServices.getXMLResource(514).then(function(res) {
+        $ionicLoading.show();
+        ScriptServices.getXMLResource(671).then(function(res) {
             var driverNumber = InfoFactories.getUserInfo().driverNumber;
-            res = res.replace('{NUMBER_VEHICLE}', $scope.selectedCar.Nr)
+            res = res.replace('{TRAVELNR}', $scope.selectedCar.Nr)
             .replace('{NUMBER_DRIVER}', driverNumber)
-            .replace('{DATE_FROM}', moment($scope.dateTimeFrom ).format('DD/MM/YYYY'))
-            .replace('{DATE_TO}', moment($scope.dateTimeTo).format('DD/MM/YYYY'))
-            .replace('{TIME_FROM}', moment($scope.dateTimeFrom).format('HH:mm'))
-            .replace('{TIME_TO}', moment($scope.dateTimeTo).format('HH:mm'))
-            .replace('{PLACE}', place)
-            .replace('{JUSTIFICATION}', justifyCode)
-            .replace('{CC}', cc || false)
-            .replace('{TELEPASS}', telepass || false)
+            .replace('{DATE_FROM}', $scope.selectedCar.date)
+            .replace('{TIME_FROM}', $scope.selectedCar.time)
             .replace('{PARKA}', $scope.selectedPark.Nr)
             .replace('{PARKB}', ($scope.selectedParkB || {}).Nr || $scope.selectedPark.Nr)
-            .replace('{IMPORTOPRESUNTO}', $scope.selectedCar.importoPresunto || 0)
-            .replace('{SERVICEID}', $scope.selectedService.id)
-            .replace('{TARIFFAID}', (($scope.selectedTarif || {}).value || {}).id || null);
-            ScriptServices.callGenericService(res, 514).then(function(data) {
+            ScriptServices.callGenericService(res, 671).then(function(data) {
                 $ionicLoading.hide();
                 InfoFactories.setDateTimeFrom();
                 InfoFactories.setDateTimeTo();
@@ -78,51 +68,14 @@ angular.module('starter').controller('PoolingConfirmCtrl', function(ReservationS
                 $ionicLoading.hide();
                 PopUpServices.errorPopup($filter('translate')('commons.retry'));
             });
-        }); */
+        });
     }
 
     $scope.back = function (params) {
         $ionicHistory.goBack();
      };
 
-    function regionalReserve() {
-        $ionicLoading.show();
-        ScriptServices.getXMLResource(642).then(function(res) {
-            var driverNumber = InfoFactories.getUserInfo().driverNumber;
-            res = res.replace('{MODEL}', $scope.selectedCar.id)
-            .replace('{NUMBER_DRIVER}', driverNumber)
-            .replace('{DATE_FROM}', moment($scope.dateTimeFrom ).format('DD/MM/YYYY'))
-            .replace('{DATE_TO}', moment($scope.dateTimeTo).format('DD/MM/YYYY'))
-            .replace('{TIME_FROM}', moment($scope.dateTimeFrom).format('HH:mm'))
-            .replace('{TIME_TO}', moment($scope.dateTimeTo).format('HH:mm'))
-            .replace('{SERVICE}', $scope.selectedService.id)
-            .replace('{TARIFFAID}', $scope.selectedTarif.value.id)
-            .replace('{PARKA}', $scope.selectedPark.Nr)
-            .replace('{PARKB}', ($scope.selectedParkB || {}).Nr || $scope.selectedPark.Nr)
-            .replace('{DRIVERRANGE}', $scope.driverRange.value.code || 'short')
-            /* .replace('{SEAT}', $scope.selectedSeats || 1)
-            .replace('{BAGS}', $scope.selectedBags || 1) */
-            .replace('{NOTE}', $scope.request.note || '')
-            .replace('{IMPORTOPRESUNTO}', $scope.selectedCar.importoPresunto || 0);
-            ScriptServices.callGenericService(res, 642).then(function(data) {
-                $ionicLoading.hide();
-                $scope.PNRstring = data.data.PNRstring[0].PNR;
-                $scope.isConfirmed = true;
-                var pnrPopup = $ionicPopup.alert({
-                    title: $filter('translate')('confirmReservation.requestComplete'),
-                    template: $filter('translate')('confirmReservation.pnr') + ': <b>' + $scope.PNRstring + '</b>'
-                });
-                pnrPopup.then(function(res) {
-                    $state.go('tab.bookings');
-                });
-            }, function(error) {
-                $ionicLoading.hide();
-                PopUpServices.errorPopup($filter('translate')('commons.retry'));
-            });
-        });
-    }
-
-    $scope.getService = function(serviceID) {
+    /* $scope.getService = function(serviceID) {
         var service = $scope.userInfo.registry.services.find(function (serviceItem) {
             return serviceItem.id === serviceID;
         });
@@ -138,7 +91,7 @@ angular.module('starter').controller('PoolingConfirmCtrl', function(ReservationS
             });
         }
         return tarif || {};
-    };
+    }; */
 
     $scope.cancel = function () {
         ReservationService.resetReservation();

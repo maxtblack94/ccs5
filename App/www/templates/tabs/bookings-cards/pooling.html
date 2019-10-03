@@ -1,0 +1,42 @@
+<div class="list card">
+    <div class="item" ng-click="openBooking(book)" ng-if="selectedClient.map">
+        <p class="pull-left bold">{{ 'bookings.pnr' | translate }}</p>
+        <h2 class="pull-right bold pnr" ng-click='openBooking(book)'><i class="ion-ios-location"></i> {{ ::book.pnr }}</h2>
+    </div>
+    <div class="item" ng-if="!selectedClient.map">
+        <p class="pull-left bold">{{ 'bookings.pnr' | translate }}</p>
+        <h2 class="pull-right bold pnr"> {{ ::book.pnr }}</h2>
+    </div>
+    <div class="item">
+        <div class="pull-left m-right20">
+            <h2 class="brand_model">{{ book.brand_model }}</h2>
+            <p>{{ 'bookings.plate' | translate }}</p>
+            <h2>{{ book.plate }}</h2>
+        </div>
+        <div class="pull-right">
+            <img ng-src="{{ book.image_min ? book.image_min : 'icons/vehicle-default-s.jpg' }}" style='max-width: 94px;'>
+        </div>
+    </div>
+        
+    <div class="item">
+        <div class="pull-left">
+            <h2>{{ 'bookResume.pickupStation' | translate }}</h2>
+            <p>{{book.pickup_parking}}</p>
+            <p>{{book.pickup_time | date:'dd/MM/yyyy HH:mm'}}</p>
+        </div>
+        <!-- <p class="pull-right value"> {{book.pickup_time | date:'dd/MM/yyyy HH:mm'}}</p> -->
+    </div>
+    <div class="item">
+        <div class="pull-left">
+            <h2>{{ 'bookResume.returnStation' | translate }}</h2>
+            <p>{{book.return_parking}}</p>
+            <p>{{book.return_time | date:'dd/MM/yyyy HH:mm'}}</p>
+        </div>
+        <!-- <p class="pull-right value">{{book.return_time | date:'dd/MM/yyyy HH:mm'}}</p> -->
+    </div>
+    <div class="item text-center">
+        <button ng-click='delete(book)' class="button button-block button-positive ">
+            <i class="icon ion-ios-trash"></i> {{ 'bookings.cancelReservation' | translate }}
+        </button>
+    </div>
+</div>

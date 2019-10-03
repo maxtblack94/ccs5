@@ -16,9 +16,9 @@
       <div ng-repeat='car in vehicleList' class="list card">
         <div class="item">
           <div class="pull-left m-right20">
-            <h2 class="brand_model">Fiat Punto</h2>
+            <h2 class="brand_model">{{car.brand_model}}</h2>
             <p>Targa</p>
-            <h2>BJ853HE</h2>
+            <h2>{{car.plate}}</h2>
           </div>
           <div class="pull-right">
             <button ng-click='onSelect(car)' class="button button-positive">{{ 'vehicle.select' | translate}}</button>
@@ -27,8 +27,8 @@
         <div class="item">
           <div class="pull-left">
             <h2>{{ 'bookResume.pickupStation' | translate }}</h2>
-            <p>Roma, Piazzale dell'industria</p>
-            <span class="bold" style="float: left">10/10/2019</span>  <span class="bold price" style="float: left; margin-left: 5px">11.30</span>
+            <p>{{ selectedPark.address }}, {{ selectedPark.city }}</p>
+            <span class="bold" style="float: left">{{car.date}}</span>  <span class="bold price" style="float: left; margin-left: 5px">{{car.time}}</span>
         </div>
           <div style='float: right;'>
             <img ng-src="{{ car.image_min ? car.image_min : 'icons/vehicle-default-s.jpg' }}" style='max-width: 94px;'>

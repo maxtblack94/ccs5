@@ -6,53 +6,13 @@
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshBookings()">
     </ion-refresher>
     <p ng-if='BookingsList && BookingsList.length==0' class="message-empty">{{ 'bookings.notFound' | translate }}</p>
-    <!-- MOCK PRENOTAZIONE -->
 
-    <div class="list card">
-        <div class="item">
-            <p class="pull-left bold">{{ 'bookings.pnr' | translate }}</p>
-            <h2 class="pull-right bold pnr"> BK321JSO32112L82 </h2>
-        </div>
-        <div class="item">
-            <div class="pull-left m-right20">
-                <h2 class="brand_model">Fiat Punto</h2>
-                <p>Targa</p>
-                <h2>BJ853HE</h2>
-            </div>
-            <div class="pull-right">
-                <img ng-src="{{ book.image_min ? book.image_min : 'icons/vehicle-default-s.jpg' }}" style='max-width: 94px;'>
-            </div>
-        </div>
-            
-        <div class="item">
-            <div class="pull-left">
-                <h2>{{ 'bookResume.pickupStation' | translate }}</h2>
-                <p>Roma, Piazzale dell'industria</p>
-                <!-- <p>10/10/2019 11.30</p> -->
-            </div>
-            <p class="pull-right value">10/10/2019 11.30</p>
-        </div>
-        <div class="item">
-            <div class="pull-left">
-                <h2>{{ 'bookResume.returnStation' | translate }}</h2>
-                <p>Roma, Piazzale dello Sport</p>
-                <!-- <p>10/10/2019 12.30</p> -->
-            </div>
-            <p class="pull-right value">10/10/2019 12.30</p>
-        </div>
-        <div class="item text-center">
-            <button ng-click='delete(book)' class="button button-block button-positive ">
-                <i class="icon ion-ios-trash"></i> {{ 'bookings.cancelReservation' | translate }}
-            </button>
-        </div>
-    </div>
-
-    <!-- MOCK PRENOTAZIONE -->
     <ion-list ng-if="BookingsList && BookingsList.length">
       
         <div ng-repeat='book in BookingsList'>
-            <ng-include src="'templates/tabs/bookings-cards/reservation.html'" ng-if="book.status !== 'Registered'"></ng-include>
-            <ng-include src="'templates/tabs/bookings-cards/order.html'" ng-if="book.status === 'Registered'"></ng-include>
+            <!-- <ng-include src="'templates/tabs/bookings-cards/reservation.html'" ng-if="book.status !== 'Registered'"></ng-include>
+            <ng-include src="'templates/tabs/bookings-cards/order.html'" ng-if="book.status === 'Registered'"></ng-include> -->
+            <ng-include src="'templates/tabs/bookings-cards/pooling.html'"></ng-include>
         </div>
     </ion-list>
   </ion-content>
