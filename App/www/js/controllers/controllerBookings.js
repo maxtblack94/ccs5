@@ -274,7 +274,7 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
         if (interactionData.resultStatus === 'KO') {
             PopUpServices.errorPopup(interactionData.errorMessage ,'1');
         } else {
-            PopUpServices.errorPopup(filter('translate')('commons.bleSuccess'),'2');
+            PopUpServices.errorPopup($filter('translate')('commons.bleSuccess'),'2');
         }
         $ionicLoading.hide();
         $scope.refreshBookings();
