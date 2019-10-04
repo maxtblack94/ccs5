@@ -1,7 +1,7 @@
 
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
-  <ion-tab title="{{ 'tabs.reservations' | translate}}" icon-off="ion-ios-calendar-outline" icon-on="ion-ios-calendar" href="#/tab/bookings">
+  <ion-tab title="{{ userInfo.registry.badge_type === 'driver' ? 'Turni':'tabs.reservations' | translate}}" icon-off="ion-ios-calendar-outline" icon-on="ion-ios-calendar" href="#/tab/bookings">
     <ion-nav-view name="tab-bookings"></ion-nav-view>
   </ion-tab>
   

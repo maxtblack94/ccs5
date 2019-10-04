@@ -1,5 +1,5 @@
-<ion-view view-title="{{ 'bookings.title' | translate }}">
-  <div fab ng-click='goToNewTrack()'>
+<ion-view view-title="{{ userInfo.registry.badge_type === 'driver' ? 'Turni': 'bookings.title' | translate }}">
+  <div fab ng-click='goToNewTrack()' ng-if="userInfo.registry.badge_type !== 'driver'">
     <div class='ion-android-add'></div>
   </div>
   <ion-content>
@@ -8,8 +8,9 @@
     <p ng-if='BookingsList && BookingsList.length==0' class="message-empty">{{ 'bookings.notFound' | translate }}</p>
     <ion-list ng-if="BookingsList && BookingsList.length">
         <div ng-repeat='book in BookingsList'>
-            <ng-include src="'templates/tabs/bookings-cards/reservation.html'" ng-if="book.status !== 'Registered'"></ng-include>
-            <ng-include src="'templates/tabs/bookings-cards/order.html'" ng-if="book.status === 'Registered'"></ng-include>
+            <ng-include src="'templates/tabs/bookings-cards/reservation.html'" ng-if="userInfo.registry.badge_type !== 'driver' && book.status !== 'Registered'"></ng-include>
+            <ng-include src="'templates/tabs/bookings-cards/order.html'" ng-if="userInfo.registry.badge_type !== 'driver' && book.status === 'Registered'"></ng-include>
+            <ng-include src="'templates/tabs/bookings-cards/pooling-turn.html'" ng-if="userInfo.registry.badge_type === 'driver'"></ng-include>
         </div>
     </ion-list>
   </ion-content>

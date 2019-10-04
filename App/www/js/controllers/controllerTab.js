@@ -1,5 +1,6 @@
 angular.module('starter').controller('TabCtrl', function(PushEventsService, ScriptServices, InfoFactories, PopUpServices, $state, $scope) {
     $scope.selectedClient = InfoFactories.getClientSelected();
+    $scope.userInfo = InfoFactories.getUserInfo();
     $scope.$on('pushNotificationEvent', function(event, notificationData) {
         manipolateEvents(notificationData);
     });
