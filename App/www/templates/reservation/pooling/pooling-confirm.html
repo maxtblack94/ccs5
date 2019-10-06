@@ -12,9 +12,10 @@
 <ion-content class="mb80">
     <ion-list>
         <ion-item>
-            <div class="pull-left m-right20" style="width: 70%">
-                <h2 class="brand_model">{{ 'vehicle.model' | translate }}</h2>
-                <p>{{ selectedCar.brand_model }}</p>
+            <div class="pull-left" style="width: 70%">
+                <h2 class="brand_model">{{ selectedCar.brand_model }}</h2>
+                <p>{{ 'vehicle.plate' | translate }}</p>
+                <h2>{{selectedCar.plate}}</h2>
             </div>
             <div style='float: right;'>
             <img ng-src="{{ selectedCar.image_min ? selectedCar.image_min : 'icons/vehicle-default-s.jpg' }}" style='max-width: 94px;'>
@@ -27,15 +28,14 @@
         <ion-item>
             <div class="pull-left">
                 <h2>{{ 'bookResume.pickupStation' | translate }}</h2>
-                <p>{{ selectedPark.parking_name }} </p>
-            </div>
-            <p class="pull-right value">{{ selectedCar.date}} {{selectedCar.time}}</p>
+                <p>{{ selectedPark.address }} </p>
+                <p>{{ selectedCar.date}} {{selectedCar.time}}</p>
             </div>
         </ion-item>
         <ion-item>
             <div class="pull-left">
                 <h2>{{ 'bookResume.returnStation' | translate }}</h2>
-                <p>{{ (selectedParkB || selectedPark).parking_name}}</p>
+                <p>{{ (selectedParkB || selectedPark).address}}</p>
             </div>
             <!-- <p class="pull-right value">{{ dateTimeTo | date:'dd/MM/yyyy HH:mm' }}</p> -->
         </ion-item>

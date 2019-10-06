@@ -209,6 +209,7 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
                     }
                     $scope.BookingsList[i] = obj;
                 }
+                console.log($scope.BookingsList)
                 $ionicLoading.hide();
             }, function (error) {
                 $ionicLoading.hide();

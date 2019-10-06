@@ -68,6 +68,19 @@ angular.module('starter').controller('ParkCtrl', function($ionicHistory, $stateP
    $scope.back = function (params) {
     $ionicHistory.goBack();
     };
+
+    $scope.getParkTitle = function (params) {
+        if (($scope.parkDirection === 'A' || !$scope.parkDirection)  && ($scope.selectedService || {}).parkingTypeCode === 'PF3') {
+            return 'Fermata di Partenza';
+        } else if($scope.parkDirection === 'B' && ($scope.selectedService || {}).parkingTypeCode === 'PF3') {
+            return 'Fermata di Arrivo';
+        } else if($scope.parkDirection === 'B') {
+            return 'Parcheggio riconsegna';
+        } else {
+            return 'Parcheggio ritiro';
+        }
+        
+    };
    
    init();
 })

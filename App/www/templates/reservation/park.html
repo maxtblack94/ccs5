@@ -1,4 +1,4 @@
-<ion-view view-title="{{ parkDirection === 'B' ? 'Parcheggio riconsegna' : 'Parcheggio ritiro'  | translate }}">
+<ion-view view-title="{{getParkTitle()}}">
         <ion-nav-buttons side="left">
                 <button class="button button-clear" ng-click="back()" >
                     <i class="icon ion-ios-arrow-back"> 

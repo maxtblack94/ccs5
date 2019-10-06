@@ -10,9 +10,9 @@
     <ion-list ng-if="BookingsList && BookingsList.length">
       
         <div ng-repeat='book in BookingsList'>
-            <!-- <ng-include src="'templates/tabs/bookings-cards/reservation.html'" ng-if="book.status !== 'Registered'"></ng-include>
-            <ng-include src="'templates/tabs/bookings-cards/order.html'" ng-if="book.status === 'Registered'"></ng-include> -->
-            <ng-include src="'templates/tabs/bookings-cards/pooling.html'"></ng-include>
+            <ng-include src="'templates/tabs/bookings-cards/reservation.html'" ng-if="book.status !== 'Registered' && book.reservetionType !== 'pooling'"></ng-include>
+            <ng-include src="'templates/tabs/bookings-cards/order.html'" ng-if="book.status === 'Registered' && book.reservetionType !== 'pooling'"></ng-include>
+            <ng-include src="'templates/tabs/bookings-cards/pooling.html'" ng-if="book.reservetionType === 'pooling'"></ng-include>
         </div>
     </ion-list>
   </ion-content>
