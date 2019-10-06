@@ -146,6 +146,22 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
         return tarif || {};
     };
 
+    $scope.passangerStatusCall = function (book) {
+        $ionicLoading.show();
+        ScriptServices.getXMLResource(673).then(function(res) {
+            res = res.replace('{TRAVELNR}', book.codiceViaggio)
+            .replace('{STATUS}', 'cancel')
+            .replace('{PASSANGERID}', InfoFactories.getUserInfo().driverNumber);
+            ScriptServices.callGenericService(res, 673).then(function(data) {
+                $scope.loadbookings();
+                $ionicLoading.hide();
+            }, function(error) {
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
+                $ionicLoading.hide();
+            });
+        });
+    };
+
     /*$scope.scheduleDelayedNotification = function (pnr) {
         var now = new Date().getTime();
         var _10SecondsFromNow = new Date(now + 10 * 1000);
