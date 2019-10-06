@@ -152,6 +152,21 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
         }
       })
 
+
+      .state('tab.passagers', {
+        url: '/passagers',
+        params: {
+          pnrInfo: null
+        },
+        cache: false,
+        views: {
+          'tab-bookings': {
+            templateUrl: 'templates/tabs/passagers.html',
+            controller: 'PassagersCtrl'
+          }
+        }
+      })
+
       .state('tab.notifications', {
         url: '/notifications',
         cache: false,

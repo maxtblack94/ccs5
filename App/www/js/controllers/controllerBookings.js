@@ -343,6 +343,10 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
         $state.go('tab.map', { pnrInfo: object });
     };
 
+    $scope.openPassgers = function (object) {
+        $state.go('tab.passagers', { pnrInfo: object });
+    };
+
     $scope.delete = function (book) {
         var confirmPopup = $ionicPopup.confirm({
             title: $filter('translate')('bookings.cancelConfirmTitle'),
