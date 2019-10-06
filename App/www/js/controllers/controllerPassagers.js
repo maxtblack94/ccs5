@@ -43,7 +43,8 @@ angular.module('starter').controller('PassagersCtrl', function ($ionicActionShee
                             status: data.stops[k].passengers[p].status,
                             codiceViaggio: data.pnr,
                             position: data.stops[k].order,
-                            startPlace: data.stops[k].name
+                            startPlace: data.stops[k].passengers[p].pickupStation,
+                            stopPlace: data.stops[k].passengers[p].returnStation
                         });
                     } else if(data.stops[k].passengers[p].status === '' || data.stops[k].passengers[p].status === 'booked') {
                         $scope.passengersBooked.push({
@@ -52,13 +53,17 @@ angular.module('starter').controller('PassagersCtrl', function ($ionicActionShee
                             status: data.stops[k].passengers[p].status,
                             codiceViaggio: data.pnr,
                             position: data.stops[k].order,
-                            startPlace: data.stops[k].name
+                            startPlace: data.stops[k].passengers[p].pickupStation,
+                            stopPlace: data.stops[k].passengers[p].returnStation
                         });
                     }
                     
                 }
             }
         }
+
+        console.log($scope.passengersBooked);
+        console.log($scope.passengersCollected);
     }
 
 
@@ -81,10 +86,10 @@ angular.module('starter').controller('PassagersCtrl', function ($ionicActionShee
 
 
 
-    $scope.alertActionSheet = function () {
+    $scope.alertActionSheet = function (passenger) {
         var hideSheet = $ionicActionSheet.show({
-            buttons: getActions(),
-            titleText: 'Seleziona un azione',
+            buttons: getActions(passenger.status),
+            titleText: "Seleziona un'azione",
             cancelText: ionic.Platform.isAndroid() ? "<i class='fa fa-times' aria-hidden='true'></i> "+$filter('translate')('commons.close') : $filter('translate')('commons.close'),
             cancel: function () {
                 // add cancel code..
@@ -93,31 +98,15 @@ angular.module('starter').controller('PassagersCtrl', function ($ionicActionShee
                 switch (obj.type) {
                     case "collected":
                         hideSheet();
-                        alertCleanness($scope.book.pnr);
+                        $scope.passangerStatusCall(passenger, 'collected');
                         break;
                     case "missing":
                         hideSheet();
-                        DamageService.setOperationType({
-                            "alertList": $scope.alertList,
-                            "operationType" : "DEFECTIVE"
-                        });
-                        $ionicModal.fromTemplateUrl('js/directives/ccs-01-action-sheet/templates/hardDamage.html', {
-                            scope: $scope
-                        }).then(function (modal) {
-                            alertDamage($scope.book, modal);
-                        });
+                        $scope.passangerStatusCall(passenger, 'missing');
                         break;
                     case "delivered":
                         hideSheet();
-                        DamageService.setOperationType({
-                            "alertList": $scope.alertList,
-                            "operationType" : "FAULT"
-                        });
-                        $ionicModal.fromTemplateUrl('js/directives/ccs-01-action-sheet/templates/hardDamage.html', {
-                            scope: $scope
-                        }).then(function (modal) {
-                            alertDamage($scope.book, modal);
-                        });
+                        $scope.passangerStatusCall(passenger, 'delivered');
                         break;
                     default:
                         break;
@@ -127,20 +116,24 @@ angular.module('starter').controller('PassagersCtrl', function ($ionicActionShee
 
     };
 
-    function getActions (){
+    function getActions (status){
         array = [];
-        array.push({ 
-            text: ionic.Platform.isAndroid() ? '<i class="fa ion-android-time" aria-hidden="true"></i> ' + $scope.selectedClient.lbldelay || $filter('translate')('bookings.delay'): $scope.selectedClient.lbldelay || $filter('translate')('bookings.delay'), 
-            type: "collected" 
-        });
-        array.push({ 
-            text: ionic.Platform.isAndroid() ? '<i class="fa fa-id-card-o" aria-hidden="true"></i>' +$filter('translate')('bookings.changeDriver') : $filter('translate')('bookings.changeDriver'), 
-            type: "missing" 
-        });
-        array.push({ 
-            text: ionic.Platform.isAndroid() ? '<i class="fa fa-wrench" aria-hidden="true"></i> ' +$filter('translate')('bookings.damageHard') : $filter('translate')('bookings.damageHard'), 
-            type: "delivered" 
-        });
+        if (status === '' || status === 'booked') {
+            array.push({ 
+                text: ionic.Platform.isAndroid() ? '<i class="fa ion-close-round" aria-hidden="true"></i> Il passeggero è assente' : 'Il passeggero è assente', 
+                type: "missing" 
+            });
+            array.push({ 
+                text: ionic.Platform.isAndroid() ? '<i class="fa ion-arrow-up-a" aria-hidden="true"></i> Il passeggero sale' : 'Il passeggero sale', 
+                type: "collected" 
+            });
+        } else {
+            array.push({ 
+                text: ionic.Platform.isAndroid() ? '<i class="fa ion-arrow-down-a" aria-hidden="true"></i> Il passeggero scende': 'Il passeggero scende', 
+                type: "delivered" 
+            });
+        }
+        
         return array;
     }
 

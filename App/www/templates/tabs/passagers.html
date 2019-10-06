@@ -1,20 +1,21 @@
-<ion-view title="Passegeri">
+<ion-view title="Passeggeri">
         <ion-content>
             <ion-list>
                 <ion-item class="item-divider">
                     <h2>Passeggeri a bordo</h2>
                 </ion-item>
                 <ng-template ng-if="passengersCollected.length">
-                    <ion-item ng-repeat="item in passengersCollected">
+                    <ion-item class="item-icon-right" ng-click="alertActionSheet(item, 'delivered');" ng-repeat="item in passengersCollected">
                         <h2>{{item.passengerName}}</h2>
-                        <p>{{ item.startPlace}}</p> 
-                        <div class="row">
+                        <p>Scende a {{ item.startPlace}}</p> 
+                        <!-- <div class="row">
                             <div class="col">
-                                <button  ng-click="alertActionSheet(item, 'delivered');" class="button button-block button-balanced ">
+                                <button   class="button button-block button-balanced ">
                                     <i class="icon ion-person-stalker"></i> Scende dal veicolo
                                 </button>
                             </div>
-                        </div>
+                        </div> -->
+                        <i class="icon ion-navicon"></i>
                     </ion-item>
                 </ng-template>
                 
@@ -26,21 +27,22 @@
                     <h2>Passeggeri in lista</h2>
                 </ion-item>
                 <ng-template ng-if="passengersBooked.length">
-                    <ion-item ng-repeat="item in passengersBooked | orderBy:'position'">
+                    <ion-item ng-click="alertActionSheet(item);" class="item-icon-right" ng-repeat="item in passengersBooked | orderBy:'position'">
                         <h2>{{item.passengerName}}</h2>
-                        <p>{{ item.startPlace}}</p> status: {{item.status}}
-                        <div class="row">
+                        <p> Sale a {{ item.startPlace}}</p>
+                        <!-- <div class="row">
                             <div class="col col50">
-                                <button ng-click="passangerStatusCall(item, 'collected');" class="button button-block button-balanced ">
+                                <button class="button button-block button-balanced ">
                                     <i class="icon ion-arrow-up-a"></i> Presente
                                 </button>
                             </div>
                             <div class="col col50">
-                                <button ng-click="passangerStatusCall(item, 'missing');" class="button button-block button-positive ">
+                                <button class="button button-block button-positive ">
                                     <i class="icon ion-close"></i> Assente
                                 </button>
                             </div>
-                        </div>
+                        </div> -->
+                        <i class="icon ion-navicon"></i>
                     </ion-item>
                     
                 </ng-template>
