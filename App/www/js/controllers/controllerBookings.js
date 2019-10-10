@@ -146,7 +146,7 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
         return tarif || {};
     };
 
-    $scope.passangerStatusCall = function (book) {
+    $scope.changeStatus = function (book) {
         $ionicLoading.show();
         ScriptServices.getXMLResource(673).then(function(res) {
             res = res.replace('{TRAVELNR}', book.codiceViaggio)
