@@ -1,4 +1,4 @@
-<ion-view title="{{isEdit ? 'register.titleEdit':'register.title' | translate}}">
+<ion-view title="{{isEdit ? 'register.titleEdit':'register.title' | translate}}" cache-view="false">
     <ion-content class="mb80">
             <ion-list>
                 <ion-item class="item-divider" ng-if="!isEdit">
@@ -28,14 +28,19 @@
                     <h2>{{ 'Cognome' | translate}}</h2>
                     <p>{{ request.lastName || '-'}}</p>
                 </ion-item>
-                <ion-item class="item-input item-stacked-label">
+                <ion-item>
+                    <h2>{{ 'Email' | translate}}</h2>
+                    <p>{{ request.email || '-'}}</p>
+                </ion-item>
+                
+                <!-- <ion-item class="item-input item-stacked-label">
                     <span class="input-label">{{ 'Email' | translate}}<span class="color-error">*</span></span>
                     <input type="email" ng-model="request.email" placeholder="Email">
                 </ion-item>
                 <ion-item class="item-input item-stacked-label">
                     <span class="input-label">{{ 'Conferma Email' | translate}}<span class="color-error">*</span></span>
                     <input type="email" ng-model="request.emailConfirm" placeholder="Conferma Email">
-                </ion-item>
+                </ion-item> -->
                 <ion-item class="item-input item-stacked-label">
                     <span class="input-label">{{ 'Username' | translate}}<span class="color-error">*</span></span>
                     <input type="text" ng-model="request.username" placeholder="Username">
@@ -217,14 +222,14 @@
                 </ion-item>
 
 
-                <!-- <ion-item class="item-divider" ng-if="!isEdit">
+                <ion-item class="item-divider" ng-if="!isEdit">
                     <h2>{{ 'Promozioni' | translate}}</h2>
                 </ion-item>
                 <ion-item class="item-input item-stacked-label" ng-class="{'item-disabled': disabledPromo}" ng-if="!isEdit">
                     <span class="input-label">{{ 'Hai un codice promozionale?' | translate}}</span>
                     <p ng-if="disabledPromo">{{ request.promo}}</p>
                     <input ng-if="!disabledPromo" type="text" ng-model="request.promo" placeholder="inserisci qui il codice promo" >
-                </ion-item> -->
+                </ion-item>
                 <!-- <ion-item class="item-input item-stacked-label" ng-class="{'item-disabled': disabledCompany}" ng-if="!isEdit">
                     <span class="input-label">{{ 'Hai un codice azienda?' | translate}}</span>
                     <p ng-if="disabledCompany">{{ request.company}}</p>
@@ -235,7 +240,7 @@
                 <div class="item item-divider" style="white-space: inherit;" ng-click="openUrl(item.url)">
                     <i ng-if="item.url" class="fa fa-file-pdf-o" aria-hidden="true"></i> {{item.text}}<!--  <a ng-if="item.url" href class="subdued">{{ 'commons.readMore' | translate }}</a> -->
                 </div>
-                <ion-radio ng-if="item.values.length > 1" id="id1_{{item.id}}" name="{{item.id}}" ng-repeat="value in item.values" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-radio>
+                <ion-radio-fix ng-if="item.values.length > 1" id="id1_{{item.id}}" name="{{item.id}}" ng-repeat="value in item.values" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-radio-fix>
                 <ion-checkbox ng-if="item.values.length == 1" id="id2_{{item.id}}" name="{{item.id}}" ng-repeat="value in item.values" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-checkbox>
             </ion-list>
     </ion-content>

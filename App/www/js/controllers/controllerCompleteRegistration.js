@@ -26,7 +26,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
     }
 
     function checkIsCompanyUser(data) {
-        if (data.isSuperGold) {
+        if (data.isSuperGold || data.company) {
             $ionicPopup.show({
                 template: "Gentile cliente, grazie per aver scelto i servizi e-Vai, la tua registrazione al servizio aziendale è andata a buon fine. Se vuoi usufruire dei servizi e-Vai anche come privato clicca su PROSEGUI in caso contrario sul tasto TERMINA",
                 title: "Attenzione",
@@ -266,6 +266,8 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
         } else {
             completeRegistration();
         }
+
+
     }
 
     $scope.openUrl = function(url){
