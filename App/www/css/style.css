@@ -606,3 +606,16 @@ display: none;
   .item-radio .radio-icon {
     visibility: hidden!important;
     }
+
+
+    .item-radio label:checked + .radio-content .item-content {
+        /* style the item content when its checked */
+        background: #f7f7f7; 
+
+    }
+
+    .item-radio label:checked + .radio-content .radio-icon {
+        /* show the checkmark icon when its checked */
+        visibility: visible!important;
+
+    }
