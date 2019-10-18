@@ -207,6 +207,12 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
                         obj.return_time_tollerance = ManipolationServices.dateAndTimeAggregation(obj.return_date_tollerance, obj.return_time_tollerance);
                         obj.dateTimeTo = obj.return_time_tollerance;
                     }
+
+                    if ((obj.status === "Collected" || obj.status === "Booked" && obj.tolleranceCheck) && obj.bluetooth_id) {
+                        enanceWithToken(obj, i);
+                    }
+                    
+
                     $scope.BookingsList[i] = obj;
                 }
                 console.log($scope.BookingsList)
@@ -218,6 +224,22 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
         });
 
     };
+
+
+    function enanceWithToken(pnr, index) {
+        var scriptID = pnr.status === 'Collected' ? 640: 639;
+        ScriptServices.getXMLResource(scriptID).then(function(res) {
+            if (scriptID === 640) {
+                res = res.replace('{PNR}', pnr.pnr).replace('{OPT}', 1);
+            } else {
+                res = res.replace('{PNR}', pnr.pnr);
+            }
+            ScriptServices.callGenericService(res, scriptID).then(function(data) {
+                pnr.TKN = data.data.encryptedStr;
+                $scope.BookingsList[index] = pnr;
+            });
+        });
+    }
 
     function returnActions (){
         $scope.actions = {};
@@ -300,41 +322,59 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
     function openVehicleWithBle(reservation, action) {
         $ionicLoading.show();
         
-        ScriptServices.getXMLResource(639).then(function(res) {
-            res = res.replace('{PNR}', reservation.pnr);
-            ScriptServices.callGenericService(res, 639).then(function(data) {
-                reservation.TKN = data.data.encryptedStr;
-                reservation.bleID = reservation.bluetooth_id;
-                if ($cordovaDevice.getPlatform() !== 'iOS') {
-                    AndroidBleConnectionService.connectToVehicle(reservation, action);
-                } else {
-                    IosBleConnectionService.connectToVehicle(reservation, action);
-                }
-            }, function(error) {
-                PopUpServices.errorPopup($filter('translate')('bookings.errorOpenCar'));
-                $ionicLoading.hide();
+        if (reservation.TKN) {
+            reservation.bleID = reservation.bluetooth_id;
+            if ($cordovaDevice.getPlatform() !== 'iOS') {
+                AndroidBleConnectionService.connectToVehicle(reservation, action);
+            } else {
+                IosBleConnectionService.connectToVehicle(reservation, action);
+            }
+        } else {
+            ScriptServices.getXMLResource(639).then(function(res) {
+                res = res.replace('{PNR}', reservation.pnr);
+                ScriptServices.callGenericService(res, 639).then(function(data) {
+                    reservation.TKN = data.data.encryptedStr;
+                    reservation.bleID = reservation.bluetooth_id;
+                    if ($cordovaDevice.getPlatform() !== 'iOS') {
+                        AndroidBleConnectionService.connectToVehicle(reservation, action);
+                    } else {
+                        IosBleConnectionService.connectToVehicle(reservation, action);
+                    }
+                }, function(error) {
+                    PopUpServices.errorPopup($filter('translate')('bookings.errorOpenCar'));
+                    $ionicLoading.hide();
+                });
             });
-        });
+        }
+        
     }
 
     function closeVehicleWithBle(reservation, action) {
         $ionicLoading.show();
-        
-        ScriptServices.getXMLResource(640).then(function(res) {
-            res = res.replace('{PNR}', reservation.pnr).replace('{OPT}', 1);
-            ScriptServices.callGenericService(res, 640).then(function(data) {
-                reservation.TKN = data.data.encryptedStr;
-                reservation.bleID = reservation.bluetooth_id;
-                if ($cordovaDevice.getPlatform() !== 'iOS') {
-                    AndroidBleConnectionService.connectToVehicle(reservation, action);
-                } else {
-                    IosBleConnectionService.connectToVehicle(reservation, action);
-                }
-            }, function(error) {
-                PopUpServices.errorPopup($filter('translate')('bookings.errorOpenCar'));
-                $ionicLoading.hide();
+        if (reservation.TKN) {
+            reservation.bleID = reservation.bluetooth_id;
+            if ($cordovaDevice.getPlatform() !== 'iOS') {
+                AndroidBleConnectionService.connectToVehicle(reservation, action);
+            } else {
+                IosBleConnectionService.connectToVehicle(reservation, action);
+            }
+        } else {
+            ScriptServices.getXMLResource(640).then(function(res) {
+                res = res.replace('{PNR}', reservation.pnr).replace('{OPT}', 1);
+                ScriptServices.callGenericService(res, 640).then(function(data) {
+                    reservation.TKN = data.data.encryptedStr;
+                    reservation.bleID = reservation.bluetooth_id;
+                    if ($cordovaDevice.getPlatform() !== 'iOS') {
+                        AndroidBleConnectionService.connectToVehicle(reservation, action);
+                    } else {
+                        IosBleConnectionService.connectToVehicle(reservation, action);
+                    }
+                }, function(error) {
+                    PopUpServices.errorPopup($filter('translate')('bookings.errorOpenCar'));
+                    $ionicLoading.hide();
+                });
             });
-        });
+        }
     }
 
     function startCloseOpenCarProcess(reservation, opT, carCoords) {
