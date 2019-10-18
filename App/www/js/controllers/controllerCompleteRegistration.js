@@ -126,6 +126,10 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
     }
 
     $scope.selectPicklistValue = function (picklist, title, subTitle) {
+        if (window.plugins && window.plugins.Keyboard) {
+            cordova.plugins.Keyboard.close();
+        }
+        
         var templateUrl;
         if (picklist === 'birthNation' || picklist === 'nationResidence' || picklist === 'fattNation') {
             templateUrl = "templates/picklists/nation.html";
