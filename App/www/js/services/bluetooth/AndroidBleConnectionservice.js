@@ -1,4 +1,4 @@
-angular.module('starter').factory("AndroidBleConnectionService", function(BluetoothServices, InfoFactories, $rootScope) {
+angular.module('starter').factory("AndroidBleConnectionService", function($ionicLoading, BluetoothServices, InfoFactories, $rootScope) {
     var currentDevice;
     var lastReservation, lastOperation, userInfo, actionsList = [];
 
@@ -41,7 +41,8 @@ angular.module('starter').factory("AndroidBleConnectionService", function(Blueto
         },
         function(error) {
             console.log('Fail connection, i try again...', error);
-            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Fail connection, i try again..."});
+            //$rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Fail connection, i try again..."});
+            $ionicLoading.hide();
             currentDevice = null;
             /* doConnection(reservation); */
         });

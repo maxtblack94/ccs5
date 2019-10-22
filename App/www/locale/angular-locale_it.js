@@ -83,6 +83,7 @@ window.locale_it.notifications = {
 window.locale_it.commons = {
 	refresh: 'Aggiorna...',
 	yes: 'Si',
+	note: "Note",
 	back: 'Indietro',
 	no: 'No',
 	confirm: 'Conferma',

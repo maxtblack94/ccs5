@@ -1,4 +1,4 @@
-angular.module('starter').factory("BluetoothServices", function(ArrayServices, $rootScope, ScriptServices, $filter) {
+angular.module('starter').factory("BluetoothServices", function(UpdateBBService, ArrayServices, $rootScope, ScriptServices, $filter) {
     var currentDevice;
     var lastReservation, lastOperation, actionsList = [];
 
@@ -45,7 +45,13 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
                         }
                     }
                 }else{
-                    errorHandler('GENERIC_ERROR');
+                    if (notifyData.MT === 5001) {
+                        console.log('chiamo uploadBB');
+                        tryUpdateBB(interaction);
+                    } else {
+                        errorHandler('GENERIC_ERROR');
+                    }
+                    
                 }
                 
             }
@@ -56,6 +62,10 @@ angular.module('starter').factory("BluetoothServices", function(ArrayServices, $
         setTimeout(function() {
             write('pair');
         }, 500);
+    }
+
+    function tryUpdateBB(interaction) {
+        UpdateBBService.updateBBWithTKN(interaction);
     }
 
     function versioningRequest() {
