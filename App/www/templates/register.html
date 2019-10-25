@@ -1,5 +1,5 @@
-<ion-view class="welcome-view" hide-nav-bar="true" cache-view="false" >
-    <ion-content style="background-color: #1f6792">
+<ion-view class="welcome-view" hide-nav-bar="true" >
+    <ion-content on-scroll="onScroll()" style="background-color: #1f6792; height: 100%!important;">
         <!-- <div multi-bg="['http://i.giphy.com/13f7pejozPXuta.gif']" interval="3000" helper-class="no-facebook-welcome-bg"> -->
         <div multi-bg="['img/giphy-bg-2.gif']" interval="3000">
             <div class="top-content row" style="height: 25%">
@@ -41,12 +41,12 @@
                         </label>
                         <label class="item item-input" >
                             <span class="input-label">{{ 'login.password' | translate}}<span class="color-error">*</span></span>
-                            <input type="password" id="password-input" ng-model="request.password"
+                            <input type="password" id="password-input" ng-model="request.password" ng-paste="$event.preventDefault();" ng-copy="$event.preventDefault();" ng-cut="$event.preventDefault();" ng-init="paste=false"
                                 placeholder="{{ 'login.password' | translate}}">
                         </label>
                         <label class="item item-input" >
                             <span class="input-label">{{ 'login.password' | translate}}<span class="color-error">*</span></span>
-                            <input type="password" id="confirmPassword-input" ng-model="request.confirmPassword"
+                            <input type="password" id="confirmPassword-input" ng-model="request.confirmPassword" ng-paste="$event.preventDefault();" ng-copy="$event.preventDefault();" ng-cut="$event.preventDefault();" ng-init="paste=false"
                                 placeholder="Conferma Password">
                         </label>
                         <label class="item item-input" >

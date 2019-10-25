@@ -52,7 +52,10 @@ angular.module('starter').controller('VehicleCtrl', function($filter, $ionicHist
                 $scope.loading = false;
                 $ionicLoading.hide();
                 // da rimuovere dopo fix matteo
-                data.data.VehiclesList = data.data;
+                if (data.data) {
+                    data.data.VehiclesList = data.data;
+                }
+                
                 finalizeData(data);
             }, function(error) {
                 $ionicLoading.hide();
@@ -66,8 +69,8 @@ angular.module('starter').controller('VehicleCtrl', function($filter, $ionicHist
             PopUpServices.messagePopup($filter('translate')('vehicle.labelCannotReserve'), $filter('translate')('commons.attention'), callbackMissingRecords);
         }else if(data.retcode == 1 || data.retcode == 3){
             PopUpServices.messagePopup($filter('translate')('vehicle.noVehiclesInThisMoment'), $filter('translate')('commons.attention'), callbackMissingRecords);
-        }else if(data.retcode == 50 && data.retDescription){
-            PopUpServices.messagePopup(data.retDescription, $filter('translate')('commons.attention'), callbackMissingRecords);
+        }else if(data.retcode == 50 && (data.retDescription || data.description)){
+            PopUpServices.messagePopup(data.retDescription || data.description, $filter('translate')('commons.attention'), callbackMissingRecords);
         }else if(data.retcode == 51 && data.retDescription){
             PopUpServices.messagePopup(data.retDescription, $filter('translate')('commons.attention'));
             $scope.vehicleList = data.data.VehiclesList;

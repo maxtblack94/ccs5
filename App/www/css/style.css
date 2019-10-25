@@ -619,3 +619,29 @@ display: none;
         visibility: visible!important;
 
     }
+
+.silver {
+    background-color: silver;
+    padding: 2px;
+    width: 60px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    color: #fff!important;
+}
+
+.gold {
+    background-color: goldenrod;
+    padding: 2px;
+    width: 60px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    color: #fff!important;
+}
+
+.scopri {
+    color: #757575;
+    font-size: 14px;
+    display: inline;
+}

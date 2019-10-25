@@ -23,8 +23,10 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
     };
 
     $scope.create = function () {
-        if (!$scope.request.firstName || !$scope.request.lastName || !$scope.request.email || !$scope.request.username || !$scope.request.password || !$scope.request.confirmPassword) {
+        if (!$scope.request.firstName || !$scope.request.lastName || !$scope.request.username || !$scope.request.password || !$scope.request.confirmPassword) {
             PopUpServices.messagePopup('Compilare tutti i campi obbligatori', 'Attenzione');
+        }else if (!$scope.request.email || !$scope.request.email.match(RegexService.getRegex().email)) {
+            PopUpServices.messagePopup('Il campo email non è corretto', 'Attenzione');
         }else if($scope.request.password !== $scope.request.confirmPassword ){
             PopUpServices.messagePopup('I campi password non combaciano', 'Attenzione');
         }else if($scope.request.password && !$scope.request.password.match(RegexService.getRegex().password)){
@@ -115,6 +117,12 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
                     });
                 }
             });
+        }
+    }
+
+    $scope.onScroll = function (params) {
+        if (cordova && cordova.plugins && cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.close();
         }
     }
 

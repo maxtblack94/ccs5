@@ -6,7 +6,7 @@
     "@ionic/cloud": "0.16.0",
     "bluebird": "3.5.0",
     "cordova-android": "7.0.0",
-    "cordova-ios": "4.5.5",
+    "cordova-ios": "5.0.1",
     "cordova-plugin-android-permissions": "^1.0.0",
     "cordova-plugin-ble-central": "^1.2.2",
     "cordova-plugin-compat": "1.2.0",
@@ -29,8 +29,7 @@
     "gulp-uglify": "2.0.1",
     "ionic-minify": "2.0.10",
     "ionic-plugin-keyboard": "2.2.1",
-    "onesignal-cordova-plugin": "2.3.1",
-    "phonegap-plugin-push": "1.10.5"
+    "onesignal-cordova-plugin": "2.3.1"
   },
   "devDependencies": {
     "@ionic/v1-toolkit": "1.0.7",
@@ -59,7 +58,6 @@
   ],
   "cordova": {
     "platforms": [
-      "ios",
       "android"
     ],
     "plugins": {
@@ -74,9 +72,6 @@
       "cordova-plugin-email-composer": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-datepicker": {},
-      "phonegap-plugin-push": {
-        "SENDER_ID": "1052330991735"
-      },
       "onesignal-cordova-plugin": {},
       "cordova-plugin-android-permissions": {},
       "cordova-plugin-request-location-accuracy": {},

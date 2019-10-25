@@ -1,19 +1,21 @@
 <ion-view title="{{isEdit ? 'register.titleEdit':'register.title' | translate}}" cache-view="false">
-    <ion-content class="mb80">
+    <ion-content class="mb80" on-scroll="onScroll();">
+
+        
             <ion-list>
                 <ion-item class="item-divider" ng-if="!isEdit">
-                    <h2>{{ 'Scegli il tuo profilo di noleggio' | translate}}</h2>
+                    <h2 style="display: inline">{{ 'Scegli il tuo profilo di noleggio' | translate}}</h2> <span class="scopri" ng-click="openUrl('tarifs')">Scopri di più...</span>
                 </ion-item>
                 <div ng-repeat="service in services" ng-if="!isEdit">
-                    <div ng-click="selectTarif(tarif)" ng-repeat="tarif in service.tarif" class="item item-avatar fix-item item-icon-right" ng-class="{'item-checked': currentTarif.code === tarif.code}">
-                        <img ng-if="service.url" src="{{service.url}}">
+                    <div ng-click="selectTarif(tarif)" ng-repeat="tarif in service.tarif" class="item item-icon-right" ng-class="{'item-checked': currentTarif.code === tarif.code}">
+                        <!-- <img ng-if="service.url" src="{{service.url}}"> -->
                         <h2>{{service.name}}</h2>
-                        <p>{{tarif.text}}
-                            <div class='color-cube icon' style=" top: 25px;height: 34%; border: 2px solid #aaa;">
+                        <p class="{{tarif.color === '#C0C0C0' ? 'silver': 'gold'}}">{{tarif.text}}
+                            <!-- <div class='color-cube icon' > 
                                 <div style='background-color: {{ tarif.color }};'></div>
-                            </div>
+                            </div> -->
                         </p>
-                        <i ng-if="currentTarif.code === tarif.code" class="icon ion-checkmark-round" style="font-size: 14px; right: 8px; color: #f9f9f9;"></i>
+                        <i ng-if="currentTarif.code === tarif.code" class="icon ion-checkmark-round" ></i> <!-- style="font-size: 14px; right: 8px; color: #f9f9f9;" -->
                     </div>
                 </div>
                 
@@ -32,6 +34,10 @@
                     <h2>{{ 'Email' | translate}}</h2>
                     <p>{{ request.email || '-'}}</p>
                 </ion-item>
+                <ion-item>
+                    <h2>{{ 'Username' | translate}}</h2>
+                    <p>{{ request.username || '-'}}</p>
+                </ion-item>
                 
                 <!-- <ion-item class="item-input item-stacked-label">
                     <span class="input-label">{{ 'Email' | translate}}<span class="color-error">*</span></span>
@@ -41,17 +47,17 @@
                     <span class="input-label">{{ 'Conferma Email' | translate}}<span class="color-error">*</span></span>
                     <input type="email" ng-model="request.emailConfirm" placeholder="Conferma Email">
                 </ion-item> -->
-                <ion-item class="item-input item-stacked-label">
+                <!-- <ion-item class="item-input item-stacked-label">
                     <span class="input-label">{{ 'Username' | translate}}<span class="color-error">*</span></span>
                     <input type="text" ng-model="request.username" placeholder="Username">
-                </ion-item>
+                </ion-item> -->
                 <ion-item class="item-input item-stacked-label">
                     <span class="input-label">{{ 'Password' | translate}}<span class="color-error">*</span></span>
-                    <input type="password" ng-model="request.password" placeholder="Password">
+                    <input type="password" ng-model="request.password" placeholder="Password" ng-paste="$event.preventDefault();" ng-copy="$event.preventDefault();" ng-cut="$event.preventDefault();" ng-init="paste=false">
                 </ion-item>
                 <ion-item class="item-input item-stacked-label">
                     <span class="input-label">{{ 'Conferma Password' | translate}}<span class="color-error">*</span></span>
-                    <input type="password" ng-model="request.confirmPassword" placeholder="Conferma Password">
+                    <input type="password" ng-model="request.confirmPassword" placeholder="Conferma Password"ng-paste="$event.preventDefault();" ng-copy="$event.preventDefault();" ng-cut="$event.preventDefault();" ng-init="paste=false">
                 </ion-item>
                 <ion-item class="item-divider">
                     <h2>{{ 'La tua anagrafica' | translate}}</h2>

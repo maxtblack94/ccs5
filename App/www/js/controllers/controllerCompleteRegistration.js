@@ -125,10 +125,23 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
         }
     }
 
-    $scope.selectPicklistValue = function (picklist, title, subTitle) {
-        if (window.plugins && window.plugins.Keyboard) {
+    $scope.onScroll = function (params) {
+        if (cordova && cordova.plugins && cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.close();
         }
+    }
+
+    $scope.openUrl = function(url){
+        if (url === 'tarifs') {
+            url = $scope.selectedClient.tarifsUrl;
+        }
+        if (url) {
+            window.open(url, '_system', 'location=yes');
+        }
+    }
+
+    $scope.selectPicklistValue = function (picklist, title, subTitle) {
+        
         
         var templateUrl;
         if (picklist === 'birthNation' || picklist === 'nationResidence' || picklist === 'fattNation') {
@@ -260,7 +273,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
 /*         } else if(!$scope.request.email.match(/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)) {
             PopUpServices.messagePopup('Il valore del Email non è corretto', 'Attenzione'); */
         } else if($scope.request.fattCap && $scope.request.isDatiFatt && !$scope.request.fattCap.match(/^\d{5}$/)) {
-            PopUpServices.messagePopup('Prima di procedere accetta tutti i consensi', 'Attenzione');
+            PopUpServices.messagePopup('Il valore del cap non è corretto nella sezione dati fatturazione', 'Attenzione');
         } else if($scope.request.accept5 !== 'YES' || $scope.request.accept6 !== 'YES' || $scope.request.accept7 !== 'YES') {
             PopUpServices.messagePopup('Prima di procedere accetta tutti i consensi', 'Attenzione');
         } else if(!$scope.currentTarif && !$scope.isEdit) {

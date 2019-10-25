@@ -22,6 +22,11 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
         .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
         .endInit();
       }
+/* 
+      if (window.plugins && window.plugins.Keyboard) {
+        window.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+        window.plugins.Keyboard.disableScroll(true);
+      } */
 
       if (window.StatusBar) {
         if ($cordovaDevice.getPlatform() == 'iOS'){
@@ -46,6 +51,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
     }else {
       $translateProvider.preferredLanguage('en');
     }
+    
     
     $ionicConfigProvider.views.swipeBackEnabled(false);
     $httpProvider.defaults.timeout = 30000;
