@@ -86,6 +86,7 @@ window.locale_it.commons = {
 	note: "Note",
 	back: 'Indietro',
 	no: 'No',
+	note: 'Note',
 	confirm: 'Conferma',
 	locationNotAviable: 'Per poter utilizzare il servizio "Inizio Corsa" / "Fine Corsa" disponibile sulla nostra APP, è necessario consentire la geolocalizzazione di questo smartphone. In caso contrario non potrete essere abilitati al servizio.',
 	retry: 'Riprovare',
