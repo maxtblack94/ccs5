@@ -22,6 +22,8 @@ angular.module('starter').controller('PoolingReserveCtrl', function($ionicPopup,
     $scope.selectPicklistValue = function (picklist, title, subTitle) {
         var templateUrl = "templates/picklists/timesList.html";
 
+        picklistValueCheck();
+
         $ionicPopup.show({
             templateUrl: templateUrl,
             title: title,
@@ -50,7 +52,28 @@ angular.module('starter').controller('PoolingReserveCtrl', function($ionicPopup,
         });
     };
 
+    function picklistValueCheck(params) {
+        $scope.turniListFiltered = [];
+        if ($scope.dateFrom && isToday($scope.dateFrom)) {
+            /* selectedPark.turniList */
+            $scope.turniListFiltered = $scope.selectedPark.turniList.filter(function (item) {
+                var timeSplit = item.split(":");
+                var newDate = new Date().setHours(parseInt(timeSplit[0]), parseInt(timeSplit[1]));
+                var newDateSystem = new Date();
+                return newDate > newDateSystem;
+            });
+        } else {
+            $scope.turniListFiltered = $scope.selectedPark.turniList;
+        }
+    }
 
+
+    function isToday(date) {
+        var today = new Date();
+        return date.getDate() == today.getDate() &&
+        date.getMonth() == today.getMonth() &&
+        date.getFullYear() == today.getFullYear();
+      }
 
     /* checkErrorTarifTime = function (dateTimeTo, dateTimeFrom) {
         var tarif = $scope.selectedTarif.value;
