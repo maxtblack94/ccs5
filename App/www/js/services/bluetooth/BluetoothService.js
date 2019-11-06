@@ -1,6 +1,7 @@
 angular.module('starter').factory("BluetoothServices", function(UpdateBBService, ArrayServices, $rootScope, ScriptServices, $filter) {
     var currentDevice;
     var lastReservation, lastOperation, actionsList = [];
+    var currentMessage;
 
     function doNotifyRequest(reservation, operation, currentD) {
         lastOperation = operation;
@@ -12,48 +13,18 @@ angular.module('starter').factory("BluetoothServices", function(UpdateBBService,
         });
         
         ble.withPromises.startNotification(currentDevice.id, notifyService.service, notifyService.characteristic, function(buffer) {
-            if (buffer) {
-                console.log('notify buffer', buffer);
-                var notifyData = ArrayServices.bytesToString(buffer);
-                console.log('notify notifyData', notifyData);
-                var interaction = actionsList.find(function (item) {
-                    return item.TI === notifyData.TI;
-                });
-                console.log('notify interaction', interaction);
-                if (interaction && interaction.MT) {
-                    if (notifyData.RC) {
-                        errorHandler(notifyData.RC, notifyData.MT);
-                    } else {
-                        switch (interaction.MT) {
-                            case 100:
-                                write('pushPNR');
-                                break;
-                            case 5000:
-                                $rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction});
-                                disconnect();
-                                break;
-                            case 5001:
-                                $rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction});
-                                disconnect();
-                                break;
-                            case 10000:
-                                
-                                break;
-                        
-                            default:
-                                break;
-                        }
-                    }
-                }else{
-                    if (notifyData.MT === 5001) {
-                        console.log('chiamo uploadBB');
-                        tryUpdateBB(interaction);
-                    } else {
-                        errorHandler('GENERIC_ERROR');
-                    }
+            var notifyData = ArrayServices.bytesToString(buffer);
+            if (buffer && typeof notifyData !== 'string') {
+                manageNotifyMessage(notifyData);
+            } else if(buffer && typeof notifyData === 'string') {
+                currentMessage = currentMessage + notifyData;
+                try {
+                    var completeNotifyData = JSON.parse(currentMessage);
+                    manageNotifyMessage(completeNotifyData);
+                    currentMessage = null;
+                } catch (error) {
                     
                 }
-                
             }
             
         }, function() {
@@ -62,6 +33,44 @@ angular.module('starter').factory("BluetoothServices", function(UpdateBBService,
         setTimeout(function() {
             write('pair');
         }, 500);
+    }
+
+    function manageNotifyMessage(notifyData) {
+        var interaction = actionsList.find(function (item) {
+            return item.TI === notifyData.TI;
+        });
+        if (interaction && interaction.MT) {
+            if (notifyData.RC) {
+                errorHandler(notifyData.RC, notifyData.MT);
+            } else {
+                switch (interaction.MT) {
+                    case 100:
+                        write('pushPNR');
+                        break;
+                    case 5000:
+                        //$rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction});
+                        /* disconnect(); */
+                        break;
+                    case 5001:
+                        $rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction});
+                        disconnect();
+                        break;
+                    case 10000:
+                        
+                        break;
+                
+                    default:
+                        break;
+                }
+            }
+        }else{
+            if (notifyData.MT === 5001) {
+                tryUpdateBB(notifyData);
+                $rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction});
+            } else {
+                errorHandler('GENERIC_ERROR');
+            }
+        }
     }
 
     function tryUpdateBB(interaction) {

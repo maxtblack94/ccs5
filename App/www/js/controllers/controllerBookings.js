@@ -215,7 +215,8 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
 
                     $scope.BookingsList[i] = obj;
                 }
-                console.log($scope.BookingsList)
+                console.log($scope.BookingsList);
+                UpdateBBService.checkIsExistingRequest($scope.BookingsList);
                 $ionicLoading.hide();
             }, function (error) {
                 $ionicLoading.hide();
@@ -307,6 +308,10 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
             });
         }
     };
+
+    $scope.$on('refreshBookings', function(event) {
+        $scope.refreshBookings();
+    });
 
     $scope.$on('bleInteraction', function(event, interactionData) {
         if (interactionData.resultStatus === 'KO') {

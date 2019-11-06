@@ -22,6 +22,19 @@ angular.module('starter').factory("ArrayServices", function(PopUpServices) {
         return a;
     }
 
+    function testIsStringObj(a) {
+        if (/^[\],:{}\s]*$/.test(a.replace(/\\["\\\/bfnrtu]/g, '@').
+            replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
+            replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+
+                a = JSON.parse(a);
+
+            }
+        
+        console.log(a);
+        return a;
+    }
+
     function toHexString(byteArray) {
         return Array.from(byteArray, function(byte) {
           return ('0' + (byte & 0xFF).toString(16)).slice(-2);
@@ -73,6 +86,9 @@ angular.module('starter').factory("ArrayServices", function(PopUpServices) {
         },
         arrayBufferToHex: function (buffer) {
             return arrayBufferToHex(buffer);
+        },
+        testIsStringObj: function (a) {
+            return testIsStringObj(a);
         }
     };
 
