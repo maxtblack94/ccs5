@@ -292,6 +292,10 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
         }
     };
 
+    $scope.$on('refreshBookings', function(event) {
+        $scope.refreshBookings();
+    });
+
     $scope.$on('bleInteraction', function(event, interactionData) {
         if (interactionData.resultStatus === 'KO') {
             PopUpServices.errorPopup(interactionData.errorMessage ,'1');
