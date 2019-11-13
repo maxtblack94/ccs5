@@ -17,7 +17,9 @@ angular.module('starter').factory("BluetoothServices", function(UpdateBBService,
             if (buffer && typeof notifyData !== 'string') {
                 manageNotifyMessage(notifyData);
             } else if(buffer && typeof notifyData === 'string') {
-                currentMessage = currentMessage + notifyData;
+                console.log('la notifyNon è stringa', notifyData);
+                currentMessage = !currentMessage ? notifyData: currentMessage + notifyData;
+                console.log('currentMessage', currentMessage);
                 try {
                     var completeNotifyData = JSON.parse(currentMessage);
                     manageNotifyMessage(completeNotifyData);

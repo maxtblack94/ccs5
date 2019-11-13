@@ -1,4 +1,4 @@
-angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnectionService, IosBleConnectionService, $ionicSideMenuDelegate, ReservationService, $filter, LocationService, $cordovaDevice, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices) {
+angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, AndroidBleConnectionService, IosBleConnectionService, $ionicSideMenuDelegate, ReservationService, $filter, LocationService, $cordovaDevice, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
     refreshUserInfo();
@@ -200,6 +200,7 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
 
                     $scope.BookingsList[i] = obj;
                 }
+                UpdateBBService.checkIsExistingRequest($scope.BookingsList);
                 $ionicLoading.hide();
             }, function (error) {
                 $ionicLoading.hide();
