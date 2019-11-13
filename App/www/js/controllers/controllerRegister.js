@@ -27,13 +27,15 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
             PopUpServices.messagePopup('Compilare tutti i campi obbligatori', 'Attenzione');
         }else if (!$scope.request.email || !$scope.request.email.match(RegexService.getRegex().email)) {
             PopUpServices.messagePopup('Il campo email non è corretto', 'Attenzione');
+        }else if($scope.request.email !== $scope.request.confirmEmail ){
+            PopUpServices.messagePopup('I campi Email non combaciano', 'Attenzione');
         }else if($scope.request.password !== $scope.request.confirmPassword ){
             PopUpServices.messagePopup('I campi password non combaciano', 'Attenzione');
         }else if($scope.request.password && !$scope.request.password.match(RegexService.getRegex().password)){
             PopUpServices.messagePopup('La password deve contenere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola e almeno un numero', 'Attenzione');
         }else if(!$scope.request.accept1){
             PopUpServices.messagePopup("E' obbligatorio leggere l'informativa E-vai", 'Attenzione');
-        }else if($scope.request.accept2 === undefined || $scope.request.accept3 === undefined || $scope.request.accept3 === undefined){
+        }else if($scope.request.accept2 === undefined || $scope.request.accept3 === undefined || $scope.request.accept4 === undefined){
             PopUpServices.messagePopup("E' obbligatorio valorizzare tutti i consensi", 'Attenzione');
         }else{
             createAccount();

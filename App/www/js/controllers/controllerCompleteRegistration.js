@@ -96,6 +96,8 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
 
         };
 
+        $scope.iCanEditFatturazione = $scope.request.fattPiva;
+
         defineDocument(data);
         preselectTarif(data);
 
@@ -201,8 +203,8 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
         var dateFromConfig = {
             date: $scope.request[input] ? new Date($scope.request[input]) : new Date(),
             mode: 'date',
-            allowOldDates: input === 'licenseIssueDate' || input === 'docEndDate' ? true: false,
-            allowFutureDates: input === 'licenseEndDate' ? true: false,
+            allowOldDates: input === 'licenseIssueDate' ? true: false,
+            allowFutureDates: input === 'licenseEndDate' || input === 'docEndDate' ? true: false,
             androidTheme: 4,
             doneButtonLabel: $filter('translate')('commons.select'),
             cancelButtonLabel: $filter('translate')('commons.close'),

@@ -641,7 +641,10 @@ display: none;
 }
 
 .scopri {
-    color: #757575;
+    color: #4a4a4a;
     font-size: 14px;
     display: inline;
+    text-decoration: underline;
+    float: right;
+    font-weight: 600;
 }
