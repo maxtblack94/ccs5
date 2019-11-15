@@ -62,11 +62,12 @@
                 <ion-item class="item-divider">
                     <h2>{{ 'La tua anagrafica' | translate}}</h2>
                 </ion-item>
-                <div ng-if="!isEdit">
+                
                     <ion-item class="item-input item-stacked-label">
                         <span class="input-label">{{ 'Cellulare' | translate}}<span class="color-error">*</span></span>
                         <input type="text" ng-model="request.mobile" placeholder="Cellulare">
                     </ion-item>
+                <div ng-if="!isEdit">
                     <ion-item ng-click="selectPicklistValue('birthNation')">
                         <h2>{{ 'Nazione di nascita' | translate}}<span class="color-error">*</span></h2>
                         <p ng-if="request.birthNation">{{ request.birthNation}}</p>
@@ -83,10 +84,6 @@
                     </ion-item>
                 </div>
                 <div ng-if="isEdit">
-                    <ion-item>
-                        <h2>{{ 'Cellulare' | translate}}</h2>
-                        <p>{{ request.mobile || '-'}}</p>
-                    </ion-item>
                     <ion-item>
                         <h2>{{ 'Nazione di nascita' | translate}}</h2>
                         <p>{{ request.birthNation || '-'}}</p>
