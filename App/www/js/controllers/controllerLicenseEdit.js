@@ -32,8 +32,7 @@ angular.module('starter').controller('LicenseEditCtrl', function($cordovaDatePic
             .replace('{LICENSE_EXPIRE}', $scope.request.license_expire ? moment($scope.request.license_expire).format('DD/MM/YYYY') : '');
             ScriptServices.callGenericService(res, 558).then(function(data) {
                 $scope.request = undefined;
-                $scope.userInfo.registry = data.data;
-                window.localStorage.setItem('userInfo', JSON.stringify($scope.userInfo));
+                getUserInfo();
                 $ionicLoading.hide();
                 PopUpServices.messagePopup($filter('translate')('driveLicense.editSuccess'), $filter('translate')('commons.success'));
             }, function(error) {
@@ -62,4 +61,18 @@ angular.module('starter').controller('LicenseEditCtrl', function($cordovaDatePic
             }            
         });
     };
+
+
+
+
+    function getUserInfo(){
+        ScriptServices.getXMLResource(554).then(function(res) {
+            res = res.replace('{NUMBER_DRIVER}', InfoFactories.getUserInfo().driverNumber);
+            ScriptServices.callGenericService(res, 554).then(function(data) {
+                $scope.userInfo = InfoFactories.getUserInfo();
+                $scope.userInfo.registry =  data.data.GetUser[0];
+                window.localStorage.setItem('userInfo', JSON.stringify($scope.userInfo));
+            });
+        });
+    }
 })
