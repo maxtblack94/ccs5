@@ -12,6 +12,15 @@
     <edit-config file="*-Info.plist" mode="merge" target="NSBluetoothAlwaysUsageDescription">
         <string>E' necessario avere accesso al bluetooth in caso dei apertura del veicolo</string>
     </edit-config>
+    <edit-config file="*-Info.plist" mode="merge" target="NSLocationAlwaysAndWhenInUseUsageDescription">
+        <string>Utilizziamo la posizione per verificare se sei in prossimità del veicolo</string>
+    </edit-config>
+    <edit-config file="*-Info.plist" mode="merge" target="NSLocationAlwaysUsageDescription">
+        <string>Utilizziamo la posizione per verificare se sei in prossimità del veicolo</string>
+    </edit-config>
+    <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
+        <string>Utilizziamo la posizione per verificare se sei in prossimità del veicolo</string>
+    </edit-config>
     <allow-navigation href="*" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
