@@ -59,6 +59,8 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
         if ($scope.userInfo.registry.account_status === 'ACTIVE') {
             ReservationService.resetReservation();
             $state.go('subscriptions');
+        } else if ($scope.userInfo.registry.account_status === 'CREDITED') {
+            PopUpServices.messagePopup("Per maggiori informazioni contatta il Nr Verde: 800 77 44 55S", "Il tuo profilo è in fase di attivazione");
         } else if (isNotRegistered && isNotRegistered == 'true') {
             $state.go('completeRegistration');
         } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED_WITH_PAY' || $scope.userInfo.registry.account_status === 'SUBSCRIBED') {

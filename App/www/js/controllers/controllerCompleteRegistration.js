@@ -88,6 +88,9 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             fattProvince: data.province_vat,
             sdi: data.sdi_code,
             pec: data.pec,
+            accept2: data.dates_acceptance || 'YES',
+            accept3: data.email_acceptance || 'YES',
+            accept4: data.thirtPart_acceptance || 'YES',
             accept5: data.contract_acceptance,
             accept6: data.clauses_1341_1342,
             accept7: data.consumer_info
