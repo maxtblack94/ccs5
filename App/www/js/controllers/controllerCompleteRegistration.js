@@ -139,6 +139,8 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
     $scope.openUrl = function(url){
         if (url === 'tarifs') {
             url = $scope.selectedClient.tarifsUrl;
+        } else {
+            url = null;
         }
         if (url) {
             window.open(url, '_system', 'location=yes');
@@ -203,8 +205,9 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
     };
 
     $scope.selectDate = function(input) {
+        var date = typeof $scope.request[input] === 'string' ? fixDate($scope.request[input]) : $scope.request[input];
         var dateFromConfig = {
-            date: $scope.request[input] ? new Date($scope.request[input]) : new Date(),
+            date: date ? new Date(date) : new Date(),
             mode: 'date',
             allowOldDates: input === 'licenseIssueDate' ? true: false,
             allowFutureDates: input === 'licenseEndDate' || input === 'docEndDate' ? true: false,
@@ -221,6 +224,11 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             }            
         });
     };
+
+    function fixDate(date) {
+        var dateArray = date.split('/');
+        return dateArray[1]+'/'+dateArray[0]+'/'+dateArray[2];
+    }
 
     getConsensi();
 
