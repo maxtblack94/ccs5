@@ -65,7 +65,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             mobile: data.mobile_phone,
             birthNation: data.birth_country,
             birthPlace: data.birth_place,
-            birthDate: data.birthday,
+            birthDate: fixDate(data.birthday),
             indirizzo: data.address,
             city: data.city,
             cap: data.zip_code,
@@ -73,10 +73,10 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             shortProvinceResidence: data.residence_province,
             fiscalCode: data.tax_code,
             docNumber: data.document_number,
-            docEndDate: data.document_expire_date,
+            docEndDate: fixDate(data.document_expire_date),
             licenseNumber: data.driver_license_code,
-            licenseIssueDate: data.driver_license_date,
-            licenseEndDate: data.driver_expire_license_date,
+            licenseIssueDate: fixDate(data.driver_license_date),
+            licenseEndDate: fixDate(data.driver_expire_license_date),
             licenseIssueIstitute: data.driver_license_place,
             fattRagioneSociale: data.business_name,
             fattPiva: data.vat_number,
@@ -205,9 +205,9 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
     };
 
     $scope.selectDate = function(input) {
-        var date = typeof $scope.request[input] === 'string' ? fixDate($scope.request[input]) : $scope.request[input];
+        //var date = typeof $scope.request[input] === 'string' ? fixDate($scope.request[input]) : $scope.request[input];
         var dateFromConfig = {
-            date: date ? new Date(date) : new Date(),
+            date: $scope.request[input] ? new Date($scope.request[input]) : new Date(),
             mode: 'date',
             allowOldDates: input === 'licenseIssueDate' ? true: false,
             allowFutureDates: input === 'licenseEndDate' || input === 'docEndDate' ? true: false,
@@ -226,8 +226,13 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
     };
 
     function fixDate(date) {
-        var dateArray = date.split('/');
-        return dateArray[1]+'/'+dateArray[0]+'/'+dateArray[2];
+        if (date) {
+            var dateArray = date.split('/');
+            return dateArray[1]+'/'+dateArray[0]+'/'+dateArray[2];
+        } else {
+            return null;
+        }
+        
     }
 
     getConsensi();
@@ -236,11 +241,11 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
 
         
         if (!$scope.request.email ||
-            !$scope.request.password ||
+            (!$scope.request.password && !$scope.isEdit) ||
             !$scope.request.username ||
-            !$scope.request.accept5 || 
-            !$scope.request.accept6 ||
-            !$scope.request.accept7 ||
+            (!$scope.request.accept5 && !$scope.isEdit) || 
+            (!$scope.request.accept6 && !$scope.isEdit) ||
+            (!$scope.request.accept7 && !$scope.isEdit) ||
             !$scope.request.mobile ||
             !$scope.request.birthNation ||
             !$scope.request.birthPlace ||
@@ -255,14 +260,14 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             !$scope.request.documentType ||
             !$scope.request.docNumber ||
             !$scope.request.docEndDate ||
-            !$scope.request.licenseNumber ||
-            !$scope.request.licenseEndDate ||
-            !$scope.request.licenseIssueDate 
+            (!$scope.request.licenseNumber && !$scope.isEdit) ||
+            (!$scope.request.licenseEndDate && !$scope.isEdit) ||
+            (!$scope.request.licenseIssueDate && !$scope.isEdit) 
         ) {
             PopUpServices.messagePopup('Compilare tutti i campi obbligatori', 'Attenzione');
-        } else if($scope.request.password && !$scope.request.password.match(RegexService.getRegex().password)){
+        } else if($scope.request.password && !$scope.request.password.match(RegexService.getRegex().password) && !$scope.isEdit){
             PopUpServices.messagePopup('La password deve contenere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola e almeno un numero', 'Attenzione');
-        } else if ($scope.request.password !== $scope.request.confirmPassword ) {
+        } else if (($scope.request.password !== $scope.request.confirmPassword) && !$scope.isEdit ) {
             PopUpServices.messagePopup('I campi password non combaciano', 'Attenzione');
         } else if ($scope.request.email !== $scope.request.emailConfirm) {
             PopUpServices.messagePopup('I campi email non combaciano', 'Attenzione');
@@ -350,8 +355,12 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             .replace('{SID}', $scope.request.sdi || '')
             .replace('{PEC}', $scope.request.pec || '');
             ScriptServices.callGenericService(res, 652).then(function(data) {
-                window.localStorage.removeItem('isNotRegistered');
-                PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Procedi all'attivazione della modalità di pagamento", "Profilo in attesa di abilitazione", $scope.paymentModal);
+                if ($scope.isEdit) {
+                    PopUpServices.messagePopup("Modifica effettuata con successo", "Successo");
+                } else {
+                    window.localStorage.removeItem('isNotRegistered');
+                    PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Procedi all'attivazione della modalità di pagamento", "Profilo in attesa di abilitazione", $scope.paymentModal);
+                }
                 $ionicLoading.hide();
             }, function(error) {
                 PopUpServices.errorPopup($filter('translate')('commons.retry'));

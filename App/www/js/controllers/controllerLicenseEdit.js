@@ -3,11 +3,24 @@ angular.module('starter').controller('LicenseEditCtrl', function($cordovaDatePic
     $scope.userInfo = InfoFactories.getUserInfo();
 
     $scope.edit = function(){
-        $scope.request = angular.copy((($scope.userInfo || {}).registry))
+        var request = angular.copy((($scope.userInfo || {}).registry));
+        request.license_date = fixDate(request.license_date);
+        request.license_expire = fixDate(request.license_expire);
+        $scope.request = request;
     };
 
     $scope.undo = function(){
         $scope.request = undefined;
+    }
+
+    function fixDate(date) {
+        if (date) {
+            var dateArray = date.split('/');
+            return dateArray[1]+'/'+dateArray[0]+'/'+dateArray[2];
+        } else {
+            return null;
+        }
+        
     }
 
     $scope.save = function(){
