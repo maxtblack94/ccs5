@@ -7,6 +7,9 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
     $scope.isEdit = $state.params.isEdit;
     
 
+    //fix scroll
+    $scope.ignoreFirstScroll = 2;
+
     function getConsensi(){
         $ionicLoading.show();
         ScriptServices.getXMLResource(651).then(function(res) {
@@ -65,7 +68,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             mobile: data.mobile_phone,
             birthNation: data.birth_country,
             birthPlace: data.birth_place,
-            birthDate: fixDate(data.birthday),
+            birthDate: data.birthday,
             indirizzo: data.address,
             city: data.city,
             cap: data.zip_code,
@@ -73,10 +76,10 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             shortProvinceResidence: data.residence_province,
             fiscalCode: data.tax_code,
             docNumber: data.document_number,
-            docEndDate: fixDate(data.document_expire_date),
+            docEndDate: data.document_expire_date,
             licenseNumber: data.driver_license_code,
-            licenseIssueDate: fixDate(data.driver_license_date),
-            licenseEndDate: fixDate(data.driver_expire_license_date),
+            licenseIssueDate: data.driver_license_date,
+            licenseEndDate: data.driver_expire_license_date,
             licenseIssueIstitute: data.driver_license_place,
             fattRagioneSociale: data.business_name,
             fattPiva: data.vat_number,
@@ -131,7 +134,10 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
     }
 
     $scope.onScroll = function (params) {
-        if (cordova && cordova.plugins && cordova.plugins.Keyboard) {
+        if ($scope.ignoreFirstScroll > 0) {
+            $scope.ignoreFirstScroll = $scope.ignoreFirstScroll - 1;
+        } else if (cordova && cordova.plugins && cordova.plugins.Keyboard) {
+            $scope.ignoreFirstScroll = 2;
             cordova.plugins.Keyboard.close();
         }
     }
@@ -185,8 +191,9 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
     };
 
     $scope.selectBirthDate = function() {
+        var date = typeof $scope.request.birthDate === 'string' ? fixDate($scope.request.birthDate) : $scope.request.birthDate;
         var dateFromConfig = {
-            date: $scope.request.birthDate ? new Date($scope.request.birthDate) : new Date(),
+            date: date ? new Date(date) : new Date(),
             mode: 'date',
             allowOldDates: true,
             allowFutureDates: false,
@@ -205,9 +212,9 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
     };
 
     $scope.selectDate = function(input) {
-        //var date = typeof $scope.request[input] === 'string' ? fixDate($scope.request[input]) : $scope.request[input];
+        var date = typeof $scope.request[input] === 'string' ? fixDate($scope.request[input]) : $scope.request[input];
         var dateFromConfig = {
-            date: $scope.request[input] ? new Date($scope.request[input]) : new Date(),
+            date: date ? new Date(date) : new Date(),
             mode: 'date',
             allowOldDates: input === 'licenseIssueDate' ? true: false,
             allowFutureDates: input === 'licenseEndDate' || input === 'docEndDate' ? true: false,
@@ -329,7 +336,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             .replace('{MOBILE}', $scope.request.mobile || '')
             .replace('{BNATION}', $scope.request.birthNation || '')
             .replace('{BPLACE}', $scope.request.birthPlace || '')
-            .replace('{BDATE}', moment($scope.request.birthDate).format('DD/MM/YYYY')  || '')
+            .replace('{BDATE}', typeof $scope.request.birthDate === 'string' ? moment(fixDate($scope.request.birthDate)).format('DD/MM/YYYY') : moment($scope.request.birthDate).format('DD/MM/YYYY') || '')
             .replace('{VIA}', $scope.request.indirizzo || '')
             .replace('{CIVICO}', $scope.request.civico || '')
             .replace('{COMUNE}', $scope.request.city || '')
@@ -339,10 +346,10 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             .replace('{CF}', $scope.request.fiscalCode || '')
             .replace('{DOCTYPE}', $scope.request.documentType.code || '')
             .replace('{DOCNUMBER}', $scope.request.docNumber || '')
-            .replace('{DOCENDDATE}', moment($scope.request.docEndDate).format('DD/MM/YYYY') || '')
+            .replace('{DOCENDDATE}', typeof $scope.request.docEndDate === 'string' ? moment(fixDate($scope.request.docEndDate)).format('DD/MM/YYYY') : moment($scope.request.docEndDate).format('DD/MM/YYYY') || '')
             .replace('{LICENSENUMBER}', $scope.request.licenseNumber || '')
-            .replace('{LICENSEENDDATE}', moment($scope.request.licenseEndDate).format('DD/MM/YYYY') || '')
-            .replace('{LICENSEDATE}', moment($scope.request.licenseIssueDate).format('DD/MM/YYYY') || '')
+            .replace('{LICENSEENDDATE}', typeof $scope.request.licenseEndDate === 'string' ? moment(fixDate($scope.request.licenseEndDate)).format('DD/MM/YYYY') : moment($scope.request.licenseEndDate).format('DD/MM/YYYY') || '')
+            .replace('{LICENSEDATE}', typeof $scope.request.licenseIssueDate === 'string' ? moment(fixDate($scope.request.licenseIssueDate)).format('DD/MM/YYYY') : moment($scope.request.licenseIssueDate).format('DD/MM/YYYY') || '')
             .replace('{RILASCIATADA}', $scope.request.licenseIssueIstitute || '')
             .replace('{RAGIONESOCIALE}', $scope.request.fattRagioneSociale || '')
             .replace('{PIVA}', $scope.request.fattPiva || '')

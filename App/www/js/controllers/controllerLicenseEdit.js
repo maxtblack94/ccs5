@@ -3,10 +3,7 @@ angular.module('starter').controller('LicenseEditCtrl', function($cordovaDatePic
     $scope.userInfo = InfoFactories.getUserInfo();
 
     $scope.edit = function(){
-        var request = angular.copy((($scope.userInfo || {}).registry));
-        request.license_date = fixDate(request.license_date);
-        request.license_expire = fixDate(request.license_expire);
-        $scope.request = request;
+        $scope.request = angular.copy((($scope.userInfo || {}).registry));
     };
 
     $scope.undo = function(){
@@ -41,8 +38,8 @@ angular.module('starter').controller('LicenseEditCtrl', function($cordovaDatePic
             .replace('{PUSH}', $scope.request.push || '')
             .replace('{LICENSE_CODE}', $scope.request.license_code ? $scope.request.license_code : '')
             .replace('{LICENSE_PLACE}', $scope.request.license_place ? $scope.request.license_place : '')
-            .replace('{LICENSE_DATE}', $scope.request.license_date ? moment($scope.request.license_date).format('DD/MM/YYYY') : '')
-            .replace('{LICENSE_EXPIRE}', $scope.request.license_expire ? moment($scope.request.license_expire).format('DD/MM/YYYY') : '');
+            .replace('{LICENSE_DATE}', typeof $scope.request.license_date === 'string' ? moment(fixDate($scope.request.license_date)).format('DD/MM/YYYY') : moment($scope.request.license_date).format('DD/MM/YYYY') || '')
+            .replace('{LICENSE_EXPIRE}', typeof $scope.request.license_expire === 'string' ? moment(fixDate($scope.request.license_expire)).format('DD/MM/YYYY') : moment($scope.request.license_expire).format('DD/MM/YYYY') || '')
             ScriptServices.callGenericService(res, 558).then(function(data) {
                 $scope.request = undefined;
                 getUserInfo();
@@ -56,8 +53,9 @@ angular.module('starter').controller('LicenseEditCtrl', function($cordovaDatePic
     }
 
     $scope.selectDate = function(dateType) {
+        var date = typeof $scope.request[dateType] === 'string' ? fixDate($scope.request[dateType]) : $scope.request[dateType];
         var dateFromConfig = {
-            date: $scope.request[dateType] ? moment($scope.request[dateType],"DD/MM/YYYY").toDate(): new Date(),
+            date: date ? new Date(date): new Date(),
             mode: 'date',
             allowOldDates: true,
             allowFutureDates: true,
