@@ -16,7 +16,7 @@ angular.module('starter').controller('ParkCtrl', function($ionicHistory, $stateP
             ScriptServices.callGenericService(res, 512).then(function(data) {
                 $scope.parkingList = data.data.ParkingsList || [];
 
-                if ($scope.parkDirection === 'B') {
+                if ($scope.parkDirection === 'B' && ($scope.selectedService || {}).parkingTypeCode === 'PF3') {
                     $scope.parkingList = $scope.parkingList.filter(function (item) {
                         return item.position > $scope.selectedPark.position;
                     });
