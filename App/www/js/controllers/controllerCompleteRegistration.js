@@ -191,7 +191,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
         });
     };
 
-    function clearKeyboard(params) {
+    $scope.clearKeyboard = function() {
         if (cordova && cordova.plugins && cordova.plugins.Keyboard) {
             $scope.ignoreFirstScroll = 2;
             cordova.plugins.Keyboard.close();
@@ -199,9 +199,6 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
     }
 
     $scope.selectBirthDate = function() {
-        setTimeout(() => {
-            clearKeyboard();
-        }, 100);
         var date = typeof $scope.request.birthDate === 'string' ? fixDate($scope.request.birthDate) : $scope.request.birthDate;
         var dateFromConfig = {
             date: date ? new Date(date) : new Date(),
@@ -223,9 +220,6 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
     };
 
     $scope.selectDate = function(input) {
-        setTimeout(() => {
-            clearKeyboard();
-        }, 100);
         var date = typeof $scope.request[input] === 'string' ? fixDate($scope.request[input]) : $scope.request[input];
         var dateFromConfig = {
             date: date ? new Date(date) : new Date(),

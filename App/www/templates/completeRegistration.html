@@ -15,7 +15,8 @@
                                 <div style='background-color: {{ tarif.color }};'></div>
                             </div> -->
                         </p>
-                        <i ng-if="currentTarif.code === tarif.code" class="icon ion-checkmark-round" ></i> <!-- style="font-size: 14px; right: 8px; color: #f9f9f9;" -->
+                        <i ng-if="currentTarif.code !== tarif.code" class="icon ion-ios7-circle-outline" ></i> <!-- style="font-size: 14px; right: 8px; color: #f9f9f9;" -->
+                        <i ng-if="currentTarif.code === tarif.code" class="icon ion-ios7-checkmark" ></i>
                     </div>
                 </div>
                 
@@ -77,7 +78,7 @@
                         <span class="input-label">{{ 'Luogo di nascita' | translate}}<span class="color-error">*</span></span>
                         <input type="text" ng-model="request.birthPlace" placeholder="Luogo di nascita">
                     </ion-item>
-                    <ion-item ng-click='selectBirthDate()'>
+                    <ion-item ng-click='clearKeyboard(); selectBirthDate()'>
                         <h2>{{ 'Data di nascita' | translate}}<span class="color-error">*</span></h2>
                         <p ng-if="request.birthDate">{{ request.birthDate | date:'dd/MM/yyyy'}}</p>
                         <p ng-if="!request.birthDate"> {{ 'Seleziona una data' | translate}} </p>
@@ -151,7 +152,7 @@
                     <span class="input-label">{{ 'Numero documento' | translate}}<span class="color-error">*</span></span>
                     <input type="text" ng-model="request.docNumber" placeholder="Inserisci numero documento">
                 </ion-item>
-                <ion-item ng-click='selectDate("docEndDate")'>
+                <ion-item ng-click='clearKeyboard(); selectDate("docEndDate"); '>
                     <h2>{{ 'Scadenza documento' | translate}}<span class="color-error">*</span></h2>
                     <p ng-if="request.docEndDate">{{ request.docEndDate | date:'dd/MM/yyyy'}}</p>
                     <p ng-if="!request.docEndDate"> {{ 'Seleziona una data' | translate}} </p>
@@ -168,7 +169,7 @@
                         <span class="input-label">{{ 'Patente Numero' | translate}}<span class="color-error">*</span></span>
                         <input type="text" ng-model="request.licenseNumber" placeholder="Inserisci numero della patente">
                     </ion-item>
-                    <ion-item ng-click='selectDate("licenseIssueDate")'>
+                    <ion-item ng-click='clearKeyboard(); selectDate("licenseIssueDate")'>
                         <h2>{{ 'Data rilascio' | translate}}<span class="color-error">*</span></h2>
                         <p ng-if="request.licenseIssueDate">{{ request.licenseIssueDate | date:'dd/MM/yyyy'}}</p>
                         <p ng-if="!request.licenseIssueDate"> {{ 'Seleziona una data' | translate}} </p>
@@ -177,7 +178,7 @@
                         <span class="input-label">{{ 'Rilasciato da' | translate}}</span>
                         <input type="text" ng-model="request.licenseIssueIstitute">
                     </ion-item>
-                    <ion-item ng-click='selectDate("licenseEndDate")'>
+                    <ion-item ng-click='clearKeyboard(); selectDate("licenseEndDate")'>
                         <h2>{{ 'Data scadenza' | translate}}<span class="color-error">*</span></h2>
                         <p ng-if="request.licenseEndDate">{{ request.licenseEndDate | date:'dd/MM/yyyy'}}</p>
                         <p ng-if="!request.licenseEndDate"> {{ 'Seleziona una data' | translate}} </p>
