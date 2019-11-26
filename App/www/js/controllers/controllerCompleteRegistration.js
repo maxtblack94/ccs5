@@ -96,12 +96,14 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             accept4: data.thirtPart_acceptance || 'YES',
             accept5: data.contract_acceptance,
             accept6: data.clauses_1341_1342,
-            accept7: data.consumer_info
+            accept7: data.consumer_info,
+            
 
 
 
         };
 
+        $scope.urlMoreInfo = data.urlMoreInfo;
         $scope.iCanEditFatturazione = $scope.request.fattPiva;
 
         defineDocument(data);
@@ -144,14 +146,13 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
 
     $scope.openUrl = function(url){
         if (url === 'tarifs') {
-            url = $scope.selectedClient.tarifsUrl;
-        } else {
-            url = null;
+            url = $scope.urlMoreInfo;
         }
+
         if (url) {
             window.open(url, '_system', 'location=yes');
         }
-    }
+    };
 
     $scope.selectPicklistValue = function (picklist, title, subTitle) {
         
@@ -190,7 +191,17 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
         });
     };
 
+    function clearKeyboard(params) {
+        if (cordova && cordova.plugins && cordova.plugins.Keyboard) {
+            $scope.ignoreFirstScroll = 2;
+            cordova.plugins.Keyboard.close();
+        }
+    }
+
     $scope.selectBirthDate = function() {
+        setTimeout(() => {
+            clearKeyboard();
+        }, 100);
         var date = typeof $scope.request.birthDate === 'string' ? fixDate($scope.request.birthDate) : $scope.request.birthDate;
         var dateFromConfig = {
             date: date ? new Date(date) : new Date(),
@@ -212,6 +223,9 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
     };
 
     $scope.selectDate = function(input) {
+        setTimeout(() => {
+            clearKeyboard();
+        }, 100);
         var date = typeof $scope.request[input] === 'string' ? fixDate($scope.request[input]) : $scope.request[input];
         var dateFromConfig = {
             date: date ? new Date(date) : new Date(),
@@ -312,11 +326,6 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
 
     }
 
-    $scope.openUrl = function(url){
-        if (url) {
-            window.open(url, '_system', 'location=yes');
-        }
-    }
 
     function completeRegistration() {
         $ionicLoading.show();
