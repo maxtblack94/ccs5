@@ -6,6 +6,7 @@ window.locale_it.leftMenu = {
 	editPassword: 'Modifica Password',
 	menuDivider: 'Menu',
 	home: 'Home',
+	promo: 'Promozioni',
 	driveLicense: 'Dati Patente',
 	settings: 'Impostazioni',
 	help: 'Aiuto',

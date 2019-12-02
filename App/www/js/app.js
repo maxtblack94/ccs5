@@ -235,6 +235,13 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
         templateUrl: 'templates/commons/settings.html',
         controller: 'SettingsCtrl'
       })
+
+      .state('promo', {
+        url: '/promo',
+        cache: false,
+        templateUrl: 'templates/commons/promo.html',
+        controller: 'PromoCtrl'
+      })
       
       .state('help', {
         url: '/help',

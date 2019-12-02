@@ -1,0 +1,27 @@
+<ion-view view-title="{{'leftMenu.promo' | translate}}">
+    <ion-content>
+        <ion-refresher pulling-text="{{'commons.refresh' | translate}}" on-refresh="refreshActivePromo()">
+        </ion-refresher>
+        <div class="list" style="margin-bottom: 0">
+            <div class="item item-input-inset">
+              <label class="item-input-wrapper">
+                <input ng-model="request.promoCode" type="text" placeholder="Inserisci codice promo">
+              </label>
+              <button ng-click="addPromo()" ng-disabled="!request.promoCode" class="button button-small button-positive">
+                Aggiungi
+              </button>
+            </div>
+          </div>
+
+
+        
+        <p ng-if="promotions.length==0" class="message-empty">{{'Non ci sono promozioni attive' | translate}}</p>
+        <ion-list>
+            <ion-item ng-repeat="promotion in promotions">
+                <h2>{{promotion.code}}</h2>
+                <span>Data Scadenza</span><strong class="pull-right"> {{promotion.validTo | date:'dd/MM/yyyy HH:mm'}}</strong>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+  </ion-view>
+   

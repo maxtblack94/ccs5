@@ -11,6 +11,7 @@ window.locale_en.leftMenu = {
 	editPassword: 'Change Password',
 	menuDivider: 'Menu',
 	home: 'Home',
+	promo: 'Promotions',
 	driveLicense: 'Driver License',
 	settings: 'Settings',
 	help: 'Help',

@@ -2,18 +2,44 @@
     <ion-content scroll="false">
         <ion-refresher pulling-text="{{'commons.refresh' | translate}}" on-refresh="refreshPlafond()">
         </ion-refresher>
-        <div class="plafond-container">
-            <p>{{'commons.currentPlafond' | translate}}</p>
-            <h2>{{ userInfo.registry.plafond || 0 | currency: '€ '}}</h2>
-        </div>
         <div class="row">
-            <div class="col col-80 col-offset-10">
+            <div class="col col-50 plafond-container">
+                    <p>{{'commons.currentPlafond' | translate}}</p>
+                    <h2>{{ userInfo.registry.plafond || 0 | currency: '€ '}}</h2>
+            </div>
+            <div class="col col-50 plafond-container">
+                    <p>{{'Saldo buoni' | translate}}</p>
+                    <h2>{{ userInfo.registry.plafondCoupon || 0 | currency: '€ '}}</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col col-50">
                 <button ng-click="charge()" class="button button-block button-positive">
                     {{ 'commons.chargePlafond' | translate}}
                 </button>
             </div>
+            <div class="col col-50">
+                <button ng-click="addCouponPopup()" class="button button-block button-balanced">
+                    {{ 'Buono' | translate}}
+                </button>
+            </div>
         </div>
-        <ion-list ng-if="movimentsList.length" class="list-scrollable">
+
+        <div class="item item-divider">
+            Storico Ricariche
+        </div>
+        <div class="list-scrollable list"  ng-show="movimentsList.length" style="overflow-y: scroll; height: 315px;">
+            
+            <div class="item-icon-right item" ng-repeat="moviment in movimentsList">
+                <h2 ng-if="moviment.type === 'charge'">Ricarica {{ moviment.date}}</h2>
+                <h2 ng-if="moviment.type === 'credit'">Addebito {{ moviment.date}}</h2>
+                <p>{{ moviment.amount || 0 | currency: '€ '}}</p>
+                <i class="icon ion-arrow-up-b" style="color: green" ng-if="moviment.type === 'charge'"></i>
+                <i class="icon ion-arrow-down-b" style="color: red" ng-if="moviment.type === 'credit'"></i>
+            </div>
+        </div>
+        <!-- <ion-list>
             <ion-item ng-repeat="moviment in movimentsList" class="item-icon-right">
                 <h2 ng-if="moviment.type === 'charge'">Ricarica {{ moviment.date}}</h2>
                 <h2 ng-if="moviment.type === 'credit'">Addebito {{ moviment.date}}</h2>
@@ -21,7 +47,7 @@
                 <i class="icon ion-arrow-up-b" style="color: green" ng-if="moviment.type === 'charge'"></i>
                 <i class="icon ion-arrow-down-b" style="color: red" ng-if="moviment.type === 'credit'"></i>
             </ion-item>
-        </ion-list>
+        </ion-list> -->
         
     </ion-content>
 </ion-view>

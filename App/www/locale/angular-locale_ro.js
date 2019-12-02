@@ -6,6 +6,7 @@ window.locale_ro.leftMenu = {
 	editPassword: 'Schimbați parola',
 	menuDivider: 'Meniu',
 	home: 'Home',
+	promo: 'Promo',
 	driveLicense: 'Conducerea datelor',
 	settings: 'Setări',
 	help: 'Ajutor',

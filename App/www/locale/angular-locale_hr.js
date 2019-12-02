@@ -8,6 +8,7 @@ window.locale_hr.leftMenu = {
 	editPassword: "Promijeni zaporku",
 	menuDivider: "Izbornik",
 	home: "Dom",
+	promo: 'Promo',
 	driveLicense: "Vozačka dozvola",
 	settings: "Postavke",
 	help: "Pomozite",
@@ -87,7 +88,7 @@ window.locale_hr.commons = {
 	refresh: "Ažuriranje...",
 	yes: "Da",
 	no: "Ne",
-	back: "Leđa",
+	back: "Povratak",
 	confirm: 'Potvrdi',
 	note: "Bilješka",
 	retry: "Pokušaj ponovno",
@@ -168,7 +169,7 @@ window.locale_hr.map = {
 
 window.locale_hr.confirmReservation = {
 	title: "Potvrda rezervacije",
-	back: "Leđa",
+	back: "Povratak",
 	confirm: "Potvrdi",
 	wait: "Pričekajte…",
 	requestComplete: "Potvrđena rezervacija !",

@@ -1,4 +1,4 @@
-angular.module('starter').controller('CompleteRegistrationCtrl', function($filter, LovServices, $cordovaDatePicker, PopUpServices, RegexService, $scope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup, ScriptServices) {
+angular.module('starter').controller('CompleteRegistrationCtrl', function($filter, LovServices, $cordovaDatePicker, PopUpServices, RegexService, $scope, $state, InfoFactories, $ionicScrollDelegate, $ionicLoading, $ionicPopup, ScriptServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.user = InfoFactories.getUserInfo();
     $scope.currentTarif = undefined;
@@ -189,6 +189,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
                 }
             }]
         });
+        $ionicScrollDelegate.resize();
     };
 
     $scope.clearKeyboard = function() {

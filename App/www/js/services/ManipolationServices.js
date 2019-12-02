@@ -67,6 +67,19 @@ angular.module('starter').factory("ManipolationServices", function() {
         return m;
     }
 
+    function resetDateForDefectRegional (date, dateFrom){
+        var d = new Date(date);
+        dateFrom = new Date(dateFrom);
+        if (d.getMinutes() < dateFrom.getMinutes()) {
+            d.setMinutes(dateFrom.getMinutes());
+            return d
+        } else {
+            d.setMinutes(dateFrom.getMinutes());
+            d.setHours(d.getHours() + 1)
+            return d
+        }
+    }
+
     return {
         dateAndTimeAggregation: function (date, time) {
             return dateAndTimeAggregation(date, time);
@@ -82,7 +95,12 @@ angular.module('starter').factory("ManipolationServices", function() {
         },
         resetDateForDefect: function (date, dateFrom) {
             return resetDateForDefect(date, dateFrom);
+        },
+        resetDateForDefectRegional: function (date, dateFrom) {
+            return resetDateForDefectRegional(date, dateFrom);
         }
+
+        
     };
 
 

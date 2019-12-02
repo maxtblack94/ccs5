@@ -232,6 +232,15 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
         }
     }
 
+    function fixDateTimeToRegional (date, time){
+        var hours = new Date(time).getHours();
+        var minutes = new Date(time).getMinutes();
+        var newDate = new Date(date).setHours(hours,minutes,0,0);
+        var dateFrom = $scope.dateTimeFrom ? $scope.dateTimeFrom : undefined;
+        $scope.dateTimeTo = ManipolationServices.resetDateForDefectRegional(newDate, dateFrom);
+        ReservationService.setDateTimeTo($scope.dateTimeTo);
+    }
+
     $scope.selectFromDate = function() {
         var dateFromConfig = {
             date: $scope.dateTimeFrom ? new Date($scope.dateTimeFrom) : new Date(),
@@ -276,6 +285,10 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
     }
 
     $scope.selectToDate = function() {
+        if ($scope.selectedService.parkingTypeCode === "BT2" && !$scope.dateTimeFrom) {
+            PopUpServices.errorPopup("Selezionare prima la data di ritiro", "1");
+            return 
+        }
             
         var dateToConfig = {
             date: $scope.dateTimeFrom ? new Date($scope.dateTimeFrom) : $scope.dateTimeTo ? new Date($scope.dateTimeTo) : new Date(),
@@ -314,7 +327,12 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
         
         $cordovaDatePicker.show(timeToConfig).then(function(time) {
             if(time){
-                fixDateTime(date, time, 'to');
+                if ($scope.selectedService.parkingTypeCode === "BT2") {
+                    fixDateTimeToRegional(date, time);
+                } else {
+                    fixDateTime(date, time, 'to');
+                }
+                
             }
         });
 

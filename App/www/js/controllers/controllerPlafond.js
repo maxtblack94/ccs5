@@ -2,6 +2,7 @@ angular.module('starter').controller('PlafondCtrl', function($scope, PopUpServic
     $scope.request = {};
     $scope.plafondList = [];
     $scope.userInfo = InfoFactories.getUserInfo();
+    $scope.requestCoupon = {};
 
 
 
@@ -123,4 +124,55 @@ angular.module('starter').controller('PlafondCtrl', function($scope, PopUpServic
             });
         });
     }
+
+
+    function addCoupon(coupon) {
+        $ionicLoading.show();
+        ScriptServices.getXMLResource(680).then(function(res) {
+            var driverNumber = $scope.userInfo.driverNumber;
+            res = res.replace('{COUPONCODE}', coupon)
+            .replace('{DRIVERNUMBER}', driverNumber);
+            ScriptServices.callGenericService(res, 680).then(function(data) {
+                $ionicLoading.hide();
+                if(data.retcode && data.retcode === 2) {
+                    PopUpServices.messagePopup(data.data, $filter('translate')('commons.attention')) ;
+                } else {
+                    PopUpServices.messagePopup($filter('translate')("Buono inserito con successo"),$filter('translate')('commons.success'));
+                    $scope.refreshPlafond();
+                }
+                
+            }, function(error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup($filter('translate')('editPassword.editFail'));
+            });
+        });
+    }
+
+
+    $scope.addCouponPopup = function() {
+        $scope.requestCoupon = {};
+        // An elaborate, custom popup
+        $ionicPopup.show({
+          template: '<input type="text" ng-model="requestCoupon.couponCode">',
+          title: 'Aggiungi Buono',
+          subTitle: 'Inserisci il codice buono',
+          scope: $scope,
+          buttons: [
+            { text: $filter('translate')('commons.cancel'), type: 'button-stable' },
+            {
+              text: '<b>'+ $filter('translate')('commons.confirm') +'</b>',
+              type: 'button-positive',
+              onTap: function(e) {
+                if (!$scope.requestCoupon.couponCode) {
+                  //don't allow the user to close unless he enters wifi password
+                  e.preventDefault();
+                } else {
+                  return addCoupon($scope.requestCoupon.couponCode);
+                }
+              }
+            }
+          ]
+        });
+      
+       };
 });

@@ -1,6 +1,7 @@
 <ion-view view-title="{{ 'bookings.title' | translate }}">
   <div fab ng-click='startBooking()'>
-    <div class='ion-android-add'></div>
+    <div class='ion-android-add' style="font-size: 20px;
+    margin-top: 15px;"></div>
   </div>
   <ion-content>
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshBookings()">
