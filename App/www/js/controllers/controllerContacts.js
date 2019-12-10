@@ -1,4 +1,4 @@
-angular.module('starter').controller('ContactsCtrl', function(InfoFactories, $scope, $filter) {
+angular.module('starter').controller('ContactsCtrl', function(InfoFactories, $scope, $filter, $ionicHistory) {
    $scope.clientContacts = InfoFactories.getClientSelected().contact;
    $scope.startCall = function(number){
         window.open("tel:" + number.replace(/\s+/g, ''), "_system");
@@ -12,4 +12,8 @@ angular.module('starter').controller('ContactsCtrl', function(InfoFactories, $sc
             });
        }
    }
+
+   $scope.back = function (params) {
+    $ionicHistory.goBack();
+ };
 })

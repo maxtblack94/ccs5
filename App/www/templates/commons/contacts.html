@@ -1,4 +1,11 @@
 <ion-view title="{{ 'contacts.title' | translate}}">
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="back()" >
+            <i class="icon ion-ios-arrow-back"> 
+                    {{ 'commons.back' | translate}}
+            </i>
+        </button>
+    </ion-nav-buttons>
     <ion-content>
         <ion-list>
             <ion-item class="item-divider">

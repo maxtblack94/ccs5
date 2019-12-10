@@ -421,4 +421,5 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
             });
         });
     }
+
 })

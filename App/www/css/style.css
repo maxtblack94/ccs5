@@ -648,3 +648,16 @@ display: none;
     float: right;
     font-weight: 600;
 }
+
+.fix-scroll {
+    overflow: hidden;
+    overflow-y: scroll;
+    position: -webkit-sticky;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 500px;
+}

@@ -259,6 +259,17 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
         templateUrl: 'templates/completeRegistration.html',
         controller: 'CompleteRegistrationCtrl'
       })
+
+
+      .state('editUser', {
+        url: '/edit-user',
+        params: {
+          isEdit: true
+        },
+        cache: false,
+        templateUrl: 'templates/completeRegistration.html',
+        controller: 'CompleteRegistrationCtrl'
+      })
       
       
       .state('subscriptions', {

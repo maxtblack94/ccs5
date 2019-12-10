@@ -67,17 +67,30 @@ angular.module('starter').factory("ManipolationServices", function() {
         return m;
     }
 
-    function resetDateForDefectRegional (date, dateFrom){
-        var d = new Date(date);
+    function resetDateForDefectRegional (toDate, dateFrom){
+        var d = new Date(toDate);
         dateFrom = new Date(dateFrom);
-        if (d.getMinutes() < dateFrom.getMinutes()) {
+
+        if (d.getMinutes() > dateFrom.getMinutes() || (d.getDay() === dateFrom.getDay() && d.getHours() === dateFrom.getHours() && d.getMinutes() === dateFrom.getMinutes())) {
+            d.setMinutes(dateFrom.getMinutes());
+            d.setHours(d.getHours() + 1);
+            return d;
+        } if (d.getMinutes() < dateFrom.getMinutes() || (d.getDay() === dateFrom.getDay() && d.getHours() === dateFrom.getHours() && d.getMinutes() === dateFrom.getMinutes())) {
+            d.setMinutes(dateFrom.getMinutes());
+            return d;
+        } else {
+            return d
+        }
+        /* if (d.getHours() !== dateFrom.getHours() && d.getMinutes() < dateFrom.getMinutes()) {
             d.setMinutes(dateFrom.getMinutes());
             return d
+        } else if(d.getMinutes() === dateFrom.getMinutes() && d.getHours() !== dateFrom.getHours()) {
+            return d;
         } else {
             d.setMinutes(dateFrom.getMinutes());
             d.setHours(d.getHours() + 1)
-            return d
-        }
+            return d;
+        } */
     }
 
     return {

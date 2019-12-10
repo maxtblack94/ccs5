@@ -1,4 +1,4 @@
-angular.module('starter').controller('MapCtrl', function ($filter, PopUpServices, ScriptServices, $scope, $http, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup) {
+angular.module('starter').controller('MapCtrl', function ($filter, PopUpServices, ScriptServices, $scope, $ionicHistory, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup) {
     $scope.selectedBooking = $state.params.pnrInfo;
 
     $scope.navigate = function () {
@@ -10,6 +10,11 @@ angular.module('starter').controller('MapCtrl', function ($filter, PopUpServices
             window.open('geo:0,0?q=' + $scope.g_address, '_system');
         }
     };
+
+    $scope.back = function (params) {
+        $ionicHistory.goBack();
+     };
+
     $scope.delete = function (book) {
         PopUpServices.buttonsPopup({
             title: $filter('translate')('bookings.cancelConfirmTitle'),
