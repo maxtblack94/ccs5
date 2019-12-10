@@ -85,7 +85,7 @@ window.locale_hr.commons = {
 	refresh: "Ažuriranje...",
 	yes: "Da",
 	no: "Ne",
-	back: "Leđa",
+	back: "Povratak",
 	confirm: 'Potvrdi',
 	note: "Bilješka",
 	retry: "Pokušaj ponovno",
