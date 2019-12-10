@@ -389,15 +389,25 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
             var lat = position.coords.latitude;
             var long = position.coords.longitude;
             var proximityResult = checkProximity({ "lat": lat, "long": long }, reservation);
-            if (proximityResult) {
+            if ($scope.selectedClient.rangeError && !proximityResult) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup($scope.selectedClient.rangeMessage || $filter('translate')('bookings.needCurrectPark'), '1');
+            } else if(!proximityResult && $scope.selectedClient.rangeMessage) {
+                $ionicLoading.hide();
+                PopUpServices.messagePopup($scope.selectedClient.rangeMessage, $filter('translate')('commons.attention'), function () {
+                    $ionicLoading.show();
+                    if ($cordovaDevice.getPlatform() !== 'iOS') {
+                        AndroidBleConnectionService.connectToVehicle(reservation, action);
+                    } else {
+                        IosBleConnectionService.connectToVehicle(reservation, action);
+                    }
+                });
+            } else if (proximityResult) {
                 if ($cordovaDevice.getPlatform() !== 'iOS') {
                     AndroidBleConnectionService.connectToVehicle(reservation, action);
                 } else {
                     IosBleConnectionService.connectToVehicle(reservation, action);
                 }
-            } else {
-                $ionicLoading.hide();
-                PopUpServices.errorPopup($filter('translate')('bookings.needCurrectPark'), '1');
             }
         }, function (err) {
             $ionicLoading.hide();
