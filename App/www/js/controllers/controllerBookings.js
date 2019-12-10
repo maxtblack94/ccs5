@@ -344,22 +344,16 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
         $ionicLoading.show();
         if (reservation.TKN) {
             reservation.bleID = reservation.bluetooth_id;
-            if ($cordovaDevice.getPlatform() !== 'iOS') {
-                AndroidBleConnectionService.connectToVehicle(reservation, action);
-            } else {
-                IosBleConnectionService.connectToVehicle(reservation, action);
-            }
+            bleCloseCheckProximity(reservation, action);
+            
         } else {
             ScriptServices.getXMLResource(640).then(function(res) {
                 res = res.replace('{PNR}', reservation.pnr).replace('{OPT}', 1);
                 ScriptServices.callGenericService(res, 640).then(function(data) {
                     reservation.TKN = data.data.encryptedStr;
                     reservation.bleID = reservation.bluetooth_id;
-                    if ($cordovaDevice.getPlatform() !== 'iOS') {
-                        AndroidBleConnectionService.connectToVehicle(reservation, action);
-                    } else {
-                        IosBleConnectionService.connectToVehicle(reservation, action);
-                    }
+                    bleCloseCheckProximity(reservation, action);
+                    
                 }, function(error) {
                     PopUpServices.errorPopup($filter('translate')('bookings.errorOpenCar'));
                     $ionicLoading.hide();
@@ -367,6 +361,28 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
             });
         }
     }
+
+    function bleCloseCheckProximity(reservation, action) {
+        var posOptions = { timeout: 20000, enableHighAccuracy: false };
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var lat = position.coords.latitude;
+            var long = position.coords.longitude;
+            var proximityResult = checkProximity({ "lat": lat, "long": long }, reservation);
+            if (proximityResult) {
+                if ($cordovaDevice.getPlatform() !== 'iOS') {
+                    AndroidBleConnectionService.connectToVehicle(reservation, action);
+                } else {
+                    IosBleConnectionService.connectToVehicle(reservation, action);
+                }
+            } else {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup($filter('translate')('bookings.needCurrectPark'), '1');
+            }
+        }, function (err) {
+            $ionicLoading.hide();
+            PopUpServices.errorPopup($filter('translate')('bookings.needCurrectPark'), '1');
+        }, posOptions);
+    } 
 
     function startCloseOpenCarProcess(reservation, opT, carCoords) {
         if (opT === "0") {
