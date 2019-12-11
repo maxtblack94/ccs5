@@ -1,11 +1,15 @@
-angular.module('starter').controller('CompleteRegistrationCtrl', function($filter, LovServices, $cordovaDatePicker, PopUpServices, RegexService, $scope, $state, InfoFactories, $ionicScrollDelegate, $ionicLoading, $ionicPopup, ScriptServices) {
+angular.module('starter').controller('CompleteRegistrationCtrl', function($ionicSideMenuDelegate, $ionicHistory, $filter, LovServices, $cordovaDatePicker, PopUpServices, RegexService, $scope, $state, InfoFactories, $ionicScrollDelegate, $ionicLoading, $ionicPopup, ScriptServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.user = InfoFactories.getUserInfo();
     $scope.currentTarif = undefined;
     $scope.nazioni = LovServices.getNations();
     $scope.province = LovServices.getProvinces();
     $scope.isEdit = $state.params.isEdit;
-    
+    if (!$scope.isEdit) {
+        $ionicSideMenuDelegate._instances[0].enableMenuWithBackViews(false);
+    } else {
+        $ionicSideMenuDelegate._instances[0].enableMenuWithBackViews(true);
+    }
 
     //fix scroll
     $scope.ignoreFirstScroll = 2;
@@ -422,4 +426,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
         });
     }
 
+    $scope.back = function (params) {
+        $ionicHistory.goBack();
+     };
 })

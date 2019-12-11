@@ -82,14 +82,14 @@
 </head>
 
 <body ng-app="starter" animation="slide-left-right-ios7" ng-controller="AppCtrl">
-  <ion-side-menus enable-menu-with-back-views="false" data-componentid="side-menu21">
+  <ion-side-menus enable-menu-with-back-views="true" data-componentid="side-menu21">
     <ion-side-menu-content>
       <ion-nav-bar class="bar-positive">
         <ion-nav-buttons side="left">
           <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
-          <button class="button button-icon button-clear" ng-class="{'ion-ios-home-outline':currentState === 'contacts', 'ion-ios-telephone-outline':currentState !=='contacts'}" ng-click="changeStateContacts()"> </button>
+          <button ng-if="currentState !=='completeRegistration'" class="button button-icon button-clear" ng-class="{'ion-ios-home-outline':currentState === 'contacts', 'ion-ios-telephone-outline':currentState !=='contacts'}" ng-click="changeStateContacts()"> </button>
         </ion-nav-buttons>
       </ion-nav-bar>
       <ion-nav-view></ion-nav-view>
