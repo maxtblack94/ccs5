@@ -661,3 +661,13 @@ display: none;
     right: 0;
     height: 500px;
 }
+
+.sticky-plafond {
+    position: sticky;
+    top: 0;
+    background: #fff;
+}
+
+.sticky-plafond + .list {
+    z-index: -200
+}

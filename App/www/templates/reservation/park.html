@@ -17,8 +17,8 @@
         </div>
         <p ng-if='parkingList.length==0 && !loading' class="message-empty">{{ 'parking.noparking' | translate }}</p>
         <ul class="list">
-            <li class="item item-toggle custom" ng-show="!parkDirection || parkDirection === 'A' ">
-                {{ 'parking.pickupDirection' | translate }}
+            <li class="item item-toggle custom" ng-show="(!parkDirection || parkDirection === 'A') && !selectedService.parkingSelectionFixed">
+                {{ 'parking.pickupDirection' | translate }} : {{preselectPark.value}}
                 <label class="toggle toggle-secondary">
                     <input type="checkbox" ng-model="preselectPark.value">
                     <div class="track">

@@ -9,8 +9,10 @@ angular.module('starter').controller('ParkCtrl', function($ionicHistory, $stateP
         $scope.parkDirection = $stateParams.parkDirection;
         $ionicNavBarDelegate.showBackButton(false);
         $ionicLoading.show();
-        if (($scope.selectedService || {}).parkingTypeCode === 'BT2') {
+        if (!$scope.parkDirection && ($scope.selectedService || {}).parkingSelectionCode === 'ATOB') {
             $scope.preselectPark.value = true;
+        } else if (!$scope.parkDirection) {
+            $scope.preselectPark.value = false;
         }
         ScriptServices.getXMLResource(512).then(function(res) {
             var driverNumber = InfoFactories.getUserInfo().driverNumber;
