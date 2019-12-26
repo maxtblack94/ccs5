@@ -1,0 +1,20 @@
+<ion-view view-title="{{ 'tabs.history' | translate}}">
+    <ion-content scroll="true">
+
+        <div class="list" ng-show="historyList.length">
+
+            <div class="item-icon-right item" ng-repeat="item in historyList">
+                <h2>{{ item.txb_plate}}</h2>
+                <p>{{ item.txb_pnr}}</p>
+                <i class="icon ion-arrow-up-b" style="color: green" ng-if="item.type === 'charge'"></i>
+                <i class="icon ion-arrow-down-b" style="color: red" ng-if="item.type === 'credit'"></i>
+            </div>
+        </div>
+
+        <!-- <ion-infinite-scroll
+            on-infinite="loadMore()"
+            distance="1%">
+        </ion-infinite-scroll> -->
+
+    </ion-content>
+</ion-view>

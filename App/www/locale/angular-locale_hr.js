@@ -70,6 +70,7 @@ window.locale_hr.parking = {
 window.locale_hr.tabs = {
 	reservations: "Rezervacije",
 	park: "Parkirališta",
+	history: 'History',
 	booking: "Knjiga",
 	vehicles: "Vozila",
 	settings: "Postavke",

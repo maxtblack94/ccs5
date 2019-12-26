@@ -66,6 +66,7 @@ window.locale_it.parking = {
 
 window.locale_it.tabs = {
 	reservations: 'Prenotazioni',
+	history: 'Storico',
 	park: 'Parcheggi',
 	booking: 'Prenota',
 	vehicles: 'Veicoli',
