@@ -72,6 +72,7 @@ window.locale_en.parking = {
 window.locale_en.tabs = {
 	reservations: 'Bookings',
 	plafond: 'Plafond',
+	history: 'History',
 	park: 'Parkings',
 	booking: 'Book',
 	vehicles: 'Vehicles',

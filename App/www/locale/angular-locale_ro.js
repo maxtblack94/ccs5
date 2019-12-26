@@ -67,6 +67,7 @@ window.locale_ro.parking = {
 window.locale_ro.tabs = {
 	reservations: 'Rezervari',
 	park: 'Parcari',
+	history: 'History',
 	booking: 'Reserva acum!',
 	vehicles: 'Vehicule',
 	settings: 'Setări',
