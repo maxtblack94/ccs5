@@ -169,6 +169,7 @@ window.locale_ro.confirmReservation = {
 	confirm: 'Confirmare',
 	wait: 'aștepta..',
 	requestComplete: 'Rezervare confirmată',
+	requestCompleteRegional: 'Order confirmed!',
 	seats: "Locuri",
 	color: "culoare",
 	incomplete: 'Atenție',

@@ -173,6 +173,7 @@ window.locale_hr.confirmReservation = {
 	confirm: "Potvrdi",
 	wait: "Pričekajte…",
 	requestComplete: "Potvrđena rezervacija !",
+	requestCompleteRegional: 'Order confirmed!',
 	seats: "Sjedala",
 	color: "Boja",
 	incomplete: "Upozorenje!",

@@ -176,6 +176,7 @@ window.locale_it.confirmReservation = {
 	confirm: 'Conferma',
 	wait: 'Attendere...',
 	requestComplete: 'Prenotazione Confermata!',
+	requestCompleteRegional: 'Ordine Confermato!',
 	seats: "Posti",
 	color: "Colore",
 	incomplete: 'Attenzione',

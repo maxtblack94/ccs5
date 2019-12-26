@@ -158,7 +158,7 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
                 $scope.PNRstring = data.data.PNRstring[0].PNR;
                 $scope.isConfirmed = true;
                 var pnrPopup = $ionicPopup.alert({
-                    title: $filter('translate')('confirmReservation.requestComplete'),
+                    title: $filter('translate')('confirmReservation.requestCompleteRegional'),
                     template: $filter('translate')('confirmReservation.pnr') + ': <b>' + $scope.PNRstring + '</b>'
                 });
                 pnrPopup.then(function(res) {
