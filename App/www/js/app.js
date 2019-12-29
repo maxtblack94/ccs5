@@ -22,11 +22,9 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
         .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
         .endInit();
       }
-/* 
-      if (window.plugins && window.plugins.Keyboard) {
-        window.plugins.Keyboard.hideKeyboardAccessoryBar(false);
-        window.plugins.Keyboard.disableScroll(true);
-      } */
+
+      
+      
 
       if (window.StatusBar) {
         if ($cordovaDevice.getPlatform() == 'iOS'){
@@ -37,6 +35,9 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
   })
 
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider, $translateProvider) {
+    $ionicConfigProvider.scrolling.jsScrolling(false);
+
+    
     $translateProvider.translations('en', window.locale_en);
     $translateProvider.translations('it_IT', window.locale_it);
     $translateProvider.translations('ro_RO', window.locale_ro);

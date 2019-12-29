@@ -1,4 +1,5 @@
-<ion-view title="{{isEdit ? 'register.titleEdit':'register.title' | translate}}" cache-view="false">
+<ion-view title="{{isEdit ? 'register.titleEdit':'register.title' | translate}}">
+        
     <ion-content class="mb80" on-scroll="onScroll();">
             <ion-list>
                 <ion-item class="item-divider" ng-if="!isEdit">
@@ -280,12 +281,18 @@
             </ion-list>
     </ion-content>
     <div class="row footer-fixed">
-        <div class="col col-80 col-offset-10">
-            <button ng-if="!isEdit" ng-click="isValid();" class="button button-block button-balanced">
+        <div class="col col-50" ng-if="!isEdit" >
+            <button ng-click="logout();" class="button button-block button-balanced">
+                {{ 'commons.cancel' | translate}}
+            </button>
+        </div>
+        <div class="col col-50" ng-if="!isEdit" >
+            <button ng-click="isValid();" class="button button-block button-positive">
                 {{ 'Procedi' | translate}}
             </button>
-
-            <button ng-if="isEdit" ng-click="isValid();" class="button button-block button-balanced">
+        </div>
+        <div class="col col-80 col-offset-10" ng-if="isEdit">
+            <button ng-click="isValid();" class="button button-block button-balanced">
                 {{ 'Salva Modifiche' | translate}}
             </button>
         </div>

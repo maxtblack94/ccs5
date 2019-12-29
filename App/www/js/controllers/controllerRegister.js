@@ -1,6 +1,14 @@
 angular.module('starter').controller('RegisterCtrl', function($filter, RegexService, $state, PopUpServices, $scope, InfoFactories, ScriptServices, $ionicLoading) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.request = {};
+    $scope.step = 1;
+
+    window.addEventListener('keyboardWillShow', function () {
+        if (cordova.plugins && cordova.plugins.Keyboard) {
+          cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+          cordova.plugins.Keyboard.disableScroll(true);
+        }
+      });
 
     function getConsensi(){
         $ionicLoading.show();
@@ -23,16 +31,8 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
     };
 
     $scope.create = function () {
-        if (!$scope.request.firstName || !$scope.request.lastName || !$scope.request.username || !$scope.request.password || !$scope.request.confirmPassword) {
+        if (!$scope.request.firstName || !$scope.request.lastName || !$scope.request.username) {
             PopUpServices.messagePopup('Compilare tutti i campi obbligatori', 'Attenzione');
-        }else if (!$scope.request.email || !$scope.request.email.match(RegexService.getRegex().email)) {
-            PopUpServices.messagePopup('Il campo email non è corretto', 'Attenzione');
-        }else if($scope.request.email !== $scope.request.confirmEmail ){
-            PopUpServices.messagePopup('I campi Email non combaciano', 'Attenzione');
-        }else if($scope.request.password !== $scope.request.confirmPassword ){
-            PopUpServices.messagePopup('I campi password non combaciano', 'Attenzione');
-        }else if($scope.request.password && !$scope.request.password.match(RegexService.getRegex().password)){
-            PopUpServices.messagePopup('La password deve contenere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola e almeno un numero', 'Attenzione');
         }else if(!$scope.request.accept1){
             PopUpServices.messagePopup("E' obbligatorio leggere l'informativa E-vai", 'Attenzione');
         }else if($scope.request.accept2 === undefined || $scope.request.accept3 === undefined || $scope.request.accept4 === undefined){
@@ -124,9 +124,11 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
 
     $scope.onScroll = function (params) {
         if (cordova && cordova.plugins && cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+            cordova.plugins.Keyboard.disableScroll(true);
             cordova.plugins.Keyboard.close();
         }
-    }
+    };
 
     function getUserInfo(userInfo, isStatus2){
         ScriptServices.getXMLResource(554).then(function(res) {
@@ -150,6 +152,23 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
         });
     }
 
+    $scope.onScroll();
+
+    $scope.goToStep2 = function (params) {
+        if (!$scope.request.email || !$scope.request.email.match(RegexService.getRegex().email)) {
+            PopUpServices.messagePopup('Il campo Email non è corretto', 'Attenzione');
+        }else if($scope.request.email !== $scope.request.confirmEmail ){
+            PopUpServices.messagePopup('I campi Email non combaciano', 'Attenzione');
+        }else if($scope.request.password !== $scope.request.confirmPassword){
+            PopUpServices.messagePopup('I campi Password non combaciano', 'Attenzione');
+        }else if(($scope.request.password && !$scope.request.password.match(RegexService.getRegex().password) )|| (!$scope.request.password || !$scope.request.confirmPassword)){
+            PopUpServices.messagePopup('La Password deve contenere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola e almeno un numero', 'Attenzione');
+        } else {
+            $scope.step = 2;
+        }
+        
+
+    };
 
 
     /* var myInput = document.getElementById('confirmEmail');

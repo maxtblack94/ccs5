@@ -27,7 +27,9 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />
+    <preference name="HideKeyboardFormAccessoryBar" value="true" />
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
+    <preference name="resizeOnFullScreen" value="true" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="xwalkVersion" value="19+" />
@@ -102,7 +104,6 @@
     <allow-navigation href="http://192.168.1.184:8100" />
     <plugin name="cordova-plugin-device" spec="^1.1.6" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
-    <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="cordova-plugin-geolocation" spec="^2.4.3">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value=" " />
     </plugin>

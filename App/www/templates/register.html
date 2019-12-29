@@ -1,5 +1,5 @@
 <ion-view class="welcome-view" hide-nav-bar="true" >
-    <ion-content on-scroll="onScroll()" style="background-color: #1f6792; height: 100%!important;">
+    <ion-content  style="background-color: #1f6792; height: 100%!important;">
         <!-- <div multi-bg="['http://i.giphy.com/13f7pejozPXuta.gif']" interval="3000" helper-class="no-facebook-welcome-bg"> -->
         <div multi-bg="['img/giphy-bg-2.gif']" interval="3000">
             <div class="top-content row" style="height: 25%">
@@ -12,22 +12,12 @@
                     </p>
                 </div>
             </div>
-            <div class="bottom-content">
+            <div class="bottom-content" ng-hide="step !== 1">
                 <div class="form-container">
-                    <form style="width:80%;margin: 20px auto;">
+                    <form style="width:80%;margin: 100px auto;" ng-submit="goToStep2()">
                         <label class="item item-input" style="border-radius: 5px 5px 0px 0px;">
-                            <span class="input-label">{{ 'Nome' | translate}}<span class="color-error">*</span></span>
-                            <input type="text" autocapitalize="none" id="user-input" ng-model="request.firstName"
-                                placeholder="Nome">
-                        </label>
-                        <label class="item item-input">
-                            <span class="input-label">{{ 'Cognome' | translate}}<span class="color-error">*</span></span>
-                            <input type="text" id="firstName-input" ng-model="request.lastName"
-                                placeholder="Cognome">
-                        </label>
-                        <label class="item item-input" >
                             <span class="input-label">{{ 'Email' | translate}}<span class="color-error">*</span></span>
-                            <input type="email" ng-paste="$event.preventDefault();" ng-copy="$event.preventDefault();" ng-cut="$event.preventDefault();" ng-init="paste=false" id="lastName-input" ng-model="request.email"
+                            <input type="email" ng-paste="$event.preventDefault();" ng-copy="$event.preventDefault();" ng-cut="$event.preventDefault();" ng-init="paste=false" id="lastName-input" ng-model="request.email" autocomplete=“off” autocorrect=“off” autocapitalize=“off” spellcheck=“false”
                                 placeholder="Email">
                         </label>
                         <label class="item item-input" >
@@ -36,30 +26,54 @@
                                 placeholder="Conferma Email">
                         </label>
                         <label class="item item-input" >
-                            <span class="input-label">{{ 'Username' | translate}}<span class="color-error">*</span></span>
-                            <input type="text" id="username-input" ng-model="request.username" placeholder="Username">
-                        </label>
-                        <label class="item item-input" >
                             <span class="input-label">{{ 'login.password' | translate}}<span class="color-error">*</span></span>
                             <input type="password" id="password-input" ng-model="request.password" ng-paste="$event.preventDefault();" ng-copy="$event.preventDefault();" ng-cut="$event.preventDefault();" ng-init="paste=false"
                                 placeholder="{{ 'login.password' | translate}}">
                         </label>
-                        <label class="item item-input" >
+                        <label class="item item-input" style="border-radius: 0px 0px 5px 5px;">
                             <span class="input-label">{{ 'login.password' | translate}}<span class="color-error">*</span></span>
                             <input type="password" id="confirmPassword-input" ng-model="request.confirmPassword" ng-paste="$event.preventDefault();" ng-copy="$event.preventDefault();" ng-cut="$event.preventDefault();" ng-init="paste=false"
                                 placeholder="Conferma Password">
                         </label>
+                        <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+                    </form>
+                    <a class="button button-block enter-account" ng-click="goToStep2()">
+                        {{ 'Conferma' | translate}}
+                    </a>
+
+                    <a class="forgot-password button button-clear button-block" style="text-decoration: underline" ng-click="cancel()">
+                        {{ 'commons.cancel' | translate}}
+                    </a>
+                </div>
+            </div>
+            <div class="bottom-content" ng-hide="step !== 2">
+                <div class="form-container">
+                    <form style="width:80%;margin: 20px auto;">
+                        <label class="item item-input" style="border-radius: 5px 5px 0px 0px;">
+                            <span class="input-label">{{ 'Nome' | translate}}<span class="color-error">*</span></span>
+                            <input type="text" name="password" autocapitalize="none" id="user-input" ng-model="request.firstName" autocomplete=“off” autocorrect=“off” autocapitalize=“off” spellcheck=“false”
+                                placeholder="Nome">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">{{ 'Cognome' | translate}}<span class="color-error">*</span></span>
+                            <input type="text" name="password" id="firstName-input" ng-model="request.lastName" autocomplete=“off” autocorrect=“off” autocapitalize=“off” spellcheck=“false”
+                                placeholder="Cognome">
+                        </label>
+                        
+                        <label class="item item-input" >
+                            <span class="input-label">{{ 'Username' | translate}}<span class="color-error">*</span></span>
+                            <input type="text" id="username-input" ng-model="request.username" placeholder="Username" autocomplete=“off” autocorrect=“off” autocapitalize=“off” spellcheck=“false”>
+                        </label>
                         <label class="item item-input" >
                             <span class="input-label">{{ 'Promozione' | translate}}</span>
-                            <input type="text" id="promo-input" ng-model="request.promo"
+                            <input type="text" id="promo-input" ng-model="request.promo" autocomplete=“off” autocorrect=“off” autocapitalize=“off” spellcheck=“false”
                                 placeholder="Hai un codice promozione?">
                         </label>
                         <label class="item item-input" style="border-radius: 0px 0px 5px 5px;">
                             <span class="input-label">{{ 'Azienda' | translate}}</span>
-                            <input type="text" id="company-input" ng-model="request.company"
+                            <input type="text" id="company-input" ng-model="request.company" autocomplete=“off” autocorrect=“off” autocapitalize=“off” spellcheck=“false”
                                 placeholder="Hai un codice azienda?">
                         </label>
-                        
                     </form>
 
                     <form style="width:80%;margin: 20px auto;">

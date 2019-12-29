@@ -6,7 +6,7 @@
     "@ionic/cloud": "0.16.0",
     "bluebird": "3.5.0",
     "cordova-android": "8.1.0",
-    "cordova-ios": "5.1.0",
+    "cordova-ios": "5.1.1",
     "cordova-plugin-android-permissions": "^1.0.0",
     "cordova-plugin-ble-central": "^1.2.2",
     "cordova-plugin-compat": "1.2.0",
@@ -28,7 +28,7 @@
     "gulp-sourcemaps": "2.4.1",
     "gulp-uglify": "2.0.1",
     "ionic-minify": "2.0.10",
-    "ionic-plugin-keyboard": "2.2.1",
+    "ionic-plugin-keyboard": "^2.2.1",
     "onesignal-cordova-plugin": "2.3.1"
   },
   "devDependencies": {
@@ -58,13 +58,13 @@
   ],
   "cordova": {
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ],
     "plugins": {
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-statusbar": {},
-      "ionic-plugin-keyboard": {},
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": " "
       },
@@ -78,7 +78,8 @@
       "cordova.plugins.diagnostic": {},
       "cordova-plugin-ble-central": {
         "BLUETOOTH_USAGE_DESCRIPTION": "using to open car sharing cars"
-      }
+      },
+      "ionic-plugin-keyboard": {}
     }
   }
 }

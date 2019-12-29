@@ -140,6 +140,8 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
     }
 
     $scope.onScroll = function (params) {
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        cordova.plugins.Keyboard.disableScroll(true);
         if ($scope.ignoreFirstScroll > 0) {
             $scope.ignoreFirstScroll = $scope.ignoreFirstScroll - 1;
         } else if (cordova && cordova.plugins && cordova.plugins.Keyboard) {
@@ -429,4 +431,17 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
     $scope.back = function (params) {
         $ionicHistory.goBack();
      };
+
+     $scope.logout = function() {
+    	var driverNumber = InfoFactories.getUserInfo().driverNumber;
+    	window.localStorage.removeItem('userInfo');
+        $ionicLoading.show();
+        ScriptServices.getXMLResource(569).then(function(res) {
+            res = res.replace('{USER_ID}', driverNumber);
+            $ionicLoading.hide();
+            ScriptServices.callGenericService(res, 569);
+            InfoFactories.resetService();
+            $state.go('login');
+        });
+    };
 })
