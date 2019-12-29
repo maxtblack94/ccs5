@@ -1,4 +1,4 @@
-angular.module('starter').controller('HistoryCtrl', function(ScriptServices, $scope, PopUpServices, $ionicLoading, InfoFactories) {
+angular.module('starter').controller('HistoryCtrl', function(ScriptServices, $scope, $ionicModal, PopUpServices, $ionicLoading, InfoFactories) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     
 
@@ -14,11 +14,32 @@ angular.module('starter').controller('HistoryCtrl', function(ScriptServices, $sc
             }, function(error) {
                 $ionicLoading.hide();
                 $scope.historyList = [];
-            })
+            });
         });
     }
 
+    function init(params) {
+        getHistory();
+        $ionicModal.fromTemplateUrl('js/commons/modalTemplates/reservationHistoryModal.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function (modal) {
+            $scope.modalInstance = modal;
+        });
+    }
+    
+    
 
-    getHistory();
+    $scope.openModal = function (item) {
+        $scope.currentItem = item;
+        $scope.modalInstance.show();
+    };
 
-})
+    $scope.closeModal = function (item) {
+        $scope.currentItem = null;
+        $scope.modalInstance.hide();
+    };
+
+    init();
+
+});
