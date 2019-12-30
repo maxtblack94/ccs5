@@ -581,4 +581,8 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
         });
     }
 
+    $scope.isRegionalAnd18HBeforeStart = function(reservation) {
+
+    };
+
 });
