@@ -470,7 +470,7 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
         dist = dist * 180/Math.PI;
         dist = dist * 60 * 1.1515;
         dist = dist * 1.609344;
-        configuredDistance = angular.isString(configuredDistance) ? parseInt(configuredDistance) : configuredDistance;
+        configuredDistance = angular.isString(configuredDistance) ? parseFloat(configuredDistance) : configuredDistance;
         return dist < configuredDistance ? true : false;
     }
 

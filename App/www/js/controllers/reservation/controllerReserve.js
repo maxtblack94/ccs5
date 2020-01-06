@@ -139,7 +139,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
                 if(days === "0"){
                     maxDate = new Date($scope.dateTimeFrom).setHours(23,59,59,0);
                 }else{
-                    maxDate = new Date($scope.dateTimeFrom)
+                    maxDate = new Date($scope.dateTimeFrom);
                     maxDate = moment(maxDate).add('days', days);
                 }
                 if(maxDate < new Date($scope.dateTimeTo)){
