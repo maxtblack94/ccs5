@@ -30,7 +30,16 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
         $state.go('login');
     };
 
+    function closeKeyboard(params) {
+        if (cordova && cordova.plugins && cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.close();
+        }
+    }
+
     $scope.create = function () {
+        setTimeout(function () {
+            closeKeyboard();
+        });
         if (!$scope.request.firstName || !$scope.request.lastName || !$scope.request.username) {
             PopUpServices.messagePopup('Compilare tutti i campi obbligatori', 'Attenzione');
         }else if(!$scope.request.accept1){
@@ -66,6 +75,7 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
                     
                 }else if(data.retcode === 5){
                     PopUpServices.errorPopup('Email già presente nel sistema. '+ $filter('translate')('commons.retry'));
+                    $scope.step = 1;
                     $ionicLoading.hide(); 
                 }else if(data.retcode === 3){
                     PopUpServices.errorPopup('Username già presente nel sistema. '+ $filter('translate')('commons.retry'));
@@ -154,7 +164,10 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
 
     $scope.onScroll();
 
-    $scope.goToStep2 = function (params) {
+    $scope.goToStep2 = function () {
+        setTimeout(function () {
+            closeKeyboard();
+        });
         if (!$scope.request.email || !$scope.request.email.match(RegexService.getRegex().email)) {
             PopUpServices.messagePopup('Il campo Email non è corretto', 'Attenzione');
         }else if($scope.request.email !== $scope.request.confirmEmail ){
@@ -164,10 +177,9 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
         }else if(($scope.request.password && !$scope.request.password.match(RegexService.getRegex().password) )|| (!$scope.request.password || !$scope.request.confirmPassword)){
             PopUpServices.messagePopup('La Password deve contenere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola e almeno un numero', 'Attenzione');
         } else {
+            $scope.request.username = !$scope.request.username ? $scope.request.email : $scope.request.username;
             $scope.step = 2;
         }
-        
-
     };
 
 

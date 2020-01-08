@@ -194,6 +194,11 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
         $state.go('tab.bookings');
     };
 
+    $scope.showModalInfo = function () {
+        var message = $scope.selectedClient.importMessage || "Si ricorda che nel caso di veicolo non Elettrico, l'importo indicato è al netto del costo/km che verrà conteggìato al fine corsa in base ai km effettivamente percorsi.";
+        PopUpServices.messagePopup(message, 'Info');
+    };
+
     init();
 
 });

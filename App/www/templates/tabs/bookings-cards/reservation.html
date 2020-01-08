@@ -1,7 +1,16 @@
 <div class="list card">
-    <div class="item" ng-click="openBooking(book)" ng-if="selectedClient.map">
-        <p class="pull-left bold">{{ 'bookings.pnr' | translate }}</p>
-        <h2 class="pull-right bold pnr" ng-click='openBooking(book)'><i class="ion-ios-location"></i> {{ ::book.pnr }}</h2>
+    <div class="item" ng-if="selectedClient.map" ng-click="openBooking(book)">
+        <div class="row" style="padding: 0">
+            <div class="col-60 m-right20">
+                <h2>{{ 'bookings.pnr' | translate }}</h2>
+                <p class="bold pnr">{{::book.pnr}}</p>
+            </div>
+            <div class="col-40">
+                <button class="button button-outline button-positive pull-right" style="margin-right: 18px">
+                        <i class="ion-navigate"></i> Parcheggio
+                </button>
+            </div>
+        </div>
     </div>
     <div class="item" ng-if="!selectedClient.map">
         <p class="pull-left bold">{{ 'bookings.pnr' | translate }}</p>
@@ -73,26 +82,27 @@
         </div>
         <p class="pull-right value">{{ ::book.dateTimeTo | date:'dd/MM/yyyy HH:mm' }}</p>
     </div>
-    <div class="item" ng-if="book.importoPresunto || book.importoPresunto === 0">
-        <div class="pull-left m-right20">
-            <h2>{{ 'bookings.tarif' | translate }}</h2>
-            <p class="bold">{{getTarif(book.serviceID, book.tarifID).text}}</p>
+    <div class="item" ng-if="book.importoPresunto || book.importoPresunto === 0" ng-click="showModalInfo()">
+        <div class="row" style="padding: 0">
+            <div class="col-50 m-right20">
+                <h2>{{ 'bookings.tarif' | translate }}</h2>
+                <p class="bold">{{getTarif(book.serviceID, book.tarifID).text}}</p>
+            </div>
+            <div class="col-50">
+                <h2 style="text-align: right;padding-right: 18px;"> {{ 'bookings.price' | translate }}</h2>
+                <p class="bold price" style="padding-right: 18px;">{{book.importoPresunto | currency: '€ '}} <i class="ion-android-information" style="font-size: 18px;color: #ff9f00;"></i></p>
+            </div>
         </div>
-        <div class="pull-right">
-            <h2>{{ 'bookings.price' | translate }}</h2>
-            <p class="bold price">{{book.importoPresunto | currency: '€ '}}</p>
-        </div>
-
     </div>
-    <div class="item" ng-if="book.status === 'Booked'">
+    <div class="item" ng-if="book.status === 'Booked' && ((selectedClient.btnOpenClose && book.tolleranceCheck) || !hideRegionalCancelBefore18H(book))">
         <div class="row">
-            <div class="col col50" ng-if="selectedClient.btnOpenClose && book.tolleranceCheck">
+            <div class="col" ng-if="selectedClient.btnOpenClose && book.tolleranceCheck">
                 <button ng-click="openCarManipolation(book, '0')" class="button button-balanced button-block pull-right"
                     style="padding: 0px 15px;">
                     {{ 'bookings.openCar' | translate }}
                 </button>
             </div>
-            <div class="col col50">
+            <div class="col" ng-hide="hideRegionalCancelBefore18H(book)">
                 <button ng-click='delete(book)' class="button button-block button-positive">
                     <i class="icon ion-ios-trash"></i> {{ 'bookings.cancelReservation' | translate }}
                 </button>

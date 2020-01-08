@@ -439,7 +439,7 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
         dist = dist * 180/Math.PI;
         dist = dist * 60 * 1.1515;
         dist = dist * 1.609344;
-        configuredDistance = angular.isString(configuredDistance) ? parseInt(configuredDistance) : configuredDistance;
+        configuredDistance = angular.isString(configuredDistance) ? parseFloat(configuredDistance) : configuredDistance;
         return dist < configuredDistance ? true : false;
     }
 
@@ -581,8 +581,22 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
         });
     }
 
-    $scope.isRegionalAnd18HBeforeStart = function(reservation) {
+    $scope.hideRegionalCancelBefore18H = function(reservation) {
+        if (reservation.serviceID === "72192" && is18H(reservation.dateTimeFrom)) {
+            return true;
+        }
+    };
 
+    function is18H(dateFromTime) {
+        var startTime = moment(new Date());
+        var duration = moment.duration(moment(dateFromTime).diff(startTime));
+        var hours = duration.asHours();
+        return hours < 18;
+    }
+
+    $scope.showModalInfo = function () {
+        var message = $scope.selectedClient.importMessage || "Si ricorda che nel caso di veicolo non Elettrico, l'importo indicato è al netto del costo/km che verrà conteggìato al fine corsa in base ai km effettivamente percorsi.";
+        PopUpServices.messagePopup(message, 'Info');
     };
 
 });

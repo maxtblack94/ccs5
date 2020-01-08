@@ -9,8 +9,8 @@
     <p ng-if='BookingsList && BookingsList.length==0' class="message-empty">{{ 'bookings.notFound' | translate }}</p>
     <ion-list ng-if="BookingsList && BookingsList.length">
         <div ng-repeat='book in BookingsList'>
-            <ng-include src="'templates/tabs/bookings-cards/reservation.html'" ng-if="book.status !== 'Registered'"></ng-include>
-            <ng-include src="'templates/tabs/bookings-cards/order.html'" ng-if="book.status === 'Registered'"></ng-include>
+            <ng-include src="'templates/tabs/bookings-cards/reservation.html'" ng-if="book.type === 'reservation'"></ng-include>
+            <ng-include src="'templates/tabs/bookings-cards/order.html'" ng-if="book.type === 'order'"></ng-include>
         </div>
     </ion-list>
   </ion-content>

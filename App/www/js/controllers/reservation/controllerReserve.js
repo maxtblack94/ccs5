@@ -68,6 +68,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
     checkErrorTarifTime = function (dateTimeTo, dateTimeFrom) {
         var tarif = $scope.selectedTarif.value;
         if (tarif.opening) {
+            var is24HourTarif = tarif.opening === "00:00" && tarif.closing === "23:59";
             var tarifTmp = {
                 opening: new Date(moment('12/10/2020' + ' ' + tarif.opening, 'DD/MM/YYYY HH:mm:ss')),
                 closing: new Date(moment('12/10/2020' + ' ' + tarif.closing, 'DD/MM/YYYY HH:mm:ss'))
@@ -88,11 +89,11 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
                 closingSameDay: dateTimeFrom.getHours() <= 23 && tarifTmp.opening.getHours() <= dateTimeFrom.getHours() ? moment(minDateString + ' ' + "23:59", 'DD/MM/YYYY HH:mm:ss') : moment(minDateString + ' ' + tarif.closing, 'DD/MM/YYYY HH:mm:ss')
             };
             
-            if (!isDayInverted && (tarifTmp.opening.getHours() >= dateTimeFrom.getHours() || dateTimeFrom.getHours() >= tarifTmp.closing.getHours() || tarifTmp.opening.getHours() >= dateTimeTo.getHours() || dateTimeTo.getHours() >= tarifTmp.closing.getHours())) {
+            if (!is24HourTarif && !isDayInverted && (tarifTmp.opening.getHours() >= dateTimeFrom.getHours() || dateTimeFrom.getHours() >= tarifTmp.closing.getHours() || tarifTmp.opening.getHours() >= dateTimeTo.getHours() || dateTimeTo.getHours() >= tarifTmp.closing.getHours())) {
                 PopUpServices.errorPopup($filter('translate')('bookResume.subscriptionIncompatible'), "1");
                 $scope.selectedTarif.value = {};
                 return true;
-            } else if(isDayInverted && !isSameDay && (!dateTimeFromMoment.isBetween(tarifTmpMoment.opening, tarifTmpMoment.closing) || !dateTimeToMoment.isBetween(tarifTmpMoment.opening, tarifTmpMoment.closing))) {
+            } else if(!is24HourTarif && isDayInverted && !isSameDay && (!dateTimeFromMoment.isBetween(tarifTmpMoment.opening, tarifTmpMoment.closing) || !dateTimeToMoment.isBetween(tarifTmpMoment.opening, tarifTmpMoment.closing))) {
                 PopUpServices.errorPopup($filter('translate')('bookResume.subscriptionIncompatible'), "1");
                 $scope.selectedTarif.value = {};
                 return true;
@@ -100,7 +101,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
                 PopUpServices.errorPopup($filter('translate')('bookResume.subscriptionIncompatible'), "1");
                 $scope.selectedTarif.value = {};
                 return true;
-            } else if(!checkDayMatch($scope.selectedTarif.value.weeklyDays, dateTimeFromMoment.isoWeekday())) {
+            } else if(!checkDayMatch($scope.selectedTarif.value.weeklydays, dateTimeFromMoment.isoWeekday())) {
                 PopUpServices.errorPopup($filter('translate')('bookResume.subscriptionIncompatible'), "1");
                 $scope.selectedTarif.value = {};
                 return true;
@@ -287,7 +288,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
     $scope.selectToDate = function() {
         if ($scope.selectedService.parkingTypeCode === "BT2" && !$scope.dateTimeFrom) {
             PopUpServices.errorPopup("Selezionare prima la data di ritiro", "1");
-            return 
+            return;
         }
             
         var dateToConfig = {

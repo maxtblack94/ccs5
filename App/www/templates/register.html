@@ -48,7 +48,7 @@
             </div>
             <div class="bottom-content" ng-hide="step !== 2">
                 <div class="form-container">
-                    <form style="width:80%;margin: 20px auto;">
+                    <form style="width:80%;margin: 20px auto;" ng-submit="create()">
                         <label class="item item-input" style="border-radius: 5px 5px 0px 0px;">
                             <span class="input-label">{{ 'Nome' | translate}}<span class="color-error">*</span></span>
                             <input type="text" name="password" autocapitalize="none" id="user-input" ng-model="request.firstName" autocomplete=“off” autocorrect=“off” autocapitalize=“off” spellcheck=“false”
@@ -74,6 +74,7 @@
                             <input type="text" id="company-input" ng-model="request.company" autocomplete=“off” autocorrect=“off” autocapitalize=“off” spellcheck=“false”
                                 placeholder="Hai un codice azienda?">
                         </label>
+                        <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
                     </form>
 
                     <form style="width:80%;margin: 20px auto;">

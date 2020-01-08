@@ -42,14 +42,16 @@
                 </div>
                 <p class="pull-right value">{{ dateTimeTo | date:'dd/MM/yyyy HH:mm' }}</p>
             </ion-item>
-            <div class="item" ng-show="selectedTarif.value.text">
-                <div class="pull-left m-right20">
-                    <h2>{{ 'bookings.tarif' | translate }}</h2>
-                    <p class="bold">{{selectedTarif.value.text}}</p>
-                </div>
-                <div class="pull-right">
-                    <h2>{{ 'bookings.price' | translate }}</h2>
-                    <p class="bold price">{{selectedCar.importoPresunto | currency: '€ '}}</p>
+            <div class="item" ng-if="selectedTarif.value.text" ng-click="showModalInfo()">
+                <div class="row" style="padding: 0">
+                    <div class="col-50 m-right20">
+                        <h2>{{ 'bookings.tarif' | translate }}</h2>
+                        <p class="bold">{{selectedTarif.value.text}}</p>
+                    </div>
+                    <div class="col-50">
+                        <h2 style="text-align: right;padding-right: 18px;"> {{ 'bookings.price' | translate }}</h2>
+                        <p class="bold price" style="padding-right: 18px;">{{selectedCar.importoPresunto | currency: '€ '}} <i class="ion-android-information" style="font-size: 18px;color: #ff9f00;"></i></p>
+                    </div>
                 </div>
             </div>
             <ion-item ng-show="selectedClient.cc && selectedService.parkingTypeCode !== 'BT2'"">

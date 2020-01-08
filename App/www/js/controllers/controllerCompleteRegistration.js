@@ -260,7 +260,9 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
     getConsensi();
 
     $scope.isValid = function () {
-
+        setTimeout(function () {
+            closeKeyboard();
+        });
         
         if (!$scope.request.email ||
             (!$scope.request.password && !$scope.isEdit) ||
@@ -444,4 +446,10 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
             $state.go('login');
         });
     };
+
+    function closeKeyboard(params) {
+        if (cordova && cordova.plugins && cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.close();
+        }
+    }
 })

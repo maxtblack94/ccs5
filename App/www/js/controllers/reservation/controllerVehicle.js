@@ -58,6 +58,7 @@ angular.module('starter').controller('VehicleCtrl', function($filter, $ionicHist
                 
                 finalizeData(data);
             }, function(error) {
+                $scope.vehicleList = [];
                 $ionicLoading.hide();
                 PopUpServices.errorPopup($filter('translate')('commons.retry'));
             });
@@ -114,10 +115,16 @@ angular.module('starter').controller('VehicleCtrl', function($filter, $ionicHist
                 finalizeData(data);
             }, function(error) {
                 $ionicLoading.hide();
+                $scope.vehicleList = [];
                 PopUpServices.errorPopup($filter('translate')('commons.retry'));
             });
         });
     }
+
+    $scope.showModalInfo = function () {
+        var message = $scope.selectedClient.importMessage || "Si ricorda che nel caso di veicolo non Elettrico, l'importo indicato è al netto del costo/km che verrà conteggìato al fine corsa in base ai km effettivamente percorsi.";
+        PopUpServices.messagePopup(message, 'Info');
+    };
 
     loadVehicles();
 });

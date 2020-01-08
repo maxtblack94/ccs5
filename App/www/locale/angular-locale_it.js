@@ -109,7 +109,7 @@ window.locale_it.commons = {
 	accept: 'Accetta',
 	services: 'Servizi',
 	bleConnection: 'Ti preghiamo di abilitare il Bluetooth e riprovare',
-	bleConnectionGenericError: 'Qualcosa è andato storto, riprova',
+	bleConnectionGenericError: 'Errore generico, se il problema persiste contattare il servizio clienti',
 	bleSuccess: "Operazione avvenuta con successo!",
 	bleConnectionInvalidKey: 'Assicurati di aver posizionato nel portachiavi la chiave del veicolo giusto',
 	bleConnectionAlreadyProcessedRequest: 'La richiesta di apertura è già stata gestita precedentemente',

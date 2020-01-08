@@ -1,6 +1,7 @@
 <ion-view title="{{isEdit ? 'register.titleEdit':'register.title' | translate}}">
         
     <ion-content class="mb80" on-scroll="onScroll();">
+        <form ng-submit="isValid()">
             <ion-list>
                 <ion-item class="item-divider" ng-if="!isEdit">
                     <h2 style="display: inline">{{ 'Scegli il tuo profilo di noleggio' | translate}}</h2> <span class="scopri" ng-click="openUrl('tarifs')"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Scopri di più...</span>
@@ -266,6 +267,8 @@
                     <input ng-if="!disabledCompany" type="text" ng-model="request.company" placeholder="inserisci qui il codice azienda   ">
                 </ion-item> -->
             </ion-list>
+            <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+        </form>
             <!-- <ion-list ng-if="isEdit" ng-repeat="item in acceptances | filter: { step: '1'}">
                 <div class="item item-divider" ng-if="item.id !== 'accept1'" style="white-space: inherit;" ng-click="openUrl(item.url)">
                     <i ng-if="item.url" class="fa fa-file-pdf-o" aria-hidden="true"></i> {{item.text}}
