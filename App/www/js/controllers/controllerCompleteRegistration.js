@@ -43,7 +43,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
                     text: '<b>'+$filter('translate')('Termina')+'</b>',
                     type: 'button-positive',
                     onTap: function (e) {
-                        $state.go('tab.bookings');
+                        skipRegistration();
                     }
                 },{
                     text: $filter('translate')('commons.procede'),
@@ -51,6 +51,22 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
                 }]
             });
         }
+    }
+
+    function skipRegistration() {
+        $ionicLoading.show();
+        ScriptServices.getXMLResource(688).then(function(res) {
+            res = res.replace('{DRIVERID}', $scope.user.driverNumber || null);
+            ScriptServices.callGenericService(res, 688).then(function(data) {
+                setTimeout(() => {
+                    $state.go('tab.bookings');
+                    $ionicLoading.hide();
+                }, 500);
+            }, function(error) {
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
+                $ionicLoading.hide();
+            });
+        });
     }
 
     $scope.selectTarif = function (tarif) {

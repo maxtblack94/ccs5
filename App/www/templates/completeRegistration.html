@@ -205,7 +205,7 @@
 
                 <!-- DATI FATTURAZIONE -->
                 <ion-item class="item-divider" style="white-space: inherit!important;">
-                    <h2 style="white-space: inherit!important;">{{ 'Dati di fatturazione ' | translate}} <span>(solo se in possesso di Partita Iva)</span></h2> 
+                    <h2 style="white-space: inherit!important;">{{ 'Dati di fatturazione ' | translate}} <span>(solo se in possesso di P. IVA )</span></h2> 
                 </ion-item>
                 <ion-checkbox ng-if="!isEdit || (isEdit && !iCanEditFatturazione)" id="datiFatt" name="datiFatt" ng-change="request.isDatiFatt === false ? request.isDittaindividuale = false: null" ng-value="true" ng-model="request.isDatiFatt">Abilita Fatturazione</ion-checkbox>
                 <ion-checkbox ng-if="!isEdit || (isEdit && !iCanEditFatturazione)" id="isDittaindividuale" ng-disabled="!request.isDatiFatt" name="isDittaindividuale" ng-value="true" ng-model="request.isDittaindividuale">Ditta Individuale</ion-checkbox>

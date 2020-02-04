@@ -671,3 +671,7 @@ display: none;
 .sticky-plafond + .list {
     z-index: -200
 }
+
+.item-checkbox[disabled] {
+    color: #ddd
+}

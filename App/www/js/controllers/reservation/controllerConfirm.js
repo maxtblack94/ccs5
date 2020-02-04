@@ -80,7 +80,7 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
     };
 
     function classicReserve(params) {
-        var place = $('.place_val').val();
+        var place = $('#place_val').val();
         var justifyCode = $scope.selectedJustify ? $scope.selectedJustify.code : null;
         var cc = !$scope.selectedClient.cc ? false : $scope.hasCC;
 		var telepass = !$scope.selectedClient.telepass ? false : $scope.hasTelepass;

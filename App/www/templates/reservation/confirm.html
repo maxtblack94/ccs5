@@ -79,11 +79,15 @@
                     </div>
                 </div>
             </ion-item>
-            <ion-item ng-show='selectedService.parkingTypeCode !== "BT2"'>
+            <!-- <ion-item ng-show='selectedService.parkingTypeCode !== "BT2"'>
                 <div class="date-select-label" style='margin-bottom: 10px;'>{{ selectedClient.lbldestination }}</div>
                 <div style='font-size: 14pt; margin-bottom: 10px;'>
                     <input class='place_val' type='text' style='padding: 10px; width: 100%; border: 1px solid #ccc; border-radius: 5px; -webkit-box-sizing: border-box;‌​ -moz-box-sizing: border-box; box-sizing: border-box;' />
                 </div>
+            </ion-item> -->
+            <ion-item class="item-input item-stacked-label" ng-show='selectedService.parkingTypeCode !== "BT2"'>
+                <span class="input-label">{{ selectedClient.lbldestination }}</span>
+                <input id="place_val" type="text" ng-model="request.note">
             </ion-item>
 <!--             <ion-item ng-click="selectPicklistValue('selectedSeats')">
                 <h2>{{ 'Numero di posti auto richiesto' | translate}}<span class="color-error">*</span></h2>

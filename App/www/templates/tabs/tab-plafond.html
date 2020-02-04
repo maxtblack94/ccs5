@@ -7,11 +7,11 @@
             <div class="row">
                 <div class="col col-50 plafond-container">
                     <p>{{'commons.currentPlafond' | translate}}</p>
-                    <h2>{{ userInfo.registry.plafond || 0 | currency: '€ '}}</h2>
+                    <h3>{{ userInfo.registry.plafond || 0 | currency: '€ '}}</h3>
                 </div>
                 <div class="col col-50 plafond-container">
                     <p>{{'Saldo buoni' | translate}}</p>
-                    <h2>{{ userInfo.registry.plafondCoupon || 0 | currency: '€ '}}</h2>
+                    <h3>{{ userInfo.registry.plafondCoupon || 0 | currency: '€ '}}</h3>
                 </div>
             </div>
             <div class="row">

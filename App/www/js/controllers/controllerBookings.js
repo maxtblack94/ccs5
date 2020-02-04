@@ -190,7 +190,7 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
                             $rootScope.sosPnr = obj.status === "Collected"? obj.pnr:undefined;
                         }
                     }
-                    if (obj.returnDateChanged && obj.return_time_tollerance) {
+                    if ((obj.returnDateChanged === true || obj.returnDateChanged === "True")  && obj.return_time_tollerance) {
                         obj.return_time_tollerance = ManipolationServices.dateAndTimeAggregation(obj.return_date_tollerance, obj.return_time_tollerance);
                         obj.dateTimeTo = obj.return_time_tollerance;
                     }
