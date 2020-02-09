@@ -75,9 +75,9 @@ angular.module('starter').controller('ParkCtrl', function($ionicHistory, $stateP
         } else if($scope.parkDirection === 'B' && ($scope.selectedService || {}).parkingTypeCode === 'PF3') {
             return 'Fermata di Arrivo';
         } else if($scope.parkDirection === 'B') {
-            return 'Parcheggio riconsegna';
+            return $filter('translate')('bookResume.returnPark');
         } else {
-            return 'Parcheggio ritiro';
+            return $filter('translate')('bookResume.pickupPark');
         }
         
     };

@@ -143,7 +143,7 @@ window.locale_hr.bookResume = {
 	wrongParking: "Prije nastavka, odaberite parkiralište.",
 	pickupReturnlabel: "Parking za preuzimanje / povratak",
 	pickupPark : "Parking za preuzimanje",
-	returnPark : "Return Parking",
+	returnPark : "Parking za povratak",
 	subscriptionIncompatible: "Vrijeme rezervacije nije kompatibilno s vašom tarifom",
 	pickupStation : "Fermata di Partenza",
 	returnStation : "Fermata di Arrivo",
