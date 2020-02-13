@@ -51,7 +51,7 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
         }, 2000);
     }
     
-    $scope.startBooking = function (params) {
+    $scope.startBooking = function (withMap) {
         var isNotRegistered = window.localStorage.getItem("isNotRegistered");
         if (isNotRegistered && isNotRegistered == 'true') {
             $state.go('completeRegistration');
@@ -61,6 +61,9 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
             PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Procedi all'attivazione della modalità di pagamento", "Profilo in attesa di abilitazione", $scope.paymentModal);
         } else {
             ReservationService.resetReservation();
+            if (withMap) {
+                ReservationService.setIsReservationWithMap(true);
+            }
             $state.go('subscriptions');
         }
     };

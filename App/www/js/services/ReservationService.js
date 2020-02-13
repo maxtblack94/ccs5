@@ -6,6 +6,7 @@ angular.module('starter').factory("ReservationService", function($ionicPopup, $f
     this.selectedParkB,
     this.telepass = false,
     this.cc = false,
+    this.isReservationWithMap = false,
     this.driverRange = {"value":{"text":"","code":"short"}},
     this.selectedTarif = {"value":{"text":"","id":""}},
     this.vehicleType = {"value":{"text":"","code":""}},
@@ -21,6 +22,7 @@ angular.module('starter').factory("ReservationService", function($ionicPopup, $f
         self.selectedParkB = undefined;
         self.telepass = false;
         self.cc = false;
+        self.isReservationWithMap = false;
         self.preselectPark = {value : false};
         self.driverRange = {"value":{"text":"","code":"short"}};
         self.selectedTarif = {"value":{"text":"","id":""}};
@@ -69,6 +71,9 @@ angular.module('starter').factory("ReservationService", function($ionicPopup, $f
         },
         setCC: function (cc) {
             self.cc = cc;
+        },
+        setIsReservationWithMap: function (isReservationWithMap) {
+            self.isReservationWithMap = isReservationWithMap;
         },
         setDriverRange: function (driverRange) {
             self.driverRange = driverRange;

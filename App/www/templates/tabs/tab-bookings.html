@@ -2,6 +2,9 @@
   <div fab ng-click='startBooking()'>
     <div class='ion-android-add'></div>
   </div>
+  <div fab ng-click='startBooking(true)' ng-if="selectedClient.mapReserve">
+    <div class='ion-android-add'></div>
+  </div>
   <ion-content>
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshBookings()">
     </ion-refresher>

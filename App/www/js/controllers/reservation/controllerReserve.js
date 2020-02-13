@@ -94,7 +94,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
     };
 
     function datesCheck (){
-        if(!$scope.selectedPark){
+        if(!$scope.selectedPark && !$scope.isReservationWithMap){
             PopUpServices.errorPopup($filter('translate')('bookResume.wrongParking'), "1");
             return false;
         }
@@ -110,7 +110,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
             }else if((dateTimeTo - dateTimeFrom) < 0){
                 PopUpServices.errorPopup($filter('translate')('bookResume.returnDateIsMajor'), "1");
                 return false;
-            }else if(!$scope.selectedPark.h24){
+            }else if(!$scope.selectedPark.h24 && !$scope.isReservationWithMap) {
                 if(!((dateTimeFrom.getHours() >= $scope.selectedPark.opening.getHours()) && (dateTimeFrom.getHours() < $scope.selectedPark.closing.getHours()))){
                     PopUpServices.errorPopup($filter('translate')('bookResume.returnDateIsOut'), "1");
                     return false;
