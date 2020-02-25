@@ -42,10 +42,6 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
         });
         if (!$scope.request.firstName || !$scope.request.lastName || !$scope.request.username) {
             PopUpServices.messagePopup('Compilare tutti i campi obbligatori', 'Attenzione');
-        }else if(!$scope.request.accept1){
-            PopUpServices.messagePopup("E' obbligatorio leggere l'informativa E-vai", 'Attenzione');
-        }else if($scope.request.accept2 === undefined || $scope.request.accept3 === undefined || $scope.request.accept4 === undefined){
-            PopUpServices.messagePopup("E' obbligatorio valorizzare tutti i consensi", 'Attenzione');
         }else{
             createAccount();
         }
@@ -175,9 +171,13 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
         }else if($scope.request.password !== $scope.request.confirmPassword){
             PopUpServices.messagePopup('I campi Password non combaciano', 'Attenzione');
         }else if(($scope.request.password && !$scope.request.password.match(RegexService.getRegex().password) )|| (!$scope.request.password || !$scope.request.confirmPassword)){
-            PopUpServices.messagePopup('La Password deve contenere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola e almeno un numero', 'Attenzione');
+            PopUpServices.messagePopup('La Password deve contenere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola, una minuscola e almeno una cifra', 'Attenzione');
+        }else if(!$scope.request.accept1){
+            PopUpServices.messagePopup("E' obbligatorio leggere l'informativa E-vai", 'Attenzione');
+        }else if($scope.request.accept2 === undefined || $scope.request.accept3 === undefined || $scope.request.accept4 === undefined){
+            PopUpServices.messagePopup("E' obbligatorio valorizzare tutti i consensi", 'Attenzione');
         } else {
-            $scope.request.username = !$scope.request.username ? $scope.request.email : $scope.request.username;
+            $scope.request.username = $scope.request.email;
             $scope.step = 2;
         }
     };

@@ -2,6 +2,12 @@
     <div class="item">
         <p class="pull-left bold">{{ 'bookings.pnr' | translate }}</p>
         <h2 class="pull-right bold pnr"> {{ ::book.pnr }}</h2>
+
+        <div class="col-40">
+            <button ng-click="openBooking(book)" class="button button-outline button-positive pull-right" style="margin-right: 18px">
+                    <i class="ion-navigate"></i> Parcheggio
+            </button>
+        </div>
     </div>
     <div class="item">
         <div class="pull-left m-right20">

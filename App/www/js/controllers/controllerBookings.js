@@ -60,7 +60,7 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
             ReservationService.resetReservation();
             $state.go('subscriptions');
         } else if ($scope.userInfo.registry.account_status === 'CREDITED') {
-            PopUpServices.messagePopup("Per maggiori informazioni contatta il Nr Verde: 800 77 44 55", "Il tuo profilo è in fase di attivazione");
+            PopUpServices.messagePopup("Per poter procedere all'attivazione del Tuo profilo, è necessario che invii il documento di riconoscimento e la patente di guida validi all'indirizzo customerservice@e-vai.com. Se l'invio dei documenti è già avvenuto rimani in attesa dell'attivazione. Per maggiori informazioni contatta il Nr Verde: 800 77 44 55.", "Il tuo profilo è in fase di attivazione");
         } else if (isNotRegistered && isNotRegistered == 'true') {
             $state.go('completeRegistration');
         } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED_WITH_PAY' || $scope.userInfo.registry.account_status === 'SUBSCRIBED') {
@@ -368,15 +368,25 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
             var lat = position.coords.latitude;
             var long = position.coords.longitude;
             var proximityResult = checkProximity({ "lat": lat, "long": long }, reservation);
-            if (proximityResult) {
+            if ($scope.selectedClient.rangeError && !proximityResult) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup($scope.selectedClient.rangeMessage || $filter('translate')('bookings.needCurrectPark'), '1');
+            } else if(!proximityResult && $scope.selectedClient.rangeMessage) {
+                $ionicLoading.hide();
+                PopUpServices.messagePopup($scope.selectedClient.rangeMessage, $filter('translate')('commons.attention'), function () {
+                    $ionicLoading.show();
+                    if ($cordovaDevice.getPlatform() !== 'iOS') {
+                        AndroidBleConnectionService.connectToVehicle(reservation, action);
+                    } else {
+                        IosBleConnectionService.connectToVehicle(reservation, action);
+                    }
+                });
+            } else if (proximityResult) {
                 if ($cordovaDevice.getPlatform() !== 'iOS') {
                     AndroidBleConnectionService.connectToVehicle(reservation, action);
                 } else {
                     IosBleConnectionService.connectToVehicle(reservation, action);
                 }
-            } else {
-                $ionicLoading.hide();
-                PopUpServices.errorPopup($filter('translate')('bookings.needCurrectPark'), '1');
             }
         }, function (err) {
             $ionicLoading.hide();
@@ -496,7 +506,7 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
                 text: '<b>'+ $filter('translate')('commons.confirm') +'</b>',
                 type: 'button-positive',
                 onTap: function() {
-                    var script = book.status === 'Registered' ? 643 : 553;
+                    var script = book.type === 'order' ? 643 : 553;
                     $ionicLoading.show();
                     ScriptServices.getXMLResource(script).then(function(res) {
                         res = res.replace('{BOOKING_NUMBER}', book.Nr);
@@ -583,6 +593,12 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
 
     $scope.hideRegionalCancelBefore18H = function(reservation) {
         if (reservation.serviceID === "72192" && is18H(reservation.dateTimeFrom)) {
+            return true;
+        }
+    };
+
+    $scope.isRegional = function(reservation) {
+        if (reservation.serviceID === "72192") {
             return true;
         }
     };

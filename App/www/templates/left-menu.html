@@ -7,7 +7,7 @@
     </ion-item>
     <ion-item class="item-icon-right" href="#/tab/plafond" ng-if="chargeOn()" menu-close>
         <h2>{{ 'commons.currentPlafond' | translate}}</h2>
-        <p>{{ userInfo.registry.plafond || 0 | currency: '€ '}}</p>
+        <p>{{ (userInfo.registry.plafond || '0') + ' € '}}</p>
         <i class="icon ion-card"></i>
     </ion-item>
     <ion-item class="item-icon-right" href="#/edit-password" menu-close>

@@ -14,7 +14,7 @@
             </div>
             <div class="bottom-content" ng-hide="step !== 1">
                 <div class="form-container">
-                    <form style="width:80%;margin: 100px auto;" ng-submit="goToStep2()">
+                    <form style="width: 80%; margin: 100px auto 20px auto" ng-submit="goToStep2()">
                         <label class="item item-input" style="border-radius: 5px 5px 0px 0px;">
                             <span class="input-label">{{ 'Email' | translate}}<span class="color-error">*</span></span>
                             <input type="email" ng-paste="$event.preventDefault();" ng-copy="$event.preventDefault();" ng-cut="$event.preventDefault();" ng-init="paste=false" id="lastName-input" ng-model="request.email" autocomplete=“off” autocorrect=“off” autocapitalize=“off” spellcheck=“false”
@@ -36,6 +36,15 @@
                                 placeholder="Conferma Password">
                         </label>
                         <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+                    </form>
+                    <form style="width:80%;margin: 20px auto;">
+                        <ion-list ng-repeat="item in acceptances | filter: { step: '1'}">
+                            <div class="item item-divider first" style="white-space: inherit;" ng-click="openUrl(item.url)">
+                                <i ng-if="item.url" class="fa fa-file-pdf-o" aria-hidden="true"></i> {{item.text}} <a ng-if="item.url" href class="subdued">{{ 'commons.readMore' | translate }}</a>
+                            </div>
+                            <ion-radio ng-if="item.id !== 'accept1'" id="{{item.id}}" name="{{item.id}}" ng-repeat="value in item.values" ng-class="{'last m-bottom-10': $last }" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-radio>
+                            <ion-checkbox ng-if="item.id === 'accept1'" id="{{item.id}}" name="{{item.id}}" ng-class="{'last m-bottom-10': $last }" ng-repeat="value in item.values" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-checkbox>
+                          </ion-list>
                     </form>
                     <a class="button button-block enter-account" ng-click="goToStep2()">
                         {{ 'Conferma' | translate}}
@@ -77,15 +86,7 @@
                         <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
                     </form>
 
-                    <form style="width:80%;margin: 20px auto;">
-                        <ion-list ng-repeat="item in acceptances | filter: { step: '1'}">
-                            <div class="item item-divider first" style="white-space: inherit;" ng-click="openUrl(item.url)">
-                                <i ng-if="item.url" class="fa fa-file-pdf-o" aria-hidden="true"></i> {{item.text}} <a ng-if="item.url" href class="subdued">{{ 'commons.readMore' | translate }}</a>
-                            </div>
-                            <ion-radio ng-if="item.id !== 'accept1'" id="{{item.id}}" name="{{item.id}}" ng-repeat="value in item.values" ng-class="{'last m-bottom-10': $last }" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-radio>
-                            <ion-checkbox ng-if="item.id === 'accept1'" id="{{item.id}}" name="{{item.id}}" ng-class="{'last m-bottom-10': $last }" ng-repeat="value in item.values" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-checkbox>
-                          </ion-list>
-                    </form>
+                    
                     <a class="button button-block enter-account" ng-click="create()">
                         {{ 'Conferma' | translate}}
                     </a>

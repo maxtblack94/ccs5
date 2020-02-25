@@ -117,14 +117,14 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
             accept5: data.contract_acceptance,
             accept6: data.clauses_1341_1342,
             accept7: data.consumer_info,
-            
+            isDatiFatt: data.enable_invoicement === 'True' ? true: false
 
 
 
         };
 
         $scope.urlMoreInfo = data.urlMoreInfo;
-        $scope.iCanEditFatturazione = $scope.request.fattPiva;
+        $scope.iCanEditFatturazione = false//data.enable_invoicement === 'True' ? true: false;
 
         defineDocument(data);
         preselectTarif(data);
@@ -306,7 +306,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
         ) {
             PopUpServices.messagePopup('Compilare tutti i campi obbligatori', 'Attenzione');
         } else if($scope.request.password && !$scope.request.password.match(RegexService.getRegex().password) && !$scope.isEdit){
-            PopUpServices.messagePopup('La password deve contenere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola e almeno un numero', 'Attenzione');
+            PopUpServices.messagePopup('La Password deve contenere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola, una minuscola e almeno una cifra', 'Attenzione');
         } else if (($scope.request.password !== $scope.request.confirmPassword) && !$scope.isEdit ) {
             PopUpServices.messagePopup('I campi password non combaciano', 'Attenzione');
         } else if ($scope.request.email !== $scope.request.emailConfirm) {
@@ -388,6 +388,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
             .replace('{CITYPI}', $scope.request.fattCity || '')
             .replace('{PROVINCEPI}', $scope.request.fattProvince || '')
             .replace('{SID}', $scope.request.sdi || '')
+            .replace('{ENABLEINVOICEMENT}', $scope.request.isDatiFatt || 'False')
             .replace('{PEC}', $scope.request.pec || '');
             ScriptServices.callGenericService(res, 652).then(function(data) {
                 if ($scope.isEdit) {
@@ -468,4 +469,5 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
             cordova.plugins.Keyboard.close();
         }
     }
+
 })
