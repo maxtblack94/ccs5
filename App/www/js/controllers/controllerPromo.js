@@ -25,7 +25,7 @@ angular.module('starter').controller('PromoCtrl', function(ScriptServices, $scop
                 $ionicLoading.hide();
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup($filter('translate')('editPassword.editFail'));
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
             });
         });
     }
@@ -39,17 +39,17 @@ angular.module('starter').controller('PromoCtrl', function(ScriptServices, $scop
             ScriptServices.callGenericService(res, 678).then(function(data) {
                 $ionicLoading.hide();
                 if (data.retcode && data.retcode === 3) {
-                    PopUpServices.messagePopup($filter('translate')("E' già presente una promozione attiva"), $filter('translate')('commons.attention'));
+                    PopUpServices.messagePopup($filter('translate')("commons.messagePromoAlreadyExists"), $filter('translate')('commons.attention'));
                 } else if(data.retcode && data.retcode === 2) {
-                    PopUpServices.messagePopup($filter('translate')("Il codice promozione inserito non è corretto"), $filter('translate')('commons.attention'));
+                    PopUpServices.messagePopup($filter('translate')("commons.messagePromoCodeInvalid"), $filter('translate')('commons.attention'));
                 } else {
-                    PopUpServices.messagePopup($filter('translate')("Il codice promozione è stato inserito con successo"),$filter('translate')('commons.success'));
+                    PopUpServices.messagePopup($filter('translate')("commons.messagePromoCodeSuccess"),$filter('translate')('commons.success'));
                     getActivePromotions();
                 }
                 
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup($filter('translate')('editPassword.editFail'));
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
             });
         });
     };

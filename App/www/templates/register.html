@@ -47,7 +47,7 @@
                           </ion-list>
                     </form>
                     <a class="button button-block enter-account" ng-click="goToStep2()">
-                        {{ 'Conferma' | translate}}
+                        {{ 'commons.confirm' | translate}}
                     </a>
 
                     <a class="forgot-password button button-clear button-block" style="text-decoration: underline" ng-click="cancel()">
@@ -59,36 +59,36 @@
                 <div class="form-container">
                     <form style="width:80%;margin: 20px auto;" ng-submit="create()">
                         <label class="item item-input" style="border-radius: 5px 5px 0px 0px;">
-                            <span class="input-label">{{ 'Nome' | translate}}<span class="color-error">*</span></span>
+                            <span class="input-label">{{ 'commons.firstName' | translate}}<span class="color-error">*</span></span>
                             <input type="text" name="password" autocapitalize="none" id="user-input" ng-model="request.firstName" autocomplete=“off” autocorrect=“off” autocapitalize=“off” spellcheck=“false”
-                                placeholder="Nome">
+                                placeholder="{{ 'commons.firstName' | translate}}">
                         </label>
                         <label class="item item-input">
-                            <span class="input-label">{{ 'Cognome' | translate}}<span class="color-error">*</span></span>
+                            <span class="input-label">{{ 'commons.lastName' | translate}}<span class="color-error">*</span></span>
                             <input type="text" name="password" id="firstName-input" ng-model="request.lastName" autocomplete=“off” autocorrect=“off” autocapitalize=“off” spellcheck=“false”
-                                placeholder="Cognome">
+                                placeholder="{{ 'commons.lastName' | translate}}">
                         </label>
                         
                         <label class="item item-input" >
-                            <span class="input-label">{{ 'Username' | translate}}<span class="color-error">*</span></span>
-                            <input type="text" id="username-input" ng-model="request.username" placeholder="Username" autocomplete=“off” autocorrect=“off” autocapitalize=“off” spellcheck=“false”>
+                            <span class="input-label">{{ 'commons.username' | translate}}<span class="color-error">*</span></span>
+                            <input type="text" id="username-input" ng-model="request.username" placeholder="{{ 'commons.username' | translate}}" autocomplete=“off” autocorrect=“off” autocapitalize=“off” spellcheck=“false”>
                         </label>
                         <label class="item item-input" >
-                            <span class="input-label">{{ 'Promozione' | translate}}</span>
+                            <span class="input-label"></span>
                             <input type="text" id="promo-input" ng-model="request.promo" autocomplete=“off” autocorrect=“off” autocapitalize=“off” spellcheck=“false”
-                                placeholder="Hai un codice promozione?">
+                                placeholder="{{ 'commons.promoHaveCode' | translate}}">
                         </label>
                         <label class="item item-input" style="border-radius: 0px 0px 5px 5px;">
-                            <span class="input-label">{{ 'Azienda' | translate}}</span>
+                            <span class="input-label">{{ 'commons.company' | translate}}</span>
                             <input type="text" id="company-input" ng-model="request.company" autocomplete=“off” autocorrect=“off” autocapitalize=“off” spellcheck=“false”
-                                placeholder="Hai un codice azienda?">
+                                placeholder="{{ 'commons.companyQuestion' | translate}}">
                         </label>
                         <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
                     </form>
 
                     
                     <a class="button button-block enter-account" ng-click="create()">
-                        {{ 'Conferma' | translate}}
+                        {{ 'commons.confirm' | translate}}
                     </a>
 
                     <a class="forgot-password button button-clear button-block" style="text-decoration: underline" ng-click="cancel()">

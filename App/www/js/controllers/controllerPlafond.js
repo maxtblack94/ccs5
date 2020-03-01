@@ -38,20 +38,20 @@ angular.module('starter').controller('PlafondCtrl', function($scope, PopUpServic
     }
 
     function chargeAlert(params) {
-        var modalContent = `Confermi la richiesta di addebito sulla tua carta di credito registrata di € ${params} per ricaricare il tuo credito residuo?`;
+        var modalContent = $filter('translate')('commons.messageConfirmChargeRequest1') + params + $filter('translate')('commons.messageConfirmChargeRequest1');
         var configObj = {
             "buttons": [{
-                text: $filter('translate')('Annulla'),
+                text: $filter('translate')('commons.cancel'),
                 type: 'button-stable',
             }, {
-                text: '<b>'+$filter('translate')('Conferma')+'</b>',
+                text: '<b>'+$filter('translate')('commons.confirm')+'</b>',
                 type: 'button-positive',
                 onTap: function () {
                     startSetefy(params);
                 }
             }],
             "message": modalContent,
-            "title": 'Conferma Ricarica',
+            "title": $filter('translate')('commons.modalConfirmCharge'),
         }
         PopUpServices.buttonsPopup(configObj);
     }
@@ -137,13 +137,13 @@ angular.module('starter').controller('PlafondCtrl', function($scope, PopUpServic
                 if(data.retcode && data.retcode === 2) {
                     PopUpServices.messagePopup(data.data, $filter('translate')('commons.attention')) ;
                 } else {
-                    PopUpServices.messagePopup($filter('translate')("Buono inserito con successo"),$filter('translate')('commons.success'));
+                    PopUpServices.messagePopup($filter('translate')("commons.messageCouponSuccess"),$filter('translate')('commons.success'));
                     $scope.refreshPlafond();
                 }
                 
             }, function(error) {
                 $ionicLoading.hide();
-                PopUpServices.errorPopup($filter('translate')('editPassword.editFail'));
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
             });
         });
     }
@@ -154,8 +154,8 @@ angular.module('starter').controller('PlafondCtrl', function($scope, PopUpServic
         // An elaborate, custom popup
         $ionicPopup.show({
           template: '<input type="text" ng-model="requestCoupon.couponCode">',
-          title: 'Aggiungi Buono',
-          subTitle: 'Inserisci il codice buono',
+          title: $filter('translate')('commons.addCoupon'),
+          subTitle:  $filter('translate')('commons.addCouponSubtitle'),
           scope: $scope,
           buttons: [
             { text: $filter('translate')('commons.cancel'), type: 'button-stable' },

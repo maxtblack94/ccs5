@@ -5,14 +5,14 @@
 
         <div class="col-40">
             <button ng-click="openBooking(book)" class="button button-outline button-positive pull-right" style="margin-right: 18px">
-                    <i class="ion-navigate"></i> Parcheggio
+                    <i class="ion-navigate"></i> {{ 'commons.parkBtn' | translate }}
             </button>
         </div>
     </div>
     <div class="item">
         <div class="pull-left m-right20">
             <h2 class="brand_model">{{ book.brand_model }}</h2>
-            <p>Motorizzazione</p>
+            <p>{{ 'commons.motorType' | translate }}</p>
             <h2>{{ book.fuel }}</h2>
         </div>
         <div class="pull-right">

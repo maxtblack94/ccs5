@@ -8,18 +8,18 @@
                 <input ng-model="request.promoCode" type="text" placeholder="Inserisci codice promo">
               </label>
               <button ng-click="addPromo()" ng-disabled="!request.promoCode" class="button button-small button-positive">
-                Aggiungi
+                {{'commons.add' | translate}}
               </button>
             </div>
           </div>
 
 
         
-        <p ng-if="promotions.length==0" class="message-empty">{{'Non ci sono promozioni attive' | translate}}</p>
+        <p ng-if="promotions.length==0" class="message-empty">{{'commons.promoEmpty' | translate}}</p>
         <ion-list>
             <ion-item ng-repeat="promotion in promotions">
                 <h2>{{promotion.code}}</h2>
-                <span>Data Scadenza</span><strong class="pull-right"> {{promotion.validTo | date:'dd/MM/yyyy HH:mm'}}</strong>
+                <span>{{'commons.expireDate' | translate}}</span><strong class="pull-right"> {{promotion.validTo | date:'dd/MM/yyyy HH:mm'}}</strong>
             </ion-item>
         </ion-list>
     </ion-content>

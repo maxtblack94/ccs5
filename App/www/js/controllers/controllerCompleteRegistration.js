@@ -35,12 +35,12 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
     function checkIsCompanyUser(data) {
         if (data.isSuperGold || data.company) {
             $ionicPopup.show({
-                template: "Gentile cliente, grazie per aver scelto i servizi e-Vai, la tua registrazione al servizio aziendale è andata a buon fine. Se vuoi usufruire dei servizi e-Vai anche come privato clicca su PROSEGUI in caso contrario sul tasto TERMINA",
-                title: "Attenzione",
+                template: $filter('translate')('commons.isSuperGold'),
+                title: $filter('translate')('commons.attention'),
                 cssClass: 'picklist',
                 scope: $scope,
                 buttons: [{
-                    text: '<b>'+$filter('translate')('Termina')+'</b>',
+                    text: '<b>'+$filter('translate')('commons.finish')+'</b>',
                     type: 'button-positive',
                     onTap: function (e) {
                         skipRegistration();
@@ -304,13 +304,13 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
             (!$scope.request.licenseEndDate && !$scope.isEdit) ||
             (!$scope.request.licenseIssueDate && !$scope.isEdit) 
         ) {
-            PopUpServices.messagePopup('Compilare tutti i campi obbligatori', 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messageAllFieldsMandatory'), $filter('translate')('commons.attention'));
         } else if($scope.request.password && !$scope.request.password.match(RegexService.getRegex().password) && !$scope.isEdit){
-            PopUpServices.messagePopup('La Password deve contenere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola, una minuscola e almeno una cifra', 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messageInvalidPassword'), $filter('translate')('commons.attention'));
         } else if (($scope.request.password !== $scope.request.confirmPassword) && !$scope.isEdit ) {
-            PopUpServices.messagePopup('I campi password non combaciano', 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messagePasswordDontMatch'), $filter('translate')('commons.attention'));
         } else if ($scope.request.email !== $scope.request.emailConfirm) {
-            PopUpServices.messagePopup('I campi email non combaciano', 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messageEmailDontMatch'), $filter('translate')('commons.attention'));
         } else if ($scope.request.isDatiFatt && (
             !$scope.request.fattRagioneSociale ||
             (!$scope.request.fattCF && $scope.request.isDittaindividuale) ||
@@ -321,23 +321,23 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
             !$scope.request.fattProvince ||
             !$scope.request.fattPiva
             )) {
-            PopUpServices.messagePopup('Completare tutti i campi relativi alla fatturazione', 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messageInvoiceFielsMandatory'), $filter('translate')('commons.attention'));
         } else if($scope.request.isDatiFatt && $scope.request.fattPiva && !$scope.request.fattPiva.match(RegexService.getRegex().piva) && $scope.request.fattNation === 'ITALIA') {
-            PopUpServices.messagePopup('La Partita IVA non è valida, deve essere di 11 caratteri', 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messageInvalidVatCode'), $filter('translate')('commons.attention'));
         } else if (!$scope.request.sdi && !$scope.request.pec && $scope.request.isDatiFatt) {
-            PopUpServices.messagePopup('Inserire Codice SDI oppure pec per la fatturazione', 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messagePecOrcSDI'), $filter('translate')('commons.attention'));
         } else if(!$scope.request.cap.match(/^\d{5}$/)) {
-            PopUpServices.messagePopup('Il valore del cap non è corretto', 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messageIncorrectZipCode'), $filter('translate')('commons.attention'));
 /*         } else if(!$scope.request.email.match(/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)) {
-            PopUpServices.messagePopup('Il valore del Email non è corretto', 'Attenzione'); */
+            PopUpServices.messagePopup('Il valore del Email non è corretto', $filter('translate')('commons.attention')); */
         } else if($scope.request.fattCap && $scope.request.isDatiFatt && !$scope.request.fattCap.match(/^\d{5}$/)) {
-            PopUpServices.messagePopup('Il valore del cap non è corretto nella sezione dati fatturazione', 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messageIncorrectZipCodeInvoice'), $filter('translate')('commons.attention'));
         } else if($scope.request.accept5 !== 'YES' || $scope.request.accept6 !== 'YES' || $scope.request.accept7 !== 'YES') {
-            PopUpServices.messagePopup('Prima di procedere accetta tutti i consensi', 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messageAcceptConsents'), $filter('translate')('commons.attention'));
         } else if(!$scope.currentTarif && !$scope.isEdit) {
-            PopUpServices.messagePopup('Seleziona il profilo di noleggio', 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messageSelectSubscription'), $filter('translate')('commons.attention'));
         } else if($scope.request.nationResidence === 'ITALIA' && $scope.request.fiscalCode && !$scope.request.fiscalCode.match(RegexService.getRegex().cf)) {
-            PopUpServices.messagePopup('Il codice fiscale non è valido', 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messageInvalidFiscalCode'), $filter('translate')('commons.attention'));
         } else {
             completeRegistration();
         }
@@ -392,10 +392,10 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
             .replace('{PEC}', $scope.request.pec || '');
             ScriptServices.callGenericService(res, 652).then(function(data) {
                 if ($scope.isEdit) {
-                    PopUpServices.messagePopup("Modifica effettuata con successo", "Successo");
+                    PopUpServices.messagePopup($filter('translate')('commons.editSuccess'), $filter('translate')('commons.success'));
                 } else {
                     window.localStorage.removeItem('isNotRegistered');
-                    PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Procedi all'attivazione della modalità di pagamento", "Profilo in attesa di abilitazione", $scope.paymentModal);
+                    PopUpServices.messagePopup($filter('translate')('commons.messageSubscribed'), $filter('translate')('commons.messageProfileWaitForActive'), $scope.paymentModal);
                 }
                 $ionicLoading.hide();
             }, function(error) {
@@ -407,26 +407,26 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
 
 
     $scope.paymentModal = function (params) {
-        var modalContent = `<div class="bt-content" style="padding: 20px; z-index: 9999; color: rgb(0, 0, 0);">Gentile Cliente, per tua tutela, ti verra’ chiesto di autorizzare un blocco platfond di 0,02 euro (che verranno riaccreditati) al fine di verificare la validita’ dei dati inseriti.<br><br><br>Per portare a termine la procedura di iscrizione, come previsto dall’istituto bancario Banca Intesa, e’ quindi necessario digitare il pulsante "paga".<br><br><br>Per info e supporto contattaci al n.verde 800.77.44.55</div>
+        var modalContent = `<div class="bt-content" style="padding: 20px; z-index: 9999; color: rgb(0, 0, 0);">`+ $filter('translate')('commons.paymentModalTemplate') + `</div>
                 <ion-item class="item-image">
                     <img src="icons/cartedicredito.jpg">
                 </ion-item>`;
         var configObj = {
             "buttons": [{
-                text: $filter('translate')('Annulla'),
+                text: $filter('translate')('commons.cancel'),
                 type: 'button-stable',
                 onTap: function () {
                     $state.go('tab.bookings');
                 }
             }, {
-                text: '<b>'+$filter('translate')('Procedi')+'</b>',
+                text: '<b>'+$filter('translate')('commons.procede')+'</b>',
                 type: 'button-positive',
                 onTap: function () {
                     startSetefy();
                 }
             }],
             "message": modalContent,
-            "title": 'Modalità pagamento',
+            "title": $filter('translate')('commons.paymentMethod'),
             "cssClass": 'info'
         }
         PopUpServices.buttonsPopup(configObj);

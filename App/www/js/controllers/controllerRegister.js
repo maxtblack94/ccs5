@@ -41,7 +41,7 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
             closeKeyboard();
         });
         if (!$scope.request.firstName || !$scope.request.lastName || !$scope.request.username) {
-            PopUpServices.messagePopup('Compilare tutti i campi obbligatori', 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messageAllFieldsMandatory'), $filter('translate')('commons.attention'));
         }else{
             createAccount();
         }
@@ -64,25 +64,25 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
             .replace('{TARIFCODE}', $scope.request.tarifCode || '73695'); */
             ScriptServices.callGenericService(res, 645).then(function(data) {
                 if(data.data){
-                    PopUpServices.messagePopup('Account creato con successo', 'Successo', function () {
+                    PopUpServices.messagePopup($filter('translate')('commons.success'), $filter('translate')('commons.success'), function () {
                         callLoginService($scope.request.username, $scope.request.password);
                         
                     });
                     
                 }else if(data.retcode === 5){
-                    PopUpServices.errorPopup('Email già presente nel sistema. '+ $filter('translate')('commons.retry'));
+                    PopUpServices.errorPopup( $filter('translate')('commons.messageEmailAreadyExist')+ $filter('translate')('commons.retry'));
                     $scope.step = 1;
                     $ionicLoading.hide(); 
                 }else if(data.retcode === 3){
-                    PopUpServices.errorPopup('Username già presente nel sistema. '+ $filter('translate')('commons.retry'));
+                    PopUpServices.errorPopup($filter('translate')('commons.messageUsernameAreadyExist')+ $filter('translate')('commons.retry'));
                     $ionicLoading.hide(); 
                 }else{
-                    PopUpServices.errorPopup('Si è verificato un errore. '+ $filter('translate')('commons.retry'));
+                    PopUpServices.errorPopup($filter('translate')('commons.messageGenericError') + $filter('translate')('commons.retry'));
                     $ionicLoading.hide(); 
                 }
                 $ionicLoading.hide();
             }, function(error) {
-                PopUpServices.errorPopup($filter('translate')('commons.retry'));
+                PopUpServices.errorPopup($filter('translate')('commons.messageGenericError') + $filter('translate')('commons.retry'));
                 $ionicLoading.hide();
             })
         });
@@ -165,17 +165,17 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
             closeKeyboard();
         });
         if (!$scope.request.email || !$scope.request.email.match(RegexService.getRegex().email)) {
-            PopUpServices.messagePopup('Il campo Email non è corretto', 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messageEmailInvalid'), $filter('translate')('commons.attention'));
         }else if($scope.request.email !== $scope.request.confirmEmail ){
-            PopUpServices.messagePopup('I campi Email non combaciano', 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messageEmailDontMatch'), $filter('translate')('commons.attention'));
         }else if($scope.request.password !== $scope.request.confirmPassword){
-            PopUpServices.messagePopup('I campi Password non combaciano', 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messagePasswordDontMatch'), $filter('translate')('commons.attention'));
         }else if(($scope.request.password && !$scope.request.password.match(RegexService.getRegex().password) )|| (!$scope.request.password || !$scope.request.confirmPassword)){
-            PopUpServices.messagePopup('La Password deve contenere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola, una minuscola e almeno una cifra', 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messageInvalidPassword'), $filter('translate')('commons.attention'));
         }else if(!$scope.request.accept1){
-            PopUpServices.messagePopup("E' obbligatorio leggere l'informativa E-vai", 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messageReadPolicy'), $filter('translate')('commons.attention'));
         }else if($scope.request.accept2 === undefined || $scope.request.accept3 === undefined || $scope.request.accept4 === undefined){
-            PopUpServices.messagePopup("E' obbligatorio valorizzare tutti i consensi", 'Attenzione');
+            PopUpServices.messagePopup($filter('translate')('commons.messageMakeValidConsents'), $filter('translate')('commons.attention'));
         } else {
             $scope.request.username = $scope.request.email;
             $scope.step = 2;

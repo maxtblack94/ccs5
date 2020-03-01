@@ -10,7 +10,7 @@
                     <h3>{{ (userInfo.registry.plafond || '0') + ' € '}}</h3>
                 </div>
                 <div class="col col-50 plafond-container">
-                    <p>{{'Saldo buoni' | translate}}</p>
+                    <p>{{'commons.couponPlafond' | translate}}</p>
                     <h3>{{ (userInfo.registry.plafondCoupon || '0') + ' € '}}</h3>
                 </div>
             </div>
@@ -22,21 +22,21 @@
                 </div>
                 <div class="col col-50">
                     <button ng-click="addCouponPopup()" class="button button-block button-balanced">
-                        {{ 'Buono' | translate}}
+                        {{ 'commons.coupon' | translate}}
                     </button>
                 </div>
             </div>
 
             <div class="item item-divider">
-                Storico Ricariche
+                {{ 'commons.historyPlafonds' | translate}}
             </div>
         </div>
 
         <div class="list" ng-show="movimentsList.length">
 
             <div class="item-icon-right item" ng-repeat="moviment in movimentsList">
-                <h2 ng-if="moviment.type === 'charge'">Ricarica {{ moviment.date}}</h2>
-                <h2 ng-if="moviment.type === 'credit'">Addebito {{ moviment.date}}</h2>
+                <h2 ng-if="moviment.type === 'charge'">{{ 'commons.charge' | translate}} {{ moviment.date}}</h2>
+                <h2 ng-if="moviment.type === 'credit'">{{ 'commons.credit' | translate}} {{ moviment.date}}</h2>
                 <p>{{ moviment.amount || 0 | currency: '€ '}}</p>
                 <i class="icon ion-arrow-up-b" style="color: green" ng-if="moviment.type === 'charge'"></i>
                 <i class="icon ion-arrow-down-b" style="color: red" ng-if="moviment.type === 'credit'"></i>

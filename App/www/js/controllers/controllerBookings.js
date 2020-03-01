@@ -28,9 +28,9 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
                 $scope.userInfo = userInfo;
                 if (statusCheck) {
                     if ($scope.userInfo.registry.account_status === 'SUBSCRIBED_WITH_PAY') {
-                        PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Verrai contattato per mail quando il tuo profilo sarà abilitato al servizio E-Vai.", "Profilo in attesa di abilitazione");
+                        PopUpServices.messagePopup($filter('translate')('commons.messageSubscribedWithPay'), $filter('translate')('commons.messageProfileWaitForActive'));
                     } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED') {
-                        PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Procedi all'attivazione della modalità di pagamento", "Profilo in attesa di abilitazione", $scope.paymentModal);
+                        PopUpServices.messagePopup($filter('translate')('commons.messageSubscribedWithPay'), $filter('translate')('commons.messageProfileWaitForActive'), $scope.paymentModal);
                     } else  if ($scope.userInfo.registry.account_status === 'ACTIVE') {
                         ReservationService.resetReservation();
                         $state.go('subscriptions');
@@ -60,7 +60,7 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
             ReservationService.resetReservation();
             $state.go('subscriptions');
         } else if ($scope.userInfo.registry.account_status === 'CREDITED') {
-            PopUpServices.messagePopup("Per poter procedere all'attivazione del Tuo profilo, è necessario che invii il documento di riconoscimento e la patente di guida validi all'indirizzo customerservice@e-vai.com. Se l'invio dei documenti è già avvenuto rimani in attesa dell'attivazione. Per maggiori informazioni contatta il Nr Verde: 800 77 44 55.", "Il tuo profilo è in fase di attivazione");
+            PopUpServices.messagePopup($filter('translate')('commons.messageCredited'), $filter('translate')('commons.messageProfileWaitForActive'));
         } else if (isNotRegistered && isNotRegistered == 'true') {
             $state.go('completeRegistration');
         } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED_WITH_PAY' || $scope.userInfo.registry.account_status === 'SUBSCRIBED') {
@@ -88,7 +88,7 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
                 }
             }],
             "message": modalContent,
-            "title": 'Modalità pagamento',
+            "title": $filter('translate')('commons.paymentMethod'),
             "cssClass": 'info'
         }
         PopUpServices.buttonsPopup(configObj);
@@ -611,8 +611,8 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
     }
 
     $scope.showModalInfo = function () {
-        var message = $scope.selectedClient.importMessage || "Si ricorda che nel caso di veicolo non Elettrico, l'importo indicato è al netto del costo/km che verrà conteggìato al fine corsa in base ai km effettivamente percorsi.";
-        PopUpServices.messagePopup(message, 'Info');
+        var message = $scope.selectedClient.importMessage || $filter('translate')('commons.messageForMotorType');
+        PopUpServices.messagePopup(message, $filter('translate')('commons.info'));
     };
 
 });
