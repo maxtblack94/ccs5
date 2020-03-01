@@ -2,6 +2,11 @@
   "name": "EVAI",
   "version": "1.0.0",
   "description": "EVAI",
+  "scripts": {
+    "build-android": "ionic cordova build android --prod --release",
+    "build-ios": "ionic cordova build ios -- --buildFlag=\"-usageModernBuildSystem=0\"",
+    "add-ios-platform": "ionic cordova platform add ios@latest --save"
+  },
   "dependencies": {
     "@ionic/cloud": "0.16.0",
     "bluebird": "3.5.0",
