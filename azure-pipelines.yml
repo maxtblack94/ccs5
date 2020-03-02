@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- master
+- DEV_RELEASE_EVAI
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -16,7 +16,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install -g @angular/cli
+    npm install -g angular cordova ionic
     npm install
-    ng build --prod
+    ionic cordova build android
   displayName: 'npm install and build'
