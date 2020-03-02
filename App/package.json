@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "EVAI",
   "scripts": {
-    "build-android": "ionic cordova build android --prod --release",
+    "build-android": "ionic cordova build android --prod --minify",
     "build-ios": "ionic cordova build ios -- --buildFlag=\"-usageModernBuildSystem=0\"",
     "add-ios-platform": "ionic cordova platform add ios@latest --save",
     "sign-android-apk": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore evai-release-key.keystore app-release-unsigned.apk evaiApp && /Users/ouatu.alexandru/Library/Android/sdk/build-tools/29.0.1/zipalign -v 4 app-release-unsigned.apk evaiapp.apk",
@@ -66,7 +66,6 @@
   ],
   "cordova": {
     "platforms": [
-      "android",
       "ios"
     ],
     "plugins": {
@@ -77,7 +76,9 @@
         "GEOLOCATION_USAGE_DESCRIPTION": " "
       },
       "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-email-composer": {},
+      "cordova-plugin-email-composer": {
+        "ANDROID_SUPPORT_V4_VERSION": "28.+"
+      },
       "cordova-plugin-whitelist": {},
       "cordova-plugin-datepicker": {},
       "onesignal-cordova-plugin": {},
