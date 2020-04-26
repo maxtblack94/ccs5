@@ -228,7 +228,9 @@ window.locale_en.commons = {
 	messageGenericError: 'An error has occurred. ',
 	messageEmailInvalid: "The Email field is incorrect",
 	messageReadPolicy: "It is mandatory to read the E-vai information",
-	messageMakeValidConsents: "It is mandatory to value all consents"
+	messageMakeValidConsents: "It is mandatory to value all consents",
+	city: 'City of residence',
+	details: "Details",
 
 };
 
@@ -316,6 +318,7 @@ window.locale_en.login = {
 	username: 'Username',
 	password: 'Password',
 	login: 'Login',
+	register: "Register",
 	forgotPassword: 'Forgotten Password?',
 	retrievePassword: 'Recover Password',
 	haveAccount: 'Login',

@@ -1,4 +1,4 @@
-angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFactories, $state, LanguageService) {
+angular.module('starter').factory("ScriptServices", function (PopUpServices, $filter, $ionicLoading, $q, $http, InfoFactories, $state, LanguageService) {
     
     function getXMLResource(scriptID) {
         var scriptPath;
@@ -51,6 +51,14 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
                             reject('Error');
                         }else if (resultValue.retcode == '401') {
                             $state.go('login', {error401:true});
+                        }else if (resultValue.retcode == '101') {
+                            PopUpServices.messagePopup(resultValue.errorDescription, $filter('translate')('commons.attention'));
+                            $ionicLoading.hide();
+                        }else if (resultValue.retcode == '100') {
+                            if (resultValue.errorDescription) {
+                                PopUpServices.messagePopup(resultValue.errorDescription, $filter('translate')('commons.attention'));
+                            }
+                            reject('Error');
                         }else {
                             resolve(resultValue);
                         }
@@ -99,6 +107,14 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
                                 reject('Error');
                             }else if (resultValue.retcode == '401') {
                                 $state.go('login', {error401:true});
+                            }else if (resultValue.retcode == '101') {
+                                PopUpServices.messagePopup(resultValue.errorDescription, $filter('translate')('commons.attention'));
+                                $ionicLoading.hide();
+                            }else if (resultValue.retcode == '100') {
+                                if (resultValue.errorDescription) {
+                                    PopUpServices.messagePopup(resultValue.errorDescription, $filter('translate')('commons.attention'));
+                                }
+                                reject('Error');
                             }else {
                                 resolve(resultValue);
                             }

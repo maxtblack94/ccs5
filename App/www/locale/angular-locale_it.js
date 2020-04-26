@@ -222,7 +222,10 @@ window.locale_it.commons = {
 	messageGenericError: 'Si è verificato un errore. ',
 	messageEmailInvalid: "Il campo Email non è corretto",
 	messageReadPolicy: "E' obbligatorio leggere l'informativa E-vai",
-	messageMakeValidConsents: "E' obbligatorio valorizzare tutti i consensi"
+	messageMakeValidConsents: "E' obbligatorio valorizzare tutti i consensi",
+	city: "Comune di residenza",
+	details: "Dettaglio",
+	
 
 
 };
@@ -316,6 +319,7 @@ window.locale_it.login = {
 	username: 'Username',
 	password: 'Password',
 	login: 'Accedi',
+	register: "Registrati",
 	forgotPassword: 'Password Dimenticata?',
 	retrievePassword: 'Recupera Password',
 	haveAccount: 'Accedi',

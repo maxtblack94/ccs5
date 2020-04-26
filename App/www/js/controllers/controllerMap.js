@@ -90,16 +90,17 @@ angular.module('starter').controller('MapCtrl', function ($filter, PopUpServices
     });
 
     $scope.hideRegionalCancelBefore18H = function(reservation) {
-        if (reservation.serviceID === "72192" && is18H(reservation.dateTimeFrom)) {
+        if (reservation.serviceID === "72192" && is18H(reservation.dateTimeFrom, reservation.regionalHourCancellation)) {
             return true;
         }
     };
 
-    function is18H(dateFromTime) {
+    function is18H(dateFromTime, h) {
         var startTime = moment(new Date());
         var duration = moment.duration(moment(dateFromTime).diff(startTime));
         var hours = duration.asHours();
-        return hours < 18;
+        var hoursExpective = h || 4;
+        return hours < hoursExpective;
     }
 
 })

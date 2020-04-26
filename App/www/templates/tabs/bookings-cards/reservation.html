@@ -94,6 +94,9 @@
             </div>
         </div>
     </div>
+    <div class="item text-center" ng-show="hideRegionalCancelBefore18H(book) && book.status === 'Booked' && book.alertOrderInfo">
+        <strong style="white-space: pre-wrap;" class="energized" ></strong><i class="icon ion-android-alert"></i> {{book.alertOrderInfo}}</strong>
+    </div>
     <div class="item" ng-if="book.status === 'Booked' && ((selectedClient.btnOpenClose && book.tolleranceCheck) || !hideRegionalCancelBefore18H(book))">
         <div class="row">
             <div class="col" ng-if="selectedClient.btnOpenClose && book.tolleranceCheck">
