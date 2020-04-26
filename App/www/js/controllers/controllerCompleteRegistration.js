@@ -33,7 +33,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
     }
 
     function checkIsCompanyUser(data) {
-        if (data.isSuperGold || data.company) {
+        if ((data.isSuperGold || data.company) && !$scope.isEdit) {
             $ionicPopup.show({
                 template: $filter('translate')('commons.isSuperGold'),
                 title: $filter('translate')('commons.attention'),
