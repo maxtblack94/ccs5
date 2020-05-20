@@ -43,7 +43,7 @@ window.locale_it.bookings = {
 	humanCheckCarOpenSubTitle: 'Conferma stato del veicolo!',
 	humanCheckCarOpenMessage: 'Attendere qualche secondo! Se dopo qualche secondo il veicolo non si apre, riprovare.',
 	humanCheckCarCloseMessage: 'Attendere qualche secondo! Se dopo qualche secondo il veicolo non si chiude, riprovare.',
-	needCurrectPark: 'L\'automobile deve essere posizionata nel parcheggio prima di poterla chiudere.',
+	needCurrectPark: 'L\'automobile deve essere posizionata nel parcheggio destinazione corretto prima di poterla chiudere.',
 	needProximity: 'Devi essere in prossimità dell\'automobile per poterla aprire.',
 	damageHard: 'Guasto (auto trainata in officina)',
 	openCar : 'Inizio Corsa',
@@ -184,15 +184,18 @@ window.locale_it.commons = {
 	saveEdit: "Salva Modifiche",
 	company: "Azienda",
 	companyQuestion: "Hai un codice azienda?",
+	messageRegisterNewCard: "La tua carta di credito, non risulta ancora accreditata. Procedi all’attivazione della modalità di pagamento.",
+	messageRegisterNewCardTitle: "Registrazione Carta di Credito",
 	messageSubscribedWithPay: "Il tuo profilo è in fase di verifica. Verrai contattato per mail quando il tuo profilo sarà abilitato al servizio E-Vai.",
 	messageProfileWaitForActive: "Profilo in attesa di abilitazione",
-	messageSubscribed: "Il tuo profilo è in fase di verifica. Procedi all'attivazione della modalità di pagamento",
+	messageProfileCompleted: "Profilo completato",
+	messageSubscribed: "Il tuo profilo è in fase di verifica, per poter procedere all'attivazione del Tuo profilo, è necessario che invii il documento di riconoscimento e la patente di guida validi all'indirizzo customerservice@e-vai.com. Procedi intanto all'attivazione della modalità di pagamento.",
 	messageCredited: "Per poter procedere all'attivazione del Tuo profilo, è necessario che invii il documento di riconoscimento e la patente di guida validi all'indirizzo customerservice@e-vai.com. Se l'invio dei documenti è già avvenuto rimani in attesa dell'attivazione. Per maggiori informazioni contatta il Nr Verde: 800 77 44 55.",
 	paymentMethod: 'Modalità pagamento',
 	messageForMotorType: "Si ricorda che nel caso di veicolo non Elettrico, l'importo indicato è al netto del costo/km che verrà conteggìato al fine corsa in base ai km effettivamente percorsi.",
 	info: "Info",
 	finish: "Termina",
-	isSuperGold: "Gentile cliente, grazie per aver scelto i servizi e-Vai, la tua registrazione al servizio aziendale è andata a buon fine. Se vuoi usufruire dei servizi e-Vai anche come privato clicca su PROSEGUI in caso contrario sul tasto TERMINA",
+	isSuperGold: "Gentile cliente, grazie per aver scelto i servizi e-Vai, la tua registrazione al servizio aziendale è andata a buon fine. Se vuoi usufruire dei servizi e-Vai anche come privato clicca su PROSEGUI in caso contrario sul tasto TERMINA.",
 	messageAllFieldsMandatory: 'Compilare tutti i campi obbligatori',
 	messageInvalidPassword: 'La Password deve contenere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola, una minuscola e almeno una cifra',
 	messagePasswordDontMatch: 'I campi password non combaciano',
@@ -225,9 +228,11 @@ window.locale_it.commons = {
 	messageMakeValidConsents: "E' obbligatorio valorizzare tutti i consensi",
 	city: "Comune di residenza",
 	details: "Dettaglio",
-	
-
-
+	registerConfirmed: "Registrazione confermata!",
+	registerConfirmedMessage: "Vai allo step successivo per completare il tuo profilo",
+	continue: "Continua",
+	bleFailConnection : "Connessione fallita. Se il problema persiste riavviare il bluetooth, assicurarsi di non avere altri dispositivi connessi e posizionarsi a non più di 5 metri dal veicolo.",
+	enableBleError: "Ti preghiamo di abilitare il Bluetooth e riprovare"
 };
 
 window.locale_it.register = {

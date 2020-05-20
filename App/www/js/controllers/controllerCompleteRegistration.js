@@ -205,6 +205,11 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
                         $scope.request.picklistValue = null;
                         e.preventDefault();
                     } else {
+                        if (picklist === 'nationResidence' && $scope.request.picklistValue !== 'ITALIA') {
+                            $scope.request.shortProvinceResidence = null;
+                        } else if (picklist === 'fattNation' && $scope.request.picklistValue !== 'ITALIA') {
+                            $scope.request.fattProvince = null;
+                        }
                         $scope.request[picklist] = $scope.request.picklistValue;
                         $scope.request.picklistValue = null;
                     }
@@ -295,7 +300,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
             !$scope.request.city ||
             !$scope.request.cap ||
             !$scope.request.nationResidence ||
-            !$scope.request.shortProvinceResidence ||
+            (!$scope.request.shortProvinceResidence && $scope.request.nationResidence === 'ITALIA') ||
             (!$scope.request.fiscalCode && $scope.request.nationResidence === 'ITALIA') ||
             !$scope.request.documentType ||
             !$scope.request.docNumber ||
@@ -309,7 +314,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
             PopUpServices.messagePopup($filter('translate')('commons.messageInvalidPassword'), $filter('translate')('commons.attention'));
         } else if (($scope.request.password !== $scope.request.confirmPassword) && !$scope.isEdit ) {
             PopUpServices.messagePopup($filter('translate')('commons.messagePasswordDontMatch'), $filter('translate')('commons.attention'));
-        } else if ($scope.request.email !== $scope.request.emailConfirm) {
+        } else if ($scope.request.email !== $scope.request.emailConfirm && !$scope.isEdit) {
             PopUpServices.messagePopup($filter('translate')('commons.messageEmailDontMatch'), $filter('translate')('commons.attention'));
         } else if ($scope.request.isDatiFatt && (
             !$scope.request.fattRagioneSociale ||
@@ -318,7 +323,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
             !$scope.request.fattCap ||
             !$scope.request.fattCity ||
             !$scope.request.fattNation ||
-            !$scope.request.fattProvince ||
+            (!$scope.request.fattProvince && $scope.request.fattNation === 'ITALIA') ||
             !$scope.request.fattPiva
             )) {
             PopUpServices.messagePopup($filter('translate')('commons.messageInvoiceFielsMandatory'), $filter('translate')('commons.attention'));
@@ -395,7 +400,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
                     PopUpServices.messagePopup($filter('translate')('commons.editSuccess'), $filter('translate')('commons.success'));
                 } else {
                     window.localStorage.removeItem('isNotRegistered');
-                    PopUpServices.messagePopup($filter('translate')('commons.messageSubscribed'), $filter('translate')('commons.messageProfileWaitForActive'), $scope.paymentModal);
+                    PopUpServices.messagePopup($filter('translate')('commons.messageSubscribed'), $filter('translate')('commons.messageProfileCompleted'), $scope.paymentModal);
                 }
                 $ionicLoading.hide();
             }, function(error) {

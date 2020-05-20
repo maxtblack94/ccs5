@@ -1,6 +1,7 @@
 angular.module('starter').factory("PopUpServices", function($ionicPopup, $filter) {
     function errorPopup(message, type) {
        $ionicPopup.alert({
+            okText: $filter('translate')('commons.close'),
             title: type === '1' ? $filter('translate')('commons.attention') : type === '2' ? $filter('translate')('commons.success') : $filter('translate')('commons.error'),
             template: message || $filter('translate')('commons.connectionProblem')
         });
@@ -9,7 +10,8 @@ angular.module('starter').factory("PopUpServices", function($ionicPopup, $filter
     function messagePopup(message, title, callback) {
        var popupInstance = $ionicPopup.alert({
             title: title,
-            template: message
+            template: message,
+            okText: callback ? $filter('translate')('commons.continue'): $filter('translate')('commons.close')
         });
         if(callback){
             popupInstance.then(function(res) {

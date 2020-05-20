@@ -20,27 +20,27 @@
                     </div>
                 </div>
                 
-                <ion-item class="item-divider" ng-if="!isEdit"  style="background: #f5f5f5;">
+                <ion-item class="item-divider" ng-if="!isEdit" >
                     <h2>{{ 'commons.accountInfoSection' | translate}}</h2>
                 </ion-item>
-                <ion-item style="background: #f5f5f5;">
+                <ion-item>
                     <h2>{{ 'commons.firstName' | translate}} <i style="color: #8c8c8c" class="icon ion-locked" ></i> </h2>
                     <p>{{ request.firstName || '-'}}</p>
                 </ion-item>
-                <ion-item style="background: #f5f5f5;">
+                <ion-item>
                     <h2>{{ 'commons.lastName' | translate}} <i style="color: #8c8c8c" class="icon ion-locked" ></i> </h2>
                     <p>{{ request.lastName || '-'}}</p>
                 </ion-item>
-                <!-- <ion-item style="background: #f5f5f5;">
+                <ion-item ng-if="!isEdit">
                     <h2>{{ 'commons.email' | translate}} <i style="color: #8c8c8c" class="icon ion-locked" ></i> </h2>
                     <p>{{ request.email || '-'}}</p>
-                </ion-item> -->
-                <ion-item style="background: #f5f5f5;">
+                </ion-item>
+                <ion-item>
                     <h2>{{ 'commons.username' | translate}} <i style="color: #8c8c8c" class="icon ion-locked" ></i> </h2>
                     <p>{{ request.username || '-'}}</p>
                 </ion-item>
                 
-                 <ion-item class="item-input item-stacked-label">
+                 <ion-item class="item-input item-stacked-label" ng-if="isEdit">
                     <span class="input-label">{{ 'Email' | translate}}<span class="color-error">*</span></span>
                     <input type="email" ng-model="request.email" placeholder="Email">
                 </ion-item>
@@ -84,20 +84,26 @@
                         <p ng-if="!request.birthDate"> {{ 'commons.selectDate' | translate}} </p>
                     </ion-item>
                 </div>
-                <div ng-if="isEdit">
-                    <ion-item style="background: #f5f5f5;">
+                    <ion-item ng-if="isEdit">
                         <h2>{{ 'commons.birthNation' | translate}} <i style="color: #8c8c8c" class="icon ion-locked" ></i> </h2>
                         <p>{{ request.birthNation || '-'}}</p>
                     </ion-item>
-                    <ion-item style="background: #f5f5f5;">
+                    <ion-item ng-if="isEdit">
                         <h2>{{ 'commons.birthCity' | translate}} <i style="color: #8c8c8c" class="icon ion-locked" ></i> </h2>
                         <p>{{ request.birthPlace || '-'}}</p>
-                    </ion-item>
-                    <ion-item style="background: #f5f5f5;">
+                    </ion-item >
+                    <ion-item ng-if="isEdit">
                         <h2>{{ 'commons.birthDate' | translate}} <i style="color: #8c8c8c" class="icon ion-locked" ></i> </h2>
                         <p>{{ request.birthDate || '-'}}</p>
                     </ion-item>
-                </div>
+                    <ion-item ng-if="!isEdit" class="item-input item-stacked-label">
+                        <span class="input-label">{{ 'commons.fiscalCode' | translate}}<span class="color-error" ng-if="request.nationResidence === 'ITALIA'">*</span></span>
+                        <input type="text" ng-model="request.fiscalCode" placeholder="{{ 'commons.fiscalCode' | translate}}">
+                    </ion-item>
+                    <ion-item ng-if="isEdit">
+                        <h2>{{ 'commons.fiscalCode' | translate}} <i style="color: #8c8c8c" class="icon ion-locked" ></i></h2>
+                        <p>{{ request.fiscalCode || '-'}}</p>
+                    </ion-item>
                 <ion-item class="item-divider">
                     <h2>{{ 'commons.residenceSection' | translate}}</h2>
                 </ion-item>
@@ -122,19 +128,12 @@
                     <p ng-if="request.nationResidence">{{ request.nationResidence}}</p>
                     <p ng-if="!request.nationResidence"> {{ 'commons.addressSelectNation' | translate}} </p>
                 </ion-item>
-                <ion-item ng-click="selectPicklistValue('shortProvinceResidence')">
+                <ion-item ng-click="selectPicklistValue('shortProvinceResidence')" ng-show="request.nationResidence === 'ITALIA'">
                     <h2>{{ 'commons.addressProvince' | translate}}<span class="color-error">*</span></h2>
                     <p ng-if="request.shortProvinceResidence">{{ request.shortProvinceResidence}}</p>
                     <p ng-if="!request.shortProvinceResidence"> {{ 'commons.addressSelectProvince' | translate}} </p>
                 </ion-item>
-                <ion-item ng-if="!isEdit" class="item-input item-stacked-label">
-                    <span class="input-label">{{ 'commons.fiscalCode' | translate}}<span class="color-error" ng-if="request.nationResidence === 'ITALIA'">*</span></span>
-                    <input type="text" ng-model="request.fiscalCode" placeholder="{{ 'commons.fiscalCode' | translate}}">
-                </ion-item>
-                <ion-item ng-if="isEdit">
-                    <h2>{{ 'commons.fiscalCode' | translate}}</h2>
-                    <p>{{ request.fiscalCode || '-'}}</p>
-                </ion-item>
+                
 
 
 
@@ -221,7 +220,7 @@
                     <p ng-if="request.fattNation">{{ request.fattNation}}</p>
                     <p ng-if="!request.fattNation"> {{ 'commons.addressSelectNation' | translate}} </p>
                 </ion-item>
-                <ion-item ng-click="selectPicklistValue('fattProvince')" ng-if="request.isDatiFatt || (isEdit && iCanEditFatturazione)">
+                <ion-item ng-click="selectPicklistValue('fattProvince')" ng-if="((request.isDatiFatt || (isEdit && iCanEditFatturazione)) && request.fattNation === 'ITALIA')">
                     <h2>{{ 'commons.invoiceAddressProvince' | translate}}<span class="color-error">*</span></h2>
                     <p ng-if="request.fattProvince">{{ request.fattProvince}}</p>
                     <p ng-if="!request.fattProvince"> {{ 'commons.addressSelectProvince' | translate}}</span></p>

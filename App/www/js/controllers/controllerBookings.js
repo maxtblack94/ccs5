@@ -30,7 +30,7 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
                     if ($scope.userInfo.registry.account_status === 'SUBSCRIBED_WITH_PAY') {
                         PopUpServices.messagePopup($filter('translate')('commons.messageSubscribedWithPay'), $filter('translate')('commons.messageProfileWaitForActive'));
                     } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED') {
-                        PopUpServices.messagePopup($filter('translate')('commons.messageSubscribedWithPay'), $filter('translate')('commons.messageProfileWaitForActive'), $scope.paymentModal);
+                        PopUpServices.messagePopup($filter('translate')('commons.messageRegisterNewCard'), $filter('translate')('commons.messageRegisterNewCardTitle'), $scope.paymentModal);
                     } else  if ($scope.userInfo.registry.account_status === 'ACTIVE') {
                         ReservationService.resetReservation();
                         $state.go('subscriptions');
