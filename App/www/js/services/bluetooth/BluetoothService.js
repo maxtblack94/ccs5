@@ -27,7 +27,12 @@ angular.module('starter').factory("BluetoothServices", function(UpdateBBService,
                         executeInteraction(interaction);
                     }
                 }else{
-                    errorHandler('GENERIC_ERROR');
+                    if (notifyData.MT === 5001) {
+                        tryUpdateBB(notifyData);
+                        $rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction});
+                    } else {
+                        errorHandler('GENERIC_ERROR');
+                    }
                 }
                 
             }
@@ -38,6 +43,10 @@ angular.module('starter').factory("BluetoothServices", function(UpdateBBService,
         setTimeout(function() {
             write('pair');
         }, 500);
+    }
+
+    function tryUpdateBB(interaction) {
+        UpdateBBService.updateBBWithTKN(interaction);
     }
 
     function executeInteraction(interaction) {
@@ -51,7 +60,7 @@ angular.module('starter').factory("BluetoothServices", function(UpdateBBService,
                 break;
             case 5001:
                 UpdateBBService.setUpdateRequest(interaction.TKN);
-                //$rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction});
+                $rootScope.$broadcast('bleInteraction', {resultStatus: 'OK', interaction: interaction});
                 break;
             case 10000:
                 

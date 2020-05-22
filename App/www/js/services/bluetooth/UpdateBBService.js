@@ -1,11 +1,34 @@
 angular.module('starter').service("UpdateBBService", function($q, $rootScope, ScriptServices) {
 
-    function checkIsExistingRequest() {
-       var updateBB = localStorage.getItem('updateBB');
-       return updateBB ? true: false;
+    function checkIsExistingRequest(bookings) {
+       var TKN = localStorage.getItem('updateBB');
+       if (TKN) {
+            var tknObj = JSON.parse(atob(TKN));
+            console.log("tknObj", tknObj);
+            var iteractionFound;
+            dance:
+            for (var k = 0; k < bookings.length; k++) {
+                if (bookings[k].pnr === tknObj.data.rid && ((bookings[k].status === 'Booked' && tknObj.ty === 101) || (bookings[k].status === 'Collected' && tknObj.ty === 102))) {
+                    /* iteractionFound = bookings[k]; */
+                    updateBBWithTKN({TKN: TKN});
+                    break dance;
+                }
+                
+            }
+            
+
+/*             setTimeout(() => {
+                if (iteractionFound) {
+                    iteractionFound = null;
+                    deleteExistingRequest();
+                }
+                
+            }, 1000); */
+       }
     }
 
     function setUpdateRequest(TKN) {
+
         localStorage.setItem('updateBB', TKN);
     }
 
@@ -17,25 +40,17 @@ angular.module('starter').service("UpdateBBService", function($q, $rootScope, Sc
         localStorage.removeItem('updateBB');
     }
 
-    function updateBB() {
-        return $q(function(resolve, reject) {
-            if (checkIsExistingRequest()) {
-                var tknObj = JSON.parse(atob(getExistingToken()));
-                console.log("tknObj", tknObj);
-                if (tknObj.ty === 101) {
-                    pickupUpdate(tknObj, resolve, reject);
-                } else {
-                    returnUpdate(tknObj, resolve, reject);
-                }
-                
-            } else {
-                resolve();
-            }
-        });
-        
+    function updateBBWithTKN(interaction) {
+        var tknObj = JSON.parse(atob(interaction.TKN));
+        console.log("tknObj", tknObj);
+        if (tknObj.ty === 101) {
+            pickupUpdate(tknObj, interaction.TKN);
+        } else {
+            returnUpdate(tknObj, interaction.TKN);
+        }
     }
 
-    function pickupUpdate(tknObj, resolve, reject) {
+    function pickupUpdate(tknObj, TKN) {
         ScriptServices.getXMLResource(522).then(function(res) {
             res = res.replace('{PNR}', tknObj.data.rid)
             .replace('{BADGEID}', tknObj.data.bid)
@@ -46,17 +61,17 @@ angular.module('starter').service("UpdateBBService", function($q, $rootScope, Sc
             .replace('{QUALITY}', tknObj.poi ? tknObj.poi.a : 0);
             ScriptServices.callGenericService(res, 522).then(function(data) {
                 deleteExistingRequest();
-                resolve();
+                $rootScope.$broadcast('refreshBookings', {resultStatus: 'OK'});
                 console.log('i updateBB');
             }, function(error) {
-                resolve();
+                setUpdateRequest(TKN);
                 console.log('i updateBB, error');
             });
         });
     }
 
 
-    function returnUpdate(tknObj, resolve, reject) {
+    function returnUpdate(tknObj, TKN) {
 
         ScriptServices.getXMLResource(523).then(function(res) {
             res = res.replace('{PNR}', tknObj.data.rid)
@@ -74,24 +89,24 @@ angular.module('starter').service("UpdateBBService", function($q, $rootScope, Sc
             ScriptServices.callGenericService(res, 523).then(function(data) {
                 console.log('i updateBB');
                 deleteExistingRequest();
-                resolve();
+                $rootScope.$broadcast('refreshBookings', {resultStatus: 'OK'});
             }, function(error) {
-                resolve();
+                setUpdateRequest(TKN);
                 console.log('i updateBB, error');
             });
         });
     }
 
     return {
-        updateBB: function () {
-            return updateBB();
-        },
         setUpdateRequest: function (TKN) {
             return setUpdateRequest(TKN);
         },
-        checkIsExistingRequest: function () {
-            return checkIsExistingRequest();
+        checkIsExistingRequest: function (bookings) {
+            return checkIsExistingRequest(bookings);
         },
+        updateBBWithTKN: function (interaction) {
+            return updateBBWithTKN(interaction);
+        }
     };
 
-})
+});

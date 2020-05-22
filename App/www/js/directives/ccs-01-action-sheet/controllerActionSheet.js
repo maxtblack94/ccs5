@@ -1,4 +1,4 @@
-angular.module('starter').controller('ActionSheetCtrl', function ($filter, $ionicModal, ManipolationServices, DamageService, InfoFactories, PopUpServices, $ionicLoading, ScriptServices, $ionicPopup, $ionicActionSheet, $scope) {
+angular.module('starter').controller('ActionSheetCtrl', function ($timeout, $cordovaDatePicker, ChangeReturnParkService, $filter, $ionicModal, ManipolationServices, DamageService, InfoFactories, PopUpServices, $ionicLoading, ScriptServices, $ionicPopup, $ionicActionSheet, $scope) {
     $scope.selectedClient = InfoFactories.getClientSelected();
 
     ScriptServices.directWithOutScriptID(628).then(function (data) {
@@ -61,6 +61,18 @@ angular.module('starter').controller('ActionSheetCtrl', function ($filter, $ioni
                         hideSheet();
                         setDelay($scope.book.pnr);
                         break;
+                    case "changeReturnParking":
+                        hideSheet();
+                        $ionicModal.fromTemplateUrl('js/directives/ccs-01-action-sheet/templates/changeReturnParking.html', {
+                            scope: $scope
+                        }).then(function (modal) {
+                            changeReturnParking($scope.book, modal);
+                        });
+                        break;
+                    case "changeReturnDateTime":
+                        hideSheet();
+                        changeReturnDateTime($scope.book.pnr);
+                        break;
                     default:
                         break;
                 }
@@ -68,6 +80,8 @@ angular.module('starter').controller('ActionSheetCtrl', function ($filter, $ioni
         });
 
     };
+
+    
 
     /*function changeDriver(reservationNumber) {
         $scope.changeDriver = {};
@@ -240,21 +254,137 @@ angular.module('starter').controller('ActionSheetCtrl', function ($filter, $ioni
                 }
             }]
         });
-
-        function callSetDelay(delayInfo) {
-            $ionicLoading.show();
-            ScriptServices.getXMLResource(619).then(function (res) {
-                res = res.replace('{PNR}', delayInfo.pnr).replace('{DELAY}', delayInfo.time);
-                delete $scope.contextPnr;
-                ScriptServices.callGenericService(res, 619).then(function (data) {
-                    $ionicLoading.hide();
-                    PopUpServices.messagePopup($filter('translate')('actionSheet.successDelaySent')), $filter('translate')('commons.success', $scope.callback());
-                }, function (error) {
-                    $ionicLoading.hide();
-                    PopUpServices.errorPopup($filter('translate')('actionSheet.failDelaySent'));
-                });
-            });
-        };
     }
+
+    function callSetDelay(delayInfo) {
+        $ionicLoading.show();
+        ScriptServices.getXMLResource(619).then(function (res) {
+            res = res.replace('{PNR}', delayInfo.pnr).replace('{DELAY}', delayInfo.time);
+            delete $scope.contextPnr;
+            ScriptServices.callGenericService(res, 619).then(function (data) {
+                $ionicLoading.hide();
+                PopUpServices.messagePopup($filter('translate')('actionSheet.successDelaySent')), $filter('translate')('commons.success', $scope.callback());
+            }, function (error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup($filter('translate')('actionSheet.failDelaySent'));
+            });
+        });
+    };
+
+
+
+
+
+
+    // changeReturnDate Methods
+    $scope.selectToDate = function() {
+            
+        var dateToConfig = {
+            date: new Date(),
+            mode: 'date',
+            androidTheme: 4,
+            allowOldDates: false,
+            allowFutureDates: true,
+            doneButtonLabel: $filter('translate')('commons.select'),
+            cancelButtonLabel: $filter('translate')('commons.close'),
+            cancelButtonColor: '#000000',
+            locale: navigator.language
+        };
+        
+        $cordovaDatePicker.show(dateToConfig).then(function(date) {
+            if(date){
+                $timeout(function() {
+                    selectToTime(date);
+                }, 500)
+            }
+        });
+    };
+    
+    function selectToTime (date) {
+        var timeToConfig = {
+            date: new Date(),
+            mode: 'time',
+            is24Hour: true,
+            androidTheme: 2,
+            allowOldDates: true,
+            allowFutureDates: true,
+            doneButtonLabel: $filter('translate')('commons.select'),
+            cancelButtonLabel: $filter('translate')('commons.close'),
+            cancelButtonColor: '#000000',
+            locale: navigator.language
+        };
+        
+        $cordovaDatePicker.show(timeToConfig).then(function(time) {
+            if(time){
+                ($scope.newInfo || {}).value = fixDateTime(date, time, 'to');
+            }
+        });
+
+        function fixDateTime (date, time){
+            var hours = new Date(time).getHours();
+            var minutes = new Date(time).getMinutes();
+            var newDate = new Date(date).setHours(hours,minutes,0,0);
+            return ManipolationServices.resetDateForDefect(newDate);
+        }
+
+    }
+
+    function changeReturnParking(book, modal) {
+        var modalObj = {
+            "book": book,
+            "modalInstance": modal,
+            "callback": $scope.callback 
+        }
+        ChangeReturnParkService.setModalObj(modalObj)
+        modal.show(book, modal);
+    }
+
+    function changeReturnDateTime(pnr) {
+        $scope.contextPnr = angular.copy(pnr);
+        $scope.newInfo = {};
+        var setDelayPopup = $ionicPopup.show({
+            templateUrl: 'js/directives/ccs-01-action-sheet/templates/changeReturnDateTime.html',
+            title: "Cambio orario riconsegna",
+            scope: $scope,
+            buttons: [{
+                text: $filter('translate')('commons.cancel'),
+                type: 'button-stable',
+            }, {
+                text: '<b>'+$filter('translate')('commons.save')+'</b>',
+                type: 'button-positive',
+                attr: 'data-ng-disabled="!($scope.newInfo || {}).value"',
+                
+                onTap: function (e) {
+                    if (!$scope.newInfo.value) {
+                        e.preventDefault();
+                    } else {
+                        var obj = {
+                            'pnr': pnr,
+                            'newDate': $scope.newInfo.value
+                        }
+                        callUpdateReservationInfo(obj)
+                    }
+                }
+            }]
+        });
+    }
+
+    function callUpdateReservationInfo(updateInfo) {
+        $ionicLoading.show();
+        ScriptServices.getXMLResource(700).then(function (res) {
+            res = res.replace('{PNR}', updateInfo.pnr)
+            .replace('{NEWPARK}', "")
+            .replace('{RETURNDATE}', moment(updateInfo.newDate).format('DD/MM/YYYY'))
+            .replace('{RETURNTIME}', moment(updateInfo.newDate).format('HH:mm'))
+            delete $scope.contextPnr;
+            ScriptServices.callGenericService(res, 700).then(function (data) {
+                $ionicLoading.hide();
+                PopUpServices.messagePopup("Operazione effettuata correttamente"), $filter('translate')('commons.success', $scope.callback());
+            }, function (error) {
+                $ionicLoading.hide();
+                PopUpServices.errorPopup("La richiesta non è andata a buon fine, riprovare");
+            });
+        });
+    };
 
 });

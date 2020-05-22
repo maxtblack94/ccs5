@@ -1,0 +1,27 @@
+<ion-modal-view ng-controller="ChangeReturnParkingCtrl">
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">Selezionare parcheggio</h1>
+    </ion-header-bar>
+    <ion-content class="mb80">
+        <ion-list>
+            <ion-item ng-repeat="parking in parkingList | orderBy: 'position' | filter:searchVal" ng-click='selectParking(parking)' ng-class="{'active': currentPark === parking}">
+                <div>
+                    <h2>{{ parking.parking_name }}</h2>
+                    <p>{{ parking.address }}, {{ parking.city }}</p>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <div class="row footer-fixed">
+        <div class="col col-50">
+            <button ng-click='cancel()' class="button button-block button-balanced">
+                {{ 'commons.cancel' | translate}}
+            </button>
+        </div>
+        <div class="col col-50">
+            <button ng-click='save()' ng-disabled="!currentPark" class="button button-block button-positive">
+                {{ 'commons.save' | translate}}
+            </button>
+        </div>
+    </div>
+</ion-modal-view>

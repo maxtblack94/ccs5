@@ -7,31 +7,22 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
         InfoFactories.setPark(favo);
     }
     $scope.refreshBookings = function () {
-        //checkUpdateBB();
         $scope.loadbookings();
         $scope.$broadcast('scroll.refreshComplete');
     };
-
-    function checkUpdateBB() {
-        UpdateBBService.updateBB().then(function (response) {
-            $scope.loadbookings();
-        }, function (error) {
-            $scope.loadbookings();
-        });
-    }
 
     $scope.goToNewTrack = function () {
         $state.go('fast-track');
     };
 
-    if ($scope.selectedClient.map && !window.serverRootLocal) {
+    /* if ($scope.selectedClient.map && !window.serverRootLocal) {
         setTimeout(function() {
             var location = LocationService.requestLocationAuthorization();
             if (location) {
                 doWatchLocation();
             }
         }, 2000);
-    }
+    } */
 
 
     function doWatchLocation (){
@@ -121,6 +112,7 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
                     }
                     $scope.BookingsList[i] = obj;
                 }
+                UpdateBBService.checkIsExistingRequest($scope.BookingsList);
                 $ionicLoading.hide();
             }, function (error) {
                 $ionicLoading.hide();
@@ -133,6 +125,24 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
     function returnActions (){
         $scope.actions = {};
         $scope.actions.buttons = [];
+        /* if($scope.selectedClient.changeReturnParking){ */
+            $scope.actions.buttons.push({ 
+                text: ionic.Platform.isAndroid() ? '<i class="fa fa-map-marker" aria-hidden="true"></i> ' + ($scope.selectedClient.lblChangeReturnParking || " Cambio parcheggio riconsegna") : $scope.selectedClient.lblChangeReturnParking || " Cambio parcheggio riconsegna", 
+                type: "changeReturnParking" 
+            });
+        /* } */
+        /* if($scope.selectedClient.changeReturnDateTime){ */
+            $scope.actions.buttons.push({ 
+                text: ionic.Platform.isAndroid() ? '<i class="fa ion-android-time" aria-hidden="true"></i> ' + ($scope.selectedClient.lblChangeReturnDateTime || " Cambio orario riconsegna"): $scope.selectedClient.lblChangeReturnDateTime ||  " Cambio orario riconsegna", 
+                type: "changeReturnDateTime" 
+            });
+        /* } */
+        if($scope.selectedClient.delay){
+            $scope.actions.buttons.push({ 
+                text: ionic.Platform.isAndroid() ? '<i class="fa ion-android-time" aria-hidden="true"></i> ' + $scope.selectedClient.lbldelay || $filter('translate')('bookings.delay'): $scope.selectedClient.lbldelay || $filter('translate')('bookings.delay'), 
+                type: "delay" 
+            });
+        }
         if($scope.selectedClient.delay){
             $scope.actions.buttons.push({ 
                 text: ionic.Platform.isAndroid() ? '<i class="fa ion-android-time" aria-hidden="true"></i> ' + $scope.selectedClient.lbldelay || $filter('translate')('bookings.delay'): $scope.selectedClient.lbldelay || $filter('translate')('bookings.delay'), 

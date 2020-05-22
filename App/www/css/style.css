@@ -546,3 +546,7 @@ display: none;
     padding: 20px;
     color: #666;
 }
+
+.platform-android .action-sheet-has-icons .button {
+    padding-left: 15px;
+}
