@@ -118,7 +118,7 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
                 $scope.isConfirmed = true;
                 var pnrPopup = $ionicPopup.alert({
                     title: $filter('translate')('confirmReservation.requestComplete'),
-                    template: $filter('translate')('confirmReservation.pnr') + ': <b>' + $scope.PNRstring + '</b>'
+                    template: $filter('translate')('confirmReservation.pnr') + ': <b>' + $scope.PNRstring + '</b>' + getRestOfMessage(data.data)
                 });
                 pnrPopup.then(function(res) {
                     $state.go('tab.bookings');
@@ -133,6 +133,14 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
     $scope.back = function (params) {
         $ionicHistory.goBack();
      };
+
+     function getRestOfMessage(data) {
+        if (data.messageInfo) {
+            return '<br><br>' + data.messageInfo;
+        } else {
+            return '';
+        }
+     }
 
     function regionalReserve() {
         $ionicLoading.show();
@@ -159,7 +167,7 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
                 $scope.isConfirmed = true;
                 var pnrPopup = $ionicPopup.alert({
                     title: $filter('translate')('confirmReservation.requestCompleteRegional'),
-                    template: $filter('translate')('confirmReservation.pnr') + ': <b>' + $scope.PNRstring + '</b>'
+                    template: $filter('translate')('confirmReservation.pnr') + ': <b>' + $scope.PNRstring + '</b>' + getRestOfMessage(data.data)
                 });
                 pnrPopup.then(function(res) {
                     $state.go('tab.bookings');

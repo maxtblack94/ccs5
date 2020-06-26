@@ -1,5 +1,5 @@
 
-angular.module('starter').factory("IosBleConnectionService", function(BluetoothServices, $rootScope, ArrayServices) {
+angular.module('starter').factory("IosBleConnectionService", function(BluetoothServices, $rootScope, ArrayServices, $filter) {
     var currentDevice;
     var lastReservation, lastOperation;
     var scanCount;
@@ -20,7 +20,7 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
                 }
             },
             function() {
-                $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Ti preghiamo di abilitare il Bluetooth e riprovare"});
+                $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: $filter('translate')('commons.enableBleError')});
             });
         } else {
             ble.disconnect(currentDevice.id, function (params) {
@@ -52,7 +52,7 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
                     scanCount++;
                     startScan();
                 } else {
-                    $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Dispositivi non trovati"});
+                    $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: $filter('translate')('commons.bleFailConnection')});
                 }
             },
             function() { 
@@ -88,7 +88,7 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
     function manageNotFoundVehicle (index, devices) {
         if (index+1 >= devices.length) {
             disconnect();
-            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorCode: 'NOT_FOUND_VEHICLE', errorMessage: 'Non è stato possibile trovare il veicolo ricercato'});
+            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorCode: 'NOT_FOUND_VEHICLE', errorMessage: $filter('translate')('commons.bleFailConnection')});
         } else {
             disconnect(index+1);
         }

@@ -64,10 +64,7 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
             .replace('{TARIFCODE}', $scope.request.tarifCode || '73695'); */
             ScriptServices.callGenericService(res, 645).then(function(data) {
                 if(data.data){
-                    PopUpServices.messagePopup($filter('translate')('commons.success'), $filter('translate')('commons.success'), function () {
-                        callLoginService($scope.request.username, $scope.request.password);
-                        
-                    });
+                    endStepMessage();
                     
                 }else if(data.retcode === 5){
                     PopUpServices.errorPopup( $filter('translate')('commons.messageEmailAreadyExist')+ $filter('translate')('commons.retry'));
@@ -183,9 +180,20 @@ angular.module('starter').controller('RegisterCtrl', function($filter, RegexServ
     };
 
 
-    /* var myInput = document.getElementById('confirmEmail');
-    myInput.onpaste = function(e) {
-        e.preventDefault();
-    } */
-    
+    function endStepMessage() {
+        var modalContent = $filter('translate')('commons.registerConfirmedMessage');
+        var configObj = {
+            "buttons": [{
+                text: '<b>'+$filter('translate')('commons.continue')+'</b>',
+                type: 'button-positive',
+                onTap: function () {
+                    callLoginService($scope.request.username, $scope.request.password);
+                }
+            }],
+            "message": modalContent,
+            "title": $filter('translate')('commons.registerConfirmed')
+        }
+        PopUpServices.buttonsPopup(configObj);
+    }
+
 })

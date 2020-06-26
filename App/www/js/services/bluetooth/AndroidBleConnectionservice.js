@@ -1,4 +1,4 @@
-angular.module('starter').factory("AndroidBleConnectionService", function(BluetoothServices, InfoFactories, $rootScope) {
+angular.module('starter').factory("AndroidBleConnectionService", function(BluetoothServices, InfoFactories, $rootScope, $filter) {
     var currentDevice;
     var lastReservation, lastOperation, userInfo, actionsList = [];
 
@@ -11,7 +11,7 @@ angular.module('starter').factory("AndroidBleConnectionService", function(Blueto
             isConnected(reservation);
         },
         function() {
-            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Ti preghiamo di abilitare il Bluetooth e riprovare"});
+            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: $filter('translate')('commons.enableBleError')});
         });
     }
 
@@ -41,7 +41,7 @@ angular.module('starter').factory("AndroidBleConnectionService", function(Blueto
         },
         function(error) {
             console.log('Fail connection, i try again...', error);
-            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Fail connection, i try again..."});
+            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: $filter('translate')('commons.bleFailConnection')});
             currentDevice = null;
             /* doConnection(reservation); */
         });
@@ -55,7 +55,7 @@ angular.module('starter').factory("AndroidBleConnectionService", function(Blueto
             }, 500);
         }, function() {
             console.log('MTU Fail, i try again.');
-            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "MTU Fail, i try again."});
+            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: $filter('translate')('commons.bleFailConnection')});
             mtuSize();
         });
     }

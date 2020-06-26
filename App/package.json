@@ -37,6 +37,7 @@
     "gulp-uglify": "2.0.1",
     "ionic-minify": "2.0.10",
     "ionic-plugin-keyboard": "^2.2.1",
+    "natives": "^1.1.6",
     "onesignal-cordova-plugin": "2.3.1"
   },
   "devDependencies": {

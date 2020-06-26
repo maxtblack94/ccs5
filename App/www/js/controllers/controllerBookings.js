@@ -30,7 +30,7 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
                     if ($scope.userInfo.registry.account_status === 'SUBSCRIBED_WITH_PAY') {
                         PopUpServices.messagePopup($filter('translate')('commons.messageSubscribedWithPay'), $filter('translate')('commons.messageProfileWaitForActive'));
                     } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED') {
-                        PopUpServices.messagePopup($filter('translate')('commons.messageSubscribedWithPay'), $filter('translate')('commons.messageProfileWaitForActive'), $scope.paymentModal);
+                        PopUpServices.messagePopup($filter('translate')('commons.messageRegisterNewCard'), $filter('translate')('commons.messageRegisterNewCardTitle'), $scope.paymentModal);
                     } else  if ($scope.userInfo.registry.account_status === 'ACTIVE') {
                         ReservationService.resetReservation();
                         $state.go('subscriptions');
@@ -592,7 +592,7 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
     }
 
     $scope.hideRegionalCancelBefore18H = function(reservation) {
-        if (reservation.serviceID === "72192" && is18H(reservation.dateTimeFrom)) {
+        if (reservation.serviceID === "72192" && is18H(reservation.dateTimeFrom, reservation.regionalHourCancellation)) {
             return true;
         }
     };
@@ -603,11 +603,12 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
         }
     };
 
-    function is18H(dateFromTime) {
+    function is18H(dateFromTime, h) {
         var startTime = moment(new Date());
         var duration = moment.duration(moment(dateFromTime).diff(startTime));
         var hours = duration.asHours();
-        return hours < 18;
+        var hoursExpective = h || 4;
+        return hours < hoursExpective;
     }
 
     $scope.showModalInfo = function () {
