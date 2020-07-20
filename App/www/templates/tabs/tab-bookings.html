@@ -2,6 +2,9 @@
   <div fab ng-click='startBooking()'>
     <div class='ion-android-add'></div>
   </div>
+  <div fab ng-click='startReservationWithMap()' ng-if="selectedClient.searchMap" style="bottom: 130px;">
+    <div class='ion-location' style="padding: 0px 0px 0px 2px;font-size:30px"></div>
+  </div>
   <ion-content>
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshBookings()">
     </ion-refresher>

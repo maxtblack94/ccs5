@@ -117,7 +117,19 @@ window.locale_it.commons = {
 	plafond: 'Saldo',
 	currentPlafond: "Saldo attuale",
 	chargePlafond: "Ricarica",
-	choosePlafond: "Seleziona l’importo della ricarica"
+	choosePlafond: "Seleziona l’importo della ricarica",
+	reservationTime: "Tempo della prenotazione",
+	genericPlaceholder: "Seleziona valore",
+	subscription: "Sottoscrizione",
+	tarif: "Tariffa",
+	mandatoryField: "Compilare tutti i campi obbligatori",
+	register: "Registrati",
+	emailAlreadyUser: "Username già in uso",
+	usernameAlreadyUsed: "Email già in uso",
+	profileCreated: "Il tuo profilo è in fase di verifica. Procedi all'attivazione della modalità di pagamento",
+	profileAlertModal1: "Profilo in attesa di abilitazione",
+	paymentModalContent: 'Gentile Cliente, per tua tutela, ti verra’ chiesto di autorizzare un blocco platfond di 0,02 euro (che verranno riaccreditati) al fine di verificare la validita’ dei dati inseriti.<br><br><br>Per portare a termine la procedura di iscrizione, come previsto dall’istituto bancario Banca Intesa, e’ quindi necessario digitare il pulsante "paga".<br><br><br>Per info e supporto contattaci al n.verde',
+	
 };
 
 window.locale_it.register = {
@@ -326,3 +338,52 @@ window.locale_it.actionSheet = {
 	changeDriverSuccess:'Richiesta cambio guida inviata con successo a',
 	changeDriverError: 'Non è stato possibile effettuare il cambio guida. Riprovare!'
 };
+
+
+window.locale_it.gpp = {
+	registrationTitle: "I tuoi dati",
+	account: "Account",
+	username: "Username",
+	insertValue: "Inserisci un valore",
+	password: "Password",
+	confirmPassword: "Conferma Password",
+	email: "Email",
+	confirmEmail: "Conferma Email",
+	personalData: "Dati personali",
+	firstName: "Nome",
+	lastName: "Cognome",
+	gender: "Sesso",
+	birthDate: "Data di nascita",
+	number: "Cellulare",
+	taxCode: "Codice Fiscale",
+	docType: "Tipo documento",
+	idIdentity: "Numero Documento",
+	addressSection: "Indirizzo",
+	address: "Via e civico",
+	zipCode: "Cap",
+	city: "Città",
+	country: "Nazione",
+	proceed: "Procedi",
+	registrationLicenseTitle: "La tua patente",
+	license: "Dati patente",
+	licenseNumber: "Numero",
+	issuer: "Rilasciato da",
+	countryIssue: "Paese di rilascio",
+	licenseIssueDate: "Data di rilascio",
+	licenseEndDate: "Data di scadenza",
+	licenseUpload: "Carica foto patente",
+	frontPick: "Fronte documento",
+	backPick: "Retro documento",
+	uploadImage: "Carica immagine",
+	termsTitle: "Termini e condizioni",
+	refuse: "Cancel",
+	next: "Prossimo",
+	agree: "Accetto",
+	mandatoryFields: "Compilare tutti i campi obbligatori",
+	passwordRegex: "La password deve contentere un minimo di 8 caratteri e massimo 20, che contenga almeno una lettera maiuscola e almeno un numero",
+	passwordMatch: "I campi password non combaciano",
+	emailMatch: "I campi email non combaciano",
+	invalidZipCode: "Il valore del cap non è corretto",
+	emailRegex: "Il valore del Email non è corretto",
+	consentsMandatory: "Prima di procedere accetta tutti i consensi"
+}

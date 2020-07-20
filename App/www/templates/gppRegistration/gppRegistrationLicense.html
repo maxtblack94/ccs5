@@ -1,0 +1,54 @@
+<ion-view title="{{'gpp.registrationLicenseTitle' | translate}}">
+    <ion-content class="mb80">
+        <ion-list>
+            <ion-item class="item-divider">
+                <h2>{{ 'gpp.license' | translate}}</h2>
+            </ion-item>
+            <ion-item class="item-input item-stacked-label">
+                <span class="input-label">{{ 'gpp.licenseNumber' | translate}}<span class="color-error">*</span></span>
+                <input type="text" ng-model="request.licenseNumber" placeholder="{{ 'gpp.insertValue' | translate}}">
+            </ion-item>
+            <ion-item class="item-input item-stacked-label">
+                <span class="input-label">{{ 'gpp.issuer' | translate}}<span class="color-error">*</span></span>
+                <input type="text" ng-model="request.issuer" placeholder="{{ 'gpp.insertValue' | translate}}">
+            </ion-item>
+            <ion-item ng-click="selectPicklistValue('countryIssue')">
+                <h2>{{ 'gpp.countryIssue' | translate}}<span class="color-error">*</span></h2>
+                <p ng-if="request.countryIssue">{{ request.countryIssue}}</p>
+                <p ng-if="!request.countryIssue"> {{ 'gpp.insertValue' | translate}} </p>
+            </ion-item>
+            <ion-item ng-click='selectDate("licenseIssueDate")'>
+                <h2>{{ 'gpp.licenseIssueDate' | translate}}<span class="color-error">*</span></h2>
+                <p ng-if="request.licenseIssueDate">{{ request.licenseIssueDate | date:'dd/MM/yyyy'}}</p>
+                <p ng-if="!request.licenseIssueDate"> {{ 'gpp.insertValue' | translate}} </p>
+            </ion-item>
+            <ion-item ng-click='selectDate("licenseEndDate")'>
+                <h2>{{ 'gpp.licenseEndDate' | translate}}<span class="color-error">*</span></h2>
+                <p ng-if="request.licenseEndDate">{{ request.licenseEndDate | date:'dd/MM/yyyy'}}</p>
+                <p ng-if="!request.licenseEndDate"> {{ 'gpp.insertValue' | translate}} </p>
+            </ion-item>
+            <ion-item class="item-divider">
+                <h2><i class="fa fa-id-card-o" aria-hidden="true"></i> {{ 'gpp.licenseUpload' | translate}} </h2>
+            </ion-item>
+            <ion-item class="item-icon-right">
+                <h2>{{ 'gpp.frontPick' | translate}}<span class="color-error">*</span></h2>
+                <p> {{ 'gpp.uploadImage' | translate}} </p>
+                <i class="icon ion-camera"></i>
+                <!-- <i class="icon ion-checkmark-round"></i> -->
+            </ion-item>
+            <ion-item class="item-icon-right">
+                <h2>{{ 'gpp.backPick' | translate}}<span class="color-error">*</span></h2>
+                <p> {{ 'gpp.uploadImage' | translate}} </p>
+                <i class="icon ion-camera"></i>
+                <!-- <i class="icon ion-checkmark-round"></i> -->
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <div class="row footer-fixed">
+        <div class="col col-80 col-offset-10">
+            <button ng-click="isValid();" class="button button-block button-balanced">
+                {{ 'gpp.proceed' | translate}}
+            </button>
+        </div>
+    </div>
+</ion-view>

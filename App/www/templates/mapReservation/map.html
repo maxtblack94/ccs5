@@ -1,0 +1,88 @@
+<ion-view view-title="Map">
+    <ion-content>
+       <div id="mapNew" data-tap-disabled="true"></div>
+    </ion-content>
+    <div class="row footer-fixed" style="background: none;border: 0;">
+      <div class="col">
+          <button ng-click='cancel()' class="button button-block button-positive">
+              {{ 'commons.cancel' | translate}}
+          </button>
+      </div>
+  </div>
+ </ion-view>
+ <script id="my-modal.html" type="text/ng-template">
+    <ion-modal-view>
+         <ion-header-bar class="bar-positive">
+            <div class="title">{{ 'tabs.booking' | translate}}</div>
+         </ion-header-bar>
+        <ion-content>
+           <ion-list>
+              
+              <div class="item">
+                 <div class="pull-left" style="width: 65%;">
+                    <h2 style='line-height: 30px; font-size: 18px;white-space: initial'>{{currentVehicle.brand}} {{currentVehicle.model}}</h2>
+                    <p>{{ 'vehicle.plate' | translate}}</p>
+                    <h2>{{ currentVehicle.plate }}</h2>
+                 </div>
+              </div>
+              <div class="item">
+                 <div class="pull-left m-right20">
+                    <p>{{ 'vehicle.color' | translate}}</p>
+                    <div class='color-cube'>
+                       <div style='background-color: {{ currentVehicle.colorApp }};'></div>
+                    </div>
+                 </div>
+                 <div class="pull-left" ng-show="currentVehicle.seats">
+                    <p>{{ 'vehicle.seats' | translate}}</p>
+                    <p style='font-weight: bold; font-size: 20px; line-height: 26px; text-align: center;'>{{ currentVehicle.seats }}</p>
+                 </div>
+                 <div style='float: right;'>
+                    <img ng-src="{{ currentVehicle.imgMin ? currentVehicle.imgMin : 'icons/vehicle-default-s.jpg' }}" style='max-width: 94px;'>
+                 </div>
+              </div>
+              <div class="item" style='overflow: auto;'>
+                 <div style='display: inline-block; margin-right: 10px;'>
+                    <div class="date-select-label" style='text-align: center;'>{{ 'vehicle.externalClean' | translate}}</div>
+                    <div style='width: 50px; height: 30px; float: left; text-align: center; padding-top: 4px;'>
+                       <i ng-if="currentVehicle.vehicle_status == 'Ok'" class='ion-happy-outline' style='font-size: 26px; color: #fc0300;'></i>
+                       <i ng-if="currentVehicle.vehicle_status != 'Ok'" class='ion-sad-outline' style='font-size: 26px; color: #fc0300;'></i>
+                    </div>
+                 </div>
+                 <div style='display: inline-block;'>
+                    <div class="date-select-label" style='text-align: center;'>{{ 'vehicle.internalClean' | translate}}</div>
+                    <div style='width: 50px; height: 30px; float: left; text-align: center; padding-top: 4px;'>
+                       <i ng-if="currentVehicle.vehicle_cleanness_status == 'Ok'" class='ion-happy-outline' style='font-size: 26px; color: #fc0300;'></i>
+                       <i ng-if="currentVehicle.vehicle_cleanness_status != 'Ok'" class='ion-sad-outline' style='font-size: 26px; color: #fc0300;'></i>
+                    </div>
+                 </div>
+                 <div class="pull-right fuel_container" ng-if="currentVehicle.electricQuantity">
+                    <i class="fa fa-bolt elecric-icon" aria-hidden="true"></i>
+                    <div class="pull-right bold fuel_value">{{ currentVehicle.electricQuantity }}</div>
+                 </div>
+                 <div class="pull-right fuel_container" ng-if="currentVehicle.fuelQuantity">
+                    <div class="pull-left fuel"></div>
+                    <div class="pull-right bold fuel_value">{{ currentVehicle.fuelQuantity }}</div>
+                 </div>
+              </div>
+              <a class="item item-icon-right park-item">
+                  <p>{{ 'bookResume.pickupPark' | translate}}</p>
+                  <h2><strong>{{ currentVehicle.parkingName }}</strong></h2>
+                  <p>{{ currentVehicle.parkingAddress }}</p>
+                  <i class="icon ion-ios-navigate-outline icons-reservation"></i>
+            </a>
+           </ion-list>
+           <div class="row footer-fixed">
+                <div class="col col-50">
+                    <button ng-click='cancelModal()' class="button button-block button-balanced">
+                        {{ 'commons.cancel' | translate}}
+                    </button>
+                </div>
+                <div class="col col-50">
+                    <button ng-click='proceed()' class="button button-block button-positive">
+                        {{ 'commons.confirm' | translate}}
+                    </button>
+                </div>
+            </div>
+        </ion-content>
+     </ion-modal-view>
+ </script>

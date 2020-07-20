@@ -122,7 +122,18 @@ window.locale_en.commons = {
 	plafond: "Plafond",
 	currentPlafond: "Current plafond",
 	chargePlafond: "Charge plafond",
-	choosePlafond: "Choose a plafond value and contiue"
+	choosePlafond: "Choose a plafond value and contiue",
+	reservationTime: "Booking time",
+	genericPlaceholder: "Select value",
+	subscription: "Subscription",
+	tarif: "Tariff",
+	mandatoryField: "Fill in all required fields",
+	register: "Register",
+	emailAlreadyUser: "Username already in use",
+	usernameAlreadyUsed: "Email already in use",
+	profileCreated: "Your profile is being verified. Proceed to activate the payment method",
+	profileAlertModal1: "Profile waiting to be enabled",
+	paymentModalContent: 'Dear Customer, for your protection, you will be asked to authorize a platfond block of 0.02 euros (which will be re-credited) in order to verify the validity of the data entered. <br> <br> <br> For to complete the registration procedure, as required by the bank, it is therefore necessary to press the "pay" button. <br> <br> <br> For info and support contact us at our free number'
 };
 
 window.locale_en.bookResume = {
@@ -326,3 +337,52 @@ window.locale_en.actionSheet = {
 	changeDriverSuccess:'Requested driver change successfully communicated to ',
 	changeDriverError: 'Driver Change cannot be applied. Try again!'
 };
+
+
+window.locale_en.gpp = {
+	registrationTitle: "Your data",
+	account: "Account",
+	username: "Username",
+	insertValue: "Insert a value",
+	password: "Password",
+	confirmPassword: "Confirm Password",
+	email: "Email",
+	confirmEmail: "Confirm Email",
+	personalData: "Personal Data",
+	firstName: "Name",
+	lastName: "Surname",
+	gender: "Gender",
+	birthDate: "Date of birth",
+	number: "Mobile",
+	taxCode: "Tax Code",
+	docType: "Document type",
+	idIdentity: "Document Number",
+	addressSection: "Address",
+	address: "Address and number",
+	zipCode: "Zip code",
+	city: "City",
+	country: "Country",
+	proceed: "Proceed",
+	registrationLicenseTitle: "Your license",
+	license: "Driving license data",
+	licenseNumber: "Number",
+	issuer: "Released by",
+	countryIssue: "Country of issue",
+	licenseIssueDate: "Release date",
+	licenseEndDate: "Expiry date",
+	licenseUpload: "Upload driving license photo",
+	frontPick: "Front document",
+	backPick: "Retro document",
+	uploadImage: "Upload image",
+	termsTitle: "Terms and conditions",
+	refuse: "Cancel",
+	next: "Next",
+	agree: "I accept",
+	mandatoryFields: "Fill in all required fields",
+	passwordRegex: "The password must contain a minimum of 8 characters and a maximum of 20, which must contain at least one capital letter and at least one number",
+	passwordMatch: "Password fields do not match",
+	emailMatch: "Email fields do not match",
+	invalidZipCode: "The Zip code is incorrect",
+	emailRegex: "Email field is incorrect",
+	consentsMandatory: "Before proceeding, accept all consents"
+}

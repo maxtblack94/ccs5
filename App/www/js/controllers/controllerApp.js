@@ -1,5 +1,6 @@
 angular.module('starter').controller('AppCtrl', function(ScriptServices, InfoFactories, $rootScope, $scope, $state) {
-   $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+    
+    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
         $scope.currentState = toState.name;
         if (toState.name === 'tab.bookings') {
             getNotifications();
@@ -7,6 +8,9 @@ angular.module('starter').controller('AppCtrl', function(ScriptServices, InfoFac
     })
 
     $scope.model = $scope.model || {};
+    $scope.isLogged = function () {
+        return InfoFactories.isLoggedUser();
+    }
 
     function getNotifications(){
         ScriptServices.getXMLResource(635).then(function(res) {

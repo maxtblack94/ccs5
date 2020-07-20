@@ -1,0 +1,38 @@
+{
+    "retcode": 0,
+    "data": [
+      {
+        "id": "45877",
+        "plate": "FD627KF",
+        "brand": "Peugeot",
+        "model": "208 ACTIVE 1.4 HDI 68CV FAP 5 PORTE",
+        "lat": null,
+        "lng": null
+      },
+      {
+        "id": "48202",
+        "plate": "FD628KF",
+        "brand": "Peugeot",
+        "model": "208 ACTIVE 1.4 HDI 68CV FAP 5 PORTE",
+        "lat": "41.831126",
+        "lng": "12.462623"
+      },
+      {
+        "id": "137876",
+        "plate": "FZ962HJ",
+        "brand": "Renault",
+        "model": "Zoe",
+        "lat": "45.577364",
+        "lng": "9.273594"
+      },
+      {
+        "id": "137877",
+        "plate": "FZ963HJ",
+        "brand": "Renault",
+        "model": "Zoe",
+        "lat": "45.515612",
+        "lng": "9.088551"
+      }
+    ],
+    "description": null
+  }

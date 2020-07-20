@@ -6,6 +6,10 @@ angular.module('starter').factory("InfoFactories", [function () {
     selectedRangeDriver = { value: 'short' },
     lastDeviceCoords;
 
+    function isLoggedUser() {
+        return window.localStorage.getItem('userInfo')? true: false;
+    }
+
     function isRegionalSilver() {
         userInfo = getUserInfo();
         var isSilver = false;
@@ -197,6 +201,9 @@ angular.module('starter').factory("InfoFactories", [function () {
         },
         isRegionalSilver: function (userInfo) {
             return isRegionalSilver(userInfo);
+        },
+        isLoggedUser: function () {
+            return isLoggedUser();
         }
     };
 

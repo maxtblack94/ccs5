@@ -1,0 +1,65 @@
+<ion-view view-title="{{'confirmReservation.title' | translate}}">
+    <ion-content class="mb80">
+        <ion-list>
+            <div class="item">
+                <div class="pull-left" style="width: 65%;">
+                   <h2 style='line-height: 30px; font-size: 18px;white-space: initial'>{{currentVehicle.brand}} {{currentVehicle.model}}</h2>
+                   <p>{{ 'vehicle.plate' | translate}}</p>
+                   <h2>{{ currentVehicle.plate }}</h2>
+                </div>
+             </div>
+             <div class="item">
+                <div class="pull-left m-right20">
+                   <p>{{ 'vehicle.color' | translate}}</p>
+                   <div class='color-cube'>
+                      <div style='background-color: {{ currentVehicle.colorApp }};'></div>
+                   </div>
+                </div>
+                <div class="pull-left" ng-show="currentVehicle.seats">
+                   <p>{{ 'vehicle.seats' | translate}}</p>
+                   <p style='font-weight: bold; font-size: 20px; line-height: 26px; text-align: center;'>{{ currentVehicle.seats }}</p>
+                </div>
+                <div style='float: right;'>
+                   <img ng-src="{{ currentVehicle.imgMin ? currentVehicle.imgMin : 'icons/vehicle-default-s.jpg' }}" style='max-width: 94px;'>
+                </div>
+             </div>
+             <a class="item item-icon-right park-item" ng-click="selectPicklistValue('parkings')">
+                <p>{{ 'bookResume.returnPark' | translate}}</p>
+                <h2><strong>{{ request.parkings.parking_name }}</strong></h2>
+                <p>{{ request.parkings.address }}</p>
+                <i class="icon ion-ios-navigate-outline icons-reservation"></i>
+            </a>
+            <ion-item ng-click="selectPicklistValue('reserveTime')">
+                <h2>{{ 'commons.reservationTime' | translate}}<span class="color-error">*</span></h2>
+                <p ng-if="request.reserveTime">{{ request.reserveTime.description}}</p>
+                <p ng-if="!request.reserveTime"> {{ 'commons.genericPlaceholder' | translate}} </p>
+            </ion-item>
+            <ion-item > <!-- ng-click="selectPicklistValue('subscription')" -->
+                <h2>{{ 'commons.subscription' | translate}}<span class="color-error">*</span></h2>
+                <p ng-if="request.subscription">{{ request.subscription.name}}</p>
+                <p ng-if="!request.subscription"> {{ 'commons.genericPlaceholder' | translate}} </p>
+            </ion-item>
+            <ion-item > <!-- ng-click="selectPicklistValue('tarif')" -->
+                <h2>{{ 'commons.tarif' | translate}}<span class="color-error">*</span></h2>
+                <p ng-if="request.tarif">{{ request.tarif.text}}</p>
+                <p ng-if="!request.tarif"> {{ 'commons.genericPlaceholder' | translate}} </p>
+            </ion-item>
+            <div class="item" ng-if="currentImport || currentImport === 0">
+                <div class="pull-left m-right20">
+                    <h2>{{ 'bookings.price' | translate }}</h2>
+                </div>
+                <div class="pull-right m-right20">
+                    <p class="bold price">{{ currentImport | currency: '€ '}}</p>
+                </div>
+            </div>
+
+         </ion-list>
+
+    </ion-content>
+    <div class="row footer-fixed">
+        <div class="col col-50"><button ng-click='cancel()' class="button button-block button-balanced">{{
+                'commons.cancel' | translate}}</button></div>
+        <div class="col col-50"><button ng-click='proceed()' class="button button-block button-positive">{{
+                'confirmReservation.confirm' | translate}}</button></div>
+    </div>
+ </ion-view>

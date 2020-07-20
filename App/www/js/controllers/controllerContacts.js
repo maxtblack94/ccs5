@@ -1,5 +1,6 @@
 angular.module('starter').controller('ContactsCtrl', function(InfoFactories, $scope, $filter) {
    $scope.clientContacts = InfoFactories.getClientSelected().contact;
+   $scope.isLogged = InfoFactories.isLoggedUser();
    $scope.startCall = function(number){
         window.open("tel:" + number.replace(/\s+/g, ''), "_system");
    }

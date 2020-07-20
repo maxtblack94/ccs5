@@ -1,0 +1,29 @@
+<ion-view title="{{'gpp.termsTitle' | translate}}">
+      <div fab ng-click='zoomIn()' style="bottom: 90px;">
+        <div class='ion-plus-round'></div>
+      </div>
+      <div fab ng-click='zoomOut()' style="bottom: 150px;">
+        <div class='ion-minus-round'></div>
+      </div>
+    <ion-content class="mb80" style="overflow: scroll;">
+        <pdf-viewer ng-if="consent"
+            delegate-handle="termsPdf"
+            url="consent.url"
+            scale="1"></pdf-viewer>
+    </ion-content>
+    <div class="row footer-fixed">
+        <div class="col col-50">
+            <button ng-click="isValid();" class="button button-block button-assertive">
+                {{ 'gpp.refuse' | translate}}
+            </button>
+        </div>
+        <div class="col col-50">
+            <button ng-click="nextPage();" class="button button-block button-balanced" ng-if="currentPage() < totalPages()">
+                {{ 'gpp.next' | translate}}
+            </button>
+            <button ng-click="proceed();" class="button button-block button-balanced" ng-if="currentPage() >= totalPages()">
+                {{ 'gpp.agree' | translate}}
+            </button>
+        </div>
+    </div>
+</ion-view>

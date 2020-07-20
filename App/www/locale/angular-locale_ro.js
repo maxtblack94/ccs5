@@ -104,7 +104,12 @@ window.locale_ro.commons = {
 	requestFail: "Nu am putut trimite cererea.",
 	refuse: 'Respinge',
 	accept: 'Accepta',
-	services: 'Servitiul'
+	services: 'Servitiul',
+	reservationTime: "Reservation Time",
+	genericPlaceholder: "Select a value",
+	subscription: "Subscription",
+	tarif: "Tarif",
+	mandatoryField: "Mandatory filds are required"
 };
 
 window.locale_ro.bookResume = {
@@ -307,4 +312,40 @@ window.locale_ro.actionSheet = {
 	damageError: 'Mesajul nu a putut fi salvat. încercați din nou',
 	changeDriverSuccess:'Solicitarea unei modificări a ghidului a fost trimisă',
 	changeDriverError: 'Nu a fost posibilă schimbarea ghidului. încercați din nou'
+}
+
+window.locale_ro.gpp = {
+	registrationTitle: "sdsaddas",
+	account: "",
+	username: "",
+	insertValue: "",
+	password: "",
+	confirmPassword: "",
+	email: "",
+	confirmEmail: "",
+	personalData: "",
+	firstName: "",
+	lastName: "",
+	gender: "",
+	birthDate: "",
+	number: "",
+	taxCode: "",
+	idIdentity: "",
+	addressSection: "",
+	address: "",
+	zipCode: "",
+	city: "",
+	country: "",
+	proceed: "Proceed",
+	registrationLicenseTitle: "La tua patente",
+	license: "Dati patente",
+	licenseNumber: "Numero",
+	issuer: "Rilasciato da",
+	countryIssue: "Paese di rilascio",
+	licenseIssueDate: "Data di rilascio",
+	licenseEndDate: "Data di scadenza",
+	licenseUpload: "Carica foto patente",
+	frontPick: "Fronte documento",
+	backPick: "Retro documento",
+	uploadImage: "Carica immagine"
 }

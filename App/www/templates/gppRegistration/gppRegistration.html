@@ -1,0 +1,102 @@
+<ion-view title="{{'gpp.registrationTitle' | translate}}">
+    <ion-content class="mb80">
+            <ion-list>
+                <ion-item class="item-divider">
+                    <h2>{{ 'gpp.account' | translate}}</h2>
+                </ion-item>
+                <!-- <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'gpp.username' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.username" placeholder="{{ 'gpp.insertValue' | translate}}">
+                </ion-item> -->
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'gpp.password' | translate}}<span class="color-error">*</span></span>
+                    <input class="password-input" type="text" ng-model="request.password" placeholder="{{ 'gpp.insertValue' | translate}}">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'gpp.confirmPassword' | translate}}<span class="color-error">*</span></span>
+                    <input class="password-input" type="text" ng-model="request.confirmPassword" placeholder="{{ 'gpp.insertValue' | translate}}">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'gpp.email' | translate}}<span class="color-error">*</span></span>
+                    <input type="email" ng-model="request.email" placeholder="{{ 'gpp.insertValue' | translate}}">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'gpp.confirmEmail' | translate}}<span class="color-error">*</span></span>
+                    <input type="email" ng-model="request.confirmEmail" placeholder="{{ 'gpp.insertValue' | translate}}">
+                </ion-item>
+                <ion-item class="item-divider">
+                    <h2>{{ 'gpp.personalData' | translate}}</h2>
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'gpp.firstName' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.firstName" placeholder="{{ 'gpp.insertValue' | translate}}">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'gpp.lastName' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.lastName" placeholder="{{ 'gpp.insertValue' | translate}}">
+                </ion-item>
+                <ion-item ng-click="selectPicklistValue('gender')">
+                    <h2>{{ 'gpp.gender' | translate}}<span class="color-error">*</span></h2>
+                    <p ng-if="request.gender">{{ request.gender.text}}</p>
+                    <p ng-if="!request.gender"> {{ 'gpp.insertValue' | translate}} </p>
+                </ion-item>
+                <ion-item ng-click='selectDate("birthDate")'>
+                    <h2>{{ 'gpp.birthDate' | translate}}<span class="color-error">*</span></h2>
+                    <p ng-if="request.birthDate">{{ request.birthDate | date:'dd/MM/yyyy'}}</p>
+                    <p ng-if="!request.birthDate"> {{ 'gpp.insertValue' | translate}} </p>
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'gpp.number' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.number" placeholder="{{ 'gpp.insertValue' | translate}}">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'gpp.taxCode' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.taxCode" placeholder="{{ 'gpp.insertValue' | translate}}">
+                </ion-item>
+                <ion-item ng-click="selectPicklistValue('docType')">
+                    <h2>{{ 'gpp.docType' | translate}}<span class="color-error">*</span></h2>
+                    <p ng-if="request.docType">{{ request.docType.text}}</p>
+                    <p ng-if="!request.docType"> {{ 'gpp.insertValue' | translate}} </p>
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'gpp.idIdentity' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.idIdentity" placeholder="{{ 'gpp.insertValue' | translate}}">
+                </ion-item>
+                <ion-item class="item-divider">
+                    <h2>{{ 'gpp.addressSection' | translate}}</h2>
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'gpp.address' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.address" placeholder="{{ 'gpp.insertValue' | translate}}">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'gpp.zipCode' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.zipCode" placeholder="{{ 'gpp.insertValue' | translate}}">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'gpp.city' | translate}}<span class="color-error">*</span></span>
+                    <input type="text" ng-model="request.city" placeholder="{{ 'gpp.insertValue' | translate}}">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label" ng-click="selectPicklistValue('nation')">
+                    <span class="input-label">{{ 'gpp.country' | translate}}<span class="color-error">*</span></span>
+                    <p ng-if="request.nation">{{ request.nation}}</p>
+                    <p ng-if="!request.nation"> {{ 'gpp.insertValue' | translate}} </p>
+                </ion-item>
+            </ion-list>
+            <ion-list ng-repeat="item in acceptances | filter: { step: '1'}">
+                <div class="item item-divider" style="white-space: inherit;" ng-click="openUrl(item.url)">
+                    <i ng-if="item.url" class="fa fa-file-pdf-o" aria-hidden="true"></i> 
+                    <div ng-bind-html="item.text" style="width: 95%;"></div>
+                </div>
+                <ion-radio ng-if="item.values.length > 1" id="{{item.id}}" name="{{item.id}}" ng-repeat="value in item.values" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-radio>
+                <ion-checkbox ng-if="item.values.length == 1" id="{{item.id}}" name="{{item.id}}" ng-repeat="value in item.values" ng-value="value.code" ng-model="request[item.id]">{{value.text}}</ion-checkbox>
+            </ion-list>
+    </ion-content>
+    <div class="row footer-fixed">
+        <div class="col col-80 col-offset-10">
+            <button ng-click="isValid();" class="button button-block button-balanced">
+                {{ 'gpp.proceed' | translate}}
+            </button>
+        </div>
+    </div>
+</ion-view>

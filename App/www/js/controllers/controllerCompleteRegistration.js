@@ -1,83 +1,7 @@
 angular.module('starter').controller('CompleteRegistrationCtrl', function($filter, LovServices, $cordovaDatePicker, PopUpServices, RegexService, $scope, $state, InfoFactories, $timeout, $ionicLoading, $ionicPopup, ScriptServices) {
-    $scope.selectedClient = InfoFactories.getClientSelected();
-    $scope.user = InfoFactories.getUserInfo();
-    $scope.currentTarif = undefined;
-    $scope.nazioni = LovServices.getNations();
-    $scope.province = LovServices.getProvinces();
     
 
-    function getConsensi(){
-        $ionicLoading.show();
-        ScriptServices.getXMLResource(651).then(function(res) {
-            res = res.replace('{DRIVERID}', $scope.user.driverNumber || null);
-            ScriptServices.callGenericService(res, 651).then(function(data) {
-                $scope.acceptances = data.data.acceptances;
-                $scope.services = data.data.service;
-                $scope.documentsType = data.data.docType;
-                initializeRequest(data.data);
-                $ionicLoading.hide();
-            }, function(error) {
-                PopUpServices.errorPopup($filter('translate')('commons.retry'));
-                $ionicLoading.hide();
-            });
-        });
-    }
-
-    $scope.selectTarif = function (tarif) {
-        $scope.currentTarif = tarif;
-    };
-
-    function initializeRequest(data) {
-        $scope.request = {};
-        $scope.request = {
-            firstName: data.fname,
-            lastName: data.lname,
-            email: data.email,
-            emailConfirm: data.email,
-            username: data.username,
-            password: data.password,
-            confirmPassword: data.password,
-            promo: data.promo,
-            company: data.company
-        };
-        $scope.disabledPromo = data.promo ? true: false;
-        $scope.disabledCompany = data.company ? true: false;
-    }
-
-    $scope.selectPicklistValue = function (picklist, title, subTitle) {
-        var templateUrl;
-        if (picklist === 'birthNation' || picklist === 'nationResidence' || picklist === 'fattNation') {
-            templateUrl = "templates/picklists/nation.html";
-        } else if(picklist === 'documentType') {
-            templateUrl = "templates/picklists/documentType.html";
-        } else {
-            templateUrl = "templates/picklists/province.html";
-        }
-
-        $ionicPopup.show({
-            templateUrl: templateUrl,
-            title: title,
-            subTitle: subTitle,
-            cssClass: 'picklist',
-            scope: $scope,
-            buttons: [{
-                text: $filter('translate')('commons.cancel'),
-                type: 'button-stable',
-            }, {
-                text: '<b>'+$filter('translate')('commons.save')+'</b>',
-                type: 'button-positive',
-                onTap: function (e) {
-                    if (!$scope.request.picklistValue) {
-                        $scope.request.picklistValue = null;
-                        e.preventDefault();
-                    } else {
-                        $scope.request[picklist] = $scope.request.picklistValue;
-                        $scope.request.picklistValue = null;
-                    }
-                }
-            }]
-        });
-    };
+    
 
     $scope.selectBirthDate = function() {
         var dateFromConfig = {
@@ -122,8 +46,6 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($filte
     getConsensi();
 
     $scope.isValid = function () {
-
-        
         if (!$scope.request.email ||
             !$scope.request.password ||
             !$scope.request.username ||

@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', 'angularMoment', 'pascalprecht.translate'])
+angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', 'angularMoment', 'pascalprecht.translate', 'pdf'])
 
   .run(function ($ionicPlatform, $cordovaStatusbar, $cordovaDevice, amMoment, $rootScope) {
     amMoment.changeLocale('it');
@@ -308,6 +308,47 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
         },
         templateUrl: 'templates/reservation/confirm.html',
         controller: 'ConfirmCtrl'
+      })
+
+      .state('confirmMapReservation', {
+        url: '/confirmMapReservation',
+        cache: false,
+        params: {
+          vehicle: null
+        },
+        templateUrl: 'templates/mapReservation/confirmMapReservation.html',
+        controller: 'ConfirmMapReservationCtrl'
+      })
+
+      .state('mapReservation', {
+        url: '/mapReservation',
+        cache: false,
+        params: {
+          parkList: null
+        },
+        templateUrl: 'templates/mapReservation/map.html',
+        controller: 'MapResercationCtrl'
+      })
+      
+      .state('gppRegistration', {
+        url: '/gppRegistration',
+        cache: false,
+        templateUrl: 'templates/gppRegistration/gppRegistration.html',
+        controller: 'GppRegistrationCtrl'
+      })
+      
+      .state('gppRegistrationLicense', {
+        url: '/gppRegistrationLicense',
+        cache: false,
+        templateUrl: 'templates/gppRegistration/gppRegistrationLicense.html',
+        controller: 'GppRegistrationLicenseCtrl'
+      })
+
+      .state('gppRegistrationTerms', {
+        url: '/gppRegistrationTerms',
+        cache: false,
+        templateUrl: 'templates/gppRegistration/gppRegistrationTerms.html',
+        controller: 'GppRegistrationTermsCtrl'
       });
 
     $urlRouterProvider.otherwise('/login');

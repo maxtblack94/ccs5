@@ -122,8 +122,13 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
             })
         });
     }
-    $scope.newAccount = function (params) {
-        $state.go('register');
+    $scope.newAccount = function (client) {
+        if(client === 'GPP') {
+            $state.go('gppRegistration');
+        } else {
+            $state.go('register');
+        }
+        
     };
     getClientInfo = function(action){
         if(action === 'login'){

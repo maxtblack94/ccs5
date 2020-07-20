@@ -1,12 +1,13 @@
 angular.module('starter').factory("LovServices", [function () {
 
     function getNations (){
-        return [{
-            "description": "ITALIA",
-            "code": "ADR_002_001",
-            "label": "ITALIA",
-            "value": "Z000"
-        },
+        return [
+            {
+                "description": "CROAZIA",
+                "code": "ADR_002_052",
+                "label": "CROAZIA",
+                "value": "Z149"
+            },
         {
             "description": "AFGHANISTAN",
             "code": "ADR_002_002",
@@ -313,12 +314,7 @@ angular.module('starter').factory("LovServices", [function () {
             "label": "COSTA RICA",
             "value": "Z503"
         },
-        {
-            "description": "CROAZIA",
-            "code": "ADR_002_052",
-            "label": "CROAZIA",
-            "value": "Z149"
-        },
+        
         {
             "description": "CUBA",
             "code": "ADR_002_053",
@@ -582,6 +578,12 @@ angular.module('starter').factory("LovServices", [function () {
             "code": "ADR_002_096",
             "label": "IRLANDA",
             "value": "Z116"
+        },
+        {
+            "description": "ITALIA",
+            "code": "ADR_002_001",
+            "label": "ITALIA",
+            "value": "Z000"
         },
         {
             "description": "ISLANDA",

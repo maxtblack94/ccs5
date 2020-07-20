@@ -1,4 +1,4 @@
-angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnectionService, IosBleConnectionService, $ionicSideMenuDelegate, ReservationService, $filter, LocationService, $cordovaDevice, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices, UpdateBBService) {
+angular.module('starter').controller('BookingsCtrl', function ($q, MapReservationService, AndroidBleConnectionService, IosBleConnectionService, $ionicSideMenuDelegate, ReservationService, $filter, LocationService, $cordovaDevice, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices, UpdateBBService) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
     refreshUserInfo();
@@ -53,20 +53,22 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
     
     $scope.startBooking = function (params) {
         var isNotRegistered = window.localStorage.getItem("isNotRegistered");
-        if (isNotRegistered && isNotRegistered == 'true') {
-            $state.go('completeRegistration');
-        } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED_WITH_PAY') {
-            PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Verrai contattato per mail quando il tuo profilo sarà abilitato al servizio E-Vai.", "Profilo in attesa di abilitazione");
-        } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED') {
-            PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Procedi all'attivazione della modalità di pagamento", "Profilo in attesa di abilitazione", $scope.paymentModal);
-        } else {
-            ReservationService.resetReservation();
-            $state.go('subscriptions');
-        }
+        refreshUserInfo().then(function () {
+            if (isNotRegistered && isNotRegistered == 'true') {
+                $state.go('completeRegistration');
+            } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED_WITH_PAY') {
+                PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Verrai contattato per mail quando il tuo profilo sarà abilitato al servizio E-Vai.", "Profilo in attesa di abilitazione");
+            } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED' || $scope.userInfo.registry.account_status === 'SYNCHRONIZED') {
+                PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Procedi all'attivazione della modalità di pagamento", "Profilo in attesa di abilitazione", $scope.paymentModal);
+            } else {
+                ReservationService.resetReservation();
+                $state.go('subscriptions');
+            }
+        });
     };
 
     $scope.paymentModal = function (params) {
-        var modalContent = `<div class="bt-content" style="padding: 20px; z-index: 9999; color: rgb(0, 0, 0);">Gentile Cliente, per tua tutela, ti verra’ chiesto di autorizzare un blocco platfond di 0,02 euro (che verranno riaccreditati) al fine di verificare la validita’ dei dati inseriti.<br><br><br>Per portare a termine la procedura di iscrizione, come previsto dall’istituto bancario Banca Intesa, e’ quindi necessario digitare il pulsante "paga".<br><br><br>Per info e supporto contattaci al n.verde 800.77.44.55</div>
+        var modalContent = `<div class="bt-content" style="padding: 20px; z-index: 9999; color: rgb(0, 0, 0);">`+ $filter('translate')('commons.paymentModalContent')+ ` `  + ($scope.selectedClient.contact || {}).telephone +`</div>
                 <ion-item class="item-image">
                     <img src="icons/cartedicredito.jpg">
                 </ion-item>`;
@@ -601,15 +603,46 @@ angular.module('starter').controller('BookingsCtrl', function (AndroidBleConnect
 
 
     function refreshUserInfo(userInfo){
-        ScriptServices.getXMLResource(554).then(function(res) {
-            res = res.replace('{NUMBER_DRIVER}', $scope.userInfo.driverNumber);
-            ScriptServices.callGenericService(res, 554).then(function(data) {
-                var userInfo = window.localStorage.getItem('userInfo');
-                userInfo = JSON.parse(userInfo);
-                userInfo.registry =  data.data.GetUser[0];
-                window.localStorage.setItem('userInfo', JSON.stringify(userInfo));
+        return $q(function (resolve, reject) {
+            ScriptServices.getXMLResource(554).then(function(res) {
+                res = res.replace('{NUMBER_DRIVER}', $scope.userInfo.driverNumber);
+                ScriptServices.callGenericService(res, 554).then(function(data) {
+                    var userInfo = window.localStorage.getItem('userInfo');
+                    userInfo = JSON.parse(userInfo);
+                    userInfo.registry =  data.data.GetUser[0];
+                    window.localStorage.setItem('userInfo', JSON.stringify(userInfo));
+                    resolve();
+                });
             });
         });
+    }
+
+
+
+    $scope.startReservationWithMap = function () {
+        var isNotRegistered = window.localStorage.getItem("isNotRegistered");
+        refreshUserInfo().then(function () {
+            if (isNotRegistered && isNotRegistered == 'true') {
+                $state.go('completeRegistration');
+            } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED_WITH_PAY') {
+                PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Verrai contattato per mail quando il tuo profilo sarà abilitato al servizio E-Vai.", "Profilo in attesa di abilitazione");
+            } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED' || $scope.userInfo.registry.account_status === 'SYNCHRONIZED') {
+                PopUpServices.messagePopup($filter('translate')('commons.profileCreated'), $filter('translate')('commons.profileAlertModal1'), $scope.paymentModal);
+            } else {
+                $ionicLoading.show(); 
+                ScriptServices.getXMLResource(737).then(function(res) {
+                    res = res.replace('{NUMBER_DRIVER}', $scope.userInfo.driverNumber);
+                    ScriptServices.callGenericService(res, 737).then(function(data) {
+                        $ionicLoading.hide(); 
+                        $state.go('mapReservation', {parkList: data.data});
+                    }, function (err) {
+                        $ionicLoading.hide(); 
+                    });
+                });
+            }
+        })
+        
+        
     }
 
 });
