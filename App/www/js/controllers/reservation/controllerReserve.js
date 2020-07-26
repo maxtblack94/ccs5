@@ -89,7 +89,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
                 closingSameDay: dateTimeFrom.getHours() <= 23 && tarifTmp.opening.getHours() <= dateTimeFrom.getHours() ? moment(minDateString + ' ' + "23:59", 'DD/MM/YYYY HH:mm:ss') : moment(minDateString + ' ' + tarif.closing, 'DD/MM/YYYY HH:mm:ss')
             };
             
-            if (!is24HourTarif && !isDayInverted && (tarifTmp.opening.getHours() >= dateTimeFrom.getHours() || dateTimeFrom.getHours() >= tarifTmp.closing.getHours() || tarifTmp.opening.getHours() >= dateTimeTo.getHours() || dateTimeTo.getHours() >= tarifTmp.closing.getHours())) {
+            if (!is24HourTarif && !isDayInverted && (checkTimeOfDate(tarifTmp.opening, dateTimeFrom) || checkTimeOfDate(dateTimeFrom, tarifTmp.closing) || checkTimeOfDate(tarifTmp.opening, dateTimeTo) || checkTimeOfDate(dateTimeTo, tarifTmp.closing))) {
                 PopUpServices.errorPopup($filter('translate')('bookResume.subscriptionIncompatible'), "1");
                 $scope.selectedTarif.value = {};
                 return true;
@@ -143,6 +143,18 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
             return false;
         }
     };
+
+    function checkTimeOfDate (date1, date2) {
+        var date1 = new Date(2000, 0, 1, date1.getHours(), date1.getMinutes());
+        var date2 = new Date(2000, 0, 1, date2.getHours(), date2.getMinutes());
+
+        if (date1 > date2) {
+            return true
+        } else {
+            return false
+        }
+
+    }
 
     function checkDayMatch(days, currentDay) {
         var dayExists = days.find(function (day) {
