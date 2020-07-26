@@ -14,15 +14,16 @@
     "@ionic/cloud": "0.16.0",
     "bluebird": "3.5.0",
     "cordova-android": "8.1.0",
-    "cordova-ios": "5.1.1",
+    "cordova-ios": "^5.1.1",
     "cordova-plugin-android-permissions": "^1.0.0",
     "cordova-plugin-ble-central": "^1.2.2",
     "cordova-plugin-compat": "1.2.0",
-    "cordova-plugin-datepicker": "0.9.3",
+    "cordova-plugin-datepicker": "^0.9.3",
     "cordova-plugin-device": "1.1.6",
     "cordova-plugin-email-composer": "git+https://github.com/katzer/cordova-plugin-email-composer.git",
     "cordova-plugin-geolocation": "2.4.3",
     "cordova-plugin-inappbrowser": "^1.7.1",
+    "cordova-plugin-localization-strings": "^3.2.1",
     "cordova-plugin-request-location-accuracy": "^2.2.3",
     "cordova-plugin-splashscreen": "4.0.3",
     "cordova-plugin-statusbar": "2.2.1",
@@ -81,7 +82,6 @@
         "ANDROID_SUPPORT_V4_VERSION": "28.+"
       },
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-datepicker": {},
       "onesignal-cordova-plugin": {},
       "cordova-plugin-android-permissions": {},
       "cordova-plugin-request-location-accuracy": {},
@@ -89,7 +89,11 @@
       "cordova-plugin-ble-central": {
         "BLUETOOTH_USAGE_DESCRIPTION": "using to open car sharing cars"
       },
-      "ionic-plugin-keyboard": {}
+      "ionic-plugin-keyboard": {},
+      "cordova-plugin-localization-strings": {
+        "TRANSLATION_PATH": "translations/app/"
+      },
+      "cordova-plugin-datepicker": {}
     }
   }
 }

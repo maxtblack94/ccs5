@@ -126,7 +126,7 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
         if (currentDevice) {
             ble.disconnect(currentDevice.id, function (params) {
                 if (index) {
-                    setTimeout(() => {
+                    setTimeout(function () {
                         searchBLEID(index);
                     }, 300);
                 }

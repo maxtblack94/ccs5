@@ -1,0 +1,11 @@
+{
+    "config_ios" : {
+        "NSBluetoothAlwaysUsageDescription": "We need access to Bluetooth when you will try to open the car",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "We are using localizzation to check if you are near the car",
+        "NSLocationAlwaysUsageDescription": "We are using localizzation to check if you are near the car",
+        "NSLocationWhenInUseUsageDescription": "We are using localizzation to check if you are near the car"
+    },
+    "config_android" : {
+        
+    }
+}

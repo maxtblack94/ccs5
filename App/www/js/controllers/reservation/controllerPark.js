@@ -16,7 +16,8 @@ angular.module('starter').controller('ParkCtrl', function($ionicHistory, $stateP
         }
         ScriptServices.getXMLResource(512).then(function(res) {
             var driverNumber = InfoFactories.getUserInfo().driverNumber;
-            res = res.replace('{DRIVER_NUMBER}', driverNumber);
+            res = res.replace('{DRIVER_NUMBER}', driverNumber).
+            replace('{SERVICEID}', $scope.selectedService.id);
             ScriptServices.callGenericService(res, 512).then(function(data) {
                 $scope.parkingList = data.data.ParkingsList || [];
                 $ionicLoading.hide();

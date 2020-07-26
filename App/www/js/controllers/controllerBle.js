@@ -102,7 +102,7 @@ angular.module('starter').controller('BleCtrl', function(BluetoothServices, Arra
         $scope.currentDevice = params;
         console.log('connection successfull', params);
 
-        for (let k = 0; k < params.characteristics.length; k++) {
+        for (var k = 0; k < params.characteristics.length; k++) {
             if (params.characteristics[k].characteristic === "648DC9CB-989B-4612-92A9-4D6E5106EB98") {
                 ble.read(params.id, params.characteristics[k].service, params.characteristics[k].characteristic,
                     function(data){

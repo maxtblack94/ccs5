@@ -1,4 +1,4 @@
-angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, AndroidBleConnectionService, IosBleConnectionService, $ionicSideMenuDelegate, ReservationService, $filter, LocationService, $cordovaDevice, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices) {
+angular.module('starter').controller('BookingsCtrl', function (BluetoothServices, UpdateBBService, AndroidBleConnectionService, IosBleConnectionService, $ionicSideMenuDelegate, ReservationService, $filter, LocationService, $cordovaDevice, ManipolationServices, PopUpServices, $cordovaGeolocation, $timeout, $cordovaDatePicker, $scope, $rootScope, InfoFactories, $state, $ionicPopup, $ionicLoading, ScriptServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
     $scope.userInfo = InfoFactories.getUserInfo();
     refreshUserInfo();
@@ -34,6 +34,8 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
                     } else  if ($scope.userInfo.registry.account_status === 'ACTIVE') {
                         ReservationService.resetReservation();
                         $state.go('subscriptions');
+                    } else if ($scope.userInfo.registry.account_status === 'SUSPENDED' || $scope.userInfo.registry.account_status === 'SUSPEND') {
+                        PopUpServices.messagePopup($filter('translate')('commons.incompleteProfileDesc'), $filter('translate')('commons.incompleteProfile'));
                     }
                 }
             }, function(error) {
@@ -63,7 +65,7 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
             PopUpServices.messagePopup($filter('translate')('commons.messageCredited'), $filter('translate')('commons.messageProfileWaitForActive'));
         } else if (isNotRegistered && isNotRegistered == 'true') {
             $state.go('completeRegistration');
-        } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED_WITH_PAY' || $scope.userInfo.registry.account_status === 'SUBSCRIBED') {
+        } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED_WITH_PAY' || $scope.userInfo.registry.account_status === 'SUBSCRIBED' || $scope.userInfo.registry.account_status === 'SUSPENDED' || $scope.userInfo.registry.account_status === 'SUSPEND') {
             getUserInfo(true);
         }
     };
@@ -202,7 +204,9 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
 
                     $scope.BookingsList[i] = obj;
                 }
-                UpdateBBService.checkIsExistingRequest($scope.BookingsList);
+                setTimeout(function() {
+                    UpdateBBService.checkIsExistingRequest($scope.BookingsList);
+                }, $scope.selectedClient.delaycommunication || 0);
                 $ionicLoading.hide();
             }, function (error) {
                 $ionicLoading.hide();
@@ -305,6 +309,7 @@ angular.module('starter').controller('BookingsCtrl', function (UpdateBBService, 
         } else {
             PopUpServices.errorPopup($filter('translate')('commons.bleSuccess'),'2');
         }
+        BluetoothServices.disconnect();
         $ionicLoading.hide();
         $scope.refreshBookings();
         console.log('interaction', interactionData);

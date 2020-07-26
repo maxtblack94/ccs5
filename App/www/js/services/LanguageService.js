@@ -2,31 +2,30 @@ angular.module('starter').factory("LanguageService", function($translate) {
     var currentLanguage = navigator.language;
     var tenForceAuthID = undefined;
     function getTenForceAuthID() {
-        switch (currentLanguage) {
-            case 'ro-RO':
-            case 'ro_RO':
-                tenForceAuthID = 'dGVuZm9yY2Uucm9AVEYuY29tfGRlbW9ybzE4NDUy';
-                break;
-            case 'it-IT':
-            case 'it_IT':
-                tenForceAuthID = 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4';
-                break;
-            case 'hr-HR':
-            case 'hr_HR':
-                tenForceAuthID = 'dGVuZm9yY2UuaHJAVEYuY29tfGRlbW9jcm9hemlhMjAxOQ==';
-                break;
-            default:
-                tenForceAuthID = 'dGVuZm9yY2UuZW5AVEYuY29tfHRlbmZvcmNlNTYyNDc='; //English
-                break;
+        if(currentLanguage) {
+            switch (currentLanguage.toUpperCase()) {
+                case 'IT':
+                case 'IT-IT':
+                case 'IT_IT':
+                    tenForceAuthID = 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4';
+                    break;
+                default:
+                    tenForceAuthID = 'dGVuZm9yY2UuZW5AVEYuY29tfHRlbmZvcmNlNTYyNDc='; //English
+                    break;
+            }
+        } else {
+            tenForceAuthID = 'dGVuZm9yY2UuZW5AVEYuY29tfHRlbmZvcmNlNTYyNDc=';
         }
+        
         return tenForceAuthID;
     }
 
-    /* function changeLanguage(key) {
+    function changeLanguage(key) {
         currentLanguage = key;
+        window.localStorage.setItem('language', key);
         $translate.use(key);
     };
- */
+
     /* function defineLanguage() {
         var language = navigator.language || navigator.userLanguage;
         if (language) {
@@ -37,15 +36,15 @@ angular.module('starter').factory("LanguageService", function($translate) {
       } */
 
     return {
-        /* changeLanguage: function(langKey){
+        changeLanguage: function(langKey){
             return changeLanguage(langKey);
-        }, */
+        },
         getTenForceAuthID: function () {
             return getTenForceAuthID();
-        }/* ,
-        currentLanguage: function() {
-            return currentLanguage;
         },
+        currentLanguage: function() {
+            return window.localStorage.getItem('language') || currentLanguage;
+        }/*, 
         defineLanguage: function() {
             return defineLanguage();
         } */
