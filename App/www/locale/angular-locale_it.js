@@ -232,7 +232,9 @@ window.locale_it.commons = {
 	registerConfirmedMessage: "Vai allo step successivo per completare il tuo profilo",
 	continue: "Continua",
 	bleFailConnection : "Connessione fallita. Se il problema persiste riavviare il bluetooth, assicurarsi di non avere altri dispositivi connessi e posizionarsi a non più di 5 metri dal veicolo.",
-	enableBleError: "Ti preghiamo di abilitare il Bluetooth e riprovare"
+	enableBleError: "Ti preghiamo di abilitare il Bluetooth e riprovare",
+	incompleteProfile: "Profilo Incompleto",
+	incompleteProfileDesc: "Il Tuo profilo risulta incompleto, pertanto è stato posto in temporanea sospensione. Accedi al menu in alto a sinistra e verifica se ti viene richiesto di fare una prima registrazione della Tua carta di credito, oppure di registrarne una nuova. Controlla inoltre che tutti i campi obbligatori, indicati con un “*” (asterisco), siano stati popolati correttamente.  Per eventuale ulteriore assistenza si prega di chiamare il nostro HelpDesk H24, al numero verde 800 77 44 55. Grazie."
 };
 
 window.locale_it.register = {
@@ -348,7 +350,9 @@ window.locale_it.settings = {
 	check1: 'Riduci Immagini',
 	check1_descr: 'Mostra le immagini dei veicoli ridotte.',
 	editPassword: 'Modifica Password',
-	editPayment: 'Metodo di pagamento'
+	editPayment: 'Cambia Carta Credito',
+	addPayment: 'Registra Carta Credito',
+	language: 'Lingua'
 };
 
 window.locale_it.driveLicense = {

@@ -238,9 +238,9 @@ window.locale_en.commons = {
 	registerConfirmedMessage: "Go to next step to complete your profile.",
 	continue: "Continue",
 	bleFailConnection : "Connection failed. If the problem persists restart the bluetooth, be sure you have no other devices connected and position yourself within 5 meters around the vehicle.",
-	enableBleError: "Please enable bluetooth on your smartphone and try again."
-
-	
+	enableBleError: "Please enable bluetooth on your smartphone and try again.",
+	incompleteProfile: "Incompled Profile",
+	incompleteProfileDesc: "Your profile is not complete, for this reason you account is actually suspended. Go to side menu and verify if all mandatory flieds are compiled.  Access the menu at the top left and check if you are asked to make a first registration of your credit card, or to register a new one. Also check that all mandatory fields, indicated with a "*" (asterisk), have been correctly populated. For further assistance, please call our HelpDesk H24, 800 77 44 55. Thanks."
 };
 
 window.locale_en.bookResume = {
@@ -351,7 +351,9 @@ window.locale_en.settings = {
 	check1: 'Reduced Picture',
 	check1_descr: 'Show reduced vehicle images',
 	editPassword: 'Modify Password',
-	editPayment: 'Payment method'
+	editPayment: 'Change Credit Card',
+	addPayment: 'Add new Credit Card',
+	language: 'Language'
 };
 
 window.locale_en.driveLicense = {

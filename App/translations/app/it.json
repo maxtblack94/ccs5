@@ -1,0 +1,11 @@
+{
+    "config_ios" : {
+        "NSBluetoothAlwaysUsageDescription": "E' necessario avere accesso al bluetooth in caso di apertura del veicolo",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Utilizziamo la posizione per verificare se sei in prossimità del veicolo",
+        "NSLocationAlwaysUsageDescription": "Utilizziamo la posizione per verificare se sei in prossimità del veicolo",
+        "NSLocationWhenInUseUsageDescription": "Utilizziamo la posizione per verificare se sei in prossimità del veicolo"
+    },
+    "config_android" : {
+        
+    }
+}

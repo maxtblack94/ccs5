@@ -40,18 +40,17 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
     
     $translateProvider.translations('en', window.locale_en);
     $translateProvider.translations('it_IT', window.locale_it);
-    $translateProvider.translations('ro_RO', window.locale_ro);
-    $translateProvider.translations('hr_HR', window.locale_hr);
     $translateProvider.useSanitizeValueStrategy(null);
-    if (navigator.language === "it-IT" || navigator.language === "it_IT") {
-      $translateProvider.preferredLanguage("it_IT");
-    }else if (navigator.language === "ro-RO" || navigator.language === "ro_RO") {
-      $translateProvider.preferredLanguage("ro_RO");
-    }else if (navigator.language === "hr-HR" || navigator.language === "hr_HR") {
-      $translateProvider.preferredLanguage("hr_HR");
-    }else {
-      $translateProvider.preferredLanguage('en');
+    if (window.localStorage.getItem('language')) {
+      $translateProvider.preferredLanguage(window.localStorage.getItem('language'));
+    } else {
+      if (navigator.language === "it" || navigator.language === "it-IT" || navigator.language === "it_IT") {
+        $translateProvider.preferredLanguage("it_IT");
+      }else {
+        $translateProvider.preferredLanguage('en');
+      }
     }
+    
     
     
     $ionicConfigProvider.views.swipeBackEnabled(false);
