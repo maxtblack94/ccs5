@@ -9,20 +9,20 @@
                     <input type="text" ng-model="request.username" placeholder="{{ 'gpp.insertValue' | translate}}">
                 </ion-item> -->
                 <ion-item class="item-input item-stacked-label">
-                    <span class="input-label">{{ 'gpp.password' | translate}}<span class="color-error">*</span></span>
-                    <input class="password-input" type="text" ng-model="request.password" placeholder="{{ 'gpp.insertValue' | translate}}">
-                </ion-item>
-                <ion-item class="item-input item-stacked-label">
-                    <span class="input-label">{{ 'gpp.confirmPassword' | translate}}<span class="color-error">*</span></span>
-                    <input class="password-input" type="text" ng-model="request.confirmPassword" placeholder="{{ 'gpp.insertValue' | translate}}">
-                </ion-item>
-                <ion-item class="item-input item-stacked-label">
                     <span class="input-label">{{ 'gpp.email' | translate}}<span class="color-error">*</span></span>
                     <input type="email" ng-model="request.email" placeholder="{{ 'gpp.insertValue' | translate}}">
                 </ion-item>
                 <ion-item class="item-input item-stacked-label">
                     <span class="input-label">{{ 'gpp.confirmEmail' | translate}}<span class="color-error">*</span></span>
                     <input type="email" ng-model="request.confirmEmail" placeholder="{{ 'gpp.insertValue' | translate}}">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'gpp.password' | translate}}<span class="color-error">*</span></span>
+                    <input class="password-input" type="text" ng-model="request.password" placeholder="{{ 'gpp.insertValue' | translate}}">
+                </ion-item>
+                <ion-item class="item-input item-stacked-label">
+                    <span class="input-label">{{ 'gpp.confirmPassword' | translate}}<span class="color-error">*</span></span>
+                    <input class="password-input" type="text" ng-model="request.confirmPassword" placeholder="{{ 'gpp.insertValue' | translate}}">
                 </ion-item>
                 <ion-item class="item-divider">
                     <h2>{{ 'gpp.personalData' | translate}}</h2>
@@ -40,7 +40,7 @@
                     <p ng-if="request.gender">{{ request.gender.text}}</p>
                     <p ng-if="!request.gender"> {{ 'gpp.insertValue' | translate}} </p>
                 </ion-item>
-                <ion-item ng-click='selectDate("birthDate")'>
+                <ion-item ng-click='selectDate("birthDate", ["18YearsOld"])'>
                     <h2>{{ 'gpp.birthDate' | translate}}<span class="color-error">*</span></h2>
                     <p ng-if="request.birthDate">{{ request.birthDate | date:'dd/MM/yyyy'}}</p>
                     <p ng-if="!request.birthDate"> {{ 'gpp.insertValue' | translate}} </p>

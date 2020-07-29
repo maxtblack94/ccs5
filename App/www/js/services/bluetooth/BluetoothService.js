@@ -219,7 +219,7 @@ angular.module('starter').factory("BluetoothServices", function(UpdateBBService,
             case 80:
             case 'GENERIC_ERROR':
                 errorCode = 'GENERIC_ERROR';
-                errorMessage = $filter('translate')('commons.bleConnectionGenericError');
+                errorMessage = $filter('translate')('commons.bleConnectionGenericError') + RC;
                 break;
             case 20:
                 errorCode = 'INVALID_KEY';

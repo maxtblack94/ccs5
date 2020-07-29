@@ -10,8 +10,8 @@ window.locale_hr.leftMenu = {
 	settings: "Postavke",
 	help: "Pomoć",
 	reserveHistory: "Povijest rezervacija",
-	logout: "Odjaviti se"
-
+	logout: "Odjaviti se",
+	editPayment: "Razmjena kreditnih kartica"
 }
 
 window.locale_hr.sos = {
@@ -53,7 +53,7 @@ window.locale_hr.bookings = {
 	cancelConfirmBody: "Želite li stvarno izbrisati odabranu rezervaciju?",
 	tarif: 'Brzina',
 	price: 'Cijena',
-	orderPending: "Attention, this order waiting for approve"
+	orderPending: "Pažnja, ova narudžba čeka odobrenje"
 
 }
 
@@ -108,8 +108,8 @@ window.locale_hr.commons = {
 	accept: "Prihvati",
 	services: 'Servis',
 	bleConnection: 'Omogućite Bluetooth i pokušajte ponovo',
-	bleConnectionGenericError: 'Nešto je pošlo po zlu, pokušajte ponovo',
-	bleConnectionInvalidKey: 'Assicurati di aver posizionato nel portachiavi la chiave del veicolo giusto',
+	bleConnectionGenericError: 'Došlo je do službe za pomoć u vezi s pogreškama, kod pogreške: ',
+	bleConnectionInvalidKey: 'Provjerite jeste li stavili ispravni ključ vozila u privjesak za ključeve',
 	bleConnectionAlreadyProcessedRequest: 'Provjerite da li imate pravi ključ vozila u privjesku za ključeve',
 	bleConnectionNoKey: 'Provjerite je li ključ vozila u prstenastom ključu kada je vozilo zatvoreno',
 	bleSuccess: 'Operacija je uspješno okončana!',
@@ -120,11 +120,16 @@ window.locale_hr.commons = {
 	tarif: "Tarifa",
 	mandatoryField: "Ispunite sva obavezna polja",
 	register: "Registriraj se",
-	emailAlreadyUser: "Korisničko ime je već u upotrebi",
-	usernameAlreadyUsed: "E-pošta je već u upotrebi",
+	emailAlreadyUsed: "E-pošta je već u upotrebi",
+	usernameAlreadyUsed: "Korisničko ime je već u upotrebi",
 	profileCreate: "Vaš se profil provjerava. Nastavite da aktivirate način plaćanja",
 	profileAlertModal1: "Profil čeka da bude omogućen",
-	PaymentModalContent: 'Poštovani kupce, zbog vaše zaštite, od vas će se tražiti da odobrite platforni blok u iznosu od 0,02 eura (koji će se ponovno pripisati) kako bi se provjerila valjanost unesenih podataka. <br> <br> <br> Za da biste dovršili postupak registracije, kako to zahtijeva banka, potrebno je pritisnuti gumb "plati". <br> <br> <br> Za informacije i podršku kontaktirajte nas na besplatni broj'
+	PaymentModalContent: 'Poštovani kupce, zbog vaše zaštite, od vas će se tražiti da autorizirate virtualni blok platforme kako bi provjerili valjanost unesenih podataka. Da biste dovršili postupak registracije koji traži banka, potrebno je pritisnuti tipku “Nastavi”. <br><br> Za informacije i podršku kontaktirajte nas na naš besplatni broj',
+	noVehicols: "Oprostite, ali nema vozila za jednokratnu upotrebu",
+	oldDateAlert: "Nije moguće odabrati stari datum",
+	futureDateAlert: "Nije moguće odabrati budući datum",
+	selectTarif: "Odaberite cijenu",
+	paymentMethodTitle: "Način plaćanja"
 };
 
 window.locale_hr.bookResume = {
@@ -345,8 +350,8 @@ window.locale_hr.gpp = {
 	docType: "Vrsta dokumenta",
 	idIdentity: "Broj dokumenta",
 	addressSection: "Adresa",
-	address: "Via e civico",
-	zipCode: "Cap",
+	address: "Adresa i broj ulice",
+	zipCode: "Poštanski broj",
 	city: "Grad",
 	country: "Zemlja",
 	proceed: "Nastavi",
@@ -371,5 +376,7 @@ window.locale_hr.gpp = {
 	emailMatch: "Polja e-pošte ne odgovaraju",
 	invalidZipCode: "Vrijednost gornje kapice nije ispravna",
 	emailRegex: "Vrijednost e-pošte nije ispravna",
-	consensMandatory: "Prije nego što nastavite, prihvatite sve suglasnosti"
+	consensMandatory: "Prije nego što nastavite, prihvatite sve suglasnosti",
+	uploadMandatoryFiles: "Pošaljite obavezne slike licence",
+	imageUploaded: "slika je prenesena"
 }

@@ -44,7 +44,7 @@
                 <p ng-if="request.tarif">{{ request.tarif.text}}</p>
                 <p ng-if="!request.tarif"> {{ 'commons.genericPlaceholder' | translate}} </p>
             </ion-item>
-            <div class="item" ng-if="currentImport || currentImport === 0">
+            <div class="item" ng-if="(currentImport || currentImport === 0) && isSubmit">
                 <div class="pull-left m-right20">
                     <h2>{{ 'bookings.price' | translate }}</h2>
                 </div>

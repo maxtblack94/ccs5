@@ -5,6 +5,8 @@ angular.module('starter').controller('GppRegistrationCtrl', function($state, Gpp
         $scope.request = {};
         getConsensi();
     }
+
+    var currentLang = navigator.language.slice(0,2)
     
 
     $scope.openUrl = function(url){
@@ -13,8 +15,12 @@ angular.module('starter').controller('GppRegistrationCtrl', function($state, Gpp
         }
     }
 
-    $scope.selectDate = function(input) {
-        DatePikerServices.selectDate(input).then(function (date) {
+    $scope.getLang = function (item) {
+        return (item.translations || {})[currentLang] || item.name || item.description;
+    }
+
+    $scope.selectDate = function(input, validations) {
+        DatePikerServices.selectDate(input, validations).then(function (date) {
             $scope.request[input] = date;
         }, function err() {
             
@@ -92,14 +98,14 @@ angular.module('starter').controller('GppRegistrationCtrl', function($state, Gpp
         ) {
             PopUpServices.messagePopup($filter('translate')('gpp.mandatoryFields'), $filter('translate')('commons.attention'));
         } else if($scope.request.password && !$scope.request.password.match(RegexService.getRegex().password)){
-            PopUpServices.messagePopup($filter('translate')('gpp.attention'), $filter('translate')('commons.attention'));
+            PopUpServices.messagePopup($filter('translate')('gpp.passwordRegex'), $filter('translate')('commons.attention'));
         } else if ($scope.request.password !== $scope.request.confirmPassword ) {
             PopUpServices.messagePopup($filter('translate')('gpp.passwordMatch'), $filter('translate')('commons.attention'));
         } else if ($scope.request.email !== $scope.request.confirmEmail) {
             PopUpServices.messagePopup($filter('translate')('gpp.emailMatch'), $filter('translate')('commons.attention'));
-        } else if(!$scope.request.zipCode.match(/^\d{5}$/)) {
+        } else if(!$scope.request.zipCode.match(RegexService.getRegex().cap)) {
             PopUpServices.messagePopup($filter('translate')('gpp.invalidZipCode'), $filter('translate')('commons.attention'));
-        } else if(!$scope.request.email || !$scope.request.email.match(/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)) {
+        } else if(!$scope.request.email || !$scope.request.email.match(RegexService.getRegex().email)) {
             PopUpServices.messagePopup($filter('translate')('gpp.emailRegex'), $filter('translate')('commons.attention'));
         } else if($scope.request.accept1 !== 'YES') {
             PopUpServices.messagePopup($filter('translate')('gpp.consentsMandatory'), $filter('translate')('commons.attention'));

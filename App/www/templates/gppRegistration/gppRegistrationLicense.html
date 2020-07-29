@@ -30,17 +30,19 @@
             <ion-item class="item-divider">
                 <h2><i class="fa fa-id-card-o" aria-hidden="true"></i> {{ 'gpp.licenseUpload' | translate}} </h2>
             </ion-item>
-            <ion-item class="item-icon-right">
+            <ion-item class="item-icon-right" ng-click="openCamera('licenseFront')">
                 <h2>{{ 'gpp.frontPick' | translate}}<span class="color-error">*</span></h2>
-                <p> {{ 'gpp.uploadImage' | translate}} </p>
-                <i class="icon ion-camera"></i>
-                <!-- <i class="icon ion-checkmark-round"></i> -->
+                <p ng-if="!request.licenseFront"> {{ 'gpp.uploadImage' | translate}} </p>
+                <p ng-if="request.licenseFront"> {{ 'gpp.imageUploaded' | translate}} </p>
+                <i class="icon ion-camera" ng-if="!request.licenseFront"></i>
+                <i class="icon ion-checkmark-round" style="color:mediumseagreen" ng-if="request.licenseFront"></i>
             </ion-item>
-            <ion-item class="item-icon-right">
+            <ion-item class="item-icon-right" ng-click="openCamera('licenseBack')">
                 <h2>{{ 'gpp.backPick' | translate}}<span class="color-error">*</span></h2>
-                <p> {{ 'gpp.uploadImage' | translate}} </p>
-                <i class="icon ion-camera"></i>
-                <!-- <i class="icon ion-checkmark-round"></i> -->
+                <p ng-if="!request.licenseBack"> {{ 'gpp.uploadImage' | translate}} </p>
+                <p ng-if="request.licenseBack"> {{ 'gpp.imageUploaded' | translate}} </p>
+                <i class="icon ion-camera" ng-if="!request.licenseBack"></i>
+                <i class="icon ion-checkmark-round" style="color:mediumseagreen" ng-if="request.licenseBack"></i>
             </ion-item>
         </ion-list>
     </ion-content>

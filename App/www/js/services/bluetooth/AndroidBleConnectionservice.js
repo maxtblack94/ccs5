@@ -1,4 +1,4 @@
-angular.module('starter').factory("AndroidBleConnectionService", function($ionicLoading, BluetoothServices, InfoFactories, $rootScope) {
+angular.module('starter').factory("AndroidBleConnectionService", function($ionicLoading, $filter, BluetoothServices, InfoFactories, $rootScope) {
     var currentDevice;
     var lastReservation, lastOperation, userInfo, actionsList = [];
 
@@ -11,7 +11,7 @@ angular.module('starter').factory("AndroidBleConnectionService", function($ionic
             isConnected(reservation);
         },
         function() {
-            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Ti preghiamo di abilitare il Bluetooth e riprovare"});
+            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: $filter('translate')('commons.bleConnection')});
         });
     }
 

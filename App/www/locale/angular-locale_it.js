@@ -109,7 +109,7 @@ window.locale_it.commons = {
 	accept: 'Accetta',
 	services: 'Servizi',
 	bleConnection: 'Ti preghiamo di abilitare il Bluetooth e riprovare',
-	bleConnectionGenericError: 'Qualcosa è andato storto, riprova',
+	bleConnectionGenericError: 'Si è verificato un errore contattare l\'help desk, codice errore: ',
 	bleSuccess: "Operazione avvenuta con successo!",
 	bleConnectionInvalidKey: 'Assicurati di aver posizionato nel portachiavi la chiave del veicolo giusto',
 	bleConnectionAlreadyProcessedRequest: 'La richiesta di apertura è già stata gestita precedentemente',
@@ -124,12 +124,17 @@ window.locale_it.commons = {
 	tarif: "Tariffa",
 	mandatoryField: "Compilare tutti i campi obbligatori",
 	register: "Registrati",
-	emailAlreadyUser: "Username già in uso",
-	usernameAlreadyUsed: "Email già in uso",
+	emailAlreadyUsed: "Email già in uso",
+	usernameAlreadyUsed: "Username già in uso",
 	profileCreated: "Il tuo profilo è in fase di verifica. Procedi all'attivazione della modalità di pagamento",
 	profileAlertModal1: "Profilo in attesa di abilitazione",
-	paymentModalContent: 'Gentile Cliente, per tua tutela, ti verra’ chiesto di autorizzare un blocco platfond di 0,02 euro (che verranno riaccreditati) al fine di verificare la validita’ dei dati inseriti.<br><br><br>Per portare a termine la procedura di iscrizione, come previsto dall’istituto bancario Banca Intesa, e’ quindi necessario digitare il pulsante "paga".<br><br><br>Per info e supporto contattaci al n.verde',
-	
+	paymentModalContent: 'Gentile cliente, per la tua protezione, Ti verrà chiesto di autorizzare un blocco plafond virtuale al fine di verificare la validità dei dati inseriti.<br><br> Per completare la procedura di registrazione, richiesta dalla banca, è quindi necessario premere il pulsante “Procedi”. Per informazioni e supporto, contattaci al nostro numero gratuito',
+	noVehicols: "Purtroppo non ci sono veicoli disponibili in questo momento",
+	oldDateAlert: "Non è possibile inserire una data passata",
+	futureDateAlert: "Non è possibile inserire una data futura",
+	selectTarif: "Selezionare un tariffa",
+	paymentMethodTitle: "Modalità pagamento",
+	adultWarning: "Per la registrazione è necessario essere maggiorenni"
 };
 
 window.locale_it.register = {
@@ -244,7 +249,8 @@ window.locale_it.settings = {
 	title: 'Impostazioni',
 	check1: 'Riduci Immagini',
 	check1_descr: 'Mostra le immagini dei veicoli ridotte.',
-	editPassword: 'Modifica Password'
+	editPassword: 'Modifica Password',
+	editPayment: "Cambio carta di credito"
 };
 
 window.locale_it.driveLicense = {
@@ -385,5 +391,7 @@ window.locale_it.gpp = {
 	emailMatch: "I campi email non combaciano",
 	invalidZipCode: "Il valore del cap non è corretto",
 	emailRegex: "Il valore del Email non è corretto",
-	consentsMandatory: "Prima di procedere accetta tutti i consensi"
+	consentsMandatory: "Prima di procedere accetta tutti i consensi",
+	uploadMandatoryFiles: "E' obbligatorio caricare le foto della patente",
+	imageUploaded: "Immagine caricata"
 }

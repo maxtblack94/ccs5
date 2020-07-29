@@ -70,14 +70,14 @@ angular.module('starter').controller('GppRegistrationTermsCtrl', function($state
             .replace('{ACCEPT1}', $scope.request.accept1 || '')
             .replace('{ACCEPT5}', 'YES')
             .replace('{BASE64Front}', $scope.request.licenseFront || '')
-            .replace('{BASE64Retro}', $scope.request.licenseRetro || '');
+            .replace('{BASE64Retro}', $scope.request.licenseBack || '');
             ScriptServices.callGenericService(res, 645).then(function(data) {
                 if(data.retcode === 5 || data.retcode === 2) {
                     PopUpServices.errorPopup($filter('translate')('commons.emailAlreadyUsed'));
                 } else {
-                    $ionicLoading.hide();
-                    callLoginService($scope.request.username, $scope.request.password);
+                    callLoginService($scope.request.email, $scope.request.password);
                 }
+                $ionicLoading.hide();
                 
             }, function(error) {
                 PopUpServices.errorPopup($filter('translate')('commons.retry'));
@@ -141,24 +141,24 @@ angular.module('starter').controller('GppRegistrationTermsCtrl', function($state
     $scope.paymentModal = function (params) {
         var modalContent = `<div class="bt-content" style="padding: 20px; z-index: 9999; color: rgb(0, 0, 0);">`+ $filter('translate')('commons.paymentModalContent')+ ` `  + ($scope.selectedClient.contact || {}).telephone +`</div>
                 <ion-item class="item-image">
-                    <img src="icons/cartedicredito.jpg">
+                    <img src="icons/cartedicredito.png">
                 </ion-item>`;
         var configObj = {
             "buttons": [{
-                text: $filter('translate')('Annulla'),
+                text: $filter('translate')('commons.cancel'),
                 type: 'button-stable',
                 onTap: function () {
                     $state.go('tab.bookings');
                 }
             }, {
-                text: '<b>'+$filter('translate')('Procedi')+'</b>',
+                text: '<b>'+$filter('translate')('gpp.proceed')+'</b>',
                 type: 'button-positive',
                 onTap: function () {
                     startPay();
                 }
             }],
             "message": modalContent,
-            "title": 'Modalità pagamento',
+            "title": $filter('translate')('commons.paymentMethodTitle'),
             "cssClass": 'info'
         }
         PopUpServices.buttonsPopup(configObj);

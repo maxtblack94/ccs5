@@ -51,7 +51,7 @@ angular.module('starter').controller('ReserveCtrl', function(ReservationService,
                 ReservationService.setTarif($scope.selectedTarif);
                 $state.go('vehicles');
             } else if (!$scope.selectedTarif.value.id && $scope.selectedService.tarifs.length) {
-                PopUpServices.errorPopup($filter('translate')('Selezionare un tariffa'), "1");
+                PopUpServices.errorPopup($filter('translate')('commons.selectTarif'), "1");
             } else {
                 $state.go('vehicles');
             }

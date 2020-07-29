@@ -2,39 +2,63 @@ angular.module('starter').controller('MapResercationCtrl', function($state, Scri
     $scope.userInfo = InfoFactories.getUserInfo();
     $scope.parkingList = $stateParams.parkList;
 
+    
     function setMarkers(map) {
-        for (let k = 0; k < $scope.parkingList.length; k++) {
-            var park = $scope.parkingList[k];
-            if (park.lat && park.lng) {
-                var marker = new google.maps.Marker({
-                    position: { lat: parseFloat(park.lat), lng: parseFloat(park.lng) },
-                    map: map,
-                    icon: "icons/car.png",
-                    clickable: true,
-                    title: park.id,
-                    zIndex: 1
-                });
+      for (let k = 0; k < $scope.parkingList.length; k++) {
+          var park = $scope.parkingList[k];
+          if (park.lat && park.lng) {
+              var marker = new google.maps.Marker({
+                  position: { lat: parseFloat(park.lat), lng: parseFloat(park.lng) },
+                  map: map,
+                  icon: "icons/car2.png",
+                  clickable: true,
+                  title: park.id,
+                  zIndex: 1
+              });
 
-                google.maps.event.addListener(marker, 'click', function (event) {
-                    getVehicleDetail(this.getTitle());
-                 });
-            }
-        }
+              google.maps.event.addListener(marker, 'click', function (event) {
+                  getVehicleDetail(this.getTitle());
+               });
+          }
       }
+    }
 
-      function setPersonalMarker(map, coords) {
-        var marker = new google.maps.Marker({
-            position: coords,
-            map: map,
-            icon: "icons/man.png",
-            clickable: true,
-            title: "My Position",
-            zIndex: 1
-        });
+    function setPersonalMarker(map, coords) {
+      var marker = new google.maps.Marker({
+          position: coords,
+          map: map,
+          icon: "icons/man.png",
+          clickable: true,
+          title: "My Position",
+          zIndex: 1
+      });
+    }
 
-      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
       
-
 
       function initMap() {
         $ionicLoading.show();
@@ -58,6 +82,13 @@ angular.module('starter').controller('MapResercationCtrl', function($state, Scri
             };
     
             $scope.map = new google.maps.Map(document.getElementById("mapNew"), mapOptions);
+            /* $scope.map.addListener('dragend', () => {
+              setTimeout(() => {
+                var newCenter = $scope.map.getCenter().toJSON();
+                var latLng = new google.maps.LatLng(newCenter.lat, newCenter.lng);
+                $scope.map.setCenter(latLng) // <-- Alerts lat as a number first 2 drags. Third drag alert is the same position as second drag alert and alerts after map error.
+              }, 300);
+            }); */
             setMarkers($scope.map);
             setPersonalMarker($scope.map, latLng);
         }, function(error){
@@ -113,6 +144,14 @@ angular.module('starter').controller('MapResercationCtrl', function($state, Scri
 
 
       init();
+
+
+
+
+
+
+
+
 
       
 })

@@ -56,10 +56,8 @@ angular.module('starter').controller('BookingsCtrl', function ($q, MapReservatio
         refreshUserInfo().then(function () {
             if (isNotRegistered && isNotRegistered == 'true') {
                 $state.go('completeRegistration');
-            } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED_WITH_PAY') {
-                PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Verrai contattato per mail quando il tuo profilo sarà abilitato al servizio E-Vai.", "Profilo in attesa di abilitazione");
             } else if($scope.userInfo.registry.account_status === 'SUBSCRIBED' || $scope.userInfo.registry.account_status === 'SYNCHRONIZED') {
-                PopUpServices.messagePopup("Il tuo profilo è in fase di verifica. Procedi all'attivazione della modalità di pagamento", "Profilo in attesa di abilitazione", $scope.paymentModal);
+                PopUpServices.messagePopup($filter('translate')('commons.profileCreated'), $filter('translate')('commons.profileAlertModal1'), $scope.paymentModal);
             } else {
                 ReservationService.resetReservation();
                 $state.go('subscriptions');
@@ -70,24 +68,24 @@ angular.module('starter').controller('BookingsCtrl', function ($q, MapReservatio
     $scope.paymentModal = function (params) {
         var modalContent = `<div class="bt-content" style="padding: 20px; z-index: 9999; color: rgb(0, 0, 0);">`+ $filter('translate')('commons.paymentModalContent')+ ` `  + ($scope.selectedClient.contact || {}).telephone +`</div>
                 <ion-item class="item-image">
-                    <img src="icons/cartedicredito.jpg">
+                    <img src="icons/cartedicredito.png">
                 </ion-item>`;
         var configObj = {
             "buttons": [{
-                text: $filter('translate')('Annulla'),
+                text: $filter('translate')('commons.cancel'),
                 type: 'button-stable',
                 onTap: function () {
                     $state.go('tab.bookings');
                 }
             }, {
-                text: '<b>'+$filter('translate')('Procedi')+'</b>',
+                text: '<b>'+$filter('translate')('gpp.proceed')+'</b>',
                 type: 'button-positive',
                 onTap: function () {
                     startSetefy();
                 }
             }],
             "message": modalContent,
-            "title": 'Modalità pagamento',
+            "title": $filter('translate')('commons.paymentMethodTitle'),
             "cssClass": 'info'
         }
         PopUpServices.buttonsPopup(configObj);
@@ -609,6 +607,7 @@ angular.module('starter').controller('BookingsCtrl', function ($q, MapReservatio
                 ScriptServices.callGenericService(res, 554).then(function(data) {
                     var userInfo = window.localStorage.getItem('userInfo');
                     userInfo = JSON.parse(userInfo);
+                    $scope.userInfo = userInfo;
                     userInfo.registry =  data.data.GetUser[0];
                     window.localStorage.setItem('userInfo', JSON.stringify(userInfo));
                     resolve();
@@ -634,7 +633,12 @@ angular.module('starter').controller('BookingsCtrl', function ($q, MapReservatio
                     res = res.replace('{NUMBER_DRIVER}', $scope.userInfo.driverNumber);
                     ScriptServices.callGenericService(res, 737).then(function(data) {
                         $ionicLoading.hide(); 
-                        $state.go('mapReservation', {parkList: data.data});
+                        if (!data.data) {
+                            PopUpServices.messagePopup($filter('translate')('commons.noVehicols'), $filter('translate')('commons.attention'));
+                        } else {
+                            $state.go('mapReservation', {parkList: data.data});
+                        }
+                        
                     }, function (err) {
                         $ionicLoading.hide(); 
                     });

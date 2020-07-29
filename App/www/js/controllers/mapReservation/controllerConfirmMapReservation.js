@@ -1,5 +1,5 @@
 angular.module('starter').controller('ConfirmMapReservationCtrl', function(PopUpServices, ScriptServices, $ionicLoading, $state, $filter, $ionicPopup, InfoFactories, $stateParams,$scope) {
-    var isSubmit = false;
+    $scope.isSubmit = false;
     function init() {
         $scope.currentVehicle = $stateParams.vehicle;
         $scope.userInfo = InfoFactories.getUserInfo();
@@ -61,7 +61,7 @@ angular.module('starter').controller('ConfirmMapReservationCtrl', function(PopUp
     $scope.proceed= function () {
         if (!$scope.request.subscription || !$scope.request.tarif || !$scope.request.reserveTime) {
             PopUpServices.messagePopup($filter('translate')('commons.mandatoryField'), $filter('translate')('commons.attention'));
-        } else if (!isSubmit) {
+        } else if (!$scope.isSubmit) {
             getPrice();
         } else {
             createReservation();
@@ -98,6 +98,7 @@ angular.module('starter').controller('ConfirmMapReservationCtrl', function(PopUp
                 onTap: function (e) {
                     if (!$scope.request.picklistValue) {
                         $scope.request.picklistValue = null;
+                        $scope.isSubmit = false;
                         e.preventDefault();
                     } else {
                         $scope.request[picklist] = $scope.request.picklistValue;
@@ -124,7 +125,7 @@ angular.module('starter').controller('ConfirmMapReservationCtrl', function(PopUp
             ScriptServices.callGenericService(res, 739).then(function(data) {
                 $ionicLoading.hide(); 
                 $scope.currentImport = data.data.import;
-                isSubmit = true;
+                $scope.isSubmit = true;
             }, function (err) {
                 $ionicLoading.hide(); 
                 PopUpServices.errorPopup($filter('translate')('commons.retry'));
@@ -146,7 +147,7 @@ angular.module('starter').controller('ConfirmMapReservationCtrl', function(PopUp
             .replace('{TODATE}', moment($scope.request.dateTimeTo).format('DD/MM/YYYY'))
             .replace('{FROMORA}', moment().format('HH:mm'))
             .replace('{TOORA}', moment($scope.request.dateTimeTo).format('HH:mm'))
-            .replace('{PARKB}', $scope.currentVehicle.parkingId)
+            .replace('{PARKB}', $scope.request.parkings.Nr)
             .replace('{SERVICEID}', $scope.request.subscription.id)
             .replace('{TARIFID}', $scope.request.tarif.id)
             .replace('{IMPORT}', $scope.currentImport);

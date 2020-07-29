@@ -1,5 +1,6 @@
-angular.module('starter').controller('SettingsCtrl', function(ScriptServices, $rootScope, $scope, $http, $state, $ionicLoading, InfoFactories) {
+angular.module('starter').controller('SettingsCtrl', function(PopUpServices, ScriptServices, $rootScope, $scope, $http, $state, $ionicLoading, InfoFactories, PopUpServices) {
     $scope.selectedClient = InfoFactories.getClientSelected();
+    $scope.userInfo = InfoFactories.getUserInfo();
     
     $scope.setHasPicture = function() {
         $rootScope.hasPicture = !$rootScope.hasPicture;
@@ -21,6 +22,21 @@ angular.module('starter').controller('SettingsCtrl', function(ScriptServices, $r
             $state.go('login');
         });
     };
+
+    $scope.openLink = function () {
+        $ionicLoading.show();
+        ScriptServices.getXMLResource(663).then(function(res) {
+            res = res.replace('{DRIVERID}', $scope.userInfo.driverNumber || null);
+            ScriptServices.callGenericService(res, 663).then(function(data) {
+                window.open(data.data, '_system', 'location=yes');
+                $state.go('tab.bookings');
+                $ionicLoading.hide();
+            }, function(error) {
+                PopUpServices.errorPopup($filter('translate')('commons.retry'));
+                $ionicLoading.hide();
+            });
+        });
+    }
 
     var counter = 0;
     $scope.deleteClienteContext = function(){

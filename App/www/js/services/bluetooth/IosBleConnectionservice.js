@@ -1,4 +1,4 @@
-angular.module('starter').factory("IosBleConnectionService", function(BluetoothServices, $rootScope, ArrayServices) {
+angular.module('starter').factory("IosBleConnectionService", function(BluetoothServices, $rootScope, ArrayServices, $filter) {
     var currentDevice;
     var lastReservation, lastOperation;
     var scanCount;
@@ -19,7 +19,7 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
                 }
             },
             function() {
-                $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: "Ti preghiamo di abilitare il Bluetooth e riprovare"});
+                $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorMessage: $filter('translate')('commons.bleConnection')});
             });
         } else {
             ble.disconnect(currentDevice.id, function (params) {

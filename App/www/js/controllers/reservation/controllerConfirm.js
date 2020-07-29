@@ -79,13 +79,12 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
         });
     };
 
-    function classicReserve(params) {
-        var place = $('.place_val').val();
+    function classicReserve() {
         var justifyCode = $scope.selectedJustify ? $scope.selectedJustify.code : null;
         var cc = !$scope.selectedClient.cc ? false : $scope.hasCC;
 		var telepass = !$scope.selectedClient.telepass ? false : $scope.hasTelepass;
             
-        if(!place) {
+        if(!$scope.request.destination) {
             $ionicPopup.alert({
                 title: $filter('translate')('commons.attention'),
                 template: $filter('translate')('commons.insert') +' "' +$scope.selectedClient.lbldestination+'"'
@@ -101,7 +100,7 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
             .replace('{DATE_TO}', moment($scope.dateTimeTo).format('DD/MM/YYYY'))
             .replace('{TIME_FROM}', moment($scope.dateTimeFrom).format('HH:mm'))
             .replace('{TIME_TO}', moment($scope.dateTimeTo).format('HH:mm'))
-            .replace('{PLACE}', place)
+            .replace('{PLACE}', $scope.request.destination)
             .replace('{JUSTIFICATION}', justifyCode)
             .replace('{CC}', cc || false)
             .replace('{TELEPASS}', telepass || false)

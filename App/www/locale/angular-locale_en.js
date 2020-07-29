@@ -56,7 +56,7 @@ window.locale_en.bookings = {
 	cancelConfirmTitle: 'Confirm deletion',
 	cancelConfirmBody: 'Would you really delete selected booking?',
 	gpsAlert: 'This app requires location to authorize the opening and closing vehicle features',
-	tarif: 'Tarif',
+	tarif: 'Tariff',
 	price: 'Price',
 	orderPending: "Attention, this order waiting for approve"
 }
@@ -114,26 +114,31 @@ window.locale_en.commons = {
 	services: 'Services',
 	bleSuccess: "Operation Complete Successfully!",
 	bleConnection: 'Please enable bluetooth and retry',
-	bleConnectionGenericError: 'There was an error, retry',
-	bleConnectionInvalidKey: 'Assicurati di aver posizionato nel portachiavi la chiave del veicolo giusto',
-	bleConnectionAlreadyProcessedRequest: 'La richiesta di apertura è già stata gestita precedentemente',
-	bleConnectionNoKey: 'Assicurati che la chiave del veicolo sia nel portachiavi al momento della chiusura del veicolo',
+	bleConnectionGenericError: 'There was an error contact help desk, errorCode: ',
+	bleConnectionInvalidKey: 'Make sure you have placed the correct vehicle key in the key ring',
+	bleConnectionAlreadyProcessedRequest: 'The request for opening has already been handled previously',
+	bleConnectionNoKey: 'Make sure the vehicle key is in the key ring when closing the vehicle',
 
 	plafond: "Plafond",
 	currentPlafond: "Current plafond",
 	chargePlafond: "Charge plafond",
-	choosePlafond: "Choose a plafond value and contiue",
+	choosePlafond: "Choose a plafond value and continue",
 	reservationTime: "Booking time",
 	genericPlaceholder: "Select value",
 	subscription: "Subscription",
 	tarif: "Tariff",
 	mandatoryField: "Fill in all required fields",
 	register: "Register",
-	emailAlreadyUser: "Username already in use",
-	usernameAlreadyUsed: "Email already in use",
+	emailAlreadyUsed: "Email already in use",
+	usernameAlreadyUsed: "Username already in use",
 	profileCreated: "Your profile is being verified. Proceed to activate the payment method",
 	profileAlertModal1: "Profile waiting to be enabled",
-	paymentModalContent: 'Dear Customer, for your protection, you will be asked to authorize a platfond block of 0.02 euros (which will be re-credited) in order to verify the validity of the data entered. <br> <br> <br> For to complete the registration procedure, as required by the bank, it is therefore necessary to press the "pay" button. <br> <br> <br> For info and support contact us at our free number'
+	paymentModalContent: 'Dear Customer, for your protection, you will be asked to authorize a virtual platfond block in order to verify the validity of the data entered. <br><br> For to complete the registration procedure, a required by the bank, it is therefore necessary to press the “Proceed” button. <br>For info and support, contact us at our free number',
+	noVehicols: "Sorry, but there are no vehicle available",
+	oldDateAlert: "It's not possible to select an old date",
+	futureDateAlert: "It's not possible to select a future date",
+	selectTarif: "Please select a tariff",
+	paymentMethodTitle: "Payment method"
 };
 
 window.locale_en.bookResume = {
@@ -152,7 +157,7 @@ window.locale_en.bookResume = {
 	vehicleType: 'Vehicle Type',
 	confirm: 'Search vehicle',
 	returnDateIsOut: 'Pick-Up Date does not fall within parking opening hours!',
-	returnDateIsMajor: 'Pick-Up Date is greater than Returm date!',
+	returnDateIsMajor: 'Pick-Up Date is greater than Return date!',
 	returnDateNeedToBeMajor: 'Pick-Up Date must be higher than the current date !',
 	isNotInTime: 'Return Date does not fall within the parking opening hours!',
 	defineRange: 'You have not defined the Driving Range!',
@@ -165,12 +170,12 @@ window.locale_en.bookResume = {
 	pickupReturnlabel: "Pick-up/Return Parking",
 	pickupPark : "Pick-up Parking",
 	returnPark : "Return Parking",
-	pickupStation : "Fermata di Partenza",
-	returnStation : "Fermata di Arrivo",
-	dateStationFrom: "Data di Partenza",
-	confirmStation: "Scopri Orari",
-	subscriptionIncompatible: "The reservation time is not compatible with your tarif",
-	timeStationFrom: 'Orario di Partenza'
+	pickupStation : "Pickup stop",
+	returnStation : "Return stop",
+	dateStationFrom: "Departure Date",
+	confirmStation: "Search",
+	subscriptionIncompatible: "The reservation time is not compatible with your tariff",
+	timeStationFrom: 'Departure time'
 };
 
 window.locale_en.map = {
@@ -182,7 +187,7 @@ window.locale_en.map = {
 	delete: 'Delete',
 	confirmDeleteTitle: 'Confirm Delete',
 	confirmDeleteInfo: 'Are you sure to delete the selected booking?',
-	noCoordsFound: 'GPS vehicle coordinates are not availave, please try again later!'
+	noCoordsFound: 'GPS vehicle coordinates are not available, please try again later!'
 };
 
 window.locale_en.confirmReservation = {
@@ -214,7 +219,7 @@ window.locale_en.vehicle = {
 	vehicleType: 'Vehicle Type',
 	model: 'Model',
 	fuelType: 'Fuel Type',
-	externalClean: 'Externale',
+	externalClean: 'External',
 	internalClean: 'Internal',
 	noVehiclesInThisMoment: 'No vehicle is currently available for the period requested by you.',
     labelCannotReserve: 'Your booking can not be accepted, as there is already a reservation in your name for the requested period.'
@@ -243,7 +248,8 @@ window.locale_en.settings = {
 	title: 'Settings',
 	check1: 'Reduced Picture',
 	check1_descr: 'Show reduced vehicle images',
-	editPassword: 'Modify Password'
+	editPassword: 'Modify Password',
+	editPayment: "Edit payment method"
 };
 
 window.locale_en.driveLicense = {
@@ -384,5 +390,7 @@ window.locale_en.gpp = {
 	emailMatch: "Email fields do not match",
 	invalidZipCode: "The Zip code is incorrect",
 	emailRegex: "Email field is incorrect",
-	consentsMandatory: "Before proceeding, accept all consents"
+	consentsMandatory: "Before proceeding, accept all consents",
+	uploadMandatoryFiles: "Upload mandatory license images",
+	imageUploaded: "Image uploaded"
 }
