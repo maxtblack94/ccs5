@@ -103,14 +103,17 @@ angular.module('starter').factory("ScriptServices", function (PopUpServices, $fi
                         var resultValue = response.data.d.ExecuteAdminScript.ResultValue;
                         if (resultValue) {
                             resultValue = JSON.parse(response.data.d.ExecuteAdminScript.ResultValue);
-                            if (resultValue.retcode == '-1' || resultValue.retcode == '-2') {
+                            if (typeof resultValue.retcode === 'string') {
+                                resultValue.retcode = parseInt(resultValue.retcode);
+                            }
+                            if (resultValue.retcode < 0) {
                                 reject('Error');
-                            }else if (resultValue.retcode == '401') {
+                            }else if (resultValue.retcode == 401) {
                                 $state.go('login', {error401:true});
-                            }else if (resultValue.retcode == '101') {
+                            }else if (resultValue.retcode == 101) {
                                 PopUpServices.messagePopup(resultValue.errorDescription, $filter('translate')('commons.attention'));
                                 $ionicLoading.hide();
-                            }else if (resultValue.retcode == '100') {
+                            }else if (resultValue.retcode == 100) {
                                 if (resultValue.errorDescription) {
                                     PopUpServices.messagePopup(resultValue.errorDescription, $filter('translate')('commons.attention'));
                                 }

@@ -29,16 +29,16 @@ angular.module('starter').controller('PlafondCtrl', function($scope, PopUpServic
             res = res.replace('{DRIVERID}', InfoFactories.getUserInfo().driverNumber || null)
             .replace('{PLAFONDREQUESTED}', plafondRequest);
             ScriptServices.callGenericService(res, 656).then(function(data) {
-                $scope.refreshPlafond();
+                PopUpServices.messagePopup($filter('translate')('commons.successOperation'), $filter('translate')('commons.success'), $scope.refreshPlafond);
             }, function(error) {
-                PopUpServices.errorPopup($filter('translate')('commons.retry'));
+                PopUpServices.errorPopup($filter('translate')('commons.bankSystemError'));
                 $ionicLoading.hide();
             });
         });
     }
 
     function chargeAlert(params) {
-        var modalContent = $filter('translate')('commons.messageConfirmChargeRequest1') + params + $filter('translate')('commons.messageConfirmChargeRequest1');
+        var modalContent = $filter('translate')('commons.messageConfirmChargeRequest1') + params + $filter('translate')('commons.messageConfirmChargeRequest2');
         var configObj = {
             "buttons": [{
                 text: $filter('translate')('commons.cancel'),

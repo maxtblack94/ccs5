@@ -117,7 +117,8 @@ window.locale_ro.commons = {
 	currentPlafond: "Credit actual",
 	chargePlafond: "Reîncarcă",
 	choosePlafond: "Selectați suma suplimentară",
-	procede: 'Procedi'
+	procede: 'Procedi',
+	bankSystemError: 'Attention, bank system is no available, if the problem persists contanct help desk'
 };
 
 window.locale_ro.bookResume = {

@@ -210,8 +210,8 @@ window.locale_it.commons = {
 	messageInvalidFiscalCode: 'Il codice fiscale non è valido',
 	editSuccess: "Modifica effettuata con successo",
 	paymentModalTemplate: "Gentile Cliente, per tua tutela, ti verra’ chiesto di autorizzare un blocco platfond di 0,02 euro (che verranno riaccreditati) al fine di verificare la validita’ dei dati inseriti.<br><br><br>Per portare a termine la procedura di iscrizione, come previsto dall’istituto bancario Banca Intesa, e’ quindi necessario digitare il pulsante \"paga\".<br><br><br>Per info e supporto contattaci al n.verde 800.77.44.55",
-	messageConfirmChargeRequest1: "Confermi la richiesta di addebito sulla tua carta di credito registrata di €",
-	messageConfirmChargeRequest2: "per ricaricare il tuo credito residuo?",
+	messageConfirmChargeRequest1: "Confermi la richiesta di addebito sulla tua carta di credito registrata di € ",
+	messageConfirmChargeRequest2: " per ricaricare il tuo credito residuo?",
 	modalConfirmCharge: "Conferma Ricarica",
 	messageCouponSuccess: "Buono inserito con successo",
 	addCoupon: "Aggiungi Buono",
@@ -234,7 +234,8 @@ window.locale_it.commons = {
 	bleFailConnection : "Connessione fallita. Se il problema persiste riavviare il bluetooth, assicurarsi di non avere altri dispositivi connessi e posizionarsi a non più di 5 metri dal veicolo.",
 	enableBleError: "Ti preghiamo di abilitare il Bluetooth e riprovare",
 	incompleteProfile: "Profilo Incompleto",
-	incompleteProfileDesc: "Il Tuo profilo risulta incompleto, pertanto è stato posto in temporanea sospensione. Accedi al menu in alto a sinistra e verifica se ti viene richiesto di fare una prima registrazione della Tua carta di credito, oppure di registrarne una nuova. Controlla inoltre che tutti i campi obbligatori, indicati con un “*” (asterisco), siano stati popolati correttamente.  Per eventuale ulteriore assistenza si prega di chiamare il nostro HelpDesk H24, al numero verde 800 77 44 55. Grazie."
+	incompleteProfileDesc: "Il Tuo profilo risulta incompleto, pertanto è stato posto in temporanea sospensione. Accedi al menu in alto a sinistra e verifica se ti viene richiesto di fare una prima registrazione della Tua carta di credito, oppure di registrarne una nuova. Controlla inoltre che tutti i campi obbligatori, indicati con un “*” (asterisco), siano stati popolati correttamente.  Per eventuale ulteriore assistenza si prega di chiamare il nostro HelpDesk H24, al numero verde 800 77 44 55. Grazie.",
+	bankSystemError: 'Attenzione, non è stato possibile contattare il sistema bancario, se il problema persiste contattare il servizio clienti'
 };
 
 window.locale_it.register = {

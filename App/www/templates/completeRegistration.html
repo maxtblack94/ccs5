@@ -96,14 +96,14 @@
                         <h2>{{ 'commons.birthDate' | translate}} <i style="color: #8c8c8c" class="icon ion-locked" ></i> </h2>
                         <p>{{ request.birthDate || '-'}}</p>
                     </ion-item>
-                    <ion-item ng-if="!isEdit" class="item-input item-stacked-label">
+                    <ion-item ng-if="request.nationResidence === 'ITALIA' || !request.nationResidence" class="item-input item-stacked-label">
                         <span class="input-label">{{ 'commons.fiscalCode' | translate}}<span class="color-error" ng-if="request.nationResidence === 'ITALIA'">*</span></span>
                         <input type="text" ng-model="request.fiscalCode" placeholder="{{ 'commons.fiscalCode' | translate}}">
                     </ion-item>
-                    <ion-item ng-if="isEdit">
+                    <!-- <ion-item ng-if="isEdit && request.nationResidence === 'ITALIA'">
                         <h2>{{ 'commons.fiscalCode' | translate}} <i style="color: #8c8c8c" class="icon ion-locked" ></i></h2>
                         <p>{{ request.fiscalCode || '-'}}</p>
-                    </ion-item>
+                    </ion-item> -->
                 <ion-item class="item-divider">
                     <h2>{{ 'commons.residenceSection' | translate}}</h2>
                 </ion-item>

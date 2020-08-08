@@ -92,7 +92,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
             indirizzo: data.address,
             city: data.city,
             cap: data.zip_code,
-            nationResidence: data.residence_country,
+            nationResidence: data.residence_country? data.residence_country.toUpperCase(): data.residence_country,
             shortProvinceResidence: data.residence_province,
             fiscalCode: data.tax_code,
             docNumber: data.document_number,
@@ -376,7 +376,7 @@ angular.module('starter').controller('CompleteRegistrationCtrl', function($ionic
             .replace('{CAP}', $scope.request.cap || '')
             .replace('{NATIONRESIDENCE}', $scope.request.nationResidence || '')
             .replace('{PROVINCE}', $scope.request.shortProvinceResidence || '')
-            .replace('{CF}', $scope.request.fiscalCode || '')
+            .replace('{CF}', $scope.request.nationResidence === 'ITALIA'? $scope.request.fiscalCode : '')
             .replace('{DOCTYPE}', $scope.request.documentType.code || '')
             .replace('{DOCNUMBER}', $scope.request.docNumber || '')
             .replace('{DOCENDDATE}', typeof $scope.request.docEndDate === 'string' ? moment(fixDate($scope.request.docEndDate)).format('DD/MM/YYYY') : moment($scope.request.docEndDate).format('DD/MM/YYYY') || '')
