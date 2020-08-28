@@ -122,7 +122,7 @@ angular.module('starter').controller('VehicleCtrl', function($filter, $ionicHist
     }
 
     $scope.showModalInfo = function () {
-        var message = $scope.selectedClient.importMessage || "Si ricorda che nel caso di veicolo non Elettrico, l'importo indicato è al netto del costo/km che verrà conteggìato al fine corsa in base ai km effettivamente percorsi.";
+        var message = $scope.selectedClient.importMessage || $filter('translate')('commons.messageForMotorType');
         PopUpServices.messagePopup(message, 'Info');
     };
 

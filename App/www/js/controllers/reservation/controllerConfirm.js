@@ -166,7 +166,7 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
                 $scope.PNRstring = data.data.PNRstring[0].PNR;
                 $scope.isConfirmed = true;
                 var pnrPopup = $ionicPopup.alert({
-                    title: $filter('translate')('confirmReservation.requestCompleteRegional'),
+                    title: is18H($scope.dateTimeFrom) ? $filter('translate')('commons.requestOrder18h') : $filter('translate')('confirmReservation.requestCompleteRegional'),
                     template: $filter('translate')('confirmReservation.pnr') + ': <b>' + $scope.PNRstring + '</b>' + getRestOfMessage(data.data)
                 });
                 pnrPopup.then(function(res) {
@@ -186,6 +186,13 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
         return service || {};
     };
 
+    function is18H(dateFromTime) {
+        var startTime = moment(new Date());
+        var duration = moment.duration(moment(dateFromTime).diff(startTime));
+        var hours = duration.asHours();
+        return hours < 18;
+    }
+
     $scope.getTarif = function (serviceID, tarifID) {
         var tarif;
         var service = $scope.getService(serviceID);
@@ -203,7 +210,7 @@ angular.module('starter').controller('ConfirmCtrl', function(ReservationService,
     };
 
     $scope.showModalInfo = function () {
-        var message = $scope.selectedClient.importMessage || "Si ricorda che nel caso di veicolo non Elettrico, l'importo indicato è al netto del costo/km che verrà conteggìato al fine corsa in base ai km effettivamente percorsi.";
+        var message = $scope.selectedClient.importMessage || $filter('translate')('commons.messageForMotorType');
         PopUpServices.messagePopup(message, 'Info');
     };
 

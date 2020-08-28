@@ -235,7 +235,8 @@ window.locale_it.commons = {
 	enableBleError: "Ti preghiamo di abilitare il Bluetooth e riprovare",
 	incompleteProfile: "Profilo Incompleto",
 	incompleteProfileDesc: "Il Tuo profilo risulta incompleto, pertanto è stato posto in temporanea sospensione. Accedi al menu in alto a sinistra e verifica se ti viene richiesto di fare una prima registrazione della Tua carta di credito, oppure di registrarne una nuova. Controlla inoltre che tutti i campi obbligatori, indicati con un “*” (asterisco), siano stati popolati correttamente.  Per eventuale ulteriore assistenza si prega di chiamare il nostro HelpDesk H24, al numero verde 800 77 44 55. Grazie.",
-	bankSystemError: 'Attenzione, non è stato possibile contattare il sistema bancario, se il problema persiste contattare il servizio clienti'
+	bankSystemError: 'Attenzione, non è stato possibile contattare il sistema bancario, se il problema persiste contattare il servizio clienti',
+	requestOrder18h: "richiesta ordine"
 };
 
 window.locale_it.register = {

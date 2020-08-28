@@ -12,7 +12,7 @@ angular.module('starter').factory("InfoFactories", [function () {
         if (userInfo && userInfo.registry && (userInfo.registry.services || []) && userInfo.registry.services.length > 0) {
             for (var k = 0; k < userInfo.registry.services.length; k++) {
                 isSilver = userInfo.registry.services[k].tarifs.find(function (item) {
-                    return item.text === 'Gold';
+                    return item.paymentType === 'Gold';
                 });
                 if (isSilver) {
                     break;
