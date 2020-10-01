@@ -15,7 +15,7 @@ window.locale_it.leftMenu = {
 
 window.locale_it.sos = {
 	title: 'SOS',
-	info: 'Il servizio SOS dà supporto H24. E\' importante usufruire del servizio solo in caso di vera emergenza!',
+	info: 'Il servizio SOS dà  supporto H24. E\' importante usufruire del servizio solo in caso di vera emergenza!',
 	sendRequest: 'Invia Richiesta SOS',
 	noInfo: 'Non è stato possibile recuperare alcune informazioni!'
 }
@@ -43,7 +43,7 @@ window.locale_it.bookings = {
 	humanCheckCarOpenMessage: 'Attendere qualche secondo! Se dopo qualche secondo il veicolo non si apre, riprovare.',
 	humanCheckCarCloseMessage: 'Attendere qualche secondo! Se dopo qualche secondo il veicolo non si chiude, riprovare.',
 	needCurrectPark: 'L\'automobile deve essere posizionata nel parcheggio prima di poterla chiudere.',
-	needProximity: 'Devi essere in prossimità dell\'automobile per poterla aprire.',
+	needProximity: 'Devi essere in prossimità  dell\'automobile per poterla aprire.',
 	damageHard: 'Guasto (auto trainata in officina)',
 	openCar : 'Inizio Corsa',
 	closeCar : 'Fine Corsa',
@@ -71,7 +71,9 @@ window.locale_it.tabs = {
 	settings: 'Impostazioni',
 	plafond: 'Ricarica',
 	sos: 'SOS',
-	notifications: 'Notifiche'
+	notifications: 'Notifiche',
+	history: 'Storico',
+	employeeReservation: 'Planner',
 };
 
 window.locale_it.notifications = {
@@ -83,14 +85,13 @@ window.locale_it.notifications = {
 window.locale_it.commons = {
 	refresh: 'Aggiorna...',
 	yes: 'Si',
-	note: "Note",
-	back: 'Indietro',
 	no: 'No',
+	back: 'Indietro',
 	note: 'Note',
 	confirm: 'Conferma',
 	locationNotAviable: 'Per poter utilizzare il servizio "Inizio Corsa" / "Fine Corsa" disponibile sulla nostra APP, è necessario consentire la geolocalizzazione di questo smartphone. In caso contrario non potrete essere abilitati al servizio.',
 	retry: 'Riprovare',
-	legalNotice: 'Copyright © 2016 Corporate Car Solutions Italia - All Rights Reserved',
+	legalNotice: 'Copyright Â© 2016 Corporate Car Solutions Italia - All Rights Reserved',
 	readMore: 'Continua a leggere...',
 	search: 'Cerca...',
 	select: 'Seleziona',
@@ -112,29 +113,35 @@ window.locale_it.commons = {
 	bleConnectionGenericError: 'Si è verificato un errore contattare l\'help desk, codice errore: ',
 	bleSuccess: "Operazione avvenuta con successo!",
 	bleConnectionInvalidKey: 'Assicurati di aver posizionato nel portachiavi la chiave del veicolo giusto',
-	bleConnectionAlreadyProcessedRequest: 'La richiesta di apertura è già stata gestita precedentemente',
+	bleConnectionAlreadyProcessedRequest: 'La richiesta di apertura è già  stata gestita precedentemente',
 	bleConnectionNoKey: 'Assicurati che la chiave del veicolo sia nel portachiavi al momento della chiusura del veicolo',
 	plafond: 'Saldo',
 	currentPlafond: "Saldo attuale",
 	chargePlafond: "Ricarica",
-	choosePlafond: "Seleziona l’importo della ricarica",
+	choosePlafond: "Seleziona lâ€™importo della ricarica",
 	reservationTime: "Tempo della prenotazione",
 	genericPlaceholder: "Seleziona valore",
 	subscription: "Sottoscrizione",
 	tarif: "Tariffa",
 	mandatoryField: "Compilare tutti i campi obbligatori",
 	register: "Registrati",
-	emailAlreadyUsed: "Email già in uso",
-	usernameAlreadyUsed: "Username già in uso",
-	profileCreated: "Il tuo profilo è in fase di verifica. Procedi all'attivazione della modalità di pagamento",
+	emailAlreadyUsed: "Email già  in uso",
+	usernameAlreadyUsed: "Username già  in uso",
+	profileCreated: "Il tuo profilo è in fase di verifica. Procedi all'attivazione della modalità  di pagamento",
 	profileAlertModal1: "Profilo in attesa di abilitazione",
-	paymentModalContent: 'Gentile cliente, per la tua protezione, Ti verrà chiesto di autorizzare un blocco plafond virtuale al fine di verificare la validità dei dati inseriti.<br><br> Per completare la procedura di registrazione, richiesta dalla banca, è quindi necessario premere il pulsante “Procedi”. Per informazioni e supporto, contattaci al nostro numero gratuito',
+	paymentModalContent: 'Gentile cliente, per la tua protezione, Ti verrà  chiesto di autorizzare un blocco plafond virtuale al fine di verificare la validità  dei dati inseriti.<br><br> Per completare la procedura di registrazione, richiesta dalla banca, è quindi necessario premere il pulsante â€œProcediâ€. Per informazioni e supporto, contattaci al nostro numero gratuito',
 	noVehicols: "Purtroppo non ci sono veicoli disponibili in questo momento",
 	oldDateAlert: "Non è possibile inserire una data passata",
 	futureDateAlert: "Non è possibile inserire una data futura",
 	selectTarif: "Selezionare un tariffa",
-	paymentMethodTitle: "Modalità pagamento",
-	adultWarning: "Per la registrazione è necessario essere maggiorenni"
+	paymentMethodTitle: "Modalità  pagamento",
+	map: "Mappa",
+	vehicleNotFound: 'Non è stato possibile trovare il veicolo ricercato',
+	phone: 'Cellulare',
+	start: 'Partenza',
+	stop: 'Ritorno',
+	details: 'Dettagli',
+	driver: 'Driver',
 };
 
 window.locale_it.register = {
@@ -223,7 +230,7 @@ window.locale_it.vehicle = {
 	externalClean: 'Esterni',
 	internalClean: 'Interni',
 	noVehiclesInThisMoment: 'Nessun veicolo è al momento disponibile per il periodo da Te richiesto!',
-    labelCannotReserve: 'La Tua prenotazione non può essere accettata, in quanto per il periodo richiesto esiste già una prenotazione a Tuo nome.'
+    labelCannotReserve: 'La Tua prenotazione non puà² essere accettata, in quanto per il periodo richiesto esiste già  una prenotazione a Tuo nome.'
 };
 
 window.locale_it.login = {
@@ -317,8 +324,8 @@ window.locale_it.actionSheet = {
 	segnalation: 'Segnalazione',
 	attention: 'Attenzione',
 	damageInfo1: 'Effettuare la Segnalazione Guasto, solo dopo aver constatato, che il veicolo non è in grado di rientrare al parcheggio e necessita di essere portato o trasferito, presso una officina per la riparazione.',
-	damageInfo2: 'La Segnalazione Guasto, pertanto comporta la chiusura della presente corsa, così da poterti consentire di prenotare un altro veicolo se desiderato. Per chiudere la presente corsa, è richiesto di comunicare peraltro',
-	damageInfo3: 'Si precisa che una volta segnalato il Guasto il veicolo non sarà più utilizzabile',
+	damageInfo2: 'La Segnalazione Guasto, pertanto comporta la chiusura della presente corsa, cosà¬ da poterti consentire di prenotare un altro veicolo se desiderato. Per chiudere la presente corsa, è richiesto di comunicare peraltro',
+	damageInfo3: 'Si precisa che una volta segnalato il Guasto il veicolo non sarà  più utilizzabile',
 	totalKM: 'Chilometri Totali indicati sul cruscotto',
 	noteWithDesc: 'Note (utili per la diagnosi del problema)',
 	needSupport: 'Se il veicolo necessiti di essere rimorchiato o meno',
@@ -367,7 +374,7 @@ window.locale_it.gpp = {
 	addressSection: "Indirizzo",
 	address: "Via e civico",
 	zipCode: "Cap",
-	city: "Città",
+	city: "Città ",
 	country: "Nazione",
 	proceed: "Procedi",
 	registrationLicenseTitle: "La tua patente",

@@ -3,7 +3,7 @@
         <div class="list" ng-show="employeeReservationList.length">
             <a class="item" href ng-repeat="item in employeeReservationList" ng-click="openModal(item);">
                 <h2 class="bold pnr">{{item.name || 'Massimo'}} {{item.surname || 'Lanera'}}</h2>
-                <p>Partenza
+                <p>{{'bookResume.returnPark' | translate}}
                 </p>
                 <ion-grid>
                     <ion-row>
@@ -14,7 +14,7 @@
                             <h2>{{ item.dtp_actual_pickup_date}} {{item.tim_actual_pickup_time}}</h2>
                         </ion-col>
                     </ion-row>
-                    <p>Ritorno</p>
+                    <p>{{'bookResume.pickupPark' | translate}}</p>
                     <ion-row>
                         <ion-col>
                             <h2>{{ item.cmb_return_parking }}</h2>
