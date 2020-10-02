@@ -80,7 +80,7 @@
         </div>
         <div class="pull-right">
             <h2>{{ 'bookings.price' | translate }}</h2>
-            <p class="bold price">{{book.importoPresunto | currency: '€ '}}</p>
+            <p class="bold price">{{book.importoPresunto}} {{selectedClient.currency || '€'}}</p>
         </div>
 
     </div>

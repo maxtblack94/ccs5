@@ -2,6 +2,7 @@ angular.module('starter').controller('PlafondCtrl', function($scope, PopUpServic
     $scope.request = {};
     $scope.plafondList = [];
     $scope.userInfo = InfoFactories.getUserInfo();
+    $scope.selectedClient = InfoFactories.getClientSelected();
 
 
 

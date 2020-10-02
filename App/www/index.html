@@ -4,7 +4,9 @@
 <head class="head">
   <meta charset="utf-8">
   <meta name="format-detection" content="telephone=no">
-  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, viewport-fit=cover">
+  <meta name="viewport" content="initial-scale=1,user-scalable=no, width=device-width, height=device-height, viewport-fit=cover">
+
+ <!--  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, viewport-fit=cover"> -->
   <title></title>
 
   <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -22,7 +24,7 @@
   <script src="http://services.corporatecarsharing.it/webcomponents/locale/lovList.js"></script>
   <script src="lib/ionic/js/ionic.bundle.js"></script>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUwH3aGBFHp6iKbHPRS3TXCfhqEncM8GA" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5tRerxjDU6hYiKU9GHv4TJobmFXUc8bQ" async defer></script>
   <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
   <script src="cordova.js"></script>
 <!--   <script src="js/crop.js"></script>
@@ -96,6 +98,7 @@
   <script src="js/controllers/controllerRegister.js"></script>
   <script src="js/controllers/mapReservation/controllerConfirmMapReservation.js"></script>
   <script src="js/controllers/mapReservation/controllerMapReservation.js"></script>
+  <script src="js/controllers/mapReservation/controllerMapIOSReservation.js"></script>
   <script src="js/directives/ccs-01-action-sheet/controllerActionSheet.js"></script>
   <script src="js/directives/ccs-01-action-sheet/controllerHardDamage.js"></script>
   <script src="js/directives/ccs-01-action-sheet/controllerChangeDriver.js"></script>
@@ -115,7 +118,7 @@
       </ion-nav-bar>
       <ion-nav-view></ion-nav-view>
     </ion-side-menu-content>
-    <ion-side-menu side="left" id="side-menu21">
+    <ion-side-menu side="left" id="side-menu21" ng-hide="currentState === 'mapReservationIos' && !checkIsMenuOpened()">
       <ion-header-bar class="bar-positive">
         <div class="title">{{ 'leftMenu.menuTitle' | translate}}</div>
       </ion-header-bar>

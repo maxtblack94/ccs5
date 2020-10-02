@@ -1,5 +1,5 @@
 <ion-view view-title="{{ 'bookings.title' | translate }}">
-  <div fab ng-click='startBooking()'>
+  <div fab ng-click='startBooking()' ng-if="selectedClient.searchVehicle">
     <div class='ion-android-add'></div>
   </div>
   <div fab ng-click='startReservationWithMap()' ng-if="selectedClient.searchMap" style="bottom: 130px;">

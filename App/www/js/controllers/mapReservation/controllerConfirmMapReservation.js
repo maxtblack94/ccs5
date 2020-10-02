@@ -1,5 +1,6 @@
 angular.module('starter').controller('ConfirmMapReservationCtrl', function(PopUpServices, ScriptServices, $ionicLoading, $state, $filter, $ionicPopup, InfoFactories, $stateParams,$scope) {
     $scope.isSubmit = false;
+    $scope.selectedClient = InfoFactories.getClientSelected();
     function init() {
         $scope.currentVehicle = $stateParams.vehicle;
         $scope.userInfo = InfoFactories.getUserInfo();
@@ -26,29 +27,38 @@ angular.module('starter').controller('ConfirmMapReservationCtrl', function(PopUp
     
 
     $scope.reservationTime = [{
-        code: 20,
-        description: "20 Min"
+        code: 15,
+        description: "15 Min"
     },{
-        code: 40,
-        description: "40 Min"
+        code: 30,
+        description: "30 Min"
+    },{
+        code: 45,
+        description: "45 Min"
     },{
         code: 60,
         description: "1 H"
     },{
-        code: 80,
-        description: "1 H 20 Min"
+        code: 75,
+        description: "1 H 15 Min"
     },{
-        code: 100,
-        description: "1 H 40 Min"
+        code: 90,
+        description: "1 H 30 Min"
+    },{
+        code: 105,
+        description: "1 H 45 Min"
     },{
         code: 120,
         description: "2 H"
     },{
-        code: 140,
-        description: "2 H 20 Min"
+        code: 135,
+        description: "2 H 15 Min"
     },{
-        code: 160,
-        description: "2 H 40 Min"
+        code: 150,
+        description: "2 H 30 Min"
+    },{
+        code: 165,
+        description: "2 H 45 Min"
     },{
         code: 180,
         description: "3 H"

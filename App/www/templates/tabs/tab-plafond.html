@@ -4,7 +4,7 @@
         </ion-refresher>
         <div class="plafond-container">
             <p>{{'commons.currentPlafond' | translate}}</p>
-            <h2>{{ userInfo.registry.plafond || 0 | currency: '€ '}}</h2>
+            <h2>{{ userInfo.registry.plafond || 0}}  {{selectedClient.currency || '€'}}</h2>
         </div>
         <div class="row">
             <div class="col col-80 col-offset-10">
@@ -17,7 +17,7 @@
             <ion-item ng-repeat="moviment in movimentsList" class="item-icon-right">
                 <h2 ng-if="moviment.type === 'charge'">Ricarica {{ moviment.date}}</h2>
                 <h2 ng-if="moviment.type === 'credit'">Addebito {{ moviment.date}}</h2>
-                <p>{{ moviment.amount || 0 | currency: '€ '}}</p>
+                <p>{{ moviment.amount || 0}} {{selectedClient.currency || '€'}}</p>
                 <i class="icon ion-arrow-up-b" style="color: green" ng-if="moviment.type === 'charge'"></i>
                 <i class="icon ion-arrow-down-b" style="color: red" ng-if="moviment.type === 'credit'"></i>
             </ion-item>

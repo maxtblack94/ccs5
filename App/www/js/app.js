@@ -37,11 +37,14 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
     $translateProvider.translations('ro_RO', window.locale_ro);
     $translateProvider.translations('hr_HR', window.locale_hr);
     $translateProvider.useSanitizeValueStrategy(null);
-    if (navigator.language === "it-IT" || navigator.language === "it_IT") {
+
+    var uppercaseLang = navigator.language.toLowerCase();
+
+    if (uppercaseLang.startsWith('it')) {
       $translateProvider.preferredLanguage("it_IT");
-    }else if (navigator.language === "ro-RO" || navigator.language === "ro_RO") {
+    }else if (uppercaseLang.startsWith('ro')) {
       $translateProvider.preferredLanguage("ro_RO");
-    }else if (navigator.language === "hr-HR" || navigator.language === "hr_HR") {
+    }else if (uppercaseLang.startsWith('hr')) {
       $translateProvider.preferredLanguage("hr_HR");
     }else {
       $translateProvider.preferredLanguage('en');
@@ -328,6 +331,16 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
         },
         templateUrl: 'templates/mapReservation/map.html',
         controller: 'MapResercationCtrl'
+      })
+
+      .state('mapReservationIos', {
+        url: '/mapReservationIos',
+        cache: false,
+        params: {
+          parkList: null
+        },
+        templateUrl: 'templates/mapReservation/map.html',
+        controller: 'MapResercationIOSCtrl'
       })
       
       .state('gppRegistration', {
