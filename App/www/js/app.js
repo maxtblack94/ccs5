@@ -142,6 +142,28 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
           }
         }
       })
+
+      .state('tab.history', {
+        url: '/history',
+        cache: false,
+        views: {
+          'tab-history': {
+            templateUrl: 'templates/tabs/tab-history.html',
+            controller: 'HistoryCtrl'
+          }
+        }
+      })
+
+      .state('tab.employeeReservation', {
+        url: '/employeeReservation',
+        cache: false,
+        views: {
+          'tab-employeeReservation': {
+            templateUrl: 'templates/tabs/tab-employeeReservation.html',
+            controller: 'EmployeeReservationCtrl'
+          }
+        }
+      })
       
       .state('tab.sos', {
         url: '/sos',

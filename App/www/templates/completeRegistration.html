@@ -10,7 +10,7 @@
                         <h2>{{service.name}}</h2>
                         <p>{{tarif.text}}
                             <div class='color-cube icon' style=" top: 25px;height: 34%; border: 2px solid #aaa;">
-                                <div style='background-color: {{ tarif.color }};'></div>
+                                <div style='background-color:"{{tarif.color}}"></div>
                             </div>
                         </p>
                         <i ng-if="currentTarif.code === tarif.code" class="icon ion-checkmark-round" style="font-size: 14px; right: 8px; color: #f9f9f9;"></i>

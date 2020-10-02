@@ -76,7 +76,10 @@ window.locale_en.tabs = {
 	vehicles: 'Vehicles',
 	settings: 'Settings',
 	sos: 'SOS',
-	notifications: 'Notifications'
+	notifications: 'Notifications',
+	history: 'History',
+	employeeReservation: 'Planner',
+	details: 'Details',
 };
 
 window.locale_en.notifications = {
@@ -94,7 +97,7 @@ window.locale_en.commons = {
 	confirm: "Confirm",
 	locationNotAviable: 'In order to use the "Start Race" / "End of Race" service available on our APP, it is necessary to allow geolocation of this smartphone. Otherwise you can not be enabled for the service.',
 	retry: 'Try again',
-	legalNotice: 'Copyright © 2016 Corporate Car Solutions Italia  All Rights Reserved',
+	legalNotice: 'Copyright Â© 2016 Corporate Car Solutions Italia  All Rights Reserved',
 	readMore: 'Read more...',
 	search: 'Search...',
 	select: 'Select',
@@ -118,7 +121,6 @@ window.locale_en.commons = {
 	bleConnectionInvalidKey: 'Make sure you have placed the correct vehicle key in the key ring',
 	bleConnectionAlreadyProcessedRequest: 'The request for opening has already been handled previously',
 	bleConnectionNoKey: 'Make sure the vehicle key is in the key ring when closing the vehicle',
-
 	plafond: "Plafond",
 	currentPlafond: "Current plafond",
 	chargePlafond: "Charge plafond",
@@ -133,12 +135,18 @@ window.locale_en.commons = {
 	usernameAlreadyUsed: "Username already in use",
 	profileCreated: "Your profile is being verified. Proceed to activate the payment method",
 	profileAlertModal1: "Profile waiting to be enabled",
-	paymentModalContent: 'Dear Customer, for your protection, you will be asked to authorize a virtual platfond block in order to verify the validity of the data entered. <br><br> For to complete the registration procedure, a required by the bank, it is therefore necessary to press the “Proceed” button. <br>For info and support, contact us at our free number',
+	paymentModalContent: 'Dear Customer, for your protection, you will be asked to authorize a virtual platfond block in order to verify the validity of the data entered. <br><br> For to complete the registration procedure, a required by the bank, it is therefore necessary to press the â€œProceedâ€ button. <br>For info and support, contact us at our free number',
 	noVehicols: "Sorry, but there are no vehicle available",
 	oldDateAlert: "It's not possible to select an old date",
 	futureDateAlert: "It's not possible to select a future date",
 	selectTarif: "Please select a tariff",
-	paymentMethodTitle: "Payment method"
+	paymentMethodTitle: "Payment method",
+	map: "Map",
+	vehicleNotFound: 'The searched vehicle could not be found',
+	phone: 'Phone',
+	start: 'Pickup',
+	stop: 'Return',
+	driver: 'Driver'
 };
 
 window.locale_en.bookResume = {
