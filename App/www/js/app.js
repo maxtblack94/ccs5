@@ -241,6 +241,13 @@ angular.module('starter', ['ionic', 'ngCordova', 'tagged.directives.autogrow', '
         controller: 'SettingsCtrl'
       })
       
+      .state('aboutUs', {
+        url: '/aboutUs',
+        cache: false,
+        templateUrl: 'templates/commons/aboutUs.html',
+        controller: 'aboutUsCtrl'
+      })
+      
       .state('help', {
         url: '/help',
         cache: false,
