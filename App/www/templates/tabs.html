@@ -4,7 +4,9 @@
   <ion-tab title="{{ 'tabs.reservations' | translate}}" icon-off="ion-ios-calendar-outline" icon-on="ion-ios-calendar" href="#/tab/bookings">
     <ion-nav-view name="tab-bookings"></ion-nav-view>
   </ion-tab>
-
+  <ion-tab ng-if="selectedClient.planner" title="{{ 'tabs.employeeReservation' | translate}}" icon-off="ion-ios-filing-outline" icon-on="ion-ios-filing" href="#/tab/employeeReservation">
+    <ion-nav-view name="tab-employeeReservation"></ion-nav-view>
+  </ion-tab>
  <!--  <ion-tab title="{{ 'tabs.plafond' | translate}}" icon-off="ion-card" icon-on="ion-card" href="#/tab/plafond">
     <ion-nav-view name="tab-plafond"></ion-nav-view>
   </ion-tab>
@@ -12,8 +14,12 @@
   <ion-tab ng-if="sosPnr && selectedClient.sos" title="{{ 'tabs.sos' | translate}}" icon-off="ion-ios-medkit-outline" icon-on="ion-ios-medkit" href="#/tab/sos">
     <ion-nav-view name="tab-sos"></ion-nav-view>
   </ion-tab>
-  
-  <ion-tab title="{{ 'tabs.notifications' | translate}}" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/notifications" badge="model.notificationsPending.length" badge-style="badge-balanced">
+
+  <ion-tab ng-if="selectedClient.history" title="{{ 'tabs.history' | translate}}" icon-off="ion-ios-filing-outline" icon-on="ion-ios7-filing" href="#/tab/history">
+    <ion-nav-view name="tab-history"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="{{ 'tabs.notifications' | translate}}" ng-if="true" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/notifications" badge="model.notificationsPending.length" badge-style="badge-balanced">
     <ion-nav-view name="tab-notifications"></ion-nav-view>
   </ion-tab>
 

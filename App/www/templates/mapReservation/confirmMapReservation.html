@@ -34,6 +34,14 @@
                 <p ng-if="request.reserveTime">{{ request.reserveTime.description}}</p>
                 <p ng-if="!request.reserveTime"> {{ 'commons.genericPlaceholder' | translate}} </p>
             </ion-item>
+            <div class="item" ng-if="(currentImport || currentImport === 0) && isSubmit">
+                <div class="pull-left m-right20">
+                    <h2>{{ 'bookings.price' | translate }}</h2>
+                </div>
+                <div class="pull-right m-right20">
+                    <p class="bold price">{{ currentImport}} {{selectedClient.currency || '€'}}</p>
+                </div>
+            </div>
             <ion-item > <!-- ng-click="selectPicklistValue('subscription')" -->
                 <h2>{{ 'commons.subscription' | translate}}<span class="color-error">*</span></h2>
                 <p ng-if="request.subscription">{{ request.subscription.name}}</p>
@@ -44,15 +52,6 @@
                 <p ng-if="request.tarif">{{ request.tarif.text}}</p>
                 <p ng-if="!request.tarif"> {{ 'commons.genericPlaceholder' | translate}} </p>
             </ion-item>
-            <div class="item" ng-if="(currentImport || currentImport === 0) && isSubmit">
-                <div class="pull-left m-right20">
-                    <h2>{{ 'bookings.price' | translate }}</h2>
-                </div>
-                <div class="pull-right m-right20">
-                    <p class="bold price">{{ currentImport | currency: '€ '}}</p>
-                </div>
-            </div>
-
          </ion-list>
 
     </ion-content>

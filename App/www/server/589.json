@@ -1,6 +1,83 @@
 {
   "clientListBooking": [
     {
+      "id": 11104,
+      "value": "AUSLBologna",
+      "text": "AUSL Bologna",
+      "partner": "texa",
+      "cc": false,
+      "telepass": false,
+      "drivingRange": true,
+      "driveName": true,
+      "justifiedUse": false,
+      "btnOpenClose": true,
+      "parkRange": true,
+      "map": true,
+      "lbljustification": "Giustificazione Utilizzo",
+      "lbldestination": "Destinazione",
+      "lbldelay": "Ritarda",
+      "lbljustification2": null,
+      "lbldestination2": null,
+      "lbldelay2": null,
+      "vehicleType": false,
+      "clientCode": "gr54b2",
+      "clientStyle": "http://ccsitalia.it/downloads/app/css/texaApp.css",
+      "logo": "http://ccsitalia.it/downloads/app/logo/texaLogo.png",
+      "serverName": "texa2",
+      "distanceRange": 400,
+      "delay": true,
+      "damage": true,
+      "cleanness": true,
+      "sos": false,
+      "changeDriver": false,
+      "defect": false,
+      "searchMap": false,
+      "searchVehicle": true,
+      "planner": false,
+      "history": false,
+      "contact": {
+        "name": "TEXA TMD Support",
+        "email": "tmdhelp@texa.com",
+        "telephone": "800901175",
+        "timeO": "Lun – Ven 08:00 – 18:00",
+        "timeC": ""
+      },
+      "delayTime": [
+        {
+          "description": "15 Minuti",
+          "code": "15"
+        },
+        {
+          "description": "30 Minuti",
+          "code": "30"
+        },
+        {
+          "description": "45 Minuti",
+          "code": "45"
+        },
+        {
+          "description": "1 Ora",
+          "code": "60"
+        },
+        {
+          "description": "2 Ore",
+          "code": "120"
+        },
+        {
+          "description": "4 Ore",
+          "code": "240"
+        }
+      ],
+      "sosTelephone": "",
+      "helpSection": false,
+      "serverProtocol": "https",
+      "drivingLicense": false,
+      "rangeMessage": "",
+      "rangeError": false,
+      "delaycommunication": 0,
+      "currency": "€"
+    },
+    {
       "id": 1882,
       "value": "Demo",
       "text": "Demo",
@@ -14,8 +91,11 @@
       "parkRange": false,
       "map": false,
       "lbljustification": "Giustificazione Utilizzo",
-      "lbldestination": "Destinazione Trasferta",
+      "lbldestination": "Destinazione",
       "lbldelay": "Ritarda",
+      "lbljustification2": null,
+      "lbldestination2": null,
+      "lbldelay2": null,
       "vehicleType": false,
       "clientCode": "6xc45e",
       "clientStyle": "http://ccsitalia.it/downloads/app/css/cssApp.css",
@@ -28,6 +108,10 @@
       "sos": false,
       "changeDriver": true,
       "defect": false,
+      "searchMap": false,
+      "searchVehicle": true,
+      "planner": false,
+      "history": false,
       "contact": {
         "name": "CCS Support",
         "email": "support@ccsitalia.it",
@@ -39,7 +123,11 @@
       "sosTelephone": "",
       "helpSection": false,
       "serverProtocol": "https",
-      "drivingLicense": false
+      "drivingLicense": false,
+      "rangeMessage": "",
+      "rangeError": false,
+      "delaycommunication": 0,
+      "currency": "€"
     },
     {
       "id": 7204,
@@ -55,12 +143,15 @@
       "parkRange": true,
       "map": true,
       "lbljustification": "Giustificazione Utilizzo",
-      "lbldestination": "Luogo Utilizzo",
+      "lbldestination": "Destinazione",
       "lbldelay": "Ritarda",
+      "lbljustification2": null,
+      "lbldestination2": null,
+      "lbldelay2": null,
       "vehicleType": false,
       "clientCode": "n9df42",
-      "clientStyle": "http://ccsitalia.it/downloads/app/css/leasysApp.css",
-      "logo": "http://ccsitalia.it/downloads/app/logo/leasysLogo.png",
+      "clientStyle": "http://ccsitalia.it/downloads/app/css/cssApp.css",
+      "logo": "http://ccsitalia.it/downloads/app/logo/fcsLogo.png",
       "serverName": "DemoBB",
       "distanceRange": 1000,
       "delay": true,
@@ -69,8 +160,12 @@
       "sos": false,
       "changeDriver": false,
       "defect": false,
+      "searchMap": true,
+      "searchVehicle": true,
+      "planner": false,
+      "history": false,
       "contact": {
-        "name": "CCS LEASYS Service Support",
+        "name": "CCS Support",
         "email": "support@ccsitalia.it",
         "telephone": "+39 06 92939946",
         "timeO": "Lun – Ven 09:00 – 13:00 / 14:00 – 18:00",
@@ -80,7 +175,11 @@
       "sosTelephone": "",
       "helpSection": false,
       "serverProtocol": "https",
-      "drivingLicense": false
+      "drivingLicense": false,
+      "rangeMessage": "",
+      "rangeError": false,
+      "delaycommunication": 0,
+      "currency": "€"
     },
     {
       "id": 8004,
@@ -96,80 +195,67 @@
       "parkRange": true,
       "map": true,
       "lbljustification": "Giustificazione Utilizzo",
-      "lbldestination": "Luogo Utilizzo",
+      "lbldestination": "Destinazione",
       "lbldelay": "Ritarda",
+      "lbljustification2": null,
+      "lbldestination2": null,
+      "lbldelay2": null,
       "vehicleType": false,
       "clientCode": "r2c9dc",
-      "clientStyle": "http://ccsitalia.it/downloads/app/css/texaApp.css",
-      "logo": "http://ccsitalia.it/downloads/app/logo/texaLogo.png",
+      "clientStyle": "http://ccsitalia.it/downloads/app/css/cssApp.css",
+      "logo": "http://ccsitalia.it/downloads/app/logo/fcsLogo.png",
       "serverName": "devbb",
-      "distanceRange": 0,
-      "delay": false,
-      "damage": false,
-      "cleanness": false,
-      "sos": false,
+      "distanceRange": 1000,
+      "delay": true,
+      "damage": true,
+      "cleanness": true,
+      "sos": true,
       "changeDriver": false,
       "defect": false,
+      "searchMap": true,
+      "searchVehicle": true,
+      "planner": false,
+      "history": false,
       "contact": {
-        "name": "CCS UNIPOL Service Support",
+        "name": "CCS Support",
         "email": "support@ccsitalia.it",
         "telephone": "+39 06 92939946",
         "timeO": "Lun – Ven 09:00 – 13:00 / 14:00 – 18:00",
         "timeC": ""
       },
-      "delayTime": [],
+      "delayTime": [
+        {
+          "description": "15 Minuti",
+          "code": "15"
+        },
+        {
+          "description": "30 Minuti",
+          "code": "30"
+        },
+        {
+          "description": "45 Minuti",
+          "code": "45"
+        },
+        {
+          "description": "1 Ora",
+          "code": "60"
+        }
+      ],
       "sosTelephone": "",
       "helpSection": false,
       "serverProtocol": "https",
-      "drivingLicense": false
+      "drivingLicense": false,
+      "rangeMessage": "",
+      "rangeError": false,
+      "delaycommunication": 0,
+      "currency": "€"
     },
     {
       "id": 9304,
       "value": "Enel",
       "text": "Enel",
       "partner": "texa",
-      "cc": false,
-      "telepass": true,
-      "drivingRange": true,
-      "driveName": true,
-      "justifiedUse": true,
-      "btnOpenClose": true,
-      "parkRange": true,
-      "map": true,
-      "lbljustification": "Giustificazione Utilizzo",
-      "lbldestination": "Luogo Utilizzo",
-      "lbldelay": "Ritarda",
-      "vehicleType": false,
-      "clientCode": "73g2f5",
-      "clientStyle": "http://ccsitalia.it/downloads/app/css/texaApp.css",
-      "logo": "http://ccsitalia.it/downloads/app/logo/texaLogo.png",
-      "serverName": "texa",
-      "distanceRange": 10000,
-      "delay": false,
-      "damage": false,
-      "cleanness": false,
-      "sos": false,
-      "changeDriver": false,
-      "defect": false,
-      "contact": {
-        "name": "CCS Studio Creating Service Support",
-        "email": "support@ccsitalia.it",
-        "telephone": "+39 06 92939946",
-        "timeO": "Lun – Ven 09:00 – 13:00 / 14:00 – 18:00",
-        "timeC": ""
-      },
-      "delayTime": [],
-      "sosTelephone": "",
-      "helpSection": false,
-      "serverProtocol": "https",
-      "drivingLicense": false
-    },
-    {
-      "id": 10504,
-      "value": "E-vai",
-      "text": "E-vai",
-      "partner": "evai",
-      "cc": false,
+      "cc": true,
       "telepass": true,
       "drivingRange": true,
       "driveName": false,
@@ -178,31 +264,360 @@
       "parkRange": true,
       "map": true,
       "lbljustification": "Giustificazione Utilizzo",
-      "lbldestination": "",
+      "lbldestination": "Destinazione",
       "lbldelay": "Ritarda",
+      "lbljustification2": null,
+      "lbldestination2": null,
+      "lbldelay2": null,
       "vehicleType": false,
-      "clientCode": "h5rt8d",
+      "clientCode": "73g2f5",
       "clientStyle": "http://ccsitalia.it/downloads/app/css/texaApp.css",
-      "serverName": "e-vai",
-      "distanceRange": 400,
-      "delay": false,
-      "damage": false,
-      "cleanness": false,
+      "logo": "http://ccsitalia.it/downloads/app/logo/texaLogo.png",
+      "serverName": "texa",
+      "distanceRange": 1000,
+      "delay": true,
+      "damage": true,
+      "cleanness": true,
       "sos": false,
       "changeDriver": false,
       "defect": false,
+      "searchMap": false,
+      "searchVehicle": true,
+      "planner": false,
+      "history": false,
+      "contact": {
+        "name": "CCS Enel Service Support",
+        "email": "support@ccsitalia.it",
+        "telephone": "+39 06 92939946",
+        "timeO": "Lun – Ven 09:00 – 13:00 / 14:00 – 18:00",
+        "timeC": ""
+      },
+      "delayTime": [
+        {
+          "description": "15 Minuti",
+          "code": "15"
+        },
+        {
+          "description": "30 Minuti",
+          "code": "30"
+        },
+        {
+          "description": "1 Ora",
+          "code": "60"
+        },
+        {
+          "description": "2 Ore",
+          "code": "120"
+        },
+        {
+          "description": "4 Ore",
+          "code": "240"
+        }
+      ],
+      "sosTelephone": "",
+      "helpSection": false,
+      "serverProtocol": "https",
+      "drivingLicense": false,
+      "rangeMessage": "",
+      "rangeError": false,
+      "delaycommunication": 0,
+      "currency": "€"
+    },
+    {
+      "id": 10504,
+      "value": "E-vai",
+      "text": "E-vai",
+      "partner": "evai",
+      "cc": false,
+      "telepass": false,
+      "drivingRange": true,
+      "driveName": false,
+      "justifiedUse": true,
+      "btnOpenClose": true,
+      "parkRange": true,
+      "map": true,
+      "lbljustification": "Giustificazione Utilizzo",
+      "lbldestination": "Destinazione",
+      "lbldelay": "Ritarda",
+      "lbljustification2": null,
+      "lbldestination2": null,
+      "lbldelay2": null,
+      "vehicleType": false,
+      "clientCode": "h5rt8d",
+      "clientStyle": "http://ccsitalia.it/downloads/app/css/evaiApp.css",
+      "logo": "http://ccsitalia.it/downloads/app/logo/evaiLogo.png",
+      "serverName": "e-vai",
+      "distanceRange": 400,
+      "delay": false,
+      "damage": true,
+      "cleanness": true,
+      "sos": true,
+      "changeDriver": false,
+      "defect": true,
+      "searchMap": false,
+      "searchVehicle": true,
+      "planner": false,
+      "history": false,
       "contact": {
         "name": "Customer Service E-VAI",
         "email": "customerservice@e-vai.com",
         "telephone": "800.77.44.55",
-        "timeO": "Lun – Ven 09:00 – 13:00 / 14:00 – 18:00",
+        "timeO": "07:30 - 22:00",
         "timeC": ""
       },
-      "delayTime": [],
+      "delayTime": [
+        {
+          "description": "30 Minuti",
+          "code": "30"
+        },
+        {
+          "description": "1 Ora",
+          "code": "60"
+        },
+        {
+          "description": "2 Ore",
+          "code": "120"
+        }
+      ],
+      "sosTelephone": "800.77.44.55",
+      "helpSection": false,
+      "serverProtocol": "https",
+      "drivingLicense": true,
+      "rangeMessage": "",
+      "rangeError": false,
+      "delaycommunication": 60,
+      "currency": "€"
+    },
+    {
+      "id": 10804,
+      "value": "Gpp",
+      "text": "Gpp",
+      "partner": "ccs",
+      "cc": false,
+      "telepass": false,
+      "drivingRange": true,
+      "driveName": false,
+      "justifiedUse": true,
+      "btnOpenClose": true,
+      "parkRange": true,
+      "map": true,
+      "lbljustification": "Giustificazione Utilizzo",
+      "lbldestination": "Destinazione",
+      "lbldelay": "Ritarda",
+      "lbljustification2": null,
+      "lbldestination2": null,
+      "lbldelay2": null,
+      "vehicleType": false,
+      "clientCode": "54f1c2",
+      "clientStyle": "http://ccsitalia.it/downloads/app/css/texaApp.css",
+      "logo": "http://ccsitalia.it/downloads/app/logo/gppLogo.png",
+      "serverName": "gpp",
+      "distanceRange": 400,
+      "delay": true,
+      "damage": true,
+      "cleanness": true,
+      "sos": false,
+      "changeDriver": false,
+      "defect": true,
+      "searchMap": true,
+      "searchVehicle": false,
+      "planner": false,
+      "history": false,
+      "contact": {
+        "name": "Korisnička podrška GPP",
+        "email": "podrska_ea@gpp-osijek.com",
+        "telephone": "08007555",
+        "timeO": "Pon – Pet 07:00 – 15:00",
+        "timeC": ""
+      },
+      "delayTime": [
+        {
+          "description": "15 Minuti",
+          "code": "15"
+        },
+        {
+          "description": "30 Minuti",
+          "code": "30"
+        },
+        {
+          "description": "45 Minuti",
+          "code": "45"
+        },
+        {
+          "description": "1 Ora",
+          "code": "60"
+        },
+        {
+          "description": "2 Ore",
+          "code": "120"
+        },
+        {
+          "description": "3 Ore",
+          "code": "180"
+        }
+      ],
       "sosTelephone": "",
       "helpSection": false,
       "serverProtocol": "https",
-      "drivingLicense": false
+      "drivingLicense": false,
+      "rangeMessage": "Errore",
+      "rangeError": true,
+      "delaycommunication": 0,
+      "currency": "HRK"
+    },
+    {
+      "id": 11404,
+      "value": "INGV",
+      "text": "INGV",
+      "partner": "texa",
+      "cc": true,
+      "telepass": true,
+      "drivingRange": true,
+      "driveName": false,
+      "justifiedUse": true,
+      "btnOpenClose": true,
+      "parkRange": true,
+      "map": true,
+      "lbljustification": "Giustificazione Utilizzo",
+      "lbldestination": "Destinazione",
+      "lbldelay": "Ritarda",
+      "lbljustification2": null,
+      "lbldestination2": null,
+      "lbldelay2": null,
+      "vehicleType": false,
+      "clientCode": "34hu84",
+      "clientStyle": "http://ccsitalia.it/downloads/app/css/texaApp.css",
+      "logo": "http://ccsitalia.it/downloads/app/logo/texaLogo.png",
+      "serverName": "texa2",
+      "distanceRange": 400,
+      "delay": true,
+      "damage": true,
+      "cleanness": true,
+      "sos": false,
+      "changeDriver": false,
+      "defect": false,
+      "searchMap": false,
+      "searchVehicle": true,
+      "planner": true,
+      "history": false,
+      "contact": {
+        "name": "TEXA TMD Support",
+        "email": "tmdhelp@texa.com",
+        "telephone": "800901175",
+        "timeO": "Lun – Ven 08:00 – 18:00",
+        "timeC": ""
+      },
+      "delayTime": [
+        {
+          "description": "15 Minuti",
+          "code": "15"
+        },
+        {
+          "description": "30 Minuti",
+          "code": "30"
+        },
+        {
+          "description": "45 Minuti",
+          "code": "45"
+        },
+        {
+          "description": "1 Ora",
+          "code": "60"
+        },
+        {
+          "description": "2 Ore",
+          "code": "120"
+        },
+        {
+          "description": "4 Ore",
+          "code": "240"
+        }
+      ],
+      "sosTelephone": "",
+      "helpSection": false,
+      "serverProtocol": "https",
+      "drivingLicense": false,
+      "rangeMessage": "",
+      "rangeError": false,
+      "delaycommunication": 0,
+      "currency": "€"
+    },
+    {
+      "id": 11204,
+      "value": "ISP",
+      "text": "Intesa",
+      "partner": "texa",
+      "cc": true,
+      "telepass": true,
+      "drivingRange": true,
+      "driveName": true,
+      "justifiedUse": true,
+      "btnOpenClose": true,
+      "parkRange": true,
+      "map": true,
+      "lbljustification": "Giustificazione Utilizzo",
+      "lbldestination": "Destinazione",
+      "lbldelay": "Ritarda",
+      "lbljustification2": null,
+      "lbldestination2": null,
+      "lbldelay2": null,
+      "vehicleType": false,
+      "clientCode": "8op02c",
+      "clientStyle": "http://ccsitalia.it/downloads/app/css/texaApp.css",
+      "logo": "http://ccsitalia.it/downloads/app/logo/texaLogo.png",
+      "serverName": "texa2",
+      "distanceRange": 400,
+      "delay": true,
+      "damage": true,
+      "cleanness": true,
+      "sos": false,
+      "changeDriver": false,
+      "defect": false,
+      "searchMap": false,
+      "searchVehicle": true,
+      "planner": false,
+      "history": false,
+      "contact": {
+        "name": "CCS Service Support",
+        "email": "support@ccsitalia.it",
+        "telephone": "+39 06 92939946",
+        "timeO": "Lun – Ven 09:00 – 13:00 / 14:00 – 18:00",
+        "timeC": ""
+      },
+      "delayTime": [
+        {
+          "description": "15 Minuti",
+          "code": "15"
+        },
+        {
+          "description": "30 Minuti",
+          "code": "30"
+        },
+        {
+          "description": "45 Minuti",
+          "code": "45"
+        },
+        {
+          "description": "1 Ora",
+          "code": "60"
+        },
+        {
+          "description": "2 Ore",
+          "code": "120"
+        },
+        {
+          "description": "4 Ore",
+          "code": "240"
+        }
+      ],
+      "sosTelephone": "",
+      "helpSection": false,
+      "serverProtocol": "https",
+      "drivingLicense": false,
+      "rangeMessage": "",
+      "rangeError": false,
+      "delaycommunication": 0,
+      "currency": "€"
     },
     {
       "id": 3941,
@@ -218,8 +633,11 @@
       "parkRange": true,
       "map": true,
       "lbljustification": "Giustificazione Utilizzo",
-      "lbldestination": "Luogo Utilizzo",
+      "lbldestination": "Destinazione",
       "lbldelay": "Ritarda",
+      "lbljustification2": null,
+      "lbldestination2": null,
+      "lbldelay2": null,
       "vehicleType": false,
       "clientCode": "cl452s",
       "clientStyle": "http://ccsitalia.it/downloads/app/css/leasysApp.css",
@@ -232,6 +650,10 @@
       "sos": false,
       "changeDriver": false,
       "defect": false,
+      "searchMap": false,
+      "searchVehicle": true,
+      "planner": false,
+      "history": false,
       "contact": {
         "name": "CCS LEASYS Service Support",
         "email": "support@ccsitalia.it",
@@ -243,7 +665,165 @@
       "sosTelephone": "",
       "helpSection": false,
       "serverProtocol": "https",
-      "drivingLicense": false
+      "drivingLicense": false,
+      "rangeMessage": "",
+      "rangeError": false,
+      "delaycommunication": 0,
+      "currency": "€"
+    },
+    {
+      "id": 11504,
+      "value": "Petrol",
+      "text": "Petrol",
+      "partner": "texa",
+      "cc": false,
+      "telepass": false,
+      "drivingRange": true,
+      "driveName": false,
+      "justifiedUse": true,
+      "btnOpenClose": true,
+      "parkRange": true,
+      "map": true,
+      "lbljustification": "Giustificazione Utilizzo",
+      "lbldestination": "Destinazione",
+      "lbldelay": "Ritarda",
+      "lbljustification2": null,
+      "lbldestination2": null,
+      "lbldelay2": null,
+      "vehicleType": false,
+      "clientCode": "v5e89d",
+      "clientStyle": "http://ccsitalia.it/downloads/app/css/texaApp.css",
+      "logo": "http://ccsitalia.it/downloads/app/logo/texaLogo.png",
+      "serverName": "texa2",
+      "distanceRange": 400,
+      "delay": true,
+      "damage": true,
+      "cleanness": true,
+      "sos": false,
+      "changeDriver": false,
+      "defect": false,
+      "searchMap": false,
+      "searchVehicle": true,
+      "planner": false,
+      "history": false,
+      "contact": {
+        "name": "TEXA TMD Support",
+        "email": "tmdhelp@texa.com",
+        "telephone": "800901175",
+        "timeO": "Lun – Ven 08:00 – 18:00",
+        "timeC": ""
+      },
+      "delayTime": [
+        {
+          "description": "15 Minuti",
+          "code": "15"
+        },
+        {
+          "description": "30 Minuti",
+          "code": "30"
+        },
+        {
+          "description": "45 Minuti",
+          "code": "45"
+        },
+        {
+          "description": "1 Ora",
+          "code": "60"
+        },
+        {
+          "description": "2 Ore",
+          "code": "120"
+        },
+        {
+          "description": "4 Ore",
+          "code": "240"
+        }
+      ],
+      "sosTelephone": "",
+      "helpSection": false,
+      "serverProtocol": "https",
+      "drivingLicense": false,
+      "rangeMessage": "",
+      "rangeError": false,
+      "delaycommunication": 0,
+      "currency": "€"
+    },
+    {
+      "id": 11304,
+      "value": "Roma Mobilità",
+      "text": "Roma Mobilità",
+      "partner": "ccs",
+      "cc": true,
+      "telepass": true,
+      "drivingRange": true,
+      "driveName": true,
+      "justifiedUse": true,
+      "btnOpenClose": true,
+      "parkRange": true,
+      "map": true,
+      "lbljustification": "Giustificazione Utilizzo",
+      "lbldestination": "Destinazione",
+      "lbldelay": "Ritarda",
+      "lbljustification2": null,
+      "lbldestination2": null,
+      "lbldelay2": null,
+      "vehicleType": false,
+      "clientCode": "58b3d4",
+      "clientStyle": "http://ccsitalia.it/downloads/app/css/cdrApp.css",
+      "logo": "http://ccsitalia.it/downloads/app/logo/cdrLogo.png",
+      "serverName": "isp",
+      "distanceRange": 400,
+      "delay": true,
+      "damage": true,
+      "cleanness": true,
+      "sos": false,
+      "changeDriver": false,
+      "defect": false,
+      "searchMap": false,
+      "searchVehicle": true,
+      "planner": false,
+      "history": false,
+      "contact": {
+        "name": "CCS Service Support",
+        "email": "support@ccsitalia.it",
+        "telephone": "+39 06 92939946",
+        "timeO": "Lun – Ven 09:00 – 13:00 / 14:00 – 18:00",
+        "timeC": ""
+      },
+      "delayTime": [
+        {
+          "description": "15 Minuti",
+          "code": "15"
+        },
+        {
+          "description": "30 Minuti",
+          "code": "30"
+        },
+        {
+          "description": "45 Minuti",
+          "code": "45"
+        },
+        {
+          "description": "1 Ora",
+          "code": "60"
+        },
+        {
+          "description": "2 Ore",
+          "code": "120"
+        },
+        {
+          "description": "4 Ore",
+          "code": "240"
+        }
+      ],
+      "sosTelephone": "",
+      "helpSection": false,
+      "serverProtocol": "https",
+      "drivingLicense": false,
+      "rangeMessage": "",
+      "rangeError": false,
+      "delaycommunication": 0,
+      "currency": "€"
     },
     {
       "id": 9004,
@@ -259,8 +839,11 @@
       "parkRange": true,
       "map": true,
       "lbljustification": "Giustificazione Utilizzo",
-      "lbldestination": "Luogo Utilizzo",
+      "lbldestination": "Destinazione",
       "lbldelay": "Ritarda",
+      "lbljustification2": null,
+      "lbldestination2": null,
+      "lbldelay2": null,
       "vehicleType": false,
       "clientCode": "87gt9c",
       "clientStyle": "http://ccsitalia.it/downloads/app/css/texaApp.css",
@@ -273,6 +856,10 @@
       "sos": false,
       "changeDriver": false,
       "defect": false,
+      "searchMap": false,
+      "searchVehicle": true,
+      "planner": false,
+      "history": false,
       "contact": {
         "name": "CCS Studio Creating Service Support",
         "email": "support@ccsitalia.it",
@@ -284,7 +871,11 @@
       "sosTelephone": "",
       "helpSection": false,
       "serverProtocol": "https",
-      "drivingLicense": false
+      "drivingLicense": false,
+      "rangeMessage": "",
+      "rangeError": false,
+      "delaycommunication": 0,
+      "currency": "€"
     },
     {
       "id": 1881,
@@ -300,8 +891,11 @@
       "parkRange": false,
       "map": false,
       "lbljustification": "Giustificazione Utilizzo",
-      "lbldestination": "Luogo Utilizzo",
+      "lbldestination": "Destinazione",
       "lbldelay": "Ritarda",
+      "lbljustification2": null,
+      "lbldestination2": null,
+      "lbldelay2": null,
       "vehicleType": true,
       "clientCode": "ug6r1t",
       "clientStyle": "http://corporatecarsharing.it/downloads/app/css/ternaApp.css",
@@ -314,6 +908,10 @@
       "sos": false,
       "changeDriver": true,
       "defect": false,
+      "searchMap": false,
+      "searchVehicle": true,
+      "planner": false,
+      "history": false,
       "contact": {
         "name": "CCS TERNA Service Support",
         "email": "ccsterna.it@dekra.com",
@@ -342,14 +940,18 @@
       "sosTelephone": "0606060606",
       "helpSection": true,
       "serverProtocol": "https",
-      "drivingLicense": false
+      "drivingLicense": false,
+      "rangeMessage": "",
+      "rangeError": false,
+      "delaycommunication": 0,
+      "currency": "€"
     },
     {
-      "id": 3677,
+      "id": 10704,
       "value": "Texa",
-      "text": "Unipol",
+      "text": "Texa",
       "partner": "texa",
-      "cc": false,
+      "cc": true,
       "telepass": true,
       "drivingRange": true,
       "driveName": true,
@@ -358,32 +960,145 @@
       "parkRange": true,
       "map": true,
       "lbljustification": "Giustificazione Utilizzo",
-      "lbldestination": "Luogo Utilizzo",
+      "lbldestination": "Destinazione",
       "lbldelay": "Ritarda",
+      "lbljustification2": null,
+      "lbldestination2": null,
+      "lbldelay2": null,
       "vehicleType": false,
       "clientCode": "73d3z1",
       "clientStyle": "http://ccsitalia.it/downloads/app/css/texaApp.css",
       "logo": "http://ccsitalia.it/downloads/app/logo/texaLogo.png",
       "serverName": "texa",
       "distanceRange": 400,
-      "delay": false,
-      "damage": false,
-      "cleanness": false,
+      "delay": true,
+      "damage": true,
+      "cleanness": true,
       "sos": false,
       "changeDriver": false,
       "defect": false,
+      "searchMap": false,
+      "searchVehicle": true,
+      "planner": false,
+      "history": false,
       "contact": {
-        "name": "CCS UNIPOL Service Support",
+        "name": "CCS Service Support",
         "email": "support@ccsitalia.it",
         "telephone": "+39 06 92939946",
         "timeO": "Lun – Ven 09:00 – 13:00 / 14:00 – 18:00",
         "timeC": ""
       },
-      "delayTime": [],
+      "delayTime": [
+        {
+          "description": "15 Minuti",
+          "code": "15"
+        },
+        {
+          "description": "30 Minuti",
+          "code": "30"
+        },
+        {
+          "description": "45 Minuti",
+          "code": "45"
+        },
+        {
+          "description": "1 Ora",
+          "code": "60"
+        },
+        {
+          "description": "2 Ore",
+          "code": "120"
+        },
+        {
+          "description": "4 Ore",
+          "code": "240"
+        }
+      ],
       "sosTelephone": "",
       "helpSection": false,
       "serverProtocol": "https",
-      "drivingLicense": false
+      "drivingLicense": false,
+      "rangeMessage": "",
+      "rangeError": false,
+      "delaycommunication": 0,
+      "currency": "€"
+    },
+    {
+      "id": 3677,
+      "value": "Unipol",
+      "text": "Unipol",
+      "partner": "texa",
+      "cc": true,
+      "telepass": true,
+      "drivingRange": true,
+      "driveName": false,
+      "justifiedUse": true,
+      "btnOpenClose": true,
+      "parkRange": true,
+      "map": true,
+      "lbljustification": "Giustificazione Utilizzo",
+      "lbldestination": "Destinazione",
+      "lbldelay": "Ritarda",
+      "lbljustification2": null,
+      "lbldestination2": null,
+      "lbldelay2": null,
+      "vehicleType": false,
+      "clientCode": "@3693!",
+      "clientStyle": "http://ccsitalia.it/downloads/app/css/texaApp.css",
+      "logo": "http://ccsitalia.it/downloads/app/logo/unipolLogo.png",
+      "serverName": "unipol",
+      "distanceRange": 400,
+      "delay": true,
+      "damage": true,
+      "cleanness": true,
+      "sos": false,
+      "changeDriver": false,
+      "defect": false,
+      "searchMap": false,
+      "searchVehicle": true,
+      "planner": false,
+      "history": false,
+      "contact": {
+        "name": "CCS Service Support",
+        "email": "support@ccsitalia.it",
+        "telephone": "+39 06 92939946",
+        "timeO": "Lun – Ven 09:00 – 13:00 / 14:00 – 18:00",
+        "timeC": ""
+      },
+      "delayTime": [
+        {
+          "description": "15 Minuti",
+          "code": "15"
+        },
+        {
+          "description": "30 Minuti",
+          "code": "30"
+        },
+        {
+          "description": "45 Minuti",
+          "code": "45"
+        },
+        {
+          "description": "1 Ora",
+          "code": "60"
+        },
+        {
+          "description": "2 Ore",
+          "code": "120"
+        },
+        {
+          "description": "4 Ore",
+          "code": "240"
+        }
+      ],
+      "sosTelephone": "",
+      "helpSection": false,
+      "serverProtocol": "https",
+      "drivingLicense": false,
+      "rangeMessage": "",
+      "rangeError": false,
+      "delaycommunication": 0,
+      "currency": "€"
     },
     {
       "id": 5104,
@@ -399,8 +1114,11 @@
       "parkRange": false,
       "map": false,
       "lbljustification": "Giustificazione Utilizzo",
-      "lbldestination": "Luogo Utilizzo",
+      "lbldestination": "Destinazione",
       "lbldelay": "Ritarda",
+      "lbljustification2": null,
+      "lbldestination2": null,
+      "lbldelay2": null,
       "vehicleType": true,
       "clientCode": "t6h7hj",
       "clientStyle": "http://corporatecarsharing.it/downloads/app/css/windtreApp.css",
@@ -413,6 +1131,10 @@
       "sos": false,
       "changeDriver": false,
       "defect": true,
+      "searchMap": false,
+      "searchVehicle": true,
+      "planner": false,
+      "history": false,
       "contact": {
         "name": "CCS WindTre Service Support",
         "email": "ccswindtre.it@dekra.com",
@@ -441,7 +1163,11 @@
       "sosTelephone": "",
       "helpSection": false,
       "serverProtocol": "https",
-      "drivingLicense": true
+      "drivingLicense": true,
+      "rangeMessage": "",
+      "rangeError": false,
+      "delaycommunication": 0,
+      "currency": "€"
     }
   ]
 }

@@ -2,15 +2,18 @@ angular.module('starter').factory("LanguageService", function($translate) {
     var currentLanguage = navigator.language;
     var tenForceAuthID = undefined;
     function getTenForceAuthID() {
-        switch (currentLanguage) {
-            case 'ro-RO':
-            case 'ro_RO':
+        switch (currentLanguage.toUpperCase()) {
+            case 'RO':
+            case 'RO-RO':
+            case 'RO_RO':
                 tenForceAuthID = 'dGVuZm9yY2Uucm9AVEYuY29tfGRlbW9ybzE4NDUy';
                 break;
-            case 'it-IT':
-            case 'it_IT':
+            case 'IT':
+            case 'IT-IT':
+            case 'IT_IT':
                 tenForceAuthID = 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4';
                 break;
+            case 'HR':
             case 'hr-HR':
             case 'hr_HR':
                 tenForceAuthID = 'dGVuZm9yY2UuaHJAVEYuY29tfGRlbW9jcm9hemlhMjAxOQ==';

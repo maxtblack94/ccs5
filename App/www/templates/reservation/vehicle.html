@@ -73,7 +73,7 @@
           </div>
           <div class="pull-right">
             <h2>{{ 'bookings.price' | translate }}</h2>
-            <p class="bold price">{{car.importoPresunto | currency: '€ '}}</p>
+            <p class="bold price">{{car.importoPresunto}}  {{selectedClient.currency || '€'}}</p>
           </div>
         </div>
       </div>
@@ -114,7 +114,7 @@
           </div>
           <div class="pull-right">
             <h2>{{ 'bookings.price' | translate }}</h2>
-            <p class="bold price">{{car.importoPresunto | currency: '€ '}}</p>
+            <p class="bold price">{{car.importoPresunto}} {{selectedClient.currency || '€'}}</p>
           </div>
         </div>
       </div>

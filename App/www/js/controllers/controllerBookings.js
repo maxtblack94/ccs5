@@ -636,7 +636,7 @@ angular.module('starter').controller('BookingsCtrl', function ($q, MapReservatio
                         if (!data.data) {
                             PopUpServices.messagePopup($filter('translate')('commons.noVehicols'), $filter('translate')('commons.attention'));
                         } else {
-                            $state.go('mapReservation', {parkList: data.data});
+                            $state.go(ionic.Platform.isAndroid() ? 'mapReservation': 'mapReservationIos', {parkList: data.data});
                         }
                         
                     }, function (err) {

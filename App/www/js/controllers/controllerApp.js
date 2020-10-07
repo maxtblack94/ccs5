@@ -1,4 +1,4 @@
-angular.module('starter').controller('AppCtrl', function(ScriptServices, InfoFactories, $rootScope, $scope, $state) {
+angular.module('starter').controller('AppCtrl', function(ScriptServices, InfoFactories, $rootScope, $scope, $state, $ionicSideMenuDelegate) {
     
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
         $scope.currentState = toState.name;
@@ -21,6 +21,10 @@ angular.module('starter').controller('AppCtrl', function(ScriptServices, InfoFac
                 //PopUpServices.errorPopup("Non è stato possibile modificare i contatti");
             })
         });
+    }
+
+    $scope.checkIsMenuOpened = function () {
+        return $ionicSideMenuDelegate.isOpen()
     }
 
     $scope.changeStateContacts = function(){

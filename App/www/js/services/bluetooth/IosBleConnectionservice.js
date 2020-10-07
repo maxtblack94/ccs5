@@ -87,7 +87,7 @@ angular.module('starter').factory("IosBleConnectionService", function(BluetoothS
     function manageNotFoundVehicle (index, devices) {
         if (index+1 >= devices.length) {
             disconnect();
-            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorCode: 'NOT_FOUND_VEHICLE', errorMessage: 'Non è stato possibile trovare il veicolo ricercato'});
+            $rootScope.$broadcast('bleInteraction', {resultStatus: 'KO', errorCode: 'NOT_FOUND_VEHICLE', errorMessage:  $filter('translate')('commons.vehicleNotFound')});
         } else {
             disconnect(index+1);
         }

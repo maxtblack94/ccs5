@@ -1,0 +1,52 @@
+<ion-modal-view>
+    <ion-nav-bar class="bar-positive">
+        <ion-nav-title>
+            {{ 'commons.details' | translate }}
+        </ion-nav-title>
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear" ng-click="closeModal()"> {{ 'commons.close' | translate }}</button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content>
+        <div class="list card" style="margin-top:70px">
+            <div class="item">
+                <p class="pull-left bold">{{ 'bookings.pnr' | translate }}</p>
+                <h2 class="pull-right bold pnr"> {{ currentItem.txb_pnr }}</h2>
+            </div>
+            <div class="item">
+                <p class="pull-left bold">{{ 'commons.driver' | translate }}</p>
+                <h2 class="pull-right "> {{ currentItem.name || 'Nome' }} {{ currentItem.surname || 'Cognome'}}</h2>
+            </div>
+            <div class="item" ng-if="currentItem.phone">
+                <p class="pull-left bold">{{ 'commons.phone' | translate }}</p>
+                <h2 class="pull-right "> {{ currentItem.phone || '1112233444' }}</h2>
+            </div>
+            <div class="item">
+                <div class="pull-left" style="width: 70%">
+                    <h2 class="brand_model">{{ currentItem.cmb_brand_model }}</h2>
+                    <p>{{ 'bookings.plate' | translate }}</p>
+                    <h2>{{ currentItem.txb_plate }}</h2>
+                </div>
+                <div class="pull-right">
+                    
+                        <img ng-src="{{ currentItem.ltf_url_image_vehicle_max ? currentItem.ltf_url_image_vehicle_max : 'icons/vehicle-default-l.jpg' }}"
+                            style='max-width: 94px;'>
+                    </div>
+            </div>
+            <div class="item">
+                <div class="pull-left">
+                    <h2>{{ 'bookings.get' | translate }}</h2>
+                    <p>{{ currentItem.cmb_pickup_parking }}</p>
+                </div>
+                <p class="pull-right value">{{currentItem.dtp_actual_pickup_date || currentItem.dtp_pickup_date}} {{currentItem.tim_actual_pickup_time && currentItem.tim_actual_pickup_time !== '00:00' ? currentItem.tim_actual_pickup_time : currentItem.tim_pickup_time}}</p>
+            </div>
+            <div class="item">
+                <div class="pull-left">
+                    <h2>{{ 'bookings.set' | translate }}</h2>
+                    <p>{{ currentItem.cmb_return_parking }}</p>
+                </div>
+                <p class="pull-right value">{{currentItem.dtp_actual_return_date || currentItem.dtp_return_date}} {{currentItem.tim_actual_return_time && currentItem.tim_actual_return_time !== '00:00' ? currentItem.tim_actual_return_time : currentItem.tim_return_time}}</p>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

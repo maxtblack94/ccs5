@@ -1,0 +1,13 @@
+<ion-view view-title="{{ 'tabs.history' | translate}}">
+    <ion-content scroll="true">
+        <div class="list" ng-show="historyList.length">
+            <a class="item item-thumbnail-left item-icon-right" href ng-repeat="item in historyList" ng-click="openModal(item);">
+                <img ng-src="{{ item.ltf_url_image_vehicle_max ? item.ltf_url_image_vehicle_max : 'icons/vehicle-default-l.jpg' }}" style="max-width: 70px; max-height: 50px;">
+                <p style="font-weight: 600; font-size: 13px; color: red;">{{item.txb_pnr}}</p>
+                <h2>{{item.cmb_brand_model}}</h2>
+                <p>{{item.dtp_actual_return_date || item.dtp_return_date}} {{item.tim_actual_return_time && item.tim_actual_return_time !== '00:00' ? item.tim_actual_return_time : item.tim_return_time}}</p>
+                <i class="icon ion-ios7-eye-outline"></i>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>
