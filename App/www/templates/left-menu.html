@@ -34,7 +34,7 @@
         <i class="icon ion-ios-gear-outline"></i>
     </ion-item>
     <ion-item  class="item-icon-right" href="#/aboutUs" menu-close> <!-- ng-if="selectedClient.aboutSection" -->
-        <h2>{{ 'leftMenu.aboutUs' | translate}}</h2>
+        <h2>{{ selectedClient.aboutSectionLabel ? selectedClient.aboutSectionLabel : 'leftMenu.aboutUs' | translate}}</h2>
         <i class="icon ion-ios-information-outline"></i>
     </ion-item>
     <ion-item ng-if="selectedClient.helpSection" class="item-icon-right" href="#/help" menu-close>
