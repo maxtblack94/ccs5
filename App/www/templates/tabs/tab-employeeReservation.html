@@ -2,7 +2,7 @@
     <ion-content scroll="true">
         <div class="list" ng-show="employeeReservationList.length">
             <a class="item item-icon-right" href ng-repeat="item in employeeReservationList" ng-click="openModal(item);">
-                <h2 class="bold pnr">{{item.name || 'Massimo'}} {{item.surname || 'Lanera'}}</h2>
+                <h2 class="bold pnr">{{item.name || ' '}} {{item.surname || ' '}}</h2>
                 <p style="margin-top: 10px;">{{'bookResume.pickupPark' | translate}}</p>
                 <ion-grid>
                     <ion-row>
