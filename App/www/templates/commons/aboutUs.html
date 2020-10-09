@@ -1,0 +1,14 @@
+<ion-view view-title="{{ selectedClient.aboutSectionLabel ? selectedClient.aboutSectionLabel :  'leftMenu.aboutUs' | translate}}">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-divider aboutInfoTitle">
+        <h2>{{selectedClient.aboutInfo.title}}</h2>
+      </ion-item>
+      <ion-item class="item-icon-right"  ng-repeat="info in selectedClient.aboutInfo.infoList">
+        <h2>{{ info.label}}</h2>
+        <p>{{info.value}}</p>
+        <!-- <i class="icon ion-ios-email-outline"></i> -->
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
