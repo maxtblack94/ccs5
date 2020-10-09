@@ -17,6 +17,7 @@
     "cordova-plugin-device": "^1.1.6",
     "cordova-plugin-email-composer": "git+https://github.com/katzer/cordova-plugin-email-composer.git",
     "cordova-plugin-geolocation": "^2.4.3",
+    "cordova-plugin-googlemaps": "^2.7.1",
     "cordova-plugin-googlemaps-sdk": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git",
     "cordova-plugin-inappbrowser": "^1.7.2",
     "cordova-plugin-request-location-accuracy": "^2.3.0",
@@ -141,7 +142,11 @@
         "PLAY-SERVICES-WEARABLE": "17.0.0"
       },
       "onesignal-cordova-plugin": {},
-      "cordova-plugin-statusbar": {}
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-googlemaps": {
+        "LOCATION_WHEN_IN_USE_DESCRIPTION": "This app wants to get your location while this app runs only.",
+        "LOCATION_ALWAYS_USAGE_DESCRIPTION": "This app wants to get your location always, even this app runs in background."
+      }
     }
   }
 }
