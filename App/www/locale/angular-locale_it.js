@@ -142,6 +142,9 @@ window.locale_it.commons = {
 	stop: 'Ritorno',
 	details: 'Dettagli',
 	driver: 'Driver',
+	infoGPDR: 'Informativa GPDR',
+	infoContract: 'Info Contratto'
+	
 };
 
 window.locale_it.register = {
