@@ -75,7 +75,8 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
         }
     }
 
-    $scope.verifyCompanyCode = function(){
+    $scope.verifyCompanyCode = function(e){
+        e.stopPropagation();
         if(!$scope.request.verifyCode){
             setTimeout(function() {
                 $('#verifyCode-input').focus();

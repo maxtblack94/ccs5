@@ -4,7 +4,7 @@
             <input type="text" autocapitalize="none" id="verifyCode-input" ng-model="request.verifyCode" placeholder="{{ 'login.companyCodePlaceholder' | translate}}">
         </label>
     </form>
-    <a class="button button-block enter-account" ng-click="verifyCompanyCode()">
+    <a class="button button-block enter-account" ng-click="verifyCompanyCode($event)">
             {{ 'login.companyCode' | translate}}
     </a>
 </div>
