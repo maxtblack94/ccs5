@@ -10,7 +10,8 @@ window.locale_it.leftMenu = {
 	settings: 'Impostazioni',
 	help: 'Aiuto',
 	reserveHistory: 'Storico Prenotazioni',
-	logout: 'Logout'
+	logout: 'Logout',
+	aboutUs:'Chi siamo'
 }
 
 window.locale_it.sos = {
