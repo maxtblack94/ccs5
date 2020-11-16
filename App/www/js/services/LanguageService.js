@@ -14,8 +14,8 @@ angular.module('starter').factory("LanguageService", function($translate) {
                 tenForceAuthID = 'dGVuZm9yY2UuaXRAVEYuY29tfGRlbW9pdGFseTEyMTY4';
                 break;
             case 'HR':
-            case 'hr-HR':
-            case 'hr_HR':
+            case 'HR-HR':
+            case 'HR_HR':
                 tenForceAuthID = 'dGVuZm9yY2UuaHJAVEYuY29tfGRlbW9jcm9hemlhMjAxOQ==';
                 break;
             default:
