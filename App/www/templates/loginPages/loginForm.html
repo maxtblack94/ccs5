@@ -1,5 +1,5 @@
 <div ng-if="!recorveryPassword" class="form-container">
-    <a class="forgot-password button button-clear button-block" ng-if="$scope.selectedClient.value === devbb" ng-click="newAccount('GPP')">
+    <a class="forgot-password button button-clear button-block" ng-if="selectedClient.registration" ng-click="newAccount(selectedClient.value)">
         {{ 'commons.register' | translate}}
     </a>
     <form style="width:80%;margin: 20px auto;">

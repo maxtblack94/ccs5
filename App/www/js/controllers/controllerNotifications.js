@@ -14,7 +14,7 @@ angular.module('starter').controller('notificationsCtrl', function($filter, $roo
             }, function(error) {
                 $ionicLoading.hide();
                 $scope.model.notificationsPending = [];
-                PopUpServices.errorPopup($filter('translate')('notifications.failGetNotfications'));
+              /*   PopUpServices.errorPopup($filter('translate')('notifications.failGetNotfications')); */
             })
         });
     }
@@ -30,8 +30,9 @@ angular.module('starter').controller('notificationsCtrl', function($filter, $roo
         $rootScope.$broadcast('pushNotificationEvent', parsedNotification);
     }
 
-    if(!$scope.model.notificationsPending){
-        $scope.refreshNotifications();
-    }
+    $scope.refreshNotifications();
+   /*  if(!$scope.model.notificationsPending){
+      
+    } */
 
 })

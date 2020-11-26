@@ -42,6 +42,7 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
             ScriptServices.callGenericService(res, 589, 'demo').then(function(data) {
                 $ionicLoading.hide();
                 $scope.clientList = data.clientListBooking;
+                console.log($scope.clientList);
                 if(action === 'refresh'){
                     refreshClientConfigs(($scope.selectedClient || {}).clientCode || companyCode);
                 }
@@ -70,6 +71,8 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
                 InfoFactories.applyClientStyle($scope.clientList[i].clientStyle);
                 window.localStorage.setItem('selectedClient', JSON.stringify($scope.clientList[i]));
                 $scope.configCompanyAccount = false;
+                console.log($scope.selectedClient.registration);
+                $scope.registration = $scope.selectedClient.registration;
                 break;
             }
         }
@@ -124,7 +127,7 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
         });
     }
     $scope.newAccount = function (client) {
-        if(client === 'GPP') {
+        if(client === 'Gpp') {
             $state.go('gppRegistration');
         } else {
             $state.go('register');
