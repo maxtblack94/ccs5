@@ -314,7 +314,7 @@ window.locale_it.clientDetails = {
 };
 
 window.locale_it.actionSheet = {
-	chageDriver: 'Cambio Guida',
+	changeDriver: 'Cambio Guida',
 	selectEmployee: 'Selezionare Dipendente',
 	confirm: 'Conferma',
 	cancel: 'Annulla',

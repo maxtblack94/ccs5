@@ -295,7 +295,7 @@ window.locale_hr.clientDetails = {
 };
 
 window.locale_hr.actionSheet = {
-	chageDriver: "Promjena vozača",
+	changeDriver: "Promjena vozača",
 	selectEmployee: "Odaberi zaposlenika",
 	confirm: "Potvrdi",
 	cancel: "Otkaži",

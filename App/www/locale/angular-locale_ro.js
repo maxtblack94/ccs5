@@ -278,7 +278,7 @@ window.locale_ro.clientDetails = {
 };
 
 window.locale_ro.actionSheet = {
-	chageDriver: 'Modificarea Ghidului',
+	changeDriver: 'Modificarea Ghidului',
 	selectEmployee: 'Selectați angajatul',
 	confirm: 'Confirmare',
 	cancel: 'Anula',

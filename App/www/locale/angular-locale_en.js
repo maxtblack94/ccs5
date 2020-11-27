@@ -316,7 +316,7 @@ window.locale_en.clientDetails = {
 };
 
 window.locale_en.actionSheet = {
-	chageDriver: 'Driver Change',
+	changeDriver: 'Driver Change',
 	selectEmployee: 'Select employee',
 	confirm: 'Confirm',
 	cancel: 'Cancel',
