@@ -18,6 +18,12 @@ angular.module('starter').controller('TabCtrl', function(PushEventsService, Scri
         }
     }
 
+    $scope.verifyTabsPlan = function(){
+        $scope.selectedClient = InfoFactories.getClientSelected();
+        return $scope.selectedClient.planner
+    }
+
+
     function notificationExecuted(pushID){
         $scope.model.notificationsPending = null;
         ScriptServices.getXMLResource(636).then(function(res) {
