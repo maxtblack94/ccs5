@@ -1,4 +1,4 @@
-angular.module('starter').controller('MapCtrl', function ($filter, PopUpServices, ScriptServices, $scope, $http, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup) {
+angular.module('starter').controller('MapCtrl', function ($filter, PopUpServices, ScriptServices, $scope, $http, $state, $ionicLoading) {
     $scope.selectedBooking = $state.params.pnrInfo;
 
     $scope.navigate = function () {

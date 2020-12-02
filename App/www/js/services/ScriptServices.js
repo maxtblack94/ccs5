@@ -1,4 +1,4 @@
-angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFactories, $state, LanguageService) {
+angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFactories, $state, LanguageService , PopUpServices , $filter , $ionicLoading) {
     function getXMLResource(scriptID) {
         var scriptPath = "res/" + scriptID + ".xml";
         return $q(function (resolve, reject) {
@@ -44,6 +44,17 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
                             reject('Error');
                         }else if (resultValue.retcode == '401') {
                             $state.go('login', {error401:true});
+                        } else if (resultValue.retcode == 101) {
+                            PopUpServices.messagePopup(resultValue.errorDescription, $filter('translate')('commons.attention'));
+                            $ionicLoading.hide();
+                        } else if (resultValue.retcode == 100) {
+                            if (resultValue.errorDescription) {
+                                PopUpServices.messagePopup(resultValue.errorDescription, $filter('translate')('commons.attention'));
+                                $ionicLoading.hide();
+                            } else {
+                                  reject('Error');
+                            }
+                          
                         }else {
                             resolve(resultValue);
                         }
@@ -92,10 +103,20 @@ angular.module('starter').factory("ScriptServices", function ($q, $http, InfoFac
                                 reject('Error');
                             }else if (resultValue.retcode == '401') {
                                 $state.go('login', {error401:true});
-                            }else {
+                            }else if (resultValue.retcode == 101) {
+                                PopUpServices.messagePopup(resultValue.errorDescription || resultValue.retDescription , $filter('translate')('commons.attention'));
+                                $ionicLoading.hide();
+                            } else if (resultValue.retcode == 100) {
+                                if (resultValue.errorDescription || resultValue.retDescription) {
+                                    PopUpServices.messagePopup(resultValue.errorDescription || resultValue.retDescription , $filter('translate')('commons.attention'));
+                                        $ionicLoading.hide();
+                                } else {
+                                  reject('Error');
+                                }
+                            } else {
                                 resolve(resultValue);
                             }
-                        } else {
+                        }   else {
                             reject('Error');
                         }
                     }, function errorCallback(response) {
