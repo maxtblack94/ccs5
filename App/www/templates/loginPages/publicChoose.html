@@ -1,0 +1,26 @@
+<div class="app-activation-container">
+    <div class="step">
+        App Activation process (2 of 2) Choose your car sharing profile
+    </div>
+</div>
+<div class="form-container">
+    <ul class="list" style="overflow: hidden;
+    overflow-y: scroll;
+    max-height: 170px;
+    border-radius: 5px;
+    margin: 0px 30px;">
+    <div ng-repeat="client in clientList">
+        <li class="item item-icon-right" ng-if="client.companyPublic" ng-click="choosePublicClient(client)">
+            {{client.text}}
+            <img class="icon" src="{{client.logo}}"></img>
+        </li>
+    </div>
+        
+    </ul>
+    <div style="padding: 10px 30px;text-align: center;">
+        <button class="button button-block" ng-click="changeStatus('')">
+            Indietro
+        </button>
+    </div>
+    
+</div>

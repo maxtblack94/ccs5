@@ -36,6 +36,15 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
         return $scope.selectedClient?true:false
     }
 
+    $scope.choosePublicClient = function (client) {
+        $scope.selectedClient = client;
+        InfoFactories.applyClientStyle(client.clientStyle);
+        window.localStorage.setItem('selectedClient', JSON.stringify(client));
+        $scope.configCompanyAccount = false;
+        console.log($scope.selectedClient.registration);
+        $scope.registration = $scope.selectedClient.registration;
+    }
+
     function getClientList(action, companyCode){
         ScriptServices.getXMLResource(589).then(function(res) {
             res = res.replace('{LANGUAGE}', navigator.language); //ask matteo
@@ -75,6 +84,18 @@ angular.module('starter').controller('LoginCtrl', function($ionicSideMenuDelegat
                 $scope.registration = $scope.selectedClient.registration;
                 break;
             }
+        }
+    }
+
+    $scope.changeStatus = function (status, clearClient) {
+        $scope.pageStatus = status
+        if (clearClient) {
+            $scope.selectedClient = null;
+            InfoFactories.applyClientStyle(null);
+            $scope.configCompanyAccount = true;
+            $scope.registration = null;
+            InfoFactories.resetService();
+            window.localStorage.removeItem('selectedClient');
         }
     }
 

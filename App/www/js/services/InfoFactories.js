@@ -46,6 +46,9 @@ angular.module('starter').factory("InfoFactories", [function () {
             link.href = url;
             link.media = 'all';
             head.appendChild(link);
+        } else if(document.getElementById(cssId)) {
+            var link  = document.getElementById(cssId);
+            link.remove();
         }
     };
     function setDateTimeFrom(varDate) {

@@ -1,10 +1,24 @@
+<div class="app-activation-container">
+    <div class="step">
+        App Activation process (2 of 2) Choose your car sharing profile
+    </div>
+</div>
 <div class="form-container">
     <form style="width:80%;margin: 20px auto;">
         <label class="item item-input" style="border-radius: 5px;">
             <input type="text" autocapitalize="none" id="verifyCode-input" ng-model="request.verifyCode" placeholder="{{ 'login.companyCodePlaceholder' | translate}}">
         </label>
     </form>
-    <a class="button button-block enter-account" ng-click="verifyCompanyCode($event)">
+<!--     <a class="button button-block enter-account" >
             {{ 'login.companyCode' | translate}}
-    </a>
+    </a> -->
+    <div style="padding: 10px 30px;text-align: center;">
+        <button class="button" style="width:48%" ng-click="changeStatus('')">
+            Indietro
+        </button>
+        <button class="button" style="width:48%" ng-click="verifyCompanyCode($event)">
+            Continua
+        </button>
+    </div>
+    
 </div>

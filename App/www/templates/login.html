@@ -2,6 +2,7 @@
   <ion-content direction="y" style="right: 0;bottom: 0;left: 0;position: absolute;" >
     <!-- <div multi-bg="['http://i.giphy.com/13f7pejozPXuta.gif']" interval="3000" helper-class="no-facebook-welcome-bg"> -->
     <div multi-bg="['img/giphy-bg-2.gif']" interval="3000">
+      <i class="icon ion-arrow-left-c" ng-if="!configCompanyAccount" ng-click="changeStatus('', true)" style="font-size: 35px; position: absolute; top: 20px; color: #fff; left: 20px;"></i>
       <div class="top-content row">
         <div class="app-copy col col-center">
           <h1 ng-show="selectedClient.logo" class="app-logo"><img class='logo' ng-src="{{selectedClient.logo}}" style='max-width: 70%;' /></h1>
@@ -10,9 +11,12 @@
           </p>
         </div>
       </div>
+      <!-- test: {{configCompanyAccount}} - {{pageStatus}} -->
       <div class="bottom-content row">
         <div class="col col-bottom">
-          <section ng-show="configCompanyAccount" ng-include="'templates/loginPages/companyCode.html'"></section>
+          <section ng-show="configCompanyAccount && !pageStatus" ng-include="'templates/loginPages/chooseStatus.html'"></section>
+          <section ng-show="configCompanyAccount && pageStatus === 'publicChoose'" ng-include="'templates/loginPages/publicChoose.html'"></section>
+          <section ng-show="configCompanyAccount && pageStatus === 'companyCode'" ng-include="'templates/loginPages/companyCode.html'"></section>
           <section ng-show="!configCompanyAccount" ng-include="'templates/loginPages/loginForm.html'"></section>
           <section ng-include="'templates/commons/legal-notice.html'"></section>
         </div>

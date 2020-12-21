@@ -294,10 +294,10 @@ a.positive {
   .welcome-view .multi-bg-outer {
     z-index: 0; }
   .welcome-view .top-content {
-    height: 56%; }
+    height: 50%; }
     .welcome-view .top-content .app-copy {
       text-align: center;
-      padding-top: 10vh; }
+       }
     .welcome-view .top-content .app-logo {
       font-size: 50px;
       font-family: cursive;
@@ -309,7 +309,7 @@ a.positive {
       margin-top: 20px;
       color: #fff }
   .welcome-view .bottom-content {
-    height: 44%;
+    height: 50%;
     margin: 0px; }
 		 .welcome-view .bottom-content .forgot-account {
       margin-bottom: 20px; }
@@ -632,4 +632,20 @@ input {
 
 .platform-ios .tabs {
     height: 70px;
+}
+
+
+.app-activation-container{
+    padding: 20px;
+    color: #fff;
+}
+
+.app-activation-container .step {
+    text-align: center;
+    padding: 30px 10px;
+    margin-bottom: 30px;
+}
+
+.app-activation-container .button-container {
+    text-align: center;
 }
