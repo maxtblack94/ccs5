@@ -1,22 +1,22 @@
 <div class="app-activation-container">
     <div class="step">
-        App Activation process (1 of 2) Choose your car sharing profile
+        {{ 'commons.process01' | translate}} {{ 'commons.process02' | translate}}
     </div>
-    <div class="button-container">
+    <div class="button-container" style=" margin-bottom: 25px;">
         <span class="label">
-            I am an individual
+            {{ 'commons.process04' | translate}} 
         </span>
         <button class="button button-block" ng-click="changeStatus('publicChoose')">
-            Public car Sharing
+            {{ 'commons.public' | translate}} 
         </button>
     </div>
 
     <div class="button-container">
         <span class="label">
-            i am an employee
+            {{ 'commons.employee' | translate}} 
         </span>
         <button class="button button-block" ng-click="changeStatus('companyCode')">
-            corporate car sharing
+            {{ 'commons.corporate' | translate}} 
         </button>
     </div>
     

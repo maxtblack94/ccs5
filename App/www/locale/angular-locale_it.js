@@ -139,7 +139,18 @@ window.locale_it.commons = {
 	vehicleNotFound: 'Non è stato possibile trovare il veicolo ricercato',
 	infoGDPR:"Leggi l'informativa sul GDPR",
 	infoContract: "Leggi il contratto",
-	details: 'Dettagli Prenotazione'
+	details: 'Dettagli Prenotazione',
+	process01:"Processo di attivazione dell'app (1 di 2)",
+    process02:"Scegli il tuo profilo di Car Sharing",
+    process03:"Processo di attivazione dell'app (2 di 2)",
+    process04:"Profilo Individuale",
+    process05:"Scegli il tuo servizio di Car Sharing pubblico",
+    process06:"Profilo Aziendale",
+    process07:"Inserisci il tuo Codice Azienda",
+    corporate:"Corporate Car Sharing",
+    public:"Public Car Sharing",
+    employee:"Sono un'azienda",
+    individual:"Sono un privato"
 };
 
 window.locale_it.register = {

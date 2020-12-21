@@ -1,6 +1,6 @@
 <div class="app-activation-container">
     <div class="step">
-        App Activation process (2 of 2) Choose your car sharing profile
+        {{ 'commons.process03' | translate}} {{ 'commons.process02' | translate}}
     </div>
 </div>
 <div class="form-container">
@@ -14,10 +14,10 @@
     </a> -->
     <div style="padding: 10px 30px;text-align: center;">
         <button class="button" style="width:48%" ng-click="changeStatus('')">
-            Indietro
+            {{ 'commons.back' | translate}}
         </button>
         <button class="button" style="width:48%" ng-click="verifyCompanyCode($event)">
-            Continua
+            {{ 'commons.confirm' | translate}}
         </button>
     </div>
     

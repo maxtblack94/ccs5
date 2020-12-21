@@ -146,7 +146,18 @@ window.locale_en.commons = {
 	phone: 'Phone',
 	start: 'Pickup',
 	stop: 'Return',
-	driver: 'Driver'
+	driver: 'Driver',
+	process01:"App Activation Process (1 of 2)",
+	process02:"Choose your Car Sharing profile",
+    process03:"App Activation Process  (2 di 2)",
+    process04:"Individual Profile",
+    process05:"Choose your Public Car Sharing Service",
+    process06:"Employee Profile",
+	process07:"Insert your reserved Company Code",
+	corporate:"Corporate Car Sharing",
+	public:"Public Car Sraring",
+	employee: "I am an Employee",
+    individual: "I am an Individual"
 };
 
 window.locale_en.bookResume = {
