@@ -115,6 +115,7 @@ window.locale_it.commons = {
 	bleConnectionInvalidKey: 'Assicurati di aver posizionato nel portachiavi la chiave del veicolo giusto',
 	bleConnectionAlreadyProcessedRequest: 'La richiesta di apertura è già stata gestita precedentemente',
 	bleConnectionNoKey: 'Assicurati che la chiave del veicolo sia nel portachiavi al momento della chiusura del veicolo',
+	bleConnectionMotorOn: 'Assicurarsi che il motore sia spento prima di effettuare la chiusura del veicolo',
 	plafond: 'Saldo',
 	currentPlafond: "Saldo attuale",
 	chargePlafond: "Ricarica",

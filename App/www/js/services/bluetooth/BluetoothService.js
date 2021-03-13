@@ -39,7 +39,7 @@ angular.module('starter').factory("BluetoothServices", function(UpdateBBService,
 
     function manageNotifyMessage(notifyData) {
         var interaction = actionsList.find(function (item) {
-            return item.TI === notifyData.TI;
+            return notifyData.TI.includes(item.TI) || item.TI === notifyData.TI
         });
         if (interaction && interaction.MT) {
             if (notifyData.RC) {
@@ -232,6 +232,10 @@ angular.module('starter').factory("BluetoothServices", function(UpdateBBService,
             case 160:
                 errorCode = 'NO_KEY';
                 errorMessage = $filter('translate')('commons.bleConnectionNoKey');
+                break;
+            case 190:
+                errorCode = 'MOTOR_ON';
+                errorMessage = $filter('translate')('commons.bleConnectionMotorOn');
                 break;
             default:
                 break;
